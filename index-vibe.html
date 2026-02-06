@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coherascent Labs — Neuro-Symbolic AI Research</title>
+  <meta name="description" content="Coherascent Labs advances neuro-symbolic AI and mathematical optimization with deterministic control layers for LLMs." />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap");
+
+    :root {
+      --bg: #090c16;
+      --bg-deep: #05070f;
+      --grid: rgba(120, 170, 255, 0.08);
+      --blue: #66b3ff;
+      --cyan: #63f2ff;
+      --violet: #8a5dff;
+      --pink: #f07bff;
+      --orange: #ff9d4d;
+      --text: #e8f1ff;
+      --muted: #9bb3d9;
+      --card: rgba(12, 18, 34, 0.7);
+      --glass: rgba(20, 28, 52, 0.6);
+      --glow: 0 0 30px rgba(102, 179, 255, 0.25), 0 0 80px rgba(138, 93, 255, 0.2);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: radial-gradient(1200px 700px at 15% 0%, rgba(102, 179, 255, 0.18), transparent 55%),
+                  radial-gradient(1000px 700px at 85% 10%, rgba(240, 123, 255, 0.15), transparent 55%),
+                  radial-gradient(900px 600px at 70% 90%, rgba(255, 157, 77, 0.12), transparent 55%),
+                  linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-attachment: fixed;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      color: var(--text);
+      background: transparent;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(70% 60% at 50% 40%, #000 30%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px 120px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 0 48px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 32%;
+      box-shadow: var(--glow);
+    }
+
+    .brand h1 {
+      font-family: "Syne", sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h2 {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      margin: 0 0 16px;
+      line-height: 1.2;
+      overflow: visible;
+      display: inline-block;
+    }
+
+    .hero h2 .line {
+      display: inline-block;
+      padding-bottom: 18px;
+    }
+
+    .hero h2 span {
+      color: var(--cyan);
+      text-shadow: 0 0 18px rgba(99, 242, 255, 0.5);
+    }
+
+    .hero-label {
+      display: inline-block;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.55em;
+      font-weight: 600;
+      text-shadow: none;
+    }
+
+    .hero-focus {
+      color: var(--cyan);
+      text-shadow: 0 0 22px rgba(99, 242, 255, 0.6);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0 0 24px;
+    }
+
+    .hero .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .pill {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(102, 179, 255, 0.25);
+      background: rgba(11, 16, 30, 0.6);
+      box-shadow: inset 0 0 12px rgba(99, 242, 255, 0.12);
+    }
+
+    .hero-card {
+      background: var(--glass);
+      border-radius: 24px;
+      border: 1px solid rgba(102, 179, 255, 0.2);
+      padding: 28px;
+      box-shadow: var(--glow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(500px 300px at 10% 20%, rgba(99, 242, 255, 0.2), transparent 60%),
+                  radial-gradient(600px 380px at 80% 70%, rgba(138, 93, 255, 0.2), transparent 60%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4), 0 0 60px rgba(99, 242, 255, 0.25);
+    }
+
+    .hero-card h3 {
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-top: 72px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .section-title {
+      font-family: "Syne", sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      border: 1px solid rgba(102, 179, 255, 0.18);
+      padding: 20px 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(99, 242, 255, 0.5);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.35), 0 0 50px rgba(138, 93, 255, 0.25);
+    }
+
+    .initiative-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(102, 179, 255, 0.22);
+      margin-bottom: 14px;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35);
+    }
+
+    .card strong {
+      color: var(--cyan);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px;
+      background: rgba(9, 13, 25, 0.6);
+      border-radius: 16px;
+      border: 1px solid rgba(102, 179, 255, 0.16);
+    }
+
+    .timeline-item span {
+      color: var(--orange);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 80px;
+      padding: 24px;
+      border-radius: 20px;
+      background: linear-gradient(120deg, rgba(102, 179, 255, 0.2), rgba(138, 93, 255, 0.15));
+      border: 1px solid rgba(102, 179, 255, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer strong {
+      font-family: "Syne", sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .cta {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--cyan), var(--violet));
+      color: #04060d;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      border: none;
+      box-shadow: 0 14px 30px rgba(99, 242, 255, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: pulse 3.8s ease-in-out infinite;
+    }
+
+    .cta:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(99, 242, 255, 0.35);
+    }
+
+    .animate-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.9s ease forwards;
+    }
+
+    .animate-in[data-delay="1"] { animation-delay: 0.1s; }
+    .animate-in[data-delay="2"] { animation-delay: 0.2s; }
+    .animate-in[data-delay="3"] { animation-delay: 0.3s; }
+    .animate-in[data-delay="4"] { animation-delay: 0.4s; }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 14px 30px rgba(99, 242, 255, 0.25); }
+      50% { box-shadow: 0 20px 46px rgba(99, 242, 255, 0.4); }
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="animate-in" data-delay="1">
+      <div class="brand">
+        <img src="Coherascent-Labs-Logo.png" alt="Coherascent Labs logo" />
+        <h1>Coherascent Labs</h1>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h2 class="animate-in" data-delay="2"><span class="hero-focus">Neuro-Symbolic</span> <span class="line hero-focus">AI</span></h2>
+        <p class="animate-in" data-delay="3">
+          Coherascent Labs advances research at the intersection of Neuro-Symbolic AI and Mathematical Optimization. Our work is informed by
+          deep experience architecting production-level autonomous agents and implementing GPT-style Transformer models from the ground up,
+          with an emphasis on rigor, reproducibility, and collaborative science.
+        </p>
+        <div class="meta animate-in" data-delay="4">
+          <div class="pill">Remote-first</div>
+          <div class="pill">Research Started Jan 2026</div>
+          <div class="pill">Active Research Program</div>
+        </div>
+      </div>
+      <div class="hero-card animate-in" data-delay="3">
+        <h3>Research Focus</h3>
+        <ul>
+          <li>Adapting discrete satisfiability algorithms (DPLL) into continuous vector spaces.</li>
+          <li>Engineering control layers that enforce formal logic within probabilistic agents.</li>
+          <li>Reducing hallucination by pushing outputs toward mathematically coherent truth.</li>
+          <li>Modeling cognitive states as high-dimensional optimization problems.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Current Initiatives</div>
+      <div class="grid">
+        <div class="card animate-in" data-delay="1">
+          <img class="initiative-image" src="images/deterministic-probabilistic-automaton.png" alt="Deterministic control layer schematic" />
+          <strong>Deterministic Architecture</strong>
+          Building control layers that force probabilistic agents to adhere to formal logic structures, enabling verifiable reasoning.
+        </div>
+        <div class="card animate-in" data-delay="2">
+          <img class="initiative-image" src="images/dpll.png" alt="DPLL reasoning visual" />
+          <strong>Continuous DPLL</strong>
+          Investigating how SAT-style reasoning can be expressed inside differentiable vector spaces for scalable inference.
+        </div>
+        <div class="card animate-in" data-delay="3">
+          <img class="initiative-image" src="images/gradient-optimization.png" alt="Gradient optimization landscape" />
+          <strong>Optimization Cognition</strong>
+          Designing gradient ascent pathways that minimize prediction error and reveal latent structure in cognitive state models.
+        </div>
+        <div class="card animate-in" data-delay="4">
+          <img class="initiative-image" src="images/bridge-equations.png" alt="Neuro-symbolic bridge equations" />
+          <strong>Neuro-Symbolic Bridge</strong>
+          Connecting explicit rule systems with data-driven Transformer architectures to unify formal and statistical reasoning.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Methodology</div>
+      <div class="timeline">
+        <div class="timeline-item animate-in" data-delay="1">
+          <span>Foundation</span>
+          <p>
+            Grounded in deep understanding of large language model mechanics and prior work building production-grade autonomous agents.
+          </p>
+        </div>
+        <div class="timeline-item animate-in" data-delay="2">
+          <span>Research Shift</span>
+          <p>
+            Adapting discrete satisfiability algorithms into continuous spaces to overcome reasoning limitations in generative architectures.
+          </p>
+        </div>
+        <div class="timeline-item animate-in" data-delay="3">
+          <span>Truth Alignment</span>
+          <p>
+            Engineering architectural determinism to reduce hallucination and ensure outputs ascend toward mathematically coherent truth.
+          </p>
+        </div>
+        <div class="timeline-item animate-in" data-delay="4">
+          <span>Tooling</span>
+          <p>
+            Using Python, C++, and PyTorch to model cognitive states as optimization problems with custom gradient ascent pathways.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Why It Matters</div>
+      <div class="card">
+        Coherascent Labs is driven by the belief that Neuro-Symbolic AI connects explicit rules from SAT solving to data-driven concepts
+        in machine learning and Transformer architectures, unifying disciplines that are often kept entirely separate and enabling
+        collaborative progress across logic, optimization, and deep learning communities.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Mathematical Rigor</div>
+      <div class="card">
+        Our research emphasizes a rigorous mathematical recorder for AI systems: second-order Taylor expansions and Hessian structure
+        inform curvature-aware optimization; polynomial representations connect continuous dynamics to discrete constraints; Boolean
+        satisfiability and conjunctive normal form (CNF) proofs ground symbolic reasoning; and high-dimensional multivariate calculus
+        supports verification of learning dynamics in modern machine learning contexts.
+      </div>
+    </section>
+
+    <div class="footer">
+      <strong>Coherascent Labs</strong>
+      <a class="cta" href="mailto:griffinkrutherford@gmail.com">Explore Collaboration</a>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+
+\section*{Unified Objective}
+\begin{equation}
+\mathcal{L}(\theta) = \mathbb{E}_{(x,y)\sim\mathcal{D}}\big[\ell(f_{\theta}(x), y)\big] + \lambda\,\mathbb{E}_{x\sim\mathcal{D}}\big[\max(0,\, C - F(A\,f_{\theta}(x) - b))\big]
+\end{equation}
+\begin{center}
+\includegraphics[width=0.85\linewidth]{images/bridge-equations.png}
+\end{center}
+
+\section*{Logical Consistency Constraint}
+\begin{equation}
+\min_{\theta}\; \mathbb{E}_{x\sim\mathcal{D}}\big[\ell(f_{\theta}(x), y)\big]
+\quad \text{s.t.} \quad \varphi\big(\operatorname{sign}(W\,f_{\theta}(x))\big)=\text{True}
+\end{equation}
+\begin{center}
+\includegraphics[width=0.85\linewidth]{images/deterministic-probabilistic-automaton.png}
+\end{center}
+
+\section*{CNF Surrogate Regularization}
+\begin{equation}
+\mathcal{R}(\theta) = \sum_{k=1}^{m} \log\big(1 + \exp(-\alpha\, s_k(f_{\theta}(x)))\big),\quad s_k \in \mathcal{S}_{\mathrm{CNF}}
+\end{equation}
+\begin{center}
+\includegraphics[width=0.85\linewidth]{images/dpll.png}
+\end{center}
+
+\section*{Curvature-Aware Penalty}
+\begin{equation}
+\min_{\theta}\; \mathbb{E}_{x\sim\mathcal{D}}\big[\ell(f_{\theta}(x), y)\big] + \mu\,\|\nabla^2_{z} \ell(f_{\theta}(x), y)\|_F^2
+\end{equation}
+\begin{center}
+\includegraphics[width=0.85\linewidth]{images/gradient-optimization.png}
+\end{center}
+
+\end{document}
