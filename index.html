@@ -109,9 +109,6 @@
       box-shadow: var(--glow);
     }
 
-    html[data-theme="light"] .brand img {
-      content: url("Coherascent-Labs-Logo-Light.png");
-    }
 
     .brand h1 {
       font-family: "Syne", sans-serif;
@@ -451,7 +448,13 @@
   <main>
     <header class="animate-in" data-delay="1">
       <div class="brand">
-        <img src="Coherascent-Labs-Logo.png" alt="Coherascent Labs logo" id="siteLogo" />
+        <img
+          src="Coherascent-Labs-Logo.png"
+          alt="Coherascent Labs logo"
+          id="siteLogo"
+          data-dark-src="Coherascent-Labs-Logo.png"
+          data-light-src="Coherascent-Labs-Logo-Light.png"
+        />
         <h1>Coherascent Labs</h1>
       </div>
       <button class="theme-toggle" type="button" id="themeToggle">
@@ -579,7 +582,9 @@
         root.setAttribute("data-theme", theme);
         if (label) label.textContent = theme === "light" ? "Dark Mode" : "Light Mode";
         if (logo) {
-          logo.src = theme === "light" ? "Coherascent-Labs-Logo-Light.png" : "Coherascent-Labs-Logo.png";
+          const darkSrc = logo.getAttribute("data-dark-src");
+          const lightSrc = logo.getAttribute("data-light-src");
+          logo.src = theme === "light" ? (lightSrc || darkSrc) : (darkSrc || lightSrc);
         }
         const favicon = document.getElementById("favicon");
         if (favicon) {
