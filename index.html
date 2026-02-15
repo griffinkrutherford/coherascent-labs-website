@@ -410,6 +410,7 @@
       letter-spacing: 0.08em;
       font-size: 13px;
       border: none;
+      text-decoration: none;
       box-shadow: 0 12px 26px rgba(99, 242, 255, 0.2);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
@@ -453,6 +454,26 @@
         grid-template-columns: 1fr;
       }
 
+      .hero > div:first-child {
+        display: contents;
+      }
+
+      .hero h2 {
+        order: 1;
+      }
+
+      .hero-card {
+        order: 2;
+      }
+
+      .hero .hero-copy {
+        order: 3;
+      }
+
+      .hero .meta {
+        order: 4;
+      }
+
       .timeline-item {
         grid-template-columns: 1fr;
       }
@@ -481,7 +502,7 @@
     <section class="hero">
       <div>
         <h2 class="animate-in" data-delay="2"><span class="hero-focus">Neuro-Symbolic</span> <span class="line hero-focus">AI</span></h2>
-        <p class="animate-in" data-delay="3">
+        <p class="hero-copy animate-in" data-delay="3">
           Coherascent Labs leads research at the intersection of Neuro-Symbolic AI and Mathematical Optimization, grounded in prior work
           building production-grade autonomous agents and GPT-style Transformers with a focus on rigor and reproducibility. The long-term
           goal is to reduce hallucinations in generative models by grounding outputs in formal logic and mathematically coherent
