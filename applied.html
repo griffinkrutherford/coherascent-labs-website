@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coherascent Labs — Applied Technology</title>
+  <meta
+    name="description"
+    content="Applied technology overview for Coherascent Labs, including the educational platform, verifiable grading, and dynamic remediation systems."
+  />
+  <link rel="icon" type="image/png" href="circle_favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-deep: #030814;
+      --grid: rgba(115, 157, 230, 0.08);
+      --cyan: #84e7ff;
+      --violet: #9c8dff;
+      --orange: #ffba6b;
+      --text: #edf5ff;
+      --muted: #a6bad7;
+      --card: rgba(8, 17, 34, 0.72);
+      --glass: rgba(16, 28, 54, 0.7);
+      --line: rgba(132, 231, 255, 0.18);
+      --glow: 0 18px 50px rgba(4, 10, 24, 0.45), 0 0 40px rgba(132, 231, 255, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background:
+        radial-gradient(1200px 700px at 15% 0%, rgba(64, 127, 255, 0.22), transparent 55%),
+        radial-gradient(1000px 700px at 85% 10%, rgba(156, 141, 255, 0.18), transparent 55%),
+        radial-gradient(900px 600px at 70% 90%, rgba(37, 195, 255, 0.12), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-attachment: fixed;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Roboto Mono", monospace;
+      color: var(--text);
+      background: transparent;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 78% 24%, rgba(255, 255, 255, 0.85) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 32% 72%, rgba(132, 231, 255, 0.85) 0 1.2px, transparent 2px),
+        radial-gradient(circle at 64% 66%, rgba(255, 255, 255, 0.75) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 88% 76%, rgba(156, 141, 255, 0.8) 0 1.2px, transparent 2px),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: auto, auto, auto, auto, auto, 48px 48px, 48px 48px;
+      mask-image: radial-gradient(74% 66% at 50% 40%, #000 42%, transparent 82%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(700px 300px at 18% 24%, rgba(132, 231, 255, 0.1), transparent 60%),
+        radial-gradient(760px 340px at 80% 20%, rgba(156, 141, 255, 0.12), transparent 60%),
+        radial-gradient(820px 380px at 55% 88%, rgba(41, 110, 255, 0.1), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px 120px;
+    }
+
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 0 48px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 74px;
+      height: 74px;
+      border-radius: 18px;
+      object-fit: contain;
+      object-position: center;
+      box-shadow: var(--glow);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .back-link {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(132, 231, 255, 0.22);
+      background: rgba(10, 20, 40, 0.7);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero,
+    .detail-card,
+    .note-card {
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--glow);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero {
+      display: grid;
+      gap: 22px;
+      padding: 38px 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(500px 260px at 12% 12%, rgba(42, 143, 156, 0.12), transparent 60%),
+        radial-gradient(620px 300px at 85% 84%, rgba(156, 141, 255, 0.16), transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-label {
+      display: inline-block;
+      justify-self: start;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(132, 231, 255, 0.22);
+      background: rgba(10, 20, 40, 0.7);
+      box-shadow: inset 0 0 12px rgba(132, 231, 255, 0.08);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h2 span {
+      color: var(--cyan);
+      text-shadow: 0 0 16px rgba(132, 231, 255, 0.34);
+    }
+
+    .hero p,
+    .detail-card p,
+    .note-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .section {
+      margin-top: 72px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .detail-card {
+      padding: 22px;
+    }
+
+    .detail-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px;
+      background: rgba(10, 20, 40, 0.74);
+      border-radius: 16px;
+      border: 1px solid rgba(132, 231, 255, 0.16);
+    }
+
+    .timeline-item span {
+      color: var(--orange);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .note-card {
+      padding: 24px;
+      background: var(--glass);
+      box-shadow: var(--glow);
+    }
+
+    .footer {
+      margin-top: 80px;
+      padding: 24px;
+      border-radius: 20px;
+      background: linear-gradient(120deg, rgba(20, 62, 130, 0.34), rgba(90, 74, 168, 0.24));
+      border: 1px solid rgba(132, 231, 255, 0.18);
+      display: grid;
+      gap: 18px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--cyan), var(--violet));
+      color: #07111f;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      box-shadow: 0 14px 30px rgba(132, 231, 255, 0.18);
+    }
+
+    @media (max-width: 900px) {
+      .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding: 30px 22px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 32px 16px 96px;
+      }
+
+      .brand img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .brand h1 {
+        font-size: 16px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="site-header">
+      <div class="brand" aria-label="Coherascent Labs">
+        <img src="coherascent-labs-logo-march-16-2026.png" alt="Coherascent Labs logo" />
+        <h1>Coherascent Labs</h1>
+      </div>
+      <a class="back-link" href="index.html">Back to Home</a>
+    </header>
+
+    <section class="hero" aria-labelledby="applied-page-title">
+      <div class="hero-label">Applied Technology</div>
+      <h2 id="applied-page-title"><span>Educational</span> Platform</h2>
+      <p>
+        Coherascent Labs translates its truth-aligned research program into practical educational systems.
+        The applied platform is designed to turn rigorous reasoning into an everyday student experience,
+        combining tactile learning, computer vision, verifiable grading, and adaptive remediation.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="platform-title">
+      <h2 class="section-title" id="platform-title">Platform Components</h2>
+      <div class="details">
+        <article class="detail-card">
+          <strong>The Educational Platform (In Development)</strong>
+          <p>A cross-platform ecosystem designed to force active, offline cognitive engagement through tactile learning.</p>
+        </article>
+        <article class="detail-card">
+          <strong>Computer Vision &amp; Verifiable Grading</strong>
+          <p>Utilizing our truth-aligned architectural principles, the app ingests handwritten logic, parses the mathematical steps, and delivers rigorously accurate, hallucination-free feedback.</p>
+        </article>
+        <article class="detail-card">
+          <strong>Dynamic Remediation Engine</strong>
+          <p>Scaling from elementary arithmetic to university-level mathematics, the system maps cognitive bottlenecks and generates targeted, adaptive practice loops driven by streak-based gamification and an immersive space-themed interface.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="delivery-title">
+      <h2 class="section-title" id="delivery-title">Delivery Model</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span>Tactile Learning</span>
+          <p>The experience is structured to pull learners away from passive prompting and toward active handwritten reasoning, preserving the cognitive friction that actual learning requires.</p>
+        </div>
+        <div class="timeline-item">
+          <span>Parsing Layer</span>
+          <p>Computer vision systems interpret handwritten logic and mathematics, transforming student work into structured intermediate representations suitable for deterministic evaluation.</p>
+        </div>
+        <div class="timeline-item">
+          <span>Feedback Engine</span>
+          <p>Truth-aligned grading models evaluate each step for correctness and provide feedback grounded in explicit reasoning rather than probabilistic guesswork.</p>
+        </div>
+        <div class="timeline-item">
+          <span>Adaptive Loop</span>
+          <p>The remediation engine identifies bottlenecks, assembles targeted practice, and sustains motivation through streaks, progression systems, and an immersive space-themed interface.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="application-title">
+      <h2 class="section-title" id="application-title">Why Application Matters</h2>
+      <div class="note-card">
+        <p>
+          The applied platform is not separate from the research mandate. It is the environment where
+          deterministic reasoning systems are stress-tested against real student workflows, real errors,
+          and measurable educational outcomes. Product deployment becomes a proving ground for whether
+          the underlying architectures can deliver trustworthy intelligence in practice.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer" aria-label="Applied technology call to action">
+      <a class="cta" href="index.html">Return to Coherascent Labs</a>
+    </footer>
+  </main>
+</body>
+</html>

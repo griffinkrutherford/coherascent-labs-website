@@ -4,39 +4,39 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Coherascent Labs — Neuro-Symbolic AI Research</title>
-  <meta name="description" content="Coherascent Labs advances neuro-symbolic AI and mathematical optimization with deterministic control layers for LLMs." />
-  <link id="favicon" rel="icon" type="image/png" href="circle_favicon.png" />
+  <meta
+    name="description"
+    content="Coherascent Labs is a dual-mandate research firm pursuing neuro-symbolic AI and applied educational technology grounded in verifiable reasoning."
+  />
+  <link rel="icon" type="image/png" href="circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet"
+  />
   <style>
-
     :root {
       --bg: #090c16;
       --bg-deep: #05070f;
-      --grid: rgba(120, 170, 255, 0.06);
-      --bg-grad-1: rgba(102, 179, 255, 0.09);
-      --bg-grad-2: rgba(240, 123, 255, 0.07);
-      --bg-grad-3: rgba(255, 157, 77, 0.06);
-      --blue: #6aa3db;
-      --cyan: #66d6e0;
-      --violet: #7b6ac7;
-      --pink: #d78adf;
-      --orange: #e7a06a;
-      --text: #e2ecf8;
-      --muted: #96a8c6;
-      --card: rgba(12, 18, 34, 0.7);
-      --glass: rgba(20, 28, 52, 0.6);
-      --glow: 0 0 18px rgba(102, 179, 255, 0.18), 0 0 40px rgba(138, 93, 255, 0.12);
+      --grid: rgba(120, 170, 255, 0.08);
+      --blue: #66b3ff;
+      --cyan: #63f2ff;
+      --violet: #8a5dff;
+      --pink: #f07bff;
+      --orange: #ff9d4d;
+      --text: #e8f1ff;
+      --muted: #9bb3d9;
+      --card: rgba(12, 18, 34, 0.72);
+      --glass: rgba(20, 28, 52, 0.62);
+      --line: rgba(102, 179, 255, 0.2);
+      --glow: 0 0 30px rgba(102, 179, 255, 0.24), 0 0 80px rgba(138, 93, 255, 0.18);
     }
 
     html[data-theme="light"] {
-      --bg: #f5f7fb;
-      --bg-deep: #e6ebf3;
+      --bg: #f5f2ea;
+      --bg-deep: #ebe6da;
       --grid: rgba(80, 110, 160, 0.12);
-      --bg-grad-1: rgba(90, 140, 200, 0.12);
-      --bg-grad-2: rgba(170, 120, 200, 0.1);
-      --bg-grad-3: rgba(220, 150, 90, 0.1);
       --blue: #2e6aa8;
       --cyan: #2a8f9c;
       --violet: #5a4aa8;
@@ -44,27 +44,32 @@
       --orange: #b56a2e;
       --text: #1b2436;
       --muted: #4d5a73;
-      --card: rgba(250, 252, 255, 0.9);
+      --card: rgba(255, 252, 247, 0.9);
       --glass: rgba(240, 244, 250, 0.85);
-      --glow: 0 0 16px rgba(46, 106, 168, 0.18), 0 0 32px rgba(90, 74, 168, 0.12);
+      --line: rgba(46, 106, 168, 0.22);
+      --glow: 0 16px 40px rgba(46, 106, 168, 0.12), 0 0 30px rgba(90, 74, 168, 0.08);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     html {
-      background: radial-gradient(1200px 700px at 15% 0%, var(--bg-grad-1), transparent 62%),
-                  radial-gradient(1000px 700px at 85% 10%, var(--bg-grad-2), transparent 62%),
-                  radial-gradient(900px 600px at 70% 90%, var(--bg-grad-3), transparent 62%),
-                  linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      scroll-behavior: smooth;
+      background:
+        radial-gradient(1200px 700px at 15% 0%, rgba(102, 179, 255, 0.18), transparent 55%),
+        radial-gradient(1000px 700px at 85% 10%, rgba(240, 123, 255, 0.15), transparent 55%),
+        radial-gradient(900px 600px at 70% 90%, rgba(255, 157, 77, 0.12), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
       background-attachment: fixed;
     }
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: "Roboto Mono", monospace;
       color: var(--text);
       background: transparent;
-      min-height: 100vh;
     }
 
     body::before {
@@ -75,9 +80,19 @@
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px);
       background-size: 48px 48px;
-      mask-image: radial-gradient(70% 60% at 50% 40%, #000 40%, transparent 80%);
+      mask-image: radial-gradient(70% 60% at 50% 40%, #000 30%, transparent 75%);
       pointer-events: none;
       z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
     }
 
     main {
@@ -88,36 +103,35 @@
       padding: 48px 24px 120px;
     }
 
-    header {
+    .site-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 24px;
-      padding: 12px 0 48px;
+      padding: 8px 0 52px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
+      min-width: 0;
     }
 
     .brand img {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center 32%;
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      object-fit: contain;
+      object-position: center;
       box-shadow: var(--glow);
     }
 
-
     .brand h1 {
-      font-family: "Roboto Mono", monospace;
-      font-size: 20px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
       margin: 0;
+      font-size: 18px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
 
     .theme-toggle {
@@ -125,12 +139,12 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
       border: 1px solid rgba(102, 179, 255, 0.3);
       background: rgba(10, 16, 30, 0.35);
       color: var(--text);
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
@@ -140,18 +154,6 @@
     html[data-theme="light"] .theme-toggle {
       background: rgba(255, 255, 255, 0.6);
       border-color: rgba(46, 106, 168, 0.25);
-    }
-
-    html[data-theme="light"] .pill {
-      background: rgba(255, 255, 255, 0.75);
-      border-color: rgba(46, 106, 168, 0.25);
-      box-shadow: inset 0 0 12px rgba(46, 106, 168, 0.08);
-    }
-
-    html[data-theme="light"] .timeline-item {
-      background: rgba(255, 255, 255, 0.85);
-      border-color: rgba(46, 106, 168, 0.2);
-      box-shadow: 0 12px 28px rgba(46, 106, 168, 0.08);
     }
 
     .theme-toggle:hover {
@@ -167,61 +169,80 @@
       box-shadow: 0 0 10px rgba(102, 179, 255, 0.4);
     }
 
-
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-      gap: 40px;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr);
+      gap: 48px;
       align-items: center;
-    }
-
-    .hero h2 {
-      font-family: "Roboto Mono", monospace;
-      font-size: clamp(36px, 5vw, 64px);
-      margin: 0 0 16px;
-      line-height: 1.2;
+      padding: 12px 0 10px;
+      position: relative;
       overflow: visible;
-      display: inline-block;
     }
 
-    .hero h2 .line {
-      display: inline-block;
-      padding-bottom: 18px;
+    .hero::after {
+      content: none;
     }
 
-    .hero h2 span {
-      color: var(--cyan);
-      text-shadow: 0 0 12px rgba(99, 242, 255, 0.35);
+    .hero-copy {
+      max-width: 920px;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-label {
       display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(102, 179, 255, 0.25);
+      background: rgba(11, 16, 30, 0.6);
+      box-shadow: inset 0 0 12px rgba(99, 242, 255, 0.12);
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.55em;
+      letter-spacing: 0.18em;
+      font-size: 11px;
       font-weight: 600;
-      text-shadow: none;
     }
 
-    .hero-focus {
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(56px, 8vw, 92px);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .hero h2 span {
       color: var(--cyan);
-      text-shadow: 0 0 12px rgba(99, 242, 255, 0.4);
+      text-shadow: 0 0 18px rgba(99, 242, 255, 0.5);
     }
 
-    .hero p {
-      font-size: 18px;
+    html[data-theme="light"] .hero h2 span {
+      text-shadow: 0 0 12px rgba(42, 143, 156, 0.18);
+    }
+
+    .hero__subheadline {
+      display: none;
+    }
+
+    .hero__mission {
+      margin: 28px 0 0;
+      max-width: 860px;
+      font-size: clamp(17px, 1.8vw, 19px);
+      line-height: 1.8;
       color: var(--muted);
-      line-height: 1.7;
-      margin: 0 0 24px;
     }
 
-    .hero .meta {
+    .meta {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-start;
       gap: 12px;
-      font-size: 14px;
-      color: var(--muted);
+      padding: 0;
+      margin: 30px 0 0;
+      list-style: none;
     }
 
     .pill {
@@ -230,63 +251,15 @@
       border: 1px solid rgba(102, 179, 255, 0.25);
       background: rgba(11, 16, 30, 0.6);
       box-shadow: inset 0 0 12px rgba(99, 242, 255, 0.12);
-    }
-
-    .hero-card {
-      background: var(--glass);
-      border-radius: 24px;
-      border: 1px solid rgba(102, 179, 255, 0.2);
-      padding: 28px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(500px 300px at 10% 20%, rgba(99, 242, 255, 0.2), transparent 60%),
-                  radial-gradient(600px 380px at 80% 70%, rgba(138, 93, 255, 0.2), transparent 60%);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-
-    .hero-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
-    }
-
-    .hero-card h3 {
-      font-size: 18px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin: 0 0 16px;
-    }
-
-    .hero-card .focus-line {
-      font-size: clamp(20px, 3vw, 30px);
-      font-weight: 700;
-      line-height: 1.3;
-      margin: 0;
-      color: var(--text);
-    }
-
-    .hero-card .focus-accent {
-      color: var(--cyan);
-      font-weight: 700;
-    }
-
-    .hero-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 14px;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    html[data-theme="light"] .hero-label,
+    html[data-theme="light"] .pill {
+      border-color: rgba(46, 106, 168, 0.2);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: inset 0 0 12px rgba(46, 106, 168, 0.08);
     }
 
     .section {
@@ -295,14 +268,58 @@
       gap: 24px;
     }
 
+    .hero-card {
+      background: var(--glass);
+      border-radius: 32px;
+      border: 1px solid rgba(102, 179, 255, 0.2);
+      padding: 42px 38px;
+      box-shadow: var(--glow);
+      position: relative;
+      overflow: hidden;
+      min-height: 232px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(500px 300px at 10% 20%, rgba(99, 242, 255, 0.18), transparent 60%),
+        radial-gradient(600px 380px at 80% 70%, rgba(138, 93, 255, 0.18), transparent 60%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    html[data-theme="light"] .hero-card::after {
+      background:
+        radial-gradient(500px 300px at 10% 20%, rgba(42, 143, 156, 0.12), transparent 60%),
+        radial-gradient(600px 380px at 80% 70%, rgba(90, 74, 168, 0.12), transparent 60%);
+    }
+
+    .focus-line {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 38px);
+      line-height: 1.42;
+      font-weight: 700;
+      color: var(--text);
+      position: relative;
+      z-index: 1;
+    }
+
+    .focus-line span {
+      color: var(--cyan);
+    }
+
     .section-title {
-      font-family: "Syne", sans-serif;
-      font-size: 24px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 12px;
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .section-title::before {
@@ -312,73 +329,177 @@
       background: linear-gradient(90deg, var(--cyan), transparent);
     }
 
-    .grid {
+    .pillars {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .card {
+    .pillar {
       background: var(--card);
-      border-radius: 20px;
+      border-radius: 24px;
       border: 1px solid rgba(102, 179, 255, 0.18);
-      padding: 20px 22px;
-      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.3);
+      padding: 26px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(8px);
       transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+      min-height: 100%;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(99, 242, 255, 0.32);
-      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.32);
+    .pillar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(440px 220px at 10% 10%, rgba(99, 242, 255, 0.12), transparent 60%),
+        radial-gradient(520px 260px at 88% 90%, rgba(138, 93, 255, 0.1), transparent 60%);
+      pointer-events: none;
+      opacity: 0.9;
     }
 
-    .initiative-image {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid rgba(102, 179, 255, 0.22);
-      margin-bottom: 14px;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+    html[data-theme="light"] .pillar::after {
+      background:
+        radial-gradient(440px 220px at 10% 10%, rgba(42, 143, 156, 0.08), transparent 60%),
+        radial-gradient(520px 260px at 88% 90%, rgba(90, 74, 168, 0.08), transparent 60%);
     }
 
-    .card strong {
-      color: var(--cyan);
+    .pillar:hover {
+      transform: translateY(-6px);
+      border-color: rgba(99, 242, 255, 0.5);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.35), 0 0 50px rgba(138, 93, 255, 0.2);
+    }
+
+    html[data-theme="light"] .pillar:hover {
+      border-color: rgba(46, 106, 168, 0.35);
+      box-shadow: 0 22px 56px rgba(33, 47, 57, 0.12);
+    }
+
+    .pillar > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .pillar__kicker {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font-size: 12px;
       font-weight: 600;
-      display: block;
-      margin-bottom: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
-    .timeline {
-      display: grid;
-      gap: 16px;
+    .pillar__title {
+      margin: 0 0 20px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.25;
+      color: var(--text);
     }
 
-    .timeline-item {
+    .pillar__list {
       display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 18px;
-      align-items: start;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pillar__item {
       padding: 18px;
-      background: rgba(9, 13, 25, 0.6);
+      background: rgba(9, 13, 25, 0.62);
       border-radius: 16px;
       border: 1px solid rgba(102, 179, 255, 0.16);
     }
 
-    .timeline-item span {
-      color: var(--orange);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 12px;
+    html[data-theme="light"] .pillar__item {
+      background: rgba(255, 255, 255, 0.7);
     }
 
-    .timeline-item p {
+    .pillar__item p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .pillar__item strong {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .pillar__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--cyan), var(--violet));
+      color: #04060d;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      box-shadow: 0 14px 30px rgba(99, 242, 255, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .pillar__link:hover,
+    .pillar__link:focus-visible {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(99, 242, 255, 0.35);
+    }
+
+    .pillar__link:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+    }
+
+    .methodology-card {
+      padding: 28px;
+      border-radius: 24px;
+      border: 1px solid rgba(102, 179, 255, 0.18);
+      background: var(--glass);
+      box-shadow: var(--glow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .methodology-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(600px 260px at 10% 20%, rgba(99, 242, 255, 0.14), transparent 60%),
+        radial-gradient(680px 260px at 84% 80%, rgba(138, 93, 255, 0.14), transparent 60%);
+      pointer-events: none;
+    }
+
+    html[data-theme="light"] .methodology-card::after {
+      background:
+        radial-gradient(600px 260px at 10% 20%, rgba(42, 143, 156, 0.1), transparent 60%),
+        radial-gradient(680px 260px at 84% 80%, rgba(90, 74, 168, 0.1), transparent 60%);
+    }
+
+    .methodology-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .methodology-card h3 {
+      margin: 0 0 16px;
+      font-size: clamp(24px, 3.2vw, 34px);
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .methodology-card p {
+      margin: 0;
+      max-width: 980px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
     }
 
     .footer {
@@ -387,20 +508,30 @@
       border-radius: 20px;
       background: linear-gradient(120deg, rgba(102, 179, 255, 0.2), rgba(138, 93, 255, 0.15));
       border: 1px solid rgba(102, 179, 255, 0.3);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+      display: grid;
+      gap: 18px;
+      justify-items: center;
+      text-align: center;
     }
 
     .footer strong {
-      font-family: "Syne", sans-serif;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
     }
 
     .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
       padding: 12px 18px;
       border-radius: 999px;
       background: linear-gradient(120deg, var(--cyan), var(--violet));
@@ -410,231 +541,229 @@
       letter-spacing: 0.08em;
       font-size: 13px;
       border: none;
-      text-decoration: none;
-      box-shadow: 0 12px 26px rgba(99, 242, 255, 0.2);
+      box-shadow: 0 14px 30px rgba(99, 242, 255, 0.25);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: pulse 3.8s ease-in-out infinite;
     }
 
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(99, 242, 255, 0.25);
+    .cta--secondary {
+      background: rgba(9, 13, 25, 0.78);
+      color: var(--text);
+      border: 1px solid rgba(102, 179, 255, 0.26);
+      box-shadow: inset 0 0 12px rgba(99, 242, 255, 0.08);
     }
 
-    html[data-theme="light"] .cta {
-      color: #ffffff;
+    html[data-theme="light"] .cta--secondary {
+      background: rgba(255, 255, 255, 0.75);
+      border-color: rgba(46, 106, 168, 0.22);
+      box-shadow: inset 0 0 12px rgba(46, 106, 168, 0.08);
     }
 
-    .animate-in {
-      opacity: 0;
-      transform: translateY(16px);
-      animation: rise 0.9s ease forwards;
+    .cta:hover,
+    .cta:focus-visible {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(99, 242, 255, 0.35);
     }
 
-    .animate-in[data-delay="1"] { animation-delay: 0.1s; }
-    .animate-in[data-delay="2"] { animation-delay: 0.2s; }
-    .animate-in[data-delay="3"] { animation-delay: 0.3s; }
-    .animate-in[data-delay="4"] { animation-delay: 0.4s; }
-
-    @keyframes rise {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .cta:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
     }
 
-
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 14px 30px rgba(99, 242, 255, 0.25); }
+      50% { box-shadow: 0 20px 46px rgba(99, 242, 255, 0.4); }
+    }
 
     @media (max-width: 900px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
+      .site-header {
+        padding-bottom: 36px;
+      }
+
+      .pillars {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header {
+        flex-wrap: wrap;
       }
 
       .hero {
         grid-template-columns: 1fr;
-      }
-
-      .hero > div:first-child {
-        display: contents;
-      }
-
-      .hero h2 {
-        order: 1;
+        gap: 28px;
       }
 
       .hero-card {
-        order: 2;
+        min-height: auto;
       }
 
-      .hero .hero-copy {
-        order: 3;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 32px 16px 96px;
       }
 
-      .hero .meta {
-        order: 4;
+      .site-header {
+        padding-top: 4px;
       }
 
-      .timeline-item {
-        grid-template-columns: 1fr;
+      .brand {
+        gap: 12px;
+      }
+
+      .brand img {
+        width: 52px;
+        height: 52px;
+      }
+
+      .brand h1 {
+        font-size: 16px;
+      }
+
+      .hero h2 {
+        font-size: clamp(44px, 16vw, 72px);
+      }
+
+      .hero-card {
+        padding: 30px 24px;
+        border-radius: 24px;
+      }
+
+      .meta,
+      .footer-actions {
+        flex-direction: column;
+      }
+
+      .cta {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
   <main>
-    <header class="animate-in" data-delay="1">
-      <div class="brand">
-        <img
-          src="Coherascent-Labs-Logo.png"
-          alt="Coherascent Labs logo"
-          id="siteLogo"
-          data-dark-src="Coherascent-Labs-Logo.png"
-          data-light-src="Coherascent-Labs-Logo-Light.png"
-        />
+    <header class="site-header">
+      <div class="brand" aria-label="Coherascent Labs">
+        <img src="coherascent-labs-logo-march-16-2026.png" alt="Coherascent Labs logo" />
         <h1>Coherascent Labs</h1>
       </div>
-      <button class="theme-toggle" type="button" id="themeToggle">
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">
         <span class="theme-dot" aria-hidden="true"></span>
-        <span class="theme-label">Light Mode</span>
+        <span>Light Mode</span>
       </button>
     </header>
 
-    <section class="hero">
-      <div>
-        <h2 class="animate-in" data-delay="2"><span class="hero-focus">Neuro-Symbolic</span> <span class="line hero-focus">AI</span></h2>
-        <p class="hero-copy animate-in" data-delay="3">
-          Coherascent Labs leads research at the intersection of Neuro-Symbolic AI and Mathematical Optimization, grounded in prior work
-          building production-grade autonomous agents and GPT-style Transformers with a focus on rigor and reproducibility. The long-term
-          goal is to reduce hallucinations in generative models by grounding outputs in formal logic and mathematically coherent
-          constraints.
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="hero-label">Active Neuro-Symbolic Research</div>
+        <h2 id="hero-title">Neuro-Symbolic AI</h2>
+        <p class="hero__subheadline">Seeking truth and integrity in the age of generative AI.</p>
+        <p class="hero__mission">
+          Coherascent Labs leads research at the intersection of Neuro-Symbolic AI and Mathematical
+          Optimization, grounded in prior work building production-grade autonomous agents and GPT-style
+          Transformers with a focus on rigor and reproducibility. The long-term goal is to reduce
+          hallucinations in generative models by grounding outputs in formal logic and mathematically
+          coherent constraints.
         </p>
-        <div class="meta animate-in" data-delay="4">
-          <div class="pill">Remote-first</div>
-          <div class="pill">Research Started Jan 2026</div>
-          <div class="pill">Active Research Program</div>
-        </div>
+        <ul class="meta" aria-label="Company status">
+          <li class="pill">Remote-first</li>
+          <li class="pill">Research Started Jan 2026</li>
+          <li class="pill">Active Research Program</li>
+        </ul>
       </div>
-      <div class="hero-card animate-in" data-delay="3">
-        <p class="focus-line">Seeking <span class="focus-accent">truth</span> and <span class="focus-accent">integrity</span> in the age of generative AI.</p>
+      <aside class="hero-card" aria-label="Mission statement">
+        <p class="focus-line">Seeking <span>truth</span> and <span>integrity</span> in the age of generative AI.</p>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="pillars-title">
+      <h2 class="section-title" id="pillars-title">Dual Pillars</h2>
+      <div class="pillars">
+        <article class="pillar" aria-labelledby="research-title">
+          <p class="pillar__kicker">Pillar One</p>
+          <h3 class="pillar__title" id="research-title">Foundational Research</h3>
+          <ol class="pillar__list">
+            <li class="pillar__item">
+              <p><strong>Neuro-Symbolic Bridge</strong> - Connecting explicit rule systems with data-driven Transformer architectures.</p>
+            </li>
+            <li class="pillar__item">
+              <p><strong>Deterministic Architecture</strong> - Building control layers that force probabilistic agents to adhere to formal logic structures.</p>
+            </li>
+            <li class="pillar__item">
+              <p><strong>Continuous DPLL &amp; Optimization Cognition</strong> - Investigating SAT-style reasoning inside differentiable vector spaces and designing gradient ascent pathways to reveal latent cognitive states.</p>
+            </li>
+          </ol>
+          <a class="pillar__link" href="research.html">View Research Program</a>
+        </article>
+
+        <article class="pillar" id="app-development" aria-labelledby="technology-title">
+          <p class="pillar__kicker">Pillar Two</p>
+          <h3 class="pillar__title" id="technology-title">Applied Technology</h3>
+          <ol class="pillar__list">
+            <li class="pillar__item">
+              <p><strong>The Educational Platform (In Development)</strong> - A cross-platform ecosystem designed to force active, offline cognitive engagement through tactile learning.</p>
+            </li>
+            <li class="pillar__item">
+              <p><strong>Computer Vision &amp; Verifiable Grading</strong> - Utilizing our truth-aligned architectural principles, the app ingests handwritten logic, parses the mathematical steps, and delivers rigorously accurate, hallucination-free feedback.</p>
+            </li>
+            <li class="pillar__item">
+              <p><strong>Dynamic Remediation Engine</strong> - Scaling from elementary arithmetic to university-level mathematics, the system maps cognitive bottlenecks and generates targeted, adaptive practice loops driven by streak-based gamification and an immersive space-themed interface.</p>
+            </li>
+          </ol>
+          <a class="pillar__link" href="applied.html">View Applied Platform</a>
+        </article>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-title">Current Initiatives</div>
-      <div class="grid">
-        <div class="card animate-in" data-delay="1">
-          <img class="initiative-image" src="images/deterministic-probabilistic-automaton.png" alt="Deterministic control layer schematic" />
-          <strong>Deterministic Architecture</strong>
-          Building control layers that force probabilistic agents to adhere to formal logic structures, enabling verifiable reasoning.
-        </div>
-        <div class="card animate-in" data-delay="2">
-          <img class="initiative-image" src="images/dpll.png" alt="DPLL reasoning visual" />
-          <strong>Continuous DPLL</strong>
-          Investigating how SAT-style reasoning can be expressed inside differentiable vector spaces for scalable inference.
-        </div>
-        <div class="card animate-in" data-delay="3">
-          <img class="initiative-image" src="images/gradient-optimization.png" alt="Gradient optimization landscape" />
-          <strong>Optimization Cognition</strong>
-          Designing gradient ascent pathways that minimize prediction error and reveal latent structure in cognitive state models.
-        </div>
-        <div class="card animate-in" data-delay="4">
-          <img class="initiative-image" src="images/bridge-equations.png" alt="Neuro-symbolic bridge equations" />
-          <strong>Neuro-Symbolic Bridge</strong>
-          Connecting explicit rule systems with data-driven Transformer architectures to unify formal and statistical reasoning.
-        </div>
+    <section class="section" aria-labelledby="methodology-title">
+      <h2 class="section-title" id="methodology-title">Unifying Methodology</h2>
+      <div class="methodology-card">
+        <h3>The Symbiosis of Theory and Application</h3>
+        <p>
+          Theoretical rigor requires real-world validation. Our foundational research in mathematical
+          optimization and high-dimensional calculus directly powers the deterministic grading engines of
+          our educational platform. Conversely, deploying these models in a live, adaptive learning
+          environment stress-tests our architectures, ensuring our pursuit of hallucination reduction is
+          grounded in practical, measurable utility.
+        </p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-title">Methodology</div>
-      <div class="timeline">
-        <div class="timeline-item animate-in" data-delay="1">
-          <span>Foundation</span>
-          <p>
-            Grounded in a deep understanding of large language model mechanics and prior work building production-grade autonomous agents.
-          </p>
-        </div>
-        <div class="timeline-item animate-in" data-delay="2">
-          <span>Research Shift</span>
-          <p>
-            Investigating the adaptation of discrete satisfiability algorithms (DPLL) into continuous vector spaces to address reasoning
-            limitations in standard generative architectures.
-          </p>
-        </div>
-        <div class="timeline-item animate-in" data-delay="3">
-          <span>Truth Alignment</span>
-          <p>
-            Engineering architectural determinism by developing control layers that force probabilistic agents to adhere to formal logic,
-            reducing hallucination and guiding outputs toward mathematically coherent truth rather than statistical plausibility.
-          </p>
-        </div>
-        <div class="timeline-item animate-in" data-delay="4">
-          <span>Tooling</span>
-          <p>
-            Using Python, C++, and PyTorch to model cognitive states as high-dimensional optimization problems where prediction error is
-            minimized via custom gradient ascent pathways.
-          </p>
-        </div>
+    <footer class="footer" id="collaboration" aria-label="Calls to action">
+      <strong>Research and product development in parallel</strong>
+      <div class="footer-actions">
+        <a class="cta" href="research.html">Explore Research</a>
+        <a class="cta cta--secondary" href="#app-development">Follow App Development</a>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Why It Matters</div>
-      <div class="card">
-        Coherascent Labs is driven by the belief that Neuro-Symbolic AI connects explicit rules from SAT solving to data-driven concepts in
-        machine learning and Transformer architectures, unifying disciplines that are often kept separate and enabling collaborative
-        progress across logic, optimization, and deep learning communities.
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Mathematical Rigor</div>
-      <div class="card">
-        Our research emphasizes a rigorous mathematical recorder for AI systems: second-order Taylor expansions and Hessian structure
-        inform curvature-aware optimization; polynomial representations connect continuous dynamics to discrete constraints; Boolean
-        satisfiability and conjunctive normal form (CNF) proofs ground symbolic reasoning; and high-dimensional multivariate calculus
-        supports verification of learning dynamics in modern machine learning contexts.
-      </div>
-    </section>
-
-    <div class="footer">
-      <strong>Coherascent Labs</strong>
-      <a class="cta" href="mailto:griffinkrutherford@gmail.com">Explore Collaboration</a>
-    </div>
+    </footer>
   </main>
   <script>
-    (function () {
-      const root = document.documentElement;
-      const toggle = document.getElementById("themeToggle");
-      if (!toggle) return;
-      const logo = document.getElementById("siteLogo");
-      const label = toggle.querySelector(".theme-label");
-      const stored = localStorage.getItem("theme");
-      const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+  (function () {
+    var root = document.documentElement;
+    var button = document.querySelector(".theme-toggle");
+    if (!button) return;
+    var label = button.querySelector("span:last-child");
+    var storageKey = "coherascent-theme";
 
-      function applyTheme(theme) {
-        root.setAttribute("data-theme", theme);
-        if (label) label.textContent = theme === "light" ? "Dark Mode" : "Light Mode";
-        if (logo) {
-          const darkSrc = logo.getAttribute("data-dark-src");
-          const lightSrc = logo.getAttribute("data-light-src");
-          logo.src = theme === "light" ? (lightSrc || darkSrc) : (darkSrc || lightSrc);
-        }
-        const favicon = document.getElementById("favicon");
-        if (favicon) {
-          favicon.setAttribute("href", "circle_favicon.png");
-        }
-      }
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      if (label) label.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
+    }
 
-      const initialTheme = stored || (prefersLight ? "light" : "dark");
-      applyTheme(initialTheme);
+    var savedTheme = localStorage.getItem(storageKey);
+    if (savedTheme === "light" || savedTheme === "dark") {
+      applyTheme(savedTheme);
+    } else {
+      applyTheme(root.getAttribute("data-theme") || "dark");
+    }
 
-      toggle.addEventListener("click", () => {
-        const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-        try { localStorage.setItem("theme", next); } catch (e) {}
-        applyTheme(next);
-      });
-    })();
+    button.addEventListener("click", function () {
+      var nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      localStorage.setItem(storageKey, nextTheme);
+      applyTheme(nextTheme);
+    });
+  })();
   </script>
 </body>
 </html>
