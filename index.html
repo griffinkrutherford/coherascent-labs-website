@@ -134,6 +134,17 @@
       text-transform: uppercase;
     }
 
+    .brand:hover,
+    .brand:focus-visible {
+      transform: translateY(-1px);
+    }
+
+    .brand:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 4px;
+      border-radius: 18px;
+    }
+
     .theme-toggle {
       margin-left: auto;
       display: inline-flex;
@@ -167,6 +178,46 @@
       border-radius: 50%;
       background: linear-gradient(120deg, var(--cyan), var(--violet));
       box-shadow: 0 0 10px rgba(102, 179, 255, 0.4);
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(102, 179, 255, 0.22);
+      background: rgba(11, 16, 30, 0.5);
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(102, 179, 255, 0.42);
+      color: var(--text);
+    }
+
+    .nav-link:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+    }
+
+    html[data-theme="light"] .nav-link {
+      background: rgba(255, 255, 255, 0.64);
+      border-color: rgba(46, 106, 168, 0.18);
     }
 
     .hero {
@@ -1246,10 +1297,14 @@
 <body>
   <main>
     <header class="site-header">
-      <div class="brand" aria-label="Coherascent Labs">
+      <a class="brand" href="index.html" aria-label="Coherascent Labs home">
         <img src="coherascent-labs-logo-march-16-2026.png" alt="Coherascent Labs logo" />
         <h1>Coherascent Labs</h1>
-      </div>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="research.html">Research</a>
+        <a class="nav-link" href="applied.html">Application</a>
+      </nav>
       <button class="theme-toggle" type="button" aria-label="Toggle color theme">
         <span class="theme-dot" aria-hidden="true"></span>
         <span>Light Mode</span>
