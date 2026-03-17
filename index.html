@@ -397,6 +397,303 @@
       color: var(--text);
     }
 
+    .hanoi-demo {
+      margin: 0 0 24px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(102, 179, 255, 0.16);
+      background:
+        linear-gradient(160deg, rgba(9, 13, 25, 0.88), rgba(13, 21, 38, 0.76)),
+        radial-gradient(circle at top left, rgba(99, 242, 255, 0.16), transparent 38%);
+      overflow: hidden;
+    }
+
+    html[data-theme="light"] .hanoi-demo {
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(240, 244, 250, 0.88)),
+        radial-gradient(circle at top left, rgba(42, 143, 156, 0.08), transparent 38%);
+      border-color: rgba(46, 106, 168, 0.18);
+    }
+
+    .hanoi-demo__scene {
+      position: relative;
+      min-height: 264px;
+      border-radius: 16px;
+      border: 1px solid rgba(102, 179, 255, 0.14);
+      background:
+        radial-gradient(circle at 50% 8%, rgba(138, 93, 255, 0.12), transparent 32%),
+        linear-gradient(180deg, rgba(7, 10, 20, 0.94), rgba(10, 16, 30, 0.7));
+      overflow: hidden;
+    }
+
+    html[data-theme="light"] .hanoi-demo__scene {
+      background:
+        radial-gradient(circle at 50% 10%, rgba(90, 74, 168, 0.09), transparent 34%),
+        linear-gradient(180deg, rgba(247, 250, 255, 0.96), rgba(232, 238, 247, 0.92));
+      border-color: rgba(46, 106, 168, 0.16);
+    }
+
+    .hanoi-demo__scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .hanoi-demo__scene::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      bottom: 22px;
+      left: 56%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(99, 242, 255, 0.28), transparent);
+      pointer-events: none;
+    }
+
+    .hanoi-demo__stage {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 2%;
+      width: 54%;
+      padding: 24px 22px 24px;
+    }
+
+    .hanoi-demo__base {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 24px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(102, 179, 255, 0.38), rgba(138, 93, 255, 0.42));
+      box-shadow: 0 0 20px rgba(99, 242, 255, 0.18);
+    }
+
+    .hanoi-demo__peg {
+      position: absolute;
+      bottom: 34px;
+      width: 8px;
+      height: 150px;
+      margin-left: -4px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(99, 242, 255, 0.95), rgba(138, 93, 255, 0.45));
+      box-shadow: 0 0 20px rgba(99, 242, 255, 0.18);
+    }
+
+    .hanoi-demo__peg--a { left: 22%; }
+    .hanoi-demo__peg--b { left: 50%; }
+    .hanoi-demo__peg--c { left: 78%; }
+
+    .hanoi-demo__disk {
+      z-index: var(--disk-z, 1);
+      position: absolute;
+      left: 22%;
+      bottom: 34px;
+      transform: translateX(-50%);
+      width: var(--disk-width);
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.02) 34%),
+        linear-gradient(90deg, var(--disk-color-start), var(--disk-color-end));
+      box-shadow:
+        inset 0 -2px 3px rgba(4, 6, 13, 0.25),
+        0 8px 18px rgba(4, 6, 13, 0.22);
+      transition:
+        left 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        bottom 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.4s ease,
+        box-shadow 0.4s ease;
+    }
+
+    .hanoi-demo.hanoi-demo--instant .hanoi-demo__disk {
+      transition: none;
+    }
+
+    .hanoi-demo__disk.is-active {
+      filter: brightness(1.08);
+      box-shadow:
+        inset 0 -2px 3px rgba(4, 6, 13, 0.25),
+        0 0 28px rgba(99, 242, 255, 0.18),
+        0 10px 20px rgba(4, 6, 13, 0.22);
+    }
+
+    .hanoi-demo__signal {
+      position: absolute;
+      top: 50%;
+      left: 51.5%;
+      width: 108px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(99, 242, 255, 0.28), rgba(138, 93, 255, 0.36), transparent);
+      transform: translateY(-50%);
+      box-shadow: 0 0 18px rgba(99, 242, 255, 0.16);
+      pointer-events: none;
+    }
+
+    .hanoi-demo__signal::before,
+    .hanoi-demo__signal::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      background: var(--cyan);
+      box-shadow: 0 0 14px rgba(99, 242, 255, 0.28);
+    }
+
+    .hanoi-demo__signal::before {
+      left: -2px;
+    }
+
+    .hanoi-demo__signal::after {
+      right: 18px;
+      background: var(--violet);
+      box-shadow: 0 0 14px rgba(138, 93, 255, 0.28);
+    }
+
+    .hanoi-demo__probability {
+      position: absolute;
+      top: 24px;
+      right: 22px;
+      bottom: 24px;
+      width: calc(44% - 28px);
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      padding: 16px 14px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(102, 179, 255, 0.12);
+      background: rgba(8, 12, 24, 0.34);
+      backdrop-filter: blur(4px);
+    }
+
+    html[data-theme="light"] .hanoi-demo__probability {
+      background: rgba(255, 255, 255, 0.56);
+      border-color: rgba(46, 106, 168, 0.12);
+    }
+
+    .hanoi-demo__probability::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(99, 242, 255, 0.08), transparent 36%),
+        radial-gradient(circle at 90% 80%, rgba(138, 93, 255, 0.08), transparent 40%);
+      pointer-events: none;
+    }
+
+    .hanoi-demo__prob-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hanoi-demo__prob-header::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+    }
+
+    .hanoi-demo__prob-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 40px 18px 1fr;
+      align-items: center;
+      gap: 10px;
+      opacity: 0.34;
+      transition: opacity 0.45s ease;
+    }
+
+    .hanoi-demo__prob-row.is-valid {
+      opacity: 0.72;
+    }
+
+    .hanoi-demo__prob-row.is-selected {
+      opacity: 1;
+    }
+
+    .hanoi-demo__prob-dot {
+      width: 10px;
+      height: 10px;
+      margin-left: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 12px rgba(99, 242, 255, 0.12);
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .hanoi-demo__prob-row.is-valid .hanoi-demo__prob-dot {
+      background: var(--blue);
+    }
+
+    .hanoi-demo__prob-row.is-selected .hanoi-demo__prob-dot {
+      background: var(--cyan);
+      box-shadow: 0 0 16px rgba(99, 242, 255, 0.28);
+      transform: scale(1.08);
+    }
+
+    .hanoi-demo__prob-label {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.4s ease;
+    }
+
+    .hanoi-demo__prob-row.is-valid .hanoi-demo__prob-label,
+    .hanoi-demo__prob-row.is-selected .hanoi-demo__prob-label {
+      color: var(--text);
+    }
+
+    .hanoi-demo__prob-track {
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(102, 179, 255, 0.14);
+    }
+
+    html[data-theme="light"] .hanoi-demo__prob-track {
+      background: rgba(27, 36, 54, 0.06);
+      border-color: rgba(46, 106, 168, 0.14);
+    }
+
+    .hanoi-demo__prob-fill {
+      width: calc(var(--probability, 0) * 100%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--violet));
+      box-shadow: 0 0 16px rgba(99, 242, 255, 0.16);
+      transition: width 0.7s ease, opacity 0.4s ease, filter 0.4s ease;
+      opacity: 0.2;
+    }
+
+    .hanoi-demo__prob-row.is-valid .hanoi-demo__prob-fill {
+      opacity: 0.72;
+    }
+
+    .hanoi-demo__prob-row.is-selected .hanoi-demo__prob-fill {
+      opacity: 1;
+      filter: brightness(1.12);
+    }
 
     .pillar__list {
       display: grid;
@@ -640,6 +937,49 @@
       .cta {
         width: 100%;
       }
+
+      .hanoi-demo {
+        padding: 14px;
+      }
+
+      .hanoi-demo__scene {
+        min-height: 248px;
+      }
+
+      .hanoi-demo__scene::after,
+      .hanoi-demo__signal {
+        display: none;
+      }
+
+      .hanoi-demo__stage {
+        width: 100%;
+        top: 0;
+        bottom: 92px;
+        left: 0;
+      }
+
+      .hanoi-demo__base {
+        right: 22px;
+      }
+
+      .hanoi-demo__peg--a { left: 18%; }
+      .hanoi-demo__peg--b { left: 50%; }
+      .hanoi-demo__peg--c { left: 82%; }
+
+      .hanoi-demo__probability {
+        left: 18px;
+        right: 18px;
+        top: auto;
+        bottom: 18px;
+        width: auto;
+        gap: 8px;
+        padding: 10px 12px;
+      }
+
+      .hanoi-demo__prob-row {
+        gap: 8px;
+        grid-template-columns: 34px 16px 1fr;
+      }
     }
   </style>
 </head>
@@ -683,6 +1023,46 @@
       <h2 class="section-title" id="pillars-title">Dual Pillars</h2>
       <div class="pillars">
         <article class="pillar" aria-labelledby="research-title">
+          <figure class="hanoi-demo" aria-hidden="true">
+            <div class="hanoi-demo__scene">
+              <div class="hanoi-demo__stage">
+                <div class="hanoi-demo__base"></div>
+                <div class="hanoi-demo__peg hanoi-demo__peg--a"></div>
+                <div class="hanoi-demo__peg hanoi-demo__peg--b"></div>
+                <div class="hanoi-demo__peg hanoi-demo__peg--c"></div>
+              <div
+                  class="hanoi-demo__disk"
+                  data-disk="0"
+                  style="left: 22%; bottom: 100px; --disk-width: 52px; --disk-color-start: #7cf7ff; --disk-color-end: #66b3ff; --disk-z: 4;"
+                ></div>
+                <div
+                  class="hanoi-demo__disk"
+                  data-disk="1"
+                  style="left: 22%; bottom: 78px; --disk-width: 76px; --disk-color-start: #66b3ff; --disk-color-end: #8a5dff; --disk-z: 3;"
+                ></div>
+                <div
+                  class="hanoi-demo__disk"
+                  data-disk="2"
+                  style="left: 22%; bottom: 56px; --disk-width: 100px; --disk-color-start: #8a5dff; --disk-color-end: #f07bff; --disk-z: 2;"
+                ></div>
+                <div
+                  class="hanoi-demo__disk"
+                  data-disk="3"
+                  style="left: 22%; bottom: 34px; --disk-width: 124px; --disk-color-start: #f07bff; --disk-color-end: #ff9d4d; --disk-z: 1;"
+                ></div>
+              </div>
+              <div class="hanoi-demo__signal"></div>
+              <div class="hanoi-demo__probability">
+                <div class="hanoi-demo__prob-header">P(next move)</div>
+                <div class="hanoi-demo__prob-row" data-move-bar="A-B"><span class="hanoi-demo__prob-label">A-B</span><span class="hanoi-demo__prob-dot"></span><span class="hanoi-demo__prob-track"><span class="hanoi-demo__prob-fill"></span></span></div>
+                <div class="hanoi-demo__prob-row" data-move-bar="A-C"><span class="hanoi-demo__prob-label">A-C</span><span class="hanoi-demo__prob-dot"></span><span class="hanoi-demo__prob-track"><span class="hanoi-demo__prob-fill"></span></span></div>
+                <div class="hanoi-demo__prob-row" data-move-bar="B-A"><span class="hanoi-demo__prob-label">B-A</span><span class="hanoi-demo__prob-dot"></span><span class="hanoi-demo__prob-track"><span class="hanoi-demo__prob-fill"></span></span></div>
+                <div class="hanoi-demo__prob-row" data-move-bar="B-C"><span class="hanoi-demo__prob-label">B-C</span><span class="hanoi-demo__prob-dot"></span><span class="hanoi-demo__prob-track"><span class="hanoi-demo__prob-fill"></span></span></div>
+                <div class="hanoi-demo__prob-row" data-move-bar="C-A"><span class="hanoi-demo__prob-label">C-A</span><span class="hanoi-demo__prob-dot"></span><span class="hanoi-demo__prob-track"><span class="hanoi-demo__prob-fill"></span></span></div>
+                <div class="hanoi-demo__prob-row" data-move-bar="C-B"><span class="hanoi-demo__prob-label">C-B</span><span class="hanoi-demo__prob-dot"></span><span class="hanoi-demo__prob-track"><span class="hanoi-demo__prob-fill"></span></span></div>
+              </div>
+            </div>
+          </figure>
           <p class="pillar__kicker">Pillar One</p>
           <h3 class="pillar__title" id="research-title">Foundational Research</h3>
           <ol class="pillar__list">
@@ -765,6 +1145,180 @@
       localStorage.setItem(storageKey, nextTheme);
       applyTheme(nextTheme);
     });
+  })();
+
+  (function () {
+    var demo = document.querySelector(".hanoi-demo");
+    if (!demo) return;
+
+    var compactLayout = window.matchMedia("(max-width: 640px)");
+    var baseBottom = 34;
+    var stackGap = 22;
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var bars = Array.prototype.slice.call(demo.querySelectorAll("[data-move-bar]"));
+    var stage = demo.querySelector(".hanoi-demo__stage");
+    var pegNodes = {
+      A: demo.querySelector(".hanoi-demo__peg--a"),
+      B: demo.querySelector(".hanoi-demo__peg--b"),
+      C: demo.querySelector(".hanoi-demo__peg--c")
+    };
+    var currentSnapshot = null;
+    var currentActiveDisk = null;
+
+    function pegCenters() {
+      var stageRect = stage.getBoundingClientRect();
+      var centers = {};
+      Object.keys(pegNodes).forEach(function (key) {
+        var pegRect = pegNodes[key].getBoundingClientRect();
+        centers[key] = pegRect.left - stageRect.left + (pegRect.width / 2);
+      });
+      return centers;
+    }
+
+    function buildMoves(count, from, to, aux, list) {
+      if (count === 1) {
+        list.push({ from: from, to: to, disk: 0 });
+        return;
+      }
+      buildMoves(count - 1, from, aux, to, list);
+      list.push({ from: from, to: to, disk: count - 1 });
+      buildMoves(count - 1, aux, to, from, list);
+    }
+
+    var moves = [];
+    buildMoves(4, "A", "C", "B", moves);
+
+    var state = {
+      A: [3, 2, 1, 0],
+      B: [],
+      C: []
+    };
+
+    function cloneState(source) {
+      return {
+        A: source.A.slice(),
+        B: source.B.slice(),
+        C: source.C.slice()
+      };
+    }
+
+    var snapshots = [cloneState(state)];
+    for (var i = 0; i < moves.length; i += 1) {
+      var move = moves[i];
+      state[move.to].push(state[move.from].pop());
+      snapshots.push(cloneState(state));
+    }
+
+    function positionDisks(snapshot, activeDisk) {
+      var centers = pegCenters();
+      ["A", "B", "C"].forEach(function (peg) {
+        snapshot[peg].forEach(function (diskId, level) {
+          var disk = demo.querySelector('[data-disk="' + diskId + '"]');
+          if (!disk) return;
+          disk.style.left = centers[peg] + "px";
+          disk.style.bottom = (baseBottom + level * stackGap) + "px";
+          disk.classList.toggle("is-active", diskId === activeDisk);
+        });
+      });
+      currentSnapshot = snapshot;
+      currentActiveDisk = activeDisk;
+    }
+
+    function topDisk(snapshot, peg) {
+      var stack = snapshot[peg];
+      return stack.length ? stack[stack.length - 1] : null;
+    }
+
+    function renderProbabilities(snapshot, chosenMove) {
+      var pegs = ["A", "B", "C"];
+      var validMoves = [];
+      var chosenKey = chosenMove ? (chosenMove.from + "-" + chosenMove.to) : "";
+
+      pegs.forEach(function (from) {
+        pegs.forEach(function (to) {
+          var sourceTop;
+          var targetTop;
+          if (from === to) return;
+          sourceTop = topDisk(snapshot, from);
+          targetTop = topDisk(snapshot, to);
+          if (sourceTop === null) return;
+          if (targetTop === null || sourceTop < targetTop) {
+            validMoves.push(from + "-" + to);
+          }
+        });
+      });
+
+      bars.forEach(function (bar) {
+        var key = bar.getAttribute("data-move-bar");
+        var isValid = validMoves.indexOf(key) !== -1;
+        var isSelected = key === chosenKey;
+        var probability = 0.04;
+
+        if (isValid && isSelected) {
+          probability = 0.78;
+        } else if (isValid) {
+          probability = validMoves.length > 1 ? 0.22 / (validMoves.length - 1) : 0.28;
+        }
+
+        bar.classList.toggle("is-valid", isValid);
+        bar.classList.toggle("is-selected", isSelected);
+        bar.querySelector(".hanoi-demo__prob-fill").style.setProperty("--probability", probability);
+      });
+    }
+
+    function positionImmediately(snapshot, activeDisk) {
+      demo.classList.add("hanoi-demo--instant");
+      positionDisks(snapshot, activeDisk);
+      demo.offsetHeight;
+      demo.classList.remove("hanoi-demo--instant");
+    }
+
+    positionImmediately(snapshots[0], null);
+    renderProbabilities(snapshots[0], moves[0]);
+
+    function syncLayout() {
+      if (!currentSnapshot) return;
+      positionImmediately(currentSnapshot, currentActiveDisk);
+    }
+
+    if (compactLayout.addEventListener) {
+      compactLayout.addEventListener("change", syncLayout);
+    } else if (compactLayout.addListener) {
+      compactLayout.addListener(syncLayout);
+    }
+
+    window.addEventListener("resize", syncLayout);
+
+    if (reducedMotion) return;
+
+    var stepIndex = 0;
+
+    function queueNextStep(delay) {
+      window.setTimeout(function () {
+        var sourceSnapshot = snapshots[stepIndex];
+        var targetSnapshot = snapshots[stepIndex + 1];
+        var move = moves[stepIndex];
+
+        renderProbabilities(sourceSnapshot, move);
+        positionDisks(targetSnapshot, move ? move.disk : null);
+
+        stepIndex += 1;
+
+        if (stepIndex >= moves.length) {
+          window.setTimeout(function () {
+            positionImmediately(snapshots[0], null);
+            stepIndex = 0;
+            renderProbabilities(snapshots[0], moves[0]);
+            queueNextStep(1100);
+          }, 1700);
+          return;
+        }
+
+        queueNextStep(1650);
+      }, delay);
+    }
+
+    queueNextStep(1100);
   })();
   </script>
 </body>
