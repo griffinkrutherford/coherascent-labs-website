@@ -1632,8 +1632,8 @@
     var depth = 240;
     var galaxyRadius = 92;
     var thickness = 34;
-    var armCount = 5;
-    var starCount = 1200;
+    var armCount = 4;
+    var starCount = 1400;
 
     function randomRange(min, max) {
       return min + Math.random() * (max - min);
@@ -1643,18 +1643,21 @@
       var i;
       stars = [];
       for (i = 0; i < starCount; i += 1) {
-        var radius = Math.pow(Math.random(), 0.72) * galaxyRadius;
+        var coreStar = Math.random() < 0.2;
+        var radius = Math.pow(Math.random(), coreStar ? 0.46 : 0.82) * galaxyRadius;
         var arm = i % armCount;
         var armSeparation = (Math.PI * 2) / armCount;
         var baseAngle = arm * armSeparation;
-        var swirl = radius * 0.09;
-        var jitter = randomRange(-0.34, 0.34);
+        var swirl = radius * 0.16;
+        var jitter = coreStar ? randomRange(-Math.PI, Math.PI) : randomRange(-0.12, 0.12);
         var angle = baseAngle + swirl + jitter;
         var spread = (1 - radius / galaxyRadius);
-        var x = Math.cos(angle) * radius + randomRange(-8, 8) * spread;
-        var z = Math.sin(angle) * radius + randomRange(-8, 8) * spread;
-        var y = randomRange(-thickness, thickness) * (0.18 + spread * 0.82);
-        var size = randomRange(0.45, 1.75);
+        var tangent = coreStar ? 0 : randomRange(-7, 7) * spread;
+        var radialNoise = coreStar ? 8 : 4;
+        var x = Math.cos(angle) * radius + Math.cos(angle + Math.PI / 2) * tangent + randomRange(-radialNoise, radialNoise) * spread;
+        var z = Math.sin(angle) * radius + Math.sin(angle + Math.PI / 2) * tangent + randomRange(-radialNoise, radialNoise) * spread;
+        var y = randomRange(-thickness, thickness) * (coreStar ? 0.42 : 0.08 + spread * 0.28);
+        var size = coreStar ? randomRange(0.7, 2.15) : randomRange(0.35, 1.45);
         var hue;
 
         if (radius < galaxyRadius * 0.18) {
@@ -1675,7 +1678,7 @@
           angleOffset: randomRange(0, Math.PI * 2),
           size: size,
           color: hue,
-          alpha: randomRange(0.38, 0.95)
+          alpha: coreStar ? randomRange(0.68, 0.98) : randomRange(0.28, 0.88)
         });
       }
     }
@@ -1691,7 +1694,7 @@
       centerY = height * 0.5;
       galaxyRadius = Math.min(width, height) * 0.39;
       thickness = galaxyRadius * 0.36;
-      starCount = width < 210 ? 700 : 1200;
+      starCount = width < 210 ? 800 : 1400;
       rebuildStars();
     }
 
