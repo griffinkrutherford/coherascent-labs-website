@@ -846,6 +846,65 @@
       display: block;
     }
 
+    .orbit-demo__constellation {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .orbit-demo__stage-node {
+      position: absolute;
+      left: var(--node-x);
+      top: var(--node-y);
+      display: grid;
+      gap: 4px;
+      justify-items: center;
+      transform: translate(-50%, -50%);
+      opacity: 0.54;
+      animation: orbitStage 9.6s ease-in-out infinite;
+    }
+
+    .orbit-demo__stage-node--tactile { --stage-color: #64a8ff; }
+    .orbit-demo__stage-node--parse { --stage-color: #a47bff; }
+    .orbit-demo__stage-node--feedback { --stage-color: #ff5d87; }
+    .orbit-demo__stage-node--adapt { --stage-color: #edf5ff; }
+
+    .orbit-demo__stage-node--tactile { animation-delay: 0s; }
+    .orbit-demo__stage-node--parse { animation-delay: 2.4s; }
+    .orbit-demo__stage-node--feedback { animation-delay: 4.8s; }
+    .orbit-demo__stage-node--adapt { animation-delay: 7.2s; }
+
+    .orbit-demo__stage-node::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--stage-color);
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
+    }
+
+    .orbit-demo__stage-node--tactile::before { box-shadow: 0 0 14px rgba(100, 168, 255, 0.34); }
+    .orbit-demo__stage-node--parse::before { box-shadow: 0 0 14px rgba(164, 123, 255, 0.34); }
+    .orbit-demo__stage-node--feedback::before { box-shadow: 0 0 14px rgba(255, 93, 135, 0.34); }
+    .orbit-demo__stage-node--adapt::before { box-shadow: 0 0 14px rgba(237, 245, 255, 0.3); }
+
+    .orbit-demo__stage-name {
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: rgba(9, 13, 25, 0.52);
+      border: 1px solid rgba(102, 179, 255, 0.12);
+      color: var(--text);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    html[data-theme="light"] .orbit-demo__stage-name {
+      background: rgba(255, 255, 255, 0.72);
+      border-color: rgba(46, 106, 168, 0.12);
+    }
+
     .orbit-demo__pedagogy {
       position: absolute;
       top: 24px;
@@ -1277,6 +1336,11 @@
         height: 176px;
       }
 
+      .orbit-demo__stage-name {
+        font-size: 8px;
+        padding: 2px 5px;
+      }
+
       .orbit-demo__pedagogy {
         left: 18px;
         right: 18px;
@@ -1400,6 +1464,20 @@
               <div class="orbit-demo__system">
                 <div class="orbit-demo__canvas-wrap">
                   <canvas class="orbit-demo__canvas"></canvas>
+                  <div class="orbit-demo__constellation">
+                    <div class="orbit-demo__stage-node orbit-demo__stage-node--tactile" style="--node-x: 16%; --node-y: 68%;">
+                      <span class="orbit-demo__stage-name">Tactile</span>
+                    </div>
+                    <div class="orbit-demo__stage-node orbit-demo__stage-node--parse" style="--node-x: 56%; --node-y: 12%;">
+                      <span class="orbit-demo__stage-name">Parse</span>
+                    </div>
+                    <div class="orbit-demo__stage-node orbit-demo__stage-node--feedback" style="--node-x: 88%; --node-y: 44%;">
+                      <span class="orbit-demo__stage-name">Feedback</span>
+                    </div>
+                    <div class="orbit-demo__stage-node orbit-demo__stage-node--adapt" style="--node-x: 66%; --node-y: 88%;">
+                      <span class="orbit-demo__stage-name">Adapt</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="orbit-demo__pedagogy">
@@ -1689,6 +1767,12 @@
     var thickness = 34;
     var armCount = 4;
     var starCount = 1400;
+    var armColors = [
+      "100,168,255",
+      "164,123,255",
+      "255,93,135",
+      "237,245,255"
+    ];
 
     function randomRange(min, max) {
       return min + Math.random() * (max - min);
@@ -1717,12 +1801,8 @@
 
         if (radius < galaxyRadius * 0.18) {
           hue = "255,255,255";
-        } else if (arm % 3 === 0) {
-          hue = "100,168,255";
-        } else if (arm % 3 === 1) {
-          hue = "164,123,255";
         } else {
-          hue = "255,93,135";
+          hue = armColors[arm % armColors.length];
         }
 
         stars.push({
