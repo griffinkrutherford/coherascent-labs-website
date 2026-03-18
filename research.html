@@ -106,20 +106,20 @@
       justify-content: space-between;
       align-items: center;
       gap: 24px;
-      padding: 12px 0 48px;
+      padding: 8px 0 52px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       min-width: 0;
     }
 
     .brand img {
-      width: 74px;
-      height: 74px;
-      border-radius: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
       object-fit: contain;
       object-position: center;
       box-shadow: var(--glow);
@@ -127,8 +127,8 @@
 
     .brand h1 {
       margin: 0;
-      font-size: 20px;
-      letter-spacing: 0.2em;
+      font-size: 18px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
@@ -148,12 +148,12 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
       border: 1px solid rgba(102, 179, 255, 0.3);
       background: rgba(10, 16, 30, 0.35);
       color: var(--text);
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
@@ -216,17 +216,6 @@
     html[data-theme="light"] .nav-link {
       background: rgba(255, 255, 255, 0.64);
       border-color: rgba(46, 106, 168, 0.18);
-    }
-
-    .back-link {
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(102, 179, 255, 0.24);
-      background: rgba(11, 16, 30, 0.6);
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
     }
 
     .hero {
@@ -459,8 +448,11 @@
 
     @media (max-width: 900px) {
       .site-header {
-        flex-direction: column;
-        align-items: flex-start;
+        padding-bottom: 36px;
+      }
+
+      .site-header {
+        flex-wrap: wrap;
       }
 
       .hero {
@@ -477,9 +469,17 @@
         padding: 32px 16px 96px;
       }
 
+      .site-header {
+        padding-top: 4px;
+      }
+
+      .brand {
+        gap: 12px;
+      }
+
       .brand img {
-        width: 60px;
-        height: 60px;
+        width: 52px;
+        height: 52px;
       }
 
       .brand h1 {
@@ -507,7 +507,6 @@
         <span class="theme-dot" aria-hidden="true"></span>
         <span>Light Mode</span>
       </button>
-      <a class="back-link" href="index.html">Back to Home</a>
     </header>
 
     <section class="hero" aria-labelledby="research-page-title">
