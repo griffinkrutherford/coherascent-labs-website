@@ -807,6 +807,8 @@
       height: 240px;
       border-radius: 50%;
       overflow: hidden;
+      cursor: grab;
+      touch-action: none;
       background:
         radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 34%),
         radial-gradient(circle at 50% 50%, rgba(var(--phase-rgb), 0.2), transparent 46%),
@@ -817,6 +819,10 @@
         0 0 44px rgba(var(--phase-rgb), 0.16),
         0 0 56px rgba(var(--phase-rgb), 0.08);
       transition: background 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    .orbit-demo__canvas-wrap.is-dragging {
+      cursor: grabbing;
     }
 
     .orbit-demo__canvas-wrap::before,
@@ -1840,6 +1846,12 @@
     var phaseNames = ["tactile", "parse", "feedback", "adapt"];
     var canvasWrap = document.querySelector(".orbit-demo__canvas-wrap");
     var phaseStartTime = null;
+    var dragPointerId = null;
+    var dragLastX = 0;
+    var dragLastY = 0;
+    var viewSpinOffset = 0;
+    var viewYawOffset = 0;
+    var viewPitchOffset = 0;
 
     function parseColor(rgb) {
       return rgb.split(",").map(function (value) {
@@ -1860,6 +1872,10 @@
     }
 
     var parsedArmColors = armColors.map(parseColor);
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
 
     function randomRange(min, max) {
       return min + Math.random() * (max - min);
@@ -1927,9 +1943,9 @@
     }
 
     function projectStar(star, time, activePhase) {
-      var spin = reducedMotion ? 0.65 : (time * 0.00018);
-      var wobble = reducedMotion ? -0.2 : Math.sin(time * 0.00042) * 0.22 - 0.18;
-      var lift = reducedMotion ? 1.14 : 1.06 + Math.cos(time * 0.00031) * 0.12;
+      var spin = (reducedMotion ? 0.65 : (time * 0.00018)) + viewSpinOffset;
+      var wobble = (reducedMotion ? -0.2 : Math.sin(time * 0.00042) * 0.22 - 0.18) + viewYawOffset;
+      var lift = (reducedMotion ? 1.14 : 1.06 + Math.cos(time * 0.00031) * 0.12) + viewPitchOffset;
       var cosSpin = Math.cos(spin);
       var sinSpin = Math.sin(spin);
       var cosPitch = Math.cos(lift);
@@ -2015,6 +2031,46 @@
 
     resizeCanvas();
     render(0);
+
+    function onPointerDown(event) {
+      if (!canvasWrap) return;
+      dragPointerId = event.pointerId;
+      dragLastX = event.clientX;
+      dragLastY = event.clientY;
+      canvasWrap.classList.add("is-dragging");
+      if (canvasWrap.setPointerCapture) {
+        canvasWrap.setPointerCapture(event.pointerId);
+      }
+    }
+
+    function onPointerMove(event) {
+      if (!canvasWrap || dragPointerId !== event.pointerId) return;
+      var deltaX = event.clientX - dragLastX;
+      var deltaY = event.clientY - dragLastY;
+      dragLastX = event.clientX;
+      dragLastY = event.clientY;
+      viewSpinOffset += deltaX * 0.014;
+      viewYawOffset = clamp(viewYawOffset + deltaX * 0.0036, -0.72, 0.72);
+      viewPitchOffset = clamp(viewPitchOffset - deltaY * 0.0065, -0.6, 0.72);
+      event.preventDefault();
+    }
+
+    function releasePointer(event) {
+      if (!canvasWrap || dragPointerId !== event.pointerId) return;
+      if (canvasWrap.releasePointerCapture) {
+        canvasWrap.releasePointerCapture(event.pointerId);
+      }
+      dragPointerId = null;
+      canvasWrap.classList.remove("is-dragging");
+    }
+
+    if (canvasWrap && !reducedMotion) {
+      canvasWrap.addEventListener("pointerdown", onPointerDown);
+      canvasWrap.addEventListener("pointermove", onPointerMove);
+      canvasWrap.addEventListener("pointerup", releasePointer);
+      canvasWrap.addEventListener("pointercancel", releasePointer);
+      canvasWrap.addEventListener("pointerleave", releasePointer);
+    }
 
     window.addEventListener("resize", resizeCanvas);
   })();
