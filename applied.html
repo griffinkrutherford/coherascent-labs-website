@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Roboto+Mono:wght@300;400;500;600;700&amp;display=swap"
     rel="stylesheet"
   />
   <style>
@@ -441,6 +441,208 @@
       gap: 18px;
     }
 
+    .platform-showcase {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: 22px;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 14% 18%, rgba(100, 168, 255, 0.12), transparent 24%),
+        radial-gradient(circle at 82% 76%, rgba(255, 93, 135, 0.1), transparent 24%),
+        linear-gradient(180deg, rgba(11, 22, 44, 0.88), rgba(7, 14, 29, 0.94));
+      box-shadow: var(--glow);
+      overflow: hidden;
+    }
+
+    .platform-showcase::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(520px 260px at 0% 0%, rgba(100, 168, 255, 0.08), transparent 60%),
+        radial-gradient(460px 240px at 100% 100%, rgba(164, 123, 255, 0.08), transparent 58%);
+      pointer-events: none;
+    }
+
+    html[data-theme="light"] .platform-showcase {
+      background:
+        radial-gradient(circle at 14% 18%, rgba(79, 132, 214, 0.1), transparent 24%),
+        radial-gradient(circle at 82% 76%, rgba(217, 106, 140, 0.08), transparent 24%),
+        linear-gradient(180deg, rgba(255, 252, 247, 0.92), rgba(243, 236, 244, 0.88));
+    }
+
+    html[data-theme="light"] .platform-showcase::before {
+      background:
+        radial-gradient(520px 260px at 0% 0%, rgba(79, 132, 214, 0.07), transparent 60%),
+        radial-gradient(460px 240px at 100% 100%, rgba(127, 99, 214, 0.06), transparent 58%);
+    }
+
+    .platform-showcase > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .platform-showcase__sheet {
+      position: relative;
+      min-height: 240px;
+      padding: 24px 24px 22px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(250, 252, 255, 0.96), rgba(230, 236, 248, 0.92));
+      box-shadow:
+        inset 0 0 0 1px rgba(100, 168, 255, 0.08),
+        0 22px 36px rgba(4, 10, 24, 0.18);
+      transform: rotate(-2.5deg);
+      overflow: hidden;
+    }
+
+    html[data-theme="light"] .platform-showcase__sheet {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 239, 247, 0.94));
+      box-shadow:
+        inset 0 0 0 1px rgba(79, 132, 214, 0.08),
+        0 18px 30px rgba(84, 98, 130, 0.1);
+    }
+
+    .platform-showcase__sheet::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(transparent 40px, rgba(79, 132, 214, 0.1) 40px, rgba(79, 132, 214, 0.1) 42px, transparent 42px),
+        repeating-linear-gradient(180deg, transparent 0 43px, rgba(79, 132, 214, 0.12) 43px 45px);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .platform-showcase__sheet::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, rgba(217, 106, 140, 0.24), transparent);
+      pointer-events: none;
+    }
+
+    .platform-showcase__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(14, 24, 46, 0.08);
+      color: #243d67;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .platform-showcase__tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      box-shadow: 0 0 12px rgba(79, 132, 214, 0.18);
+    }
+
+    .platform-showcase__ink {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: "Caveat", cursive;
+      font-weight: 700;
+      line-height: 1.18;
+      clip-path: inset(0 100% 0 0);
+      color: #183153;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.34);
+    }
+
+    .platform-showcase__ink--problem {
+      margin-top: 22px;
+      font-size: clamp(34px, 4.2vw, 42px);
+      animation: writeProblem 7.2s ease-in-out infinite;
+    }
+
+    .platform-showcase__ink--answer {
+      margin-top: 22px;
+      font-size: clamp(30px, 3.8vw, 38px);
+      color: #294d7a;
+      animation: writeAnswer 7.2s ease-in-out infinite;
+    }
+
+    .platform-showcase__cursor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      box-shadow: 0 0 18px rgba(79, 132, 214, 0.2), 0 0 18px rgba(217, 106, 140, 0.12);
+      animation: writeCursor 7.2s ease-in-out infinite;
+    }
+
+    .platform-showcase__copy {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .platform-showcase__eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .platform-showcase__title {
+      margin: 0;
+      font-size: clamp(24px, 3.2vw, 34px);
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .platform-showcase__copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .platform-showcase__signals {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 4px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .platform-showcase__signals li {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(102, 179, 255, 0.16);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    html[data-theme="light"] .platform-showcase__signals li {
+      background: rgba(255, 255, 255, 0.7);
+      border-color: rgba(79, 132, 214, 0.12);
+    }
+
     .detail-card {
       padding: 22px;
       position: relative;
@@ -767,6 +969,77 @@
       box-shadow: 0 14px 26px rgba(79, 132, 214, 0.12), 0 14px 26px rgba(127, 99, 214, 0.1), 0 14px 26px rgba(217, 106, 140, 0.08);
     }
 
+    @keyframes writeProblem {
+      0%, 8% {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+      }
+
+      14%, 44% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+      }
+
+      100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes writeAnswer {
+      0%, 48% {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+      }
+
+      56%, 86% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+      }
+
+      100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes writeCursor {
+      0%, 8% {
+        opacity: 0;
+        transform: translate(28px, 86px) scale(0.75);
+      }
+
+      14% {
+        opacity: 1;
+        transform: translate(34px, 86px) scale(1);
+      }
+
+      42% {
+        opacity: 1;
+        transform: translate(268px, 86px) scale(1);
+      }
+
+      46%, 50% {
+        opacity: 0;
+        transform: translate(268px, 86px) scale(0.8);
+      }
+
+      56% {
+        opacity: 1;
+        transform: translate(34px, 150px) scale(1);
+      }
+
+      84% {
+        opacity: 1;
+        transform: translate(278px, 150px) scale(1);
+      }
+
+      88%, 100% {
+        opacity: 0;
+        transform: translate(278px, 150px) scale(0.8);
+      }
+    }
+
     @media (max-width: 900px) {
       .site-header {
         padding-bottom: 36px;
@@ -778,6 +1051,10 @@
 
       .hero {
         padding: 30px 22px;
+      }
+
+      .platform-showcase {
+        grid-template-columns: 1fr;
       }
 
       .timeline-item {
@@ -807,8 +1084,47 @@
         font-size: 16px;
       }
 
+      .platform-showcase {
+        padding: 18px;
+      }
+
+      .platform-showcase__sheet {
+        min-height: 214px;
+        padding: 20px 18px 18px;
+      }
+
+      .platform-showcase__ink--problem {
+        margin-top: 18px;
+        font-size: 32px;
+      }
+
+      .platform-showcase__ink--answer {
+        margin-top: 18px;
+        font-size: 28px;
+      }
+
+      .platform-showcase__cursor {
+        scale: 0.86;
+      }
+
       .cta {
         width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .platform-showcase__ink,
+      .platform-showcase__cursor {
+        animation: none;
+      }
+
+      .platform-showcase__ink {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+      }
+
+      .platform-showcase__cursor {
+        display: none;
       }
     }
   </style>
@@ -842,20 +1158,42 @@
 
     <section class="section" aria-labelledby="platform-title">
       <h2 class="section-title" id="platform-title">Platform Components</h2>
+      <article class="platform-showcase" aria-label="Handwritten calculus demo">
+        <div class="platform-showcase__sheet">
+          <div class="platform-showcase__tag">Handwritten calculus</div>
+          <span class="platform-showcase__ink platform-showcase__ink--problem">d/dx (x^3 sin x)</span>
+          <span class="platform-showcase__ink platform-showcase__ink--answer">= 3x^2 sin x + x^3 cos x</span>
+          <span class="platform-showcase__cursor" aria-hidden="true"></span>
+        </div>
+        <div class="platform-showcase__copy">
+          <p class="platform-showcase__eyebrow">From pencil to proof</p>
+          <h3 class="platform-showcase__title">Students write naturally. The platform turns each step into structured understanding.</h3>
+          <p>
+            The product experience begins with real handwritten work, then translates that reasoning
+            into machine-readable structure, trustworthy feedback, and adaptive next steps that keep
+            momentum high.
+          </p>
+          <ul class="platform-showcase__signals" aria-label="Platform benefits">
+            <li>Handwriting first</li>
+            <li>Step-level capture</li>
+            <li>Trust-aligned feedback</li>
+          </ul>
+        </div>
+      </article>
       <div class="details">
         <article class="detail-card detail-card--planet-a">
-          <strong>The Educational Platform (In Development)</strong>
-          <p>A cross-platform ecosystem designed to force active, offline cognitive engagement through tactile learning.</p>
+          <strong>Handwritten Learning, Reimagined</strong>
+          <p>A tactile-first experience that moves students out of passive prompting and back into real mathematical thinking, one handwritten page at a time.</p>
         </article>
         <article class="detail-card detail-card--planet-b">
           <span class="planet-ring" aria-hidden="true"></span>
-          <strong>Computer Vision &amp; Verifiable Grading</strong>
-          <p>Utilizing our truth-aligned architectural principles, the app ingests handwritten logic, parses the mathematical steps, and delivers rigorously accurate, hallucination-free feedback.</p>
+          <strong>Instant Step-Level Understanding</strong>
+          <p>The platform captures handwritten work, reconstructs each mathematical step, and delivers fast, trustworthy feedback students can immediately act on.</p>
         </article>
         <article class="detail-card detail-card--planet-c">
           <span class="planet-moon" aria-hidden="true"></span>
-          <strong>Dynamic Remediation Engine</strong>
-          <p>Scaling from elementary arithmetic to university-level mathematics, the system maps cognitive bottlenecks and generates targeted, adaptive practice loops driven by streak-based gamification and an immersive space-themed interface.</p>
+          <strong>Momentum Engine for Mastery</strong>
+          <p>From foundational arithmetic to advanced calculus, adaptive practice, streaks, and game-like progression keep learners moving toward confident mastery.</p>
         </article>
       </div>
     </section>
