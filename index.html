@@ -862,19 +862,14 @@
       gap: 4px;
       justify-items: center;
       transform: translate(-50%, -50%);
-      opacity: 0.54;
-      animation: orbitNodePulse 9.6s ease-in-out infinite;
+      opacity: 0.46;
+      transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
     .orbit-demo__stage-node--tactile { --stage-color: #64a8ff; }
     .orbit-demo__stage-node--parse { --stage-color: #a47bff; }
     .orbit-demo__stage-node--feedback { --stage-color: #ff5d87; }
     .orbit-demo__stage-node--adapt { --stage-color: #edf5ff; }
-
-    .orbit-demo__stage-node--tactile { animation-delay: 0s; }
-    .orbit-demo__stage-node--parse { animation-delay: 2.4s; }
-    .orbit-demo__stage-node--feedback { animation-delay: 4.8s; }
-    .orbit-demo__stage-node--adapt { animation-delay: 7.2s; }
 
     .orbit-demo__stage-node::before {
       content: "";
@@ -883,12 +878,29 @@
       border-radius: 50%;
       background: var(--stage-color);
       box-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
+      transition: box-shadow 0.35s ease, transform 0.35s ease;
     }
 
     .orbit-demo__stage-node--tactile::before { box-shadow: 0 0 14px rgba(100, 168, 255, 0.34); }
     .orbit-demo__stage-node--parse::before { box-shadow: 0 0 14px rgba(164, 123, 255, 0.34); }
     .orbit-demo__stage-node--feedback::before { box-shadow: 0 0 14px rgba(255, 93, 135, 0.34); }
     .orbit-demo__stage-node--adapt::before { box-shadow: 0 0 14px rgba(237, 245, 255, 0.3); }
+
+    .orbit-demo[data-active-stage="tactile"] .orbit-demo__stage-node--tactile,
+    .orbit-demo[data-active-stage="parse"] .orbit-demo__stage-node--parse,
+    .orbit-demo[data-active-stage="feedback"] .orbit-demo__stage-node--feedback,
+    .orbit-demo[data-active-stage="adapt"] .orbit-demo__stage-node--adapt {
+      opacity: 1;
+      animation: orbitNodePulse 2.4s ease-in-out infinite;
+    }
+
+    .orbit-demo[data-active-stage="tactile"] .orbit-demo__stage-node--tactile::before,
+    .orbit-demo[data-active-stage="parse"] .orbit-demo__stage-node--parse::before,
+    .orbit-demo[data-active-stage="feedback"] .orbit-demo__stage-node--feedback::before,
+    .orbit-demo[data-active-stage="adapt"] .orbit-demo__stage-node--adapt::before {
+      transform: scale(1.18);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.18), 0 0 28px var(--stage-color);
+    }
 
     .orbit-demo__stage-name {
       padding: 3px 6px;
@@ -1783,6 +1795,7 @@
     ];
     var phaseNames = ["tactile", "parse", "feedback", "adapt"];
     var canvasWrap = document.querySelector(".orbit-demo__canvas-wrap");
+    var phaseStartTime = null;
 
     function parseColor(rgb) {
       return rgb.split(",").map(function (value) {
@@ -1865,7 +1878,8 @@
     }
 
     function activePhaseAt(time) {
-      return reducedMotion ? 0 : Math.floor((time % 9600) / 2400);
+      var elapsed = phaseStartTime === null ? 0 : (time - phaseStartTime);
+      return reducedMotion ? 0 : Math.floor((elapsed % 9600) / 2400);
     }
 
     function projectStar(star, time, activePhase) {
@@ -1915,6 +1929,9 @@
     }
 
     function render(time) {
+      if (phaseStartTime === null) {
+        phaseStartTime = time;
+      }
       var activePhase = activePhaseAt(time);
       if (scene) {
         scene.setAttribute("data-active-stage", phaseNames[activePhase]);
