@@ -487,6 +487,8 @@
 
     .platform-showcase__sheet {
       position: relative;
+      display: flex;
+      flex-direction: column;
       min-height: 488px;
       padding: 24px 24px 22px;
       border-radius: 22px;
@@ -673,8 +675,9 @@
 
     .response-carousel__deck {
       position: relative;
+      flex: 1;
       margin-top: 20px;
-      min-height: 398px;
+      min-height: 0;
     }
 
     .response-carousel__paper {
@@ -777,7 +780,7 @@
       position: absolute;
       left: 24px;
       right: 24px;
-      bottom: 0;
+      bottom: 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1265,7 +1268,7 @@
       }
 
       .response-carousel__deck {
-        min-height: 432px;
+        min-height: 0;
       }
 
       .response-carousel__paper {
