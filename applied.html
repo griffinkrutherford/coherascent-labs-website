@@ -564,26 +564,19 @@
       overflow: visible;
     }
 
-    .platform-showcase__ink {
-      font-family: "Caveat", cursive;
-      font-weight: 700;
-      fill: #183153;
-      stroke: rgba(24, 49, 83, 0.14);
-      stroke-width: 0.7;
+    .platform-showcase__glyph {
+      fill: rgba(24, 49, 83, 0.94);
+      stroke: rgba(24, 49, 83, 0.86);
+      stroke-width: 1.08;
       stroke-linecap: round;
       stroke-linejoin: round;
-      paint-order: stroke fill;
-      opacity: 1;
+      vector-effect: non-scaling-stroke;
     }
 
-    .platform-showcase__note {
-      font-family: "Caveat", cursive;
-      font-size: 16px;
-      letter-spacing: 0.02em;
-      fill: rgba(41, 77, 122, 0.76);
-      stroke: rgba(41, 77, 122, 0.14);
-      stroke-width: 0.4;
-      opacity: 1;
+    .platform-showcase__glyph--note {
+      fill: rgba(41, 77, 122, 0.82);
+      stroke: rgba(41, 77, 122, 0.72);
+      stroke-width: 0.9;
     }
 
     .platform-showcase__cursor {
@@ -1102,13 +1095,7 @@
         <div class="platform-showcase__sheet">
           <div class="platform-showcase__tag">Handwritten calculus</div>
           <div class="platform-showcase__board" aria-hidden="true">
-            <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation">
-              <text class="platform-showcase__ink" data-full-text="d/dx (x^3 sin x)" x="16" y="68" font-size="36"></text>
-              <text class="platform-showcase__ink" data-full-text="= (d/dx x^3) sin x + x^3 (d/dx sin x)" x="24" y="110" font-size="32"></text>
-              <text class="platform-showcase__ink" data-full-text="= 3x^2 sin x + x^3 cos x" x="24" y="152" font-size="32"></text>
-              <text class="platform-showcase__ink" data-full-text="= x^2 (3 sin x + x cos x)" x="24" y="194" font-size="30"></text>
-              <text class="platform-showcase__note" data-full-text="product rule" x="250" y="220"></text>
-            </svg>
+            <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation"></svg>
           </div>
           <span class="platform-showcase__cursor" aria-hidden="true"></span>
         </div>
@@ -1210,110 +1197,7 @@
     });
   })();
 
-  (function () {
-    var board = document.querySelector(".platform-showcase__board");
-    var svg = document.querySelector(".platform-showcase__svg");
-    var cursor = document.querySelector(".platform-showcase__cursor");
-    if (!board || !svg || !cursor) return;
-
-    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var lineNodes = Array.prototype.slice.call(svg.querySelectorAll(".platform-showcase__ink, .platform-showcase__note"));
-    var lines = lineNodes.map(function (node) {
-      return {
-        node: node,
-        text: node.getAttribute("data-full-text") || "",
-        x: Number(node.getAttribute("x") || 0),
-        y: Number(node.getAttribute("y") || 0),
-        isNote: node.classList.contains("platform-showcase__note")
-      };
-    });
-    var timers = [];
-    var typeInterval = 68;
-    var linePause = 420;
-    var cyclePause = 1300;
-
-    function clearTimers() {
-      while (timers.length) {
-        window.clearTimeout(timers.pop());
-      }
-    }
-
-    function boardMetrics() {
-      var rect = board.getBoundingClientRect();
-      var viewBox = svg.viewBox.baseVal;
-      return {
-        scaleX: rect.width / viewBox.width,
-        scaleY: rect.height / viewBox.height
-      };
-    }
-
-    function moveCursorTo(node) {
-      var metrics = boardMetrics();
-      var x = Number(node.getAttribute("x") || 0) + node.getComputedTextLength();
-      var y = Number(node.getAttribute("y") || 0);
-      var offsetX = x * metrics.scaleX;
-      var offsetY = y * metrics.scaleY;
-      var rotate = node.classList.contains("platform-showcase__note") ? 30 : 24;
-      cursor.style.opacity = "1";
-      cursor.style.transform = "translate(" + offsetX + "px, " + (offsetY - 16) + "px) rotate(" + rotate + "deg)";
-    }
-
-    function resetBoard() {
-      lines.forEach(function (line) {
-        line.node.textContent = "";
-      });
-      cursor.style.opacity = "0";
-      cursor.style.transform = "translate(24px, 40px) rotate(24deg)";
-    }
-
-    function finishStatic() {
-      lines.forEach(function (line) {
-        line.node.textContent = line.text;
-      });
-      cursor.style.opacity = "0";
-    }
-
-    function typeLine(index) {
-      if (index >= lines.length) {
-        timers.push(window.setTimeout(function () {
-          resetBoard();
-          typeLine(0);
-        }, cyclePause));
-        return;
-      }
-
-      var line = lines[index];
-      var charIndex = 0;
-      line.node.textContent = "";
-
-      function tick() {
-        charIndex += 1;
-        line.node.textContent = line.text.slice(0, charIndex);
-        moveCursorTo(line.node);
-
-        if (charIndex < line.text.length) {
-          timers.push(window.setTimeout(tick, typeInterval));
-          return;
-        }
-
-        timers.push(window.setTimeout(function () {
-          typeLine(index + 1);
-        }, linePause));
-      }
-
-      timers.push(window.setTimeout(tick, 120));
-    }
-
-    if (reducedMotion) {
-      finishStatic();
-      return;
-    }
-
-    resetBoard();
-    typeLine(0);
-
-    window.addEventListener("beforeunload", clearTimers);
-  })();
   </script>
+  <script src="applied-handwriting-demo.js"></script>
 </body>
 </html>
