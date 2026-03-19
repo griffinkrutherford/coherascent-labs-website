@@ -561,7 +561,7 @@
     .platform-showcase__svg {
       width: 100%;
       height: 100%;
-      overflow: visible;
+      overflow: hidden;
     }
 
     .platform-showcase__glyph {
@@ -577,41 +577,6 @@
       fill: rgba(41, 77, 122, 0.82);
       stroke: rgba(41, 77, 122, 0.72);
       stroke-width: 0.9;
-    }
-
-    .platform-showcase__cursor {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 18px;
-      height: 18px;
-      pointer-events: none;
-      transform-origin: 8px 14px;
-      will-change: transform, opacity;
-    }
-
-    .platform-showcase__cursor::before {
-      content: "";
-      position: absolute;
-      left: 2px;
-      top: 1px;
-      width: 11px;
-      height: 14px;
-      border-radius: 10px 10px 4px 4px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(100, 168, 255, 0.9) 34%, rgba(164, 123, 255, 0.92) 62%, rgba(255, 93, 135, 0.92) 100%);
-      box-shadow: 0 0 16px rgba(79, 132, 214, 0.18), 0 0 12px rgba(217, 106, 140, 0.12);
-    }
-
-    .platform-showcase__cursor::after {
-      content: "";
-      position: absolute;
-      left: 6px;
-      bottom: 0;
-      width: 0;
-      height: 0;
-      border-left: 3px solid transparent;
-      border-right: 3px solid transparent;
-      border-top: 8px solid #27364d;
     }
 
     .platform-showcase__copy {
@@ -1055,11 +1020,6 @@
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .platform-showcase__cursor {
-        display: none;
-      }
-    }
   </style>
 </head>
 <body>
@@ -1097,7 +1057,6 @@
           <div class="platform-showcase__board" aria-hidden="true">
             <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation"></svg>
           </div>
-          <span class="platform-showcase__cursor" aria-hidden="true"></span>
         </div>
         <div class="platform-showcase__copy">
           <p class="platform-showcase__eyebrow">From pencil to proof</p>
