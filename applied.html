@@ -567,45 +567,58 @@
     .platform-showcase__ink {
       font-family: "Caveat", cursive;
       font-weight: 700;
-      fill: rgba(24, 49, 83, 0);
-      stroke: #183153;
-      stroke-width: 1.5;
+      fill: #183153;
+      stroke: rgba(24, 49, 83, 0.14);
+      stroke-width: 0.7;
       stroke-linecap: round;
       stroke-linejoin: round;
       paint-order: stroke fill;
-      stroke-dasharray: 1200;
-      stroke-dashoffset: 1200;
-      opacity: 0;
+      opacity: 1;
     }
-
-    .platform-showcase__ink--line-1 { animation: writeLine1 9.8s linear infinite; }
-    .platform-showcase__ink--line-2 { animation: writeLine2 9.8s linear infinite; }
-    .platform-showcase__ink--line-3 { animation: writeLine3 9.8s linear infinite; }
-    .platform-showcase__ink--line-4 { animation: writeLine4 9.8s linear infinite; }
 
     .platform-showcase__note {
       font-family: "Caveat", cursive;
       font-size: 16px;
       letter-spacing: 0.02em;
-      fill: rgba(41, 77, 122, 0);
-      stroke: rgba(41, 77, 122, 0.7);
-      stroke-width: 0.8;
-      stroke-dasharray: 260;
-      stroke-dashoffset: 260;
-      opacity: 0;
-      animation: writeNote 9.8s linear infinite;
+      fill: rgba(41, 77, 122, 0.76);
+      stroke: rgba(41, 77, 122, 0.14);
+      stroke-width: 0.4;
+      opacity: 1;
     }
 
     .platform-showcase__cursor {
       position: absolute;
       top: 0;
       left: 0;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
-      box-shadow: 0 0 18px rgba(79, 132, 214, 0.2), 0 0 18px rgba(217, 106, 140, 0.12);
-      animation: writeCursor 9.8s linear infinite;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      transform-origin: 8px 14px;
+      will-change: transform, opacity;
+    }
+
+    .platform-showcase__cursor::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 1px;
+      width: 11px;
+      height: 14px;
+      border-radius: 10px 10px 4px 4px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(100, 168, 255, 0.9) 34%, rgba(164, 123, 255, 0.92) 62%, rgba(255, 93, 135, 0.92) 100%);
+      box-shadow: 0 0 16px rgba(79, 132, 214, 0.18), 0 0 12px rgba(217, 106, 140, 0.12);
+    }
+
+    .platform-showcase__cursor::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-top: 8px solid #27364d;
     }
 
     .platform-showcase__copy {
@@ -987,158 +1000,6 @@
       box-shadow: 0 14px 26px rgba(79, 132, 214, 0.12), 0 14px 26px rgba(127, 99, 214, 0.1), 0 14px 26px rgba(217, 106, 140, 0.08);
     }
 
-    @keyframes writeLine1 {
-      0%, 2% {
-        opacity: 0;
-        stroke-dashoffset: 1200;
-        fill: rgba(24, 49, 83, 0);
-      }
-
-      6%, 24% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(24, 49, 83, 0.18);
-      }
-
-      28%, 100% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(24, 49, 83, 0.9);
-      }
-    }
-
-    @keyframes writeLine2 {
-      0%, 24% {
-        opacity: 0;
-        stroke-dashoffset: 1200;
-        fill: rgba(24, 49, 83, 0);
-      }
-
-      28%, 46% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(24, 49, 83, 0.18);
-      }
-
-      50%, 100% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(24, 49, 83, 0.9);
-      }
-    }
-
-    @keyframes writeLine3 {
-      0%, 46% {
-        opacity: 0;
-        stroke-dashoffset: 1200;
-        fill: rgba(41, 77, 122, 0);
-      }
-
-      50%, 68% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(41, 77, 122, 0.18);
-      }
-
-      72%, 100% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(41, 77, 122, 0.92);
-      }
-    }
-
-    @keyframes writeLine4 {
-      0%, 68% {
-        opacity: 0;
-        stroke-dashoffset: 1200;
-        fill: rgba(41, 77, 122, 0);
-      }
-
-      72%, 88% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(41, 77, 122, 0.18);
-      }
-
-      92%, 100% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(41, 77, 122, 0.92);
-      }
-    }
-
-    @keyframes writeNote {
-      0%, 74% {
-        opacity: 0;
-        stroke-dashoffset: 260;
-        fill: rgba(41, 77, 122, 0);
-      }
-
-      78%, 90% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(41, 77, 122, 0.12);
-      }
-
-      94%, 100% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(41, 77, 122, 0.72);
-      }
-    }
-
-    @keyframes writeCursor {
-      0%, 2% {
-        opacity: 0;
-        transform: translate(30px, 82px) scale(0.75);
-      }
-
-      6% {
-        opacity: 1;
-        transform: translate(34px, 82px) scale(1);
-      }
-
-      24% {
-        opacity: 1;
-        transform: translate(294px, 82px) scale(1);
-      }
-
-      28% {
-        opacity: 1;
-        transform: translate(42px, 126px) scale(1);
-      }
-
-      46% {
-        opacity: 1;
-        transform: translate(320px, 126px) scale(1);
-      }
-
-      50% {
-        opacity: 1;
-        transform: translate(42px, 170px) scale(1);
-      }
-
-      68% {
-        opacity: 1;
-        transform: translate(312px, 170px) scale(1);
-      }
-
-      72% {
-        opacity: 1;
-        transform: translate(44px, 214px) scale(1);
-      }
-
-      88% {
-        opacity: 1;
-        transform: translate(270px, 214px) scale(1);
-      }
-
-      92%, 100% {
-        opacity: 0;
-        transform: translate(270px, 214px) scale(0.8);
-      }
-    }
-
     @media (max-width: 900px) {
       .site-header {
         padding-bottom: 36px;
@@ -1196,29 +1057,12 @@
         margin-top: 18px;
       }
 
-      .platform-showcase__cursor {
-        scale: 0.86;
-      }
-
       .cta {
         width: 100%;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .platform-showcase__ink,
-      .platform-showcase__note,
-      .platform-showcase__cursor {
-        animation: none;
-      }
-
-      .platform-showcase__ink,
-      .platform-showcase__note {
-        opacity: 1;
-        stroke-dashoffset: 0;
-        fill: rgba(24, 49, 83, 0.9);
-      }
-
       .platform-showcase__cursor {
         display: none;
       }
@@ -1259,11 +1103,11 @@
           <div class="platform-showcase__tag">Handwritten calculus</div>
           <div class="platform-showcase__board" aria-hidden="true">
             <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation">
-              <text class="platform-showcase__ink platform-showcase__ink--line-1" x="16" y="68" font-size="36">d/dx (x^3 sin x)</text>
-              <text class="platform-showcase__ink platform-showcase__ink--line-2" x="24" y="110" font-size="32">= (d/dx x^3) sin x + x^3 (d/dx sin x)</text>
-              <text class="platform-showcase__ink platform-showcase__ink--line-3" x="24" y="152" font-size="32">= 3x^2 sin x + x^3 cos x</text>
-              <text class="platform-showcase__ink platform-showcase__ink--line-4" x="24" y="194" font-size="30">= x^2 (3 sin x + x cos x)</text>
-              <text class="platform-showcase__note" x="250" y="220">product rule</text>
+              <text class="platform-showcase__ink" data-full-text="d/dx (x^3 sin x)" x="16" y="68" font-size="36"></text>
+              <text class="platform-showcase__ink" data-full-text="= (d/dx x^3) sin x + x^3 (d/dx sin x)" x="24" y="110" font-size="32"></text>
+              <text class="platform-showcase__ink" data-full-text="= 3x^2 sin x + x^3 cos x" x="24" y="152" font-size="32"></text>
+              <text class="platform-showcase__ink" data-full-text="= x^2 (3 sin x + x cos x)" x="24" y="194" font-size="30"></text>
+              <text class="platform-showcase__note" data-full-text="product rule" x="250" y="220"></text>
             </svg>
           </div>
           <span class="platform-showcase__cursor" aria-hidden="true"></span>
@@ -1364,6 +1208,111 @@
       localStorage.setItem(storageKey, nextTheme);
       applyTheme(nextTheme);
     });
+  })();
+
+  (function () {
+    var board = document.querySelector(".platform-showcase__board");
+    var svg = document.querySelector(".platform-showcase__svg");
+    var cursor = document.querySelector(".platform-showcase__cursor");
+    if (!board || !svg || !cursor) return;
+
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var lineNodes = Array.prototype.slice.call(svg.querySelectorAll(".platform-showcase__ink, .platform-showcase__note"));
+    var lines = lineNodes.map(function (node) {
+      return {
+        node: node,
+        text: node.getAttribute("data-full-text") || "",
+        x: Number(node.getAttribute("x") || 0),
+        y: Number(node.getAttribute("y") || 0),
+        isNote: node.classList.contains("platform-showcase__note")
+      };
+    });
+    var timers = [];
+    var typeInterval = 68;
+    var linePause = 420;
+    var cyclePause = 1300;
+
+    function clearTimers() {
+      while (timers.length) {
+        window.clearTimeout(timers.pop());
+      }
+    }
+
+    function boardMetrics() {
+      var rect = board.getBoundingClientRect();
+      var viewBox = svg.viewBox.baseVal;
+      return {
+        scaleX: rect.width / viewBox.width,
+        scaleY: rect.height / viewBox.height
+      };
+    }
+
+    function moveCursorTo(node) {
+      var metrics = boardMetrics();
+      var x = Number(node.getAttribute("x") || 0) + node.getComputedTextLength();
+      var y = Number(node.getAttribute("y") || 0);
+      var offsetX = x * metrics.scaleX;
+      var offsetY = y * metrics.scaleY;
+      var rotate = node.classList.contains("platform-showcase__note") ? 30 : 24;
+      cursor.style.opacity = "1";
+      cursor.style.transform = "translate(" + offsetX + "px, " + (offsetY - 16) + "px) rotate(" + rotate + "deg)";
+    }
+
+    function resetBoard() {
+      lines.forEach(function (line) {
+        line.node.textContent = "";
+      });
+      cursor.style.opacity = "0";
+      cursor.style.transform = "translate(24px, 40px) rotate(24deg)";
+    }
+
+    function finishStatic() {
+      lines.forEach(function (line) {
+        line.node.textContent = line.text;
+      });
+      cursor.style.opacity = "0";
+    }
+
+    function typeLine(index) {
+      if (index >= lines.length) {
+        timers.push(window.setTimeout(function () {
+          resetBoard();
+          typeLine(0);
+        }, cyclePause));
+        return;
+      }
+
+      var line = lines[index];
+      var charIndex = 0;
+      line.node.textContent = "";
+
+      function tick() {
+        charIndex += 1;
+        line.node.textContent = line.text.slice(0, charIndex);
+        moveCursorTo(line.node);
+
+        if (charIndex < line.text.length) {
+          timers.push(window.setTimeout(tick, typeInterval));
+          return;
+        }
+
+        timers.push(window.setTimeout(function () {
+          typeLine(index + 1);
+        }, linePause));
+      }
+
+      timers.push(window.setTimeout(tick, 120));
+    }
+
+    if (reducedMotion) {
+      finishStatic();
+      return;
+    }
+
+    resetBoard();
+    typeLine(0);
+
+    window.addEventListener("beforeunload", clearTimers);
   })();
   </script>
 </body>
