@@ -487,7 +487,7 @@
 
     .platform-showcase__sheet {
       position: relative;
-      min-height: 240px;
+      min-height: 488px;
       padding: 24px 24px 22px;
       border-radius: 22px;
       background:
@@ -630,6 +630,251 @@
     html[data-theme="light"] .platform-showcase__signals li {
       background: rgba(255, 255, 255, 0.7);
       border-color: rgba(79, 132, 214, 0.12);
+    }
+
+    .response-carousel {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(260px, 0.96fr);
+      gap: 22px;
+      margin-top: 22px;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 12% 16%, rgba(255, 93, 135, 0.1), transparent 24%),
+        radial-gradient(circle at 88% 80%, rgba(100, 168, 255, 0.12), transparent 26%),
+        linear-gradient(180deg, rgba(10, 18, 36, 0.86), rgba(7, 13, 28, 0.94));
+      box-shadow: var(--glow);
+      overflow: hidden;
+    }
+
+    .response-carousel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(480px 240px at 0% 0%, rgba(164, 123, 255, 0.08), transparent 60%),
+        radial-gradient(420px 220px at 100% 100%, rgba(255, 93, 135, 0.06), transparent 58%);
+      pointer-events: none;
+    }
+
+    html[data-theme="light"] .response-carousel {
+      background:
+        radial-gradient(circle at 12% 16%, rgba(217, 106, 140, 0.08), transparent 24%),
+        radial-gradient(circle at 88% 80%, rgba(79, 132, 214, 0.1), transparent 26%),
+        linear-gradient(180deg, rgba(255, 252, 247, 0.92), rgba(243, 236, 244, 0.88));
+    }
+
+    .response-carousel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .response-carousel__deck {
+      position: relative;
+      margin-top: 20px;
+      min-height: 398px;
+    }
+
+    .response-carousel__paper {
+      position: absolute;
+      inset: 0;
+      padding: 0 8px 78px 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 320ms ease, transform 320ms ease;
+      pointer-events: none;
+    }
+
+    .response-carousel__paper.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .response-carousel__paper > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .response-carousel__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-left: 10px;
+      color: #36527f;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .response-carousel__meta strong {
+      font-weight: 700;
+      color: #213a63;
+    }
+
+    .response-carousel__status {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 27, 52, 0.08);
+    }
+
+    .response-carousel__body {
+      display: grid;
+      gap: 8px;
+      padding-left: 14px;
+      font-family: "Caveat", cursive;
+      color: #163257;
+    }
+
+    .response-carousel__prompt {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.14;
+      color: #17335a;
+      letter-spacing: 0.01em;
+    }
+
+    .response-carousel__prompt--tight {
+      font-size: 19px;
+    }
+
+    .response-carousel__line {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1.06;
+      white-space: pre-wrap;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 240ms ease, transform 280ms ease;
+    }
+
+    .response-carousel__line.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .response-carousel__line--small {
+      font-size: 26px;
+    }
+
+    .response-carousel__line--tiny {
+      font-size: 23px;
+    }
+
+    .response-carousel__board {
+      margin-top: 14px;
+      width: 100%;
+      height: 100%;
+      min-height: 286px;
+    }
+
+    .response-carousel__controls {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      z-index: 2;
+    }
+
+    .response-carousel__dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .response-carousel__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 0;
+      padding: 0;
+      background: rgba(36, 61, 103, 0.22);
+      box-shadow: none;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .response-carousel__dot.is-active {
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      transform: scale(1.18);
+    }
+
+    .response-carousel__nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .response-carousel__button {
+      min-width: 42px;
+      height: 42px;
+      border: 1px solid rgba(100, 168, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(12, 23, 44, 0.08);
+      color: #1d385f;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .response-carousel__button:hover,
+    .response-carousel__button:focus-visible,
+    .response-carousel__dot:hover,
+    .response-carousel__dot:focus-visible {
+      outline: none;
+      transform: translateY(-1px);
+      border-color: rgba(164, 123, 255, 0.36);
+      background: rgba(12, 23, 44, 0.14);
+    }
+
+    .response-carousel__copy {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .response-carousel__copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .response-carousel__range {
+      display: grid;
+      gap: 10px;
+      margin: 2px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .response-carousel__range li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .response-carousel__range li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      box-shadow: 0 0 12px rgba(100, 168, 255, 0.22);
+      flex: 0 0 auto;
     }
 
     .detail-card {
@@ -975,6 +1220,10 @@
         grid-template-columns: 1fr;
       }
 
+      .response-carousel {
+        grid-template-columns: 1fr;
+      }
+
       .timeline-item {
         grid-template-columns: 1fr;
       }
@@ -1007,8 +1256,44 @@
       }
 
       .platform-showcase__sheet {
-        min-height: 214px;
+        min-height: 532px;
         padding: 20px 18px 18px;
+      }
+
+      .response-carousel {
+        padding: 18px;
+      }
+
+      .response-carousel__deck {
+        min-height: 432px;
+      }
+
+      .response-carousel__paper {
+        padding: 20px 16px 82px;
+      }
+
+      .response-carousel__prompt {
+        font-size: 19px;
+      }
+
+      .response-carousel__prompt--tight {
+        font-size: 17px;
+      }
+
+      .response-carousel__line {
+        font-size: 26px;
+      }
+
+      .response-carousel__line--small {
+        font-size: 22px;
+      }
+
+      .response-carousel__line--tiny {
+        font-size: 19px;
+      }
+
+      .response-carousel__board {
+        min-height: 254px;
       }
 
       .platform-showcase__board {
@@ -1051,25 +1336,145 @@
 
     <section class="section" aria-labelledby="platform-title">
       <h2 class="section-title" id="platform-title">Platform Components</h2>
-      <article class="platform-showcase" aria-label="Handwritten calculus demo">
+      <article class="platform-showcase" aria-label="Handwritten response slideshow">
         <div class="platform-showcase__sheet">
-          <div class="platform-showcase__tag">Handwritten calculus</div>
-          <div class="platform-showcase__board" aria-hidden="true">
-            <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation"></svg>
+          <div class="platform-showcase__tag">Current handwritten response</div>
+          <div class="response-carousel__deck" data-response-slideshow aria-live="polite">
+            <section class="response-carousel__paper is-active" data-response-slide="0" aria-label="Calculus problem response">
+              <div class="response-carousel__meta">
+                <strong>Current handwritten response</strong>
+                <span class="response-carousel__status">Calculus problem</span>
+              </div>
+              <div class="response-carousel__board" aria-hidden="true">
+                <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation"></svg>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="1" aria-label="History paragraph response" hidden>
+              <div class="response-carousel__meta">
+                <strong>Current handwritten response</strong>
+                <span class="response-carousel__status">History paragraph · High school</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line">Industrialization concentrated work in cities,</p>
+                <p class="response-carousel__line">so families moved closer to factories and rail hubs.</p>
+                <p class="response-carousel__line">That created more wage labor, denser housing,</p>
+                <p class="response-carousel__line">and faster access to goods, but also pollution,</p>
+                <p class="response-carousel__line">crowding, and sharper class divisions.</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="2" aria-label="LSAT style question response" hidden>
+              <div class="response-carousel__meta">
+                <strong>Current handwritten response</strong>
+                <span class="response-carousel__status">LSAT-style question</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line response-carousel__line--small">Every ordinance with a sunset clause gets reviewed.</p>
+                <p class="response-carousel__line response-carousel__line--small">This ordinance has a sunset clause.</p>
+                <p class="response-carousel__line response-carousel__line--small">So this ordinance gets reviewed.</p>
+                <p class="response-carousel__line response-carousel__line--small">No reviewed ordinance is exempt from committee notes.</p>
+                <p class="response-carousel__line response-carousel__line--small">Therefore this ordinance is not exempt.</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="3" aria-label="SAT style question response" hidden>
+              <div class="response-carousel__meta">
+                <strong>Current handwritten response</strong>
+                <span class="response-carousel__status">SAT-style question · High school</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line">3x = 18</p>
+                <p class="response-carousel__line">x = 6</p>
+                <p class="response-carousel__line">2x - 1 = 2(6) - 1</p>
+                <p class="response-carousel__line">= 12 - 1</p>
+                <p class="response-carousel__line">= 11</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="4" aria-label="4th grade math response" hidden>
+              <div class="response-carousel__meta">
+                <strong>Current handwritten response</strong>
+                <span class="response-carousel__status">4th grade math</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line">7 × 6 = 42</p>
+                <p class="response-carousel__line">write 2, carry 4</p>
+                <p class="response-carousel__line">4 × 6 = 24, plus 4 = 28</p>
+                <p class="response-carousel__line">write 8, carry 2</p>
+                <p class="response-carousel__line">3 × 6 = 18, plus 2 = 20</p>
+                <p class="response-carousel__line">answer = 2,082</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="5" aria-label="MCAT style question response" hidden>
+              <div class="response-carousel__meta">
+                <strong>Current handwritten response</strong>
+                <span class="response-carousel__status">MCAT-style question</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line response-carousel__line--small">Lower pH adds more H+ to hemoglobin.</p>
+                <p class="response-carousel__line response-carousel__line--small">That stabilizes the T-state.</p>
+                <p class="response-carousel__line response-carousel__line--small">T-state means lower oxygen affinity.</p>
+                <p class="response-carousel__line response-carousel__line--small">So the dissociation curve shifts right.</p>
+                <p class="response-carousel__line response-carousel__line--small">Active tissue gets more oxygen unloading.</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="6" aria-label="GRE style question response" hidden>
+              <div class="response-carousel__meta">
+                <strong>Current handwritten response</strong>
+                <span class="response-carousel__status">GRE-style question</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line">Let n = 2k for some integer k.</p>
+                <p class="response-carousel__line">n² + 2n = (2k)² + 2(2k)</p>
+                <p class="response-carousel__line">= 4k² + 4k</p>
+                <p class="response-carousel__line">= 4k(k + 1)</p>
+                <p class="response-carousel__line response-carousel__line--small">Since k(k + 1) is even, the expression is divisible by 8.</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="7" aria-label="PhD qualifying exam style response" hidden>
+              <div class="response-carousel__meta">
+                <strong>Current handwritten response</strong>
+                <span class="response-carousel__status">PhD qualifying exam</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line response-carousel__line--small">Take the spectral decomposition A = QΛQᵀ.</p>
+                <p class="response-carousel__line response-carousel__line--small">Let y = Qᵀx, so xᵀAx = yᵀΛy.</p>
+                <p class="response-carousel__line response-carousel__line--small">Since λᵢ &gt; 0, we get Σ λᵢ yᵢ² &gt; 0 whenever x ≠ 0.</p>
+                <p class="response-carousel__line response-carousel__line--tiny">Therefore the quadratic f(x) = 1/2 xᵀAx - bᵀx is strictly convex, so the minimizer is unique.</p>
+              </div>
+            </section>
+            <div class="response-carousel__controls">
+              <div class="response-carousel__dots" aria-label="Response slideshow navigation">
+                <button class="response-carousel__dot is-active" type="button" data-response-target="0" aria-label="Show calculus problem"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="1" aria-label="Show history paragraph response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="2" aria-label="Show LSAT style response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="3" aria-label="Show SAT style response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="4" aria-label="Show 4th grade math response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="5" aria-label="Show MCAT style response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="6" aria-label="Show GRE style response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="7" aria-label="Show PhD qualifying exam response"></button>
+              </div>
+              <div class="response-carousel__nav">
+                <button class="response-carousel__button" type="button" data-response-prev aria-label="Previous handwritten response">Prev</button>
+                <button class="response-carousel__button" type="button" data-response-next aria-label="Next handwritten response">Next</button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="platform-showcase__copy">
           <p class="platform-showcase__eyebrow">From pencil to proof</p>
           <h3 class="platform-showcase__title">Students write naturally. The platform turns each step into structured understanding.</h3>
           <p>
-            The product experience begins with real handwritten work, then translates that reasoning
-            into machine-readable structure, trustworthy feedback, and adaptive next steps that keep
-            momentum high.
+            The product experience begins with real handwritten work, then translates that reasoning into
+            machine-readable structure, trustworthy feedback, and adaptive next steps that keep momentum
+            high. One interface can follow handwritten reasoning from grade school fluency to expert-level
+            proof sketches while keeping the same tactile input model across every stage.
           </p>
-          <ul class="platform-showcase__signals" aria-label="Platform benefits">
+          <ul class="platform-showcase__signals" aria-label="Platform capabilities">
             <li>Handwriting first</li>
             <li>Step-level capture</li>
             <li>Trust-aligned feedback</li>
+            <li>History and written reasoning</li>
+            <li>Standardized test workflows</li>
+            <li>Elementary arithmetic fluency</li>
+            <li>Advanced mathematical proof structure</li>
           </ul>
         </div>
       </article>
@@ -1158,5 +1563,6 @@
 
   </script>
   <script src="applied-handwriting-demo.js"></script>
+  <script src="applied-response-slideshow.js"></script>
 </body>
 </html>
