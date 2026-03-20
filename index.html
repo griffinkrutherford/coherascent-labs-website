@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Roboto+Mono:wght@300;400;500;600;700&amp;display=swap"
     rel="stylesheet"
   />
   <style>
@@ -223,8 +223,12 @@
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr);
-      gap: 48px;
-      align-items: center;
+      grid-template-areas:
+        "lead ."
+        "details card";
+      column-gap: 48px;
+      row-gap: 28px;
+      align-items: start;
       padding: 12px 0 10px;
       position: relative;
       overflow: visible;
@@ -234,8 +238,14 @@
       content: none;
     }
 
-    .hero-copy {
+    .hero-copy--lead {
+      grid-area: lead;
       max-width: 920px;
+    }
+
+    .hero-copy--details {
+      grid-area: details;
+      max-width: 860px;
     }
 
     .hero > * {
@@ -289,8 +299,7 @@
     }
 
     .hero__mission {
-      margin: 28px 0 0;
-      max-width: 860px;
+      margin: 0;
       font-size: clamp(17px, 1.8vw, 19px);
       line-height: 1.8;
       color: var(--muted);
@@ -330,6 +339,7 @@
     }
 
     .hero-card {
+      grid-area: card;
       background: var(--glass);
       border-radius: 32px;
       border: 1px solid rgba(102, 179, 255, 0.2);
@@ -340,7 +350,7 @@
       min-height: 232px;
       display: flex;
       align-items: center;
-      margin-top: 60px;
+      align-self: center;
     }
 
     .hero-card::after {
@@ -576,10 +586,25 @@
         bottom 0.95s cubic-bezier(0.22, 1, 0.36, 1),
         filter 0.4s ease,
         box-shadow 0.4s ease;
+      touch-action: none;
     }
 
     .hanoi-demo.hanoi-demo--instant .hanoi-demo__disk {
       transition: none;
+    }
+
+    .hanoi-demo__disk.is-draggable {
+      cursor: grab;
+    }
+
+    .hanoi-demo__disk.is-dragging {
+      transition: none;
+      cursor: grabbing;
+      filter: brightness(1.12);
+      box-shadow:
+        inset 0 -2px 3px rgba(4, 6, 13, 0.25),
+        0 0 30px rgba(99, 242, 255, 0.24),
+        0 14px 28px rgba(4, 6, 13, 0.28);
     }
 
     .hanoi-demo__disk.is-active {
@@ -588,6 +613,13 @@
         inset 0 -2px 3px rgba(4, 6, 13, 0.25),
         0 0 28px rgba(99, 242, 255, 0.18),
         0 10px 20px rgba(4, 6, 13, 0.22);
+    }
+
+    .hanoi-demo__peg.is-target {
+      background: linear-gradient(180deg, rgba(124, 247, 255, 0.98), rgba(138, 93, 255, 0.62));
+      box-shadow:
+        0 0 28px rgba(99, 242, 255, 0.26),
+        0 0 40px rgba(138, 93, 255, 0.12);
     }
 
     .hanoi-demo__signal {
@@ -1270,6 +1302,10 @@
 
       .hero {
         grid-template-columns: 1fr;
+        grid-template-areas:
+          "lead"
+          "details"
+          "card";
         gap: 28px;
       }
 
@@ -1463,10 +1499,12 @@
     </header>
 
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
+      <div class="hero-copy--lead">
         <div class="hero-label">Research and Applied Technology</div>
         <h2 id="hero-title"><span>Truth</span>-Aligned AI</h2>
         <p class="hero__subheadline">Seeking truth and integrity in the age of generative AI.</p>
+      </div>
+      <div class="hero-copy--details">
         <p class="hero__mission">
           Coherascent Labs operates as a dual-mandate firm: advancing neuro-symbolic and deterministic
           AI research to reduce hallucination at the architectural level, while building educational
@@ -1668,6 +1706,7 @@
     var stackGap = 22;
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var bars = Array.prototype.slice.call(demo.querySelectorAll("[data-move-bar]"));
+    var diskNodes = Array.prototype.slice.call(demo.querySelectorAll(".hanoi-demo__disk"));
     var stage = demo.querySelector(".hanoi-demo__stage");
     var pegNodes = {
       A: demo.querySelector(".hanoi-demo__peg--a"),
@@ -1676,6 +1715,14 @@
     };
     var currentSnapshot = null;
     var currentActiveDisk = null;
+    var dragState = null;
+    var autoplayTimer = 0;
+    var activeDiskTimer = 0;
+    var autoplayEnabled = !reducedMotion;
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
 
     function pegCenters() {
       var stageRect = stage.getBoundingClientRect();
@@ -1714,11 +1761,62 @@
       };
     }
 
+    function clearAutoplayTimer() {
+      if (autoplayTimer) {
+        window.clearTimeout(autoplayTimer);
+        autoplayTimer = 0;
+      }
+    }
+
+    function stopAutoplay() {
+      autoplayEnabled = false;
+      clearAutoplayTimer();
+    }
+
+    function clearActiveDiskTimer() {
+      if (activeDiskTimer) {
+        window.clearTimeout(activeDiskTimer);
+        activeDiskTimer = 0;
+      }
+    }
+
     var snapshots = [cloneState(state)];
     for (var i = 0; i < moves.length; i += 1) {
       var move = moves[i];
       state[move.to].push(state[move.from].pop());
       snapshots.push(cloneState(state));
+    }
+
+    function clearPegTargets() {
+      Object.keys(pegNodes).forEach(function (peg) {
+        pegNodes[peg].classList.remove("is-target");
+      });
+    }
+
+    function findDiskPeg(snapshot, diskId) {
+      var pegs = ["A", "B", "C"];
+      var index;
+      for (index = 0; index < pegs.length; index += 1) {
+        if (snapshot[pegs[index]].indexOf(diskId) !== -1) {
+          return pegs[index];
+        }
+      }
+      return null;
+    }
+
+    function updateDraggableDisks(snapshot) {
+      var draggable = {};
+      ["A", "B", "C"].forEach(function (peg) {
+        var diskId = topDisk(snapshot, peg);
+        if (diskId !== null) {
+          draggable[diskId] = true;
+        }
+      });
+
+      diskNodes.forEach(function (disk) {
+        var diskId = Number(disk.getAttribute("data-disk"));
+        disk.classList.toggle("is-draggable", !!draggable[diskId]);
+      });
     }
 
     function positionDisks(snapshot, activeDisk) {
@@ -1732,6 +1830,8 @@
           disk.classList.toggle("is-active", diskId === activeDisk);
         });
       });
+      clearPegTargets();
+      updateDraggableDisks(snapshot);
       currentSnapshot = snapshot;
       currentActiveDisk = activeDisk;
     }
@@ -1785,6 +1885,164 @@
       demo.classList.remove("hanoi-demo--instant");
     }
 
+    function scheduleActiveDiskClear(snapshot) {
+      clearActiveDiskTimer();
+      if (reducedMotion) {
+        positionDisks(snapshot, null);
+        return;
+      }
+      activeDiskTimer = window.setTimeout(function () {
+        if (!dragState && currentSnapshot === snapshot) {
+          positionDisks(snapshot, null);
+        }
+      }, 650);
+    }
+
+    function nearestPeg(clientX) {
+      var centers = pegCenters();
+      var stageRect = stage.getBoundingClientRect();
+      var localX = clientX - stageRect.left;
+      var closestPeg = null;
+      var closestDistance = Infinity;
+
+      Object.keys(centers).forEach(function (peg) {
+        var distance = Math.abs(centers[peg] - localX);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestPeg = peg;
+        }
+      });
+
+      return closestPeg;
+    }
+
+    function isLegalMove(snapshot, from, to) {
+      var sourceTop;
+      var targetTop;
+      if (!from || !to || from === to) return false;
+      sourceTop = topDisk(snapshot, from);
+      targetTop = topDisk(snapshot, to);
+      if (sourceTop === null) return false;
+      return targetTop === null || sourceTop < targetTop;
+    }
+
+    function buildMove(snapshot, from, to) {
+      if (!isLegalMove(snapshot, from, to)) return null;
+      return {
+        from: from,
+        to: to,
+        disk: topDisk(snapshot, from)
+      };
+    }
+
+    function applyMove(snapshot, move) {
+      var nextSnapshot = cloneState(snapshot);
+      nextSnapshot[move.to].push(nextSnapshot[move.from].pop());
+      return nextSnapshot;
+    }
+
+    function releaseDiskPointer(event, disk) {
+      if (!disk || !disk.releasePointerCapture) return;
+      try {
+        disk.releasePointerCapture(event.pointerId);
+      } catch (error) {
+        return;
+      }
+    }
+
+    function finishDrag(event, wasCancelled) {
+      var move;
+      var nextSnapshot;
+      if (!dragState || dragState.pointerId !== event.pointerId) return;
+
+      move = wasCancelled ? null : buildMove(dragState.snapshot, dragState.sourcePeg, dragState.hoverPeg);
+
+      releaseDiskPointer(event, dragState.disk);
+      dragState.disk.classList.remove("is-dragging");
+      clearPegTargets();
+
+      if (move) {
+        nextSnapshot = applyMove(dragState.snapshot, move);
+        dragState = null;
+        positionDisks(nextSnapshot, move.disk);
+        renderProbabilities(nextSnapshot, null);
+        scheduleActiveDiskClear(nextSnapshot);
+        return;
+      }
+
+      nextSnapshot = dragState.snapshot;
+      dragState = null;
+      positionDisks(nextSnapshot, null);
+      renderProbabilities(nextSnapshot, null);
+    }
+
+    function updateDrag(event) {
+      var localX;
+      var localBottom;
+      var hoveredPeg;
+      var move;
+      if (!dragState || dragState.pointerId !== event.pointerId) return;
+
+      dragState.stageRect = stage.getBoundingClientRect();
+      localX = clamp(
+        event.clientX - dragState.stageRect.left,
+        dragState.diskHalfWidth,
+        dragState.stageRect.width - dragState.diskHalfWidth
+      );
+      localBottom = clamp(
+        dragState.stageRect.bottom - event.clientY - dragState.diskHalfHeight,
+        baseBottom + 12,
+        dragState.stageRect.height - dragState.diskHeight - 8
+      );
+
+      dragState.disk.style.left = localX + "px";
+      dragState.disk.style.bottom = localBottom + "px";
+
+      hoveredPeg = nearestPeg(event.clientX);
+      move = buildMove(dragState.snapshot, dragState.sourcePeg, hoveredPeg);
+      dragState.hoverPeg = move ? hoveredPeg : null;
+      clearPegTargets();
+      if (dragState.hoverPeg) {
+        pegNodes[dragState.hoverPeg].classList.add("is-target");
+      }
+      renderProbabilities(dragState.snapshot, move);
+      event.preventDefault();
+    }
+
+    function startDrag(event) {
+      var disk = event.currentTarget;
+      var diskId = Number(disk.getAttribute("data-disk"));
+      var sourcePeg = findDiskPeg(currentSnapshot, diskId);
+      var diskRect;
+
+      if (sourcePeg === null || topDisk(currentSnapshot, sourcePeg) !== diskId) return;
+
+      stopAutoplay();
+      clearActiveDiskTimer();
+      positionImmediately(currentSnapshot, null);
+      renderProbabilities(currentSnapshot, null);
+
+      diskRect = disk.getBoundingClientRect();
+      dragState = {
+        pointerId: event.pointerId,
+        disk: disk,
+        diskId: diskId,
+        sourcePeg: sourcePeg,
+        hoverPeg: null,
+        snapshot: currentSnapshot,
+        stageRect: stage.getBoundingClientRect(),
+        diskHalfWidth: diskRect.width / 2,
+        diskHalfHeight: diskRect.height / 2,
+        diskHeight: diskRect.height
+      };
+
+      disk.classList.add("is-dragging", "is-active");
+      if (disk.setPointerCapture) {
+        disk.setPointerCapture(event.pointerId);
+      }
+      updateDrag(event);
+    }
+
     positionImmediately(snapshots[0], null);
     renderProbabilities(snapshots[0], moves[0]);
 
@@ -1801,12 +2059,26 @@
 
     window.addEventListener("resize", syncLayout);
 
-    if (reducedMotion) return;
+    diskNodes.forEach(function (disk) {
+      disk.addEventListener("pointerdown", startDrag);
+      disk.addEventListener("pointermove", updateDrag);
+      disk.addEventListener("pointerup", function (event) {
+        finishDrag(event, false);
+      });
+      disk.addEventListener("pointercancel", function (event) {
+        finishDrag(event, true);
+      });
+    });
+
+    if (!autoplayEnabled) return;
 
     var stepIndex = 0;
 
     function queueNextStep(delay) {
-      window.setTimeout(function () {
+      clearAutoplayTimer();
+      autoplayTimer = window.setTimeout(function () {
+        var resetSnapshot;
+        if (!autoplayEnabled || dragState) return;
         var sourceSnapshot = snapshots[stepIndex];
         var targetSnapshot = snapshots[stepIndex + 1];
         var move = moves[stepIndex];
@@ -1817,10 +2089,13 @@
         stepIndex += 1;
 
         if (stepIndex >= moves.length) {
-          window.setTimeout(function () {
-            positionImmediately(snapshots[0], null);
+          resetSnapshot = snapshots[0];
+          clearAutoplayTimer();
+          autoplayTimer = window.setTimeout(function () {
+            if (!autoplayEnabled || dragState) return;
+            positionImmediately(resetSnapshot, null);
             stepIndex = 0;
-            renderProbabilities(snapshots[0], moves[0]);
+            renderProbabilities(resetSnapshot, moves[0]);
             queueNextStep(1100);
           }, 1700);
           return;
@@ -1831,6 +2106,11 @@
     }
 
     queueNextStep(1100);
+
+    window.addEventListener("beforeunload", function () {
+      clearAutoplayTimer();
+      clearActiveDiskTimer();
+    });
   })();
 
   (function () {
