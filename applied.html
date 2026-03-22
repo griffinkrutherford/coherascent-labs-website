@@ -1298,6 +1298,347 @@
       animation: loading-sweep 2.4s ease-in-out infinite;
     }
 
+    .voice-flow {
+      position: relative;
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 16% 18%, rgba(100, 168, 255, 0.1), transparent 26%),
+        radial-gradient(circle at 84% 76%, rgba(164, 123, 255, 0.08), transparent 24%),
+        linear-gradient(180deg, rgba(10, 20, 40, 0.88), rgba(7, 14, 29, 0.95));
+      box-shadow: var(--glow);
+      overflow: hidden;
+    }
+
+    .voice-flow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(520px 280px at 0% 0%, rgba(164, 123, 255, 0.08), transparent 60%),
+        radial-gradient(440px 240px at 100% 100%, rgba(100, 168, 255, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    html[data-theme="light"] .voice-flow {
+      background:
+        radial-gradient(circle at 16% 18%, rgba(79, 132, 214, 0.09), transparent 26%),
+        radial-gradient(circle at 84% 76%, rgba(127, 99, 214, 0.07), transparent 24%),
+        linear-gradient(180deg, rgba(255, 251, 247, 0.94), rgba(243, 236, 244, 0.9));
+    }
+
+    .voice-flow > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .voice-flow__intro {
+      max-width: 640px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .voice-flow__feature {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(240px, 0.95fr);
+      gap: 22px;
+      align-items: center;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(100, 168, 255, 0.14);
+      background: rgba(8, 17, 34, 0.58);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      overflow: hidden;
+    }
+
+    html[data-theme="light"] .voice-flow__feature {
+      background: rgba(255, 255, 255, 0.72);
+      border-color: rgba(79, 132, 214, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(79, 132, 214, 0.04);
+    }
+
+    .voice-flow__feature::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -70px -70px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(100, 168, 255, 0.14), transparent 68%);
+      pointer-events: none;
+    }
+
+    .voice-flow__copy {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .voice-flow__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .voice-flow__eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      box-shadow: 0 0 12px rgba(100, 168, 255, 0.24);
+    }
+
+    .voice-flow__copy h3 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .voice-flow__copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .voice-flow__signals {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .voice-flow__signals li {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 247, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .voice-scene {
+      position: relative;
+      min-height: 290px;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 22% 20%, rgba(100, 168, 255, 0.14), transparent 28%),
+        radial-gradient(circle at 78% 18%, rgba(164, 123, 255, 0.14), transparent 24%),
+        linear-gradient(160deg, rgba(10, 18, 34, 0.96), rgba(6, 11, 22, 1));
+      overflow: hidden;
+    }
+
+    .voice-scene__phone {
+      position: relative;
+      width: var(--workflow-phone-width);
+      height: var(--workflow-phone-height);
+      aspect-ratio: var(--workflow-phone-ratio);
+      padding: 3px;
+      border-radius: 27px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .voice-scene__screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      align-content: start;
+      gap: 6px;
+      padding: 24px 10px 10px;
+      border-radius: 23px;
+      background:
+        radial-gradient(circle at 24% 18%, rgba(100, 168, 255, 0.16), transparent 24%),
+        radial-gradient(circle at 76% 18%, rgba(164, 123, 255, 0.14), transparent 20%),
+        linear-gradient(180deg, rgba(12, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
+      overflow: hidden;
+    }
+
+    .voice-scene__screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 20%),
+        radial-gradient(1px 1px at 22px 26px, rgba(255, 255, 255, 0.64) 98%, transparent 100%),
+        radial-gradient(1px 1px at 120px 48px, rgba(100, 168, 255, 0.5) 98%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .voice-scene__topbar,
+    .voice-scene__chip,
+    .voice-scene__mic-wrap,
+    .voice-scene__transcript-card,
+    .voice-scene__edit-row {
+      position: relative;
+      z-index: 1;
+    }
+
+    .voice-scene__topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(228, 239, 255, 0.86);
+      font-size: 4.6px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .voice-scene__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .voice-scene__back::before {
+      content: "\2039";
+      font-size: 7px;
+      line-height: 1;
+    }
+
+    .voice-scene__title {
+      color: rgba(245, 248, 255, 0.94);
+      font-weight: 600;
+    }
+
+    .voice-scene__chip {
+      justify-self: start;
+      padding: 3px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 247, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(226, 238, 255, 0.84);
+      font-size: 4.1px;
+      line-height: 1;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .voice-scene__mic-wrap {
+      display: grid;
+      justify-items: center;
+      gap: 6px;
+      padding: 2px 0 0;
+    }
+
+    .voice-scene__mic {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.2), transparent 34%),
+        linear-gradient(145deg, rgba(100, 168, 255, 0.24), rgba(164, 123, 255, 0.18));
+      border: 1px solid rgba(124, 247, 255, 0.18);
+      box-shadow:
+        0 0 22px rgba(100, 168, 255, 0.16),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .voice-scene__mic svg {
+      display: block;
+      width: 17px;
+      height: 17px;
+      stroke: rgba(245, 248, 255, 0.96);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      overflow: visible;
+    }
+
+    .voice-scene__wave {
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      gap: 2px;
+      height: 14px;
+    }
+
+    .voice-scene__wave span {
+      width: 2px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(124, 247, 255, 0.9), rgba(100, 168, 255, 0.82));
+      animation: voice-wave 1.2s ease-in-out infinite;
+    }
+
+    .voice-scene__wave span:nth-child(1) { height: 5px; animation-delay: -0.5s; }
+    .voice-scene__wave span:nth-child(2) { height: 10px; animation-delay: -0.3s; }
+    .voice-scene__wave span:nth-child(3) { height: 14px; animation-delay: -0.1s; }
+    .voice-scene__wave span:nth-child(4) { height: 8px; animation-delay: -0.4s; }
+    .voice-scene__wave span:nth-child(5) { height: 11px; animation-delay: -0.2s; }
+
+    .voice-scene__transcript-card {
+      display: grid;
+      gap: 5px;
+      padding: 7px;
+      border-radius: 14px;
+      border: 1px solid rgba(124, 247, 255, 0.12);
+      background: rgba(8, 17, 34, 0.44);
+    }
+
+    .voice-scene__transcript-label {
+      color: rgba(201, 221, 250, 0.72);
+      font-size: 4.1px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .voice-scene__transcript-line {
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(226, 238, 255, 0.86), rgba(226, 238, 255, 0.52));
+    }
+
+    .voice-scene__transcript-line--short { width: 54%; }
+    .voice-scene__transcript-line--mid { width: 74%; }
+    .voice-scene__transcript-line--long { width: 88%; }
+
+    .voice-scene__edit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .voice-scene__edit-pill {
+      padding: 4px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 247, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(237, 245, 255, 0.88);
+      font-size: 4px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .voice-scene__edit-note {
+      color: rgba(201, 221, 250, 0.72);
+      font-size: 4px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
 
     .feedback-scene {
       padding: 18px;
@@ -1632,6 +1973,11 @@
       50% { opacity: 1; transform: scale(1.12); }
     }
 
+    @keyframes voice-wave {
+      0%, 100% { transform: scaleY(0.72); opacity: 0.72; }
+      50% { transform: scaleY(1.18); opacity: 1; }
+    }
+
     .response-carousel {
       position: relative;
       display: grid;
@@ -1801,7 +2147,7 @@
       display: flex;
       flex-direction: column;
       gap: 7px;
-      padding: 24px 9px 12px;
+      padding: 34px 9px 12px;
       border-radius: var(--response-phone-screen-radius);
       background:
         radial-gradient(circle at 20% 18%, rgba(100, 168, 255, 0.16), transparent 28%),
@@ -1821,9 +2167,23 @@
       pointer-events: none;
     }
 
+    .response-carousel__question-screen::after {
+      content: "\2039  Back";
+      position: absolute;
+      top: 20px;
+      left: 10px;
+      z-index: 2;
+      color: rgba(222, 236, 255, 0.84);
+      font-size: 5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
     .capture-scene__phone,
     .processing-scene__phone,
     .feedback-scene__phone,
+    .voice-scene__phone,
     .response-carousel__question-phone {
       isolation: isolate;
       border-color: rgba(232, 240, 255, 0.12);
@@ -1839,6 +2199,7 @@
     .capture-scene__phone::after,
     .processing-scene__phone::after,
     .feedback-scene__phone::after,
+    .voice-scene__phone::after,
     .response-carousel__question-phone::after {
       content: "";
       position: absolute;
@@ -1863,6 +2224,7 @@
     .capture-scene__phone::before,
     .processing-scene__phone::before,
     .feedback-scene__phone::before,
+    .voice-scene__phone::before,
     .response-carousel__question-phone::before {
       content: "";
       position: absolute;
@@ -1890,6 +2252,7 @@
     .capture-scene__camera,
     .processing-scene__screen,
     .feedback-scene__screen,
+    .voice-scene__screen,
     .response-carousel__question-screen {
       box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.04),
@@ -2461,6 +2824,10 @@
         grid-template-columns: 1fr;
       }
 
+      .voice-flow__feature {
+        grid-template-columns: 1fr;
+      }
+
       .timeline-item {
         grid-template-columns: 1fr;
       }
@@ -2506,13 +2873,31 @@
         padding: 18px;
       }
 
+      .voice-flow {
+        padding: 18px;
+      }
+
       .processing-card {
         min-height: auto;
         padding: 18px;
       }
 
+      .voice-flow__feature,
+      .voice-flow__feature {
+        padding: 18px;
+      }
+
       .processing-card__visual {
         min-height: 208px;
+      }
+
+      .voice-scene {
+        min-height: 250px;
+      }
+
+      .voice-scene__phone {
+        width: var(--workflow-phone-width-mobile);
+        height: var(--workflow-phone-height-mobile);
       }
 
       .platform-showcase__sheet {
@@ -2557,14 +2942,15 @@
       }
 
       .response-carousel__question-phone {
-        left: 33.5%;
+        left: 10px;
         bottom: -32px;
         width: var(--response-phone-width-mobile);
         height: var(--response-phone-height-mobile);
+        transform: none;
       }
 
       .response-carousel__question-screen {
-        padding: 22px 10px 11px;
+        padding: 30px 10px 11px;
       }
 
       .response-carousel__question-text {
@@ -3186,6 +3572,68 @@
             </p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="voice-title">
+      <h2 class="section-title" id="voice-title">Voice Upload</h2>
+      <div class="voice-flow">
+        <p class="voice-flow__intro">
+          Students can also speak their answer. The app transcribes it live and lets them edit the transcript before grading.
+        </p>
+        <article class="voice-flow__feature">
+          <div class="voice-flow__copy">
+            <span class="voice-flow__eyebrow">Alternate Upload Path</span>
+            <h3>Use voice when writing is not the best fit.</h3>
+            <p>
+              Speak the solution, review the transcript, and edit anything before submitting.
+            </p>
+            <ul class="voice-flow__signals" aria-label="Voice upload features">
+              <li>Live transcription</li>
+              <li>Edit after recording</li>
+              <li>Grade from transcript</li>
+            </ul>
+          </div>
+          <div class="voice-scene" aria-hidden="true">
+            <div class="voice-scene__phone">
+              <div class="voice-scene__screen">
+                <div class="voice-scene__topbar">
+                  <span class="voice-scene__back">Back</span>
+                  <span class="voice-scene__title">Voice Upload</span>
+                </div>
+                <span class="voice-scene__chip">Live Transcription</span>
+                <div class="voice-scene__mic-wrap">
+                  <div class="voice-scene__mic">
+                    <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
+                      <rect x="5.25" y="2.25" width="5.5" height="7.25" rx="2.75"></rect>
+                      <path d="M4 7.5v.35c0 2.2 1.8 4 4 4s4-1.8 4-4V7.5"></path>
+                      <path d="M8 11.85v2.1"></path>
+                      <path d="M5.9 13.95h4.2"></path>
+                    </svg>
+                  </div>
+                  <div class="voice-scene__wave">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <div class="voice-scene__transcript-card">
+                  <span class="voice-scene__transcript-label">Transcript</span>
+                  <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
+                  <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
+                  <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
+                  <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
+                </div>
+                <div class="voice-scene__edit-row">
+                  <span class="voice-scene__edit-pill">Edit Transcript</span>
+                  <span class="voice-scene__edit-note">Ready to Grade</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
