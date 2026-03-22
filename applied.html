@@ -32,6 +32,9 @@
       --glass: rgba(16, 28, 54, 0.7);
       --line: rgba(164, 123, 255, 0.2);
       --glow: 0 18px 50px rgba(4, 10, 24, 0.45), 0 0 26px rgba(100, 168, 255, 0.08), 0 0 26px rgba(164, 123, 255, 0.08), 0 0 26px rgba(255, 93, 135, 0.08);
+      --workflow-phone-ratio: 9 / 19.5;
+      --workflow-phone-height: 220px;
+      --workflow-phone-height-mobile: 204px;
     }
 
     html[data-theme="light"] {
@@ -634,6 +637,980 @@
       border-color: rgba(79, 132, 214, 0.12);
     }
 
+    .processing-flow {
+      position: relative;
+      display: grid;
+      gap: 22px;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(100, 168, 255, 0.11), transparent 26%),
+        radial-gradient(circle at 82% 80%, rgba(255, 93, 135, 0.08), transparent 26%),
+        linear-gradient(180deg, rgba(10, 20, 40, 0.88), rgba(7, 14, 29, 0.95));
+      box-shadow: var(--glow);
+      overflow: hidden;
+    }
+
+    .processing-flow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(520px 280px at 0% 0%, rgba(164, 123, 255, 0.08), transparent 60%),
+        radial-gradient(460px 240px at 100% 100%, rgba(100, 168, 255, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    html[data-theme="light"] .processing-flow {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(79, 132, 214, 0.09), transparent 26%),
+        radial-gradient(circle at 82% 80%, rgba(217, 106, 140, 0.07), transparent 26%),
+        linear-gradient(180deg, rgba(255, 251, 247, 0.94), rgba(243, 236, 244, 0.9));
+    }
+
+    .processing-flow > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .processing-flow__intro {
+      max-width: 840px;
+    }
+
+    .processing-flow__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .processing-card {
+      position: relative;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      min-height: 420px;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(100, 168, 255, 0.14);
+      background: rgba(8, 17, 34, 0.58);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      overflow: hidden;
+    }
+
+    html[data-theme="light"] .processing-card {
+      background: rgba(255, 255, 255, 0.72);
+      border-color: rgba(79, 132, 214, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(79, 132, 214, 0.04);
+    }
+
+    .processing-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(100, 168, 255, 0.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    .processing-card__step {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .processing-card__step::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      box-shadow: 0 0 12px rgba(100, 168, 255, 0.24);
+    }
+
+    .processing-card__title {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.24;
+    }
+
+    .processing-card > p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .processing-card__visual {
+      position: relative;
+      min-height: 238px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .capture-scene {
+      padding: 18px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(100, 168, 255, 0.14), transparent 30%),
+        radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.06), transparent 18%),
+        linear-gradient(160deg, rgba(14, 24, 44, 0.94), rgba(11, 19, 34, 0.98));
+    }
+
+    .capture-scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 26%),
+        linear-gradient(120deg, rgba(255, 255, 255, 0.02), transparent 44%);
+      pointer-events: none;
+    }
+
+    .capture-scene__desk {
+      position: absolute;
+      inset: 22px 18px 18px;
+      border-radius: 24px;
+      background:
+        linear-gradient(145deg, rgba(27, 41, 66, 0.92), rgba(13, 22, 40, 0.92));
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 18px 30px rgba(4, 10, 24, 0.22);
+    }
+
+    .capture-scene__desk::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 35%),
+        radial-gradient(circle at 24% 16%, rgba(100, 168, 255, 0.08), transparent 20%);
+      pointer-events: none;
+    }
+
+    .capture-scene__page {
+      position: absolute;
+      left: 28px;
+      top: 30px;
+      width: 124px;
+      height: 172px;
+      padding: 16px 14px 14px 18px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(250, 252, 255, 0.98), rgba(235, 240, 248, 0.94));
+      transform: rotate(-7deg);
+      box-shadow:
+        inset 0 0 0 1px rgba(100, 168, 255, 0.06),
+        0 16px 24px rgba(4, 10, 24, 0.22);
+    }
+
+    .capture-scene__page::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, rgba(217, 106, 140, 0.28), transparent);
+    }
+
+    .capture-scene__scribble {
+      display: block;
+      height: 9px;
+      margin-top: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(36, 67, 106, 0.26), rgba(36, 67, 106, 0.08));
+    }
+
+    .capture-scene__scribble--short { width: 62%; }
+    .capture-scene__scribble--mid { width: 82%; }
+    .capture-scene__scribble--tiny { width: 48%; }
+
+    .capture-scene__phone {
+      position: absolute;
+      right: 26px;
+      top: 10px;
+      height: var(--workflow-phone-height);
+      aspect-ratio: var(--workflow-phone-ratio);
+      padding: 8px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        linear-gradient(145deg, rgba(32, 43, 62, 0.96), rgba(11, 17, 29, 0.98));
+      transform: rotate(11deg);
+      box-shadow:
+        0 24px 34px rgba(4, 10, 24, 0.34),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      animation: capture-float 5.8s ease-in-out infinite;
+    }
+
+    .capture-scene__phone::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 44px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(-50%);
+    }
+
+    .capture-scene__camera {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(100, 168, 255, 0.14), transparent 26%),
+        radial-gradient(circle at 76% 18%, rgba(164, 123, 255, 0.14), transparent 20%),
+        linear-gradient(180deg, rgba(13, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
+      overflow: hidden;
+    }
+
+    .capture-scene__camera::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 24%),
+        linear-gradient(0deg, rgba(4, 8, 16, 0.52), transparent 26%);
+      pointer-events: none;
+    }
+
+    .capture-scene__camera::after {
+      content: "";
+      background:
+        radial-gradient(1px 1px at 24px 28px, rgba(255, 255, 255, 0.72) 98%, transparent 100%),
+        radial-gradient(1px 1px at 102px 54px, rgba(100, 168, 255, 0.58) 98%, transparent 100%),
+        radial-gradient(1px 1px at 134px 32px, rgba(164, 123, 255, 0.52) 98%, transparent 100%);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .capture-scene__preview {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: 30px;
+      bottom: 40px;
+      border-radius: 20px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 24% 16%, rgba(255, 255, 255, 0.05), transparent 16%),
+        linear-gradient(155deg, rgba(38, 52, 74, 0.96), rgba(18, 27, 42, 0.96));
+    }
+
+    .capture-scene__preview::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 35%),
+        radial-gradient(circle at 76% 20%, rgba(100, 168, 255, 0.08), transparent 22%);
+      pointer-events: none;
+    }
+
+    .capture-scene__preview-sheet {
+      position: absolute;
+      inset: 16px 12px 18px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(253, 254, 255, 0.98), rgba(236, 241, 248, 0.94));
+      transform: rotate(-3deg);
+      box-shadow:
+        inset 0 0 0 1px rgba(100, 168, 255, 0.06),
+        0 16px 22px rgba(4, 10, 24, 0.18);
+    }
+
+    .capture-scene__preview-sheet::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 7px;
+      bottom: 7px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(217, 106, 140, 0.26), transparent);
+    }
+
+    .capture-scene__preview-sheet::after {
+      content: "";
+      position: absolute;
+      inset: 10px 8px 8px;
+      border-radius: 10px;
+      background:
+        repeating-linear-gradient(
+          180deg,
+          transparent 0,
+          transparent 13px,
+          rgba(92, 126, 175, 0.12) 13px,
+          rgba(92, 126, 175, 0.12) 14px
+        );
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .capture-scene__frame {
+      position: absolute;
+      inset: 14px 10px 16px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(124, 247, 255, 0.72);
+      box-shadow:
+        0 0 18px rgba(124, 247, 255, 0.14),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      transform: rotate(-3deg);
+      z-index: 2;
+    }
+
+    .capture-scene__frame::before,
+    .capture-scene__frame::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(124, 247, 255, 1), transparent);
+      animation: capture-scan 2.8s ease-in-out infinite;
+    }
+
+    .capture-scene__frame::before { top: 12px; }
+    .capture-scene__frame::after { bottom: 12px; }
+
+    .capture-scene__footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 8px 12px 10px;
+      background: linear-gradient(180deg, transparent, rgba(4, 8, 16, 0.78) 36%);
+      z-index: 2;
+    }
+
+    .capture-scene__upload {
+      position: absolute;
+      left: 50%;
+      top: 18px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 84px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 247, 255, 0.18);
+      background:
+        linear-gradient(145deg, rgba(100, 168, 255, 0.14), rgba(164, 123, 255, 0.12)),
+        rgba(8, 15, 28, 0.72);
+      color: rgba(237, 245, 255, 0.92);
+      font-size: 6px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transform: translateX(-50%);
+      box-shadow:
+        0 10px 18px rgba(4, 10, 24, 0.22),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .capture-scene__controls {
+      display: flex;
+      justify-content: center;
+    }
+
+    .capture-scene__shutter {
+      position: relative;
+      justify-self: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.05),
+        0 6px 10px rgba(4, 10, 24, 0.18);
+    }
+
+    .capture-scene__shutter::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(223, 230, 240, 0.92));
+    }
+
+    .capture-scene__flash {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 58% 42%, rgba(255, 255, 255, 0.22), transparent 24%);
+      opacity: 0;
+      animation: capture-flash 4.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .processing-scene {
+      padding: 18px;
+      background:
+        radial-gradient(circle at 22% 20%, rgba(100, 168, 255, 0.12), transparent 28%),
+        radial-gradient(circle at 76% 18%, rgba(164, 123, 255, 0.12), transparent 24%),
+        linear-gradient(160deg, rgba(9, 16, 30, 0.98), rgba(6, 11, 22, 1));
+    }
+
+    .processing-scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 24%),
+        radial-gradient(1.1px 1.1px at 28px 34px, rgba(255, 255, 255, 0.74) 98%, transparent 100%),
+        radial-gradient(1px 1px at 90px 118px, rgba(100, 168, 255, 0.64) 98%, transparent 100%),
+        radial-gradient(1px 1px at 158px 52px, rgba(164, 123, 255, 0.54) 98%, transparent 100%);
+      background-size: auto, 210px 210px, 210px 210px, 210px 210px;
+      opacity: 0.88;
+      pointer-events: none;
+    }
+
+    .processing-scene__phone {
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      height: var(--workflow-phone-height);
+      aspect-ratio: var(--workflow-phone-ratio);
+      padding: 8px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
+      box-shadow:
+        0 22px 34px rgba(4, 10, 24, 0.34),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      transform: translateX(-50%);
+    }
+
+    .processing-scene__phone::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 44px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(-50%);
+    }
+
+    .processing-scene__screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 10px 12px 12px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 52% 26%, rgba(100, 168, 255, 0.16), transparent 24%),
+        radial-gradient(circle at 74% 18%, rgba(164, 123, 255, 0.14), transparent 18%),
+        linear-gradient(180deg, rgba(13, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
+      overflow: hidden;
+    }
+
+    .processing-scene__screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 20%),
+        linear-gradient(0deg, rgba(4, 8, 16, 0.42), transparent 24%);
+      pointer-events: none;
+    }
+
+    .processing-scene__cosmos {
+      position: absolute;
+      inset: 0;
+    }
+
+    .processing-scene__nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.72;
+      animation: nebula-drift 8s ease-in-out infinite;
+    }
+
+    .processing-scene__nebula--one {
+      top: 22px;
+      left: 18px;
+      width: 42px;
+      height: 42px;
+      background: radial-gradient(circle, rgba(100, 168, 255, 0.38), transparent 70%);
+    }
+
+    .processing-scene__nebula--two {
+      right: 14px;
+      top: 54px;
+      width: 52px;
+      height: 52px;
+      background: radial-gradient(circle, rgba(164, 123, 255, 0.34), transparent 72%);
+      animation-delay: -3s;
+    }
+
+    .processing-scene__spark {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 0 12px rgba(124, 247, 255, 0.22);
+      animation: spark-twinkle 2.6s ease-in-out infinite;
+    }
+
+    .processing-scene__spark--one {
+      top: 30px;
+      right: 30px;
+      animation-delay: -0.4s;
+    }
+
+    .processing-scene__spark--two {
+      left: 26px;
+      top: 92px;
+      width: 3px;
+      height: 3px;
+      animation-delay: -1.2s;
+    }
+
+    .processing-scene__spark--three {
+      right: 38px;
+      bottom: 72px;
+      width: 3px;
+      height: 3px;
+      animation-delay: -1.8s;
+    }
+
+    .processing-scene__constellation {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 112px;
+      height: 112px;
+      transform: translate(-50%, -54%);
+    }
+
+    .processing-scene__planet {
+      position: absolute;
+      inset: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.94), rgba(100, 168, 255, 0.52) 28%, rgba(164, 123, 255, 0.58) 60%, rgba(9, 16, 30, 0.16) 100%);
+      box-shadow:
+        0 0 24px rgba(100, 168, 255, 0.22),
+        inset -8px -10px 14px rgba(6, 12, 22, 0.34);
+      animation: processing-pulse 3.4s ease-in-out infinite;
+    }
+
+    .processing-scene__planet-label {
+      position: relative;
+      z-index: 2;
+      width: 34px;
+      text-align: center;
+      color: rgba(245, 248, 255, 0.94);
+      font-size: 5px;
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 8px rgba(8, 16, 28, 0.32),
+        0 1px 2px rgba(8, 16, 28, 0.22);
+    }
+
+    .processing-scene__ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(124, 247, 255, 0.2);
+      animation: orbit-spin 8.5s linear infinite;
+    }
+
+    .processing-scene__ring::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      box-shadow: 0 0 12px rgba(124, 247, 255, 0.34);
+      transform: translateX(-50%);
+    }
+
+    .processing-scene__ring--outer {
+      inset: 6px;
+    }
+
+    .processing-scene__ring--mid {
+      inset: 20px;
+      animation-duration: 6.2s;
+      animation-direction: reverse;
+      opacity: 0.78;
+    }
+
+    .processing-scene__ring--tilt {
+      inset: 12px -4px;
+      opacity: 0.48;
+      transform: rotate(64deg);
+    }
+
+    .processing-scene__signal {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(237, 245, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .processing-scene__signal span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(100, 168, 255, 0.9), rgba(164, 123, 255, 0.86), rgba(255, 93, 135, 0.8));
+      animation: loading-sweep 2.4s ease-in-out infinite;
+    }
+
+
+    .feedback-scene {
+      padding: 18px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(100, 168, 255, 0.12), transparent 26%),
+        radial-gradient(circle at 78% 20%, rgba(164, 123, 255, 0.12), transparent 22%),
+        linear-gradient(160deg, rgba(9, 16, 30, 0.98), rgba(6, 11, 22, 1));
+    }
+
+    .feedback-scene__deck {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0 8px;
+    }
+
+    .feedback-scene__phone {
+      position: relative;
+      flex: 0 0 auto;
+      height: var(--workflow-phone-height);
+      aspect-ratio: var(--workflow-phone-ratio);
+      padding: 8px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
+      box-shadow:
+        0 22px 34px rgba(4, 10, 24, 0.34),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      transform-origin: center center;
+    }
+
+    .feedback-scene__phone + .feedback-scene__phone {
+      margin-left: -34px;
+    }
+
+    .feedback-scene__phone--left {
+      z-index: 1;
+      transform: translateY(14px) scale(0.72);
+    }
+
+    .feedback-scene__phone--center {
+      z-index: 3;
+      transform: scale(0.82);
+    }
+
+    .feedback-scene__phone--right {
+      z-index: 2;
+      transform: translateY(14px) scale(0.72);
+    }
+
+    .feedback-scene__phone::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 44px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(-50%);
+    }
+
+    .feedback-scene__screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 14px 10px 12px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(13, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
+      overflow: hidden;
+    }
+
+    .feedback-scene__phone--high .feedback-scene__screen {
+      background:
+        radial-gradient(circle at 24% 18%, rgba(124, 247, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 74% 14%, rgba(100, 168, 255, 0.18), transparent 18%),
+        linear-gradient(180deg, rgba(10, 30, 40, 0.98), rgba(7, 18, 26, 0.98));
+    }
+
+    .feedback-scene__phone--mid .feedback-scene__screen {
+      background:
+        radial-gradient(circle at 24% 18%, rgba(100, 168, 255, 0.16), transparent 24%),
+        radial-gradient(circle at 74% 14%, rgba(164, 123, 255, 0.16), transparent 18%),
+        linear-gradient(180deg, rgba(13, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
+    }
+
+    .feedback-scene__phone--low .feedback-scene__screen {
+      background:
+        radial-gradient(circle at 24% 18%, rgba(255, 93, 135, 0.18), transparent 24%),
+        radial-gradient(circle at 74% 14%, rgba(255, 173, 92, 0.14), transparent 18%),
+        linear-gradient(180deg, rgba(34, 18, 34, 0.98), rgba(18, 10, 20, 0.98));
+    }
+
+    .feedback-scene__screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
+        radial-gradient(1px 1px at 22px 28px, rgba(255, 255, 255, 0.72) 98%, transparent 100%),
+        radial-gradient(1px 1px at 96px 62px, rgba(100, 168, 255, 0.54) 98%, transparent 100%),
+        radial-gradient(1px 1px at 138px 34px, rgba(164, 123, 255, 0.54) 98%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .feedback-scene__cosmos {
+      position: absolute;
+      inset: 0;
+    }
+
+    .feedback-scene__nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.7;
+      animation: nebula-drift 8s ease-in-out infinite;
+    }
+
+    .feedback-scene__nebula--one {
+      top: 26px;
+      left: 16px;
+      width: 46px;
+      height: 46px;
+      background: radial-gradient(circle, rgba(100, 168, 255, 0.34), transparent 70%);
+    }
+
+    .feedback-scene__nebula--two {
+      right: 12px;
+      top: 52px;
+      width: 56px;
+      height: 56px;
+      background: radial-gradient(circle, rgba(164, 123, 255, 0.3), transparent 72%);
+      animation-delay: -2.8s;
+    }
+
+    .feedback-scene__spark {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 0 10px rgba(124, 247, 255, 0.2);
+      animation: spark-twinkle 2.6s ease-in-out infinite;
+    }
+
+    .feedback-scene__spark--one {
+      top: 30px;
+      right: 28px;
+      animation-delay: -0.6s;
+    }
+
+    .feedback-scene__spark--two {
+      left: 26px;
+      bottom: 54px;
+      width: 3px;
+      height: 3px;
+      animation-delay: -1.4s;
+    }
+
+    .feedback-scene__spark--three {
+      right: 38px;
+      bottom: 84px;
+      width: 3px;
+      height: 3px;
+      animation-delay: -2s;
+    }
+
+    .feedback-scene__hero {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 8px;
+      height: 100%;
+    }
+
+    .feedback-scene__score-ring {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.22), transparent 34%),
+        linear-gradient(145deg, rgba(100, 168, 255, 0.2), rgba(164, 123, 255, 0.18));
+      border: 1px solid rgba(124, 247, 255, 0.18);
+      box-shadow:
+        0 0 24px rgba(100, 168, 255, 0.14),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+      animation: processing-pulse 3.4s ease-in-out infinite;
+    }
+
+    .feedback-scene__phone--high .feedback-scene__score-ring {
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.22), transparent 34%),
+        linear-gradient(145deg, rgba(124, 247, 255, 0.22), rgba(100, 168, 255, 0.18));
+      border-color: rgba(124, 247, 255, 0.22);
+      box-shadow:
+        0 0 24px rgba(124, 247, 255, 0.18),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .feedback-scene__phone--mid .feedback-scene__score-ring {
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.22), transparent 34%),
+        linear-gradient(145deg, rgba(100, 168, 255, 0.2), rgba(164, 123, 255, 0.18));
+    }
+
+    .feedback-scene__phone--low .feedback-scene__score-ring {
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.18), transparent 34%),
+        linear-gradient(145deg, rgba(255, 93, 135, 0.24), rgba(255, 173, 92, 0.18));
+      border-color: rgba(255, 127, 160, 0.22);
+      box-shadow:
+        0 0 24px rgba(255, 93, 135, 0.16),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .feedback-scene__score-ring::before,
+    .feedback-scene__score-ring::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(124, 247, 255, 0.16);
+    }
+
+    .feedback-scene__score-ring::before {
+      inset: -10px;
+      animation: orbit-spin 9s linear infinite;
+    }
+
+    .feedback-scene__score-ring::after {
+      inset: -18px -10px;
+      opacity: 0.46;
+      transform: rotate(64deg);
+    }
+
+    .feedback-scene__score {
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: rgba(245, 248, 255, 0.96);
+    }
+
+    .feedback-scene__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 247, 255, 0.18);
+      background:
+        linear-gradient(145deg, rgba(100, 168, 255, 0.14), rgba(164, 123, 255, 0.12)),
+        rgba(9, 16, 28, 0.56);
+      color: rgba(237, 245, 255, 0.9);
+      font-size: 6px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      box-shadow:
+        0 0 18px rgba(100, 168, 255, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .feedback-scene__phone--high .feedback-scene__button {
+      border-color: rgba(124, 247, 255, 0.24);
+      background:
+        linear-gradient(145deg, rgba(124, 247, 255, 0.16), rgba(100, 168, 255, 0.12)),
+        rgba(9, 16, 28, 0.56);
+    }
+
+    .feedback-scene__phone--mid .feedback-scene__button {
+      border-color: rgba(164, 123, 255, 0.2);
+    }
+
+    .feedback-scene__phone--low .feedback-scene__button {
+      border-color: rgba(255, 127, 160, 0.22);
+      background:
+        linear-gradient(145deg, rgba(255, 93, 135, 0.14), rgba(255, 173, 92, 0.12)),
+        rgba(20, 10, 18, 0.56);
+    }
+
+    @keyframes capture-float {
+      0%, 100% { transform: rotate(11deg) translateY(0); }
+      50% { transform: rotate(11deg) translateY(-8px); }
+    }
+
+    @keyframes capture-scan {
+      0% { transform: translateX(-140%); }
+      50% { transform: translateX(180%); }
+      100% { transform: translateX(180%); }
+    }
+
+    @keyframes capture-flash {
+      0%, 70%, 100% { opacity: 0; }
+      76% { opacity: 0.9; }
+      82% { opacity: 0.15; }
+    }
+
+    @keyframes orbit-spin {
+      from { transform: translateX(-50%) rotate(0deg); }
+      to { transform: translateX(-50%) rotate(360deg); }
+    }
+
+    @keyframes loading-sweep {
+      0% { transform: translateX(-110%); }
+      55% { transform: translateX(120%); }
+      100% { transform: translateX(120%); }
+    }
+
+    @keyframes processing-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 24px rgba(100, 168, 255, 0.22), inset -8px -10px 14px rgba(6, 12, 22, 0.34); }
+      50% { transform: scale(1.06); box-shadow: 0 0 30px rgba(164, 123, 255, 0.26), inset -8px -10px 14px rgba(6, 12, 22, 0.34); }
+    }
+
+    @keyframes nebula-drift {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(4px, -6px, 0) scale(1.08); }
+    }
+
+    @keyframes spark-twinkle {
+      0%, 100% { opacity: 0.32; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.12); }
+    }
+
     .response-carousel {
       position: relative;
       display: grid;
@@ -705,7 +1682,7 @@
     .response-carousel__meta {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 10px;
       margin-bottom: 12px;
       padding-left: 10px;
@@ -713,11 +1690,6 @@
       font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-    }
-
-    .response-carousel__meta strong {
-      font-weight: 700;
-      color: #213a63;
     }
 
     .response-carousel__status {
@@ -791,12 +1763,12 @@
     .response-carousel__dots {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .response-carousel__dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       border: 0;
       padding: 0;
@@ -1258,6 +2230,19 @@
         padding: 18px;
       }
 
+      .processing-flow {
+        padding: 18px;
+      }
+
+      .processing-card {
+        min-height: auto;
+        padding: 18px;
+      }
+
+      .processing-card__visual {
+        min-height: 208px;
+      }
+
       .platform-showcase__sheet {
         min-height: 532px;
         padding: 20px 18px 18px;
@@ -1272,7 +2257,7 @@
       }
 
       .response-carousel__paper {
-        padding: 20px 16px 82px;
+        padding: 20px 16px 104px;
       }
 
       .response-carousel__prompt {
@@ -1299,12 +2284,86 @@
         min-height: 254px;
       }
 
+      .response-carousel__controls {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .response-carousel__dots {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
       .platform-showcase__board {
         margin-top: 18px;
       }
 
+      .processing-scene__phone {
+        top: 12px;
+        height: var(--workflow-phone-height-mobile);
+      }
+
+      .feedback-scene__deck {
+        padding: 14px 0 10px;
+      }
+
+      .feedback-scene__phone {
+        top: auto;
+        height: var(--workflow-phone-height-mobile);
+      }
+
+      .feedback-scene__phone + .feedback-scene__phone {
+        margin-left: -30px;
+      }
+
+      .feedback-scene__phone--center {
+        transform: scale(0.8);
+      }
+
+      .feedback-scene__phone--left,
+      .feedback-scene__phone--right {
+        transform: translateY(12px) scale(0.7);
+      }
+
+      .capture-scene__desk {
+        inset: 18px 14px 14px;
+      }
+
+      .capture-scene__page {
+        left: 18px;
+        top: 28px;
+        width: 104px;
+        height: 146px;
+      }
+
+      .capture-scene__phone {
+        top: 12px;
+        height: var(--workflow-phone-height-mobile);
+        right: 14px;
+      }
+
+      .capture-scene__preview {
+        top: 34px;
+        bottom: 42px;
+      }
+
       .cta {
         width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .capture-scene__phone,
+      .capture-scene__frame::before,
+      .capture-scene__frame::after,
+      .capture-scene__flash,
+      .processing-scene__ring,
+      .processing-scene__planet,
+      .processing-scene__nebula,
+      .processing-scene__spark,
+      .processing-scene__signal span {
+        animation: none;
       }
     }
 
@@ -1345,7 +2404,6 @@
           <div class="response-carousel__deck" data-response-slideshow aria-live="polite">
             <section class="response-carousel__paper is-active" data-response-slide="0" aria-label="Calculus problem response">
               <div class="response-carousel__meta">
-                <strong>Current handwritten response</strong>
                 <span class="response-carousel__status">Calculus problem</span>
               </div>
               <div class="response-carousel__board" aria-hidden="true">
@@ -1354,7 +2412,6 @@
             </section>
             <section class="response-carousel__paper" data-response-slide="1" aria-label="History paragraph response" hidden>
               <div class="response-carousel__meta">
-                <strong>Current handwritten response</strong>
                 <span class="response-carousel__status">History paragraph · High school</span>
               </div>
               <div class="response-carousel__body">
@@ -1367,7 +2424,6 @@
             </section>
             <section class="response-carousel__paper" data-response-slide="2" aria-label="LSAT style question response" hidden>
               <div class="response-carousel__meta">
-                <strong>Current handwritten response</strong>
                 <span class="response-carousel__status">LSAT-style question</span>
               </div>
               <div class="response-carousel__body">
@@ -1380,7 +2436,6 @@
             </section>
             <section class="response-carousel__paper" data-response-slide="3" aria-label="SAT style question response" hidden>
               <div class="response-carousel__meta">
-                <strong>Current handwritten response</strong>
                 <span class="response-carousel__status">SAT-style question · High school</span>
               </div>
               <div class="response-carousel__body">
@@ -1393,7 +2448,6 @@
             </section>
             <section class="response-carousel__paper" data-response-slide="4" aria-label="4th grade math response" hidden>
               <div class="response-carousel__meta">
-                <strong>Current handwritten response</strong>
                 <span class="response-carousel__status">4th grade math</span>
               </div>
               <div class="response-carousel__body">
@@ -1407,7 +2461,6 @@
             </section>
             <section class="response-carousel__paper" data-response-slide="5" aria-label="MCAT style question response" hidden>
               <div class="response-carousel__meta">
-                <strong>Current handwritten response</strong>
                 <span class="response-carousel__status">MCAT-style question</span>
               </div>
               <div class="response-carousel__body">
@@ -1420,7 +2473,6 @@
             </section>
             <section class="response-carousel__paper" data-response-slide="6" aria-label="GRE style question response" hidden>
               <div class="response-carousel__meta">
-                <strong>Current handwritten response</strong>
                 <span class="response-carousel__status">GRE-style question</span>
               </div>
               <div class="response-carousel__body">
@@ -1433,7 +2485,6 @@
             </section>
             <section class="response-carousel__paper" data-response-slide="7" aria-label="PhD qualifying exam style response" hidden>
               <div class="response-carousel__meta">
-                <strong>Current handwritten response</strong>
                 <span class="response-carousel__status">PhD qualifying exam</span>
               </div>
               <div class="response-carousel__body">
@@ -1441,6 +2492,67 @@
                 <p class="response-carousel__line response-carousel__line--small">Let y = Qᵀx, so xᵀAx = yᵀΛy.</p>
                 <p class="response-carousel__line response-carousel__line--small">Since λᵢ &gt; 0, we get Σ λᵢ yᵢ² &gt; 0 whenever x ≠ 0.</p>
                 <p class="response-carousel__line response-carousel__line--tiny">Therefore the quadratic f(x) = 1/2 xᵀAx - bᵀx is strictly convex, so the minimizer is unique.</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="8" aria-label="Advanced algorithms response" hidden>
+              <div class="response-carousel__meta">
+                <span class="response-carousel__status">Advanced algorithms</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line response-carousel__line--small">Sort jobs by finish time.</p>
+                <p class="response-carousel__line response-carousel__line--small">dp[i] = max(dp[i - 1],</p>
+                <p class="response-carousel__line response-carousel__line--small">valueᵢ + dp[p(i)]).</p>
+                <p class="response-carousel__line response-carousel__line--small">That compares skip vs take.</p>
+                <p class="response-carousel__line response-carousel__line--small">Backtrack to recover the set.</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="9" aria-label="ACT prep response" hidden>
+              <div class="response-carousel__meta">
+                <span class="response-carousel__status">ACT prep</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line">Let width = x.</p>
+                <p class="response-carousel__line">Then length = x + 7.</p>
+                <p class="response-carousel__line">x(x + 7) = 144</p>
+                <p class="response-carousel__line">x² + 7x - 144 = 0</p>
+                <p class="response-carousel__line">(x + 16)(x - 9) = 0</p>
+                <p class="response-carousel__line">width = 9</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="10" aria-label="AP test prep response" hidden>
+              <div class="response-carousel__meta">
+                <span class="response-carousel__status">AP test prep · Biology</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line response-carousel__line--small">Water crosses the membrane by osmosis.</p>
+                <p class="response-carousel__line response-carousel__line--small">If outside solute rises, water leaves the cell.</p>
+                <p class="response-carousel__line response-carousel__line--small">The membrane pulls inward.</p>
+                <p class="response-carousel__line response-carousel__line--small">That change is plasmolysis.</p>
+                <p class="response-carousel__line response-carousel__line--small">So the cell shrinks in a hypertonic solution.</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="11" aria-label="IB test prep response" hidden>
+              <div class="response-carousel__meta">
+                <span class="response-carousel__status">IB test prep · Math AA</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line response-carousel__line--small">P(A ∩ B) = P(A)P(B)</p>
+                <p class="response-carousel__line response-carousel__line--small">only when A and B are independent.</p>
+                <p class="response-carousel__line response-carousel__line--small">Here 0.3 × 0.5 = 0.15</p>
+                <p class="response-carousel__line response-carousel__line--small">and that matches P(A ∩ B).</p>
+                <p class="response-carousel__line response-carousel__line--small">So the events are independent.</p>
+              </div>
+            </section>
+            <section class="response-carousel__paper" data-response-slide="12" aria-label="USMLE Step 2 response" hidden>
+              <div class="response-carousel__meta">
+                <span class="response-carousel__status">USMLE Step 2</span>
+              </div>
+              <div class="response-carousel__body">
+                <p class="response-carousel__line response-carousel__line--small">Sudden calf swelling after surgery</p>
+                <p class="response-carousel__line response-carousel__line--small">raises concern for DVT.</p>
+                <p class="response-carousel__line response-carousel__line--small">Compression ultrasound</p>
+                <p class="response-carousel__line response-carousel__line--small">is the best next test.</p>
+                <p class="response-carousel__line response-carousel__line--small">A clot could travel to the lungs.</p>
               </div>
             </section>
             <div class="response-carousel__controls">
@@ -1453,6 +2565,11 @@
                 <button class="response-carousel__dot" type="button" data-response-target="5" aria-label="Show MCAT style response"></button>
                 <button class="response-carousel__dot" type="button" data-response-target="6" aria-label="Show GRE style response"></button>
                 <button class="response-carousel__dot" type="button" data-response-target="7" aria-label="Show PhD qualifying exam response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="8" aria-label="Show advanced algorithms response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="9" aria-label="Show ACT prep response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="10" aria-label="Show AP test prep response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="11" aria-label="Show IB test prep response"></button>
+                <button class="response-carousel__dot" type="button" data-response-target="12" aria-label="Show USMLE Step 2 response"></button>
               </div>
               <div class="response-carousel__nav">
                 <button class="response-carousel__button" type="button" data-response-prev aria-label="Previous handwritten response">Prev</button>
@@ -1463,21 +2580,21 @@
         </div>
         <div class="platform-showcase__copy">
           <p class="platform-showcase__eyebrow">From pencil to proof</p>
-          <h3 class="platform-showcase__title">Students write naturally. The platform turns each step into structured understanding.</h3>
+          <h3 class="platform-showcase__title">Writing by hand helps the brain learn. This platform is built to use that power.</h3>
           <p>
-            The product experience begins with real handwritten work, then translates that reasoning into
-            machine-readable structure, trustworthy feedback, and adaptive next steps that keep momentum
-            high. One interface can follow handwritten reasoning from grade school fluency to expert-level
-            proof sketches while keeping the same tactile input model across every stage.
+            When students write with a pencil, their brains make strong learning paths that typing alone
+            often does not. Our platform is designed around that idea. Students can write the way they
+            naturally learn, and the app turns each step into clear feedback, smart grading, and next
+            steps that keep them moving.
           </p>
           <ul class="platform-showcase__signals" aria-label="Platform capabilities">
-            <li>Handwriting first</li>
-            <li>Step-level capture</li>
-            <li>Trust-aligned feedback</li>
-            <li>History and written reasoning</li>
-            <li>Standardized test workflows</li>
-            <li>Elementary arithmetic fluency</li>
-            <li>Advanced mathematical proof structure</li>
+            <li>Built for real handwriting</li>
+            <li>Captures each written step</li>
+            <li>Gives clear, helpful feedback</li>
+            <li>Shows thinking over time</li>
+            <li>Works for classwork and tests</li>
+            <li>Supports early math skills</li>
+            <li>Grows into advanced problem solving</li>
           </ul>
         </div>
       </article>
@@ -1496,6 +2613,125 @@
           <strong>Momentum Engine for Mastery</strong>
           <p>From foundational arithmetic to advanced calculus, adaptive practice, streaks, and game-like progression keep learners moving toward confident mastery.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="processing-title">
+      <h2 class="section-title" id="processing-title">Screenshot Workflow</h2>
+      <div class="processing-flow">
+        <p class="processing-flow__intro">
+          A student can photograph handwritten work in seconds, watch the app process it through a
+          space-themed grading sequence, and receive useful next-step feedback grounded in the actual
+          written solution.
+        </p>
+        <div class="processing-flow__grid">
+          <article class="processing-card">
+            <div class="processing-card__step">01 Capture</div>
+            <h3 class="processing-card__title">Capture the handwritten page in the camera app</h3>
+            <div class="processing-card__visual capture-scene" aria-hidden="true">
+              <div class="capture-scene__desk"></div>
+              <div class="capture-scene__page">
+                <span class="capture-scene__scribble capture-scene__scribble--mid"></span>
+                <span class="capture-scene__scribble capture-scene__scribble--short"></span>
+                <span class="capture-scene__scribble capture-scene__scribble--mid"></span>
+                <span class="capture-scene__scribble capture-scene__scribble--tiny"></span>
+                <span class="capture-scene__scribble capture-scene__scribble--short"></span>
+              </div>
+              <div class="capture-scene__phone">
+                <div class="capture-scene__camera">
+                  <span class="capture-scene__upload">Upload Work</span>
+                  <div class="capture-scene__preview">
+                    <div class="capture-scene__preview-sheet">
+                    </div>
+                    <div class="capture-scene__frame"></div>
+                  </div>
+                  <div class="capture-scene__footer">
+                    <div class="capture-scene__controls">
+                      <span class="capture-scene__shutter"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="capture-scene__flash"></div>
+            </div>
+            <p>
+              The student aligns the notebook page inside a document frame, captures it once, and sends
+              it directly into the grading pipeline without retyping anything.
+            </p>
+          </article>
+          <article class="processing-card">
+            <div class="processing-card__step">02 Process</div>
+            <h3 class="processing-card__title">AI reads the handwriting and grades it</h3>
+            <div class="processing-card__visual processing-scene" aria-hidden="true">
+              <div class="processing-scene__phone">
+                <div class="processing-scene__screen">
+                  <div class="processing-scene__cosmos">
+                    <div class="processing-scene__nebula processing-scene__nebula--one"></div>
+                    <div class="processing-scene__nebula processing-scene__nebula--two"></div>
+                    <div class="processing-scene__spark processing-scene__spark--one"></div>
+                    <div class="processing-scene__spark processing-scene__spark--two"></div>
+                    <div class="processing-scene__spark processing-scene__spark--three"></div>
+                    <div class="processing-scene__constellation">
+                      <div class="processing-scene__planet">
+                        <span class="processing-scene__planet-label">Grading Work</span>
+                      </div>
+                      <div class="processing-scene__ring processing-scene__ring--outer"></div>
+                      <div class="processing-scene__ring processing-scene__ring--mid"></div>
+                      <div class="processing-scene__ring processing-scene__ring--tilt"></div>
+                    </div>
+                    <div class="processing-scene__signal"><span></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p>
+              Applied AI reads the handwritten page, turns the work into clear steps, and grades each part.
+              Instead of a blank wait, students see the app working in real time.
+            </p>
+          </article>
+          <article class="processing-card">
+            <div class="processing-card__step">03 Feedback</div>
+            <h3 class="processing-card__title">Return graded work with precise, step-level guidance</h3>
+            <div class="processing-card__visual feedback-scene" aria-hidden="true">
+              <div class="feedback-scene__deck">
+                <div class="feedback-scene__phone feedback-scene__phone--left feedback-scene__phone--low">
+                  <div class="feedback-scene__screen">
+                    <div class="feedback-scene__hero">
+                      <div class="feedback-scene__score-ring">
+                        <span class="feedback-scene__score">68%</span>
+                      </div>
+                      <span class="feedback-scene__button">Show Feedback</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="feedback-scene__phone feedback-scene__phone--center feedback-scene__phone--mid">
+                  <div class="feedback-scene__screen">
+                    <div class="feedback-scene__hero">
+                      <div class="feedback-scene__score-ring">
+                        <span class="feedback-scene__score">84%</span>
+                      </div>
+                      <span class="feedback-scene__button">Show Feedback</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="feedback-scene__phone feedback-scene__phone--right feedback-scene__phone--high">
+                  <div class="feedback-scene__screen">
+                    <div class="feedback-scene__hero">
+                      <div class="feedback-scene__score-ring">
+                        <span class="feedback-scene__score">96%</span>
+                      </div>
+                      <span class="feedback-scene__button">Show Feedback</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p>
+              After grading, the student sees a score, the exact place where reasoning broke down, and
+              the next correction or practice loop to continue improving.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 
