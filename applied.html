@@ -1461,8 +1461,8 @@
       height: 100%;
       display: grid;
       align-content: start;
-      gap: 6px;
-      padding: 24px 10px 10px;
+      gap: 5px;
+      padding: 26px 9px 9px;
       border-radius: 23px;
       background:
         radial-gradient(circle at 24% 18%, rgba(100, 168, 255, 0.16), transparent 24%),
@@ -1496,7 +1496,7 @@
       align-items: center;
       justify-content: space-between;
       color: rgba(228, 239, 255, 0.86);
-      font-size: 4.6px;
+      font-size: 4.2px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
@@ -1509,23 +1509,24 @@
 
     .voice-scene__back::before {
       content: "\2039";
-      font-size: 7px;
+      font-size: 6px;
       line-height: 1;
     }
 
     .voice-scene__title {
       color: rgba(245, 248, 255, 0.94);
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .voice-scene__chip {
       justify-self: start;
-      padding: 3px 6px;
+      padding: 3px 5px;
       border-radius: 999px;
       border: 1px solid rgba(124, 247, 255, 0.14);
       background: rgba(255, 255, 255, 0.05);
       color: rgba(226, 238, 255, 0.84);
-      font-size: 4.1px;
+      font-size: 3.8px;
       line-height: 1;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1534,15 +1535,15 @@
     .voice-scene__mic-wrap {
       display: grid;
       justify-items: center;
-      gap: 6px;
-      padding: 2px 0 0;
+      gap: 4px;
+      padding: 1px 0 0;
     }
 
     .voice-scene__mic {
       display: grid;
       place-items: center;
-      width: 36px;
-      height: 36px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background:
         radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.2), transparent 34%),
@@ -1555,8 +1556,8 @@
 
     .voice-scene__mic svg {
       display: block;
-      width: 17px;
-      height: 17px;
+      width: 14px;
+      height: 14px;
       stroke: rgba(245, 248, 255, 0.96);
       fill: none;
       stroke-width: 1.5;
@@ -1570,7 +1571,7 @@
       align-items: end;
       justify-content: center;
       gap: 2px;
-      height: 14px;
+      height: 11px;
     }
 
     .voice-scene__wave span {
@@ -1580,16 +1581,16 @@
       animation: voice-wave 1.2s ease-in-out infinite;
     }
 
-    .voice-scene__wave span:nth-child(1) { height: 5px; animation-delay: -0.5s; }
-    .voice-scene__wave span:nth-child(2) { height: 10px; animation-delay: -0.3s; }
-    .voice-scene__wave span:nth-child(3) { height: 14px; animation-delay: -0.1s; }
-    .voice-scene__wave span:nth-child(4) { height: 8px; animation-delay: -0.4s; }
-    .voice-scene__wave span:nth-child(5) { height: 11px; animation-delay: -0.2s; }
+    .voice-scene__wave span:nth-child(1) { height: 4px; animation-delay: -0.5s; }
+    .voice-scene__wave span:nth-child(2) { height: 8px; animation-delay: -0.3s; }
+    .voice-scene__wave span:nth-child(3) { height: 11px; animation-delay: -0.1s; }
+    .voice-scene__wave span:nth-child(4) { height: 6px; animation-delay: -0.4s; }
+    .voice-scene__wave span:nth-child(5) { height: 9px; animation-delay: -0.2s; }
 
     .voice-scene__transcript-card {
       display: grid;
-      gap: 5px;
-      padding: 7px;
+      gap: 4px;
+      padding: 6px;
       border-radius: 14px;
       border: 1px solid rgba(124, 247, 255, 0.12);
       background: rgba(8, 17, 34, 0.44);
@@ -1597,13 +1598,13 @@
 
     .voice-scene__transcript-label {
       color: rgba(201, 221, 250, 0.72);
-      font-size: 4.1px;
+      font-size: 3.8px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
     .voice-scene__transcript-line {
-      height: 4px;
+      height: 3px;
       border-radius: 999px;
       background: linear-gradient(90deg, rgba(226, 238, 255, 0.86), rgba(226, 238, 255, 0.52));
     }
@@ -1616,16 +1617,17 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 5px;
     }
 
     .voice-scene__edit-pill {
-      padding: 4px 6px;
+      padding: 3px 5px;
       border-radius: 999px;
       border: 1px solid rgba(124, 247, 255, 0.14);
       background: rgba(255, 255, 255, 0.05);
       color: rgba(237, 245, 255, 0.88);
-      font-size: 4px;
+      font-size: 3.6px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -1633,7 +1635,7 @@
 
     .voice-scene__edit-note {
       color: rgba(201, 221, 250, 0.72);
-      font-size: 4px;
+      font-size: 3.6px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -3019,6 +3021,50 @@
         bottom: 42px;
       }
 
+      .voice-flow {
+        padding: 18px;
+      }
+
+      .voice-flow__feature {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+
+      .voice-scene {
+        min-height: 238px;
+      }
+
+      .voice-scene__phone {
+        width: var(--workflow-phone-width-mobile);
+        height: var(--workflow-phone-height-mobile);
+      }
+
+      .voice-scene__screen {
+        gap: 4px;
+        padding: 24px 9px 8px;
+      }
+
+      .voice-scene__topbar {
+        font-size: 3.9px;
+      }
+
+      .voice-scene__chip,
+      .voice-scene__transcript-label,
+      .voice-scene__edit-pill,
+      .voice-scene__edit-note {
+        font-size: 3.4px;
+      }
+
+      .voice-scene__mic {
+        width: 28px;
+        height: 28px;
+      }
+
+      .voice-scene__mic svg {
+        width: 13px;
+        height: 13px;
+      }
+
       .cta {
         width: 100%;
       }
@@ -3623,7 +3669,6 @@
                   <span class="voice-scene__transcript-label">Transcript</span>
                   <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
                   <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
-                  <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
                   <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
                 </div>
                 <div class="voice-scene__edit-row">
