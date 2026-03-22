@@ -34,7 +34,9 @@
       --glow: 0 18px 50px rgba(4, 10, 24, 0.45), 0 0 26px rgba(100, 168, 255, 0.08), 0 0 26px rgba(164, 123, 255, 0.08), 0 0 26px rgba(255, 93, 135, 0.08);
       --workflow-phone-ratio: 9 / 19.5;
       --workflow-phone-height: 220px;
+      --workflow-phone-width: calc(var(--workflow-phone-height) * 9 / 19.5);
       --workflow-phone-height-mobile: 204px;
+      --workflow-phone-width-mobile: calc(var(--workflow-phone-height-mobile) * 9 / 19.5);
     }
 
     html[data-theme="light"] {
@@ -492,7 +494,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 488px;
+      min-height: 760px;
       padding: 24px 24px 22px;
       border-radius: 22px;
       background:
@@ -835,6 +837,7 @@
       position: absolute;
       right: 26px;
       top: 10px;
+      width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
       padding: 8px;
@@ -1077,6 +1080,7 @@
       position: absolute;
       left: 50%;
       top: 10px;
+      width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
       padding: 8px;
@@ -1303,6 +1307,7 @@
     .feedback-scene__phone {
       position: relative;
       flex: 0 0 auto;
+      width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
       padding: 8px;
@@ -1660,7 +1665,7 @@
     .response-carousel__paper {
       position: absolute;
       inset: 0;
-      padding: 0 8px 78px 0;
+      padding: 0 8px 292px 0;
       overflow: hidden;
       opacity: 0;
       transform: translateY(12px);
@@ -1746,6 +1751,171 @@
       width: 100%;
       height: 100%;
       min-height: 286px;
+    }
+
+    .response-carousel__question-phone {
+      position: absolute;
+      left: 50%;
+      bottom: 78px;
+      width: var(--workflow-phone-width);
+      height: var(--workflow-phone-height);
+      aspect-ratio: var(--workflow-phone-ratio);
+      padding: 8px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
+      box-shadow:
+        0 18px 28px rgba(4, 10, 24, 0.22),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .response-carousel__question-phone::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 44px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(-50%);
+    }
+
+    .response-carousel__question-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 16px 9px 12px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(100, 168, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(164, 123, 255, 0.14), transparent 24%),
+        linear-gradient(180deg, rgba(12, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
+      overflow: hidden;
+    }
+
+    .response-carousel__question-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 22%),
+        radial-gradient(1px 1px at 20px 18px, rgba(255, 255, 255, 0.72) 98%, transparent 100%),
+        radial-gradient(1px 1px at 170px 24px, rgba(100, 168, 255, 0.58) 98%, transparent 100%),
+        radial-gradient(1px 1px at 144px 64px, rgba(164, 123, 255, 0.5) 98%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .response-carousel__question-label,
+    .response-carousel__question-type,
+    .response-carousel__question-text,
+    .response-carousel__question-action {
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+
+    .response-carousel__question-label {
+      color: rgba(201, 221, 250, 0.78);
+      font-size: 6px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .response-carousel__question-text {
+      color: rgba(241, 247, 255, 0.94);
+      font-size: 7px;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    .response-carousel__question-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      width: fit-content;
+      max-width: 100%;
+      align-self: start;
+      justify-self: start;
+      margin-top: -1px;
+      padding: 1px 5px 2px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 247, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(226, 238, 255, 0.84);
+      font-size: 4.25px;
+      line-height: 0.95;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .response-carousel__question-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      background: rgba(82, 136, 214, 0.24);
+      border: 1px solid rgba(124, 247, 255, 0.16);
+      color: rgba(241, 247, 255, 0.96);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 0 10px rgba(100, 168, 255, 0.08);
+      flex: 0 0 auto;
+    }
+
+    .response-carousel__question-icon svg {
+      display: block;
+      width: 7px;
+      height: 7px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.55;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      overflow: visible;
+    }
+
+    .response-carousel__question-text sup,
+    .response-carousel__question-text sub {
+      font-size: 0.72em;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+
+    .response-carousel__question-text sup {
+      top: -0.45em;
+    }
+
+    .response-carousel__question-text sub {
+      top: 0.2em;
+    }
+
+    .response-carousel__question-action {
+      margin-top: auto;
+      align-self: center;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(124, 247, 255, 0.18);
+      background:
+        linear-gradient(145deg, rgba(100, 168, 255, 0.14), rgba(164, 123, 255, 0.12)),
+        rgba(9, 16, 28, 0.56);
+      color: rgba(237, 245, 255, 0.92);
+      font-size: 5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      box-shadow:
+        0 0 18px rgba(100, 168, 255, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
     }
 
     .response-carousel__controls {
@@ -2244,7 +2414,7 @@
       }
 
       .platform-showcase__sheet {
-        min-height: 532px;
+        min-height: 804px;
         padding: 20px 18px 18px;
       }
 
@@ -2257,7 +2427,7 @@
       }
 
       .response-carousel__paper {
-        padding: 20px 16px 104px;
+        padding: 20px 16px 294px;
       }
 
       .response-carousel__prompt {
@@ -2284,6 +2454,20 @@
         min-height: 254px;
       }
 
+      .response-carousel__question-phone {
+        bottom: 86px;
+        width: var(--workflow-phone-width-mobile);
+        height: var(--workflow-phone-height-mobile);
+      }
+
+      .response-carousel__question-screen {
+        padding: 16px 10px 11px;
+      }
+
+      .response-carousel__question-text {
+        font-size: 7px;
+      }
+
       .response-carousel__controls {
         justify-content: center;
         flex-wrap: wrap;
@@ -2301,6 +2485,7 @@
 
       .processing-scene__phone {
         top: 12px;
+        width: var(--workflow-phone-width-mobile);
         height: var(--workflow-phone-height-mobile);
       }
 
@@ -2310,6 +2495,7 @@
 
       .feedback-scene__phone {
         top: auto;
+        width: var(--workflow-phone-width-mobile);
         height: var(--workflow-phone-height-mobile);
       }
 
@@ -2339,6 +2525,7 @@
 
       .capture-scene__phone {
         top: 12px;
+        width: var(--workflow-phone-width-mobile);
         height: var(--workflow-phone-height-mobile);
         right: 14px;
       }
@@ -2409,6 +2596,19 @@
               <div class="response-carousel__board" aria-hidden="true">
                 <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation"></svg>
               </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M3 3v10"/><path d="M3 13h10"/><path d="M5 10.5c1.1-2.8 2.3-4.2 5.5-5.8"/></svg>
+                    </span>
+                    Calculus
+                  </span>
+                  <span class="response-carousel__question-text">Find the derivative of f(x) = x<sup>3</sup> ln(x).</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
+              </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="1" aria-label="History paragraph response" hidden>
               <div class="response-carousel__meta">
@@ -2420,6 +2620,19 @@
                 <p class="response-carousel__line">That created more wage labor, denser housing,</p>
                 <p class="response-carousel__line">and faster access to goods, but also pollution,</p>
                 <p class="response-carousel__line">crowding, and sharper class divisions.</p>
+              </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M5 2h6"/><path d="M5 14h6"/><path d="M6 2v3.2c0 1 2 1.6 2 2.8s-2 1.8-2 2.8V14"/><path d="M10 2v3.2c0 1-2 1.6-2 2.8s2 1.8 2 2.8V14"/></svg>
+                    </span>
+                    History
+                  </span>
+                  <span class="response-carousel__question-text">Explain two ways industrialization changed family life in growing cities.</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
               </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="2" aria-label="LSAT style question response" hidden>
@@ -2433,6 +2646,19 @@
                 <p class="response-carousel__line response-carousel__line--small">No reviewed ordinance is exempt from committee notes.</p>
                 <p class="response-carousel__line response-carousel__line--small">Therefore this ordinance is not exempt.</p>
               </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M8 3v10"/><path d="M5 5h6"/><path d="M3.5 12.5h3"/><path d="M9.5 12.5h3"/><path d="M4 5l-1.5 3h3L4 5Z"/><path d="M12 5l-1.5 3h3L12 5Z"/></svg>
+                    </span>
+                    LSAT
+                  </span>
+                  <span class="response-carousel__question-text">Based on the rules, is this ordinance exempt from committee notes?</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
+              </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="3" aria-label="SAT style question response" hidden>
               <div class="response-carousel__meta">
@@ -2444,6 +2670,19 @@
                 <p class="response-carousel__line">2x - 1 = 2(6) - 1</p>
                 <p class="response-carousel__line">= 12 - 1</p>
                 <p class="response-carousel__line">= 11</p>
+              </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M5 2.5h5l2 2v8.5H5z"/><path d="M10 2.5v2h2"/><path d="M6.5 9l1.2 1.2L10 7.8"/></svg>
+                    </span>
+                    SAT
+                  </span>
+                  <span class="response-carousel__question-text">If 3x = 18, what is the value of 2x - 1?</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
               </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="4" aria-label="4th grade math response" hidden>
@@ -2458,6 +2697,19 @@
                 <p class="response-carousel__line">3 × 6 = 18, plus 2 = 20</p>
                 <p class="response-carousel__line">answer = 2,082</p>
               </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M4 5.2h8"/><path d="M8 2v11"/><path d="M5.5 9.8 10.5 4.8"/></svg>
+                    </span>
+                    Grade 4
+                  </span>
+                  <span class="response-carousel__question-text">Use the standard method to solve 347 × 6.</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
+              </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="5" aria-label="MCAT style question response" hidden>
               <div class="response-carousel__meta">
@@ -2469,6 +2721,19 @@
                 <p class="response-carousel__line response-carousel__line--small">T-state means lower oxygen affinity.</p>
                 <p class="response-carousel__line response-carousel__line--small">So the dissociation curve shifts right.</p>
                 <p class="response-carousel__line response-carousel__line--small">Active tissue gets more oxygen unloading.</p>
+              </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M8 2.5v11"/><path d="M2.5 8h11"/><circle cx="8" cy="8" r="4.2"/></svg>
+                    </span>
+                    MCAT
+                  </span>
+                  <span class="response-carousel__question-text">Why does lower pH shift the oxygen dissociation curve to the right?</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
               </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="6" aria-label="GRE style question response" hidden>
@@ -2482,6 +2747,19 @@
                 <p class="response-carousel__line">= 4k(k + 1)</p>
                 <p class="response-carousel__line response-carousel__line--small">Since k(k + 1) is even, the expression is divisible by 8.</p>
               </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M4.5 2.5h7v11h-7z"/><path d="M6 6.5h4"/><path d="M6 9h4"/><path d="M6.8 12l1-1 1.6 1.8"/></svg>
+                    </span>
+                    GRE
+                  </span>
+                  <span class="response-carousel__question-text">If n is even, prove that n<sup>2</sup> + 2n is divisible by 8.</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
+              </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="7" aria-label="PhD qualifying exam style response" hidden>
               <div class="response-carousel__meta">
@@ -2492,6 +2770,19 @@
                 <p class="response-carousel__line response-carousel__line--small">Let y = Qᵀx, so xᵀAx = yᵀΛy.</p>
                 <p class="response-carousel__line response-carousel__line--small">Since λᵢ &gt; 0, we get Σ λᵢ yᵢ² &gt; 0 whenever x ≠ 0.</p>
                 <p class="response-carousel__line response-carousel__line--tiny">Therefore the quadratic f(x) = 1/2 xᵀAx - bᵀx is strictly convex, so the minimizer is unique.</p>
+              </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M3 3v10"/><path d="M3 13h10"/><path d="M5 10.5c1.1-2.8 2.3-4.2 5.5-5.8"/></svg>
+                    </span>
+                    PhD Exam
+                  </span>
+                  <span class="response-carousel__question-text">Show that f(x) = 1/2 x<sup>T</sup>Ax - b<sup>T</sup>x has a unique minimizer when A is SPD.</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
               </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="8" aria-label="Advanced algorithms response" hidden>
@@ -2504,6 +2795,19 @@
                 <p class="response-carousel__line response-carousel__line--small">valueᵢ + dp[p(i)]).</p>
                 <p class="response-carousel__line response-carousel__line--small">That compares skip vs take.</p>
                 <p class="response-carousel__line response-carousel__line--small">Backtrack to recover the set.</p>
+              </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><circle cx="4" cy="4" r="1.5"/><circle cx="12" cy="4" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><path d="M5.3 4.8 6.8 7"/><path d="M10.7 4.8 9.2 7"/><path d="M6.4 9.2 5 10.8"/><path d="M9.6 9.2 11 10.8"/></svg>
+                    </span>
+                    Algorithms
+                  </span>
+                  <span class="response-carousel__question-text">Design a DP algorithm for weighted interval scheduling and return the chosen jobs.</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
               </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="9" aria-label="ACT prep response" hidden>
@@ -2518,6 +2822,19 @@
                 <p class="response-carousel__line">(x + 16)(x - 9) = 0</p>
                 <p class="response-carousel__line">width = 9</p>
               </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M5 3h6l1.5 1.5V13H5z"/><path d="M11 3v2h2"/><path d="M6.5 10.2 8 11.7l2.8-3.4"/></svg>
+                    </span>
+                    ACT
+                  </span>
+                  <span class="response-carousel__question-text">A rectangle has area 144 and length 7 more than width. Find the width.</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
+              </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="10" aria-label="AP test prep response" hidden>
               <div class="response-carousel__meta">
@@ -2529,6 +2846,19 @@
                 <p class="response-carousel__line response-carousel__line--small">The membrane pulls inward.</p>
                 <p class="response-carousel__line response-carousel__line--small">That change is plasmolysis.</p>
                 <p class="response-carousel__line response-carousel__line--small">So the cell shrinks in a hypertonic solution.</p>
+              </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M6 2.5v3L3.5 10a3.2 3.2 0 0 0 2.8 3.5h3.4A3.2 3.2 0 0 0 12.5 10L10 5.5v-3"/><path d="M5.2 8.5h5.6"/><path d="M6.2 10.5h3.6"/></svg>
+                    </span>
+                    AP Bio
+                  </span>
+                  <span class="response-carousel__question-text">What happens to a plant cell in a hypertonic solution? Explain your answer.</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
               </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="11" aria-label="IB test prep response" hidden>
@@ -2542,6 +2872,19 @@
                 <p class="response-carousel__line response-carousel__line--small">and that matches P(A ∩ B).</p>
                 <p class="response-carousel__line response-carousel__line--small">So the events are independent.</p>
               </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M3 3v10"/><path d="M3 13h10"/><path d="M5 10.5c1.1-2.8 2.3-4.2 5.5-5.8"/></svg>
+                    </span>
+                    IB Math
+                  </span>
+                  <span class="response-carousel__question-text">Given P(A) = 0.3, P(B) = 0.5, and P(A ∩ B) = 0.15, are A and B independent?</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
+              </div>
             </section>
             <section class="response-carousel__paper" data-response-slide="12" aria-label="USMLE Step 2 response" hidden>
               <div class="response-carousel__meta">
@@ -2553,6 +2896,19 @@
                 <p class="response-carousel__line response-carousel__line--small">Compression ultrasound</p>
                 <p class="response-carousel__line response-carousel__line--small">is the best next test.</p>
                 <p class="response-carousel__line response-carousel__line--small">A clot could travel to the lungs.</p>
+              </div>
+              <div class="response-carousel__question-phone">
+                <div class="response-carousel__question-screen">
+                  <span class="response-carousel__question-label">Question</span>
+                  <span class="response-carousel__question-type">
+                    <span class="response-carousel__question-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" role="presentation"><path d="M8 2.5v4"/><path d="M6 4.5h4"/><path d="M5 7.5h6"/><path d="M5.2 11.2c.8-1.5 1.7-2.2 2.8-2.2s2 .7 2.8 2.2"/><path d="M5.5 13h5"/></svg>
+                    </span>
+                    USMLE Step 2
+                  </span>
+                  <span class="response-carousel__question-text">A post-op patient has new calf swelling and pain. What is the best next step?</span>
+                  <span class="response-carousel__question-action">Upload Answer</span>
+                </div>
               </div>
             </section>
             <div class="response-carousel__controls">
@@ -2639,7 +2995,7 @@
               </div>
               <div class="capture-scene__phone">
                 <div class="capture-scene__camera">
-                  <span class="capture-scene__upload">Upload Work</span>
+                  <span class="capture-scene__upload">Scan Work</span>
                   <div class="capture-scene__preview">
                     <div class="capture-scene__preview-sheet">
                     </div>
