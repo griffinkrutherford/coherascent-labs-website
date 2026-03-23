@@ -2383,16 +2383,36 @@
 
     .phone-shell-buttons__rail--left .phone-shell-button {
       left: 0;
-      border-top-left-radius: 1px;
-      border-bottom-left-radius: 1px;
-      transform: translateX(-1px);
+      border-top-right-radius: 1px;
+      border-bottom-right-radius: 1px;
+      transform: translateX(1px);
+      background:
+        linear-gradient(90deg, rgba(22, 28, 41, 0.98), rgba(144, 159, 186, 0.9) 18%, rgba(84, 97, 122, 0.98) 44%, rgba(16, 22, 34, 0.98)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 38%, rgba(0, 0, 0, 0.12));
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08),
+        0 5px 10px rgba(4, 10, 24, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        inset 1px 0 0 rgba(255, 255, 255, 0.1),
+        inset -1px 0 0 rgba(6, 10, 18, 0.22),
+        inset 0 -1px 0 rgba(5, 9, 18, 0.3);
     }
 
     .phone-shell-buttons__rail--right .phone-shell-button {
       right: 0;
-      border-top-right-radius: 1px;
-      border-bottom-right-radius: 1px;
-      transform: translateX(1px);
+      border-top-left-radius: 1px;
+      border-bottom-left-radius: 1px;
+      transform: translateX(-1px);
+      background:
+        linear-gradient(270deg, rgba(22, 28, 41, 0.98), rgba(144, 159, 186, 0.9) 18%, rgba(84, 97, 122, 0.98) 44%, rgba(16, 22, 34, 0.98)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 38%, rgba(0, 0, 0, 0.12));
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08),
+        0 5px 10px rgba(4, 10, 24, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        inset -1px 0 0 rgba(255, 255, 255, 0.1),
+        inset 1px 0 0 rgba(6, 10, 18, 0.22),
+        inset 0 -1px 0 rgba(5, 9, 18, 0.3);
     }
 
     .phone-shell-button--volume {
@@ -3170,7 +3190,7 @@
       }
 
       .platform-showcase__sheet {
-        min-height: min(54svh, 460px);
+        min-height: min(60svh, 500px);
         padding: 16px 14px 14px;
       }
 
@@ -3184,7 +3204,7 @@
       }
 
       .response-carousel__paper {
-        padding: 8px 0 calc(var(--response-phone-height-mobile) + 14px) 0;
+        padding: 8px 0 calc(var(--response-phone-height-mobile) + 52px) 0;
       }
 
       .response-carousel__meta {
@@ -3228,7 +3248,7 @@
 
       .response-carousel__question-phone {
         left: 6px;
-        bottom: -16px;
+        bottom: -44px;
         width: var(--response-phone-width-mobile);
         height: var(--response-phone-height-mobile);
         transform: none;
