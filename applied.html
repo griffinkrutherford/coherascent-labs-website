@@ -1247,9 +1247,11 @@
     }
 
     .processing-scene__planet-label {
-      position: relative;
+      position: absolute;
+      bottom: 28px;
+      left: 18px;
+      right: 18px;
       z-index: 2;
-      width: 34px;
       text-align: center;
       color: rgba(245, 248, 255, 0.94);
       font-size: 5px;
@@ -2212,7 +2214,7 @@
     .feedback-scene__phone,
     .voice-scene__phone,
     .response-carousel__question-phone {
-      --phone-side-offset: calc(var(--workflow-phone-shell-padding) * -0.666667);
+      --phone-side-offset: calc(var(--workflow-phone-shell-padding) * -1.5);
       --phone-button-width: var(--workflow-phone-button-width);
       --phone-volume-top: var(--workflow-phone-volume-top);
       --phone-volume-height: var(--workflow-phone-volume-height);
@@ -2308,7 +2310,7 @@
     }
 
     .response-carousel__question-phone {
-      --phone-side-offset: calc(var(--response-phone-shell-padding) * -0.555556);
+      --phone-side-offset: calc(var(--response-phone-shell-padding) * -1.3);
       --phone-button-width: var(--response-phone-button-width);
       --phone-volume-top: var(--response-phone-volume-top);
       --phone-volume-height: var(--response-phone-volume-height);
@@ -3930,13 +3932,12 @@
                     <div class="processing-scene__spark processing-scene__spark--two"></div>
                     <div class="processing-scene__spark processing-scene__spark--three"></div>
                     <div class="processing-scene__constellation">
-                      <div class="processing-scene__planet">
-                        <span class="processing-scene__planet-label">Grading Work</span>
-                      </div>
+                      <div class="processing-scene__planet"></div>
                       <div class="processing-scene__ring processing-scene__ring--outer"></div>
                       <div class="processing-scene__ring processing-scene__ring--mid"></div>
                       <div class="processing-scene__ring processing-scene__ring--tilt"></div>
                     </div>
+                    <span class="processing-scene__planet-label">Grading Work</span>
                     <div class="processing-scene__signal"><span></span></div>
                   </div>
                 </div>
