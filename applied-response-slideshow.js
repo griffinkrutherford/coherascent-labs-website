@@ -12,6 +12,7 @@
   var activeIndex = 0;
   var lineTimers = [];
   var autoTimer = 0;
+  var measurers = [];
   var typeInterval = 34;
   var linePause = 180;
   var postWritePause = 1800;
@@ -28,6 +29,74 @@
       window.clearTimeout(autoTimer);
       autoTimer = 0;
     }
+  }
+
+  function getLineMeasurer(line) {
+    if (line._coherascentMeasurer) return line._coherascentMeasurer;
+
+    var measurer = document.createElement("span");
+    measurer.setAttribute("aria-hidden", "true");
+    measurer.style.position = "fixed";
+    measurer.style.left = "-9999px";
+    measurer.style.top = "-9999px";
+    measurer.style.visibility = "hidden";
+    measurer.style.pointerEvents = "none";
+    measurer.style.whiteSpace = "pre";
+    measurer.style.padding = "0";
+    measurer.style.margin = "0";
+    document.body.appendChild(measurer);
+    measurers.push(measurer);
+    line._coherascentMeasurer = measurer;
+    return measurer;
+  }
+
+  function syncMeasurerStyle(line, measurer) {
+    var computed = window.getComputedStyle(line);
+    measurer.style.font = computed.font;
+    measurer.style.fontFamily = computed.fontFamily;
+    measurer.style.fontSize = computed.fontSize;
+    measurer.style.fontStyle = computed.fontStyle;
+    measurer.style.fontWeight = computed.fontWeight;
+    measurer.style.letterSpacing = computed.letterSpacing;
+    measurer.style.textTransform = computed.textTransform;
+  }
+
+  function measureTextWidth(line, text) {
+    var measurer = getLineMeasurer(line);
+    syncMeasurerStyle(line, measurer);
+    measurer.textContent = text || "";
+    return measurer.getBoundingClientRect().width;
+  }
+
+  function formatTypedText(line, partialText) {
+    if (!partialText) return "";
+
+    var tokens = partialText.match(/\S+|\s+/g) || [];
+    var availableWidth = line.getBoundingClientRect().width;
+    var currentLine = "";
+    var renderedLines = [];
+
+    tokens.forEach(function (token) {
+      if (/^\s+$/.test(token)) {
+        if (currentLine) currentLine += token;
+        return;
+      }
+
+      var candidate = currentLine + token;
+      if (currentLine.trim() && measureTextWidth(line, candidate) > availableWidth) {
+        renderedLines.push(currentLine.replace(/\s+$/, ""));
+        currentLine = token.replace(/^\s+/, "");
+        return;
+      }
+
+      currentLine = candidate;
+    });
+
+    if (currentLine) {
+      renderedLines.push(currentLine.replace(/\s+$/, ""));
+    }
+
+    return renderedLines.join("\n");
   }
 
   function scheduleAutoAdvance(delay) {
@@ -82,7 +151,7 @@
 
       function tick() {
         charIndex += 1;
-        line.textContent = fullText.slice(0, charIndex);
+        line.textContent = formatTypedText(line, fullText.slice(0, charIndex));
 
         if (charIndex < fullText.length) {
           lineTimers.push(window.setTimeout(tick, typeInterval));
@@ -202,6 +271,12 @@
   window.addEventListener("beforeunload", function () {
     clearLineTimers();
     clearAutoTimer();
+    while (measurers.length) {
+      var measurer = measurers.pop();
+      if (measurer && measurer.parentNode) {
+        measurer.parentNode.removeChild(measurer);
+      }
+    }
   });
 
   showSlide(0);
