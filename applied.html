@@ -35,6 +35,19 @@
       --workflow-phone-ratio: 9 / 19.5;
       --workflow-phone-height: 220px;
       --workflow-phone-width: calc(var(--workflow-phone-height) * 9 / 19.5);
+      --workflow-phone-shell-padding: calc(var(--workflow-phone-height) * 0.013636);
+      --workflow-phone-shell-radius: calc(var(--workflow-phone-height) * 0.122727);
+      --workflow-phone-screen-radius: calc(var(--workflow-phone-height) * 0.104545);
+      --workflow-phone-overlay-inset: calc(var(--workflow-phone-shell-padding) * 0.333333);
+      --workflow-phone-island-top: calc(var(--workflow-phone-height) * 0.031818);
+      --workflow-phone-island-width: calc(var(--workflow-phone-width) * 0.433333);
+      --workflow-phone-island-height: calc(var(--workflow-phone-height) * 0.022727);
+      --workflow-phone-button-width: calc(var(--workflow-phone-height) * 0.013636);
+      --workflow-phone-volume-top: calc(var(--workflow-phone-height) * 0.245455);
+      --workflow-phone-volume-height: calc(var(--workflow-phone-height) * 0.081818);
+      --workflow-phone-volume-gap: calc(var(--workflow-phone-height) * 0.031818);
+      --workflow-phone-power-top: calc(var(--workflow-phone-height) * 0.345455);
+      --workflow-phone-power-height: calc(var(--workflow-phone-height) * 0.136364);
       --workflow-phone-height-mobile: 204px;
       --workflow-phone-width-mobile: calc(var(--workflow-phone-height-mobile) * 9 / 19.5);
       --response-phone-scale: 1.4545;
@@ -42,13 +55,19 @@
       --response-phone-width: calc(var(--workflow-phone-width) * var(--response-phone-scale));
       --response-phone-height-mobile: calc(var(--workflow-phone-height-mobile) * 1.2353);
       --response-phone-width-mobile: calc(var(--workflow-phone-width-mobile) * 1.2353);
-      --response-phone-shell-padding: 4.5px;
-      --response-phone-shell-radius: 39px;
-      --response-phone-screen-radius: 34px;
-      --response-phone-overlay-inset: 1.5px;
-      --response-phone-island-top: 11px;
-      --response-phone-island-width: 55px;
-      --response-phone-island-height: 14px;
+      --response-phone-shell-padding: calc(var(--response-phone-height) * 0.014063);
+      --response-phone-shell-radius: calc(var(--response-phone-height) * 0.121875);
+      --response-phone-screen-radius: calc(var(--response-phone-height) * 0.10625);
+      --response-phone-overlay-inset: calc(var(--response-phone-height) * 0.004688);
+      --response-phone-island-top: calc(var(--response-phone-height) * 0.034375);
+      --response-phone-island-width: calc(var(--response-phone-width) * 0.3725);
+      --response-phone-island-height: calc(var(--response-phone-height) * 0.04375);
+      --response-phone-button-width: calc(var(--response-phone-height) * 0.010938);
+      --response-phone-volume-top: calc(var(--response-phone-height) * 0.25);
+      --response-phone-volume-height: calc(var(--response-phone-height) * 0.08125);
+      --response-phone-volume-gap: calc(var(--response-phone-height) * 0.028125);
+      --response-phone-power-top: calc(var(--response-phone-height) * 0.35625);
+      --response-phone-power-height: calc(var(--response-phone-height) * 0.125);
     }
 
     html[data-theme="light"] {
@@ -852,8 +871,8 @@
       width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
-      padding: 3px;
-      border-radius: 27px;
+      padding: var(--workflow-phone-shell-padding);
+      border-radius: var(--workflow-phone-shell-radius);
       border: 1px solid rgba(255, 255, 255, 0.14);
       background:
         linear-gradient(145deg, rgba(32, 43, 62, 0.96), rgba(11, 17, 29, 0.98));
@@ -867,10 +886,10 @@
     .capture-scene__phone::before {
       content: "";
       position: absolute;
-      top: 7px;
+      top: var(--workflow-phone-island-top);
       left: 50%;
-      width: 44px;
-      height: 5px;
+      width: var(--workflow-phone-island-width);
+      height: var(--workflow-phone-island-height);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.12);
       transform: translateX(-50%);
@@ -880,7 +899,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      border-radius: 23px;
+      border-radius: var(--workflow-phone-screen-radius);
       background:
         radial-gradient(circle at 22% 18%, rgba(100, 168, 255, 0.14), transparent 26%),
         radial-gradient(circle at 76% 18%, rgba(164, 123, 255, 0.14), transparent 20%),
@@ -1095,8 +1114,8 @@
       width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
-      padding: 3px;
-      border-radius: 27px;
+      padding: var(--workflow-phone-shell-padding);
+      border-radius: var(--workflow-phone-shell-radius);
       border: 1px solid rgba(255, 255, 255, 0.14);
       background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
       box-shadow:
@@ -1108,10 +1127,10 @@
     .processing-scene__phone::before {
       content: "";
       position: absolute;
-      top: 7px;
+      top: var(--workflow-phone-island-top);
       left: 50%;
-      width: 44px;
-      height: 5px;
+      width: var(--workflow-phone-island-width);
+      height: var(--workflow-phone-island-height);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.12);
       transform: translateX(-50%);
@@ -1122,7 +1141,7 @@
       width: 100%;
       height: 100%;
       padding: 10px 12px 12px;
-      border-radius: 23px;
+      border-radius: var(--workflow-phone-screen-radius);
       background:
         radial-gradient(circle at 52% 26%, rgba(100, 168, 255, 0.16), transparent 24%),
         radial-gradient(circle at 74% 18%, rgba(164, 123, 255, 0.14), transparent 18%),
@@ -1450,8 +1469,8 @@
       width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
-      padding: 3px;
-      border-radius: 27px;
+      padding: var(--workflow-phone-shell-padding);
+      border-radius: var(--workflow-phone-shell-radius);
       border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
@@ -1463,7 +1482,7 @@
       align-content: start;
       gap: 5px;
       padding: 26px 9px 9px;
-      border-radius: 23px;
+      border-radius: var(--workflow-phone-screen-radius);
       background:
         radial-gradient(circle at 24% 18%, rgba(100, 168, 255, 0.16), transparent 24%),
         radial-gradient(circle at 76% 18%, rgba(164, 123, 255, 0.14), transparent 20%),
@@ -1664,8 +1683,8 @@
       width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
-      padding: 3px;
-      border-radius: 27px;
+      padding: var(--workflow-phone-shell-padding);
+      border-radius: var(--workflow-phone-shell-radius);
       border: 1px solid rgba(255, 255, 255, 0.14);
       background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
       box-shadow:
@@ -1696,10 +1715,10 @@
     .feedback-scene__phone::before {
       content: "";
       position: absolute;
-      top: 7px;
+      top: var(--workflow-phone-island-top);
       left: 50%;
-      width: 44px;
-      height: 5px;
+      width: var(--workflow-phone-island-width);
+      height: var(--workflow-phone-island-height);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.12);
       transform: translateX(-50%);
@@ -1710,7 +1729,7 @@
       width: 100%;
       height: 100%;
       padding: 14px 10px 12px;
-      border-radius: 23px;
+      border-radius: var(--workflow-phone-screen-radius);
       background: linear-gradient(180deg, rgba(13, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
       overflow: hidden;
     }
@@ -2189,13 +2208,13 @@
     .feedback-scene__phone,
     .voice-scene__phone,
     .response-carousel__question-phone {
-      --phone-side-offset: -2px;
-      --phone-button-width: 3px;
-      --phone-volume-top: 54px;
-      --phone-volume-height: 18px;
-      --phone-volume-gap: 7px;
-      --phone-power-top: 76px;
-      --phone-power-height: 30px;
+      --phone-side-offset: calc(var(--workflow-phone-shell-padding) * -0.666667);
+      --phone-button-width: var(--workflow-phone-button-width);
+      --phone-volume-top: var(--workflow-phone-volume-top);
+      --phone-volume-height: var(--workflow-phone-volume-height);
+      --phone-volume-gap: var(--workflow-phone-volume-gap);
+      --phone-power-top: var(--workflow-phone-power-top);
+      --phone-power-height: var(--workflow-phone-power-height);
       isolation: isolate;
       border-color: rgba(196, 208, 228, 0.16);
       background:
@@ -2219,8 +2238,8 @@
     .response-carousel__question-phone::after {
       content: "";
       position: absolute;
-      inset: 1px;
-      border-radius: 26px;
+      inset: var(--workflow-phone-overlay-inset);
+      border-radius: calc(var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset));
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 18%, transparent 72%, rgba(3, 7, 15, 0.26)),
         linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.14));
@@ -2263,10 +2282,10 @@
     .response-carousel__question-phone::before {
       content: "";
       position: absolute;
-      top: 8px;
+      top: var(--workflow-phone-island-top);
       left: 50%;
-      width: 38px;
-      height: 10px;
+      width: var(--workflow-phone-island-width);
+      height: calc(var(--workflow-phone-island-height) * 2);
       border-radius: 999px;
       background:
         radial-gradient(circle at 72% 50%, rgba(62, 76, 104, 0.92) 0 1.1px, rgba(8, 10, 16, 0.98) 1.2px),
@@ -2285,13 +2304,13 @@
     }
 
     .response-carousel__question-phone {
-      --phone-side-offset: -2.5px;
-      --phone-button-width: 3.5px;
-      --phone-volume-top: 80px;
-      --phone-volume-height: 26px;
-      --phone-volume-gap: 9px;
-      --phone-power-top: 114px;
-      --phone-power-height: 40px;
+      --phone-side-offset: calc(var(--response-phone-shell-padding) * -0.555556);
+      --phone-button-width: var(--response-phone-button-width);
+      --phone-volume-top: var(--response-phone-volume-top);
+      --phone-volume-height: var(--response-phone-volume-height);
+      --phone-volume-gap: var(--response-phone-volume-gap);
+      --phone-power-top: var(--response-phone-power-top);
+      --phone-power-height: var(--response-phone-power-height);
     }
 
     .phone-shell-buttons {
@@ -3053,15 +3072,34 @@
 
     @media (max-width: 640px) {
       :root {
+        --workflow-phone-shell-padding: calc(var(--workflow-phone-height-mobile) * 0.013636);
+        --workflow-phone-shell-radius: calc(var(--workflow-phone-height-mobile) * 0.122727);
+        --workflow-phone-screen-radius: calc(var(--workflow-phone-height-mobile) * 0.104545);
+        --workflow-phone-overlay-inset: calc(var(--workflow-phone-shell-padding) * 0.333333);
+        --workflow-phone-island-top: calc(var(--workflow-phone-height-mobile) * 0.031818);
+        --workflow-phone-island-width: calc(var(--workflow-phone-width-mobile) * 0.433333);
+        --workflow-phone-island-height: calc(var(--workflow-phone-height-mobile) * 0.022727);
+        --workflow-phone-button-width: calc(var(--workflow-phone-height-mobile) * 0.013636);
+        --workflow-phone-volume-top: calc(var(--workflow-phone-height-mobile) * 0.245455);
+        --workflow-phone-volume-height: calc(var(--workflow-phone-height-mobile) * 0.081818);
+        --workflow-phone-volume-gap: calc(var(--workflow-phone-height-mobile) * 0.031818);
+        --workflow-phone-power-top: calc(var(--workflow-phone-height-mobile) * 0.345455);
+        --workflow-phone-power-height: calc(var(--workflow-phone-height-mobile) * 0.136364);
         --response-phone-height-mobile: calc(var(--workflow-phone-height-mobile) * 1.02);
         --response-phone-width-mobile: calc(var(--workflow-phone-width-mobile) * 1.02);
-        --response-phone-shell-padding: 3.8px;
-        --response-phone-shell-radius: 33px;
-        --response-phone-screen-radius: 29px;
-        --response-phone-overlay-inset: 1.25px;
-        --response-phone-island-top: 9px;
-        --response-phone-island-width: 47px;
-        --response-phone-island-height: 12px;
+        --response-phone-shell-padding: calc(var(--response-phone-height-mobile) * 0.014063);
+        --response-phone-shell-radius: calc(var(--response-phone-height-mobile) * 0.121875);
+        --response-phone-screen-radius: calc(var(--response-phone-height-mobile) * 0.10625);
+        --response-phone-overlay-inset: calc(var(--response-phone-height-mobile) * 0.004688);
+        --response-phone-island-top: calc(var(--response-phone-height-mobile) * 0.034375);
+        --response-phone-island-width: calc(var(--response-phone-width-mobile) * 0.3725);
+        --response-phone-island-height: calc(var(--response-phone-height-mobile) * 0.04375);
+        --response-phone-button-width: calc(var(--response-phone-height-mobile) * 0.010938);
+        --response-phone-volume-top: calc(var(--response-phone-height-mobile) * 0.25);
+        --response-phone-volume-height: calc(var(--response-phone-height-mobile) * 0.08125);
+        --response-phone-volume-gap: calc(var(--response-phone-height-mobile) * 0.028125);
+        --response-phone-power-top: calc(var(--response-phone-height-mobile) * 0.35625);
+        --response-phone-power-height: calc(var(--response-phone-height-mobile) * 0.125);
       }
 
       main {
@@ -3183,13 +3221,6 @@
       }
 
       .response-carousel__question-phone {
-        --phone-side-offset: -2px;
-        --phone-button-width: 3px;
-        --phone-volume-top: 66px;
-        --phone-volume-height: 22px;
-        --phone-volume-gap: 8px;
-        --phone-power-top: 96px;
-        --phone-power-height: 34px;
         left: 6px;
         bottom: 6px;
         width: var(--response-phone-width-mobile);
