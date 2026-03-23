@@ -2353,7 +2353,7 @@
 
     .response-carousel__question-action {
       margin-top: auto;
-      margin-bottom: 66px;
+      margin-bottom: 40px;
       align-self: center;
       padding: 5px 8px;
       border-radius: 999px;
@@ -2372,68 +2372,68 @@
 
     .response-carousel__question-nav {
       position: absolute;
-      left: 7px;
-      right: 7px;
-      bottom: 6px;
+      left: 9px;
+      right: 9px;
+      bottom: 9px;
       z-index: 3;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
-      min-height: 44px;
-      padding: 6px;
-      border-radius: 16px;
-      border: 1px solid rgba(236, 243, 255, 0.28);
+      gap: 4px;
+      padding: 4px;
+      border-radius: 13px;
+      border: 1px solid rgba(124, 247, 255, 0.12);
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.18)),
-        rgba(220, 232, 252, 0.18);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        rgba(8, 17, 34, 0.42);
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.16),
-        0 10px 20px rgba(4, 10, 24, 0.18),
-        0 0 16px rgba(100, 168, 255, 0.14);
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+        0 0 16px rgba(100, 168, 255, 0.06);
     }
 
     .response-carousel__question-nav-item {
       display: grid;
       justify-items: center;
       align-content: center;
-      padding: 2px;
-      border-radius: 12px;
-      color: rgba(10, 20, 36, 0.74);
-      font-size: 0;
+      gap: 3px;
+      padding: 4px 2px;
+      border-radius: 10px;
+      color: rgba(198, 217, 245, 0.72);
+      font-size: 3.8px;
       line-height: 1;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     .response-carousel__question-nav-item.is-active {
       background:
-        linear-gradient(145deg, rgba(100, 168, 255, 0.74), rgba(164, 123, 255, 0.54)),
-        rgba(255, 255, 255, 0.26);
-      color: rgba(248, 251, 255, 0.98);
+        linear-gradient(145deg, rgba(100, 168, 255, 0.14), rgba(164, 123, 255, 0.1)),
+        rgba(255, 255, 255, 0.04);
+      color: rgba(241, 247, 255, 0.94);
       box-shadow:
-        0 0 16px rgba(100, 168, 255, 0.18),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+        0 0 14px rgba(100, 168, 255, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
     }
 
     .response-carousel__question-nav-icon {
       display: grid;
       place-items: center;
-      width: 18px;
-      height: 18px;
+      width: 11px;
+      height: 11px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.56);
-      border: 1px solid rgba(255, 255, 255, 0.42);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(124, 247, 255, 0.12);
       color: currentColor;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .response-carousel__question-nav-item.is-active .response-carousel__question-nav-icon {
-      background: rgba(255, 255, 255, 0.26);
-      border-color: rgba(255, 255, 255, 0.42);
+      background: linear-gradient(145deg, rgba(100, 168, 255, 0.22), rgba(164, 123, 255, 0.16));
+      border-color: rgba(124, 247, 255, 0.2);
     }
 
     .response-carousel__question-nav-icon svg {
       display: block;
-      width: 9px;
-      height: 9px;
+      width: 5px;
+      height: 5px;
       stroke: currentColor;
       fill: none;
       stroke-width: 1.6;
@@ -3033,7 +3033,7 @@
       }
 
       .response-carousel__question-action {
-        margin-bottom: 60px;
+        margin-bottom: 34px;
         font-size: 4px;
         padding: 4px 7px;
       }
@@ -3042,33 +3042,24 @@
         left: 10px;
         right: 10px;
         bottom: 8px;
-        gap: 5px;
-        min-height: 38px;
-        padding: 5px;
+        gap: 3px;
+        padding: 3px;
       }
 
       .response-carousel__question-nav-item {
+        gap: 2px;
         padding: 3px 2px;
+        font-size: 3.4px;
       }
 
       .response-carousel__question-nav-icon {
-        width: 16px;
-        height: 16px;
+        width: 10px;
+        height: 10px;
       }
 
       .response-carousel__question-nav-icon svg {
-        width: 8px;
-        height: 8px;
-      }
-
-      .response-carousel__question-nav-icon {
-        width: 14px;
-        height: 14px;
-      }
-
-      .response-carousel__question-nav-icon svg {
-        width: 7px;
-        height: 7px;
+        width: 4.5px;
+        height: 4.5px;
       }
 
       .response-carousel__dots {
