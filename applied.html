@@ -2910,6 +2910,8 @@
 
     @media (max-width: 640px) {
       :root {
+        --response-phone-height-mobile: calc(var(--workflow-phone-height-mobile) * 1.02);
+        --response-phone-width-mobile: calc(var(--workflow-phone-width-mobile) * 1.02);
         --response-phone-shell-padding: 3.8px;
         --response-phone-shell-radius: 33px;
         --response-phone-screen-radius: 29px;
@@ -2940,8 +2942,13 @@
         font-size: 16px;
       }
 
+      .section[aria-labelledby="platform-title"] {
+        gap: 18px;
+      }
+
       .platform-showcase {
-        padding: 18px 18px 124px;
+        gap: 16px;
+        padding: 14px 14px 16px;
       }
 
       .processing-flow {
@@ -2976,12 +2983,13 @@
       }
 
       .platform-showcase__sheet {
-        min-height: 804px;
-        padding: 20px 18px 18px;
+        min-height: 468px;
+        padding: 16px 14px 14px;
       }
 
       .response-carousel {
-        padding: 18px;
+        margin-top: 12px;
+        padding: 12px;
       }
 
       .response-carousel__deck {
@@ -2989,7 +2997,22 @@
       }
 
       .response-carousel__paper {
-        padding: 20px 0 138px 0;
+        padding: 8px 0 90px 0;
+      }
+
+      .response-carousel__meta {
+        margin-bottom: 8px;
+        padding-left: 6px;
+        font-size: 10px;
+      }
+
+      .response-carousel__status {
+        padding: 5px 8px;
+      }
+
+      .response-carousel__body {
+        gap: 6px;
+        padding-left: 10px;
       }
 
       .response-carousel__prompt {
@@ -3001,24 +3024,24 @@
       }
 
       .response-carousel__line {
-        font-size: 26px;
-      }
-
-      .response-carousel__line--small {
         font-size: 22px;
       }
 
+      .response-carousel__line--small {
+        font-size: 18px;
+      }
+
       .response-carousel__line--tiny {
-        font-size: 19px;
+        font-size: 15px;
       }
 
       .response-carousel__board {
-        min-height: 254px;
+        min-height: 152px;
       }
 
       .response-carousel__question-phone {
-        left: 10px;
-        bottom: -32px;
+        left: 6px;
+        bottom: 6px;
         width: var(--response-phone-width-mobile);
         height: var(--response-phone-height-mobile);
         transform: none;
@@ -3062,14 +3085,53 @@
         height: 4.5px;
       }
 
+      .response-carousel__controls {
+        right: 12px;
+        bottom: 10px;
+        gap: 6px;
+      }
+
       .response-carousel__dots {
         justify-content: flex-end;
         flex-wrap: wrap;
-        width: min(100%, 132px);
+        gap: 4px;
+        width: min(100%, 108px);
+      }
+
+      .response-carousel__button {
+        min-width: 36px;
+        height: 36px;
       }
 
       .platform-showcase__board {
         margin-top: 18px;
+      }
+
+      .platform-showcase__copy {
+        gap: 8px;
+      }
+
+      .platform-showcase__title {
+        font-size: 19px;
+      }
+
+      .platform-showcase__copy p,
+      .response-carousel__copy p {
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .platform-showcase__signals {
+        gap: 8px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .platform-showcase__signals li {
+        padding: 6px 10px;
+        font-size: 10px;
+        flex: 0 0 auto;
       }
 
       .processing-scene__phone {
