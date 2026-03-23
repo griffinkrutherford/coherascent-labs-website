@@ -2028,7 +2028,7 @@
     .response-carousel__paper {
       position: absolute;
       inset: 0;
-      padding: 0 0 152px 0;
+      padding: 0 0 calc(var(--response-phone-height) - 34px) 0;
       overflow: visible;
       opacity: 0;
       transform: translateY(12px);
@@ -2186,6 +2186,13 @@
     .feedback-scene__phone,
     .voice-scene__phone,
     .response-carousel__question-phone {
+      --phone-side-offset: -2px;
+      --phone-button-width: 3px;
+      --phone-volume-top: 54px;
+      --phone-volume-height: 18px;
+      --phone-volume-gap: 7px;
+      --phone-power-top: 76px;
+      --phone-power-height: 30px;
       isolation: isolate;
       border-color: rgba(232, 240, 255, 0.12);
       background:
@@ -2248,6 +2255,77 @@
       top: var(--response-phone-island-top);
       width: var(--response-phone-island-width);
       height: var(--response-phone-island-height);
+    }
+
+    .response-carousel__question-phone {
+      --phone-side-offset: -2.5px;
+      --phone-button-width: 3.5px;
+      --phone-volume-top: 80px;
+      --phone-volume-height: 26px;
+      --phone-volume-gap: 9px;
+      --phone-power-top: 114px;
+      --phone-power-height: 40px;
+    }
+
+    .phone-shell-buttons {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .phone-shell-buttons__rail {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0;
+    }
+
+    .phone-shell-buttons__rail--left {
+      left: var(--phone-side-offset);
+    }
+
+    .phone-shell-buttons__rail--right {
+      right: var(--phone-side-offset);
+    }
+
+    .phone-shell-button {
+      position: absolute;
+      width: var(--phone-button-width);
+      border-radius: 999px;
+      background:
+        linear-gradient(180deg, rgba(126, 142, 170, 0.96), rgba(36, 46, 68, 0.98) 55%, rgba(16, 22, 36, 0.98));
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 4px 8px rgba(4, 10, 24, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(5, 9, 18, 0.28);
+    }
+
+    .phone-shell-buttons__rail--left .phone-shell-button {
+      left: 0;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    .phone-shell-buttons__rail--right .phone-shell-button {
+      right: 0;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+
+    .phone-shell-button--volume {
+      top: var(--phone-volume-top);
+      height: var(--phone-volume-height);
+    }
+
+    .phone-shell-button--volume-secondary {
+      top: calc(var(--phone-volume-top) + var(--phone-volume-height) + var(--phone-volume-gap));
+    }
+
+    .phone-shell-button--power {
+      top: var(--phone-power-top);
+      height: var(--phone-power-height);
     }
 
     .capture-scene__camera,
@@ -2997,7 +3075,7 @@
       }
 
       .response-carousel__paper {
-        padding: 8px 0 90px 0;
+        padding: 8px 0 calc(var(--response-phone-height-mobile) - 6px) 0;
       }
 
       .response-carousel__meta {
@@ -3040,6 +3118,13 @@
       }
 
       .response-carousel__question-phone {
+        --phone-side-offset: -2px;
+        --phone-button-width: 3px;
+        --phone-volume-top: 66px;
+        --phone-volume-height: 22px;
+        --phone-volume-gap: 8px;
+        --phone-power-top: 96px;
+        --phone-power-height: 34px;
         left: 6px;
         bottom: 6px;
         width: var(--response-phone-width-mobile);
@@ -3909,6 +3994,30 @@
       var nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
       localStorage.setItem(storageKey, nextTheme);
       applyTheme(nextTheme);
+    });
+  })();
+
+  (function () {
+    var phones = document.querySelectorAll(
+      ".capture-scene__phone, .processing-scene__phone, .feedback-scene__phone, .voice-scene__phone, .response-carousel__question-phone"
+    );
+    if (!phones.length) return;
+
+    var hardwareMarkup = [
+      '<div class="phone-shell-buttons" aria-hidden="true">',
+      '  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">',
+      '    <span class="phone-shell-button phone-shell-button--volume"></span>',
+      '    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>',
+      "  </span>",
+      '  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">',
+      '    <span class="phone-shell-button phone-shell-button--power"></span>',
+      "  </span>",
+      "</div>"
+    ].join("");
+
+    phones.forEach(function (phone) {
+      if (phone.querySelector(".phone-shell-buttons")) return;
+      phone.insertAdjacentHTML("beforeend", hardwareMarkup);
     });
   })();
 
