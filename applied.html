@@ -2638,12 +2638,13 @@
     }
 
     .response-carousel__question-nav-icon--sphere {
+      --learn-sphere-outline: rgba(188, 154, 255, 0.52);
       position: relative;
       overflow: hidden;
       background:
         radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.94) 0, rgba(255, 255, 255, 0.42) 16%, transparent 26%),
         radial-gradient(circle at 28% 28%, rgba(255, 93, 135, 0.94) 0, rgba(255, 93, 135, 0.9) 28%, rgba(164, 123, 255, 0.84) 58%, rgba(100, 168, 255, 0.82) 100%);
-      border-color: rgba(214, 227, 255, 0.22);
+      border-color: var(--learn-sphere-outline);
       box-shadow:
         0 0 9px rgba(164, 123, 255, 0.16),
         inset -1.5px -1.5px 3px rgba(5, 10, 22, 0.4),
@@ -2666,15 +2667,16 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      opacity: 0.8;
+      border: 1px solid var(--learn-sphere-outline);
+      opacity: 1;
     }
 
     .response-carousel__question-nav-item.is-active .response-carousel__question-nav-icon--sphere {
       background:
         radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.96) 0, rgba(255, 255, 255, 0.46) 16%, transparent 26%),
         radial-gradient(circle at 28% 28%, rgba(255, 93, 135, 0.98) 0, rgba(255, 93, 135, 0.92) 28%, rgba(164, 123, 255, 0.9) 58%, rgba(100, 168, 255, 0.88) 100%);
-      border-color: rgba(224, 234, 255, 0.28);
+      --learn-sphere-outline: rgba(188, 154, 255, 0.72);
+      border-color: var(--learn-sphere-outline);
     }
 
     .response-carousel__question-nav-icon svg {
