@@ -2618,6 +2618,38 @@
       border-color: rgba(164, 123, 255, 0.24);
     }
 
+    .response-carousel__question-nav-icon--sphere {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.96) 0, rgba(255, 93, 135, 0.84) 22%, rgba(164, 123, 255, 0.8) 52%, rgba(100, 168, 255, 0.78) 100%);
+      border-color: rgba(200, 217, 255, 0.22);
+      box-shadow:
+        0 0 10px rgba(164, 123, 255, 0.18),
+        inset -1px -1px 2px rgba(12, 16, 30, 0.24);
+    }
+
+    .response-carousel__question-nav-icon--sphere::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.7), transparent 34%),
+        radial-gradient(circle at 74% 76%, rgba(100, 168, 255, 0.22), transparent 34%);
+      opacity: 0.94;
+    }
+
+    .response-carousel__question-nav-icon--sphere::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: radial-gradient(circle, rgba(164, 123, 255, 0.2), transparent 68%);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
     .response-carousel__question-nav-icon svg {
       display: block;
       width: 5px;
@@ -4158,9 +4190,7 @@
       "    Goals",
       "  </span>",
       '  <span class="response-carousel__question-nav-item is-active">',
-      '    <span class="response-carousel__question-nav-icon">',
-      '      <svg viewBox="0 0 16 16" role="presentation"><path d="M4 4.5h3.5a1.5 1.5 0 0 1 1.5 1.5v6H5.5A1.5 1.5 0 0 0 4 13.5z"/><path d="M12 4.5H8.5A1.5 1.5 0 0 0 7 6v6h3.5a1.5 1.5 0 0 1 1.5 1.5z"/></svg>',
-      "    </span>",
+      '    <span class="response-carousel__question-nav-icon response-carousel__question-nav-icon--sphere"></span>',
       "    Learn",
       "  </span>",
       '  <span class="response-carousel__question-nav-item">',
