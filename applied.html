@@ -2173,10 +2173,28 @@
       background:
         linear-gradient(145deg, var(--sphere-blue-soft), var(--sphere-purple-soft)),
         rgba(9, 16, 28, 0.56);
+      box-shadow:
+        0 0 18px rgba(100, 168, 255, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
     }
 
     .feedback-scene__phone--mid .feedback-scene__button {
       border-color: rgba(164, 123, 255, 0.2);
+      background:
+        linear-gradient(145deg, var(--sphere-blue-soft), var(--sphere-purple-soft)),
+        rgba(9, 16, 28, 0.56);
+      box-shadow:
+        0 0 18px rgba(164, 123, 255, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    html[data-theme="light"] .feedback-scene__phone--mid .feedback-scene__button {
+      background:
+        linear-gradient(145deg, var(--sphere-blue-soft), var(--sphere-purple-soft)),
+        rgba(255, 255, 255, 0.8);
+      box-shadow:
+        0 0 14px rgba(127, 99, 214, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.42);
     }
 
     .feedback-scene__phone--low .feedback-scene__button {
@@ -2184,6 +2202,21 @@
       background:
         linear-gradient(145deg, var(--sphere-red-soft), var(--sphere-purple-soft)),
         rgba(20, 10, 18, 0.56);
+      box-shadow:
+        0 0 18px rgba(255, 93, 135, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    html[data-theme="light"] .feedback-scene__phone--high .feedback-scene__button {
+      box-shadow:
+        0 0 14px rgba(79, 132, 214, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+    }
+
+    html[data-theme="light"] .feedback-scene__phone--low .feedback-scene__button {
+      box-shadow:
+        0 0 14px rgba(217, 106, 140, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.42);
     }
 
     @keyframes capture-float {
