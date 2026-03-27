@@ -68,10 +68,12 @@
     return measurer.getBoundingClientRect().width;
   }
 
-  function formatTypedText(line, partialText) {
-    if (!partialText) return "";
+  function buildWrappedLayout(line, fullText) {
+    if (!fullText) {
+      return { lines: [], maps: [] };
+    }
 
-    var tokens = partialText.match(/\S+|\s+/g) || [];
+    var tokens = fullText.match(/\S+|\s+/g) || [];
     var availableWidth = line.getBoundingClientRect().width;
     var currentLine = "";
     var renderedLines = [];
@@ -96,7 +98,73 @@
       renderedLines.push(currentLine.replace(/\s+$/, ""));
     }
 
-    return renderedLines.join("\n");
+    var sourceText = fullText;
+    var sourceCursor = 0;
+    var sourceMaps = renderedLines.map(function (renderedLine) {
+      var sourceIndexes = [];
+
+      for (var i = 0; i < renderedLine.length; i += 1) {
+        var character = renderedLine.charAt(i);
+
+        while (sourceCursor < sourceText.length && sourceText.charAt(sourceCursor) !== character) {
+          sourceCursor += 1;
+        }
+
+        if (sourceCursor >= sourceText.length) break;
+        sourceIndexes.push(sourceCursor);
+        sourceCursor += 1;
+      }
+
+      while (sourceCursor < sourceText.length && /\s/.test(sourceText.charAt(sourceCursor))) {
+        sourceCursor += 1;
+      }
+
+      return sourceIndexes;
+    });
+
+    return {
+      lines: renderedLines,
+      maps: sourceMaps
+    };
+  }
+
+  function getWrappedLayout(line, fullText) {
+    var availableWidth = Math.round(line.getBoundingClientRect().width);
+    var cacheKey = [availableWidth, line.className, fullText].join("::");
+
+    if (line._coherascentWrapLayout && line._coherascentWrapLayout.key === cacheKey) {
+      return line._coherascentWrapLayout.value;
+    }
+
+    var layout = buildWrappedLayout(line, fullText);
+    line._coherascentWrapLayout = {
+      key: cacheKey,
+      value: layout
+    };
+    return layout;
+  }
+
+  function renderTypedLayout(layout, sourceCharacterCount) {
+    if (!layout || !layout.lines.length || !sourceCharacterCount) return "";
+
+    var rendered = [];
+
+    layout.lines.forEach(function (lineText, lineIndex) {
+      var sourceIndexes = layout.maps[lineIndex] || [];
+      var visibleCharacterCount = 0;
+
+      while (
+        visibleCharacterCount < sourceIndexes.length &&
+        sourceIndexes[visibleCharacterCount] < sourceCharacterCount
+      ) {
+        visibleCharacterCount += 1;
+      }
+
+      if (!visibleCharacterCount) return;
+      rendered.push(lineText.slice(0, visibleCharacterCount));
+    });
+
+    return rendered.join("\n");
   }
 
   function scheduleAutoAdvance(delay) {
@@ -131,7 +199,9 @@
 
     if (reducedMotion) {
       lines.forEach(function (line) {
-        line.textContent = line.getAttribute("data-full-text") || "";
+        var fullText = line.getAttribute("data-full-text") || "";
+        var layout = getWrappedLayout(line, fullText);
+        line.textContent = layout.lines.length ? layout.lines.join("\n") : fullText;
         line.classList.add("is-visible");
       });
       return 0;
@@ -151,7 +221,7 @@
 
       function tick() {
         charIndex += 1;
-        line.textContent = formatTypedText(line, fullText.slice(0, charIndex));
+        line.textContent = renderTypedLayout(getWrappedLayout(line, fullText), charIndex);
 
         if (charIndex < fullText.length) {
           lineTimers.push(window.setTimeout(tick, typeInterval));
