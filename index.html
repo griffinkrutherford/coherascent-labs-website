@@ -56,6 +56,7 @@
 
     html {
       scroll-behavior: smooth;
+      background-color: var(--bg-deep);
       background:
         radial-gradient(1320px 760px at 14% -2%, rgba(102, 179, 255, 0.16), transparent 56%),
         radial-gradient(1120px 720px at 86% 8%, rgba(99, 242, 255, 0.1), transparent 56%),
@@ -78,7 +79,14 @@
       min-height: 100vh;
       font-family: "Roboto Mono", monospace;
       color: var(--text);
-      background: transparent;
+      background-color: var(--bg-deep);
+      background:
+        radial-gradient(1320px 760px at 14% -2%, rgba(102, 179, 255, 0.16), transparent 56%),
+        radial-gradient(1120px 720px at 86% 8%, rgba(99, 242, 255, 0.1), transparent 56%),
+        radial-gradient(980px 640px at 68% 92%, rgba(138, 93, 255, 0.08), transparent 56%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     body::before {
@@ -109,6 +117,10 @@
       pointer-events: none;
       z-index: 0;
       opacity: 1;
+      transform: translateZ(0);
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     html[data-theme="light"] body::before {
@@ -148,6 +160,10 @@
       background-repeat: no-repeat;
       pointer-events: none;
       z-index: 0;
+      transform: translateZ(0);
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     html[data-theme="light"] body::after {
