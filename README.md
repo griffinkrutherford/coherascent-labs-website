@@ -106,13 +106,6 @@ Then open:
 - phone proportions are normalized across breakpoints
 - the applied page includes consistent shell geometry, camera island treatment, and side hardware buttons
 
-## Related Docs
-
-- [Mobile App Plan](mobile-app-plan.md)
-- [Mobile App Assets](mobile-app-assets/README.md)
-
-Those docs capture the native-app translation path, asset organization, tokens, and UML diagrams for turning the web mockups into a real iOS/Android product.
-
 ## Notes
 
 - `index-vibe.html` is a sidecar concept file and not part of the main directory-routed site
