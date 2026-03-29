@@ -1,0 +1,183 @@
+@startuml
+skinparam backgroundColor #F6F1EA
+skinparam shadowing false
+skinparam roundCorner 18
+skinparam classAttributeIconSize 0
+skinparam defaultFontName Inter
+skinparam ArrowColor #7DA8EA
+skinparam ArrowThickness 2
+skinparam packageStyle rectangle
+skinparam titleFontColor #1D2433
+skinparam titleFontSize 20
+
+skinparam package {
+  BackgroundColor #FFF9F3
+  BorderColor #8F7AC7
+  FontColor #1D2433
+}
+
+skinparam class {
+  BackgroundColor #0D1528
+  BorderColor #A47BFF
+  FontColor #EDF5FF
+  AttributeFontColor #C6D9F5
+}
+
+title Coherascent Mobile App Architecture
+
+package "App Shell" {
+  class MobileApp {
+    +Expo Router / Navigation
+    +Theme Provider
+    +API Client
+    +Auth State
+  }
+
+  class ScreenShell {
+    +Safe Area Layout
+    +Header Slot
+    +Content Slot
+    +Footer Slot
+  }
+}
+
+package "Core Screens" {
+  class CaptureScreen {
+    +Scan Work
+    +Camera Preview
+    +Document Frame
+    +Upload Trigger
+  }
+
+  class ProcessingScreen {
+    +Grading Animation
+    +Status State
+    +Progress Display
+  }
+
+  class FeedbackScreen {
+    +Score View
+    +Show Feedback Action
+    +Hint / Next Step
+  }
+
+  class VoiceUploadScreen {
+    +Live Transcription
+    +Transcript Editing
+    +Voice Upload Action
+  }
+
+  class QuestionScreen {
+    +Question Prompt
+    +Category Tag
+    +Upload Answer
+    +Bottom Navigation
+  }
+}
+
+package "Shared Components + Design System" {
+  class DesignSystem {
+    +colors.json
+    +typography.json
+    +spacing tokens
+    +radius tokens
+  }
+
+  class GradientButton {
+    +Primary Variant
+    +Secondary Variant
+    +Ghost Variant
+  }
+
+  class PillTag {
+    +Icon
+    +Label
+  }
+
+  class ScoreBadge {
+    +Low
+    +Mid
+    +High
+  }
+
+  class PhoneFrame {
+    +Marketing Demo Shell
+    +Hardware Chrome
+  }
+}
+
+package "Backend" {
+  class BackendAPI {
+    +Upload Endpoint
+    +Prompt Selection
+    +Model Orchestration
+    +JSON Normalization
+  }
+
+  class PromptRegistry {
+    +Subject Rubrics
+    +Difficulty Variants
+    +Prompt Versions
+  }
+
+  class VisionGradingModel {
+    +Read Handwriting From Image
+    +Infer Steps
+    +Score With Rubric Prompt
+    +Return Strict JSON
+  }
+
+  class ResponseValidator {
+    +Schema Validation
+    +Confidence Thresholds
+    +Fallback State Rules
+  }
+
+  class EvaluationLoop {
+    +Benchmark Samples
+    +Prompt Quality Tracking
+    +Human Review For Misses
+  }
+
+  class TranscriptService {
+    +Live Transcript
+    +Transcript Edit Save
+  }
+
+  class DeterministicVerifier {
+    +Future Phase
+    +Symbolic Checking
+    +Trust Layer
+  }
+}
+
+MobileApp --> ScreenShell
+MobileApp --> CaptureScreen
+MobileApp --> ProcessingScreen
+MobileApp --> FeedbackScreen
+MobileApp --> VoiceUploadScreen
+MobileApp --> QuestionScreen
+MobileApp --> BackendAPI
+MobileApp --> DesignSystem
+
+CaptureScreen --> GradientButton
+CaptureScreen --> PhoneFrame
+ProcessingScreen --> PhoneFrame
+FeedbackScreen --> ScoreBadge
+FeedbackScreen --> GradientButton
+VoiceUploadScreen --> GradientButton
+QuestionScreen --> PillTag
+QuestionScreen --> GradientButton
+
+DesignSystem --> GradientButton
+DesignSystem --> PillTag
+DesignSystem --> ScoreBadge
+DesignSystem --> PhoneFrame
+
+BackendAPI --> PromptRegistry
+BackendAPI --> VisionGradingModel
+BackendAPI --> ResponseValidator
+BackendAPI --> EvaluationLoop
+BackendAPI --> TranscriptService
+BackendAPI --> DeterministicVerifier
+@enduml
