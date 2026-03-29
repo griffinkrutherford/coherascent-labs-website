@@ -1,6 +1,6 @@
 # Coherascent Labs
 
-![Coherascent Labs logo](coherascent-labs-logo-march-16-2026.png)
+<img src="coherascent-labs-logo-march-16-2026.png" alt="Coherascent Labs logo" width="180" />
 
 An experimental multi-page marketing site for Coherascent Labs, built as a static website with custom HTML, CSS, and JavaScript.
 
