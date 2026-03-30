@@ -603,7 +603,13 @@
   <main>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Coherascent Labs home">
-        <img src="../coherascent-labs-logo-march-16-2026.png" alt="Coherascent Labs logo" />
+        <img
+          class="brand-logo"
+          src="../coherascent-labs-logo-march-16-2026.png"
+          data-logo-dark="../coherascent-labs-logo-march-16-2026.png"
+          data-logo-light="../coherascent-labs-streamlined-light.png"
+          alt="Coherascent Labs logo"
+        />
         <h1>Coherascent Labs</h1>
       </a>
       <nav class="nav-links" aria-label="Primary">
@@ -711,10 +717,16 @@
     var button = document.querySelector(".theme-toggle");
     if (!button) return;
     var label = button.querySelector("span:last-child");
+    var logo = document.querySelector(".brand-logo");
     var storageKey = "coherascent-theme";
 
     function applyTheme(theme) {
       root.setAttribute("data-theme", theme);
+      if (logo) {
+        logo.src = theme === "light"
+          ? logo.getAttribute("data-logo-light")
+          : logo.getAttribute("data-logo-dark");
+      }
       if (label) label.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
     }
 
