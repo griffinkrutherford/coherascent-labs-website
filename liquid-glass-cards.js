@@ -18,10 +18,10 @@
   var cards = Array.prototype.slice.call(document.querySelectorAll(selectors.join(", ")));
   if (!cards.length) return;
 
-  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var svgNamespace = "http://www.w3.org/2000/svg";
   var defsHost = document.getElementById("coherascent-liquid-glass-defs");
   var defsNode;
+  var resizeTimer;
 
   if (!defsHost) {
     defsHost = document.createElementNS(svgNamespace, "svg");
@@ -43,110 +43,276 @@
     return node;
   }
 
-  function createFilter(id) {
+  var SURFACE_FNS = {
+    convex_squircle: function (x) {
+      return Math.pow(1 - Math.pow(1 - x, 4), 0.25);
+    }
+  };
+
+  function calculateRefractionProfile(glassThickness, bezelWidth, heightFn, ior, samples) {
+    var eta = 1 / ior;
+    var profile = new Float64Array(samples);
+
+    function refract(nx, ny) {
+      var dot = ny;
+      var k = 1 - eta * eta * (1 - dot * dot);
+      var sq;
+      if (k < 0) return null;
+      sq = Math.sqrt(k);
+      return [-(eta * dot + sq) * nx, eta - (eta * dot + sq) * ny];
+    }
+
+    for (var i = 0; i < samples; i += 1) {
+      var x = i / samples;
+      var y = heightFn(x);
+      var dx = x < 1 ? 0.0001 : -0.0001;
+      var y2 = heightFn(x + dx);
+      var deriv = (y2 - y) / dx;
+      var mag = Math.sqrt(deriv * deriv + 1);
+      var ref = refract(-deriv / mag, -1 / mag);
+
+      if (!ref) {
+        profile[i] = 0;
+        continue;
+      }
+
+      profile[i] = ref[0] * ((y * bezelWidth + glassThickness) / ref[1]);
+    }
+
+    return profile;
+  }
+
+  function generateDisplacementMap(w, h, radius, bezelWidth, profile, maxDisp) {
+    var canvas = document.createElement("canvas");
+    var context;
+    var image;
+    var data;
+    var r = radius;
+    var rSq = r * r;
+    var r1Sq = Math.pow(r + 1, 2);
+    var rBSq = Math.pow(Math.max(r - bezelWidth, 0), 2);
+    var wB = w - r * 2;
+    var hB = h - r * 2;
+    var samples = profile.length;
+
+    canvas.width = w;
+    canvas.height = h;
+    context = canvas.getContext("2d");
+    image = context.createImageData(w, h);
+    data = image.data;
+
+    for (var base = 0; base < data.length; base += 4) {
+      data[base] = 128;
+      data[base + 1] = 128;
+      data[base + 2] = 0;
+      data[base + 3] = 255;
+    }
+
+    for (var y1 = 0; y1 < h; y1 += 1) {
+      for (var x1 = 0; x1 < w; x1 += 1) {
+        var x = x1 < r ? x1 - r : x1 >= w - r ? x1 - r - wB : 0;
+        var y = y1 < r ? y1 - r : y1 >= h - r ? y1 - r - hB : 0;
+        var dSq = x * x + y * y;
+
+        if (dSq > r1Sq || dSq < rBSq) continue;
+
+        var dist = Math.sqrt(dSq);
+        var fromSide = r - dist;
+        var op = dSq < rSq ? 1 : 1 - (dist - Math.sqrt(rSq)) / (Math.sqrt(r1Sq) - Math.sqrt(rSq));
+
+        if (op <= 0 || dist === 0) continue;
+
+        var cos = x / dist;
+        var sin = y / dist;
+        var bi = Math.min(((fromSide / bezelWidth) * samples) | 0, samples - 1);
+        var disp = profile[bi] || 0;
+        var dX = (-cos * disp) / maxDisp;
+        var dY = (-sin * disp) / maxDisp;
+        var idx = (y1 * w + x1) * 4;
+
+        data[idx] = (128 + dX * 127 * op + 0.5) | 0;
+        data[idx + 1] = (128 + dY * 127 * op + 0.5) | 0;
+      }
+    }
+
+    context.putImageData(image, 0, 0);
+    return canvas.toDataURL();
+  }
+
+  function generateSpecularMap(w, h, radius, bezelWidth, angle) {
+    var canvas = document.createElement("canvas");
+    var context;
+    var image;
+    var data;
+    var r = radius;
+    var rSq = r * r;
+    var r1Sq = Math.pow(r + 1, 2);
+    var rBSq = Math.pow(Math.max(r - bezelWidth, 0), 2);
+    var wB = w - r * 2;
+    var hB = h - r * 2;
+    var sv = [Math.cos(angle), Math.sin(angle)];
+
+    canvas.width = w;
+    canvas.height = h;
+    context = canvas.getContext("2d");
+    image = context.createImageData(w, h);
+    data = image.data;
+    data.fill(0);
+
+    for (var y1 = 0; y1 < h; y1 += 1) {
+      for (var x1 = 0; x1 < w; x1 += 1) {
+        var x = x1 < r ? x1 - r : x1 >= w - r ? x1 - r - wB : 0;
+        var y = y1 < r ? y1 - r : y1 >= h - r ? y1 - r - hB : 0;
+        var dSq = x * x + y * y;
+
+        if (dSq > r1Sq || dSq < rBSq) continue;
+
+        var dist = Math.sqrt(dSq);
+        var fromSide = r - dist;
+        var op = dSq < rSq ? 1 : 1 - (dist - Math.sqrt(rSq)) / (Math.sqrt(r1Sq) - Math.sqrt(rSq));
+
+        if (op <= 0 || dist === 0) continue;
+
+        var cos = x / dist;
+        var sin = -y / dist;
+        var dot = Math.abs(cos * sv[0] + sin * sv[1]);
+        var edge = Math.sqrt(Math.max(0, 1 - Math.pow(1 - fromSide, 2)));
+        var coeff = dot * edge;
+        var col = (255 * coeff) | 0;
+        var alpha = (col * coeff * op) | 0;
+        var idx = (y1 * w + x1) * 4;
+
+        data[idx] = col;
+        data[idx + 1] = col;
+        data[idx + 2] = col;
+        data[idx + 3] = alpha;
+      }
+    }
+
+    context.putImageData(image, 0, 0);
+    return canvas.toDataURL();
+  }
+
+  function createFilterDefinition(id) {
     var filter = createSvgNode("filter", {
       id: id,
-      x: "-12%",
-      y: "-12%",
-      width: "124%",
-      height: "124%",
-      "color-interpolation-filters": "sRGB"
+      x: "0%",
+      y: "0%",
+      width: "100%",
+      height: "100%"
     });
-    var turbulence = createSvgNode("feTurbulence", {
-      type: "turbulence",
-      baseFrequency: "0.008 0.012",
-      numOctaves: "2",
-      seed: String(12 + id.length),
-      result: "noise"
-    });
-    var displacement = createSvgNode("feDisplacementMap", {
-      in: "SourceGraphic",
-      in2: "noise",
-      scale: "77",
-      xChannelSelector: "R",
-      yChannelSelector: "B"
-    });
-    filter.appendChild(turbulence);
-    filter.appendChild(displacement);
-    return {
-      filter: filter,
-      displacement: displacement
-    };
+    defsNode.appendChild(filter);
+    return filter;
   }
 
-  function makeLayer(className) {
-    var layer = document.createElement("div");
-    layer.className = className;
-    return layer;
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
   }
 
-  function activateCard(card, x, y) {
-    card.classList.add("is-liquid-glass-active");
-    card.style.setProperty("--liquid-glass-specular-x", x + "px");
-    card.style.setProperty("--liquid-glass-specular-y", y + "px");
+  function getCardRadius(card) {
+    var styles = window.getComputedStyle(card);
+    var radius = parseFloat(styles.borderTopLeftRadius) || parseFloat(styles.borderRadius) || 24;
+    return radius;
   }
 
-  function resetCard(card, displacement) {
-    card.classList.remove("is-liquid-glass-active");
-    card.style.removeProperty("--liquid-glass-specular-x");
-    card.style.removeProperty("--liquid-glass-specular-y");
-    displacement.setAttribute("scale", "77");
-  }
-
-  cards.forEach(function (card, index) {
+  function ensureLayers(card, filterId) {
     if (card.dataset.liquidGlassReady === "true") return;
+
+    var filterLayer = document.createElement("div");
+    var overlayLayer = document.createElement("div");
+    var fragment = document.createDocumentFragment();
+
     card.dataset.liquidGlassReady = "true";
     card.classList.add("liquid-glass-card");
 
-    var filterId = "coherascent-liquid-glass-filter-" + index;
-    var filterParts = createFilter(filterId);
-    defsNode.appendChild(filterParts.filter);
+    filterLayer.className = "liquid-glass-layer liquid-glass-filter";
+    filterLayer.style.backdropFilter = "url(#" + filterId + ")";
+    filterLayer.style.webkitBackdropFilter = "url(#" + filterId + ")";
 
-    var filterLayer = makeLayer("liquid-glass-layer liquid-glass-filter");
-    filterLayer.style.filter = "url(#" + filterId + ") saturate(120%) brightness(1.15)";
-    var distortionLayer = makeLayer("liquid-glass-layer liquid-glass-distortion-overlay");
-    var overlayLayer = makeLayer("liquid-glass-layer liquid-glass-overlay");
-    var specularLayer = makeLayer("liquid-glass-layer liquid-glass-specular");
+    overlayLayer.className = "liquid-glass-layer liquid-glass-overlay";
 
-    var fragment = document.createDocumentFragment();
     fragment.appendChild(filterLayer);
-    fragment.appendChild(distortionLayer);
     fragment.appendChild(overlayLayer);
-    fragment.appendChild(specularLayer);
     card.insertBefore(fragment, card.firstChild);
+  }
 
-    if (reducedMotion) return;
+  function rebuildCard(card, index) {
+    var width = Math.round(card.offsetWidth);
+    var height = Math.round(card.offsetHeight);
+    var radius = Math.round(getCardRadius(card));
+    var minDim = Math.min(width, height);
+    var bezelWidth;
+    var glassThickness;
+    var profile;
+    var maxDisp;
+    var dispUrl;
+    var specUrl;
+    var scale;
+    var filterId = "coherascent-liquid-glass-filter-" + index;
+    var filterNode = defsNode.querySelector("#" + filterId);
+    var clampedRadius;
+    var clampedBezel;
 
-    card.addEventListener("pointermove", function (event) {
-      if (event.pointerType === "touch") return;
-      var rect = card.getBoundingClientRect();
-      var x = event.clientX - rect.left;
-      var y = event.clientY - rect.top;
-      var scaleX = (x / rect.width) * 100;
-      var scaleY = (y / rect.height) * 100;
-      var dynamicScale = Math.min(scaleX, scaleY);
+    if (!width || !height) return;
 
-      activateCard(card, x, y);
-      filterParts.displacement.setAttribute("scale", dynamicScale.toFixed(1));
+    clampedRadius = Math.min(radius, Math.floor(minDim / 2) - 1);
+    bezelWidth = clamp(Math.round(minDim * 0.3), 10, 60);
+    glassThickness = clamp(Math.round(minDim * 0.4), 16, 80);
+    clampedBezel = Math.min(bezelWidth, clampedRadius - 1, minDim / 2 - 1);
+
+    if (clampedRadius < 2 || clampedBezel < 2) return;
+
+    ensureLayers(card, filterId);
+
+    if (!filterNode) {
+      filterNode = createFilterDefinition(filterId);
+    }
+
+    profile = calculateRefractionProfile(glassThickness, clampedBezel, SURFACE_FNS.convex_squircle, 3.0, 128);
+    maxDisp = Math.max.apply(
+      null,
+      Array.prototype.map.call(profile, function (value) {
+        return Math.abs(value);
+      })
+    ) || 1;
+    dispUrl = generateDisplacementMap(width, height, clampedRadius, clampedBezel, profile, maxDisp);
+    specUrl = generateSpecularMap(width, height, clampedRadius, clampedBezel * 2.5, Math.PI / 3);
+    scale = maxDisp;
+
+    filterNode.innerHTML = [
+      '<feGaussianBlur in="SourceGraphic" stdDeviation="0.3" result="blurred_source"></feGaussianBlur>',
+      '<feImage href="' + dispUrl + '" x="0" y="0" width="' + width + '" height="' + height + '" result="disp_map"></feImage>',
+      '<feDisplacementMap in="blurred_source" in2="disp_map" scale="' + scale + '" xChannelSelector="R" yChannelSelector="G" result="displaced"></feDisplacementMap>',
+      '<feColorMatrix in="displaced" type="saturate" values="4" result="displaced_sat"></feColorMatrix>',
+      '<feImage href="' + specUrl + '" x="0" y="0" width="' + width + '" height="' + height + '" result="spec_layer"></feImage>',
+      '<feComposite in="displaced_sat" in2="spec_layer" operator="in" result="spec_masked"></feComposite>',
+      '<feComponentTransfer in="spec_layer" result="spec_faded"><feFuncA type="linear" slope="0.5"></feFuncA></feComponentTransfer>',
+      '<feBlend in="spec_masked" in2="displaced" mode="normal" result="with_sat"></feBlend>',
+      '<feBlend in="spec_faded" in2="with_sat" mode="normal"></feBlend>'
+    ].join("");
+  }
+
+  function rebuildAll() {
+    cards.forEach(function (card, index) {
+      rebuildCard(card, index);
     });
+  }
 
-    card.addEventListener("pointerleave", function () {
-      resetCard(card, filterParts.displacement);
-    });
+  function scheduleRebuild() {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(rebuildAll, 40);
+  }
 
-    card.addEventListener("pointercancel", function () {
-      resetCard(card, filterParts.displacement);
-    });
+  window.addEventListener("resize", scheduleRebuild);
 
-    card.addEventListener("focusin", function () {
-      var rect = card.getBoundingClientRect();
-      activateCard(card, rect.width * 0.5, rect.height * 0.28);
-      filterParts.displacement.setAttribute("scale", "77");
+  if (typeof ResizeObserver !== "undefined") {
+    var observer = new ResizeObserver(scheduleRebuild);
+    cards.forEach(function (card) {
+      observer.observe(card);
     });
+  }
 
-    card.addEventListener("focusout", function (event) {
-      if (card.contains(event.relatedTarget)) return;
-      resetCard(card, filterParts.displacement);
-    });
+  window.requestAnimationFrame(function () {
+    window.requestAnimationFrame(rebuildAll);
   });
 })();
