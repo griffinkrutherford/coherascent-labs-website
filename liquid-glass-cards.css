@@ -55,6 +55,11 @@ html[data-theme="light"] {
   display: none;
 }
 
+.hero[data-liquid-glass]::before,
+.hero[data-liquid-glass]::after {
+  z-index: 0;
+}
+
 .liquid-glass-defs {
   position: absolute;
   width: 0;
