@@ -73,6 +73,7 @@
     var context;
     var image;
     var data;
+    var verticalDisplacementScale = 0.5;
     var r = radius;
     var rSq = r * r;
     var r1Sq = Math.pow(r + 1, 2);
@@ -117,7 +118,7 @@
         var idx = (y1 * w + x1) * 4;
 
         data[idx] = (128 + dX * 127 * op + 0.5) | 0;
-        data[idx + 1] = (128 + dY * 127 * op + 0.5) | 0;
+        data[idx + 1] = (128 + dY * 127 * op * verticalDisplacementScale + 0.5) | 0;
       }
     }
 
