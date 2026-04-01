@@ -19,8 +19,6 @@ html[data-theme="light"] {
   background: transparent !important;
   background-image: none !important;
   border-color: transparent !important;
-  overflow: hidden;
-  contain: paint;
 }
 
 .liquid-glass-card > .liquid-glass-layer {
@@ -31,12 +29,11 @@ html[data-theme="light"] {
 }
 
 .liquid-glass-card > .liquid-glass-filter {
-  z-index: 0;
+  z-index: -1;
   backdrop-filter: url(#coherascent-liquid-glass-filter-fallback);
   -webkit-backdrop-filter: url(#coherascent-liquid-glass-filter-fallback);
   background: transparent;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  isolation: isolate;
 }
 
 .liquid-glass-card > .liquid-glass-overlay {
