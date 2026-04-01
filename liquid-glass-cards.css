@@ -50,7 +50,8 @@ html[data-theme="light"] {
 .hero-card[data-liquid-glass]::after,
 .methodology-card[data-liquid-glass]::after,
 .platform-showcase[data-liquid-glass]::before,
-.voice-flow__feature[data-liquid-glass]::before {
+.voice-flow__feature[data-liquid-glass]::before,
+.processing-card[data-liquid-glass]::before {
   display: none;
 }
 
