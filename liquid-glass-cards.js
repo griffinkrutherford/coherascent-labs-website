@@ -1,29 +1,13 @@
 (function () {
-  var selectors = [
-    ".hero-card",
-    ".pillar",
-    ".methodology-card",
-    ".card",
-    ".timeline-item",
-    ".note-card",
-    ".platform-showcase",
-    ".processing-flow",
-    ".processing-card",
-    ".voice-flow",
-    ".voice-flow__feature",
-    ".detail-card",
-    ".voice-scene__transcript-card"
-  ];
-
-  var cards = Array.prototype.slice.call(document.querySelectorAll(selectors.join(", ")));
+  var cards = Array.prototype.slice.call(document.querySelectorAll("[data-liquid-glass]"));
   if (!cards.length) return;
 
   var svgNamespace = "http://www.w3.org/2000/svg";
-  var root = document.documentElement;
   var defsHost = document.getElementById("coherascent-liquid-glass-defs");
   var defsNode;
   var resizeTimer;
-  var scrollTimer;
+  var scrollEndTimer;
+  var scrollTicking = false;
 
   if (!defsHost) {
     defsHost = document.createElementNS(svgNamespace, "svg");
@@ -306,12 +290,16 @@
   }
 
   function handleScroll() {
-    root.classList.add("is-liquid-glass-scrolling");
-    window.clearTimeout(scrollTimer);
-    scrollTimer = window.setTimeout(function () {
-      root.classList.remove("is-liquid-glass-scrolling");
-      scheduleRebuild();
-    }, 140);
+    if (!scrollTicking) {
+      scrollTicking = true;
+      window.requestAnimationFrame(function () {
+        rebuildAll();
+        scrollTicking = false;
+      });
+    }
+
+    window.clearTimeout(scrollEndTimer);
+    scrollEndTimer = window.setTimeout(rebuildAll, 90);
   }
 
   window.addEventListener("resize", scheduleRebuild);

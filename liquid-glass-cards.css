@@ -58,11 +58,6 @@ html[data-theme="light"] {
   pointer-events: none;
 }
 
-html.is-liquid-glass-scrolling .liquid-glass-card > .liquid-glass-filter {
-  backdrop-filter: blur(14px) saturate(1.2) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(1.2) !important;
-}
-
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .liquid-glass-card > .liquid-glass-filter {
     display: none;
