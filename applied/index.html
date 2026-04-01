@@ -15,6 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Roboto+Mono:wght@300;400;500;600;700&amp;display=swap"
     rel="stylesheet"
   />
+  <link rel="stylesheet" href="../liquid-glass-cards.css" />
   <style>
     :root {
       --bg: #000000;
@@ -3204,7 +3205,7 @@
     .note-card > *,
     .footer > * {
       position: relative;
-      z-index: 1;
+      z-index: 3;
     }
 
     .detail-card strong {
@@ -3227,7 +3228,13 @@
     .footer::before {
       content: "";
       position: absolute;
+      z-index: 2;
       pointer-events: none;
+    }
+
+    .detail-card .planet-ring,
+    .detail-card .planet-moon {
+      z-index: 2;
     }
 
     .detail-card::before {
@@ -4570,6 +4577,7 @@
       <a class="cta" href="/">Return to Coherascent Labs</a>
     </footer>
   </main>
+  <script src="../liquid-glass-cards.js"></script>
   <script>
   (function () {
     var root = document.documentElement;

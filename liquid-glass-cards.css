@@ -1,0 +1,129 @@
+:root {
+  --liquid-glass-fill: rgba(0, 0, 0, 0.24);
+  --liquid-glass-border: rgba(255, 255, 255, 0.12);
+  --liquid-glass-highlight: rgba(255, 255, 255, 0.16);
+  --liquid-glass-shadow: rgba(255, 255, 255, 0.04);
+  --liquid-glass-top-sheen: rgba(255, 255, 255, 0.05);
+  --liquid-glass-bottom-sheen: rgba(255, 255, 255, 0);
+  --liquid-glass-distortion-opacity: 0.34;
+  --liquid-glass-filter-brightness: 1.15;
+}
+
+html[data-theme="light"] {
+  --liquid-glass-fill: rgba(255, 255, 255, 0.22);
+  --liquid-glass-border: rgba(255, 255, 255, 0.38);
+  --liquid-glass-highlight: rgba(255, 255, 255, 0.56);
+  --liquid-glass-shadow: rgba(255, 255, 255, 0.22);
+  --liquid-glass-top-sheen: rgba(255, 255, 255, 0.14);
+  --liquid-glass-bottom-sheen: rgba(255, 255, 255, 0.02);
+  --liquid-glass-distortion-opacity: 0.52;
+  --liquid-glass-filter-brightness: 1.08;
+}
+
+.liquid-glass-card {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+}
+
+.liquid-glass-card > .liquid-glass-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  clip-path: inset(0 round inherit);
+  pointer-events: none;
+}
+
+.liquid-glass-card > .liquid-glass-filter {
+  z-index: 1;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: transparent;
+  opacity: 0.96;
+  will-change: backdrop-filter, filter;
+}
+
+.liquid-glass-card > .liquid-glass-distortion-overlay {
+  z-index: 2;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0, transparent 80%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0, transparent 80%);
+  background-size: 300% 300%;
+  mix-blend-mode: overlay;
+  opacity: var(--liquid-glass-distortion-opacity);
+  animation: liquid-glass-float 10s ease-in-out infinite;
+}
+
+.liquid-glass-card > .liquid-glass-overlay {
+  z-index: 2;
+  background: var(--liquid-glass-fill);
+  border: 1px solid var(--liquid-glass-border);
+  box-shadow:
+    inset 0 1px 0 var(--liquid-glass-highlight),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.liquid-glass-card > .liquid-glass-specular {
+  z-index: 3;
+  box-shadow: inset 1px 1px 1px var(--liquid-glass-highlight);
+  background:
+    radial-gradient(
+      circle 160px at var(--liquid-glass-specular-x, 50%) var(--liquid-glass-specular-y, 30%),
+      rgba(255, 255, 255, 0.15) 0,
+      rgba(255, 255, 255, 0.05) 30%,
+      transparent 64%
+    );
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.liquid-glass-card.is-liquid-glass-active > .liquid-glass-specular,
+.liquid-glass-card:hover > .liquid-glass-specular {
+  opacity: 1;
+}
+
+.liquid-glass-card > :not(.liquid-glass-layer) {
+  position: relative;
+  z-index: 4;
+}
+
+.liquid-glass-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@keyframes liquid-glass-float {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass-card > .liquid-glass-distortion-overlay {
+    animation: none;
+  }
+
+  .liquid-glass-card > .liquid-glass-specular {
+    transition: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .liquid-glass-card > .liquid-glass-filter {
+    display: none;
+  }
+}
