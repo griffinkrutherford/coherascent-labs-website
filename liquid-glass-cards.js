@@ -35,8 +35,18 @@
     }
   };
 
+  function sampleSurfaceSlope(heightFn, x) {
+    var delta = 0.0015;
+    var prev = Math.max(0, x - delta);
+    var next = Math.min(1, x + delta);
+
+    if (next === prev) return 0;
+    return (heightFn(next) - heightFn(prev)) / (next - prev);
+  }
+
   function calculateRefractionProfile(glassThickness, bezelWidth, heightFn, ior, samples) {
     var eta = 1 / ior;
+    var rawProfile = new Float64Array(samples);
     var profile = new Float64Array(samples);
 
     function refract(nx, ny) {
@@ -49,20 +59,35 @@
     }
 
     for (var i = 0; i < samples; i += 1) {
-      var x = i / samples;
+      var x = (i + 0.5) / samples;
       var y = heightFn(x);
-      var dx = x < 1 ? 0.0001 : -0.0001;
-      var y2 = heightFn(x + dx);
-      var deriv = (y2 - y) / dx;
+      var deriv = sampleSurfaceSlope(heightFn, x);
       var mag = Math.sqrt(deriv * deriv + 1);
       var ref = refract(-deriv / mag, -1 / mag);
 
       if (!ref) {
-        profile[i] = 0;
+        rawProfile[i] = 0;
         continue;
       }
 
-      profile[i] = ref[0] * ((y * bezelWidth + glassThickness) / ref[1]);
+      rawProfile[i] = ref[0] * ((y * bezelWidth + glassThickness) / ref[1]);
+    }
+
+    for (var j = 0; j < samples; j += 1) {
+      var acc = 0;
+      var weight = 0;
+
+      for (var offset = -2; offset <= 2; offset += 1) {
+        var idx = clamp(j + offset, 0, samples - 1);
+        var kernelWeight = offset === 0 ? 6 : Math.abs(offset) === 1 ? 4 : 1;
+
+        acc += rawProfile[idx] * kernelWeight;
+        weight += kernelWeight;
+      }
+
+      var outerProgress = (j + 0.5) / samples;
+      var edgeSoftening = 0.58 + 0.42 * Math.pow(outerProgress, 0.7);
+      profile[j] = (acc / weight) * edgeSoftening;
     }
 
     return profile;
@@ -186,7 +211,10 @@
       x: "0%",
       y: "0%",
       width: "100%",
-      height: "100%"
+      height: "100%",
+      filterUnits: "userSpaceOnUse",
+      primitiveUnits: "userSpaceOnUse",
+      colorInterpolationFilters: "sRGB"
     });
     defsNode.appendChild(filter);
     return filter;
@@ -235,6 +263,8 @@
     var dispUrl;
     var specUrl;
     var scale;
+    var displacementLimit;
+    var filterPadding;
     var filterId = "coherascent-liquid-glass-filter-" + index;
     var filterNode = defsNode.querySelector("#" + filterId);
     var clampedRadius;
@@ -243,8 +273,8 @@
     if (!width || !height) return;
 
     clampedRadius = Math.min(radius, Math.floor(minDim / 2) - 1);
-    bezelWidth = clamp(Math.round(minDim * 0.3), 10, 60);
-    glassThickness = clamp(Math.round(minDim * 0.4), 16, 80);
+    bezelWidth = clamp(Math.round(minDim * 0.18), 12, 38);
+    glassThickness = clamp(Math.round(minDim * 0.24), 18, 52);
     clampedBezel = Math.min(bezelWidth, clampedRadius - 1, minDim / 2 - 1);
 
     if (clampedRadius < 2 || clampedBezel < 2) return;
@@ -255,16 +285,31 @@
       filterNode = createFilterDefinition(filterId);
     }
 
-    profile = calculateRefractionProfile(glassThickness, clampedBezel, SURFACE_FNS.convex_squircle, 3.0, 128);
+    profile = calculateRefractionProfile(glassThickness, clampedBezel, SURFACE_FNS.convex_squircle, 1.45, 192);
     maxDisp = Math.max.apply(
       null,
       Array.prototype.map.call(profile, function (value) {
         return Math.abs(value);
       })
     ) || 1;
+    displacementLimit = clamp(Math.round(Math.min(clampedBezel * 1.15, glassThickness * 0.9)), 14, 36);
+    if (maxDisp > displacementLimit) {
+      var dispScale = displacementLimit / maxDisp;
+
+      profile = Array.prototype.map.call(profile, function (value) {
+        return value * dispScale;
+      });
+      maxDisp = displacementLimit;
+    }
     dispUrl = generateDisplacementMap(width, height, clampedRadius, clampedBezel, profile, maxDisp);
     specUrl = generateSpecularMap(width, height, clampedRadius, clampedBezel * 2.5, Math.PI / 3);
     scale = maxDisp;
+    filterPadding = Math.max(clampedBezel + 8, Math.ceil(scale * 1.5));
+
+    filterNode.setAttribute("x", String(-filterPadding));
+    filterNode.setAttribute("y", String(-filterPadding));
+    filterNode.setAttribute("width", String(width + filterPadding * 2));
+    filterNode.setAttribute("height", String(height + filterPadding * 2));
 
     filterNode.innerHTML = [
       '<feGaussianBlur in="SourceGraphic" stdDeviation="0.3" result="blurred_source"></feGaussianBlur>',
