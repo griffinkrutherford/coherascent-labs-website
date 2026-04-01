@@ -19,9 +19,11 @@
   if (!cards.length) return;
 
   var svgNamespace = "http://www.w3.org/2000/svg";
+  var root = document.documentElement;
   var defsHost = document.getElementById("coherascent-liquid-glass-defs");
   var defsNode;
   var resizeTimer;
+  var scrollTimer;
 
   if (!defsHost) {
     defsHost = document.createElementNS(svgNamespace, "svg");
@@ -303,7 +305,17 @@
     resizeTimer = window.setTimeout(rebuildAll, 40);
   }
 
+  function handleScroll() {
+    root.classList.add("is-liquid-glass-scrolling");
+    window.clearTimeout(scrollTimer);
+    scrollTimer = window.setTimeout(function () {
+      root.classList.remove("is-liquid-glass-scrolling");
+      scheduleRebuild();
+    }, 140);
+  }
+
   window.addEventListener("resize", scheduleRebuild);
+  window.addEventListener("scroll", handleScroll, { passive: true });
 
   if (typeof ResizeObserver !== "undefined") {
     var observer = new ResizeObserver(scheduleRebuild);

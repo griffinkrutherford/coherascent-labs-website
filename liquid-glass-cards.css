@@ -20,6 +20,7 @@ html[data-theme="light"] {
   background-image: none !important;
   border-color: transparent !important;
   overflow: hidden;
+  contain: paint;
 }
 
 .liquid-glass-card > .liquid-glass-layer {
@@ -34,6 +35,8 @@ html[data-theme="light"] {
   backdrop-filter: url(#coherascent-liquid-glass-filter-fallback);
   -webkit-backdrop-filter: url(#coherascent-liquid-glass-filter-fallback);
   background: transparent;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .liquid-glass-card > .liquid-glass-overlay {
@@ -53,6 +56,11 @@ html[data-theme="light"] {
   height: 0;
   overflow: hidden;
   pointer-events: none;
+}
+
+html.is-liquid-glass-scrolling .liquid-glass-card > .liquid-glass-filter {
+  backdrop-filter: blur(14px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.2) !important;
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
