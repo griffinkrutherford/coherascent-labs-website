@@ -312,7 +312,7 @@
     filterNode.setAttribute("height", String(height + filterPadding * 2));
 
     filterNode.innerHTML = [
-      '<feGaussianBlur in="SourceGraphic" stdDeviation="0.3" result="blurred_source"></feGaussianBlur>',
+      '<feGaussianBlur in="SourceGraphic" stdDeviation="0.48" result="blurred_source"></feGaussianBlur>',
       '<feImage href="' + dispUrl + '" x="0" y="0" width="' + width + '" height="' + height + '" result="disp_map"></feImage>',
       '<feDisplacementMap in="blurred_source" in2="disp_map" scale="' + scale + '" xChannelSelector="R" yChannelSelector="G" result="displaced"></feDisplacementMap>',
       '<feColorMatrix in="displaced" type="saturate" values="4" result="displaced_sat"></feColorMatrix>',

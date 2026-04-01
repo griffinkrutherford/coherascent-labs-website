@@ -1,15 +1,15 @@
 :root {
   --liquid-glass-tint-color: 255, 255, 255;
-  --liquid-glass-tint-opacity: 0.06;
-  --liquid-glass-shadow-color: rgba(255, 255, 255, 0.42);
-  --liquid-glass-shadow-blur: 20px;
+  --liquid-glass-tint-opacity: 0.09;
+  --liquid-glass-shadow-color: rgba(255, 255, 255, 0.48);
+  --liquid-glass-shadow-blur: 22px;
   --liquid-glass-shadow-spread: -5px;
 }
 
 html[data-theme="light"] {
-  --liquid-glass-tint-opacity: 0.16;
-  --liquid-glass-shadow-color: rgba(255, 255, 255, 0.62);
-  --liquid-glass-shadow-blur: 18px;
+  --liquid-glass-tint-opacity: 0.2;
+  --liquid-glass-shadow-color: rgba(255, 255, 255, 0.68);
+  --liquid-glass-shadow-blur: 20px;
   --liquid-glass-shadow-spread: -4px;
 }
 
