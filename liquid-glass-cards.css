@@ -1,16 +1,16 @@
 :root {
   --liquid-glass-tint-color: 255, 255, 255;
-  --liquid-glass-tint-opacity: 0.09;
-  --liquid-glass-shadow-color: rgba(255, 255, 255, 0.48);
-  --liquid-glass-shadow-blur: 22px;
+  --liquid-glass-tint-opacity: 0.06;
+  --liquid-glass-shadow-blur: 20px;
   --liquid-glass-shadow-spread: -5px;
+  --liquid-glass-shadow-color: rgba(255, 255, 255, 0.45);
+  --liquid-glass-outer-shadow-blur: 24px;
 }
 
 html[data-theme="light"] {
-  --liquid-glass-tint-opacity: 0.2;
-  --liquid-glass-shadow-color: rgba(255, 255, 255, 0.68);
-  --liquid-glass-shadow-blur: 20px;
-  --liquid-glass-shadow-spread: -4px;
+  --liquid-glass-tint-opacity: 0.1;
+  --liquid-glass-shadow-color: rgba(255, 255, 255, 0.58);
+  --liquid-glass-outer-shadow-blur: 20px;
 }
 
 .liquid-glass-card {
@@ -19,6 +19,7 @@ html[data-theme="light"] {
   background: transparent !important;
   background-image: none !important;
   border-color: transparent !important;
+  box-shadow: 0 4px var(--liquid-glass-outer-shadow-blur) rgba(0, 0, 0, 0.18);
 }
 
 .liquid-glass-card > .liquid-glass-layer {
@@ -30,16 +31,16 @@ html[data-theme="light"] {
 
 .liquid-glass-card > .liquid-glass-filter {
   z-index: -1;
-  backdrop-filter: url(#coherascent-liquid-glass-filter-fallback);
-  -webkit-backdrop-filter: url(#coherascent-liquid-glass-filter-fallback);
   background: transparent;
   isolation: isolate;
+  backdrop-filter: blur(0.3px);
+  -webkit-backdrop-filter: blur(0.3px);
 }
 
 .liquid-glass-card > .liquid-glass-overlay {
   z-index: 1;
-  box-shadow: inset 0 0 var(--liquid-glass-shadow-blur) var(--liquid-glass-shadow-spread) var(--liquid-glass-shadow-color);
   background-color: rgba(var(--liquid-glass-tint-color), var(--liquid-glass-tint-opacity));
+  box-shadow: inset 0 0 var(--liquid-glass-shadow-blur) var(--liquid-glass-shadow-spread) var(--liquid-glass-shadow-color);
 }
 
 .liquid-glass-card > :not(.liquid-glass-layer) {
