@@ -1868,427 +1868,6 @@
       white-space: nowrap;
     }
 
-    .knowledge-carousel {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-      gap: 22px;
-      padding: 26px;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 18% 18%, rgba(100, 168, 255, 0.12), transparent 24%),
-        radial-gradient(circle at 84% 20%, rgba(164, 123, 255, 0.12), transparent 22%),
-        radial-gradient(circle at 74% 82%, rgba(255, 93, 135, 0.1), transparent 24%),
-        linear-gradient(160deg, rgba(10, 20, 40, 0.9), rgba(7, 14, 29, 0.96));
-      box-shadow: var(--glow);
-      overflow: hidden;
-    }
-
-    .knowledge-carousel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(520px 280px at 0% 0%, rgba(164, 123, 255, 0.08), transparent 60%),
-        radial-gradient(460px 260px at 100% 100%, rgba(100, 168, 255, 0.08), transparent 60%);
-      pointer-events: none;
-    }
-
-    html[data-theme="light"] .knowledge-carousel {
-      background:
-        radial-gradient(circle at 18% 18%, rgba(79, 132, 214, 0.12), transparent 24%),
-        radial-gradient(circle at 84% 20%, rgba(127, 99, 214, 0.1), transparent 22%),
-        radial-gradient(circle at 74% 82%, rgba(217, 106, 140, 0.1), transparent 24%),
-        linear-gradient(160deg, rgba(255, 252, 248, 0.96), rgba(244, 239, 246, 0.94));
-      box-shadow:
-        0 22px 42px rgba(138, 151, 181, 0.14),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.32);
-    }
-
-    .knowledge-carousel > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .knowledge-carousel__intro {
-      display: grid;
-      align-content: start;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .knowledge-carousel__eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .knowledge-carousel__eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
-      box-shadow: 0 0 12px rgba(100, 168, 255, 0.24);
-    }
-
-    .knowledge-carousel__title {
-      margin: 0;
-      font-size: 32px;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      max-width: 10ch;
-    }
-
-    .knowledge-carousel__copy {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 14px;
-      max-width: 44ch;
-    }
-
-    .knowledge-carousel__summary {
-      display: grid;
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .knowledge-carousel__summary-label {
-      color: rgba(226, 238, 255, 0.84);
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__summary-label {
-      color: rgba(71, 88, 118, 0.9);
-    }
-
-    .knowledge-carousel__chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .knowledge-carousel__chips li {
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(124, 247, 255, 0.14);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text);
-      font-size: 12px;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__chips li {
-      border-color: rgba(127, 99, 214, 0.14);
-      background: rgba(255, 255, 255, 0.74);
-      color: rgba(64, 80, 110, 0.92);
-    }
-
-    .knowledge-carousel__stage {
-      position: relative;
-      min-height: 340px;
-      padding: 20px;
-      border-radius: 24px;
-      border: 1px solid rgba(100, 168, 255, 0.14);
-      background:
-        radial-gradient(circle at 18% 20%, rgba(100, 168, 255, 0.14), transparent 26%),
-        radial-gradient(circle at 82% 18%, rgba(164, 123, 255, 0.16), transparent 22%),
-        linear-gradient(180deg, rgba(8, 17, 34, 0.78), rgba(5, 12, 24, 0.92));
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
-        inset 0 18px 34px rgba(255, 255, 255, 0.015);
-      overflow: hidden;
-    }
-
-    .knowledge-carousel__stage::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(1px 1px at 24px 38px, rgba(255, 255, 255, 0.42) 98%, transparent 100%),
-        radial-gradient(1px 1px at 84% 28px, rgba(100, 168, 255, 0.42) 98%, transparent 100%),
-        radial-gradient(1px 1px at 72% 74%, rgba(255, 93, 135, 0.34) 98%, transparent 100%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 24%);
-      pointer-events: none;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__stage {
-      border-color: rgba(127, 99, 214, 0.12);
-      background:
-        radial-gradient(circle at 18% 20%, rgba(100, 168, 255, 0.16), transparent 26%),
-        radial-gradient(circle at 82% 18%, rgba(164, 123, 255, 0.14), transparent 22%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(240, 236, 247, 0.92));
-      box-shadow:
-        inset 0 0 0 1px rgba(127, 99, 214, 0.04),
-        inset 0 18px 34px rgba(255, 255, 255, 0.24),
-        0 16px 28px rgba(151, 164, 192, 0.08);
-    }
-
-    html[data-theme="light"] .knowledge-carousel__stage::before {
-      background:
-        radial-gradient(1px 1px at 24px 38px, rgba(109, 126, 160, 0.32) 98%, transparent 100%),
-        radial-gradient(1px 1px at 84% 28px, rgba(79, 132, 214, 0.24) 98%, transparent 100%),
-        radial-gradient(1px 1px at 72% 74%, rgba(217, 106, 140, 0.22) 98%, transparent 100%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 24%);
-    }
-
-    .knowledge-carousel__slide {
-      position: absolute;
-      inset: 20px 20px 90px;
-      display: grid;
-      align-content: start;
-      gap: 14px;
-      opacity: 0;
-      transform: translateY(20px) scale(0.985);
-      pointer-events: none;
-      transition: opacity 360ms ease, transform 360ms ease;
-    }
-
-    .knowledge-carousel__slide.is-active {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      pointer-events: auto;
-    }
-
-    .knowledge-carousel__slide-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .knowledge-carousel__slide-count {
-      color: rgba(226, 238, 255, 0.48);
-      font-size: 32px;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      font-weight: 700;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__slide-count {
-      color: rgba(95, 110, 140, 0.36);
-    }
-
-    .knowledge-carousel__slide-kicker {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(124, 247, 255, 0.14);
-      background: rgba(255, 255, 255, 0.05);
-      color: rgba(237, 245, 255, 0.88);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__slide-kicker {
-      border-color: rgba(127, 99, 214, 0.14);
-      background: rgba(255, 255, 255, 0.72);
-      color: rgba(74, 90, 120, 0.92);
-    }
-
-    .knowledge-carousel__slide-title {
-      margin: 0;
-      font-size: 28px;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      max-width: 12ch;
-    }
-
-    .knowledge-carousel__slide-text,
-    .knowledge-carousel__slide-note {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 15px;
-      max-width: 46ch;
-    }
-
-    .knowledge-carousel__slide-note {
-      color: rgba(226, 238, 255, 0.76);
-      font-size: 13px;
-      letter-spacing: 0.02em;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__slide-note {
-      color: rgba(86, 101, 130, 0.82);
-    }
-
-    .knowledge-carousel__signals {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .knowledge-carousel__signals li {
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(124, 247, 255, 0.14);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text);
-      font-size: 11px;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__signals li {
-      border-color: rgba(127, 99, 214, 0.12);
-      background: rgba(255, 255, 255, 0.68);
-      color: rgba(67, 83, 113, 0.9);
-    }
-
-    .knowledge-carousel__controls {
-      position: absolute;
-      left: 20px;
-      right: 20px;
-      bottom: 18px;
-      display: grid;
-      gap: 12px;
-      z-index: 2;
-    }
-
-    .knowledge-carousel__progress {
-      display: grid;
-      gap: 8px;
-    }
-
-    .knowledge-carousel__progress-label {
-      color: rgba(201, 221, 250, 0.72);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__progress-label {
-      color: rgba(98, 112, 140, 0.76);
-    }
-
-    .knowledge-carousel__progress-track {
-      display: block;
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(237, 245, 255, 0.08);
-      overflow: hidden;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__progress-track {
-      background: rgba(109, 126, 160, 0.16);
-    }
-
-    .knowledge-carousel__progress-fill {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      transform: scaleX(0.25);
-      transform-origin: left center;
-      background: linear-gradient(90deg, rgba(100, 168, 255, 0.92), rgba(164, 123, 255, 0.88), rgba(255, 93, 135, 0.82));
-      transition: transform 360ms ease;
-    }
-
-    .knowledge-carousel__control-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .knowledge-carousel__dots {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .knowledge-carousel__dot {
-      width: 10px;
-      height: 10px;
-      padding: 0;
-      border: 0;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.18);
-      cursor: pointer;
-      transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
-    }
-
-    .knowledge-carousel__dot.is-active {
-      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
-      box-shadow: 0 0 14px rgba(100, 168, 255, 0.26);
-      transform: scale(1.15);
-    }
-
-    html[data-theme="light"] .knowledge-carousel__dot {
-      background: rgba(109, 126, 160, 0.24);
-    }
-
-    .knowledge-carousel__nav {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .knowledge-carousel__button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 62px;
-      height: 38px;
-      padding: 0 14px;
-      border: 1px solid rgba(124, 247, 255, 0.14);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      font: inherit;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
-    }
-
-    html[data-theme="light"] .knowledge-carousel__button {
-      border-color: rgba(127, 99, 214, 0.14);
-      background: rgba(255, 255, 255, 0.68);
-      color: rgba(67, 83, 113, 0.92);
-    }
-
-    .knowledge-carousel__button:hover,
-    .knowledge-carousel__button:focus-visible,
-    .knowledge-carousel__dot:hover,
-    .knowledge-carousel__dot:focus-visible {
-      outline: none;
-      transform: translateY(-1px);
-      border-color: rgba(124, 247, 255, 0.34);
-      background: rgba(255, 255, 255, 0.09);
-    }
-
-    html[data-theme="light"] .knowledge-carousel__button:hover,
-    html[data-theme="light"] .knowledge-carousel__button:focus-visible {
-      border-color: rgba(127, 99, 214, 0.28);
-      background: rgba(255, 255, 255, 0.86);
-    }
-
 
     .feedback-scene {
       padding: 18px;
@@ -3981,10 +3560,6 @@
         grid-template-columns: 1fr;
       }
 
-      .knowledge-carousel {
-        grid-template-columns: 1fr;
-      }
-
       .voice-flow__feature {
         grid-template-columns: 1fr;
       }
@@ -4063,80 +3638,6 @@
 
       .voice-flow {
         padding: 18px;
-      }
-
-      .knowledge-carousel {
-        gap: 18px;
-        padding: 18px;
-      }
-
-      .knowledge-carousel__title {
-        max-width: none;
-        font-size: 24px;
-      }
-
-      .knowledge-carousel__chips {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 2px;
-      }
-
-      .knowledge-carousel__chips li {
-        flex: 0 0 auto;
-        padding: 6px 10px;
-        font-size: 10px;
-      }
-
-      .knowledge-carousel__stage {
-        min-height: 390px;
-        padding: 18px;
-      }
-
-      .knowledge-carousel__slide {
-        inset: 18px 18px 96px;
-        gap: 12px;
-      }
-
-      .knowledge-carousel__slide-count {
-        font-size: 24px;
-      }
-
-      .knowledge-carousel__slide-kicker,
-      .knowledge-carousel__progress-label,
-      .knowledge-carousel__signals li,
-      .knowledge-carousel__button {
-        font-size: 10px;
-      }
-
-      .knowledge-carousel__slide-title {
-        max-width: none;
-        font-size: 22px;
-      }
-
-      .knowledge-carousel__slide-text,
-      .knowledge-carousel__slide-note {
-        font-size: 13px;
-        line-height: 1.6;
-      }
-
-      .knowledge-carousel__controls {
-        left: 18px;
-        right: 18px;
-        bottom: 16px;
-      }
-
-      .knowledge-carousel__control-row {
-        align-items: flex-start;
-      }
-
-      .knowledge-carousel__dots {
-        gap: 6px;
-      }
-
-      .knowledge-carousel__button {
-        min-width: 52px;
-        height: 34px;
-        padding: 0 12px;
       }
 
       .processing-card {
@@ -4430,11 +3931,8 @@
       .processing-scene__planet,
       .processing-scene__nebula,
       .processing-scene__spark,
-      .processing-scene__signal span,
-      .knowledge-carousel__slide,
-      .knowledge-carousel__progress-fill {
+      .processing-scene__signal span {
         animation: none;
-        transition: none;
       }
     }
 
@@ -5043,127 +4541,43 @@
 
     <section class="section" aria-labelledby="retrieval-title">
       <h2 class="section-title" id="retrieval-title">Credible Knowledge Retrieval</h2>
-      <div class="knowledge-carousel" data-knowledge-carousel data-liquid-glass>
-        <div class="knowledge-carousel__intro">
-          <p class="knowledge-carousel__eyebrow">Grounded Retrieval</p>
-          <h3 class="knowledge-carousel__title">Only credible sources, matched to the subject.</h3>
-          <p class="knowledge-carousel__copy">
-            When the platform needs outside knowledge for feedback, hints, or remediation, it does not
-            retrieve from a generic open web pool. It routes each question through a subject-aware
-            retrieval layer that draws only from approved, credible sources for that discipline and
-            keeps an evidence trail for every explanation it returns.
+      <div class="note-card" data-liquid-glass>
+        <p>
+          When the platform needs outside knowledge for feedback, hints, or remediation, it does not
+          retrieve from a generic open web pool. It routes each question through a subject-aware
+          retrieval layer that draws only from approved, credible sources for that discipline and keeps
+          an evidence trail for every explanation it returns.
+        </p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item timeline-item--moon" data-liquid-glass>
+          <span>Subject Router</span>
+          <p>
+            The app first identifies the domain of the task, such as mathematics, history, law,
+            medicine, or science, then queries only the vetted corpus assigned to that subject.
           </p>
-          <div class="knowledge-carousel__summary">
-            <span class="knowledge-carousel__summary-label">Approved source lanes</span>
-            <ul class="knowledge-carousel__chips" aria-label="Approved source lanes">
-              <li>Textbooks</li>
-              <li>Peer-Reviewed Research</li>
-              <li>Primary Sources</li>
-              <li>Official Standards</li>
-              <li>Statutes &amp; Opinions</li>
-              <li>Clinical Guidelines</li>
-            </ul>
-          </div>
         </div>
-        <div class="knowledge-carousel__stage" aria-live="polite">
-          <section class="knowledge-carousel__slide is-active" data-knowledge-slide="0" aria-hidden="false" aria-label="Subject router">
-            <div class="knowledge-carousel__slide-meta">
-              <span class="knowledge-carousel__slide-count">01</span>
-              <span class="knowledge-carousel__slide-kicker">Subject Router</span>
-            </div>
-            <h3 class="knowledge-carousel__slide-title">The question enters the right knowledge lane first.</h3>
-            <p class="knowledge-carousel__slide-text">
-              The app identifies whether the task belongs to mathematics, history, law, medicine, or
-              science before retrieval begins, then queries only the vetted corpus assigned to that
-              subject.
-            </p>
-            <ul class="knowledge-carousel__signals" aria-label="Subject router signals">
-              <li>Discipline Match</li>
-              <li>Vetted Corpus</li>
-              <li>No Cross-Domain Drift</li>
-            </ul>
-            <p class="knowledge-carousel__slide-note">
-              Mathematics stays in mathematics. Clinical reasoning stays in clinical guidance.
-            </p>
-          </section>
-          <section class="knowledge-carousel__slide" data-knowledge-slide="1" aria-hidden="true" aria-label="Approved sources">
-            <div class="knowledge-carousel__slide-meta">
-              <span class="knowledge-carousel__slide-count">02</span>
-              <span class="knowledge-carousel__slide-kicker">Approved Sources</span>
-            </div>
-            <h3 class="knowledge-carousel__slide-title">Each discipline stays anchored to authoritative material.</h3>
-            <p class="knowledge-carousel__slide-text">
-              Retrieval is restricted to materials such as textbooks, peer-reviewed literature, primary
-              historical sources, official standards, statutes, court opinions, and clinical guidelines
-              depending on the educational context.
-            </p>
-            <ul class="knowledge-carousel__signals" aria-label="Approved source signals">
-              <li>Authoritative Only</li>
-              <li>Curriculum Aligned</li>
-              <li>Subject Specific</li>
-            </ul>
-            <p class="knowledge-carousel__slide-note">
-              The retrieval layer favors source quality first, then relevance inside that approved lane.
-            </p>
-          </section>
-          <section class="knowledge-carousel__slide" data-knowledge-slide="2" aria-hidden="true" aria-label="Evidence trail">
-            <div class="knowledge-carousel__slide-meta">
-              <span class="knowledge-carousel__slide-count">03</span>
-              <span class="knowledge-carousel__slide-kicker">Evidence Trail</span>
-            </div>
-            <h3 class="knowledge-carousel__slide-title">Every explanation carries its own receipts.</h3>
-            <p class="knowledge-carousel__slide-text">
-              Each generated explanation, hint, or remediation path ties back to the retrieved source
-              set so instructors and students can inspect what grounded the answer.
-            </p>
-            <ul class="knowledge-carousel__signals" aria-label="Evidence trail signals">
-              <li>Inspectable Grounding</li>
-              <li>Teacher Visibility</li>
-              <li>Citation Path</li>
-            </ul>
-            <p class="knowledge-carousel__slide-note">
-              The system makes it clear what it used, why it used it, and where the explanation came from.
-            </p>
-          </section>
-          <section class="knowledge-carousel__slide" data-knowledge-slide="3" aria-hidden="true" aria-label="Safe fallback">
-            <div class="knowledge-carousel__slide-meta">
-              <span class="knowledge-carousel__slide-count">04</span>
-              <span class="knowledge-carousel__slide-kicker">Safe Fallback</span>
-            </div>
-            <h3 class="knowledge-carousel__slide-title">If support is thin, the system says so.</h3>
-            <p class="knowledge-carousel__slide-text">
-              If the approved knowledge base does not contain enough support, the system abstains,
-              escalates, or asks for instructor review instead of improvising unsupported content.
-            </p>
-            <ul class="knowledge-carousel__signals" aria-label="Safe fallback signals">
-              <li>Abstain</li>
-              <li>Escalate</li>
-              <li>Instructor Review</li>
-            </ul>
-            <p class="knowledge-carousel__slide-note">
-              That keeps the learning loop trustworthy even when the retrieval lane runs out of evidence.
-            </p>
-          </section>
-          <div class="knowledge-carousel__controls">
-            <div class="knowledge-carousel__progress">
-              <span class="knowledge-carousel__progress-label" data-knowledge-count>01 / 04</span>
-              <span class="knowledge-carousel__progress-track">
-                <span class="knowledge-carousel__progress-fill" data-knowledge-progress></span>
-              </span>
-            </div>
-            <div class="knowledge-carousel__control-row">
-              <div class="knowledge-carousel__dots" aria-label="Credible knowledge retrieval navigation">
-                <button class="knowledge-carousel__dot is-active" type="button" data-knowledge-target="0" aria-label="Show subject router" aria-pressed="true"></button>
-                <button class="knowledge-carousel__dot" type="button" data-knowledge-target="1" aria-label="Show approved sources" aria-pressed="false"></button>
-                <button class="knowledge-carousel__dot" type="button" data-knowledge-target="2" aria-label="Show evidence trail" aria-pressed="false"></button>
-                <button class="knowledge-carousel__dot" type="button" data-knowledge-target="3" aria-label="Show safe fallback" aria-pressed="false"></button>
-              </div>
-              <div class="knowledge-carousel__nav">
-                <button class="knowledge-carousel__button" type="button" data-knowledge-prev aria-label="Previous retrieval slide">Prev</button>
-                <button class="knowledge-carousel__button" type="button" data-knowledge-next aria-label="Next retrieval slide">Next</button>
-              </div>
-            </div>
-          </div>
+        <div class="timeline-item timeline-item--comet" data-liquid-glass>
+          <span>Approved Sources</span>
+          <p>
+            Retrieval is restricted to materials such as textbooks, peer-reviewed literature,
+            primary historical sources, official standards, statutes, court opinions, and clinical
+            guidelines depending on the educational context.
+          </p>
+        </div>
+        <div class="timeline-item timeline-item--constellation" data-liquid-glass>
+          <span>Evidence Trail</span>
+          <p>
+            Every generated explanation, hint, or remediation path can be tied back to the retrieved
+            source set so instructors and students can inspect what grounded the answer.
+          </p>
+        </div>
+        <div class="timeline-item timeline-item--orbit" data-liquid-glass>
+          <span>Safe Fallback</span>
+          <p>
+            If the system cannot find enough support inside the approved knowledge base, it abstains,
+            escalates, or asks for instructor review instead of improvising unsupported content.
+          </p>
         </div>
       </div>
     </section>
@@ -5306,6 +4720,5 @@
   </script>
   <script src="../applied-handwriting-demo.js"></script>
   <script src="../applied-response-slideshow.js"></script>
-  <script src="../applied-knowledge-carousel.js"></script>
 </body>
 </html>
