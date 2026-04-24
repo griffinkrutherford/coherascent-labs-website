@@ -21,8 +21,8 @@ The phone shell, device frame, and hardware styling stay the same. Only the scre
 
 Place these in `mobile-app-assets/screenshots/applied/question-prompts/`:
 
-- `calculus-question.png`
-- `history-question.png`
+- `1.png`
+- `2.png`
 - `lsat-question.png`
 - `sat-question.png`
 - `grade-4-question.png`
