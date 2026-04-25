@@ -23,17 +23,17 @@ Place these in `mobile-app-assets/screenshots/applied/question-prompts/`:
 
 - `1.png`
 - `2.png`
-- `lsat-question.png`
-- `sat-question.png`
-- `grade-4-question.png`
-- `mcat-question.png`
-- `gre-question.png`
-- `phd-exam-question.png`
-- `algorithms-question.png`
-- `act-question.png`
-- `ap-bio-question.png`
-- `ib-math-question.png`
-- `usmle-step-2-question.png`
+- `3.png`
+- `4.png`
+- `5.png`
+- `6.png`
+- `7.png`
+- `8.png`
+- `9.png`
+- `10.png`
+- `11.png`
+- `12.png`
+- `13.png`
 
 These map to the large phone mock inside the handwritten response carousel.
 
