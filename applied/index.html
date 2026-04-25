@@ -911,13 +911,15 @@
 
     .capture-scene__page {
       position: absolute;
-      left: 28px;
-      top: 30px;
-      width: 124px;
-      height: 172px;
-      padding: 16px 14px 14px 18px;
+      left: 24px;
+      top: 34px;
+      width: 136px;
+      height: auto;
+      aspect-ratio: 1216 / 1294;
+      padding: 0;
       border-radius: 14px;
       background: linear-gradient(180deg, rgba(250, 252, 255, 0.98), rgba(235, 240, 248, 0.94));
+      overflow: hidden;
       transform: rotate(-7deg);
       box-shadow:
         inset 0 0 0 1px rgba(100, 168, 255, 0.06),
@@ -925,13 +927,20 @@
     }
 
     .capture-scene__page::before {
-      content: "";
+      content: none;
       position: absolute;
       left: 12px;
       top: 10px;
       bottom: 10px;
       width: 2px;
       background: linear-gradient(180deg, transparent, rgba(217, 106, 140, 0.28), transparent);
+    }
+
+    .capture-scene__page-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .capture-scene__scribble {
@@ -3874,9 +3883,9 @@
 
       .capture-scene__page {
         left: 18px;
-        top: 28px;
-        width: 104px;
-        height: 146px;
+        top: 34px;
+        width: 112px;
+        height: auto;
       }
 
       .capture-scene__phone {
@@ -4393,14 +4402,10 @@
             <div class="processing-card__visual capture-scene" aria-hidden="true">
               <div class="capture-scene__desk"></div>
               <div class="capture-scene__page">
-                <span class="capture-scene__scribble capture-scene__scribble--mid"></span>
-                <span class="capture-scene__scribble capture-scene__scribble--short"></span>
-                <span class="capture-scene__scribble capture-scene__scribble--mid"></span>
-                <span class="capture-scene__scribble capture-scene__scribble--tiny"></span>
-                <span class="capture-scene__scribble capture-scene__scribble--short"></span>
+                <img class="capture-scene__page-image" src="../mobile-app-assets/screenshots/screenshot-workflow/1/handwritten-page.png" alt="">
               </div>
               <div class="capture-scene__phone">
-                <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/workflow/capture-camera.png">
+                <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock.png">
                   <span class="capture-scene__upload">Scan Work</span>
                   <div class="capture-scene__preview">
                     <div class="capture-scene__preview-sheet">

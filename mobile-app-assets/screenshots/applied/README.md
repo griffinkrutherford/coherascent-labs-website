@@ -39,9 +39,13 @@ These map to the large phone mock inside the handwritten response carousel.
 
 ## Workflow Screens
 
-Place these in `mobile-app-assets/screenshots/applied/workflow/`:
+The first screenshot workflow card uses these files from `mobile-app-assets/screenshots/screenshot-workflow/1/`:
 
-- `capture-camera.png`
+- `handwritten-page.png`
+- `phone-mock.png`
+
+Place the remaining workflow phone screenshots in `mobile-app-assets/screenshots/applied/workflow/`:
+
 - `process-grading.png`
 - `feedback-low.png`
 - `feedback-mid.png`
@@ -49,7 +53,7 @@ Place these in `mobile-app-assets/screenshots/applied/workflow/`:
 
 These map to the screenshot workflow phones:
 
-- capture camera
+- capture phone and handwritten page
 - processing / grading
 - low-score feedback
 - mid-score feedback
