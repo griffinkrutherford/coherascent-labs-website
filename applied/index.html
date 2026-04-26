@@ -1655,8 +1655,8 @@
 
     .voice-flow__feature {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 0.82fr) minmax(330px, 1.18fr);
+      gap: 34px;
       align-items: center;
       padding: 22px;
       border-radius: 22px;
@@ -1919,12 +1919,12 @@
     }
 
     .voice-scene {
-      --voice-phone-scale: 1.24;
+      --voice-phone-scale: 1.48;
       position: relative;
-      min-height: 340px;
+      min-height: 422px;
       display: grid;
       place-items: center;
-      padding: 20px;
+      padding: 24px;
       border-radius: 22px;
       background:
         radial-gradient(circle at 22% 20%, rgba(100, 168, 255, 0.14), transparent 28%),
@@ -1949,6 +1949,7 @@
       padding: calc(var(--workflow-phone-shell-padding) * var(--voice-phone-scale));
       border-radius: calc(var(--workflow-phone-shell-radius) * var(--voice-phone-scale));
       border: 1px solid rgba(255, 255, 255, 0.14);
+      transform: rotate(-5deg);
     }
 
     .voice-scene__screen {
@@ -4049,8 +4050,8 @@
       }
 
       .voice-scene {
-        --voice-phone-scale: 1.12;
-        min-height: 282px;
+        --voice-phone-scale: 1.2;
+        min-height: 310px;
       }
 
       .voice-scene__phone {
@@ -4278,8 +4279,8 @@
       }
 
       .voice-scene {
-        --voice-phone-scale: 1.12;
-        min-height: 282px;
+        --voice-phone-scale: 1.2;
+        min-height: 310px;
       }
 
       .voice-scene__phone {
