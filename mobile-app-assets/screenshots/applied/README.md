@@ -44,9 +44,12 @@ The first screenshot workflow card uses these files from `mobile-app-assets/scre
 - `handwritten-page.png`
 - `phone-mock.png`
 
+The second screenshot workflow card uses this file from `mobile-app-assets/screenshots/screenshot-workflow/2/`:
+
+- `loading-screen.png`
+
 Place the remaining workflow phone screenshots in `mobile-app-assets/screenshots/applied/workflow/`:
 
-- `process-grading.png`
 - `feedback-low.png`
 - `feedback-mid.png`
 - `feedback-high.png`
