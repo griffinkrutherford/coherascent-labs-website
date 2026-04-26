@@ -148,5 +148,7 @@
     stopAnimation();
   });
 
+  document.addEventListener("coherascent:response-pause", clearMotion);
+
   window.addEventListener("beforeunload", clearMotion);
 })();

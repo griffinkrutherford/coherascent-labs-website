@@ -6,10 +6,12 @@
   var dots = Array.prototype.slice.call(root.querySelectorAll(".response-carousel__dot"));
   var prevButton = root.querySelector("[data-response-prev]");
   var nextButton = root.querySelector("[data-response-next]");
+  var toggleButton = root.querySelector("[data-response-toggle]");
   if (!slides.length) return;
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var activeIndex = 0;
+  var isPaused = false;
   var lineTimers = [];
   var autoTimer = 0;
   var measurers = [];
@@ -169,7 +171,7 @@
 
   function scheduleAutoAdvance(delay) {
     clearAutoTimer();
-    if (reducedMotion) return;
+    if (reducedMotion || isPaused) return;
     autoTimer = window.setTimeout(function () {
       showSlide(activeIndex + 1);
     }, delay);
@@ -197,7 +199,7 @@
       line.textContent = "";
     });
 
-    if (reducedMotion) {
+    if (reducedMotion || isPaused) {
       lines.forEach(function (line) {
         var fullText = line.getAttribute("data-full-text") || "";
         var layout = getWrappedLayout(line, fullText);
@@ -273,7 +275,7 @@
       detail: { index: activeIndex }
     }));
 
-    if (reducedMotion) return;
+    if (reducedMotion || isPaused) return;
 
     if (activeIndex === 0) {
       clearAutoTimer();
@@ -301,9 +303,49 @@
     });
   }
 
+  function updateToggleButton() {
+    if (!toggleButton) return;
+
+    toggleButton.textContent = isPaused ? "Play" : "Pause";
+    toggleButton.setAttribute("aria-pressed", isPaused ? "true" : "false");
+    toggleButton.setAttribute(
+      "aria-label",
+      isPaused ? "Play handwritten response animation" : "Pause handwritten response animation"
+    );
+  }
+
+  function pauseSlideshow() {
+    if (isPaused) return;
+
+    isPaused = true;
+    clearLineTimers();
+    clearAutoTimer();
+    updateToggleButton();
+    document.dispatchEvent(new CustomEvent("coherascent:response-pause"));
+  }
+
+  function playSlideshow() {
+    if (!isPaused) return;
+
+    isPaused = false;
+    updateToggleButton();
+    showSlide(activeIndex);
+  }
+
+  if (toggleButton) {
+    updateToggleButton();
+    toggleButton.addEventListener("click", function () {
+      if (isPaused) {
+        playSlideshow();
+        return;
+      }
+      pauseSlideshow();
+    });
+  }
+
   root.addEventListener("mouseenter", clearAutoTimer);
   root.addEventListener("mouseleave", function () {
-    if (reducedMotion) return;
+    if (reducedMotion || isPaused) return;
     if (activeIndex === 0) {
       if (calculusFinished) scheduleAutoAdvance(postWritePause);
       return;
@@ -313,7 +355,7 @@
   root.addEventListener("focusin", clearAutoTimer);
   root.addEventListener("focusout", function (event) {
     if (!root.contains(event.relatedTarget)) {
-      if (reducedMotion) return;
+      if (reducedMotion || isPaused) return;
       if (activeIndex === 0) {
         if (calculusFinished) scheduleAutoAdvance(postWritePause);
         return;
@@ -323,7 +365,7 @@
   });
 
   document.addEventListener("coherascent:calculus-finished", function () {
-    if (activeIndex === 0 && !reducedMotion) {
+    if (activeIndex === 0 && !reducedMotion && !isPaused) {
       calculusFinished = true;
       scheduleAutoAdvance(postWritePause);
     }
