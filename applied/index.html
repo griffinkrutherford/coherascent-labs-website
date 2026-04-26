@@ -1953,6 +1953,7 @@
       pointer-events: auto;
     }
 
+    .phone-mock-lightbox__stage [data-phone-mock],
     .phone-mock-lightbox__stage .capture-scene__phone,
     .phone-mock-lightbox__stage .processing-scene__phone,
     .phone-mock-lightbox__stage .feedback-scene__phone,
@@ -2934,6 +2935,7 @@
       color: rgba(80, 96, 126, 0.84);
     }
 
+    [data-phone-mock],
     .capture-scene__phone,
     .processing-scene__phone,
     .feedback-scene__phone,
@@ -2963,6 +2965,7 @@
     }
 
 
+    [data-phone-mock]::after,
     .capture-scene__phone::after,
     .processing-scene__phone::after,
     .feedback-scene__phone::after,
@@ -2988,6 +2991,7 @@
       border-radius: calc(var(--response-phone-shell-radius) - 1px);
     }
 
+    [data-phone-mock]::after,
     .capture-scene__phone::after,
     .processing-scene__phone::after,
     .feedback-scene__phone::after,
@@ -3008,6 +3012,7 @@
     }
 
 
+    [data-phone-mock]::before,
     .capture-scene__phone::before,
     .processing-scene__phone::before,
     .feedback-scene__phone::before,
@@ -4458,7 +4463,7 @@
               <div class="response-carousel__board response-carousel__board--tight" aria-hidden="true">
                 <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation"></svg>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/1.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/1-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4483,7 +4488,7 @@
                 <p class="response-carousel__line">and faster access to goods, but also pollution,</p>
                 <p class="response-carousel__line">crowding, and sharper class divisions.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/2.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/2-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4508,7 +4513,7 @@
                 <p class="response-carousel__line response-carousel__line--small">No reviewed ordinance is exempt from committee notes.</p>
                 <p class="response-carousel__line response-carousel__line--small">Therefore this ordinance is not exempt.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/3.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/3-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4533,7 +4538,7 @@
                 <p class="response-carousel__line">= 12 - 1</p>
                 <p class="response-carousel__line">= 11</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/4.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/4-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4559,7 +4564,7 @@
                 <p class="response-carousel__line">3 × 6 = 18, plus 2 = 20</p>
                 <p class="response-carousel__line">answer = 2,082</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/5.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/5-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4584,7 +4589,7 @@
                 <p class="response-carousel__line response-carousel__line--small">So the dissociation curve shifts right.</p>
                 <p class="response-carousel__line response-carousel__line--small">Active tissue gets more oxygen unloading.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/6.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/6-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4609,7 +4614,7 @@
                 <p class="response-carousel__line">= 4k(k + 1)</p>
                 <p class="response-carousel__line response-carousel__line--small">Since k(k + 1) is even, the expression is divisible by 8.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/7.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/7-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4633,7 +4638,7 @@
                 <p class="response-carousel__line response-carousel__line--small">Since λᵢ &gt; 0, we get Σ λᵢ yᵢ² &gt; 0 whenever x ≠ 0.</p>
                 <p class="response-carousel__line response-carousel__line--tiny">Therefore the quadratic f(x) = 1/2 xᵀAx - bᵀx is strictly convex, so the minimizer is unique.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/8.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/8-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4658,7 +4663,7 @@
                 <p class="response-carousel__line response-carousel__line--small">That compares skip vs take.</p>
                 <p class="response-carousel__line response-carousel__line--small">Backtrack to recover the set.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/9.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/9-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4684,7 +4689,7 @@
                 <p class="response-carousel__line">(x + 16)(x - 9) = 0</p>
                 <p class="response-carousel__line">width = 9</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/10.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/10-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4709,7 +4714,7 @@
                 <p class="response-carousel__line response-carousel__line--small">That change is plasmolysis.</p>
                 <p class="response-carousel__line response-carousel__line--small">So the cell shrinks in a hypertonic solution.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/11.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/11-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4734,7 +4739,7 @@
                 <p class="response-carousel__line response-carousel__line--small">and that matches P(A ∩ B).</p>
                 <p class="response-carousel__line response-carousel__line--small">So the events are independent.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/12.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/12-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4759,7 +4764,7 @@
                 <p class="response-carousel__line response-carousel__line--small">is the best next test.</p>
                 <p class="response-carousel__line response-carousel__line--small">A clot could travel to the lungs.</p>
               </div>
-              <div class="response-carousel__question-phone">
+              <div class="response-carousel__question-phone" data-phone-mock="question">
                 <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/13.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/13-low.png">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
@@ -4872,7 +4877,7 @@
               <div class="capture-scene__page">
                 <img class="capture-scene__page-image" src="../mobile-app-assets/screenshots/screenshot-workflow/1/handwritten-page.png" alt="">
               </div>
-              <div class="capture-scene__phone">
+              <div class="capture-scene__phone" data-phone-mock="camera">
                 <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock.png" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-low.png">
                   <span class="capture-scene__upload">Scan Work</span>
                   <div class="capture-scene__preview">
@@ -4898,7 +4903,7 @@
             <div class="processing-card__step">02 Process</div>
             <h3 class="processing-card__title">AI reads the handwriting and grades it</h3>
             <div class="processing-card__visual processing-scene">
-              <div class="processing-scene__phone">
+              <div class="processing-scene__phone" data-phone-mock="processing">
                 <div class="processing-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen.png" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-low.png">
                   <div class="processing-scene__cosmos">
                     <div class="processing-scene__nebula processing-scene__nebula--one"></div>
@@ -4955,7 +4960,7 @@
             <h3 class="processing-card__title">Return graded work with precise, step-level guidance</h3>
             <div class="processing-card__visual feedback-scene">
               <div class="feedback-scene__deck">
-                <div class="feedback-scene__phone feedback-scene__phone--left feedback-scene__phone--low">
+                <div class="feedback-scene__phone feedback-scene__phone--left feedback-scene__phone--low" data-phone-mock="feedback">
                   <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/workflow/feedback-low.png">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
@@ -4967,7 +4972,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="feedback-scene__phone feedback-scene__phone--center feedback-scene__phone--mid">
+                <div class="feedback-scene__phone feedback-scene__phone--center feedback-scene__phone--mid" data-phone-mock="feedback">
                   <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/workflow/feedback-mid.png">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
@@ -4979,7 +4984,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="feedback-scene__phone feedback-scene__phone--right feedback-scene__phone--high">
+                <div class="feedback-scene__phone feedback-scene__phone--right feedback-scene__phone--high" data-phone-mock="feedback">
                   <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/workflow/feedback-high.png">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
@@ -5004,7 +5009,7 @@
 
     <section class="section" aria-labelledby="voice-title">
       <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
-      <div class="voice-flow" data-liquid-glass data-liquid-glass-frosted>
+      <div class="voice-flow" data-liquid-glass data-liquid-glass-variant="frosted">
         <div class="voice-flow__carousel" data-input-carousel>
           <div class="voice-flow__controls" aria-label="Input method carousel">
             <button class="voice-flow__control is-active" type="button" data-input-target="0" aria-pressed="true">Voice</button>
@@ -5024,7 +5029,7 @@
               </ul>
             </div>
             <div class="voice-scene">
-              <div class="voice-scene__phone">
+              <div class="voice-scene__phone" data-phone-mock="input">
                 <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/voice/voice-mode-low.png">
                   <div class="voice-scene__topbar">
                     <span class="voice-scene__back">Back</span>
@@ -5076,7 +5081,7 @@
               </ul>
             </div>
             <div class="voice-scene">
-              <div class="voice-scene__phone">
+              <div class="voice-scene__phone" data-phone-mock="input">
                 <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/text/text-input-low.png">
                   <div class="voice-scene__topbar">
                     <span class="voice-scene__back">Back</span>
@@ -5240,30 +5245,6 @@
       control.addEventListener("click", function () {
         showSlide(Number(control.getAttribute("data-input-target") || 0));
       });
-    });
-  })();
-
-  (function () {
-    var phones = document.querySelectorAll(
-      ".capture-scene__phone, .processing-scene__phone, .feedback-scene__phone, .voice-scene__phone, .response-carousel__question-phone"
-    );
-    if (!phones.length) return;
-
-    var hardwareMarkup = [
-      '<div class="phone-shell-buttons" aria-hidden="true">',
-      '  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">',
-      '    <span class="phone-shell-button phone-shell-button--volume"></span>',
-      '    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>',
-      "  </span>",
-      '  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">',
-      '    <span class="phone-shell-button phone-shell-button--power"></span>',
-      "  </span>",
-      "</div>"
-    ].join("");
-
-    phones.forEach(function (phone) {
-      if (phone.querySelector(".phone-shell-buttons")) return;
-      phone.insertAdjacentHTML("beforeend", hardwareMarkup);
     });
   })();
 

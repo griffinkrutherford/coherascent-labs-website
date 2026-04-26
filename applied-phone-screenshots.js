@@ -1,8 +1,8 @@
 (function () {
   var hosts = document.querySelectorAll("[data-screenshot-src]");
-  if (!hosts.length) return;
 
   var phoneSelector = [
+    "[data-phone-mock]",
     ".capture-scene__phone",
     ".processing-scene__phone",
     ".feedback-scene__phone",
@@ -18,9 +18,29 @@
   var activeClone = null;
   var activeTransform = "";
   var isClosing = false;
+  var hardwareMarkup = [
+    '<div class="phone-shell-buttons" aria-hidden="true">',
+    '  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">',
+    '    <span class="phone-shell-button phone-shell-button--volume"></span>',
+    '    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>',
+    "  </span>",
+    '  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">',
+    '    <span class="phone-shell-button phone-shell-button--power"></span>',
+    "  </span>",
+    "</div>"
+  ].join("");
 
   function prefersReducedMotion() {
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function initPhoneHardware() {
+    Array.prototype.forEach.call(document.querySelectorAll(phoneSelector), function (phone) {
+      phone.setAttribute("data-phone-mock", phone.getAttribute("data-phone-mock") || "");
+
+      if (phone.querySelector(".phone-shell-buttons")) return;
+      phone.insertAdjacentHTML("beforeend", hardwareMarkup);
+    });
   }
 
   function ensureModal() {
@@ -230,6 +250,8 @@
       closeModal();
     }
   });
+
+  initPhoneHardware();
 
   Array.prototype.forEach.call(hosts, function (host) {
     var src = host.getAttribute("data-screenshot-src");

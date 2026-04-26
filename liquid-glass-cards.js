@@ -226,9 +226,11 @@
   function ensureLayers(card, filterId) {
     var backdropFilterValue = "url(#" + filterId + ")";
     var existingFilterLayer;
+    var glassVariant = card.getAttribute("data-liquid-glass-variant") || card.getAttribute("data-liquid-glass");
 
-    if (card.hasAttribute("data-liquid-glass-frosted")) {
+    if (card.hasAttribute("data-liquid-glass-frosted") || glassVariant === "frosted") {
       backdropFilterValue += " blur(8px) saturate(1.35)";
+      card.classList.add("liquid-glass-card--frosted");
     }
 
     if (card.dataset.liquidGlassReady === "true") {
