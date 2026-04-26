@@ -2945,14 +2945,9 @@
       top: var(--workflow-phone-island-top);
       left: 50%;
       width: var(--workflow-phone-island-width);
-      height: calc(var(--workflow-phone-island-height) * 2);
+      height: var(--workflow-phone-island-height);
       border-radius: 999px;
-      background:
-        radial-gradient(circle at 72% 50%, rgba(62, 76, 104, 0.92) 0 1.1px, rgba(8, 10, 16, 0.98) 1.2px),
-        linear-gradient(180deg, rgba(20, 23, 31, 0.98), rgba(5, 7, 12, 0.98));
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 1px 0 rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.12);
       transform: translateX(-50%);
       z-index: 30;
     }
@@ -2961,7 +2956,7 @@
     .response-carousel__question-phone::before {
       top: var(--response-phone-island-top);
       width: var(--response-phone-island-width);
-      height: calc(var(--response-phone-island-height) * 2);
+      height: var(--response-phone-island-height);
     }
 
     .voice-scene__phone {
@@ -2977,7 +2972,7 @@
     .voice-scene__phone::before {
       top: calc(var(--workflow-phone-island-top) * var(--voice-phone-scale));
       width: calc(var(--workflow-phone-island-width) * var(--voice-phone-scale));
-      height: calc(var(--workflow-phone-island-height) * var(--voice-phone-scale) * 2);
+      height: calc(var(--workflow-phone-island-height) * var(--voice-phone-scale));
     }
 
     .voice-scene__phone::after {
