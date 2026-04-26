@@ -148,7 +148,18 @@
     stopAnimation();
   });
 
-  document.addEventListener("coherascent:response-pause", clearMotion);
+  document.addEventListener("coherascent:response-pause", function (event) {
+    clearMotion();
+
+    if (event && event.detail && event.detail.index === 0 && isSlideActive()) {
+      finishStatic();
+      return;
+    }
+
+    if (!isSlideActive()) {
+      resetBoard();
+    }
+  });
 
   window.addEventListener("beforeunload", clearMotion);
 })();
