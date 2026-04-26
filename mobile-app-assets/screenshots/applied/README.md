@@ -63,6 +63,6 @@ These map to the screenshot workflow phones:
 
 Place this in `mobile-app-assets/screenshots/applied/voice/`:
 
-- `voice-upload.png`
+- `voice-mode.png`
 
 This maps to the voice upload phone mock.
