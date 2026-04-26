@@ -975,18 +975,6 @@
       animation: capture-float 5.8s ease-in-out infinite;
     }
 
-    .capture-scene__phone::before {
-      content: "";
-      position: absolute;
-      top: var(--workflow-phone-island-top);
-      left: 50%;
-      width: var(--workflow-phone-island-width);
-      height: var(--workflow-phone-island-height);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateX(-50%);
-    }
-
     .capture-scene__camera {
       position: relative;
       width: 100%;
@@ -1250,18 +1238,6 @@
         0 28px 42px rgba(4, 10, 24, 0.42),
         0 0 0 10px rgba(6, 10, 18, 0.22),
         inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-      transform: translateX(-50%);
-    }
-
-    .processing-scene__phone::before {
-      content: "";
-      position: absolute;
-      top: var(--workflow-phone-island-top);
-      left: 50%;
-      width: var(--workflow-phone-island-width);
-      height: var(--workflow-phone-island-height);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
       transform: translateX(-50%);
     }
 
@@ -2263,18 +2239,6 @@
       transform: translateY(14px) scale(0.72);
     }
 
-    .feedback-scene__phone::before {
-      content: "";
-      position: absolute;
-      top: var(--workflow-phone-island-top);
-      left: 50%;
-      width: var(--workflow-phone-island-width);
-      height: var(--workflow-phone-island-height);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateX(-50%);
-    }
-
     .feedback-scene__screen {
       position: relative;
       width: 100%;
@@ -2997,7 +2961,7 @@
     .response-carousel__question-phone::before {
       top: var(--response-phone-island-top);
       width: var(--response-phone-island-width);
-      height: var(--response-phone-island-height);
+      height: calc(var(--response-phone-island-height) * 2);
     }
 
     .voice-scene__phone {
