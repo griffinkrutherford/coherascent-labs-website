@@ -1681,8 +1681,8 @@
 
     .voice-flow__feature {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(240px, 0.95fr);
-      gap: 22px;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+      gap: 28px;
       align-items: center;
       padding: 22px;
       border-radius: 22px;
@@ -1788,11 +1788,12 @@
     }
 
     .voice-scene {
+      --voice-phone-scale: 1.24;
       position: relative;
-      min-height: 290px;
+      min-height: 340px;
       display: grid;
       place-items: center;
-      padding: 16px;
+      padding: 20px;
       border-radius: 22px;
       background:
         radial-gradient(circle at 22% 20%, rgba(100, 168, 255, 0.14), transparent 28%),
@@ -1811,11 +1812,11 @@
 
     .voice-scene__phone {
       position: relative;
-      width: var(--workflow-phone-width);
-      height: var(--workflow-phone-height);
+      width: calc(var(--workflow-phone-width) * var(--voice-phone-scale));
+      height: calc(var(--workflow-phone-height) * var(--voice-phone-scale));
       aspect-ratio: var(--workflow-phone-ratio);
-      padding: var(--workflow-phone-shell-padding);
-      border-radius: var(--workflow-phone-shell-radius);
+      padding: calc(var(--workflow-phone-shell-padding) * var(--voice-phone-scale));
+      border-radius: calc(var(--workflow-phone-shell-radius) * var(--voice-phone-scale));
       border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
@@ -1827,7 +1828,7 @@
       align-content: start;
       gap: 5px;
       padding: 26px 9px 9px;
-      border-radius: var(--workflow-phone-screen-radius);
+      border-radius: calc(var(--workflow-phone-screen-radius) * var(--voice-phone-scale));
       background:
         radial-gradient(circle at 24% 18%, rgba(100, 168, 255, 0.16), transparent 24%),
         radial-gradient(circle at 76% 18%, rgba(164, 123, 255, 0.14), transparent 20%),
@@ -2842,6 +2843,27 @@
       top: var(--response-phone-island-top);
       width: var(--response-phone-island-width);
       height: var(--response-phone-island-height);
+    }
+
+    .voice-scene__phone {
+      --phone-side-offset: calc(var(--workflow-phone-shell-padding) * var(--voice-phone-scale) * -1.5);
+      --phone-button-width: calc(var(--workflow-phone-button-width) * var(--voice-phone-scale));
+      --phone-volume-top: calc(var(--workflow-phone-volume-top) * var(--voice-phone-scale));
+      --phone-volume-height: calc(var(--workflow-phone-volume-height) * var(--voice-phone-scale));
+      --phone-volume-gap: calc(var(--workflow-phone-volume-gap) * var(--voice-phone-scale));
+      --phone-power-top: calc(var(--workflow-phone-power-top) * var(--voice-phone-scale));
+      --phone-power-height: calc(var(--workflow-phone-power-height) * var(--voice-phone-scale));
+    }
+
+    .voice-scene__phone::before {
+      top: calc(var(--workflow-phone-island-top) * var(--voice-phone-scale));
+      width: calc(var(--workflow-phone-island-width) * var(--voice-phone-scale));
+      height: calc(var(--workflow-phone-island-height) * var(--voice-phone-scale) * 2);
+    }
+
+    .voice-scene__phone::after {
+      inset: calc(var(--workflow-phone-overlay-inset) * var(--voice-phone-scale));
+      border-radius: calc((var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset)) * var(--voice-phone-scale));
     }
 
     .response-carousel__question-phone {
@@ -3885,12 +3907,13 @@
       }
 
       .voice-scene {
-        min-height: 250px;
+        --voice-phone-scale: 1.12;
+        min-height: 282px;
       }
 
       .voice-scene__phone {
-        width: var(--workflow-phone-width-mobile);
-        height: var(--workflow-phone-height-mobile);
+        width: calc(var(--workflow-phone-width-mobile) * var(--voice-phone-scale));
+        height: calc(var(--workflow-phone-height-mobile) * var(--voice-phone-scale));
       }
 
       .platform-showcase__sheet {
@@ -4113,12 +4136,13 @@
       }
 
       .voice-scene {
-        min-height: 238px;
+        --voice-phone-scale: 1.12;
+        min-height: 282px;
       }
 
       .voice-scene__phone {
-        width: var(--workflow-phone-width-mobile);
-        height: var(--workflow-phone-height-mobile);
+        width: calc(var(--workflow-phone-width-mobile) * var(--voice-phone-scale));
+        height: calc(var(--workflow-phone-height-mobile) * var(--voice-phone-scale));
       }
 
       .voice-scene__screen {
@@ -4741,19 +4765,19 @@
       <h2 class="section-title" id="voice-title">Voice Upload</h2>
       <div class="voice-flow">
         <p class="voice-flow__intro">
-          Students can also speak their answer. The app transcribes it live and lets them edit the transcript before grading.
+          If you can speak it, you know it.
         </p>
         <article class="voice-flow__feature">
           <div class="voice-flow__copy">
-            <span class="voice-flow__eyebrow">Alternate Upload Path</span>
-            <h3>Use voice when writing is not the best fit.</h3>
+            <span class="voice-flow__eyebrow">Voice Upload</span>
+            <h3>Say the answer. Grade the transcript.</h3>
             <p>
-              Speak the solution, review the transcript, and edit anything before submitting.
+              Students explain their work out loud, clean up the live transcript, and submit.
             </p>
             <ul class="voice-flow__signals" aria-label="Voice upload features">
-              <li>Live transcription</li>
-              <li>Edit after recording</li>
-              <li>Grade from transcript</li>
+              <li>Speak</li>
+              <li>Edit</li>
+              <li>Submit</li>
             </ul>
           </div>
           <div class="voice-scene" aria-hidden="true">
