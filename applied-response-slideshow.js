@@ -306,7 +306,11 @@
   function updateToggleButton() {
     if (!toggleButton) return;
 
-    toggleButton.textContent = isPaused ? "Play" : "Pause";
+    var pauseIcon = toggleButton.querySelector("[data-response-pause-icon]");
+    var playIcon = toggleButton.querySelector("[data-response-play-icon]");
+
+    if (pauseIcon) pauseIcon.hidden = isPaused;
+    if (playIcon) playIcon.hidden = !isPaused;
     toggleButton.setAttribute("aria-pressed", isPaused ? "true" : "false");
     toggleButton.setAttribute(
       "aria-label",

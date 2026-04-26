@@ -3469,8 +3469,12 @@
     }
 
     .response-carousel__button {
+      display: grid;
+      place-items: center;
+      width: 42px;
       min-width: 42px;
       height: 42px;
+      padding: 0;
       border: 1px solid rgba(100, 168, 255, 0.18);
       border-radius: 999px;
       background: rgba(12, 23, 44, 0.08);
@@ -3478,6 +3482,25 @@
       font: inherit;
       cursor: pointer;
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .response-carousel__button svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .response-carousel__button [data-response-play-icon] svg {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .response-carousel__button [hidden] {
+      display: none;
     }
 
     .response-carousel__button:hover,
@@ -4656,9 +4679,29 @@
                 <button class="response-carousel__dot" type="button" data-response-target="12" aria-label="Show USMLE Step 2 response"></button>
               </div>
               <div class="response-carousel__nav">
-                <button class="response-carousel__button" type="button" data-response-toggle aria-pressed="false" aria-label="Pause handwritten response animation">Pause</button>
-                <button class="response-carousel__button" type="button" data-response-prev aria-label="Previous handwritten response">Prev</button>
-                <button class="response-carousel__button" type="button" data-response-next aria-label="Next handwritten response">Next</button>
+                <button class="response-carousel__button" type="button" data-response-prev aria-label="Previous handwritten response">
+                  <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
+                    <path d="M10.5 3.75L6 8l4.5 4.25"></path>
+                  </svg>
+                </button>
+                <button class="response-carousel__button" type="button" data-response-toggle aria-pressed="false" aria-label="Pause handwritten response animation">
+                  <span data-response-pause-icon>
+                    <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
+                      <path d="M6 4.25v7.5"></path>
+                      <path d="M10 4.25v7.5"></path>
+                    </svg>
+                  </span>
+                  <span data-response-play-icon hidden>
+                    <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
+                      <path d="M6 4.25l6 3.75-6 3.75z"></path>
+                    </svg>
+                  </span>
+                </button>
+                <button class="response-carousel__button" type="button" data-response-next aria-label="Next handwritten response">
+                  <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
+                    <path d="M5.5 3.75L10 8l-4.5 4.25"></path>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
