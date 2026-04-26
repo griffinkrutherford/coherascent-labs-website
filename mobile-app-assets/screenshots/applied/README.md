@@ -69,3 +69,11 @@ Place this in `mobile-app-assets/screenshots/applied/voice/`:
 - `voice-mode.png`
 
 This maps to the voice upload phone mock.
+
+## Text Input Screen
+
+Place this in `mobile-app-assets/screenshots/applied/text/`:
+
+- `text-input.png`
+
+This maps to the text input phone mock in the input carousel.

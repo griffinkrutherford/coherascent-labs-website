@@ -1711,6 +1711,62 @@
       pointer-events: none;
     }
 
+    .voice-flow__carousel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .voice-flow__feature[hidden] {
+      display: none;
+    }
+
+    .voice-flow__controls {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      justify-self: center;
+      padding: 6px;
+      border: 1px solid rgba(100, 168, 255, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    html[data-theme="light"] .voice-flow__controls {
+      background: rgba(255, 255, 255, 0.72);
+      border-color: rgba(79, 132, 214, 0.12);
+    }
+
+    .voice-flow__control {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 82px;
+      min-height: 34px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .voice-flow__control.is-active {
+      background: linear-gradient(120deg, rgba(100, 168, 255, 0.2), rgba(164, 123, 255, 0.18));
+      color: var(--text);
+    }
+
+    .voice-flow__control:hover,
+    .voice-flow__control:focus-visible {
+      outline: none;
+      transform: translateY(-1px);
+      color: var(--text);
+    }
+
     .voice-flow__copy {
       display: grid;
       gap: 10px;
@@ -4894,58 +4950,99 @@
     <section class="section" aria-labelledby="voice-title">
       <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
       <div class="voice-flow">
-        <article class="voice-flow__feature">
-          <div class="voice-flow__copy">
-            <span class="voice-flow__eyebrow">Voice Upload</span>
-            <h3>If you can speak it, you know it.</h3>
-            <p>
-              Students explain their work out loud, clean up the live transcript, and let the app grade the final answer.
-            </p>
-            <ul class="voice-flow__signals" aria-label="Voice upload features">
-              <li>Speak</li>
-              <li>Edit</li>
-              <li>Submit</li>
-            </ul>
-          </div>
-          <div class="voice-scene">
-            <div class="voice-scene__phone">
-              <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode.png">
-                <div class="voice-scene__topbar">
-                  <span class="voice-scene__back">Back</span>
-                  <span class="voice-scene__title">Voice Upload</span>
-                </div>
-                <span class="voice-scene__chip">Live Transcription</span>
-                <div class="voice-scene__mic-wrap">
-                  <div class="voice-scene__mic">
-                    <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
-                      <rect x="5.25" y="2.25" width="5.5" height="7.25" rx="2.75"></rect>
-                      <path d="M4 7.5v.35c0 2.2 1.8 4 4 4s4-1.8 4-4V7.5"></path>
-                      <path d="M8 11.85v2.1"></path>
-                      <path d="M5.9 13.95h4.2"></path>
-                    </svg>
+        <div class="voice-flow__carousel" data-input-carousel>
+          <article class="voice-flow__feature" data-input-slide="0">
+            <div class="voice-flow__copy">
+              <span class="voice-flow__eyebrow">Voice Upload</span>
+              <h3>If you can speak it, you know it.</h3>
+              <p>
+                Students explain their work out loud, clean up the live transcript, and let the app grade the final answer.
+              </p>
+              <ul class="voice-flow__signals" aria-label="Voice upload features">
+                <li>Speak</li>
+                <li>Edit</li>
+                <li>Submit</li>
+              </ul>
+            </div>
+            <div class="voice-scene">
+              <div class="voice-scene__phone">
+                <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode.png">
+                  <div class="voice-scene__topbar">
+                    <span class="voice-scene__back">Back</span>
+                    <span class="voice-scene__title">Voice Upload</span>
                   </div>
-                  <div class="voice-scene__wave">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                  <span class="voice-scene__chip">Live Transcription</span>
+                  <div class="voice-scene__mic-wrap">
+                    <div class="voice-scene__mic">
+                      <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
+                        <rect x="5.25" y="2.25" width="5.5" height="7.25" rx="2.75"></rect>
+                        <path d="M4 7.5v.35c0 2.2 1.8 4 4 4s4-1.8 4-4V7.5"></path>
+                        <path d="M8 11.85v2.1"></path>
+                        <path d="M5.9 13.95h4.2"></path>
+                      </svg>
+                    </div>
+                    <div class="voice-scene__wave">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
                   </div>
-                </div>
-                <div class="voice-scene__transcript-card">
-                  <span class="voice-scene__transcript-label">Transcript</span>
-                  <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
-                  <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
-                  <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
-                </div>
-                <div class="voice-scene__edit-row">
-                  <span class="voice-scene__edit-pill">Edit Transcript</span>
-                  <span class="voice-scene__edit-note">Ready to Grade</span>
+                  <div class="voice-scene__transcript-card">
+                    <span class="voice-scene__transcript-label">Transcript</span>
+                    <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
+                    <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
+                    <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
+                  </div>
+                  <div class="voice-scene__edit-row">
+                    <span class="voice-scene__edit-pill">Edit Transcript</span>
+                    <span class="voice-scene__edit-note">Ready to Grade</span>
+                  </div>
                 </div>
               </div>
             </div>
+          </article>
+          <article class="voice-flow__feature" data-input-slide="1" hidden>
+            <div class="voice-flow__copy">
+              <span class="voice-flow__eyebrow">Text Input</span>
+              <h3>Type it when that is faster.</h3>
+              <p>
+                Students can enter a typed answer, revise it in place, and send the final response to Applied for grading.
+              </p>
+              <ul class="voice-flow__signals" aria-label="Text input features">
+                <li>Type</li>
+                <li>Revise</li>
+                <li>Submit</li>
+              </ul>
+            </div>
+            <div class="voice-scene">
+              <div class="voice-scene__phone">
+                <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input.png">
+                  <div class="voice-scene__topbar">
+                    <span class="voice-scene__back">Back</span>
+                    <span class="voice-scene__title">Text Input</span>
+                  </div>
+                  <span class="voice-scene__chip">Typed Response</span>
+                  <div class="voice-scene__transcript-card">
+                    <span class="voice-scene__transcript-label">Answer</span>
+                    <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
+                    <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
+                    <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
+                  </div>
+                  <div class="voice-scene__edit-row">
+                    <span class="voice-scene__edit-pill">Edit Answer</span>
+                    <span class="voice-scene__edit-note">Ready to Grade</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <div class="voice-flow__controls" aria-label="Input method carousel">
+            <button class="voice-flow__control is-active" type="button" data-input-target="0" aria-pressed="true">Voice</button>
+            <button class="voice-flow__control" type="button" data-input-target="1" aria-pressed="false">Text</button>
           </div>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -5061,6 +5158,33 @@
       var nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
       localStorage.setItem(storageKey, nextTheme);
       applyTheme(nextTheme);
+    });
+  })();
+
+  (function () {
+    var carousel = document.querySelector("[data-input-carousel]");
+    if (!carousel) return;
+
+    var slides = Array.prototype.slice.call(carousel.querySelectorAll("[data-input-slide]"));
+    var controls = Array.prototype.slice.call(carousel.querySelectorAll("[data-input-target]"));
+    if (!slides.length || !controls.length) return;
+
+    function showSlide(nextIndex) {
+      slides.forEach(function (slide, index) {
+        slide.hidden = index !== nextIndex;
+      });
+
+      controls.forEach(function (control, index) {
+        var isActive = index === nextIndex;
+        control.classList.toggle("is-active", isActive);
+        control.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    }
+
+    controls.forEach(function (control) {
+      control.addEventListener("click", function () {
+        showSlide(Number(control.getAttribute("data-input-target") || 0));
+      });
     });
   })();
 
