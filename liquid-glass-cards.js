@@ -228,7 +228,7 @@
     var existingFilterLayer;
 
     if (card.hasAttribute("data-liquid-glass-frosted")) {
-      backdropFilterValue += " blur(22px) saturate(1.45)";
+      backdropFilterValue += " blur(8px) saturate(1.35)";
     }
 
     if (card.dataset.liquidGlassReady === "true") {

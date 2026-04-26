@@ -1633,11 +1633,15 @@
     }
 
     .voice-flow[data-liquid-glass] {
-      background: rgba(255, 255, 255, 0.012);
+      background: transparent;
     }
 
     html[data-theme="light"] .voice-flow[data-liquid-glass] {
-      background: rgba(255, 255, 255, 0.04);
+      background: transparent;
+    }
+
+    .voice-flow[data-liquid-glass]::before {
+      display: none;
     }
 
     .voice-flow[data-liquid-glass].liquid-glass-card {
@@ -1650,14 +1654,10 @@
     }
 
     .voice-flow[data-liquid-glass] > .liquid-glass-overlay {
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 34%, rgba(255, 255, 255, 0.018) 66%, transparent),
-        radial-gradient(640px 340px at 12% 10%, rgba(124, 247, 255, 0.035), transparent 58%),
-        radial-gradient(520px 300px at 86% 78%, rgba(164, 123, 255, 0.04), transparent 60%),
-        rgba(255, 255, 255, 0.012);
+      background: transparent;
       box-shadow:
-        inset 0 0 34px -6px rgba(255, 255, 255, 0.34),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.045);
+        inset 0 0 24px -10px rgba(255, 255, 255, 0.32),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.035);
     }
 
     .voice-flow[data-liquid-glass] > .liquid-glass-filter {
@@ -1683,14 +1683,10 @@
     }
 
     html[data-theme="light"] .voice-flow[data-liquid-glass] > .liquid-glass-overlay {
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 36%, rgba(255, 255, 255, 0.055) 66%, transparent),
-        radial-gradient(640px 340px at 12% 10%, rgba(79, 132, 214, 0.035), transparent 58%),
-        radial-gradient(520px 300px at 86% 78%, rgba(127, 99, 214, 0.03), transparent 60%),
-        rgba(255, 255, 255, 0.065);
+      background: transparent;
       box-shadow:
-        inset 0 0 32px -6px rgba(255, 255, 255, 0.48),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+        inset 0 0 24px -10px rgba(255, 255, 255, 0.48),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
 
     html[data-theme="light"] .voice-flow[data-liquid-glass] > .liquid-glass-filter {
