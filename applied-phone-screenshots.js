@@ -233,6 +233,7 @@
 
   Array.prototype.forEach.call(hosts, function (host) {
     var src = host.getAttribute("data-screenshot-src");
+    var lowSrc = host.getAttribute("data-screenshot-low");
     if (!src) return;
 
     var trigger = host.closest(phoneSelector) || host;
@@ -251,20 +252,43 @@
       openModal(trigger);
     });
 
+    // 1. Immediately inject low-quality placeholder if available
+    if (lowSrc) {
+      var lowImg = document.createElement("img");
+      lowImg.className = "phone-screenshot phone-screenshot--low";
+      lowImg.src = lowSrc;
+      lowImg.alt = "";
+      lowImg.setAttribute("aria-hidden", "true");
+      host.insertBefore(lowImg, host.firstChild);
+    }
+
+    // 2. Prepare high-quality image (hidden initially)
+    var screenshot = document.createElement("img");
+    screenshot.className = "phone-screenshot phone-screenshot--loading";
+    screenshot.alt = "";
+    screenshot.setAttribute("aria-hidden", "true");
+    screenshot.loading = "lazy";
+    screenshot.decoding = "async";
+    
+    // Use an Image probe to handle the load event
     var probe = new Image();
-
     probe.onload = function () {
-      if (host.querySelector(".phone-screenshot")) return;
-
-      var screenshot = document.createElement("img");
-      screenshot.className = "phone-screenshot";
+      if (host.querySelector(".phone-screenshot--loaded")) return;
+      
       screenshot.src = src;
-      screenshot.alt = "";
-      screenshot.setAttribute("aria-hidden", "true");
-      screenshot.loading = "lazy";
-      screenshot.decoding = "async";
       host.insertBefore(screenshot, host.firstChild);
+      
+      // Force a reflow before adding the loaded class to trigger transition
+      screenshot.getBoundingClientRect();
+      screenshot.classList.remove("phone-screenshot--loading");
+      screenshot.classList.add("phone-screenshot--loaded");
       host.setAttribute("data-screenshot-loaded", "true");
+      
+      // Optional: remove low-quality image after high-quality is faded in
+      setTimeout(function() {
+        var low = host.querySelector(".phone-screenshot--low");
+        if (low) low.remove();
+      }, 1000);
     };
 
     probe.src = src;

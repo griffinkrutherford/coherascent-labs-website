@@ -1850,6 +1850,21 @@
       display: block;
       pointer-events: none;
       background: #000;
+      transition: opacity 600ms ease;
+    }
+
+    .phone-screenshot--low {
+      z-index: 19;
+      filter: blur(12px);
+      transform: scale(1.05); /* hide blurred edges */
+    }
+
+    .phone-screenshot--loading {
+      opacity: 0;
+    }
+
+    .phone-screenshot--loaded {
+      opacity: 1;
     }
 
     body.phone-lightbox-open {
