@@ -256,10 +256,13 @@
     if (lowSrc) {
       var lowImg = document.createElement("img");
       lowImg.className = "phone-screenshot phone-screenshot--low";
-      lowImg.src = lowSrc;
       lowImg.alt = "";
       lowImg.setAttribute("aria-hidden", "true");
+      lowImg.loading = "eager";
+      lowImg.decoding = "async";
+      host.setAttribute("data-screenshot-replacing", "true");
       host.insertBefore(lowImg, host.firstChild);
+      lowImg.src = lowSrc;
     }
 
     // 2. Prepare high-quality image (hidden initially)
@@ -283,6 +286,7 @@
       screenshot.classList.remove("phone-screenshot--loading");
       screenshot.classList.add("phone-screenshot--loaded");
       host.setAttribute("data-screenshot-loaded", "true");
+      host.setAttribute("data-screenshot-replacing", "true");
       
       // Optional: remove low-quality image after high-quality is faded in
       setTimeout(function() {
