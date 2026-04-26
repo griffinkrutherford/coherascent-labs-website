@@ -44,9 +44,9 @@
       --workflow-phone-shell-radius: calc(var(--workflow-phone-height) * 0.122727);
       --workflow-phone-screen-radius: calc(var(--workflow-phone-height) * 0.104545);
       --workflow-phone-overlay-inset: calc(var(--workflow-phone-shell-padding) * 0.333333);
-      --workflow-phone-island-top: calc(var(--workflow-phone-height) * 0.031818);
+      --workflow-phone-island-top: calc(var(--workflow-phone-height) * 0.0275);
       --workflow-phone-island-width: calc(var(--workflow-phone-width) * 0.433333);
-      --workflow-phone-island-height: calc(var(--workflow-phone-height) * 0.022727);
+      --workflow-phone-island-height: calc(var(--workflow-phone-height) * 0.021875);
       --workflow-phone-button-width: calc(var(--workflow-phone-height) * 0.013636);
       --workflow-phone-volume-top: calc(var(--workflow-phone-height) * 0.245455);
       --workflow-phone-volume-height: calc(var(--workflow-phone-height) * 0.081818);
@@ -3969,9 +3969,9 @@
         --workflow-phone-shell-radius: calc(var(--workflow-phone-height-mobile) * 0.122727);
         --workflow-phone-screen-radius: calc(var(--workflow-phone-height-mobile) * 0.104545);
         --workflow-phone-overlay-inset: calc(var(--workflow-phone-shell-padding) * 0.333333);
-        --workflow-phone-island-top: calc(var(--workflow-phone-height-mobile) * 0.031818);
+        --workflow-phone-island-top: calc(var(--workflow-phone-height-mobile) * 0.0275);
         --workflow-phone-island-width: calc(var(--workflow-phone-width-mobile) * 0.433333);
-        --workflow-phone-island-height: calc(var(--workflow-phone-height-mobile) * 0.022727);
+        --workflow-phone-island-height: calc(var(--workflow-phone-height-mobile) * 0.021875);
         --workflow-phone-button-width: calc(var(--workflow-phone-height-mobile) * 0.013636);
         --workflow-phone-volume-top: calc(var(--workflow-phone-height-mobile) * 0.245455);
         --workflow-phone-volume-height: calc(var(--workflow-phone-height-mobile) * 0.081818);
@@ -4928,6 +4928,10 @@
       <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
       <div class="voice-flow">
         <div class="voice-flow__carousel" data-input-carousel>
+          <div class="voice-flow__controls" aria-label="Input method carousel">
+            <button class="voice-flow__control is-active" type="button" data-input-target="0" aria-pressed="true">Voice</button>
+            <button class="voice-flow__control" type="button" data-input-target="1" aria-pressed="false">Text</button>
+          </div>
           <article class="voice-flow__feature" data-input-slide="0">
             <div class="voice-flow__copy">
               <span class="voice-flow__eyebrow">Voice Upload</span>
@@ -5015,10 +5019,6 @@
               </div>
             </div>
           </article>
-          <div class="voice-flow__controls" aria-label="Input method carousel">
-            <button class="voice-flow__control is-active" type="button" data-input-target="0" aria-pressed="true">Voice</button>
-            <button class="voice-flow__control" type="button" data-input-target="1" aria-pressed="false">Text</button>
-          </div>
         </div>
       </div>
     </section>
