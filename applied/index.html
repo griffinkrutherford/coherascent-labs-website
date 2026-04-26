@@ -2945,7 +2945,7 @@
       top: var(--workflow-phone-island-top);
       left: 50%;
       width: var(--workflow-phone-island-width);
-      height: var(--workflow-phone-island-height);
+      height: calc(var(--workflow-phone-island-height) * 2);
       border-radius: 999px;
       background:
         radial-gradient(circle at 72% 50%, rgba(62, 76, 104, 0.92) 0 1.1px, rgba(8, 10, 16, 0.98) 1.2px),
@@ -2977,7 +2977,7 @@
     .voice-scene__phone::before {
       top: calc(var(--workflow-phone-island-top) * var(--voice-phone-scale));
       width: calc(var(--workflow-phone-island-width) * var(--voice-phone-scale));
-      height: calc(var(--workflow-phone-island-height) * var(--voice-phone-scale));
+      height: calc(var(--workflow-phone-island-height) * var(--voice-phone-scale) * 2);
     }
 
     .voice-scene__phone::after {
