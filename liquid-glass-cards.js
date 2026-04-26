@@ -224,7 +224,23 @@
   }
 
   function ensureLayers(card, filterId) {
-    if (card.dataset.liquidGlassReady === "true") return;
+    var backdropFilterValue = "url(#" + filterId + ")";
+    var existingFilterLayer;
+
+    if (card.hasAttribute("data-liquid-glass-frosted")) {
+      backdropFilterValue += " blur(22px) saturate(1.45)";
+    }
+
+    if (card.dataset.liquidGlassReady === "true") {
+      existingFilterLayer = card.querySelector(":scope > .liquid-glass-filter");
+
+      if (existingFilterLayer) {
+        existingFilterLayer.style.backdropFilter = backdropFilterValue;
+        existingFilterLayer.style.webkitBackdropFilter = backdropFilterValue;
+      }
+
+      return;
+    }
 
     var filterLayer = document.createElement("div");
     var overlayLayer = document.createElement("div");
@@ -234,8 +250,8 @@
     card.classList.add("liquid-glass-card");
 
     filterLayer.className = "liquid-glass-layer liquid-glass-filter";
-    filterLayer.style.backdropFilter = "url(#" + filterId + ")";
-    filterLayer.style.webkitBackdropFilter = "url(#" + filterId + ")";
+    filterLayer.style.backdropFilter = backdropFilterValue;
+    filterLayer.style.webkitBackdropFilter = backdropFilterValue;
 
     overlayLayer.className = "liquid-glass-layer liquid-glass-overlay";
 
