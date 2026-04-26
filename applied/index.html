@@ -1808,8 +1808,6 @@
       position: fixed;
       inset: 0;
       z-index: 1000;
-      display: grid;
-      place-items: center;
       padding: clamp(18px, 4vw, 42px);
       background:
         radial-gradient(circle at 50% 18%, rgba(100, 168, 255, 0.18), transparent 30%),
@@ -1819,59 +1817,14 @@
       backdrop-filter: blur(18px);
     }
 
-    .phone-mock-lightbox__frame {
-      position: relative;
-      width: min(78vw, 40svh, 410px);
-      aspect-ratio: var(--workflow-phone-ratio);
-      padding: clamp(4px, 1.1vw, 8px);
-      border-radius: clamp(30px, 8vw, 58px);
-      border: 1px solid rgba(196, 208, 228, 0.18);
-      background:
-        linear-gradient(180deg, rgba(110, 124, 150, 0.98), rgba(36, 45, 64, 0.99) 16%, rgba(12, 16, 26, 1) 56%, rgba(24, 34, 50, 0.99)),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent 12%, transparent 88%, rgba(2, 6, 14, 0.36));
-      box-shadow:
-        0 34px 90px rgba(0, 0, 0, 0.56),
-        inset 1px 1px 0 rgba(255, 255, 255, 0.12),
-        inset -1px -1px 0 rgba(5, 9, 18, 0.34);
-    }
-
-    .phone-mock-lightbox__frame[hidden],
     .phone-mock-lightbox__stage[hidden] {
       display: none;
     }
 
-    .phone-mock-lightbox__frame::before {
-      content: "";
-      position: absolute;
-      top: 3.2%;
-      left: 50%;
-      z-index: 2;
-      width: 38%;
-      height: 2.7%;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 72% 50%, rgba(62, 76, 104, 0.92) 0 2px, rgba(8, 10, 16, 0.98) 2.2px),
-        linear-gradient(180deg, rgba(20, 23, 31, 0.98), rgba(5, 7, 12, 0.98));
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
-    .phone-mock-lightbox__image {
-      width: 100%;
-      height: 100%;
-      border-radius: clamp(26px, 7vw, 50px);
-      object-fit: contain;
-      display: block;
-      background: #000;
-    }
-
     .phone-mock-lightbox__stage {
-      --phone-lightbox-scale: 2;
-      position: relative;
-      display: grid;
-      place-items: center;
-      width: min(84vw, 430px);
-      height: min(88svh, 760px);
+      position: fixed;
+      inset: 0;
+      pointer-events: auto;
     }
 
     .phone-mock-lightbox__stage .capture-scene__phone,
@@ -1879,15 +1832,17 @@
     .phone-mock-lightbox__stage .feedback-scene__phone,
     .phone-mock-lightbox__stage .voice-scene__phone,
     .phone-mock-lightbox__stage .response-carousel__question-phone {
-      position: relative !important;
-      left: auto !important;
+      position: fixed !important;
+      left: 0 !important;
+      top: 0 !important;
       right: auto !important;
-      top: auto !important;
       bottom: auto !important;
       margin: 0 !important;
-      transform: scale(var(--phone-lightbox-scale)) !important;
-      transform-origin: center center !important;
+      transform-origin: top left !important;
       cursor: default;
+      will-change: transform;
+      pointer-events: auto;
+      z-index: 1000;
     }
 
     .phone-mock-lightbox__close {
