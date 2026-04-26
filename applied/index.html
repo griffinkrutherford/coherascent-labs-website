@@ -1776,6 +1776,8 @@
 
     .phone-mock-trigger {
       cursor: zoom-in;
+      pointer-events: auto !important;
+      touch-action: manipulation;
     }
 
     .phone-mock-trigger:focus-visible {
@@ -1840,6 +1842,7 @@
       margin: 0 !important;
       transform-origin: top left !important;
       cursor: default;
+      animation: none !important;
       will-change: transform;
       pointer-events: auto;
       z-index: 1000;
