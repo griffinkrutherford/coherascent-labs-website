@@ -94,6 +94,19 @@
     });
   }
 
+  function prepareFullscreenClone(clone) {
+    if (clone.getAttribute("data-fullscreen-render") !== "mock") return;
+
+    Array.prototype.forEach.call(clone.querySelectorAll(".phone-screenshot"), function (node) {
+      node.remove();
+    });
+
+    Array.prototype.forEach.call(clone.querySelectorAll(".phone-screenshot-host"), function (host) {
+      host.removeAttribute("data-screenshot-replacing");
+      host.removeAttribute("data-screenshot-loaded");
+    });
+  }
+
   function getTargetTransform(sourceRect, clone) {
     var naturalWidth = clone.offsetWidth || sourceRect.width;
     var naturalHeight = clone.offsetHeight || sourceRect.height;
@@ -151,6 +164,7 @@
     var clone = trigger.cloneNode(true);
 
     stripCloneInteractivity(clone);
+    prepareFullscreenClone(clone);
     clone.style.visibility = "hidden";
     clone.style.transform = "none";
     modalStage.appendChild(clone);
