@@ -464,8 +464,17 @@
     .hero h2 span {
       display: inline-block;
       color: var(--purple);
-      background-image: linear-gradient(120deg, var(--blue), var(--purple), var(--red), var(--blue));
-      background-size: 220% 100%;
+      background-image: linear-gradient(
+        120deg,
+        var(--blue) 0%,
+        var(--purple) 16.666%,
+        var(--red) 33.333%,
+        var(--blue) 50%,
+        var(--purple) 66.666%,
+        var(--red) 83.333%,
+        var(--blue) 100%
+      );
+      background-size: 200% 100%;
       background-position: 0% 50%;
       -webkit-background-clip: text;
       background-clip: text;
@@ -474,7 +483,7 @@
       filter:
         drop-shadow(0 0 14px rgba(100, 168, 255, 0.16))
         drop-shadow(0 0 14px rgba(255, 93, 135, 0.12));
-      animation: appliedHeadlineShift 5.2s ease-in-out infinite;
+      animation: appliedHeadlineShift 8s linear infinite;
     }
 
     html[data-theme="light"] .hero h2 span {
@@ -2704,7 +2713,7 @@
 
     @keyframes appliedHeadlineShift {
       from { background-position: 0% 50%; }
-      to { background-position: 220% 50%; }
+      to { background-position: 100% 50%; }
     }
 
     .response-carousel {
