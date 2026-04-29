@@ -550,11 +550,11 @@
     .platform-showcase {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+      grid-template-columns: minmax(0, 1.38fr) minmax(250px, 0.62fr);
       align-items: stretch;
-      gap: 22px;
-      padding: 54px 24px 136px;
-      min-height: clamp(820px, calc(100svh - 100px), 1000px);
+      gap: 24px;
+      padding: 58px 28px 148px;
+      min-height: clamp(880px, calc(100svh - 70px), 1080px);
       border-radius: 24px;
       border: 1px solid var(--line);
       background:
@@ -4166,8 +4166,15 @@
 
       .platform-showcase {
         gap: 16px;
-        min-height: calc(100svh - 108px);
-        padding: 14px 14px 16px;
+        min-height: calc(100svh - 88px);
+        padding: 16px 14px 18px;
+      }
+
+      .platform-showcase__tag {
+        position: static;
+        justify-self: start;
+        width: fit-content;
+        margin: 0 0 2px;
       }
 
       .processing-flow {
@@ -4203,7 +4210,7 @@
       }
 
       .platform-showcase__sheet {
-        min-height: min(75svh, 700px);
+        min-height: min(78svh, 740px);
         padding: 16px 14px 14px;
       }
 
