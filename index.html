@@ -236,47 +236,6 @@
       border-radius: 18px;
     }
 
-    .theme-toggle {
-      margin-left: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(102, 179, 255, 0.3);
-      background: rgba(10, 16, 30, 0.35);
-      color: var(--text);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
-    }
-
-    html[data-theme="light"] .theme-toggle {
-      background: rgba(255, 255, 255, 0.6);
-      border-color: rgba(46, 106, 168, 0.25);
-    }
-
-    .theme-toggle:hover {
-      transform: translateY(-2px);
-      border-color: rgba(102, 179, 255, 0.5);
-    }
-
-    .theme-toggle:disabled {
-      cursor: default;
-      opacity: 0.58;
-      pointer-events: none;
-    }
-
-    .theme-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(120deg, var(--cyan), var(--violet));
-      box-shadow: 0 0 10px rgba(102, 179, 255, 0.4);
-    }
-
     .nav-links {
       margin-left: auto;
       display: inline-flex;
@@ -1651,12 +1610,8 @@
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a class="nav-link" href="/research/">Research</a>
-        <a class="nav-link" href="/applied/">Application</a>
+        <a class="nav-link" href="/applied/">Luna Synthesis</a>
       </nav>
-      <button class="theme-toggle" type="button" aria-label="Light mode temporarily disabled" aria-disabled="true" disabled>
-        <span class="theme-dot" aria-hidden="true"></span>
-        <span>Dark Mode</span>
-      </button>
     </header>
 
     <section class="hero" aria-labelledby="hero-title">
@@ -1836,30 +1791,6 @@
   </main>
   <script src="liquid-glass-cards.js"></script>
   <script>
-  (function () {
-    var root = document.documentElement;
-    var button = document.querySelector(".theme-toggle");
-    if (!button) return;
-    var label = button.querySelector("span:last-child");
-    var logo = document.querySelector(".brand-logo");
-    var storageKey = "coherascent-theme";
-
-    function applyTheme(theme) {
-      root.setAttribute("data-theme", theme);
-      if (logo) {
-        logo.src = theme === "light"
-          ? logo.getAttribute("data-logo-light")
-          : logo.getAttribute("data-logo-dark");
-      }
-      if (label) label.textContent = button.disabled ? "Dark Mode" : theme === "dark" ? "Light Mode" : "Dark Mode";
-    }
-
-    localStorage.setItem(storageKey, "dark");
-    button.disabled = true;
-    button.setAttribute("aria-disabled", "true");
-    applyTheme("dark");
-  })();
-
   (function () {
     var demo = document.querySelector(".hanoi-demo");
     if (!demo) return;
