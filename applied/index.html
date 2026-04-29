@@ -646,6 +646,18 @@
       overflow: visible;
     }
 
+    .platform-showcase__date {
+      position: absolute;
+      top: 10px;
+      left: 28px;
+      font-family: "Caveat", cursive;
+      font-size: 20px;
+      color: #163257;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 10;
+    }
+
     html[data-theme="light"] .platform-showcase__sheet {
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(247, 243, 249, 0.96));
@@ -4498,6 +4510,7 @@
       <article class="platform-showcase" aria-label="Handwritten response slideshow">
         <div class="platform-showcase__tag">Current handwritten response</div>
         <div class="platform-showcase__sheet">
+          <div class="platform-showcase__date">August 12th, 2026</div>
           <div class="response-carousel__deck" data-response-slideshow aria-live="polite">
             <section class="response-carousel__paper is-active" data-response-slide="0" aria-label="Calculus problem response">
               <div class="response-carousel__meta">
