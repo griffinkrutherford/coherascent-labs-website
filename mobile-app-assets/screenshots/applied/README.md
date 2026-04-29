@@ -1,12 +1,12 @@
-# Applied Phone Mock Screenshots
+# Luna Synthesis Phone Mock Screenshots
 
-Drop real app screenshots into the paths below to replace the current in-phone mock content on `/applied/`.
+Drop real app screenshots into the paths below to replace the current in-phone mock content on `/luna-synthesis/`.
 
 The phone shell, device frame, and hardware styling stay the same. Only the screen contents are swapped.
 
 ## How It Works
 
-- The applied page looks for the exact files listed below.
+- The Luna Synthesis page looks for the exact files listed below.
 - If a file exists, it is loaded into the matching phone mock automatically.
 - If a file does not exist, the current handcrafted mock UI remains visible.
 
@@ -15,7 +15,7 @@ The phone shell, device frame, and hardware styling stay the same. Only the scre
 - Use portrait screenshots.
 - Match the current phone aspect ratio as closely as possible.
 - PNG is the expected format for the current wiring.
-- If you want to use a different filename or extension later, update the `data-screenshot-src` value in `applied/index.html`.
+- If you want to use a different filename or extension later, update the `data-screenshot-src` value in `luna-synthesis/index.html`.
 
 ## Question Prompt Screens
 

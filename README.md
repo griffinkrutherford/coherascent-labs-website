@@ -6,7 +6,7 @@ An experimental multi-page marketing site for Coherascent Labs, built as a stati
 
 The site presents Coherascent as a dual-pillar organization:
 - `Research`: neuro-symbolic, deterministic, and truth-aligned AI work
-- `Applied`: educational product concepts for handwritten reasoning, grading, and adaptive learning
+- `Luna Synthesis`: educational product concepts for handwritten reasoning, grading, and adaptive learning
 
 ## Live Structure
 
@@ -16,11 +16,11 @@ The current route structure is directory-based:
 | --- | --- |
 | `/` | Main landing page |
 | `/research/` | Research overview and technical program |
-| `/applied/` | Applied technology and product experience |
+| `/luna-synthesis/` | Luna Synthesis product experience |
 
 Legacy compatibility stubs still exist:
 - `research.html` redirects to `/research/`
-- `applied.html` redirects to `/applied/`
+- `applied.html` redirects to `/luna-synthesis/`
 
 ## What’s In The Site
 
@@ -35,7 +35,7 @@ Legacy compatibility stubs still exist:
 - initiative cards and technical visuals
 - shared brand/theme system with a purple-biased research starfield
 
-### Applied
+### Luna Synthesis
 - notepad-style `Platform Components` showcase
 - animated handwritten-response slideshow
 - synchronized question-phone UI
@@ -58,7 +58,7 @@ Fonts are loaded from Google Fonts and the site uses local images, SVGs, and han
 
 ## Local Development
 
-Because the project uses directory routes like `/research/` and `/applied/`, run it from a static server at the repo root instead of opening the files directly.
+Because the project uses directory routes like `/research/` and `/luna-synthesis/`, run it from a static server at the repo root instead of opening the files directly.
 
 ```bash
 cd /Users/griffinrutherford/Documents/coherascent-labs
@@ -69,7 +69,7 @@ Then open:
 
 - `http://localhost:8000/`
 - `http://localhost:8000/research/`
-- `http://localhost:8000/applied/`
+- `http://localhost:8000/luna-synthesis/`
 
 ## Project Map
 
@@ -78,10 +78,12 @@ Then open:
 ├── index.html
 ├── research/
 │   └── index.html
-├── applied/
+├── luna-synthesis/
 │   └── index.html
+├── applied/
+│   └── index.html              # legacy redirect stub
 ├── research.html                  # redirect stub
-├── applied.html                  # redirect stub
+├── applied.html                   # legacy redirect stub
 ├── applied-response-slideshow.js # response carousel logic
 ├── applied-handwriting-demo.js   # animated handwriting SVG logic
 ├── images/                       # research visuals
@@ -94,17 +96,17 @@ Then open:
 ### Theme system
 - all three pages share the same `coherascent-theme` localStorage key
 - each page has its own starfield treatment tuned to the page’s visual role
-- the applied page also has theme-aware phone UI states
+- the Luna Synthesis page also has theme-aware phone UI states
 
 ### Handwriting system
-- the applied slideshow reveals handwriting line-by-line and character-by-character
+- the Luna Synthesis slideshow reveals handwriting line-by-line and character-by-character
 - word wrapping is precomputed so words do not jump awkwardly to a new line mid-write
 - reduced-motion users get a stable static rendering instead of the full animation sequence
 
 ### Phone mockups
 - workflow phones use shared sizing variables
 - phone proportions are normalized across breakpoints
-- the applied page includes consistent shell geometry, camera island treatment, and side hardware buttons
+- the Luna Synthesis page includes consistent shell geometry, camera island treatment, and side hardware buttons
 
 ## Notes
 
