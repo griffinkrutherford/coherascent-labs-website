@@ -553,7 +553,7 @@
       grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
       align-items: stretch;
       gap: 22px;
-      padding: 24px 24px 136px;
+      padding: 54px 24px 136px;
       min-height: clamp(820px, calc(100svh - 100px), 1000px);
       border-radius: 24px;
       border: 1px solid var(--line);
@@ -596,6 +596,39 @@
       z-index: 1;
     }
 
+    .platform-showcase__tag {
+      position: absolute;
+      top: 18px;
+      left: 28px;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(14, 24, 46, 0.08);
+      color: #243d67;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+    }
+
+    html[data-theme="dark"] .platform-showcase__tag {
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .platform-showcase__tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      box-shadow: 0 0 12px rgba(79, 132, 214, 0.18);
+    }
+
     .platform-showcase__sheet {
       position: relative;
       display: flex;
@@ -611,58 +644,6 @@
         0 22px 36px rgba(4, 10, 24, 0.18);
       transform: rotate(-2.5deg);
       overflow: visible;
-    }
-
-    html[data-theme="light"] .platform-showcase__sheet {
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(247, 243, 249, 0.96));
-      box-shadow:
-        inset 0 0 0 1px rgba(79, 132, 214, 0.08),
-        0 20px 34px rgba(138, 151, 181, 0.12);
-    }
-
-    .platform-showcase__sheet::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(transparent 40px, rgba(79, 132, 214, 0.1) 40px, rgba(79, 132, 214, 0.1) 42px, transparent 42px),
-        repeating-linear-gradient(180deg, transparent 0 43px, rgba(79, 132, 214, 0.12) 43px 45px);
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
-    .platform-showcase__sheet::after {
-      content: "";
-      position: absolute;
-      left: 18px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, transparent, rgba(217, 106, 140, 0.24), transparent);
-      pointer-events: none;
-    }
-
-    .platform-showcase__tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(14, 24, 46, 0.08);
-      color: #243d67;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .platform-showcase__tag::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
-      box-shadow: 0 0 12px rgba(79, 132, 214, 0.18);
     }
 
     .platform-showcase__board {
@@ -4485,8 +4466,8 @@
     <section class="section" aria-labelledby="platform-title">
       <h2 class="section-title" id="platform-title">Platform Components</h2>
       <article class="platform-showcase" aria-label="Handwritten response slideshow">
+        <div class="platform-showcase__tag">Current handwritten response</div>
         <div class="platform-showcase__sheet">
-          <div class="platform-showcase__tag">Current handwritten response</div>
           <div class="response-carousel__deck" data-response-slideshow aria-live="polite">
             <section class="response-carousel__paper is-active" data-response-slide="0" aria-label="Calculus problem response">
               <div class="response-carousel__meta">
