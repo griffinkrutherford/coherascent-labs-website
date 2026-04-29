@@ -307,6 +307,12 @@
       border-color: rgba(102, 179, 255, 0.5);
     }
 
+    .theme-toggle:disabled {
+      cursor: default;
+      opacity: 0.58;
+      pointer-events: none;
+    }
+
     .theme-dot {
       width: 10px;
       height: 10px;
@@ -4510,9 +4516,9 @@
         <a class="nav-link" href="/research/">Research</a>
         <a class="nav-link" href="/applied/">Application</a>
       </nav>
-      <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+      <button class="theme-toggle" type="button" aria-label="Light mode temporarily disabled" aria-disabled="true" disabled>
         <span class="theme-dot" aria-hidden="true"></span>
-        <span>Light Mode</span>
+        <span>Dark Mode</span>
       </button>
     </header>
 
@@ -5246,21 +5252,13 @@
           ? logo.getAttribute("data-logo-light")
           : logo.getAttribute("data-logo-dark");
       }
-      if (label) label.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
+      if (label) label.textContent = button.disabled ? "Dark Mode" : theme === "dark" ? "Light Mode" : "Dark Mode";
     }
 
-    var savedTheme = localStorage.getItem(storageKey);
-    if (savedTheme === "light" || savedTheme === "dark") {
-      applyTheme(savedTheme);
-    } else {
-      applyTheme(root.getAttribute("data-theme") || "dark");
-    }
-
-    button.addEventListener("click", function () {
-      var nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      localStorage.setItem(storageKey, nextTheme);
-      applyTheme(nextTheme);
-    });
+    localStorage.setItem(storageKey, "dark");
+    button.disabled = true;
+    button.setAttribute("aria-disabled", "true");
+    applyTheme("dark");
   })();
 
   (function () {
