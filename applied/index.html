@@ -646,6 +646,36 @@
       overflow: visible;
     }
 
+    html[data-theme="light"] .platform-showcase__sheet {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(247, 243, 249, 0.96));
+      box-shadow:
+        inset 0 0 0 1px rgba(79, 132, 214, 0.08),
+        0 20px 34px rgba(138, 151, 181, 0.12);
+    }
+
+    .platform-showcase__sheet::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(transparent 40px, rgba(79, 132, 214, 0.1) 40px, rgba(79, 132, 214, 0.1) 42px, transparent 42px),
+        repeating-linear-gradient(180deg, transparent 0 43px, rgba(79, 132, 214, 0.12) 43px 45px);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .platform-showcase__sheet::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, rgba(217, 106, 140, 0.24), transparent);
+      pointer-events: none;
+    }
+
     .platform-showcase__board {
       position: relative;
       margin-top: 20px;
