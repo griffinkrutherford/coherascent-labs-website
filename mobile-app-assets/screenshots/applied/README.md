@@ -1,6 +1,6 @@
 # Lune Synth Phone Mock Screenshots
 
-Drop real app screenshots into the paths below to replace the current in-phone mock content on `/luna-synthesis/`.
+Drop real app screenshots into the paths below to replace the current in-phone mock content on `/lune-synth/`.
 
 The phone shell, device frame, and hardware styling stay the same. Only the screen contents are swapped.
 
@@ -15,7 +15,7 @@ The phone shell, device frame, and hardware styling stay the same. Only the scre
 - Use portrait screenshots.
 - Match the current phone aspect ratio as closely as possible.
 - PNG is the expected format for the current wiring.
-- If you want to use a different filename or extension later, update the `data-screenshot-src` value in `luna-synthesis/index.html`.
+- If you want to use a different filename or extension later, update the `data-screenshot-src` value in `lune-synth/index.html`.
 
 ## Question Prompt Screens
 

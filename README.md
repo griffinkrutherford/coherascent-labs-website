@@ -16,11 +16,11 @@ The current route structure is directory-based:
 | --- | --- |
 | `/` | Main landing page |
 | `/research/` | Research overview and technical program |
-| `/luna-synthesis/` | Lune Synth product experience |
+| `/lune-synth/` | Lune Synth product experience |
 
 Legacy compatibility stubs still exist:
 - `research.html` redirects to `/research/`
-- `applied.html` redirects to `/luna-synthesis/`
+- `applied.html` redirects to `/lune-synth/`
 
 ## What’s In The Site
 
@@ -58,7 +58,7 @@ Fonts are loaded from Google Fonts and the site uses local images, SVGs, and han
 
 ## Local Development
 
-Because the project uses directory routes like `/research/` and `/luna-synthesis/`, run it from a static server at the repo root instead of opening the files directly.
+Because the project uses directory routes like `/research/` and `/lune-synth/`, run it from a static server at the repo root instead of opening the files directly.
 
 ```bash
 cd /Users/griffinrutherford/Documents/coherascent-labs
@@ -69,7 +69,7 @@ Then open:
 
 - `http://localhost:8000/`
 - `http://localhost:8000/research/`
-- `http://localhost:8000/luna-synthesis/`
+- `http://localhost:8000/lune-synth/`
 
 ## Project Map
 
