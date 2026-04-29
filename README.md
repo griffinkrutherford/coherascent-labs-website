@@ -6,7 +6,7 @@ An experimental multi-page marketing site for Coherascent Labs, built as a stati
 
 The site presents Coherascent as a dual-pillar organization:
 - `Research`: neuro-symbolic, deterministic, and truth-aligned AI work
-- `Luna Synthesis`: educational product concepts for handwritten reasoning, grading, and adaptive learning
+- `Lune Synth`: educational product concepts for handwritten reasoning, grading, and adaptive learning
 
 ## Live Structure
 
@@ -16,7 +16,7 @@ The current route structure is directory-based:
 | --- | --- |
 | `/` | Main landing page |
 | `/research/` | Research overview and technical program |
-| `/luna-synthesis/` | Luna Synthesis product experience |
+| `/luna-synthesis/` | Lune Synth product experience |
 
 Legacy compatibility stubs still exist:
 - `research.html` redirects to `/research/`
@@ -35,7 +35,7 @@ Legacy compatibility stubs still exist:
 - initiative cards and technical visuals
 - shared brand/theme system with a purple-biased research starfield
 
-### Luna Synthesis
+### Lune Synth
 - notepad-style `Platform Components` showcase
 - animated handwritten-response slideshow
 - synchronized question-phone UI
@@ -96,17 +96,17 @@ Then open:
 ### Theme system
 - all three pages share the same `coherascent-theme` localStorage key
 - each page has its own starfield treatment tuned to the page’s visual role
-- the Luna Synthesis page also has theme-aware phone UI states
+- the Lune Synth page also has theme-aware phone UI states
 
 ### Handwriting system
-- the Luna Synthesis slideshow reveals handwriting line-by-line and character-by-character
+- the Lune Synth slideshow reveals handwriting line-by-line and character-by-character
 - word wrapping is precomputed so words do not jump awkwardly to a new line mid-write
 - reduced-motion users get a stable static rendering instead of the full animation sequence
 
 ### Phone mockups
 - workflow phones use shared sizing variables
 - phone proportions are normalized across breakpoints
-- the Luna Synthesis page includes consistent shell geometry, camera island treatment, and side hardware buttons
+- the Lune Synth page includes consistent shell geometry, camera island treatment, and side hardware buttons
 
 ## Notes
 

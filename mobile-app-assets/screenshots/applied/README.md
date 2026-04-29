@@ -1,4 +1,4 @@
-# Luna Synthesis Phone Mock Screenshots
+# Lune Synth Phone Mock Screenshots
 
 Drop real app screenshots into the paths below to replace the current in-phone mock content on `/luna-synthesis/`.
 
@@ -6,7 +6,7 @@ The phone shell, device frame, and hardware styling stay the same. Only the scre
 
 ## How It Works
 
-- The Luna Synthesis page looks for the exact files listed below.
+- The Lune Synth page looks for the exact files listed below.
 - If a file exists, it is loaded into the matching phone mock automatically.
 - If a file does not exist, the current handcrafted mock UI remains visible.
 
