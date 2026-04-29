@@ -658,6 +658,11 @@
       z-index: 10;
     }
 
+    /* Dynamic date initialization to prevent flicker if JS runs fast */
+    .platform-showcase__date:empty::before {
+      content: attr(data-placeholder);
+    }
+
     html[data-theme="light"] .platform-showcase__sheet {
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(247, 243, 249, 0.96));
@@ -4510,7 +4515,7 @@
       <article class="platform-showcase" aria-label="Handwritten response slideshow">
         <div class="platform-showcase__tag">Current handwritten response</div>
         <div class="platform-showcase__sheet">
-          <div class="platform-showcase__date">August 12th, 2026</div>
+          <div class="platform-showcase__date" id="handwritten-date" data-placeholder="April 28th, 2026"></div>
           <div class="response-carousel__deck" data-response-slideshow aria-live="polite">
             <section class="response-carousel__paper is-active" data-response-slide="0" aria-label="Calculus problem response">
               <div class="response-carousel__meta">
@@ -5310,6 +5315,24 @@
     });
   })();
 
+  /* Dynamic Date Implementation */
+  (function() {
+    var dateEl = document.getElementById('handwritten-date');
+    if (!dateEl) return;
+
+    var now = new Date();
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var month = months[now.getMonth()];
+    var day = now.getDate();
+    var year = now.getFullYear();
+
+    var suffix = 'th';
+    if (day === 1 || day === 21 || day === 31) suffix = 'st';
+    else if (day === 2 || day === 22) suffix = 'nd';
+    else if (day === 3 || day === 23) suffix = 'rd';
+
+    dateEl.textContent = month + ' ' + day + suffix + ', ' + year;
+  })();
   </script>
   <script src="../applied-handwriting-demo.js"></script>
   <script src="../applied-response-slideshow.js"></script>
