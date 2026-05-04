@@ -201,8 +201,9 @@
       top: 0;
       z-index: 30;
       isolation: isolate;
-      margin-bottom: 52px;
-      padding: 8px 0;
+      --header-padding-y: 16px;
+      margin-bottom: 36px;
+      padding: var(--header-padding-y) 0;
     }
 
     .site-header::before {
@@ -553,7 +554,7 @@
 
     @media (max-width: 900px) {
       .site-header {
-        margin-bottom: 36px;
+        margin-bottom: 28px;
       }
 
       .site-header {
@@ -575,7 +576,7 @@
       }
 
       .site-header {
-        padding-top: 4px;
+        --header-padding-y: 12px;
       }
 
       .brand {
