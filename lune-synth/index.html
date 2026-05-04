@@ -525,7 +525,7 @@
     }
 .voice-scroll-container {
   position: relative;
-  height: 250vh;
+  height: 300vh;
   margin-top: 72px;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -5430,9 +5430,19 @@
     var controls = Array.prototype.slice.call(carousel.querySelectorAll("[data-input-target]"));
     if (!slides.length) return;
 
+    var currentActiveIndex = -1;
+
     function showSlide(nextIndex) {
+      if (nextIndex === currentActiveIndex) return;
+      currentActiveIndex = nextIndex;
+
       slides.forEach(function (slide, index) {
-        slide.hidden = index !== nextIndex;
+        // Toggle hidden attribute
+        if (index === nextIndex) {
+          slide.hidden = false;
+        } else {
+          slide.hidden = true;
+        }
       });
 
       controls.forEach(function (control, index) {
@@ -5445,15 +5455,25 @@
     var ticking = false;
     function updateScroll() {
       var rect = container.getBoundingClientRect();
-      var scrollRange = container.offsetHeight - window.innerHeight;
+      var containerHeight = container.offsetHeight;
+      var viewportHeight = window.innerHeight;
+      
+      // Calculate how much of the sticky range has been scrolled
+      // The sticky behavior starts when rect.top <= 0
+      // It ends when rect.bottom <= viewportHeight
       var scrollPos = -rect.top;
-      var progress = Math.max(0, Math.min(1, scrollPos / scrollRange));
+      var totalScrollable = containerHeight - viewportHeight;
+      
+      var progress = scrollPos / totalScrollable;
+      progress = Math.max(0, Math.min(1, progress));
 
+      // Threshold: 0.5 (50%)
       if (progress < 0.5) {
         showSlide(0);
       } else {
         showSlide(1);
       }
+      
       ticking = false;
     }
 
@@ -5464,8 +5484,9 @@
       }
     }, { passive: true });
 
-    // Initial check
+    // Initial check on load/resize
     updateScroll();
+    window.addEventListener("resize", updateScroll);
 
     controls.forEach(function (control) {
       control.addEventListener("click", function () {
