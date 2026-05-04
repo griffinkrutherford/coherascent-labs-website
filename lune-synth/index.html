@@ -124,6 +124,7 @@
       min-height: 100vh;
       font-family: "Roboto Mono", monospace;
       color: var(--text);
+      overflow-x: hidden;
       background-color: var(--bg-deep);
       background:
         radial-gradient(1200px 700px at 15% 0%, rgba(100, 168, 255, 0.11), transparent 55%),
@@ -521,6 +522,36 @@
       margin-top: 72px;
       display: grid;
       gap: 24px;
+    }
+
+    .section--voice {
+      position: relative;
+      left: 50%;
+      width: 100vw;
+      margin-left: -50vw;
+      padding: 76px 0 84px;
+      gap: 30px;
+      overflow: hidden;
+      background:
+        radial-gradient(780px 360px at 12% 10%, rgba(100, 168, 255, 0.12), transparent 62%),
+        radial-gradient(720px 340px at 88% 82%, rgba(255, 93, 135, 0.1), transparent 62%),
+        linear-gradient(180deg, rgba(5, 11, 24, 0.32), rgba(10, 18, 36, 0.56));
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .section--voice > .section-title {
+      width: min(1400px, 100%);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    html[data-theme="light"] .section--voice {
+      background:
+        radial-gradient(780px 360px at 12% 10%, rgba(79, 132, 214, 0.16), transparent 62%),
+        radial-gradient(720px 340px at 88% 82%, rgba(217, 106, 140, 0.12), transparent 62%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(246, 240, 250, 0.58));
+      border-color: rgba(102, 113, 145, 0.12);
     }
 
     .section-title {
@@ -1669,6 +1700,14 @@
       overflow: hidden;
     }
 
+    .section--voice .voice-flow {
+      width: 100%;
+      min-height: clamp(520px, 62svh, 760px);
+      padding: clamp(30px, 4vw, 56px) max(24px, calc((100vw - 1400px) / 2 + 24px));
+      border-radius: 0;
+      align-content: center;
+    }
+
     .voice-flow::before {
       content: "";
       position: absolute;
@@ -1699,6 +1738,12 @@
         0 0 0 1px rgba(124, 247, 255, 0.025),
         inset 0 1px 0 rgba(255, 255, 255, 0.14),
         inset 0 -1px 0 rgba(255, 255, 255, 0.035);
+    }
+
+    .section--voice .voice-flow[data-liquid-glass].liquid-glass-card {
+      border-left: 0 !important;
+      border-right: 0 !important;
+      border-radius: 0 !important;
     }
 
     .voice-flow[data-liquid-glass] > .liquid-glass-overlay {
@@ -5064,7 +5109,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="voice-title">
+    <section class="section section--voice" aria-labelledby="voice-title">
       <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
       <div class="voice-flow" data-liquid-glass data-liquid-glass-variant="frosted">
         <div class="voice-flow__carousel" data-input-carousel>
