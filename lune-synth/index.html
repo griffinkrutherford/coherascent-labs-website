@@ -47,7 +47,7 @@
       --workflow-phone-island-top: calc(var(--workflow-phone-height) * 0.0275);
       --workflow-phone-island-width: calc(var(--workflow-phone-width) * 0.433333);
       --workflow-phone-island-height: calc(var(--workflow-phone-height) * 0.021875);
-      --workflow-phone-button-width: calc(var(--workflow-phone-height) * 0.0095);
+      --workflow-phone-button-width: calc(var(--workflow-phone-height) * 0.0068);
       --workflow-phone-volume-top: calc(var(--workflow-phone-height) * 0.245455);
       --workflow-phone-volume-height: calc(var(--workflow-phone-height) * 0.081818);
       --workflow-phone-volume-gap: calc(var(--workflow-phone-height) * 0.031818);
@@ -67,7 +67,7 @@
       --response-phone-island-top: calc(var(--response-phone-height) * 0.0275);
       --response-phone-island-width: calc(var(--response-phone-width) * 0.433333);
       --response-phone-island-height: calc(var(--response-phone-height) * 0.04375);
-      --response-phone-button-width: calc(var(--response-phone-height) * 0.008);
+      --response-phone-button-width: calc(var(--response-phone-height) * 0.0058);
       --response-phone-volume-top: calc(var(--response-phone-height) * 0.25);
       --response-phone-volume-height: calc(var(--response-phone-height) * 0.08125);
       --response-phone-volume-gap: calc(var(--response-phone-height) * 0.028125);
@@ -2198,9 +2198,9 @@
       border-radius: 28px;
       border: 1px solid rgba(190, 204, 228, 0.18);
       background:
-        linear-gradient(135deg, rgba(165, 178, 200, 0.18), transparent 20%, transparent 78%, rgba(4, 8, 16, 0.42)),
-        linear-gradient(180deg, rgba(86, 96, 114, 0.98), rgba(34, 42, 56, 0.99) 14%, rgba(11, 15, 24, 1) 58%, rgba(25, 34, 49, 0.99)),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent 13%, transparent 87%, rgba(2, 6, 14, 0.38));
+        linear-gradient(135deg, rgba(116, 128, 148, 0.12), transparent 18%, transparent 78%, rgba(0, 0, 0, 0.52)),
+        linear-gradient(180deg, #10131a, #05060a 16%, #010102 58%, #07090e),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 13%, transparent 87%, rgba(0, 0, 0, 0.46));
       box-shadow:
         0 28px 38px rgba(4, 10, 24, 0.3),
         inset 1px 1px 0 rgba(255, 255, 255, 0.16),
@@ -2215,10 +2215,10 @@
       inset: 3px;
       z-index: 3;
       border-radius: calc(28px - 3px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.03);
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.24);
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.48);
       pointer-events: none;
     }
 
@@ -2229,8 +2229,8 @@
       z-index: 4;
       border-radius: 20px;
       box-shadow:
-        inset 0 0 0 1px rgba(6, 10, 18, 0.88),
-        inset 0 0 0 2px rgba(255, 255, 255, 0.035);
+        inset 0 0 0 1px #000,
+        inset 0 0 0 2px rgba(0, 0, 0, 0.82);
       pointer-events: none;
     }
 
@@ -2242,8 +2242,17 @@
       overflow: hidden;
       background: #000;
       box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-        inset 0 18px 26px rgba(255, 255, 255, 0.04);
+        0 0 0 2px #000,
+        inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+        inset 0 18px 26px rgba(255, 255, 255, 0.025);
+    }
+
+    .voice-scene__ipad--voice .voice-scene__ipad-screen {
+      background: #000 url("../mobile-app-assets/screenshots/applied/voice/voice-mode-ipad.png") center / cover no-repeat;
+    }
+
+    .voice-scene__ipad--text .voice-scene__ipad-screen {
+      background: #000 url("../mobile-app-assets/screenshots/applied/text/text-input-ipad.png") center / cover no-repeat;
     }
 
     .voice-scene__ipad-shot {
@@ -2291,15 +2300,15 @@
       top: -2px;
       right: 18px;
       width: 19px;
-      height: 2.5px;
+      height: 1.5px;
       border-radius: 999px 999px 1px 1px;
       background:
         linear-gradient(180deg, rgba(138, 154, 183, 0.9), rgba(28, 36, 52, 0.98) 55%, rgba(10, 15, 24, 0.98));
     }
 
     .voice-scene__ipad-button--volume {
-      right: -2px;
-      width: 2.5px;
+      right: -1px;
+      width: 1.5px;
       height: 15px;
       border-radius: 1px 999px 999px 1px;
       background:
@@ -2329,6 +2338,14 @@
         radial-gradient(circle at 76% 18%, rgba(164, 123, 255, 0.14), transparent 20%),
         linear-gradient(180deg, rgba(12, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
       overflow: hidden;
+    }
+
+    .voice-scene__screen[data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode.png"] {
+      background: #000 url("../mobile-app-assets/screenshots/applied/voice/voice-mode.png") center / cover no-repeat;
+    }
+
+    .voice-scene__screen[data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input.png"] {
+      background: #000 url("../mobile-app-assets/screenshots/applied/text/text-input.png") center / cover no-repeat;
     }
 
     html[data-theme="light"] .voice-scene__screen {
@@ -3345,6 +3362,11 @@
       --phone-volume-gap: calc(var(--workflow-phone-volume-gap) * var(--voice-phone-scale));
       --phone-power-top: calc(var(--workflow-phone-power-top) * var(--voice-phone-scale));
       --phone-power-height: calc(var(--workflow-phone-power-height) * var(--voice-phone-scale));
+      border-color: rgba(190, 204, 228, 0.14);
+      background:
+        linear-gradient(135deg, rgba(116, 128, 148, 0.1), transparent 18%, transparent 78%, rgba(0, 0, 0, 0.5)),
+        linear-gradient(180deg, #11141b, #05060a 16%, #010102 58%, #07090e),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 13%, transparent 87%, rgba(0, 0, 0, 0.46));
     }
 
     .voice-scene__phone::before {
@@ -3356,6 +3378,11 @@
     .voice-scene__phone::after {
       inset: calc(var(--workflow-phone-overlay-inset) * var(--voice-phone-scale));
       border-radius: calc((var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset)) * var(--voice-phone-scale));
+      border-color: rgba(0, 0, 0, 0.72);
+      background: transparent;
+      box-shadow:
+        inset 0 0 0 1px #000,
+        inset 0 0 0 2px rgba(0, 0, 0, 0.42);
     }
 
     .response-carousel__question-phone {
@@ -3512,7 +3539,7 @@
 
     .voice-scene__screen,
     html[data-theme="light"] .voice-scene__screen {
-      box-shadow: none;
+      box-shadow: 0 0 0 2px #000;
     }
 
     .response-carousel__question-label,
@@ -4400,7 +4427,7 @@
         --workflow-phone-island-top: calc(var(--workflow-phone-height-mobile) * 0.0275);
         --workflow-phone-island-width: calc(var(--workflow-phone-width-mobile) * 0.433333);
         --workflow-phone-island-height: calc(var(--workflow-phone-height-mobile) * 0.021875);
-        --workflow-phone-button-width: calc(var(--workflow-phone-height-mobile) * 0.0095);
+        --workflow-phone-button-width: calc(var(--workflow-phone-height-mobile) * 0.0068);
         --workflow-phone-volume-top: calc(var(--workflow-phone-height-mobile) * 0.245455);
         --workflow-phone-volume-height: calc(var(--workflow-phone-height-mobile) * 0.081818);
         --workflow-phone-volume-gap: calc(var(--workflow-phone-height-mobile) * 0.031818);
@@ -4415,7 +4442,7 @@
         --response-phone-island-top: calc(var(--response-phone-height-mobile) * 0.0275);
         --response-phone-island-width: calc(var(--response-phone-width-mobile) * 0.433333);
         --response-phone-island-height: calc(var(--response-phone-height-mobile) * 0.04375);
-        --response-phone-button-width: calc(var(--response-phone-height-mobile) * 0.008);
+        --response-phone-button-width: calc(var(--response-phone-height-mobile) * 0.0058);
         --response-phone-volume-top: calc(var(--response-phone-height-mobile) * 0.25);
         --response-phone-volume-height: calc(var(--response-phone-height-mobile) * 0.08125);
         --response-phone-volume-gap: calc(var(--response-phone-height-mobile) * 0.028125);
@@ -4586,12 +4613,12 @@
         top: -1px;
         right: 17px;
         width: 12px;
-        height: 2px;
+        height: 1px;
       }
 
       .section--voice .voice-scene__ipad-button--volume {
-        right: -2px;
-        width: 2px;
+        right: -1px;
+        width: 1px;
         height: 9px;
       }
 
