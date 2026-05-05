@@ -2165,6 +2165,16 @@
       background: transparent;
     }
 
+    .voice-scene__devices {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(16px, 2.6vw, 30px);
+      width: min(100%, 520px);
+    }
+
     .voice-scene__phone {
       --voice-phone-scale: 1.68;
       position: relative;
@@ -2176,6 +2186,59 @@
       border-radius: calc(var(--workflow-phone-shell-radius) * var(--voice-phone-scale));
       border: 1px solid rgba(255, 255, 255, 0.14);
       transform: rotate(-5deg);
+    }
+
+    .voice-scene__ipad {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
+      width: clamp(190px, 17vw, 248px);
+      aspect-ratio: 1668 / 2420;
+      padding: 7px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        linear-gradient(180deg, rgba(88, 98, 116, 0.96), rgba(34, 42, 56, 0.98) 15%, rgba(12, 16, 26, 0.99) 58%, rgba(24, 34, 50, 0.98)),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 13%, transparent 87%, rgba(2, 6, 14, 0.32));
+      box-shadow:
+        0 28px 38px rgba(4, 10, 24, 0.28),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.12),
+        inset -1px -1px 0 rgba(5, 9, 18, 0.34);
+      transform: rotate(3deg);
+    }
+
+    .voice-scene__ipad::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(4, 7, 12, 0.94);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      transform: translateX(-50%);
+      z-index: 4;
+    }
+
+    .voice-scene__ipad-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+        inset 0 18px 26px rgba(255, 255, 255, 0.04);
+    }
+
+    .voice-scene__ipad-shot {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      object-fit: cover;
     }
 
     .voice-scene__screen {
@@ -4398,8 +4461,14 @@
       }
 
       .section--voice .voice-scene {
-        min-height: clamp(236px, 34svh, 310px);
-        padding: 4px 0 0;
+        min-height: clamp(250px, 38svh, 320px);
+        padding: 8px 0 6px;
+      }
+
+      .section--voice .voice-scene__devices {
+        gap: 10px;
+        width: 100%;
+        transform: translateY(-2px);
       }
 
       .voice-scene__phone {
@@ -4410,6 +4479,23 @@
 
       .section--voice .voice-scene__phone {
         --voice-phone-scale: 1.12;
+      }
+
+      .section--voice .voice-scene__ipad {
+        width: clamp(118px, 38vw, 150px);
+        padding: 4px;
+        border-radius: 17px;
+        transform: rotate(3deg);
+      }
+
+      .section--voice .voice-scene__ipad::before {
+        top: 4px;
+        width: 3px;
+        height: 3px;
+      }
+
+      .section--voice .voice-scene__ipad-screen {
+        border-radius: 13px;
       }
 
       .platform-showcase__sheet {
@@ -4634,6 +4720,10 @@
 
       .voice-scene {
         min-height: 342px;
+      }
+
+      .voice-scene__devices {
+        gap: 12px;
       }
 
       .voice-scene__phone {
@@ -5284,39 +5374,46 @@
               </ul>
             </div>
             <div class="voice-scene">
-              <div class="voice-scene__phone" data-phone-mock="input">
-                <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/voice/voice-mode-low.png">
-                  <div class="voice-scene__topbar">
-                    <span class="voice-scene__back">Back</span>
-                    <span class="voice-scene__title">Voice Upload</span>
-                  </div>
-                  <span class="voice-scene__chip">Live Transcription</span>
-                  <div class="voice-scene__mic-wrap">
-                    <div class="voice-scene__mic">
-                      <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
-                        <rect x="5.25" y="2.25" width="5.5" height="7.25" rx="2.75"></rect>
-                        <path d="M4 7.5v.35c0 2.2 1.8 4 4 4s4-1.8 4-4V7.5"></path>
-                        <path d="M8 11.85v2.1"></path>
-                        <path d="M5.9 13.95h4.2"></path>
-                      </svg>
+              <div class="voice-scene__devices">
+                <div class="voice-scene__phone" data-phone-mock="input">
+                  <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/voice/voice-mode-low.png">
+                    <div class="voice-scene__topbar">
+                      <span class="voice-scene__back">Back</span>
+                      <span class="voice-scene__title">Voice Upload</span>
                     </div>
-                    <div class="voice-scene__wave">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
+                    <span class="voice-scene__chip">Live Transcription</span>
+                    <div class="voice-scene__mic-wrap">
+                      <div class="voice-scene__mic">
+                        <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true">
+                          <rect x="5.25" y="2.25" width="5.5" height="7.25" rx="2.75"></rect>
+                          <path d="M4 7.5v.35c0 2.2 1.8 4 4 4s4-1.8 4-4V7.5"></path>
+                          <path d="M8 11.85v2.1"></path>
+                          <path d="M5.9 13.95h4.2"></path>
+                        </svg>
+                      </div>
+                      <div class="voice-scene__wave">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="voice-scene__transcript-card">
+                      <span class="voice-scene__transcript-label">Transcript</span>
+                      <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
+                      <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
+                      <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
+                    </div>
+                    <div class="voice-scene__edit-row">
+                      <span class="voice-scene__edit-pill">Edit Transcript</span>
+                      <span class="voice-scene__edit-note">Ready to Grade</span>
                     </div>
                   </div>
-                  <div class="voice-scene__transcript-card">
-                    <span class="voice-scene__transcript-label">Transcript</span>
-                    <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
-                    <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
-                    <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
-                  </div>
-                  <div class="voice-scene__edit-row">
-                    <span class="voice-scene__edit-pill">Edit Transcript</span>
-                    <span class="voice-scene__edit-note">Ready to Grade</span>
+                </div>
+                <div class="voice-scene__ipad voice-scene__ipad--voice" aria-label="11-inch iPad Pro Voice Upload mock">
+                  <div class="voice-scene__ipad-screen">
+                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/voice/voice-mode-ipad.png" alt="" loading="lazy" decoding="async">
                   </div>
                 </div>
               </div>
@@ -5336,22 +5433,29 @@
               </ul>
             </div>
             <div class="voice-scene">
-              <div class="voice-scene__phone" data-phone-mock="input">
-                <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/text/text-input-low.png">
-                  <div class="voice-scene__topbar">
-                    <span class="voice-scene__back">Back</span>
-                    <span class="voice-scene__title">Text Input</span>
+              <div class="voice-scene__devices">
+                <div class="voice-scene__phone" data-phone-mock="input">
+                  <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/text/text-input-low.png">
+                    <div class="voice-scene__topbar">
+                      <span class="voice-scene__back">Back</span>
+                      <span class="voice-scene__title">Text Input</span>
+                    </div>
+                    <span class="voice-scene__chip">Typed Response</span>
+                    <div class="voice-scene__transcript-card">
+                      <span class="voice-scene__transcript-label">Answer</span>
+                      <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
+                      <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
+                      <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
+                    </div>
+                    <div class="voice-scene__edit-row">
+                      <span class="voice-scene__edit-pill">Edit Answer</span>
+                      <span class="voice-scene__edit-note">Ready to Grade</span>
+                    </div>
                   </div>
-                  <span class="voice-scene__chip">Typed Response</span>
-                  <div class="voice-scene__transcript-card">
-                    <span class="voice-scene__transcript-label">Answer</span>
-                    <span class="voice-scene__transcript-line voice-scene__transcript-line--long"></span>
-                    <span class="voice-scene__transcript-line voice-scene__transcript-line--mid"></span>
-                    <span class="voice-scene__transcript-line voice-scene__transcript-line--short"></span>
-                  </div>
-                  <div class="voice-scene__edit-row">
-                    <span class="voice-scene__edit-pill">Edit Answer</span>
-                    <span class="voice-scene__edit-note">Ready to Grade</span>
+                </div>
+                <div class="voice-scene__ipad voice-scene__ipad--text" aria-label="11-inch iPad Pro Text Input mock">
+                  <div class="voice-scene__ipad-screen">
+                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/text/text-input-ipad.png" alt="" loading="lazy" decoding="async">
                   </div>
                 </div>
               </div>
