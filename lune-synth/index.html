@@ -2194,38 +2194,51 @@
       flex: 0 0 auto;
       width: clamp(190px, 17vw, 248px);
       aspect-ratio: 1668 / 2420;
-      padding: 7px;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 8px;
+      border-radius: 28px;
+      border: 1px solid rgba(190, 204, 228, 0.18);
       background:
-        linear-gradient(180deg, rgba(88, 98, 116, 0.96), rgba(34, 42, 56, 0.98) 15%, rgba(12, 16, 26, 0.99) 58%, rgba(24, 34, 50, 0.98)),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 13%, transparent 87%, rgba(2, 6, 14, 0.32));
+        linear-gradient(135deg, rgba(165, 178, 200, 0.18), transparent 20%, transparent 78%, rgba(4, 8, 16, 0.42)),
+        linear-gradient(180deg, rgba(86, 96, 114, 0.98), rgba(34, 42, 56, 0.99) 14%, rgba(11, 15, 24, 1) 58%, rgba(25, 34, 49, 0.99)),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent 13%, transparent 87%, rgba(2, 6, 14, 0.38));
       box-shadow:
-        0 28px 38px rgba(4, 10, 24, 0.28),
-        inset 1px 1px 0 rgba(255, 255, 255, 0.12),
-        inset -1px -1px 0 rgba(5, 9, 18, 0.34);
+        0 28px 38px rgba(4, 10, 24, 0.3),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.16),
+        inset -1px -1px 0 rgba(5, 9, 18, 0.42),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.03);
       transform: rotate(3deg);
     }
 
     .voice-scene__ipad::before {
       content: "";
       position: absolute;
-      top: 7px;
-      left: 50%;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(4, 7, 12, 0.94);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-      transform: translateX(-50%);
+      inset: 3px;
+      z-index: 3;
+      border-radius: calc(28px - 3px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.24);
+      pointer-events: none;
+    }
+
+    .voice-scene__ipad::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
       z-index: 4;
+      border-radius: 20px;
+      box-shadow:
+        inset 0 0 0 1px rgba(6, 10, 18, 0.88),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.035);
+      pointer-events: none;
     }
 
     .voice-scene__ipad-screen {
       position: relative;
       width: 100%;
       height: 100%;
-      border-radius: 18px;
+      border-radius: 20px;
       overflow: hidden;
       background: #000;
       box-shadow:
@@ -2239,6 +2252,67 @@
       height: 100%;
       border-radius: inherit;
       object-fit: cover;
+    }
+
+    .voice-scene__ipad-camera {
+      position: absolute;
+      top: 50%;
+      right: 3px;
+      z-index: 5;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 38% 34%, rgba(74, 96, 142, 0.78), rgba(8, 12, 22, 0.94) 48%, rgba(2, 4, 9, 1));
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 0 2px rgba(116, 151, 225, 0.45);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .voice-scene__ipad-button {
+      position: absolute;
+      z-index: 1;
+      display: block;
+      pointer-events: none;
+      border: 1px solid rgba(182, 196, 220, 0.16);
+      background:
+        linear-gradient(90deg, rgba(20, 26, 38, 0.98), rgba(132, 148, 176, 0.9) 22%, rgba(74, 88, 112, 0.98) 52%, rgba(14, 20, 32, 0.98)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 38%, rgba(0, 0, 0, 0.12));
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08),
+        0 5px 10px rgba(4, 10, 24, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        inset 0 -1px 0 rgba(5, 9, 18, 0.3);
+    }
+
+    .voice-scene__ipad-button--power {
+      top: -3px;
+      right: 42px;
+      width: 34px;
+      height: 5px;
+      border-radius: 999px 999px 2px 2px;
+      background:
+        linear-gradient(180deg, rgba(138, 154, 183, 0.9), rgba(28, 36, 52, 0.98) 55%, rgba(10, 15, 24, 0.98));
+    }
+
+    .voice-scene__ipad-button--volume {
+      right: -4px;
+      width: 5px;
+      height: 30px;
+      border-radius: 2px 999px 999px 2px;
+      background:
+        linear-gradient(270deg, rgba(20, 26, 38, 0.98), rgba(132, 148, 176, 0.9) 22%, rgba(74, 88, 112, 0.98) 52%, rgba(14, 20, 32, 0.98)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 38%, rgba(0, 0, 0, 0.12));
+    }
+
+    .voice-scene__ipad-button--volume-up {
+      top: 72px;
+    }
+
+    .voice-scene__ipad-button--volume-down {
+      top: 108px;
     }
 
     .voice-scene__screen {
@@ -4483,19 +4557,50 @@
 
       .section--voice .voice-scene__ipad {
         width: clamp(118px, 38vw, 150px);
-        padding: 4px;
-        border-radius: 17px;
+        padding: 5px;
+        border-radius: 18px;
         transform: rotate(3deg);
       }
 
       .section--voice .voice-scene__ipad::before {
-        top: 4px;
-        width: 3px;
-        height: 3px;
+        inset: 2px;
+        border-radius: 16px;
+      }
+
+      .section--voice .voice-scene__ipad::after {
+        inset: 5px;
+        border-radius: 13px;
       }
 
       .section--voice .voice-scene__ipad-screen {
         border-radius: 13px;
+      }
+
+      .section--voice .voice-scene__ipad-camera {
+        right: 2px;
+        width: 3px;
+        height: 3px;
+      }
+
+      .section--voice .voice-scene__ipad-button--power {
+        top: -2px;
+        right: 26px;
+        width: 22px;
+        height: 4px;
+      }
+
+      .section--voice .voice-scene__ipad-button--volume {
+        right: -3px;
+        width: 4px;
+        height: 20px;
+      }
+
+      .section--voice .voice-scene__ipad-button--volume-up {
+        top: 44px;
+      }
+
+      .section--voice .voice-scene__ipad-button--volume-down {
+        top: 68px;
       }
 
       .platform-showcase__sheet {
@@ -5412,8 +5517,12 @@
                   </div>
                 </div>
                 <div class="voice-scene__ipad voice-scene__ipad--voice" aria-label="11-inch iPad Pro Voice Upload mock">
+                  <span class="voice-scene__ipad-button voice-scene__ipad-button--power"></span>
+                  <span class="voice-scene__ipad-button voice-scene__ipad-button--volume voice-scene__ipad-button--volume-up"></span>
+                  <span class="voice-scene__ipad-button voice-scene__ipad-button--volume voice-scene__ipad-button--volume-down"></span>
+                  <span class="voice-scene__ipad-camera"></span>
                   <div class="voice-scene__ipad-screen">
-                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/voice/voice-mode-ipad.png" alt="" loading="lazy" decoding="async">
+                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/voice/voice-mode-ipad.png" alt="" loading="eager" decoding="async">
                   </div>
                 </div>
               </div>
@@ -5454,8 +5563,12 @@
                   </div>
                 </div>
                 <div class="voice-scene__ipad voice-scene__ipad--text" aria-label="11-inch iPad Pro Text Input mock">
+                  <span class="voice-scene__ipad-button voice-scene__ipad-button--power"></span>
+                  <span class="voice-scene__ipad-button voice-scene__ipad-button--volume voice-scene__ipad-button--volume-up"></span>
+                  <span class="voice-scene__ipad-button voice-scene__ipad-button--volume voice-scene__ipad-button--volume-down"></span>
+                  <span class="voice-scene__ipad-camera"></span>
                   <div class="voice-scene__ipad-screen">
-                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/text/text-input-ipad.png" alt="" loading="lazy" decoding="async">
+                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/text/text-input-ipad.png" alt="" loading="eager" decoding="async">
                   </div>
                 </div>
               </div>
