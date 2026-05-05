@@ -523,70 +523,28 @@
       display: grid;
       gap: 24px;
     }
-.voice-scroll-container {
-  position: relative;
-  z-index: 20;
-  isolation: isolate;
-  --voice-sticky-top: var(--sticky-header-height, 112px);
-  height: 300vh;
-  margin-top: 72px;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  width: 100vw;
-}
-
-.section--voice {
-  position: sticky;
-  top: var(--voice-sticky-top);
-  width: 100%;
-  height: calc(100svh - var(--voice-sticky-top));
-  margin: 0;
-  padding: 0;
-  gap: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.section--voice .section-title {
-  position: relative;
-  top: auto;
-  left: auto;
-  right: auto;
-  width: min(1400px, 100%);
-  margin: 0;
-  padding: 0.18em 24px 0.24em;
-  line-height: 1.34;
-  white-space: normal;
-  align-self: center;
-  z-index: 10;
-}
-
-    .section--voice .section-title::before {
-      flex: 0 0 48px;
-      margin-top: 0.63em;
+    .section--voice {
+      position: relative;
+      left: 50%;
+      width: 100vw;
+      margin-left: -50vw;
+      padding: 76px 0 0;
+      gap: 30px;
+      overflow: hidden;
     }
 
-.section--voice .voice-flow {
-  width: 100%;
-  flex: 1 1 100%;
-  height: 100%;
-  min-height: auto;
-  padding: clamp(28px, 4vw, 52px) 0;
-  border: 0 !important;
-  background:
-    radial-gradient(1200px 600px at 12% 10%, rgba(100, 168, 255, 0.12), transparent 62%),
-    radial-gradient(1000px 500px at 88% 82%, rgba(255, 93, 135, 0.1), transparent 62%),
-    linear-gradient(180deg, rgba(5, 11, 24, 0.6), rgba(10, 18, 36, 0.8));
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  row-gap: clamp(18px, 3vh, 36px);
-  align-items: stretch;
-  align-content: stretch;
-}
+    .section--voice .voice-flow {
+      width: 100%;
+      min-height: clamp(520px, 62svh, 760px);
+      padding: clamp(30px, 4vw, 56px) max(24px, calc((100vw - 1400px) / 2 + 24px));
+      border-radius: 0;
+      align-content: center;
+      background:
+        radial-gradient(780px 360px at 12% 10%, rgba(100, 168, 255, 0.12), transparent 62%),
+        radial-gradient(720px 340px at 88% 82%, rgba(255, 93, 135, 0.1), transparent 62%),
+        linear-gradient(180deg, rgba(5, 11, 24, 0.32), rgba(10, 18, 36, 0.56));
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
 .section--voice .voice-flow__carousel {
   width: 100%;
@@ -610,8 +568,7 @@
   align-items: center;
   justify-content: center;
   grid-template-columns: minmax(0, 440px) auto;
-  gap: 100px;
-  transform: translateX(-60px);
+  gap: 64px;
 }
 
 .section--voice .voice-flow__copy {
@@ -5305,11 +5262,10 @@
       </div>
     </section>
 
-    <div class="voice-scroll-container">
-      <section class="section section--voice" aria-labelledby="voice-title">
-        <div class="voice-flow" data-liquid-glass data-liquid-glass-variant="frosted">
-          <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
-          <div class="voice-flow__carousel" data-input-carousel>
+    <section class="section section--voice" aria-labelledby="voice-title">
+      <div class="voice-flow" data-liquid-glass data-liquid-glass-variant="frosted">
+        <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
+        <div class="voice-flow__carousel" data-input-carousel>
           <div class="voice-flow__controls" aria-label="Input method carousel">
             <button class="voice-flow__control is-active" type="button" data-input-target="0" aria-pressed="true">Voice</button>
             <button class="voice-flow__control" type="button" data-input-target="1" aria-pressed="false">Text</button>
@@ -5404,7 +5360,6 @@
         </div>
       </div>
     </section>
-  </div>
 
     <section class="section" aria-labelledby="engine-title">
       <h2 class="section-title" id="engine-title">The Neuro-Symbolic Engine</h2>
@@ -5495,27 +5450,16 @@
   })();
 
   (function () {
-    var container = document.querySelector(".voice-scroll-container");
     var carousel = document.querySelector("[data-input-carousel]");
-    if (!container || !carousel) return;
+    if (!carousel) return;
 
     var slides = Array.prototype.slice.call(carousel.querySelectorAll("[data-input-slide]"));
     var controls = Array.prototype.slice.call(carousel.querySelectorAll("[data-input-target]"));
-    if (!slides.length) return;
-
-    var currentActiveIndex = -1;
+    if (!slides.length || !controls.length) return;
 
     function showSlide(nextIndex) {
-      if (nextIndex === currentActiveIndex) return;
-      currentActiveIndex = nextIndex;
-
       slides.forEach(function (slide, index) {
-        // Toggle hidden attribute
-        if (index === nextIndex) {
-          slide.hidden = false;
-        } else {
-          slide.hidden = true;
-        }
+        slide.hidden = index !== nextIndex;
       });
 
       controls.forEach(function (control, index) {
@@ -5524,42 +5468,6 @@
         control.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
     }
-
-    var ticking = false;
-    function updateScroll() {
-      var rect = container.getBoundingClientRect();
-      var containerHeight = container.offsetHeight;
-      var viewportHeight = window.innerHeight;
-      
-      // Calculate how much of the sticky range has been scrolled
-      // The sticky behavior starts when rect.top <= 0
-      // It ends when rect.bottom <= viewportHeight
-      var scrollPos = -rect.top;
-      var totalScrollable = containerHeight - viewportHeight;
-      
-      var progress = scrollPos / totalScrollable;
-      progress = Math.max(0, Math.min(1, progress));
-
-      // Threshold: 0.5 (50%)
-      if (progress < 0.5) {
-        showSlide(0);
-      } else {
-        showSlide(1);
-      }
-      
-      ticking = false;
-    }
-
-    window.addEventListener("scroll", function() {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScroll);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // Initial check on load/resize
-    updateScroll();
-    window.addEventListener("resize", updateScroll);
 
     controls.forEach(function (control) {
       control.addEventListener("click", function () {
