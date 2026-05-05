@@ -2234,65 +2234,6 @@
       animation-delay: 0.8s;
     }
 
-    .voice-scene__speaker-waves {
-      position: absolute;
-      left: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .section--voice .voice-scene__speaker-waves {
-      left: -25%;
-      z-index: 1;
-      opacity: 1;
-    }
-
-    .voice-scene__speaker-waves span {
-      display: block;
-      width: 20px;
-      height: 60px;
-      border-right: 3px solid var(--blue);
-      border-radius: 50%;
-      opacity: 0;
-      filter: drop-shadow(0 0 6px var(--blue));
-      animation: speaker-wave-travel 2s infinite linear;
-    }
-
-    .voice-scene__speaker-waves span:nth-child(2) { height: 100px; animation-delay: 0.66s; }
-    .voice-scene__speaker-waves span:nth-child(3) { height: 140px; animation-delay: 1.33s; }
-
-    .section--voice .voice-scene__speaker-waves span {
-      border: 2px solid rgba(124, 247, 255, 0.72);
-      border-left: 0;
-      box-shadow: 0 0 16px rgba(100, 168, 255, 0.26);
-      opacity: 0.28;
-      animation-name: voice-panel-speaker-wave;
-    }
-
-    @keyframes speaker-wave-travel {
-      0% { transform: translateX(0); opacity: 0; }
-      20% { opacity: 0.4; }
-      80% { opacity: 0.4; }
-      100% { transform: translateX(60px); opacity: 0; }
-    }
-
-    @keyframes voice-panel-speaker-wave {
-      0% { transform: translateX(0); opacity: 0.16; }
-      22% { opacity: 0.48; }
-      78% { opacity: 0.36; }
-      100% { transform: translateX(60px); opacity: 0.12; }
-    }
-
-    @keyframes voice-panel-arc {
-      0%, 100% { opacity: 0.18; transform: translateY(-50%) translateX(0); }
-      45% { opacity: 0.58; transform: translateY(-50%) translateX(18px); }
-    }
-
     .voice-scene__phone {
       --voice-phone-scale: 1.68;
       position: relative;
@@ -4354,7 +4295,7 @@
 
       .section--voice .voice-flow {
         min-height: 0;
-        padding: clamp(22px, 3vh, 34px) 0;
+        padding: clamp(22px, 3vh, 34px) 0 clamp(48px, 10vh, 80px);
       }
 
       .section--voice .voice-flow__carousel {
@@ -4470,7 +4411,7 @@
 
       .section--voice .voice-flow {
         min-height: 0;
-        padding: 14px 0 max(14px, env(safe-area-inset-bottom));
+        padding: 14px 0 clamp(64px, 15vh, 120px);
         row-gap: 16px;
       }
 
@@ -4541,27 +4482,6 @@
         width: 70px;
         height: 126px;
       }
-
-      .voice-scene__speaker-waves {
-        display: none;
-      }
-
-      .section--voice .voice-scene__speaker-waves {
-        left: calc(50% - 112px);
-        top: 58%;
-        display: flex;
-        gap: 10px;
-        transform: translate(-50%, -50%);
-      }
-
-      .section--voice .voice-scene__speaker-waves span {
-        width: 14px;
-        height: 44px;
-        border-right-width: 2px;
-      }
-
-      .section--voice .voice-scene__speaker-waves span:nth-child(2) { height: 70px; }
-      .section--voice .voice-scene__speaker-waves span:nth-child(3) { height: 96px; }
 
       .voice-scene__phone {
         --voice-phone-scale: 1.3;
@@ -4795,14 +4715,6 @@
 
       .voice-scene {
         min-height: 342px;
-      }
-
-      .voice-scene__speaker-waves {
-        display: none;
-      }
-
-      .section--voice .voice-scene__speaker-waves {
-        display: flex;
       }
 
       .voice-scene__phone {
@@ -5454,11 +5366,6 @@
               </ul>
             </div>
             <div class="voice-scene">
-              <div class="voice-scene__speaker-waves">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
               <div class="voice-scene__phone" data-phone-mock="input">
                 <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/voice/voice-mode-low.png">
                   <div class="voice-scene__topbar">
