@@ -267,6 +267,26 @@
 
   initPhoneHardware();
 
+  Array.prototype.forEach.call(document.querySelectorAll(".voice-scene__ipad"), function (ipad) {
+    if (ipad.classList.contains("phone-mock-trigger")) return;
+    ipad.classList.add("phone-mock-trigger");
+    ipad.setAttribute("role", "button");
+    ipad.setAttribute("tabindex", "0");
+    if (!ipad.getAttribute("aria-label")) {
+      ipad.setAttribute("aria-label", "Open iPad mock");
+    }
+
+    ipad.addEventListener("click", function () {
+      openModal(ipad);
+    });
+
+    ipad.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openModal(ipad);
+    });
+  });
+
   Array.prototype.forEach.call(hosts, function (host) {
     var src = host.getAttribute("data-screenshot-src");
     var lowSrc = host.getAttribute("data-screenshot-low");
