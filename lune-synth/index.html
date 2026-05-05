@@ -613,8 +613,8 @@
       grid-template-columns: minmax(0, 1.38fr) minmax(250px, 0.62fr);
       align-items: stretch;
       gap: 24px;
-      padding: 58px 28px 64px;
-      min-height: clamp(820px, calc(100svh - 100px), 1000px);
+      padding: 44px 28px 48px;
+      height: clamp(560px, calc(100svh - 110px), 860px);
       border-radius: 24px;
       border: 1px solid var(--line);
       background:
@@ -1073,7 +1073,7 @@
       aspect-ratio: var(--workflow-phone-ratio);
       padding: var(--workflow-phone-shell-padding);
       border-radius: var(--workflow-phone-shell-radius);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      border: 1px solid rgb(56, 64, 80);
       background:
         linear-gradient(145deg, rgba(32, 43, 62, 0.96), rgba(11, 17, 29, 0.98));
       transform: rotate(11deg);
@@ -1341,7 +1341,7 @@
       aspect-ratio: var(--workflow-phone-ratio);
       padding: var(--workflow-phone-shell-padding);
       border-radius: var(--workflow-phone-shell-radius);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      border: 1px solid rgb(56, 64, 80);
       background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
       box-shadow:
         0 28px 42px rgba(4, 10, 24, 0.42),
@@ -2185,7 +2185,7 @@
       aspect-ratio: var(--workflow-phone-ratio);
       padding: calc(var(--workflow-phone-shell-padding) * var(--voice-phone-scale));
       border-radius: calc(var(--workflow-phone-shell-radius) * var(--voice-phone-scale));
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      border: 1px solid rgb(56, 64, 80);
       transform: rotate(-5deg);
     }
 
@@ -2195,9 +2195,9 @@
       flex: 0 0 auto;
       width: clamp(190px, 17vw, 248px);
       aspect-ratio: 1668 / 2420;
-      padding: 4px;
-      border-radius: 28px;
-      border: 1px solid rgba(190, 204, 228, 0.18);
+      padding: 1.5px;
+      border-radius: 25.5px;
+      border: 1px solid rgb(120, 132, 154);
       background: linear-gradient(180deg, #1d2129, #0a0c11 60%, #161a22);
       box-shadow:
         0 28px 38px rgba(4, 10, 24, 0.3),
@@ -2257,7 +2257,7 @@
 
     .voice-scene__ipad-button--power {
       top: -2.5px;
-      right: 18px;
+      right: 28px;
       width: 19px;
       height: 2.5px;
       border-radius: 999px 999px 1px 1px;
@@ -2550,7 +2550,7 @@
       aspect-ratio: var(--workflow-phone-ratio);
       padding: var(--workflow-phone-shell-padding);
       border-radius: var(--workflow-phone-shell-radius);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      border: 1px solid rgb(56, 64, 80);
       background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
       box-shadow:
         0 28px 42px rgba(4, 10, 24, 0.42),
@@ -3131,7 +3131,7 @@
       aspect-ratio: var(--workflow-phone-ratio);
       padding: var(--response-phone-shell-padding);
       border-radius: var(--response-phone-shell-radius);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      border: 1px solid rgb(56, 64, 80);
       background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
       box-shadow:
         0 18px 28px rgba(4, 10, 24, 0.22),
@@ -3219,11 +3219,9 @@
       --phone-power-top: var(--workflow-phone-power-top);
       --phone-power-height: var(--workflow-phone-power-height);
       isolation: isolate;
-      border-color: rgba(190, 204, 228, 0.14);
+      border-color: rgb(56, 64, 80);
       background:
-        linear-gradient(135deg, rgba(116, 128, 148, 0.1), transparent 18%, transparent 78%, rgba(0, 0, 0, 0.5)),
-        linear-gradient(180deg, #11141b, #05060a 16%, #010102 58%, #07090e),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 13%, transparent 87%, rgba(0, 0, 0, 0.46));
+        linear-gradient(180deg, #11141b, #05060a 16%, #010102 58%, #07090e);
       box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.04),
         0 34px 42px rgba(4, 10, 24, 0.34),
@@ -4495,8 +4493,8 @@
 
       .section--voice .voice-scene__ipad {
         width: clamp(118px, 38vw, 150px);
-        padding: 3px;
-        border-radius: 18px;
+        padding: 1px;
+        border-radius: 16px;
         transform: rotate(3deg);
       }
 
@@ -4517,7 +4515,7 @@
 
       .section--voice .voice-scene__ipad-button--power {
         top: -1.5px;
-        right: 17px;
+        right: 22px;
         width: 12px;
         height: 1.5px;
       }
@@ -4816,7 +4814,50 @@
       }
     }
 
+    .lune-engine-stage {
+      position: relative;
+      width: 100%;
+      max-width: 880px;
+      margin: 22px auto 28px;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(122, 184, 255, 0.06), transparent 60%),
+        linear-gradient(180deg, rgba(8, 14, 28, 0.55), rgba(4, 8, 18, 0.65));
+      border: 1px solid rgba(122, 184, 255, 0.12);
+      box-shadow:
+        0 22px 48px rgba(4, 10, 24, 0.32),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    }
+
+    html[data-theme="light"] .lune-engine-stage {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(79, 132, 214, 0.08), transparent 60%),
+        linear-gradient(180deg, rgba(255, 253, 250, 0.92), rgba(245, 239, 247, 0.86));
+      border-color: rgba(79, 132, 214, 0.16);
+      box-shadow:
+        0 18px 36px rgba(138, 151, 181, 0.16),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .lune-engine-stage canvas,
+    .lune-engine-stage svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
   </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.166.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.166.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
   <main>
@@ -5519,6 +5560,7 @@
           statistical guesses.
         </p>
       </div>
+      <div class="lune-engine-stage" data-lune-engine></div>
       <div class="timeline">
         <div class="timeline-item timeline-item--moon" data-liquid-glass>
           <span>Rigid Mathematical Audit</span>
@@ -5571,6 +5613,7 @@
     </footer>
   </main>
   <script src="../liquid-glass-cards.js"></script>
+  <script type="module" src="./lune-engine/index.js"></script>
   <script>
   (function () {
     var header = document.querySelector(".site-header");
