@@ -2208,32 +2208,6 @@
       background: transparent;
     }
 
-    .section--voice .voice-scene::before,
-    .section--voice .voice-scene::after {
-      content: "";
-      position: absolute;
-      left: 8%;
-      top: 50%;
-      width: 92px;
-      height: 154px;
-      border: 2px solid rgba(124, 247, 255, 0.54);
-      border-left: 0;
-      border-radius: 0 999px 999px 0;
-      transform: translateY(-50%);
-      filter: drop-shadow(0 0 14px rgba(100, 168, 255, 0.26));
-      pointer-events: none;
-      z-index: 1;
-      animation: voice-panel-arc 2.4s ease-in-out infinite;
-    }
-
-    .section--voice .voice-scene::after {
-      left: 4%;
-      width: 128px;
-      height: 216px;
-      opacity: 0.66;
-      animation-delay: 0.8s;
-    }
-
     .voice-scene__phone {
       --voice-phone-scale: 1.68;
       position: relative;
@@ -4469,18 +4443,6 @@
       .section--voice .voice-scene {
         min-height: clamp(236px, 34svh, 310px);
         padding: 4px 0 0;
-      }
-
-      .section--voice .voice-scene::before {
-        left: calc(50% - 130px);
-        width: 46px;
-        height: 86px;
-      }
-
-      .section--voice .voice-scene::after {
-        left: calc(50% - 154px);
-        width: 70px;
-        height: 126px;
       }
 
       .voice-scene__phone {
