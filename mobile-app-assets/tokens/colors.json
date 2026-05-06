@@ -1,0 +1,72 @@
+{
+  "brand": {
+    "blue": "#64A8FF",
+    "purple": "#A47BFF",
+    "red": "#FF5D87",
+    "cyan": "#7CF7FF",
+    "orange": "#FFAD5C"
+  },
+  "background": {
+    "base": "#000000",
+    "deep": "#050914",
+    "surface": "#081122",
+    "surfaceStrong": "#0C162A",
+    "surfaceElevated": "#101C36"
+  },
+  "text": {
+    "primary": "#EDF5FF",
+    "secondary": "#C6D9F5",
+    "muted": "#A6BAD7",
+    "soft": "rgba(237, 245, 255, 0.72)"
+  },
+  "line": {
+    "default": "rgba(164, 123, 255, 0.20)",
+    "strong": "rgba(196, 208, 228, 0.16)",
+    "soft": "rgba(255, 255, 255, 0.04)"
+  },
+  "status": {
+    "success": "#7CF7FF",
+    "warning": "#FFAD5C",
+    "low": "#FF5D87",
+    "mid": "#A47BFF",
+    "high": "#64A8FF"
+  },
+  "gradients": {
+    "heroSurface": [
+      "#0B162C",
+      "#070E1D"
+    ],
+    "appScreen": [
+      "#141028",
+      "#0A0E1C",
+      "#070D1A"
+    ],
+    "accent": [
+      "#FF5D87",
+      "#A47BFF",
+      "#64A8FF"
+    ],
+    "buttonPrimary": [
+      "#FF5D87",
+      "#A47BFF",
+      "#64A8FF"
+    ],
+    "feedbackLow": [
+      "#FF5D87",
+      "#FFAD5C"
+    ],
+    "feedbackMid": [
+      "#A47BFF",
+      "#64A8FF"
+    ],
+    "feedbackHigh": [
+      "#7CF7FF",
+      "#64A8FF"
+    ]
+  },
+  "glow": {
+    "blue": "rgba(100, 168, 255, 0.14)",
+    "purple": "rgba(164, 123, 255, 0.14)",
+    "red": "rgba(255, 93, 135, 0.14)"
+  }
+}
