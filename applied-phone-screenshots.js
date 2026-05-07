@@ -385,7 +385,8 @@
       openModal(trigger);
     });
 
-    // 1. Immediately inject low-quality placeholder if available
+    // 1. Immediately inject low-quality placeholder if available.
+    // Hosts with data-screenshot-low hide handcrafted fallback in CSS, so this is the first visible mock state.
     if (lowSrc) {
       var lowImg = document.createElement("img");
       lowImg.className = "phone-screenshot phone-screenshot--low";
@@ -393,6 +394,9 @@
       lowImg.setAttribute("aria-hidden", "true");
       lowImg.loading = "eager";
       lowImg.decoding = "async";
+      if ("fetchPriority" in lowImg) {
+        lowImg.fetchPriority = index < 6 ? "high" : "auto";
+      }
       host.setAttribute("data-screenshot-replacing", "true");
       host.insertBefore(lowImg, host.firstChild);
       lowImg.src = lowSrc;
