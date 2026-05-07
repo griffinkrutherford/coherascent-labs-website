@@ -408,28 +408,6 @@
         radial-gradient(620px 300px at 85% 84%, rgba(217, 106, 140, 0.08), transparent 60%);
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      right: -34px;
-      top: -42px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 34% 34%, rgba(255, 255, 255, 0.85) 0, var(--sphere-red-soft) 18%, var(--sphere-purple-soft) 42%, var(--sphere-blue-soft) 64%, rgba(10, 20, 40, 0.02) 76%),
-        radial-gradient(circle at 65% 70%, var(--sphere-blue-glow-soft), transparent 55%);
-      box-shadow: inset -24px -18px 40px rgba(5, 10, 22, 0.45), 0 0 44px rgba(164, 123, 255, 0.14);
-      pointer-events: none;
-    }
-
-    html[data-theme="light"] .hero::before {
-      background:
-        radial-gradient(circle at 34% 34%, rgba(255, 255, 255, 0.92) 0, var(--sphere-red-soft) 18%, var(--sphere-purple-soft) 42%, var(--sphere-blue-soft) 64%, rgba(255, 255, 255, 0.02) 76%),
-        radial-gradient(circle at 65% 70%, var(--sphere-blue-glow-soft), transparent 55%);
-      box-shadow: inset -24px -18px 40px rgba(197, 190, 207, 0.4), 0 0 38px rgba(127, 99, 214, 0.08);
-    }
-
     .hero > * { position: relative; z-index: 1; }
 
     .hero-label {
@@ -495,13 +473,11 @@
         drop-shadow(0 30px 50px rgba(4, 10, 24, 0.42))
         drop-shadow(0 0 28px rgba(100, 168, 255, 0.22))
         drop-shadow(0 0 36px rgba(164, 123, 255, 0.16));
+      animation: luneIconGlow 7.5s ease-in-out infinite;
     }
 
     html[data-theme="light"] .hero-app-icon {
-      filter:
-        drop-shadow(0 22px 38px rgba(138, 151, 181, 0.18))
-        drop-shadow(0 0 24px rgba(79, 132, 214, 0.14))
-        drop-shadow(0 0 32px rgba(127, 99, 214, 0.1));
+      animation-name: luneIconGlowLight;
     }
 
     .hero .hero-tagline {
@@ -2994,6 +2970,48 @@
       to { background-position: 100% 50%; }
     }
 
+    @keyframes luneIconGlow {
+      0%, 100% {
+        filter:
+          drop-shadow(0 30px 50px rgba(4, 10, 24, 0.42))
+          drop-shadow(0 0 30px rgba(100, 168, 255, 0.28))
+          drop-shadow(0 0 44px rgba(100, 168, 255, 0.16));
+      }
+      33% {
+        filter:
+          drop-shadow(0 30px 50px rgba(4, 10, 24, 0.42))
+          drop-shadow(0 0 32px rgba(164, 123, 255, 0.3))
+          drop-shadow(0 0 48px rgba(164, 123, 255, 0.18));
+      }
+      66% {
+        filter:
+          drop-shadow(0 30px 50px rgba(4, 10, 24, 0.42))
+          drop-shadow(0 0 34px rgba(255, 93, 135, 0.3))
+          drop-shadow(0 0 50px rgba(255, 93, 135, 0.18));
+      }
+    }
+
+    @keyframes luneIconGlowLight {
+      0%, 100% {
+        filter:
+          drop-shadow(0 22px 38px rgba(138, 151, 181, 0.18))
+          drop-shadow(0 0 26px rgba(79, 132, 214, 0.18))
+          drop-shadow(0 0 38px rgba(79, 132, 214, 0.1));
+      }
+      33% {
+        filter:
+          drop-shadow(0 22px 38px rgba(138, 151, 181, 0.18))
+          drop-shadow(0 0 28px rgba(127, 99, 214, 0.18))
+          drop-shadow(0 0 40px rgba(127, 99, 214, 0.1));
+      }
+      66% {
+        filter:
+          drop-shadow(0 22px 38px rgba(138, 151, 181, 0.18))
+          drop-shadow(0 0 30px rgba(217, 106, 140, 0.18))
+          drop-shadow(0 0 42px rgba(217, 106, 140, 0.1));
+      }
+    }
+
     .response-carousel {
       position: relative;
       display: grid;
@@ -4881,7 +4899,8 @@
       .processing-scene__nebula,
       .processing-scene__spark,
       .processing-scene__signal span,
-      .hero .hero-tagline span {
+      .hero .hero-tagline span,
+      .hero-app-icon {
         animation: none;
       }
     }
