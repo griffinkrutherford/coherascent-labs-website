@@ -473,20 +473,29 @@
     .hero-brandline {
       display: flex;
       align-items: center;
-      gap: clamp(16px, 3vw, 30px);
+      justify-content: space-between;
+      gap: clamp(18px, 4vw, 44px);
+      min-width: 0;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 22px;
       min-width: 0;
     }
 
     .hero-app-icon {
       flex: 0 0 auto;
-      width: clamp(96px, 13vw, 176px);
+      width: clamp(132px, 18vw, 232px);
       aspect-ratio: 1;
       border-radius: 26%;
       object-fit: cover;
+      transform: rotate(4deg);
+      transform-origin: center;
       box-shadow:
-        0 24px 52px rgba(4, 10, 24, 0.36),
-        0 0 32px rgba(100, 168, 255, 0.2),
-        0 0 46px rgba(164, 123, 255, 0.14),
+        0 30px 64px rgba(4, 10, 24, 0.42),
+        0 0 42px rgba(100, 168, 255, 0.24),
+        0 0 58px rgba(164, 123, 255, 0.18),
         inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
 
@@ -4277,7 +4286,7 @@
       }
 
       .hero-app-icon {
-        width: clamp(88px, 18vw, 136px);
+        width: clamp(118px, 20vw, 160px);
       }
 
       .platform-showcase {
@@ -4414,11 +4423,21 @@
       }
 
       .hero-brandline {
+        align-items: center;
+        gap: 14px;
+      }
+
+      .hero-copy {
         gap: 14px;
       }
 
       .hero-app-icon {
-        width: clamp(78px, 24vw, 104px);
+        width: clamp(84px, 26vw, 116px);
+        transform: rotate(5deg);
+      }
+
+      .hero-app-title {
+        font-size: clamp(46px, 15vw, 64px);
       }
 
       .hero .hero-tagline {
@@ -4934,10 +4953,12 @@
     </header>
 
     <section class="hero" aria-labelledby="applied-page-title" data-liquid-glass>
-      <h2 class="hero-app-title" id="applied-page-title">Lune Synth&trade;</h2>
       <div class="hero-brandline">
+        <div class="hero-copy">
+          <h2 class="hero-app-title" id="applied-page-title">Lune Synth&trade;</h2>
+          <p class="hero-tagline">The <span>anti-slop</span> study app</p>
+        </div>
         <img class="hero-app-icon" src="../images/lune-synth-icon.png" alt="Lune Synth app icon" loading="eager" decoding="async" fetchpriority="high" />
-        <p class="hero-tagline">The <span>anti-slop</span> study app</p>
       </div>
       <p>
         Do the work. Scan it in. Get feedback that actually helps.
