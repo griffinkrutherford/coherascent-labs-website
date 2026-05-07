@@ -470,6 +470,33 @@
       text-shadow: none;
     }
 
+    .hero-brandline {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 3vw, 30px);
+      min-width: 0;
+    }
+
+    .hero-app-icon {
+      flex: 0 0 auto;
+      width: clamp(96px, 13vw, 176px);
+      aspect-ratio: 1;
+      border-radius: 26%;
+      object-fit: cover;
+      box-shadow:
+        0 24px 52px rgba(4, 10, 24, 0.36),
+        0 0 32px rgba(100, 168, 255, 0.2),
+        0 0 46px rgba(164, 123, 255, 0.14),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    html[data-theme="light"] .hero-app-icon {
+      box-shadow:
+        0 20px 42px rgba(138, 151, 181, 0.18),
+        0 0 30px rgba(79, 132, 214, 0.16),
+        0 0 42px rgba(127, 99, 214, 0.1);
+    }
+
     .hero .hero-tagline {
       margin: 0;
       font-size: clamp(12px, 3.8vw, 52px);
@@ -4249,6 +4276,10 @@
         padding: 30px 22px;
       }
 
+      .hero-app-icon {
+        width: clamp(88px, 18vw, 136px);
+      }
+
       .platform-showcase {
         grid-template-columns: 1fr;
         height: auto;
@@ -4376,6 +4407,23 @@
 
       .brand h1 {
         font-size: 16px;
+      }
+
+      .hero {
+        gap: 18px;
+      }
+
+      .hero-brandline {
+        gap: 14px;
+      }
+
+      .hero-app-icon {
+        width: clamp(78px, 24vw, 104px);
+      }
+
+      .hero .hero-tagline {
+        font-size: clamp(20px, 8vw, 34px);
+        white-space: normal;
       }
 
       .section[aria-labelledby="platform-title"] {
@@ -4887,7 +4935,10 @@
 
     <section class="hero" aria-labelledby="applied-page-title" data-liquid-glass>
       <h2 class="hero-app-title" id="applied-page-title">Lune Synth&trade;</h2>
-      <p class="hero-tagline">The <span>anti-slop</span> study app</p>
+      <div class="hero-brandline">
+        <img class="hero-app-icon" src="../images/lune-synth-icon.png" alt="Lune Synth app icon" loading="eager" decoding="async" fetchpriority="high" />
+        <p class="hero-tagline">The <span>anti-slop</span> study app</p>
+      </div>
       <p>
         Do the work. Scan it in. Get feedback that actually helps.
       </p>
