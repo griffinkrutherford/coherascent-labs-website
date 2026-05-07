@@ -43,6 +43,81 @@
     });
   }
 
+  function getScreenshotLoadPriority(src, index) {
+    var promptMatch = src.match(/\/question-prompts\/(\d+)\.png(?:$|\?)/);
+    if (!promptMatch) {
+      return {
+        group: 1,
+        order: index
+      };
+    }
+
+    var promptNumber = parseInt(promptMatch[1], 10);
+    return {
+      group: promptNumber <= 3 ? 0 : 2,
+      order: promptNumber
+    };
+  }
+
+  function loadScreenshotQueue(items) {
+    var queue = items.slice().sort(function (a, b) {
+      if (a.priority.group !== b.priority.group) {
+        return a.priority.group - b.priority.group;
+      }
+      return a.priority.order - b.priority.order;
+    });
+    var activeCount = 0;
+    var nextIndex = 0;
+    var maxConcurrentLoads = 3;
+
+    function loadNext() {
+      while (activeCount < maxConcurrentLoads && nextIndex < queue.length) {
+        startLoad(queue[nextIndex]);
+        nextIndex += 1;
+      }
+    }
+
+    function startLoad(item) {
+      activeCount += 1;
+
+      var finish = function () {
+        activeCount = Math.max(0, activeCount - 1);
+        loadNext();
+      };
+
+      var probe = new Image();
+      if ("fetchPriority" in probe) {
+        probe.fetchPriority = item.priority.group === 0 ? "high" : (item.priority.group === 2 ? "low" : "auto");
+      }
+
+      probe.onload = function () {
+        if (!item.host.querySelector(".phone-screenshot--loaded")) {
+          item.screenshot.src = item.src;
+          item.host.insertBefore(item.screenshot, item.host.firstChild);
+
+          // Force a reflow before adding the loaded class to trigger transition.
+          item.screenshot.getBoundingClientRect();
+          item.screenshot.classList.remove("phone-screenshot--loading");
+          item.screenshot.classList.add("phone-screenshot--loaded");
+          item.host.setAttribute("data-screenshot-loaded", "true");
+          item.host.setAttribute("data-screenshot-replacing", "true");
+
+          setTimeout(function() {
+            var low = item.host.querySelector(".phone-screenshot--low");
+            if (low) low.remove();
+          }, 1000);
+        }
+
+        finish();
+      };
+
+      probe.onerror = finish;
+      probe.src = item.src;
+    }
+
+    loadNext();
+  }
+
   function ensureModal() {
     if (modal) return;
 
@@ -287,7 +362,9 @@
     });
   });
 
-  Array.prototype.forEach.call(hosts, function (host) {
+  var screenshotItems = [];
+
+  Array.prototype.forEach.call(hosts, function (host, index) {
     var src = host.getAttribute("data-screenshot-src");
     var lowSrc = host.getAttribute("data-screenshot-low");
     if (!src) return;
@@ -328,29 +405,14 @@
     screenshot.setAttribute("aria-hidden", "true");
     screenshot.loading = "lazy";
     screenshot.decoding = "async";
-    
-    // Use an Image probe to handle the load event
-    var probe = new Image();
-    probe.onload = function () {
-      if (host.querySelector(".phone-screenshot--loaded")) return;
-      
-      screenshot.src = src;
-      host.insertBefore(screenshot, host.firstChild);
-      
-      // Force a reflow before adding the loaded class to trigger transition
-      screenshot.getBoundingClientRect();
-      screenshot.classList.remove("phone-screenshot--loading");
-      screenshot.classList.add("phone-screenshot--loaded");
-      host.setAttribute("data-screenshot-loaded", "true");
-      host.setAttribute("data-screenshot-replacing", "true");
-      
-      // Optional: remove low-quality image after high-quality is faded in
-      setTimeout(function() {
-        var low = host.querySelector(".phone-screenshot--low");
-        if (low) low.remove();
-      }, 1000);
-    };
 
-    probe.src = src;
+    screenshotItems.push({
+      host: host,
+      src: src,
+      screenshot: screenshot,
+      priority: getScreenshotLoadPriority(src, index)
+    });
   });
+
+  loadScreenshotQueue(screenshotItems);
 })();
