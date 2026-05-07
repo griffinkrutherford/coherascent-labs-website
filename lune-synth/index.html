@@ -4550,8 +4550,9 @@
       }
 
       .platform-showcase__sheet {
-        min-height: min(78svh, 740px);
+        min-height: clamp(360px, 48svh, 420px);
         margin-top: 10px;
+        margin-bottom: clamp(118px, 18svh, 160px);
         padding: 16px 14px 14px;
       }
 
@@ -4565,7 +4566,7 @@
       }
 
       .response-carousel__paper {
-        padding: 8px 0 calc(var(--response-phone-height-mobile) + 52px) 0;
+        padding: 8px 0 calc(var(--response-phone-height-mobile) + 74px) 0;
       }
 
       .response-carousel__meta {
@@ -4607,9 +4608,14 @@
         min-height: 152px;
       }
 
+      .response-carousel__paper[data-response-slide="0"] .response-carousel__board {
+        margin-left: -44px;
+        width: calc(100% + 44px);
+      }
+
       .response-carousel__question-phone {
         left: 6px;
-        bottom: 12px;
+        bottom: -104px;
         width: var(--response-phone-width-mobile);
         height: var(--response-phone-height-mobile);
         transform: none;
@@ -4684,7 +4690,8 @@
         min-height: auto;
         align-content: start;
         gap: 8px;
-        padding-top: 0;
+        padding-top: clamp(82px, 13svh, 116px);
+        padding-bottom: 8px;
       }
 
       .platform-showcase__title {
@@ -4897,7 +4904,7 @@
 
     <section class="hero" aria-labelledby="applied-page-title" data-liquid-glass>
       <h2 class="hero-app-title" id="applied-page-title">Lune Synth&trade;</h2>
-      <p class="hero-tagline">The <span>anti-slop</span> app to help you study.</p>
+      <p class="hero-tagline">The <span>anti-slop</span> study app</p>
       <p>
         Do the work. Scan it in. Get feedback that actually helps.
       </p>
