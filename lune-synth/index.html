@@ -2539,26 +2539,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
       padding: 10px 0 8px;
     }
 
     .feedback-scene__phone {
-      --feedback-phone-scale: 0.72;
-      --phone-side-offset: calc(var(--workflow-phone-shell-padding) * var(--feedback-phone-scale) * -1.5);
-      --phone-button-width: calc(var(--workflow-phone-button-width) * var(--feedback-phone-scale));
-      --phone-volume-top: calc(var(--workflow-phone-volume-top) * var(--feedback-phone-scale));
-      --phone-volume-height: calc(var(--workflow-phone-volume-height) * var(--feedback-phone-scale));
-      --phone-volume-gap: calc(var(--workflow-phone-volume-gap) * var(--feedback-phone-scale));
-      --phone-power-top: calc(var(--workflow-phone-power-top) * var(--feedback-phone-scale));
-      --phone-power-height: calc(var(--workflow-phone-power-height) * var(--feedback-phone-scale));
       position: relative;
       flex: 0 0 auto;
-      width: calc(var(--workflow-phone-width) * var(--feedback-phone-scale));
-      height: calc(var(--workflow-phone-height) * var(--feedback-phone-scale));
+      width: var(--workflow-phone-width);
+      height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
-      padding: calc(var(--workflow-phone-shell-padding) * var(--feedback-phone-scale));
-      border-radius: calc(var(--workflow-phone-shell-radius) * var(--feedback-phone-scale));
+      padding: var(--workflow-phone-shell-padding);
+      border-radius: var(--workflow-phone-shell-radius);
       border: 1px solid rgb(56, 64, 80);
       background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
       box-shadow:
@@ -2569,27 +2560,27 @@
     }
 
     .feedback-scene__phone + .feedback-scene__phone {
-      margin-left: 0;
+      margin-left: -58px;
     }
 
     .feedback-scene__phone--far-left {
       z-index: 1;
-      transform: translateY(12px);
+      transform: translateY(16px) scale(0.58);
     }
 
     .feedback-scene__phone--left {
       z-index: 2;
-      transform: translateY(4px);
+      transform: translateY(10px) scale(0.68);
     }
 
     .feedback-scene__phone--center {
       z-index: 4;
-      transform: translateY(0);
+      transform: scale(0.8);
     }
 
     .feedback-scene__phone--right {
       z-index: 3;
-      transform: translateY(4px);
+      transform: translateY(10px) scale(0.68);
     }
 
     .feedback-scene__screen {
@@ -2597,7 +2588,7 @@
       width: 100%;
       height: 100%;
       padding: 14px 10px 12px;
-      border-radius: calc(var(--workflow-phone-screen-radius) * var(--feedback-phone-scale));
+      border-radius: var(--workflow-phone-screen-radius);
       background: linear-gradient(180deg, rgba(13, 22, 42, 0.98), rgba(7, 14, 26, 0.98));
       overflow: hidden;
     }
@@ -3321,17 +3312,6 @@
     .voice-scene__phone::after {
       inset: calc(var(--workflow-phone-overlay-inset) * var(--voice-phone-scale));
       border-radius: calc((var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset)) * var(--voice-phone-scale));
-    }
-
-    .feedback-scene__phone::before {
-      top: calc(var(--workflow-phone-island-top) * var(--feedback-phone-scale));
-      width: calc(var(--workflow-phone-island-width) * var(--feedback-phone-scale));
-      height: calc(var(--workflow-phone-island-height) * var(--feedback-phone-scale) * 2);
-    }
-
-    .feedback-scene__phone::after {
-      inset: calc(var(--workflow-phone-overlay-inset) * var(--feedback-phone-scale));
-      border-radius: calc((var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset)) * var(--feedback-phone-scale));
     }
 
     .response-carousel__question-phone {
@@ -4754,28 +4734,25 @@
 
       .feedback-scene__phone {
         top: auto;
-        --feedback-phone-scale: 0.72;
-        width: calc(var(--workflow-phone-width-mobile) * var(--feedback-phone-scale));
-        height: calc(var(--workflow-phone-height-mobile) * var(--feedback-phone-scale));
-        padding: calc(var(--workflow-phone-shell-padding) * var(--feedback-phone-scale));
-        border-radius: calc(var(--workflow-phone-shell-radius) * var(--feedback-phone-scale));
+        width: var(--workflow-phone-width-mobile);
+        height: var(--workflow-phone-height-mobile);
       }
 
       .feedback-scene__phone + .feedback-scene__phone {
-        margin-left: 0;
+        margin-left: -46px;
       }
 
       .feedback-scene__phone--far-left {
-        transform: translateY(12px);
+        transform: translateY(14px) scale(0.54);
       }
 
       .feedback-scene__phone--center {
-        transform: translateY(0);
+        transform: scale(0.76);
       }
 
       .feedback-scene__phone--left,
       .feedback-scene__phone--right {
-        transform: translateY(4px);
+        transform: translateY(10px) scale(0.64);
       }
 
       .capture-scene__desk {
@@ -5441,7 +5418,7 @@
             <div class="processing-card__visual feedback-scene">
               <div class="feedback-scene__deck">
                 <div class="feedback-scene__phone feedback-scene__phone--far-left feedback-scene__phone--low" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/45-percent.png">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/45-percent.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/45-percent-low.png">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
                       <div class="feedback-scene__score-ring">
@@ -5453,7 +5430,7 @@
                   </div>
                 </div>
                 <div class="feedback-scene__phone feedback-scene__phone--left feedback-scene__phone--mid" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/80-percent.png">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/80-percent.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/80-percent-low.png">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
                       <div class="feedback-scene__score-ring">
@@ -5465,7 +5442,7 @@
                   </div>
                 </div>
                 <div class="feedback-scene__phone feedback-scene__phone--center feedback-scene__phone--mid" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/90-percent.png">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/90-percent.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/90-percent-low.png">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
                       <div class="feedback-scene__score-ring">
@@ -5477,7 +5454,7 @@
                   </div>
                 </div>
                 <div class="feedback-scene__phone feedback-scene__phone--right feedback-scene__phone--high" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/95-percent.png">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/95-percent.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/95-percent-low.png">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
                       <div class="feedback-scene__score-ring">
