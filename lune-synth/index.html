@@ -1144,6 +1144,7 @@
       background: linear-gradient(180deg, rgba(250, 252, 255, 0.98), rgba(235, 240, 248, 0.94));
       overflow: hidden;
       transform: rotate(-7deg);
+      z-index: 1;
       box-shadow:
         inset 0 0 0 1px rgba(100, 168, 255, 0.06),
         0 16px 24px rgba(4, 10, 24, 0.22);
@@ -1178,6 +1179,35 @@
     .capture-scene__scribble--mid { width: 82%; }
     .capture-scene__scribble--tiny { width: 48%; }
 
+    .capture-scene__arrow {
+      position: absolute;
+      left: 140px;
+      top: 76px;
+      width: 88px;
+      height: 58px;
+      overflow: visible;
+      transform: rotate(-7deg);
+      transform-origin: center;
+      z-index: 2;
+      pointer-events: none;
+      filter:
+        drop-shadow(0 0 10px rgba(100, 168, 255, 0.28))
+        drop-shadow(0 0 16px rgba(164, 123, 255, 0.18));
+    }
+
+    .capture-scene__arrow-line,
+    .capture-scene__arrow-head {
+      fill: none;
+      stroke: url(#capture-arrow-gradient);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .capture-scene__arrow-line {
+      stroke-dasharray: 8 9;
+    }
+
     .capture-scene__phone {
       position: absolute;
       right: 26px;
@@ -1191,6 +1221,7 @@
       background:
         linear-gradient(145deg, rgba(32, 43, 62, 0.96), rgba(11, 17, 29, 0.98));
       transform: rotate(11deg);
+      z-index: 3;
       box-shadow:
         0 28px 42px rgba(4, 10, 24, 0.42),
         0 0 0 10px rgba(6, 10, 18, 0.2),
@@ -3283,6 +3314,11 @@
       margin-top: -12px;
     }
 
+    .response-carousel__paper[data-response-slide="0"] .response-carousel__board {
+      margin-left: -200px;
+      width: calc(100% + 200px);
+    }
+
     .response-carousel__question-phone {
       position: absolute;
       left: 31.5%;
@@ -4982,6 +5018,13 @@
         height: auto;
       }
 
+      .capture-scene__arrow {
+        left: 116px;
+        top: 78px;
+        width: 72px;
+        height: 48px;
+      }
+
       .capture-scene__phone {
         top: 12px;
         width: var(--workflow-phone-width-mobile);
@@ -5137,7 +5180,7 @@
         <img class="hero-app-icon" src="../images/lune-synth-icon.png" alt="Lune Synth app icon" loading="eager" decoding="async" fetchpriority="high" />
       </div>
       <p>
-        Do the work. Scan it in. Get feedback that actually helps.
+        Do the work. Scan it in. Get feedback that actually helps. From the Pre-K through the PhD level.
       </p>
     </section>
 
@@ -5560,6 +5603,17 @@
               <div class="capture-scene__page">
                 <img class="capture-scene__page-image" src="../mobile-app-assets/screenshots/screenshot-workflow/1/handwritten-page.png" alt="">
               </div>
+              <svg class="capture-scene__arrow" viewBox="0 0 96 64" role="presentation" aria-hidden="true">
+                <defs>
+                  <linearGradient id="capture-arrow-gradient" x1="10" y1="34" x2="84" y2="26" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#64a8ff" />
+                    <stop offset="0.55" stop-color="#a47bff" />
+                    <stop offset="1" stop-color="#ff5d87" />
+                  </linearGradient>
+                </defs>
+                <path class="capture-scene__arrow-line" d="M10 39C28 23 50 20 75 28" />
+                <path class="capture-scene__arrow-head" d="M65 16L80 30L61 38" />
+              </svg>
               <div class="capture-scene__phone" data-phone-mock="camera">
                 <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock.png" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-low.png">
                   <span class="capture-scene__upload">Scan Work</span>
