@@ -532,7 +532,7 @@
       display: grid;
       gap: 14px;
       width: min(calc(100% - 68px), 680px);
-      margin: 16px 34px 0;
+      margin: 16px auto 0;
       padding: 20px;
       border: 1px solid rgba(164, 123, 255, 0.18);
       border-radius: 24px;
@@ -562,22 +562,14 @@
       gap: 6px;
     }
 
-    .hero-waitlist-kicker {
-      margin: 0;
-      color: var(--purple);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
     .hero-waitlist-panel h3 {
       margin: 0;
       color: var(--text);
       font-size: clamp(22px, 3vw, 32px);
       line-height: 1.1;
       letter-spacing: 0;
+      text-align: center;
+      white-space: nowrap;
     }
 
     .hero-waitlist-panel p {
@@ -585,6 +577,8 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.6;
+      text-align: center;
+      white-space: nowrap;
     }
 
     .hero-waitlist {
@@ -4599,9 +4593,17 @@
 
       .hero-waitlist-panel {
         width: calc(100% - 44px);
-        margin: 16px 22px 0;
+        margin: 16px auto 0;
         padding: 16px;
         border-radius: 22px;
+      }
+
+      .hero-waitlist-panel h3 {
+        font-size: 20px;
+      }
+
+      .hero-waitlist-panel p {
+        font-size: 12px;
       }
 
       .hero-waitlist {
@@ -5139,9 +5141,8 @@
 
     <div class="hero-waitlist-panel" aria-labelledby="lune-beta-title">
       <div class="hero-waitlist-copy">
-        <p class="hero-waitlist-kicker">Private beta</p>
-        <h3 id="lune-beta-title">Become a Lune Synth beta user</h3>
-        <p>Get early access, shape the feedback flow, and hear when new invite waves open.</p>
+        <h3 id="lune-beta-title">Join the beta waitlist</h3>
+        <p>Early access, roadmap input, invites.</p>
       </div>
       <form class="hero-waitlist" action="mailto:griffinkrutherford@gmail.com?subject=Lune%20Synth%20waitlist" method="post" enctype="text/plain">
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
