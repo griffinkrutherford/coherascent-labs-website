@@ -4439,16 +4439,21 @@
       }
 
       .hero-brandline {
+        flex-direction: column;
         align-items: center;
-        gap: 14px;
+        gap: 16px;
+        text-align: left;
       }
 
       .hero-copy {
+        order: 2;
+        width: 100%;
         gap: 14px;
       }
 
       .hero-app-icon {
-        width: clamp(84px, 26vw, 116px);
+        order: 1;
+        width: clamp(108px, 34vw, 136px);
         transform: rotate(5deg);
       }
 
