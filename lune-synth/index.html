@@ -528,6 +528,13 @@
       font-size: 15px;
     }
 
+    .hero-waitlist-panel {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 16px;
+      padding: 0 34px;
+    }
+
     .hero-waitlist {
       display: flex;
       align-items: center;
@@ -4538,6 +4545,10 @@
         white-space: normal;
       }
 
+      .hero-waitlist-panel {
+        padding: 0 22px;
+      }
+
       .hero-waitlist {
         align-items: stretch;
         flex-direction: column;
@@ -5069,11 +5080,14 @@
       <p>
         Do the work. Scan it in. Get feedback that actually helps.
       </p>
+    </section>
+
+    <div class="hero-waitlist-panel">
       <form class="hero-waitlist" action="mailto:griffinkrutherford@gmail.com?subject=Lune%20Synth%20waitlist" method="post" enctype="text/plain">
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
         <button type="submit">Join Waitlist</button>
       </form>
-    </section>
+    </div>
 
     <section class="section" aria-labelledby="platform-title">
       <h2 class="section-title" id="platform-title">Platform Components</h2>
