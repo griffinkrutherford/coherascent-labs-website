@@ -654,6 +654,118 @@
         0 12px 28px rgba(255, 93, 135, 0.16);
     }
 
+    .waitlist-popup[hidden] {
+      display: none;
+    }
+
+    .waitlist-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(3, 7, 16, 0.64);
+      backdrop-filter: blur(10px);
+    }
+
+    .waitlist-popup__panel {
+      position: relative;
+      width: min(100%, 420px);
+      padding: 28px;
+      border: 1px solid rgba(164, 123, 255, 0.22);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(100, 168, 255, 0.18), transparent 36%),
+        radial-gradient(circle at 86% 22%, rgba(255, 93, 135, 0.14), transparent 34%),
+        rgba(6, 12, 26, 0.94);
+      box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.44),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    html[data-theme="light"] .waitlist-popup {
+      background: rgba(246, 249, 255, 0.68);
+    }
+
+    html[data-theme="light"] .waitlist-popup__panel {
+      border-color: rgba(127, 99, 214, 0.18);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(79, 132, 214, 0.14), transparent 36%),
+        radial-gradient(circle at 86% 22%, rgba(217, 106, 140, 0.12), transparent 34%),
+        rgba(255, 255, 255, 0.94);
+      box-shadow:
+        0 26px 60px rgba(122, 136, 168, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .waitlist-popup__close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(164, 123, 255, 0.2);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font: inherit;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .waitlist-popup__close:hover,
+    .waitlist-popup__close:focus-visible {
+      outline: none;
+      background: rgba(100, 168, 255, 0.16);
+      border-color: rgba(100, 168, 255, 0.34);
+    }
+
+    .waitlist-popup h3 {
+      margin: 0;
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .waitlist-popup p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .waitlist-popup__action {
+      margin-top: 20px;
+      min-height: 42px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      color: #06111f;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow:
+        0 10px 24px rgba(100, 168, 255, 0.16),
+        0 10px 24px rgba(255, 93, 135, 0.12);
+    }
+
+    .waitlist-popup__action:hover,
+    .waitlist-popup__action:focus-visible {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow:
+        0 12px 28px rgba(100, 168, 255, 0.2),
+        0 12px 28px rgba(255, 93, 135, 0.16);
+    }
+
     .section {
       margin-top: 72px;
       display: grid;
@@ -4782,6 +4894,19 @@
         width: 100%;
       }
 
+      .waitlist-popup {
+        padding: 18px;
+      }
+
+      .waitlist-popup__panel {
+        padding: 26px 20px 22px;
+        border-radius: 20px;
+      }
+
+      .waitlist-popup h3 {
+        font-size: 22px;
+      }
+
       .section[aria-labelledby="platform-title"] {
         gap: 18px;
       }
@@ -5355,10 +5480,19 @@
         <h3 id="lune-beta-title">Join the beta waitlist</h3>
         <p>Early access, roadmap input, invites.</p>
       </div>
-      <form class="hero-waitlist" action="mailto:griffinkrutherford@gmail.com?subject=Lune%20Synth%20waitlist" method="post" enctype="text/plain">
+      <form class="hero-waitlist" data-waitlist-form novalidate>
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
         <button type="submit">Join Waitlist</button>
       </form>
+    </div>
+
+    <div class="waitlist-popup" data-waitlist-popup role="dialog" aria-modal="true" aria-labelledby="waitlist-popup-title" hidden>
+      <div class="waitlist-popup__panel">
+        <button class="waitlist-popup__close" type="button" data-waitlist-close aria-label="Close waitlist message">&times;</button>
+        <h3 id="waitlist-popup-title">Waitlist coming soon</h3>
+        <p>Email capture will be ready soon.</p>
+        <button class="waitlist-popup__action" type="button" data-waitlist-close>Got it</button>
+      </div>
     </div>
 
     <section class="section" aria-labelledby="platform-title">
@@ -6172,6 +6306,56 @@
       control.addEventListener("click", function () {
         showSlide(Number(control.getAttribute("data-input-target") || 0));
       });
+    });
+  })();
+
+  (function () {
+    var form = document.querySelector("[data-waitlist-form]");
+    var popup = document.querySelector("[data-waitlist-popup]");
+    if (!form || !popup) return;
+
+    var closeControls = Array.prototype.slice.call(popup.querySelectorAll("[data-waitlist-close]"));
+    var closeButton = popup.querySelector("[data-waitlist-close]");
+    var lastFocusedElement = null;
+
+    function openPopup() {
+      lastFocusedElement = document.activeElement;
+      popup.hidden = false;
+      document.body.style.overflow = "hidden";
+
+      if (closeButton) {
+        closeButton.focus();
+      }
+    }
+
+    function closePopup() {
+      popup.hidden = true;
+      document.body.style.overflow = "";
+
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      openPopup();
+    });
+
+    popup.addEventListener("click", function (event) {
+      if (event.target === popup) {
+        closePopup();
+      }
+    });
+
+    closeControls.forEach(function (control) {
+      control.addEventListener("click", closePopup);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !popup.hidden) {
+        closePopup();
+      }
     });
   })();
 
