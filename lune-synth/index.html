@@ -1477,10 +1477,20 @@
       opacity: 0.84;
     }
 
-    .processing-scene__phone {
+    .processing-scene__stage {
       position: absolute;
       left: 50%;
       top: 10px;
+      width: 226px;
+      height: var(--workflow-phone-height);
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .processing-scene__phone {
+      position: absolute;
+      left: 4px;
+      top: 0;
       width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
       aspect-ratio: var(--workflow-phone-ratio);
@@ -1492,14 +1502,15 @@
         0 28px 42px rgba(4, 10, 24, 0.42),
         0 0 0 10px rgba(6, 10, 18, 0.22),
         inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-      transform: translateX(-50%);
+      transform: rotate(-3deg);
+      transform-origin: 50% 62%;
       z-index: 3;
     }
 
     .processing-scene__step-flow {
       position: absolute;
-      top: 34px;
-      right: 18px;
+      top: 24px;
+      right: 0;
       width: 94px;
       display: grid;
       gap: 8px;
@@ -3250,9 +3261,9 @@
     }
 
     @keyframes step-card-form {
-      0%, 16% { opacity: 0; transform: translateY(10px) scale(0.96); }
-      30%, 72% { opacity: 1; transform: translateY(0) scale(1); }
-      88%, 100% { opacity: 0; transform: translateY(-5px) scale(0.985); }
+      0%, 16% { opacity: 0.24; transform: translateY(10px) scale(0.96); }
+      30%, 78% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0.72; transform: translateY(-2px) scale(0.99); }
     }
 
     @keyframes step-line-write {
@@ -5131,15 +5142,19 @@
         flex: 0 0 auto;
       }
 
-      .processing-scene__phone {
+      .processing-scene__stage {
         top: 12px;
+        width: 204px;
+        height: var(--workflow-phone-height-mobile);
+      }
+
+      .processing-scene__phone {
         width: var(--workflow-phone-width-mobile);
         height: var(--workflow-phone-height-mobile);
       }
 
       .processing-scene__step-flow {
-        top: 36px;
-        right: 14px;
+        top: 24px;
         width: 82px;
         gap: 7px;
       }
@@ -5841,69 +5856,71 @@
             <div class="processing-card__step">02 Process</div>
             <h3 class="processing-card__title">Turn work into steps</h3>
             <div class="processing-card__visual processing-scene">
-              <div class="processing-scene__phone" data-phone-mock="processing">
-                <div class="processing-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen.png" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-low.png">
-                  <div class="processing-scene__cosmos">
-                    <div class="processing-scene__nebula processing-scene__nebula--one"></div>
-                    <div class="processing-scene__nebula processing-scene__nebula--two"></div>
-                    <div class="processing-scene__spark processing-scene__spark--one"></div>
-                    <div class="processing-scene__spark processing-scene__spark--two"></div>
-                    <div class="processing-scene__spark processing-scene__spark--three"></div>
-                    <div class="processing-scene__constellation">
-                      <div class="processing-scene__planet"></div>
-                      <div class="processing-scene__ring processing-scene__ring--outer"></div>
-                      <div class="processing-scene__ring processing-scene__ring--mid"></div>
-                      <div class="processing-scene__ring processing-scene__ring--tilt"></div>
-                    </div>
-                    <span class="processing-scene__planet-label">Grading Work</span>
-                  </div>
-                  <div class="processing-scene__work">
-                    <div class="processing-scene__status">
-                      <span class="processing-scene__status-label">Grading Work</span>
-                      <span class="processing-scene__status-value">76%</span>
-                    </div>
-                    <div class="processing-scene__capture">
-                      <div class="processing-scene__page-thumb"></div>
-                      <div class="processing-scene__capture-text">
-                        <strong>Reading handwriting</strong>
-                        <span>Turning work into clear steps</span>
+              <div class="processing-scene__stage">
+                <div class="processing-scene__phone" data-phone-mock="processing">
+                  <div class="processing-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen.png" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-low.png">
+                    <div class="processing-scene__cosmos">
+                      <div class="processing-scene__nebula processing-scene__nebula--one"></div>
+                      <div class="processing-scene__nebula processing-scene__nebula--two"></div>
+                      <div class="processing-scene__spark processing-scene__spark--one"></div>
+                      <div class="processing-scene__spark processing-scene__spark--two"></div>
+                      <div class="processing-scene__spark processing-scene__spark--three"></div>
+                      <div class="processing-scene__constellation">
+                        <div class="processing-scene__planet"></div>
+                        <div class="processing-scene__ring processing-scene__ring--outer"></div>
+                        <div class="processing-scene__ring processing-scene__ring--mid"></div>
+                        <div class="processing-scene__ring processing-scene__ring--tilt"></div>
                       </div>
+                      <span class="processing-scene__planet-label">Grading Work</span>
                     </div>
-                    <div class="processing-scene__steps">
-                      <div class="processing-scene__step-row">
-                        <span class="processing-scene__step-dot"></span>
-                        <span>Step 1 recognized</span>
+                    <div class="processing-scene__work">
+                      <div class="processing-scene__status">
+                        <span class="processing-scene__status-label">Grading Work</span>
+                        <span class="processing-scene__status-value">76%</span>
                       </div>
-                      <div class="processing-scene__step-row processing-scene__step-row--active">
-                        <span class="processing-scene__step-dot"></span>
-                        <span>Checking algebra</span>
+                      <div class="processing-scene__capture">
+                        <div class="processing-scene__page-thumb"></div>
+                        <div class="processing-scene__capture-text">
+                          <strong>Reading handwriting</strong>
+                          <span>Turning work into clear steps</span>
+                        </div>
                       </div>
-                      <div class="processing-scene__step-row">
-                        <span class="processing-scene__step-dot"></span>
-                        <span>Scoring reasoning</span>
+                      <div class="processing-scene__steps">
+                        <div class="processing-scene__step-row">
+                          <span class="processing-scene__step-dot"></span>
+                          <span>Step 1 recognized</span>
+                        </div>
+                        <div class="processing-scene__step-row processing-scene__step-row--active">
+                          <span class="processing-scene__step-dot"></span>
+                          <span>Checking algebra</span>
+                        </div>
+                        <div class="processing-scene__step-row">
+                          <span class="processing-scene__step-dot"></span>
+                          <span>Scoring reasoning</span>
+                        </div>
                       </div>
+                      <div class="processing-scene__progress"><span></span></div>
                     </div>
-                    <div class="processing-scene__progress"><span></span></div>
                   </div>
                 </div>
-              </div>
-              <div class="processing-scene__step-flow" aria-hidden="true">
-                <span class="processing-scene__flow-dot"></span>
-                <span class="processing-scene__step-card">
-                  <span class="processing-scene__step-number"></span>
-                  <span class="processing-scene__step-line processing-scene__step-line--long"></span>
-                  <span class="processing-scene__step-line processing-scene__step-line--mid"></span>
-                </span>
-                <span class="processing-scene__step-card">
-                  <span class="processing-scene__step-number"></span>
-                  <span class="processing-scene__step-line processing-scene__step-line--mid"></span>
-                  <span class="processing-scene__step-line processing-scene__step-line--short"></span>
-                </span>
-                <span class="processing-scene__step-card">
-                  <span class="processing-scene__step-number"></span>
-                  <span class="processing-scene__step-line processing-scene__step-line--long"></span>
-                  <span class="processing-scene__step-line processing-scene__step-line--short"></span>
-                </span>
+                <div class="processing-scene__step-flow" aria-hidden="true">
+                  <span class="processing-scene__flow-dot"></span>
+                  <span class="processing-scene__step-card">
+                    <span class="processing-scene__step-number"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--long"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--mid"></span>
+                  </span>
+                  <span class="processing-scene__step-card">
+                    <span class="processing-scene__step-number"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--mid"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--short"></span>
+                  </span>
+                  <span class="processing-scene__step-card">
+                    <span class="processing-scene__step-number"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--long"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--short"></span>
+                  </span>
+                </div>
               </div>
             </div>
             <p>
