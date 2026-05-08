@@ -529,10 +529,62 @@
     }
 
     .hero-waitlist-panel {
-      display: flex;
-      justify-content: flex-start;
-      margin-top: 16px;
-      padding: 0 34px;
+      display: grid;
+      gap: 14px;
+      width: min(calc(100% - 68px), 680px);
+      margin: 16px 34px 0;
+      padding: 20px;
+      border: 1px solid rgba(164, 123, 255, 0.18);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(100, 168, 255, 0.14), transparent 36%),
+        radial-gradient(circle at 88% 24%, rgba(255, 93, 135, 0.12), transparent 34%),
+        rgba(5, 12, 26, 0.78);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 18px 44px rgba(4, 10, 24, 0.22);
+      backdrop-filter: blur(10px);
+    }
+
+    html[data-theme="light"] .hero-waitlist-panel {
+      background:
+        radial-gradient(circle at 12% 12%, rgba(79, 132, 214, 0.12), transparent 36%),
+        radial-gradient(circle at 88% 24%, rgba(217, 106, 140, 0.1), transparent 34%),
+        rgba(255, 255, 255, 0.84);
+      border-color: rgba(127, 99, 214, 0.16);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 16px 34px rgba(151, 164, 192, 0.12);
+    }
+
+    .hero-waitlist-copy {
+      display: grid;
+      gap: 6px;
+    }
+
+    .hero-waitlist-kicker {
+      margin: 0;
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .hero-waitlist-panel h3 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .hero-waitlist-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     .hero-waitlist {
@@ -550,7 +602,7 @@
     }
 
     html[data-theme="light"] .hero-waitlist {
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.86);
       border-color: rgba(127, 99, 214, 0.16);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -4546,7 +4598,10 @@
       }
 
       .hero-waitlist-panel {
-        padding: 0 22px;
+        width: calc(100% - 44px);
+        margin: 16px 22px 0;
+        padding: 16px;
+        border-radius: 22px;
       }
 
       .hero-waitlist {
@@ -5082,7 +5137,12 @@
       </p>
     </section>
 
-    <div class="hero-waitlist-panel">
+    <div class="hero-waitlist-panel" aria-labelledby="lune-beta-title">
+      <div class="hero-waitlist-copy">
+        <p class="hero-waitlist-kicker">Private beta</p>
+        <h3 id="lune-beta-title">Become a Lune Synth beta user</h3>
+        <p>Get early access, shape the feedback flow, and hear when new invite waves open.</p>
+      </div>
       <form class="hero-waitlist" action="mailto:griffinkrutherford@gmail.com?subject=Lune%20Synth%20waitlist" method="post" enctype="text/plain">
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
         <button type="submit">Join Waitlist</button>
