@@ -528,6 +528,78 @@
       font-size: 15px;
     }
 
+    .hero-waitlist {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: min(100%, 560px);
+      padding: 6px;
+      border: 1px solid rgba(164, 123, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(4, 9, 20, 0.52);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 18px 34px rgba(4, 10, 24, 0.2);
+    }
+
+    html[data-theme="light"] .hero-waitlist {
+      background: rgba(255, 255, 255, 0.78);
+      border-color: rgba(127, 99, 214, 0.16);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 16px 28px rgba(151, 164, 192, 0.12);
+    }
+
+    .hero-waitlist input {
+      min-width: 0;
+      flex: 1 1 auto;
+      height: 42px;
+      border: 0;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .hero-waitlist input::placeholder {
+      color: rgba(166, 186, 215, 0.82);
+    }
+
+    html[data-theme="light"] .hero-waitlist input::placeholder {
+      color: rgba(93, 103, 125, 0.72);
+    }
+
+    .hero-waitlist button {
+      flex: 0 0 auto;
+      min-height: 42px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      color: #06111f;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow:
+        0 10px 24px rgba(100, 168, 255, 0.16),
+        0 10px 24px rgba(255, 93, 135, 0.12);
+    }
+
+    .hero-waitlist button:hover,
+    .hero-waitlist button:focus-visible {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow:
+        0 12px 28px rgba(100, 168, 255, 0.2),
+        0 12px 28px rgba(255, 93, 135, 0.16);
+    }
+
     .section {
       margin-top: 72px;
       display: grid;
@@ -4466,6 +4538,18 @@
         white-space: normal;
       }
 
+      .hero-waitlist {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 8px;
+        border-radius: 20px;
+      }
+
+      .hero-waitlist input,
+      .hero-waitlist button {
+        width: 100%;
+      }
+
       .section[aria-labelledby="platform-title"] {
         gap: 18px;
       }
@@ -4985,6 +5069,10 @@
       <p>
         Do the work. Scan it in. Get feedback that actually helps.
       </p>
+      <form class="hero-waitlist" action="mailto:griffinkrutherford@gmail.com?subject=Lune%20Synth%20waitlist" method="post" enctype="text/plain">
+        <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
+        <button type="submit">Join Waitlist</button>
+      </form>
     </section>
 
     <section class="section" aria-labelledby="platform-title">
