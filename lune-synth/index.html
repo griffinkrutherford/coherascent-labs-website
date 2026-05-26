@@ -581,6 +581,22 @@
       white-space: nowrap;
     }
 
+    .waitlist-offer {
+      margin: 4px 0 0 0;
+      color: var(--purple);
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: center;
+      font-weight: 500;
+      text-wrap: balance;
+    }
+
+    .waitlist-offer strong {
+      color: var(--text);
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(164, 123, 255, 0.25);
+    }
+
     .hero-waitlist {
       display: flex;
       align-items: center;
@@ -5480,6 +5496,7 @@
       <div class="hero-waitlist-copy">
         <h3 id="lune-beta-title">Join the beta waitlist</h3>
         <p>Early access, roadmap input, invites.</p>
+        <p class="waitlist-offer">Beta users get <strong>2 months free</strong> & a <strong>lifetime 50% off</strong> Lune Synth Pro.</p>
       </div>
       <form class="hero-waitlist" data-waitlist-form novalidate>
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
