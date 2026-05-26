@@ -50,10 +50,7 @@ module.exports = async (req, res) => {
       },
       body: JSON.stringify({
         email: trimmedEmail,
-        unsubscribed: false,
-        properties: {
-          signup_source: 'lune_synth_waitlist'
-        }
+        unsubscribed: false
       }),
     });
 
