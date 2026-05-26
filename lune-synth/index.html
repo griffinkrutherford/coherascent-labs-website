@@ -5490,8 +5490,8 @@
     <div class="waitlist-popup" data-waitlist-popup role="dialog" aria-modal="true" aria-labelledby="waitlist-popup-title" hidden>
       <div class="waitlist-popup__panel">
         <button class="waitlist-popup__close" type="button" data-waitlist-close aria-label="Close waitlist message">&times;</button>
-        <h3 id="waitlist-popup-title">Waitlist coming soon</h3>
-        <p>Email capture will be ready soon.</p>
+        <h3 id="waitlist-popup-title">You're on the list!</h3>
+        <p data-waitlist-message>Thank you for joining the Lune Synth beta waitlist. We will notify you as soon as invites are ready.</p>
         <button class="waitlist-popup__action" type="button" data-waitlist-close>Got it</button>
       </div>
     </div>
@@ -6341,7 +6341,65 @@
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      openPopup();
+      
+      var emailInput = form.querySelector('input[type="email"]');
+      var submitButton = form.querySelector('button[type="submit"]');
+      if (!emailInput || !submitButton) return;
+
+      var email = emailInput.value.trim();
+      if (!email) return;
+
+      // Disable inputs and show loading state
+      var originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      emailInput.disabled = true;
+      submitButton.textContent = "Joining...";
+
+      // Get popup elements to update messaging dynamically
+      var popupTitle = popup.querySelector("#waitlist-popup-title");
+      var popupMessage = popup.querySelector("[data-waitlist-message]");
+
+      fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: email })
+      })
+      .then(function (response) {
+        return response.json().then(function (data) {
+          if (response.ok && data.success) {
+            // Success
+            if (popupTitle) popupTitle.textContent = "You're on the list!";
+            if (popupMessage) {
+              popupMessage.textContent = data.message || "Thank you for joining the Lune Synth beta waitlist. We will notify you as soon as invites are ready.";
+            }
+            form.reset();
+            openPopup();
+          } else {
+            // Server error
+            if (popupTitle) popupTitle.textContent = "Oops!";
+            if (popupMessage) {
+              popupMessage.textContent = data.error || "Something went wrong. Please check your email and try again.";
+            }
+            openPopup();
+          }
+        });
+      })
+      .catch(function (error) {
+        // Network/Connection failure
+        if (popupTitle) popupTitle.textContent = "Connection Error";
+        if (popupMessage) {
+          popupMessage.textContent = "Could not reach the server. Please check your internet connection and try again.";
+        }
+        openPopup();
+      })
+      .finally(function () {
+        // Re-enable inputs and restore button text
+        submitButton.disabled = false;
+        emailInput.disabled = false;
+        submitButton.textContent = originalButtonText;
+      });
     });
 
     popup.addEventListener("click", function (event) {
