@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coherascent Labs — Starfield Banner Customizer</title>
+  <meta name="description" content="An isolated, full-bleed interactive starfield customizer to capture high-quality LinkedIn banners." />
+  <link rel="icon" type="image/png" href="circle_favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #090c16;
+      --bg-deep: #05070f;
+      --text: #e8f1ff;
+      --muted: #9bb3d9;
+      --blue: #66b3ff;
+      --cyan: #63f2ff;
+      --violet: #8a5dff;
+      --pink: #f07bff;
+      --glow: 0 0 30px rgba(102, 179, 255, 0.24), 0 0 80px rgba(138, 93, 255, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: "Roboto Mono", monospace;
+      color: var(--text);
+      background-color: var(--bg-deep);
+      background:
+        radial-gradient(1320px 760px at 14% -2%, rgba(102, 179, 255, 0.16), transparent 56%),
+        radial-gradient(1120px 720px at 86% 8%, rgba(99, 242, 255, 0.1), transparent 56%),
+        radial-gradient(980px 640px at 68% 92%, rgba(138, 93, 255, 0.08), transparent 56%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-repeat: no-repeat;
+      background-size: cover;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Ambient background stars */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1.2px 1.2px at 24px 30px, rgba(255, 255, 255, 0.92) 98%, transparent 100%),
+        radial-gradient(1px 1px at 80px 90px, rgba(102, 179, 255, 0.82) 98%, transparent 100%),
+        radial-gradient(1.1px 1.1px at 50px 120px, rgba(99, 242, 255, 0.68) 98%, transparent 100%),
+        radial-gradient(0.9px 0.9px at 140px 40px, rgba(255, 255, 255, 0.7) 98%, transparent 100%),
+        radial-gradient(1.4px 1.4px at 170px 160px, rgba(138, 93, 255, 0.72) 98%, transparent 100%),
+        radial-gradient(1px 1px at 30px 50px, rgba(255, 255, 255, 0.55) 98%, transparent 100%),
+        radial-gradient(0.9px 0.9px at 22px 22px, rgba(255, 255, 255, 0.68) 98%, transparent 100%),
+        radial-gradient(1px 1px at 96px 42px, rgba(102, 179, 255, 0.58) 98%, transparent 100%),
+        radial-gradient(0.9px 0.9px at 130px 110px, rgba(99, 242, 255, 0.42) 98%, transparent 100%),
+        radial-gradient(1px 1px at 58px 154px, rgba(138, 93, 255, 0.4) 98%, transparent 100%),
+        radial-gradient(0.8px 0.8px at 150px 150px, rgba(255, 255, 255, 0.42) 98%, transparent 100%),
+        radial-gradient(0.8px 0.8px at 44px 96px, rgba(255, 255, 255, 0.38) 98%, transparent 100%),
+        radial-gradient(0.7px 0.7px at 18px 18px, rgba(255, 255, 255, 0.34) 98%, transparent 100%),
+        radial-gradient(0.7px 0.7px at 66px 84px, rgba(102, 179, 255, 0.3) 98%, transparent 100%),
+        radial-gradient(0.7px 0.7px at 104px 28px, rgba(99, 242, 255, 0.24) 98%, transparent 100%),
+        radial-gradient(0.7px 0.7px at 122px 122px, rgba(138, 93, 255, 0.22) 98%, transparent 100%),
+        radial-gradient(0.6px 0.6px at 40px 128px, rgba(255, 255, 255, 0.3) 98%, transparent 100%),
+        radial-gradient(0.6px 0.6px at 136px 72px, rgba(255, 255, 255, 0.24) 98%, transparent 100%);
+      background-size: 180px 180px, 220px 220px, 260px 260px, 320px 320px, 420px 420px, 140px 140px, 120px 120px, 160px 160px, 190px 190px, 210px 210px, 110px 110px, 90px 90px, 70px 70px, 82px 82px, 94px 94px, 108px 108px, 76px 76px, 64px 64px;
+      background-position: 0 0, 40px 70px, 120px 20px, 10px 120px, 180px 80px, 0 0, 12px 18px, 50px 26px, 20px 60px, 70px 110px, 0 0, 28px 42px, 0 0, 16px 22px, 8px 34px, 26px 6px, 12px 18px, 30px 14px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.85;
+    }
+
+    /* Constellations vector background overlay */
+    .constellations-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(700px 300px at 18% 24%, rgba(102, 179, 255, 0.08), transparent 60%),
+        radial-gradient(760px 340px at 80% 20%, rgba(99, 242, 255, 0.06), transparent 60%),
+        radial-gradient(820px 380px at 55% 88%, rgba(138, 93, 255, 0.04), transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cg stroke='rgba(255,255,255,0.12)' stroke-width='1.1'%3E%3Cpath d='M210 250 L286 208 L366 270'/%3E%3Cpath d='M1050 170 L1136 220 L1240 184'/%3E%3Cpath d='M960 622 L1068 676 L1184 610'/%3E%3C/g%3E%3Cg stroke='rgba(102,179,255,0.14)' stroke-width='1'%3E%3Cpath d='M286 208 L334 156'/%3E%3Cpath d='M1136 220 L1186 142'/%3E%3Cpath d='M1068 676 L1108 736'/%3E%3C/g%3E%3Cg stroke='rgba(99,242,255,0.1)' stroke-width='1'%3E%3Cpath d='M334 156 L366 270'/%3E%3Cpath d='M1186 142 L1240 184'/%3E%3Cpath d='M1108 736 L1184 610'/%3E%3C/g%3E%3Cg stroke='rgba(138,93,255,0.08)' stroke-width='0.9'%3E%3Cpath d='M210 250 L334 156'/%3E%3Cpath d='M1050 170 L1186 142'/%3E%3Cpath d='M960 622 L1108 736'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Ccircle cx='210' cy='250' r='2.4' fill='rgba(255,255,255,0.78)'/%3E%3Ccircle cx='286' cy='208' r='2.2' fill='rgba(102,179,255,0.72)'/%3E%3Ccircle cx='334' cy='156' r='2.1' fill='rgba(99,242,255,0.62)'/%3E%3Ccircle cx='366' cy='270' r='2.2' fill='rgba(138,93,255,0.58)'/%3E%3Ccircle cx='1050' cy='170' r='2.4' fill='rgba(255,255,255,0.74)'/%3E%3Ccircle cx='1136' cy='220' r='2.2' fill='rgba(99,242,255,0.62)'/%3E%3Ccircle cx='1186' cy='142' r='2.1' fill='rgba(102,179,255,0.68)'/%3E%3Ccircle cx='1240' cy='184' r='2.2' fill='rgba(138,93,255,0.6)'/%3E%3Ccircle cx='960' cy='622' r='2.4' fill='rgba(255,255,255,0.74)'/%3E%3Ccircle cx='1068' cy='676' r='2.2' fill='rgba(102,179,255,0.66)'/%3E%3Ccircle cx='1108' cy='736' r='2.1' fill='rgba(99,242,255,0.58)'/%3E%3Ccircle cx='1184' cy='610' r='2.2' fill='rgba(138,93,255,0.6)'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.88;
+      transition: opacity 0.4s ease;
+    }
+
+    body.hide-constellations .constellations-bg {
+      opacity: 0;
+    }
+
+    /* 3D Starfield Canvas */
+    #starfield-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: block;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    #starfield-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* LinkedIn Avatar Overlay Mockup */
+    .linkedin-overlay {
+      position: absolute;
+      bottom: -60px; /* Offset to float correctly at lower edge */
+      left: 10%;
+      width: 152px;
+      height: 152px;
+      border-radius: 50%;
+      border: 3px dashed rgba(255, 255, 255, 0.36);
+      background: rgba(5, 7, 15, 0.45);
+      backdrop-filter: blur(8px);
+      z-index: 2;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(20px);
+    }
+
+    .linkedin-overlay.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .linkedin-overlay-label {
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 11px;
+      text-align: center;
+      font-weight: 500;
+      padding: 10px;
+    }
+
+    /* Floating Instructions Overlay (Glassmorphism) */
+    .instructions-card {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(9, 12, 22, 0.65);
+      border: 1px solid rgba(102, 179, 255, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      max-width: 380px;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .instructions-card.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.96) translateY(-10px);
+    }
+
+    .instructions-card h1 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      color: var(--blue);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .instructions-card .close-btn {
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--muted);
+      border: none;
+      background: none;
+      padding: 0 4px;
+      transition: color 0.2s;
+    }
+
+    .instructions-card .close-btn:hover {
+      color: var(--text);
+    }
+
+    .instructions-card ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      font-size: 11.5px;
+      line-height: 1.7;
+      color: rgba(232, 241, 255, 0.85);
+    }
+
+    .instructions-card li {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .instructions-card li::before {
+      content: "•";
+      color: var(--cyan);
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    .instructions-card .shortcut-key {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 0px 4px;
+      font-size: 10px;
+      margin: 0 2px;
+      font-family: inherit;
+    }
+
+    /* Temporary Status HUD Feedback (Fades in/out) */
+    .hud-feedback {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(9, 12, 22, 0.85);
+      border: 1px solid rgba(102, 179, 255, 0.34);
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 14px;
+      color: #fff;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 100;
+      transition: opacity 0.15s ease;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(102, 179, 255, 0.16);
+    }
+
+    .hud-feedback.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background SVG Constellations -->
+  <div class="constellations-bg"></div>
+
+  <!-- Full-bleed 3D Starfield Canvas -->
+  <canvas id="starfield-canvas"></canvas>
+
+  <!-- LinkedIn Avatar Overlay Mockup -->
+  <div class="linkedin-overlay" id="linkedin-avatar">
+    <div class="linkedin-overlay-label">LinkedIn Profile PFP Safe-Zone</div>
+  </div>
+
+  <!-- Instruction floating card -->
+  <div class="instructions-card" id="instructions">
+    <h1>
+      🌌 Starfield Customizer
+      <button class="close-btn" onclick="toggleInstructions()" title="Close (Press H to reopen)">×</button>
+    </h1>
+    <ul>
+      <li><strong>Drag Canvas</strong> with mouse to pitch, yaw, and rotate the 3D space.</li>
+      <li><strong>Scroll / Wheel</strong> to zoom in/out smoothly.</li>
+      <li>Press <span class="shortcut-key">Space</span> or <strong>Double Click</strong> to Pause / Play animation.</li>
+      <li>Press <span class="shortcut-key">1</span>, <span class="shortcut-key">2</span>, <span class="shortcut-key">3</span>, or <span class="shortcut-key">4</span> to toggle active color arms.</li>
+      <li>Press <span class="shortcut-key">5</span> to render all colors (Mixed Mode).</li>
+      <li>Press <span class="shortcut-key">L</span> to show/hide the LinkedIn Profile PFP overlay guide.</li>
+      <li>Press <span class="shortcut-key">C</span> to toggle background constellation lines.</li>
+      <li>Press <span class="shortcut-key">H</span> to toggle these instructions on/off.</li>
+      <li><em>Tip: Resize your browser to standard LinkedIn banner proportions and screenshot!</em></li>
+    </ul>
+  </div>
+
+  <!-- HUD Text Feedback -->
+  <div class="hud-feedback" id="hud"></div>
+
+  <script>
+    // Instruction toggling helper
+    function toggleInstructions() {
+      var card = document.getElementById("instructions");
+      card.classList.toggle("hidden");
+    }
+
+    (function () {
+      var canvas = document.getElementById("starfield-canvas");
+      if (!canvas) return;
+
+      var context = canvas.getContext("2d");
+      if (!context) return;
+
+      // Parameters & State variables
+      var reducedMotion = false;
+      var isAnimating = true;
+      var stars = [];
+      var frameId = 0;
+      var width = 0;
+      var height = 0;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var centerX = 0;
+      var centerY = 0;
+      var depth = 240;
+      var galaxyRadius = 92;
+      var thickness = 34;
+      var armCount = 4;
+      var starCount = 1800; // Increased density for high resolution fullscreen
+      var zoom = 1.0;       // Interactive zoom factor controlled by wheel
+      var activePhase = 4;  // Default: Mixed multi-arm mode
+
+      var armColors = [
+        "100,168,255", // Tactile Blue
+        "164,123,255", // Parse Purple
+        "255,93,135", // Feedback Pink
+        "237,245,255"  // Adapt White
+      ];
+
+      var phaseNames = ["Tactile Blue", "Parse Purple", "Feedback Pink", "Adapt White", "Mixed Colors"];
+
+      var phaseStartTime = null;
+      var accumulatedTime = 0;
+      var lastTimestamp = 0;
+
+      // Rotational angles
+      var dragPointerId = null;
+      var dragLastX = 0;
+      var dragLastY = 0;
+      var viewSpinOffset = 0;
+      var viewYawOffset = 0;
+      var viewPitchOffset = 0;
+
+      // HUD and guide overlays
+      var hudTimer = null;
+      var hud = document.getElementById("hud");
+      var linkedinGuide = document.getElementById("linkedin-avatar");
+
+      function showHud(text) {
+        if (hudTimer) clearTimeout(hudTimer);
+        hud.textContent = text;
+        hud.classList.add("show");
+        hudTimer = setTimeout(function() {
+          hud.classList.remove("show");
+        }, 1100);
+      }
+
+      function parseColor(rgb) {
+        return rgb.split(",").map(function (value) {
+          return Number(value.trim());
+        });
+      }
+
+      function mixColor(colorA, colorB, ratio) {
+        return [
+          Math.round(colorA[0] + (colorB[0] - colorA[0]) * ratio),
+          Math.round(colorA[1] + (colorB[1] - colorA[1]) * ratio),
+          Math.round(colorA[2] + (colorB[2] - colorA[2]) * ratio)
+        ];
+      }
+
+      function colorString(color) {
+        return color[0] + "," + color[1] + "," + color[2];
+      }
+
+      var parsedArmColors = armColors.map(parseColor);
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function randomRange(min, max) {
+        return min + Math.random() * (max - min);
+      }
+
+      // Generate the galaxy star data
+      function rebuildStars() {
+        var i;
+        stars = [];
+        for (i = 0; i < starCount; i += 1) {
+          var coreStar = Math.random() < 0.22;
+          var radius = Math.pow(Math.random(), coreStar ? 0.5 : 0.85) * galaxyRadius;
+          var normRadius = radius / galaxyRadius;
+
+          var arm = i % armCount;
+          var armSeparation = (Math.PI * 2) / armCount;
+          var baseAngle = arm * armSeparation;
+          
+          // Beautiful sweeping swirl that winds up tighter at the outer edge
+          var swirl = Math.pow(normRadius, 0.85) * 4.2;
+          
+          // Tighter alignment near the arms (reduced noise)
+          var jitter = coreStar ? randomRange(-0.35, 0.35) : randomRange(-0.06, 0.06);
+          var angle = baseAngle + swirl + jitter;
+          
+          var spread = (1.0 - normRadius);
+          var tangent = coreStar ? 0 : randomRange(-2.2, 2.2) * spread;
+          var radialNoise = coreStar ? 6 : 2.0;
+          
+          var x = Math.cos(angle) * radius + Math.cos(angle + Math.PI / 2) * tangent + randomRange(-radialNoise, radialNoise) * spread;
+          var z = Math.sin(angle) * radius + Math.sin(angle + Math.PI / 2) * tangent + randomRange(-radialNoise, radialNoise) * spread;
+          
+          // Thin disk at the edges, thicker at the core buldge
+          var y = randomRange(-thickness, thickness) * (coreStar ? 0.32 : 0.05 + spread * 0.2) * (1.0 - normRadius * 0.7);
+          var size = coreStar ? randomRange(0.85, 2.6) : randomRange(0.4, 1.45);
+          var hue;
+
+          if (radius < galaxyRadius * 0.18) {
+            hue = [255, 255, 255];
+          } else {
+            hue = parsedArmColors[arm % parsedArmColors.length];
+          }
+
+          stars.push({
+            x: x,
+            y: y,
+            z: z,
+            armIndex: arm,
+            radius: radius,
+            angleOffset: randomRange(0, Math.PI * 2),
+            size: size,
+            color: hue,
+            alpha: coreStar ? randomRange(0.72, 0.98) : randomRange(0.32, 0.88)
+          });
+        }
+      }
+
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
+        centerX = width * 0.5;
+        centerY = height * 0.5;
+
+        // Tune layout radius relative to window proportions
+        galaxyRadius = Math.min(width, height) * 0.45;
+        thickness = galaxyRadius * 0.36;
+        starCount = width < 500 ? 1000 : 1800;
+        rebuildStars();
+      }
+
+      function projectStar(star, time, activePhaseIndex) {
+        var spin = (reducedMotion ? 0.65 : (time * 0.00018)) + viewSpinOffset;
+        var wobble = (reducedMotion ? -0.2 : Math.sin(time * 0.00042) * 0.22 - 0.18) + viewYawOffset;
+        var lift = (reducedMotion ? 1.14 : 1.06 + Math.cos(time * 0.00031) * 0.12) + viewPitchOffset;
+        var cosSpin = Math.cos(spin);
+        var sinSpin = Math.sin(spin);
+        var cosPitch = Math.cos(lift);
+        var sinPitch = Math.sin(lift);
+        var cosYaw = Math.cos(wobble);
+        var sinYaw = Math.sin(wobble);
+        
+        var x1 = star.x * cosSpin - star.z * sinSpin;
+        var z1 = star.x * sinSpin + star.z * cosSpin;
+        var y1 = star.y;
+        var x2 = x1 * cosYaw + z1 * sinYaw;
+        var z2 = -x1 * sinYaw + z1 * cosYaw;
+        var y2 = y1 * cosPitch - z2 * sinPitch;
+        var z3 = y1 * sinPitch + z2 * cosPitch;
+        
+        var perspective = depth / (depth + z3 + 160);
+
+        // Highlight sizing if the arm matches the selected active phase
+        var isCurrentArmActive = activePhaseIndex === 4 || star.armIndex === activePhaseIndex;
+        var highlight = isCurrentArmActive ? 1.34 : 0.62;
+
+        // Shift color towards current active color phase or render native arm color in Mixed Mode
+        var phaseColor = activePhaseIndex === 4 ? parsedArmColors[star.armIndex] : parsedArmColors[activePhaseIndex];
+        var colorBias = star.radius < galaxyRadius * 0.18 ? 0.28 : (isCurrentArmActive ? 0.88 : 0.54);
+        var shiftedColor = mixColor(star.color, phaseColor, colorBias);
+
+        return {
+          x: centerX + x2 * perspective * zoom,
+          y: centerY + y2 * perspective * 0.72 * zoom,
+          z: z3,
+          size: Math.max(0.2, star.size * perspective * highlight * zoom),
+          alpha: Math.max(0.04, Math.min(1, star.alpha * (0.52 + perspective * 0.72) * highlight)),
+          color: colorString(shiftedColor),
+          radius: star.radius,
+          armIndex: star.armIndex
+        };
+      }
+
+      function drawCore(activePhaseIndex) {
+        var activeColor = activePhaseIndex === 4 ? "164,123,255" : armColors[activePhaseIndex];
+        var glow = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, galaxyRadius * 0.98 * zoom);
+        glow.addColorStop(0, "rgba(255,255,255,0.22)");
+        glow.addColorStop(0.12, "rgba(" + activeColor + ",0.24)");
+        glow.addColorStop(0.28, "rgba(" + activeColor + ",0.14)");
+        glow.addColorStop(0.48, "rgba(" + activeColor + ",0.06)");
+        glow.addColorStop(1, "rgba(0,0,0,0)");
+        context.fillStyle = glow;
+        context.fillRect(0, 0, width, height);
+      }
+
+      function render(timestamp) {
+        if (!lastTimestamp) lastTimestamp = timestamp;
+
+        // Keep dynamic simulation running smoothly or hold at paused state
+        if (isAnimating) {
+          var delta = timestamp - lastTimestamp;
+          accumulatedTime += delta;
+        }
+        lastTimestamp = timestamp;
+
+        var projected = stars.map(function (star) {
+          return projectStar(star, accumulatedTime, activePhase);
+        });
+
+        // Depth-sorting (furthest z3 elements first)
+        projected.sort(function (a, b) {
+          return a.z - b.z;
+        });
+
+        context.clearRect(0, 0, width, height);
+        drawCore(activePhase);
+
+        projected.forEach(function (star) {
+          context.beginPath();
+          context.fillStyle = "rgba(" + star.color + "," + star.alpha + ")";
+          context.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          context.fill();
+
+          // Ambient secondary star halos
+          if (star.size > 0.9 && star.radius < galaxyRadius * 0.6) {
+            context.beginPath();
+            context.fillStyle = "rgba(255,255,255," + Math.min(0.24, star.alpha * 0.35) + ")";
+            context.arc(star.x, star.y, star.size * 2.2, 0, Math.PI * 2);
+            context.fill();
+          }
+        });
+
+        frameId = window.requestAnimationFrame(render);
+      }
+
+      resizeCanvas();
+      frameId = window.requestAnimationFrame(render);
+
+      // Mouse drag controls for rotation
+      function onPointerDown(event) {
+        dragPointerId = event.pointerId;
+        dragLastX = event.clientX;
+        dragLastY = event.clientY;
+        if (canvas.setPointerCapture) {
+          canvas.setPointerCapture(event.pointerId);
+        }
+      }
+
+      function onPointerMove(event) {
+        if (dragPointerId !== event.pointerId) return;
+        var deltaX = event.clientX - dragLastX;
+        var deltaY = event.clientY - dragLastY;
+        dragLastX = event.clientX;
+        dragLastY = event.clientY;
+
+        viewSpinOffset += deltaX * 0.012;
+        viewYawOffset = clamp(viewYawOffset + deltaX * 0.003, -1.2, 1.2);
+        viewPitchOffset = clamp(viewPitchOffset - deltaY * 0.005, -1.0, 1.0);
+        event.preventDefault();
+      }
+
+      function releasePointer(event) {
+        if (dragPointerId !== event.pointerId) return;
+        if (canvas.releasePointerCapture) {
+          canvas.releasePointerCapture(event.pointerId);
+        }
+        dragPointerId = null;
+      }
+
+      canvas.addEventListener("pointerdown", onPointerDown);
+      canvas.addEventListener("pointermove", onPointerMove);
+      canvas.addEventListener("pointerup", releasePointer);
+      canvas.addEventListener("pointercancel", releasePointer);
+      canvas.addEventListener("pointerleave", releasePointer);
+
+      // Interactive mouse scroll wheel to zoom
+      window.addEventListener("wheel", function(event) {
+        var delta = event.deltaY;
+        if (delta > 0) {
+          zoom = Math.max(0.25, zoom - 0.05);
+        } else {
+          zoom = Math.min(3.5, zoom + 0.05);
+        }
+        showHud("Zoom: " + Math.round(zoom * 100) + "%");
+      }, { passive: true });
+
+      // Click to toggle pause/play controls
+      canvas.addEventListener("dblclick", function() {
+        isAnimating = !isAnimating;
+        showHud(isAnimating ? "Animation Resumed" : "Animation Paused");
+      });
+
+      // Keyboard customizers
+      window.addEventListener("keydown", function(event) {
+        var key = event.key.toLowerCase();
+
+        // Pause/Play
+        if (event.code === "Space" || key === " ") {
+          isAnimating = !isAnimating;
+          showHud(isAnimating ? "Animation: Playing" : "Animation: Paused");
+          event.preventDefault();
+        }
+        // Switch color phases 1-5
+        else if (key === "1") {
+          activePhase = 0;
+          showHud("Color Arm: Tactile Blue");
+        } else if (key === "2") {
+          activePhase = 1;
+          showHud("Color Arm: Parse Purple");
+        } else if (key === "3") {
+          activePhase = 2;
+          showHud("Color Arm: Feedback Pink");
+        } else if (key === "4") {
+          activePhase = 3;
+          showHud("Color Arm: Adapt White");
+        } else if (key === "5") {
+          activePhase = 4;
+          showHud("Color Phase: Mixed Colors");
+        }
+        // Toggle LinkedIn Safety Circle Guide
+        else if (key === "l") {
+          linkedinGuide.classList.toggle("show");
+          var isGuideShowing = linkedinGuide.classList.contains("show");
+          showHud("LinkedIn Guide: " + (isGuideShowing ? "Visible" : "Hidden"));
+        }
+        // Toggle Constellations grid lines
+        else if (key === "c") {
+          document.body.classList.toggle("hide-constellations");
+          var isHideConstellations = document.body.classList.contains("hide-constellations");
+          showHud("Constellations: " + (isHideConstellations ? "Hidden" : "Visible"));
+        }
+        // Toggle instructions guide
+        else if (key === "h") {
+          toggleInstructions();
+        }
+      });
+
+      window.addEventListener("resize", resizeCanvas);
+    })();
+  </script>
+</body>
+</html>
