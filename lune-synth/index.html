@@ -5958,92 +5958,90 @@
       color: #edf5ff;
     }
 
-    /* --- Theme Tabs & Options Panel (Step 2 Only) --- */
-    .step2-theme-panel {
+    /* --- Sky Selector Options (Beside the iPad, Step 2 Only) --- */
+    .step2-theme-panel-container {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      align-items: flex-start;
       width: 100%;
+      margin-top: clamp(12px, 2vh, 18px);
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .theme-options-beside {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: 6px;
+    }
+    
+    .theme-option-btn {
+      display: inline-flex;
       align-items: center;
-      position: relative; /* needed for z-index to apply */
-      z-index: 6;         /* stay above the per-theme video overlay (.ipad-gif-target is z5) */
-    }
-
-    .theme-tab-bar {
-      display: flex;
-      gap: 4px;
-      background: rgba(255, 255, 255, 0.06);
-      padding: 3px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    /* Light Theme overrides for Math Space */
-    .theme-math .theme-tab-bar {
-      background: rgba(0, 0, 0, 0.05);
-      border-color: rgba(0, 0, 0, 0.08);
-    }
-
-    .theme-group-btn {
-      background: transparent;
-      border: none;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
       color: var(--muted);
-      font-family: inherit;
-      font-size: 8px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 4px 8px;
-      border-radius: 999px;
-      cursor: pointer;
+      font-size: 11px;
       font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .theme-group-btn.is-active {
-      background: rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-    }
-
-    .theme-math .theme-group-btn.is-active {
-      background: rgba(23, 70, 214, 0.1);
-      color: #1746d6;
-    }
-
-    .theme-options {
-      display: flex;
-      gap: 6px;
-    }
-
-    .theme-pill {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--muted);
-      font-family: inherit;
-      font-size: 9px;
-      padding: 4px 8px;
-      border-radius: 999px;
       cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    .theme-math .theme-pill {
-      background: rgba(255, 255, 255, 0.8);
-      border-color: rgba(23, 70, 214, 0.15);
+    
+    .theme-option-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(100, 168, 255, 0.3);
+      color: var(--text);
+    }
+    
+    .theme-option-btn.is-active {
+      background: rgba(16, 28, 54, 0.9);
+      border-color: var(--blue);
+      color: var(--blue);
+      box-shadow: var(--glow);
+    }
+    
+    html[data-theme="light"] .theme-option-btn {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: rgba(0, 0, 0, 0.08);
       color: #5d677d;
     }
-
-    .theme-pill:hover, .theme-pill.is-active {
-      border-color: var(--blue);
+    
+    html[data-theme="light"] .theme-option-btn:hover {
+      background: rgba(0, 0, 0, 0.04);
       color: var(--text);
-      box-shadow: 0 0 12px rgba(100, 168, 255, 0.18);
     }
-
-    .theme-math .theme-pill.is-active {
-      border-color: #1746d6;
-      color: #1746d6;
-      background: #ffffff;
-      box-shadow: 0 0 12px rgba(23, 70, 214, 0.12);
+    
+    html[data-theme="light"] .theme-option-btn.is-active {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: var(--blue);
+      color: var(--blue);
+      box-shadow: 0 4px 12px rgba(84, 98, 130, 0.08);
+    }
+    
+    .theme-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    
+    .theme-dot-math {
+      background: #4a90e2;
+      box-shadow: 0 0 8px rgba(74, 144, 226, 0.8);
+    }
+    
+    .theme-dot-retro {
+      background: #ff007f;
+      box-shadow: 0 0 8px rgba(255, 0, 127, 0.8);
+    }
+    
+    .theme-dot-bigbang {
+      background: #ffd700;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
     }
 
     /* ==========================================================================
@@ -6947,6 +6945,25 @@
             <span class="active-step-badge" id="activeStepBadge">Step 01</span>
             <h3 class="active-step-title" id="activeStepTitle">Co-Create Your Cosmos</h3>
             <p class="active-step-desc" id="activeStepDesc">Bring your syllabus, presentation decks, lecture guides, or study notes straight to <strong>Luna</strong>. She analyzes the content in seconds, translating your material into 10 to 15 highly granular, logically ordered skills that form the nodes of your learning pathway.</p>
+            
+            <!-- Dynamic Sky Selector for Step 02 (hidden on other steps) -->
+            <div class="step2-theme-panel-container" id="step2ThemePanel" style="display: none;">
+              <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select Sky Theme</span>
+              <div class="theme-options-beside">
+                <button class="theme-option-btn is-active" data-theme="math" onclick="selectSkyTheme('math', this)">
+                  <span class="theme-dot theme-dot-math"></span>
+                  Math Space
+                </button>
+                <button class="theme-option-btn" data-theme="retro" onclick="selectSkyTheme('retro', this)">
+                  <span class="theme-dot theme-dot-retro"></span>
+                  Retro Arcade
+                </button>
+                <button class="theme-option-btn" data-theme="bigbang" onclick="selectSkyTheme('bigbang', this)">
+                  <span class="theme-dot theme-dot-bigbang"></span>
+                  Big Bang
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- Bottom: Empty iPad Mockup (GIF Canvas) -->
@@ -7012,32 +7029,6 @@
                     <div class="retro-grid-plane" id="retroGridHolo" style="display: none;"></div>
                     <div class="bigbang-flare" id="bigbangFlareHolo" style="display: none;"></div>
 
-                    <div class="step2-theme-panel" style="gap: 10px;">
-                      <h3 style="margin: 0; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: bold;" id="themePanelTitle">Skies Gallery</h3>
-
-                      <!-- 3 Category Tabs -->
-                      <div class="theme-tab-bar" style="padding: 3px;">
-                        <button class="theme-group-btn is-active" style="font-size: 8px; padding: 4px 8px;" onclick="switchThemeTab('planetary', this)">Planetary</button>
-                        <button class="theme-group-btn" style="font-size: 8px; padding: 4px 8px;" onclick="switchThemeTab('abstract', this)">Abstract</button>
-                        <button class="theme-group-btn" style="font-size: 8px; padding: 4px 8px;" onclick="switchThemeTab('primordial', this)">Primordial</button>
-                      </div>
-
-                      <!-- 5 Theme Pill Buttons -->
-                      <div class="theme-options" style="gap: 6px;">
-                        <!-- Tab 1: Planetary Themes -->
-                        <button class="theme-pill is-active theme-grp-planetary" style="font-size: 9px; padding: 4px 8px;" onclick="selectSkyTheme('earth', this)">Earth</button>
-                        <button class="theme-pill theme-grp-planetary" style="font-size: 9px; padding: 4px 8px;" onclick="selectSkyTheme('venus', this)">Venus</button>
-
-                        <!-- Tab 2: Abstract Themes -->
-                        <button class="theme-pill theme-grp-abstract" style="display: none; font-size: 9px; padding: 4px 8px;" onclick="selectSkyTheme('math', this)">Math Space</button>
-
-                        <!-- Tab 3: Primordial Themes -->
-                        <button class="theme-pill theme-grp-primordial" style="display: none; font-size: 9px; padding: 4px 8px;" onclick="selectSkyTheme('retro', this)">Retro Sky</button>
-                        <button class="theme-pill theme-grp-primordial" style="display: none; font-size: 9px; padding: 4px 8px;" onclick="selectSkyTheme('bigbang', this)">Big Bang</button>
-                      </div>
-
-                      <p style="font-size: 9px; color: var(--muted); margin-top: 8px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold;" id="activeThemeTitle">Current: Earth</p>
-                    </div>
                   </div>
 
                   <!-- Step 3 Preview Screen -->
@@ -7446,6 +7437,20 @@
       activeScreen.style.display = 'flex';
     }
 
+    // Toggle the theme selector panel visibility beside the iPad
+    const themePanel = document.getElementById('step2ThemePanel');
+    if (themePanel) {
+      if (stepNumber === 2) {
+        themePanel.style.display = 'flex';
+        // Auto-select 'math' theme to ensure a video plays on landing
+        const activeThemeBtn = themePanel.querySelector('.theme-option-btn.is-active');
+        const selectedTheme = activeThemeBtn ? activeThemeBtn.getAttribute('data-theme') : 'math';
+        selectSkyTheme(selectedTheme);
+      } else {
+        themePanel.style.display = 'none';
+      }
+    }
+
     // Step 2's theme videos: resume the currently shown clip when we land on step 2,
     // and pause all of them whenever we're elsewhere (no off-screen decoding).
     document.querySelectorAll('#previewStep-2 video').forEach(v => {
@@ -7458,49 +7463,26 @@
     });
   }
 
-  function switchThemeTab(tabCategory, tabElement) {
-    // Update Tab Active State
-    const tabs = tabElement.parentNode.querySelectorAll('.theme-group-btn');
-    tabs.forEach(tab => tab.classList.remove('is-active'));
-    tabElement.classList.add('is-active');
-
-    // Hide all theme pills
-    const pills = document.querySelectorAll('.theme-pill');
-    pills.forEach(pill => pill.style.display = 'none');
-
-    // Show pills belonging to selected tab
-    const activePills = document.querySelectorAll('.theme-grp-' + tabCategory);
-    activePills.forEach(pill => pill.style.display = 'block');
-
-    // Auto-select the first pill of the active tab category to showcase the gradient
-    const firstPill = activePills[0];
-    if (firstPill) {
-      firstPill.click();
-    }
-  }
-
   function selectSkyTheme(skyTheme, pillElement) {
     const ipadCanvas = document.getElementById('ipadScreenCanvas');
-    const themeTitle = document.getElementById('activeThemeTitle');
-    const panelTitle = document.getElementById('themePanelTitle');
 
-    // Dynamic Holo Layers
-    const mathGrid = document.getElementById('mathGridHolo');
-    const retroGrid = document.getElementById('retroGridHolo');
-    const bigbangFlare = document.getElementById('bigbangFlareHolo');
-
-    // Update Pill Active State
-    const pills = pillElement.parentNode.querySelectorAll('.theme-pill');
-    pills.forEach(pill => pill.classList.remove('is-active'));
-    pillElement.classList.add('is-active');
+    // Update active button state in the side panel options
+    const buttons = document.querySelectorAll('.theme-option-btn');
+    buttons.forEach(btn => {
+      if (btn.getAttribute('data-theme') === skyTheme) {
+        btn.classList.add('is-active');
+      } else {
+        btn.classList.remove('is-active');
+      }
+    });
 
     // Reset and Apply Theme Class to iPad Frame
-    ipadCanvas.className = 'ipad-screen-content'; // clear prior classes
-    ipadCanvas.classList.add('theme-' + skyTheme);
+    if (ipadCanvas) {
+      ipadCanvas.className = 'ipad-screen-content'; // clear prior classes
+      ipadCanvas.classList.add('theme-' + skyTheme);
+    }
 
-    // Swap the per-theme screen recording. Themes with a clip play it as the iPad
-    // screen fill (replacing the CSS/SVG holo backdrop); Earth & Venus have none and
-    // fall back to the CSS theme rendering.
+    // Swap the per-theme screen recording.
     const themeVideos = {
       math: document.getElementById('step2Video-math'),
       retro: document.getElementById('step2Video-retro'),
@@ -7519,31 +7501,6 @@
         v.style.display = 'none';
       }
     });
-
-    // Holo overlays only render for the video-less themes; a theme with a clip uses
-    // the clip instead, so its holo layer stays hidden.
-    mathGrid.style.display = 'none';
-    retroGrid.style.display = 'none';
-    bigbangFlare.style.display = 'none';
-
-    // Adjust text theme colors inside Math Space (lightSkyTheme: true)
-    if (skyTheme === 'math') {
-      panelTitle.style.color = '#1746d6';
-      themeTitle.style.color = '#5d677d';
-    } else {
-      panelTitle.style.color = 'var(--text)';
-      themeTitle.style.color = 'var(--muted)';
-    }
-
-    // Update Theme Title Text matching exact palettes.ts labels
-    const formattedNames = {
-      'earth': 'Earth (Blue ocean, green continents)',
-      'venus': 'Venus (Sulfur clouds, amber haze)',
-      'math': 'Math Space (LaTeX equations, symbols)',
-      'retro': 'Retro Arcade (8-bit neon starfield)',
-      'bigbang': 'Big Bang (Primordial flare, expansion rings)'
-    };
-    themeTitle.textContent = formattedNames[skyTheme];
   }
   </script>
   <script src="../applied-handwriting-demo.js"></script>
