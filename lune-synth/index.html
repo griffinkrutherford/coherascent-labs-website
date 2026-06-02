@@ -5965,7 +5965,8 @@
       gap: 12px;
       width: 100%;
       align-items: center;
-      z-index: 5;
+      position: relative; /* needed for z-index to apply */
+      z-index: 6;         /* stay above the per-theme video overlay (.ipad-gif-target is z5) */
     }
 
     .theme-tab-bar {
@@ -6991,8 +6992,21 @@
 
                   <!-- Step 2 Preview Screen (Includes interactive theme selector buttons) -->
                   <div class="ipad-preview-layout" id="previewStep-2" style="display: none;">
-                    <!-- Drop your file at: screenshots/applied/step-2.gif (png/jpg also fine — update the extension). It covers the fallback below automatically. -->
-                    <img src="screenshots/applied/step-2.gif" alt="Step 2 — Choose Sky" class="ipad-gif-target" onerror="this.style.display='none'" />
+                    <!-- Per-theme screen recordings. selectSkyTheme() shows + plays the one
+                         matching the picked theme; Earth & Venus have no clip and fall back
+                         to the CSS/SVG theme rendering. JS controls playback (no autoplay). -->
+                    <video id="step2Video-math" class="ipad-gif-target" loop muted playsinline preload="auto" style="display: none;">
+                      <source src="screenshots/applied/step-2-math-sky.webm" type="video/webm">
+                      <source src="screenshots/applied/step-2-math-sky.mp4" type="video/mp4">
+                    </video>
+                    <video id="step2Video-retro" class="ipad-gif-target" loop muted playsinline preload="auto" style="display: none;">
+                      <source src="screenshots/applied/step-2-retro-sky.webm" type="video/webm">
+                      <source src="screenshots/applied/step-2-retro-sky.mp4" type="video/mp4">
+                    </video>
+                    <video id="step2Video-bigbang" class="ipad-gif-target" loop muted playsinline preload="auto" style="display: none;">
+                      <source src="screenshots/applied/step-2-big-bang.webm" type="video/webm">
+                      <source src="screenshots/applied/step-2-big-bang.mp4" type="video/mp4">
+                    </video>
                     <!-- Dynamic background components representing audited sky files -->
                     <div class="math-strata" id="mathGridHolo" style="display: none;"></div>
                     <div class="retro-grid-plane" id="retroGridHolo" style="display: none;"></div>
@@ -7431,6 +7445,17 @@
     if (activeScreen) {
       activeScreen.style.display = 'flex';
     }
+
+    // Step 2's theme videos: resume the currently shown clip when we land on step 2,
+    // and pause all of them whenever we're elsewhere (no off-screen decoding).
+    document.querySelectorAll('#previewStep-2 video').forEach(v => {
+      if (stepNumber === 2 && v.style.display === 'block') {
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
   }
 
   function switchThemeTab(tabCategory, tabElement) {
@@ -7473,10 +7498,33 @@
     ipadCanvas.className = 'ipad-screen-content'; // clear prior classes
     ipadCanvas.classList.add('theme-' + skyTheme);
 
-    // Toggle Holo Overlay Layers to match codebase properties
-    mathGrid.style.display = (skyTheme === 'math') ? 'block' : 'none';
-    retroGrid.style.display = (skyTheme === 'retro') ? 'block' : 'none';
-    bigbangFlare.style.display = (skyTheme === 'bigbang') ? 'block' : 'none';
+    // Swap the per-theme screen recording. Themes with a clip play it as the iPad
+    // screen fill (replacing the CSS/SVG holo backdrop); Earth & Venus have none and
+    // fall back to the CSS theme rendering.
+    const themeVideos = {
+      math: document.getElementById('step2Video-math'),
+      retro: document.getElementById('step2Video-retro'),
+      bigbang: document.getElementById('step2Video-bigbang')
+    };
+    const activeVid = themeVideos[skyTheme] || null;
+    Object.values(themeVideos).forEach(v => {
+      if (!v) return;
+      if (v === activeVid) {
+        v.style.display = 'block';
+        v.currentTime = 0;
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {}); // ignore autoplay-policy rejections
+      } else {
+        v.pause();
+        v.style.display = 'none';
+      }
+    });
+
+    // Holo overlays only render for the video-less themes; a theme with a clip uses
+    // the clip instead, so its holo layer stays hidden.
+    mathGrid.style.display = 'none';
+    retroGrid.style.display = 'none';
+    bigbangFlare.style.display = 'none';
 
     // Adjust text theme colors inside Math Space (lightSkyTheme: true)
     if (skyTheme === 'math') {
@@ -7560,7 +7608,12 @@
         const previews = screen.querySelectorAll('.ipad-preview-layout');
         for (const p of previews) {
           if (p.style.display !== 'none') {
-            return p.querySelector('video'); // may be null (e.g. Step 02 theme panel)
+            // A preview may hold several videos (Step 02 swaps one per theme); pick the
+            // one that's actually on screen. offsetParent is null while display:none.
+            const vids = p.querySelectorAll('video');
+            for (const v of vids) { if (v.offsetParent !== null && !v.paused) return v; }
+            for (const v of vids) { if (v.offsetParent !== null) return v; }
+            return null; // no visible video (e.g. Earth/Venus CSS theme) → fallback glow
           }
         }
         return null;
