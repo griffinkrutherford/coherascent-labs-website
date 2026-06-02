@@ -5537,7 +5537,7 @@
       padding: 8px 0;
     }
 
-    @media (min-height: 550px) {
+    @media (min-width: 769px) and (min-height: 550px) {
       .section--constellations-slideshow {
         height: 100svh; /* Exactly one viewport high! */
         max-height: 100svh;
@@ -5790,11 +5790,19 @@
     }
 
     @media (max-width: 768px) {
+      .slideshow-layout {
+        flex: none;
+        min-height: auto;
+        height: auto;
+      }
       .active-step-info {
         grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
         gap: 20px;
         padding: 20px;
         text-align: center;
+        flex: none;
+        min-height: auto;
       }
       .active-step-text {
         align-items: center;
