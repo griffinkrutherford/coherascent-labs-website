@@ -5588,17 +5588,43 @@
 
     @media (max-width: 968px) {
       .slideshow-menu {
-        display: flex;
-        overflow-x: auto;
-        padding: 8px 10px;
-        border-radius: 20px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
+        grid-template-columns: repeat(5, 1fr);
         gap: 6px;
+        padding: 4px;
+        border-radius: 999px;
       }
       .slideshow-step-btn {
-        flex: 0 0 auto;
-        scroll-snap-align: start;
+        padding: 8px 10px;
+        min-height: 40px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .slideshow-menu {
+        padding: 3px;
+        gap: 4px;
+      }
+      .slideshow-step-btn {
+        padding: 6px;
+        min-height: 36px;
+        justify-content: center;
+      }
+      .slideshow-step-btn .step-details {
+        display: none;
+      }
+      .slideshow-step-btn .step-number {
+        font-size: 11.5px;
+        font-weight: 700;
+        background: transparent;
+        border: none;
+        padding: 0;
+        color: var(--muted);
+      }
+      .slideshow-step-btn.is-active .step-number {
+        color: var(--blue);
+      }
+      html[data-theme="light"] .slideshow-step-btn.is-active .step-number {
+        color: var(--blue);
       }
     }
 
