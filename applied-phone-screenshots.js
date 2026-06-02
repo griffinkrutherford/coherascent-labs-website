@@ -244,6 +244,39 @@
     clone.style.transform = "none";
     modalStage.appendChild(clone);
 
+    // Start playing videos in the clone and add glassy play/pause control button
+    var videos = clone.querySelectorAll("video");
+    Array.prototype.forEach.call(videos, function (video) {
+      video.play().catch(function() {});
+      
+      var parent = video.parentNode;
+      if (parent) {
+        var btn = document.createElement("button");
+        btn.className = "ipad-video-control-btn";
+        btn.setAttribute("type", "button");
+        btn.setAttribute("aria-label", "Pause video");
+        btn.innerHTML = '<svg class="ipad-video-control-icon" viewBox="0 0 24 24" width="18" height="18" style="display:block;"><path fill="currentColor" d="M14,19H18V5H14M6,19H10V5H6V19Z"/></svg>';
+        parent.appendChild(btn);
+        
+        var togglePlay = function (e) {
+          e.stopPropagation(); // prevent modal from closing when clicking control
+          if (video.paused) {
+            video.play();
+            btn.innerHTML = '<svg class="ipad-video-control-icon" viewBox="0 0 24 24" width="18" height="18" style="display:block;"><path fill="currentColor" d="M14,19H18V5H14M6,19H10V5H6V19Z"/></svg>';
+            btn.setAttribute("aria-label", "Pause video");
+          } else {
+            video.pause();
+            btn.innerHTML = '<svg class="ipad-video-control-icon" viewBox="0 0 24 24" width="18" height="18" style="display:block;"><path fill="currentColor" d="M8,5V19L19,12L8,5Z"/></svg>';
+            btn.setAttribute("aria-label", "Play video");
+          }
+        };
+        
+        btn.addEventListener("click", togglePlay);
+        video.addEventListener("click", togglePlay);
+        video.style.cursor = "pointer";
+      }
+    });
+
     modal.hidden = false;
     modalStage.hidden = false;
     document.body.classList.add("phone-lightbox-open");
@@ -342,7 +375,7 @@
 
   initPhoneHardware();
 
-  Array.prototype.forEach.call(document.querySelectorAll(".voice-scene__ipad"), function (ipad) {
+  Array.prototype.forEach.call(document.querySelectorAll(".voice-scene__ipad, .ipad-mockup"), function (ipad) {
     if (ipad.classList.contains("phone-mock-trigger")) return;
     ipad.classList.add("phone-mock-trigger");
     ipad.setAttribute("role", "button");
