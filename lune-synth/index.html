@@ -7694,6 +7694,7 @@
               <option value="8">Rank 08: Sapphire (Tier 8)</option>
               <option value="9">Rank 09: Emerald (Tier 9)</option>
               <option value="10">Rank 10: Diamond (Tier 10)</option>
+              <option value="11">Rank 11+: Classified</option>
             </select>
           </div>
 
@@ -8535,12 +8536,14 @@
             </div>
           </div>
 
-          <!-- Locked secret tier note -->
-          <div class="secret-ladder-box" style="margin-top: 15px; width: 100%; border-style: dashed;">
-            <span class="lock-icon">🔒</span>
-            <div class="secret-info">
-              <h4>Ranks 11 to 20: Classified / Secret Cosmic Ranks</h4>
-              <p>Ruby, Painite, Quantum, Singularity, Turing, and Undecidable are hidden from the normal path. Prove your mastery to unlock them.</p>
+          <!-- Secret Tease Container (Initially Hidden) -->
+          <div id="secretTeaseContainer" class="secret-tease-container" style="display: none; padding: 40px 20px; flex-direction: column; align-items: center; justify-content: center; gap: 16px; width: 100%; box-sizing: border-box;">
+            <span class="lock-icon" style="font-size: 48px; filter: drop-shadow(0 0 12px rgba(255, 93, 135, 0.4));">🔒</span>
+            <div class="secret-info" style="text-align: center;">
+              <h4 style="font-size: 16px; font-weight: 700; color: var(--text); margin: 0 0 8px 0;">Rank 11+: Classified Cosmic Ranks</h4>
+              <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 400px; margin: 0 auto;">
+                If you want to see if there are medal ranks beyond rank 10 Diamond, you need to find out for yourself!
+              </p>
             </div>
           </div>
         </div>
@@ -9175,22 +9178,44 @@
 
   window.changeMedalRank = function(rankValue) {
     selectedRank = parseInt(rankValue, 10);
-    const info = tierInfo[selectedRank];
-    if (info) {
+    
+    const container = document.querySelector('.medal-canvas-container');
+    const details = document.querySelector('.medal-viewer-info');
+    const tease = document.getElementById('secretTeaseContainer');
+    
+    if (selectedRank === 11) {
+      if (container) container.style.display = 'none';
+      if (details) details.style.display = 'none';
+      if (tease) tease.style.display = 'flex';
+      
+      // Deep Space / Black Hole classified glow colors
       const card = document.getElementById('medalViewerCard');
       if (card) {
-        card.style.setProperty('--medal-base', info.baseColor);
-        card.style.setProperty('--medal-accent', info.accentColor);
+        card.style.setProperty('--medal-base', 'rgb(20, 5, 30)');
+        card.style.setProperty('--medal-accent', 'rgb(255, 45, 120)');
       }
+    } else {
+      if (container) container.style.display = 'flex';
+      if (details) details.style.display = 'flex';
+      if (tease) tease.style.display = 'none';
+      
+      const info = tierInfo[selectedRank];
+      if (info) {
+        const card = document.getElementById('medalViewerCard');
+        if (card) {
+          card.style.setProperty('--medal-base', info.baseColor);
+          card.style.setProperty('--medal-accent', info.accentColor);
+        }
+      }
+      
+      // Update SVG visuals for all medal keys
+      medalKeys.forEach(key => {
+        updateMedalVisuals(key, selectedRank);
+      });
+      
+      // Update active details
+      updateActiveMedalInfo(activeIndex);
     }
-    
-    // Update SVG visuals for all medal keys
-    medalKeys.forEach(key => {
-      updateMedalVisuals(key, selectedRank);
-    });
-    
-    // Update active details
-    updateActiveMedalInfo(activeIndex);
   };
 
   function updateStopColors(id, color) {
