@@ -6048,13 +6048,11 @@
        Achievement Medals Showcase Section Styles
        ========================================================================== */
     .section--medals {
-      margin-top: 60px;
-      margin-bottom: 60px;
-      display: flex;
-      flex-direction: column;
+      margin-top: 72px;
+      margin-bottom: 72px;
+      display: grid;
       gap: clamp(16px, 3vh, 32px);
       position: relative;
-      align-items: center;
       width: 100%;
       box-sizing: border-box;
       padding: 8px 0;
@@ -6099,33 +6097,118 @@
 
     .medal-canvas-container {
       position: relative;
-      width: 180px;
-      height: 180px;
+      width: 100%;
+      height: 240px;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: 20px;
+      overflow: visible;
     }
 
     .medal-glow-spill {
       position: absolute;
-      width: 130px;
-      height: 130px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 190, 60, 0.35) 0%, transparent 70%);
-      filter: blur(28px);
+      background: radial-gradient(circle, rgba(255, 157, 61, 0.35) 0%, transparent 70%);
+      filter: blur(32px);
       z-index: -1;
       opacity: 0.85;
       transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .carousel-3d-stage {
+      perspective: 1000px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: visible;
+    }
+
+    .carousel-3d-track {
+      width: 140px;
+      height: 140px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .carousel-3d-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease, filter 0.5s ease;
+      backface-visibility: visible;
+      cursor: pointer;
+    }
+
+    .carousel-3d-item.is-inactive {
+      opacity: 0.35;
+      filter: blur(2px) grayscale(30%);
+    }
+
+    .carousel-3d-item.is-active {
+      opacity: 1;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
     }
 
     .showcase-medal-svg {
+      width: 100%;
+      height: 100%;
       filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .medal-viewer-card:hover .showcase-medal-svg {
-      transform: translateY(-4px) scale(1.05);
+    .carousel-3d-item.is-active:hover .showcase-medal-svg {
+      transform: translateY(-6px) scale(1.06);
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .carousel-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--blue);
+      box-shadow: 0 0 12px rgba(100, 168, 255, 0.3);
+    }
+
+    .prev-btn { left: -10px; }
+    .next-btn { right: -10px; }
+
+    @media (max-width: 480px) {
+      .prev-btn { left: -5px; }
+      .next-btn { right: -5px; }
+      .carousel-nav-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
     }
 
     .medal-viewer-info {
@@ -7507,190 +7590,491 @@
       
       <div class="medals-layout">
         
-        <!-- Left: Interactive Medal Carousel/Viewer -->
         <div class="medal-viewer-card" id="medalViewerCard">
           
           <div class="medal-canvas-container">
             <!-- Dynamic Glowing Ambient Underlay -->
             <div class="medal-glow-spill" id="medalGlowSpill"></div>
             
-            <!-- Medal SVG structure -->
-            <svg id="liveMedalSvg" class="showcase-medal-svg" viewBox="0 0 100 100" width="160" height="160">
-              <defs>
-                <!-- Halo Gradient -->
-                <radialGradient id="haloGrad" cx="50%" cy="50%" r="55%">
-                  <stop offset="0%" id="haloStop0" stop-color="rgba(255, 215, 0, 0.28)" stop-opacity="0.85" />
-                  <stop offset="100%" id="haloStop1" stop-color="rgba(255, 215, 0, 0)" stop-opacity="0" />
-                </radialGradient>
+            <div class="carousel-3d-stage">
+              <!-- Navigation Buttons -->
+              <button class="carousel-nav-btn prev-btn" onclick="rotateCarousel(1)" aria-label="Previous Medal">&#8592;</button>
+              <button class="carousel-nav-btn next-btn" onclick="rotateCarousel(-1)" aria-label="Next Medal">&#8594;</button>
+              
+              <!-- Carousel 3D Rotating Track -->
+              <div class="carousel-3d-track" id="carousel3dTrack">
                 
-                <!-- Rim Gradient -->
-                <linearGradient id="rimGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-                  <stop offset="0%" id="rimStop0" stop-color="#FFE89A" />
-                  <stop offset="100%" id="rimStop1" stop-color="#6E4D00" />
-                </linearGradient>
-
-                <!-- Face Gradient -->
-                <radialGradient id="faceGrad" cx="35%" cy="28%" r="80%">
-                  <stop offset="0%" id="faceStop0" stop-color="#FFF6BD" />
-                  <stop offset="55%" id="faceStop1" stop-color="#FFD700" />
-                  <stop offset="100%" id="faceStop2" stop-color="#A8770A" />
-                </radialGradient>
-
-                <!-- Inner Medallion Gradient -->
-                <radialGradient id="innerGrad" cx="50%" cy="38%" r="68%">
-                  <stop offset="0%" id="innerStop0" stop-color="#FFD954" />
-                  <stop offset="100%" id="innerStop1" stop-color="#9A6E08" />
-                </radialGradient>
-
-                <!-- Sheen Gradient -->
-                <radialGradient id="sheenGrad" cx="38%" cy="22%" r="28%">
-                  <stop offset="0%" id="sheenStop0" stop-color="rgba(255, 252, 220, 0.8)" stop-opacity="0.55" />
-                  <stop offset="100%" id="sheenStop1" stop-color="rgba(255, 252, 220, 0)" stop-opacity="0" />
-                </radialGradient>
-
-                <!-- Ribbon Gradient -->
-                <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" id="ribbonStop0" stop-color="#7C5400" />
-                  <stop offset="100%" id="ribbonStop1" stop-color="#3F2A00" />
-                </linearGradient>
-
-                <!-- Category Ribbon Gradient -->
-                <linearGradient id="catRibbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" id="catRibbonStop0" stop-color="#FF9D3D" />
-                  <stop offset="100%" id="catRibbonStop1" stop-color="#B44B0C" />
-                </linearGradient>
-
-                <!-- Category Ribbon Fold Gradient -->
-                <linearGradient id="catFoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" id="catFoldStop0" stop-color="#A9460A" />
-                  <stop offset="100%" id="catFoldStop1" stop-color="#4A1C00" />
-                </linearGradient>
-              </defs>
-
-              <!-- Ribbon (behind medal) -->
-              <g transform="translate(50, 50)">
-                <path d="M -16 0 L -22 36 L -10 32 L 0 38 L 10 32 L 22 36 L 16 0 Z" id="medalRibbonBack" fill="url(#ribbonGrad)" />
-                <path d="M -16 0 L -22 36 L -10 32 L 0 38" id="medalRibbonShadow" fill="#3A2700" opacity="0.25" />
-              </g>
-
-              <!-- Halo Glow (high-tier only) -->
-              <circle cx="50" cy="50" r="44" id="medalHalo" fill="url(#haloGrad)" />
-
-              <!-- Outer Shadow Ring -->
-              <circle cx="50" cy="50" r="41" id="medalShadowRing" fill="#3A2700" opacity="0.3" />
-
-              <!-- Outer Rim -->
-              <circle cx="50" cy="50" r="40" fill="url(#rimGrad)" />
-
-              <!-- Rim Ticks (for metallic look) -->
-              <circle cx="50" cy="50" r="38" fill="none" stroke="#3A2700" stroke-width="2.5" stroke-dasharray="0.8 5.8" opacity="0.5" id="medalTicks" />
-
-              <!-- Main Face -->
-              <circle cx="50" cy="50" r="35" fill="url(#faceGrad)" />
-
-              <!-- Beveled inner ring -->
-              <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255, 252, 220, 0.8)" stroke-width="0.8" opacity="0.55" />
-
-              <!-- Inner Medallion -->
-              <circle cx="50" cy="50" r="27" fill="url(#innerGrad)" />
-              <circle cx="50" cy="50" r="27" fill="none" stroke="#3A2700" stroke-width="0.6" opacity="0.55" id="medalInnerBorder" />
-
-              <!-- Sheen Overlay -->
-              <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad)" />
-
-              <!-- Dashed Accent Ring (for premium tiers) -->
-              <circle cx="50" cy="50" r="38" id="dashedAccentRing" fill="none" stroke="transparent" stroke-width="0.7" stroke-dasharray="2.4 1.6" opacity="0.7" />
-
-              <!-- Diamond Gemstone Ring (hidden by default) -->
-              <g id="diamondGemstoneRing" style="display: none;">
-                <circle r="37.6" fill="none" stroke="#3A2B0A" stroke-width="0.55" opacity="0.34" transform="translate(50, 50)" />
-                <circle r="34.6" fill="none" stroke="rgba(255, 248, 210, 0.94)" stroke-width="0.42" opacity="0.4" transform="translate(50, 50)" />
-                <g transform="translate(50, 50)">
-                  <g transform="rotate(0) translate(0, -36.1) scale(0.9)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(30) translate(0, -36.1) scale(0.72)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(60) translate(0, -36.1) scale(0.72)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(90) translate(0, -36.1) scale(0.9)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(120) translate(0, -36.1) scale(0.72)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(150) translate(0, -36.1) scale(0.72)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(180) translate(0, -36.1) scale(0.9)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(210) translate(0, -36.1) scale(0.72)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(240) translate(0, -36.1) scale(0.72)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(270) translate(0, -36.1) scale(0.9)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(300) translate(0, -36.1) scale(0.72)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                  <g transform="rotate(330) translate(0, -36.1) scale(0.72)">
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
-                  </g>
-                </g>
-              </g>
-
-              <!-- Top Category Ribbon -->
-              <g id="topCategoryRibbon">
-                <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" id="medalCatRibbonShadow" fill="#2C1306" opacity="0.24" transform="translate(0, 1.4)" />
-                <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" id="medalCatRibbonMain" fill="url(#catRibbonGrad)" />
-                <path d="M 16 12.5 L 28 6.5 L 31 27 L 17 23 L 21 18 Z" id="medalCatRibbonLeftFold" fill="url(#catFoldGrad)" />
-                <path d="M 21 18 L 28.6 8.5 L 30.4 25.8 L 17 22.8 Z" fill="#4A1C00" opacity="0.16" />
-                <path d="M 84 12.5 L 72 6.5 L 69 27 L 83 23 L 79 18 Z" id="medalCatRibbonRightFold" fill="url(#catFoldGrad)" />
-                <path d="M 79 18 L 71.4 8.5 L 69.6 25.8 L 83 22.8 Z" fill="#4A1C00" opacity="0.16" />
-                <path d="M 27.4 6.5 H 72.6 L 68.4 26 H 31.6 Z" id="medalCatRibbonCenterPlate" fill="url(#catRibbonGrad)" />
-                <path d="M 31.5 21.8 H 68.5 L 68.4 26 H 31.6 Z" fill="#4A1C00" opacity="0.1" />
-                <path d="M 30.8 8.6 H 69.2" id="medalCatRibbonTopAccent" stroke="#FFE0A8" stroke-width="0.8" opacity="0.6" stroke-linecap="round" />
-                <path d="M 28.8 7.6 L 32 25.4 M 71.2 7.6 L 68 25.4" fill="none" stroke="#4A1C00" stroke-width="0.55" opacity="0.2" stroke-linecap="round" />
-                <path d="M 50 7.4 V 25.4" id="medalCatRibbonCenterStripe" fill="none" stroke="#FFE0A8" stroke-width="0.45" opacity="0.16" stroke-linecap="round" />
-                <path d="M 18.9 14.6 L 27.2 10.5 M 81.1 14.6 L 72.8 10.5" id="medalCatRibbonWingsAccent" fill="none" stroke="#FFE0A8" stroke-width="0.55" opacity="0.24" stroke-linecap="round" />
-              </g>
-
-              <!-- Category Icon Glyph (Seeded with Flame) -->
-              <g transform="translate(50, 50)" id="medalIconGlyph">
-                <circle r="15" fill="#3A2700" opacity="0.08" />
-                <g transform="translate(-14, -14)">
-                  <!-- Svg paths for Flame -->
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame">
-                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#3A2700" stroke-width="3" opacity="0.5" />
-                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="rgba(255, 252, 220, 0.8)" stroke-width="1.2" opacity="0.28" transform="translate(-0.4, -0.4)" />
-                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#FFFCE0" stroke-width="1.55" />
+                <!-- Medal 0: Streak (Gold Tier) -->
+                <div class="carousel-3d-item is-active" onclick="rotateToMedal(0)">
+                  <svg class="showcase-medal-svg" viewBox="0 0 100 100">
+                    <defs>
+                      <radialGradient id="haloGrad-streak" cx="50%" cy="50%" r="55%">
+                        <stop offset="0%" stop-color="rgba(255, 215, 0, 0.28)" stop-opacity="0.85" />
+                        <stop offset="100%" stop-color="rgba(255, 215, 0, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="rimGrad-streak" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%" stop-color="#FFE89A" />
+                        <stop offset="100%" stop-color="#6E4D00" />
+                      </linearGradient>
+                      <radialGradient id="faceGrad-streak" cx="35%" cy="28%" r="80%">
+                        <stop offset="0%" stop-color="#FFF6BD" />
+                        <stop offset="55%" stop-color="#FFD700" />
+                        <stop offset="100%" stop-color="#A8770A" />
+                      </radialGradient>
+                      <radialGradient id="innerGrad-streak" cx="50%" cy="38%" r="68%">
+                        <stop offset="0%" stop-color="#FFD954" />
+                        <stop offset="100%" stop-color="#9A6E08" />
+                      </radialGradient>
+                      <radialGradient id="sheenGrad-streak" cx="38%" cy="22%" r="28%">
+                        <stop offset="0%" stop-color="rgba(255, 252, 220, 0.8)" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="rgba(255, 252, 220, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="ribbonGrad-streak" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#7C5400" />
+                        <stop offset="100%" stop-color="#3F2A00" />
+                      </linearGradient>
+                      <linearGradient id="catRibbonGrad-streak" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FF9D3D" />
+                        <stop offset="100%" stop-color="#B44B0C" />
+                      </linearGradient>
+                      <linearGradient id="catFoldGrad-streak" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#A9460A" />
+                        <stop offset="100%" stop-color="#4A1C00" />
+                      </linearGradient>
+                    </defs>
+                    <g transform="translate(50, 50)">
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38 L 10 32 L 22 36 L 16 0 Z" fill="url(#ribbonGrad-streak)" />
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38" fill="#3A2700" opacity="0.25" />
+                    </g>
+                    <circle cx="50" cy="50" r="44" fill="url(#haloGrad-streak)" />
+                    <circle cx="50" cy="50" r="41" fill="#3A2700" opacity="0.3" />
+                    <circle cx="50" cy="50" r="40" fill="url(#rimGrad-streak)" />
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#3A2700" stroke-width="2.5" stroke-dasharray="0.8 5.8" opacity="0.5" />
+                    <circle cx="50" cy="50" r="35" fill="url(#faceGrad-streak)" />
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255, 252, 220, 0.8)" stroke-width="0.8" opacity="0.55" />
+                    <circle cx="50" cy="50" r="27" fill="url(#innerGrad-streak)" />
+                    <circle cx="50" cy="50" r="27" fill="none" stroke="#3A2700" stroke-width="0.6" opacity="0.55" />
+                    <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-streak)" />
+                    <g transform="translate(50, 50)">
+                      <circle r="15" fill="#3A2700" opacity="0.08" />
+                      <g transform="translate(-14, -14)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#3A2700" stroke-width="3" opacity="0.5" />
+                          <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="rgba(255, 252, 220, 0.8)" stroke-width="1.2" opacity="0.28" transform="translate(-0.4, -0.4)" />
+                          <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#FFFCE0" stroke-width="1.55" />
+                        </svg>
+                      </g>
+                    </g>
+                    <g transform="translate(76, 26)">
+                      <polygon points="0,-4 1.1,-1.1 4,0 1.1,1.1 0,4 -1.1,1.1 -4,0 -1.1,-1.1" fill="rgba(255, 252, 220, 0.8)" opacity="0.85" />
+                    </g>
+                    <g>
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="#2C1306" opacity="0.24" transform="translate(0, 1.4)" />
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="url(#catRibbonGrad-streak)" />
+                      <path d="M 16 12.5 L 28 6.5 L 31 27 L 17 23 L 21 18 Z" fill="url(#catFoldGrad-streak)" />
+                      <path d="M 21 18 L 28.6 8.5 L 30.4 25.8 L 17 22.8 Z" fill="#4A1C00" opacity="0.16" />
+                      <path d="M 84 12.5 L 72 6.5 L 69 27 L 83 23 L 79 18 Z" fill="url(#catFoldGrad-streak)" />
+                      <path d="M 79 18 L 71.4 8.5 L 69.6 25.8 L 83 22.8 Z" fill="#4A1C00" opacity="0.16" />
+                      <path d="M 27.4 6.5 H 72.6 L 68.4 26 H 31.6 Z" fill="url(#catRibbonGrad-streak)" />
+                      <path d="M 31.5 21.8 H 68.5 L 68.4 26 H 31.6 Z" fill="#4A1C00" opacity="0.1" />
+                      <path d="M 30.8 8.6 H 69.2" stroke="#FFE0A8" stroke-width="0.8" opacity="0.6" stroke-linecap="round" />
+                      <path d="M 28.8 7.6 L 32 25.4 M 71.2 7.6 L 68 25.4" fill="none" stroke="#4A1C00" stroke-width="0.55" opacity="0.2" stroke-linecap="round" />
+                      <path d="M 50 7.4 V 25.4" fill="none" stroke="#FFE0A8" stroke-width="0.45" opacity="0.16" stroke-linecap="round" />
+                      <path d="M 18.9 14.6 L 27.2 10.5 M 81.1 14.6 L 72.8 10.5" fill="none" stroke="#FFE0A8" stroke-width="0.55" opacity="0.24" stroke-linecap="round" />
+                    </g>
                   </svg>
-                </g>
-              </g>
+                </div>
+                
+                <!-- Medal 1: Polymath (Diamond Tier) -->
+                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(1)">
+                  <svg class="showcase-medal-svg" viewBox="0 0 100 100">
+                    <defs>
+                      <radialGradient id="haloGrad-polymath" cx="50%" cy="50%" r="55%">
+                        <stop offset="0%" stop-color="rgba(255, 220, 120, 0.36)" stop-opacity="0.85" />
+                        <stop offset="100%" stop-color="rgba(255, 220, 120, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="rimGrad-polymath" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%" stop-color="#FFF4B8" />
+                        <stop offset="100%" stop-color="#8A6B20" />
+                      </linearGradient>
+                      <radialGradient id="faceGrad-polymath" cx="35%" cy="28%" r="80%">
+                        <stop offset="0%" stop-color="#FFFFFF" />
+                        <stop offset="55%" stop-color="#D7DDE7" />
+                        <stop offset="100%" stop-color="#B88B2E" />
+                      </radialGradient>
+                      <radialGradient id="innerGrad-polymath" cx="50%" cy="38%" r="68%">
+                        <stop offset="0%" stop-color="#F7FAFF" />
+                        <stop offset="100%" stop-color="#C99A35" />
+                      </radialGradient>
+                      <radialGradient id="sheenGrad-polymath" cx="38%" cy="22%" r="28%">
+                        <stop offset="0%" stop-color="rgba(255, 248, 210, 0.94)" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="rgba(255, 248, 210, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="ribbonGrad-polymath" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#7A6020" />
+                        <stop offset="100%" stop-color="#2D2208" />
+                      </linearGradient>
+                      <linearGradient id="catRibbonGrad-polymath" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#9B6DFF" />
+                        <stop offset="100%" stop-color="#4B2C86" />
+                      </linearGradient>
+                      <linearGradient id="catFoldGrad-polymath" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#4E2F8F" />
+                        <stop offset="100%" stop-color="#26104D" />
+                      </linearGradient>
+                    </defs>
+                    <g transform="translate(50, 50)">
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38 L 10 32 L 22 36 L 16 0 Z" fill="url(#ribbonGrad-polymath)" />
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38" fill="#3A2B0A" opacity="0.25" />
+                    </g>
+                    <circle cx="50" cy="50" r="44" fill="url(#haloGrad-polymath)" />
+                    <circle cx="50" cy="50" r="41" fill="#3A2B0A" opacity="0.3" />
+                    <circle cx="50" cy="50" r="40" fill="url(#rimGrad-polymath)" />
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#3A2B0A" stroke-width="2.5" stroke-dasharray="0.8 5.8" opacity="0.5" />
+                    <circle cx="50" cy="50" r="35" fill="url(#faceGrad-polymath)" />
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255, 248, 210, 0.94)" stroke-width="0.8" opacity="0.55" />
+                    <circle cx="50" cy="50" r="27" fill="url(#innerGrad-polymath)" />
+                    <circle cx="50" cy="50" r="27" fill="none" stroke="#3A2B0A" stroke-width="0.6" opacity="0.55" />
+                    <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-polymath)" />
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#DCC7FF" stroke-width="0.7" stroke-dasharray="2.4 1.6" opacity="0.7" />
+                    <g>
+                      <circle r="37.6" fill="none" stroke="#3A2B0A" stroke-width="0.55" opacity="0.34" transform="translate(50, 50)" />
+                      <circle r="34.6" fill="none" stroke="rgba(255, 248, 210, 0.94)" stroke-width="0.42" opacity="0.4" transform="translate(50, 50)" />
+                      <g transform="translate(50, 50)">
+                        <g transform="rotate(0) translate(0, -36.1) scale(0.9)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(30) translate(0, -36.1) scale(0.72)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(60) translate(0, -36.1) scale(0.72)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(90) translate(0, -36.1) scale(0.9)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(120) translate(0, -36.1) scale(0.72)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(150) translate(0, -36.1) scale(0.72)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(180) translate(0, -36.1) scale(0.9)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(210) translate(0, -36.1) scale(0.72)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(240) translate(0, -36.1) scale(0.72)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(270) translate(0, -36.1) scale(0.9)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(300) translate(0, -36.1) scale(0.72)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                        <g transform="rotate(330) translate(0, -36.1) scale(0.72)">
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                        </g>
+                      </g>
+                    </g>
+                    <g transform="translate(50, 50)">
+                      <circle r="15" fill="#3A2B0A" opacity="0.08" />
+                      <g transform="translate(-14, -14)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#3A2B0A" stroke-width="3" opacity="0.5" />
+                          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#3A2B0A" stroke-width="3" opacity="0.5" />
+                          <path d="M16 2v4l-2.5-1.5L11 6V2" stroke="#3A2B0A" stroke-width="3" opacity="0.5" />
+                          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#FFFCE0" stroke-width="1.55" />
+                          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#FFFCE0" stroke-width="1.55" />
+                          <path d="M16 2v4l-2.5-1.5L11 6V2" stroke="#FFFCE0" stroke-width="1.55" />
+                        </svg>
+                      </g>
+                    </g>
+                    <g transform="translate(76, 26)">
+                      <polygon points="0,-4 1.1,-1.1 4,0 1.1,1.1 0,4 -1.1,1.1 -4,0 -1.1,-1.1" fill="rgba(255, 248, 210, 0.94)" opacity="0.85" />
+                    </g>
+                    <g>
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="#3A2B0A" opacity="0.24" transform="translate(0, 1.4)" />
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="url(#catRibbonGrad-polymath)" />
+                      <path d="M 16 12.5 L 28 6.5 L 31 27 L 17 23 L 21 18 Z" fill="url(#catFoldGrad-polymath)" />
+                      <path d="M 21 18 L 28.6 8.5 L 30.4 25.8 L 17 22.8 Z" fill="#26104D" opacity="0.16" />
+                      <path d="M 84 12.5 L 72 6.5 L 69 27 L 83 23 L 79 18 Z" fill="url(#catFoldGrad-polymath)" />
+                      <path d="M 79 18 L 71.4 8.5 L 69.6 25.8 L 83 22.8 Z" fill="#26104D" opacity="0.16" />
+                      <path d="M 27.4 6.5 H 72.6 L 68.4 26 H 31.6 Z" fill="url(#catRibbonGrad-polymath)" />
+                      <path d="M 31.5 21.8 H 68.5 L 68.4 26 H 31.6 Z" fill="#26104D" opacity="0.1" />
+                      <path d="M 30.8 8.6 H 69.2" stroke="#DCC7FF" stroke-width="0.8" opacity="0.6" stroke-linecap="round" />
+                      <path d="M 28.8 7.6 L 32 25.4 M 71.2 7.6 L 68 25.4" fill="none" stroke="#26104D" stroke-width="0.55" opacity="0.2" stroke-linecap="round" />
+                      <path d="M 50 7.4 V 25.4" fill="none" stroke="#DCC7FF" stroke-width="0.45" opacity="0.16" stroke-linecap="round" />
+                      <path d="M 18.9 14.6 L 27.2 10.5 M 81.1 14.6 L 72.8 10.5" fill="none" stroke="#DCC7FF" stroke-width="0.55" opacity="0.24" stroke-linecap="round" />
+                    </g>
+                  </svg>
+                </div>
+                
+                <!-- Medal 2: Recovery (Sapphire Tier) -->
+                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(2)">
+                  <svg class="showcase-medal-svg" viewBox="0 0 100 100">
+                    <defs>
+                      <radialGradient id="haloGrad-recovery" cx="50%" cy="50%" r="55%">
+                        <stop offset="0%" stop-color="rgba(60, 140, 255, 0.42)" stop-opacity="0.85" />
+                        <stop offset="100%" stop-color="rgba(60, 140, 255, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="rimGrad-recovery" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%" stop-color="#8FD4FF" />
+                        <stop offset="100%" stop-color="#071B57" />
+                      </linearGradient>
+                      <radialGradient id="faceGrad-recovery" cx="35%" cy="28%" r="80%">
+                        <stop offset="0%" stop-color="#DDF6FF" />
+                        <stop offset="55%" stop-color="#266DDF" />
+                        <stop offset="100%" stop-color="#071846" />
+                      </radialGradient>
+                      <radialGradient id="innerGrad-recovery" cx="50%" cy="38%" r="68%">
+                        <stop offset="0%" stop-color="#2B6EE8" />
+                        <stop offset="100%" stop-color="#06123B" />
+                      </radialGradient>
+                      <radialGradient id="sheenGrad-recovery" cx="38%" cy="22%" r="28%">
+                        <stop offset="0%" stop-color="rgba(195, 235, 255, 0.82)" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="rgba(195, 235, 255, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="ribbonGrad-recovery" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#0C2B76" />
+                        <stop offset="100%" stop-color="#04102F" />
+                      </linearGradient>
+                      <linearGradient id="catRibbonGrad-recovery" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#54D982" />
+                        <stop offset="100%" stop-color="#248C50" />
+                      </linearGradient>
+                      <linearGradient id="catFoldGrad-recovery" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#1E7042" />
+                        <stop offset="100%" stop-color="#0E3F25" />
+                      </linearGradient>
+                    </defs>
+                    <g transform="translate(50, 50)">
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38 L 10 32 L 22 36 L 16 0 Z" fill="url(#ribbonGrad-recovery)" />
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38" fill="#020817" opacity="0.25" />
+                    </g>
+                    <circle cx="50" cy="50" r="44" fill="url(#haloGrad-recovery)" />
+                    <circle cx="50" cy="50" r="41" fill="#020817" opacity="0.3" />
+                    <circle cx="50" cy="50" r="40" fill="url(#rimGrad-recovery)" />
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#020817" stroke-width="2.5" stroke-dasharray="0.8 5.8" opacity="0.5" />
+                    <circle cx="50" cy="50" r="35" fill="url(#faceGrad-recovery)" />
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(195, 235, 255, 0.82)" stroke-width="0.8" opacity="0.55" />
+                    <circle cx="50" cy="50" r="27" fill="url(#innerGrad-recovery)" />
+                    <circle cx="50" cy="50" r="27" fill="none" stroke="#020817" stroke-width="0.6" opacity="0.55" />
+                    <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-recovery)" />
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#7CE7FF" stroke-width="0.7" stroke-dasharray="2.4 1.6" opacity="0.7" />
+                    <g transform="translate(50, 50)">
+                      <circle r="15" fill="#020817" opacity="0.08" />
+                      <g transform="translate(-14, -14)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m8 3 4 8 5-5 5 15H2L8 3z" stroke="#020817" stroke-width="3" opacity="0.5" />
+                          <path d="m8 3 4 8 5-5 5 15H2L8 3z" stroke="#FFFCE0" stroke-width="1.55" />
+                        </svg>
+                      </g>
+                    </g>
+                    <g transform="translate(76, 26)">
+                      <polygon points="0,-4 1.1,-1.1 4,0 1.1,1.1 0,4 -1.1,1.1 -4,0 -1.1,-1.1" fill="rgba(195, 235, 255, 0.82)" opacity="0.85" />
+                    </g>
+                    <g>
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="#0E3F25" opacity="0.24" transform="translate(0, 1.4)" />
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="url(#catRibbonGrad-recovery)" />
+                      <path d="M 16 12.5 L 28 6.5 L 31 27 L 17 23 L 21 18 Z" fill="url(#catFoldGrad-recovery)" />
+                      <path d="M 21 18 L 28.6 8.5 L 30.4 25.8 L 17 22.8 Z" fill="#0E3F25" opacity="0.16" />
+                      <path d="M 84 12.5 L 72 6.5 L 69 27 L 83 23 L 79 18 Z" fill="url(#catFoldGrad-recovery)" />
+                      <path d="M 79 18 L 71.4 8.5 L 69.6 25.8 L 83 22.8 Z" fill="#0E3F25" opacity="0.16" />
+                      <path d="M 27.4 6.5 H 72.6 L 68.4 26 H 31.6 Z" fill="url(#catRibbonGrad-recovery)" />
+                      <path d="M 31.5 21.8 H 68.5 L 68.4 26 H 31.6 Z" fill="#0E3F25" opacity="0.1" />
+                      <path d="M 30.8 8.6 H 69.2" stroke="#CFFFE0" stroke-width="0.8" opacity="0.6" stroke-linecap="round" />
+                      <path d="M 28.8 7.6 L 32 25.4 M 71.2 7.6 L 68 25.4" fill="none" stroke="#0E3F25" stroke-width="0.55" opacity="0.2" stroke-linecap="round" />
+                      <path d="M 50 7.4 V 25.4" fill="none" stroke="#CFFFE0" stroke-width="0.45" opacity="0.16" stroke-linecap="round" />
+                      <path d="M 18.9 14.6 L 27.2 10.5 M 81.1 14.6 L 72.8 10.5" fill="none" stroke="#CFFFE0" stroke-width="0.55" opacity="0.24" stroke-linecap="round" />
+                    </g>
+                  </svg>
+                </div>
+                
+                <!-- Medal 3: Marksman (Emerald Tier) -->
+                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(3)">
+                  <svg class="showcase-medal-svg" viewBox="0 0 100 100">
+                    <defs>
+                      <radialGradient id="haloGrad-marksman" cx="50%" cy="50%" r="55%">
+                        <stop offset="0%" stop-color="rgba(45, 220, 130, 0.4)" stop-opacity="0.85" />
+                        <stop offset="100%" stop-color="rgba(45, 220, 130, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="rimGrad-marksman" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%" stop-color="#9BFFD0" />
+                        <stop offset="100%" stop-color="#033E2A" />
+                      </linearGradient>
+                      <radialGradient id="faceGrad-marksman" cx="35%" cy="28%" r="80%">
+                        <stop offset="0%" stop-color="#D8FFE9" />
+                        <stop offset="55%" stop-color="#1FAF6B" />
+                        <stop offset="100%" stop-color="#043420" />
+                      </radialGradient>
+                      <radialGradient id="innerGrad-marksman" cx="50%" cy="38%" r="68%">
+                        <stop offset="0%" stop-color="#31C980" />
+                        <stop offset="100%" stop-color="#06391F" />
+                      </radialGradient>
+                      <radialGradient id="sheenGrad-marksman" cx="38%" cy="22%" r="28%">
+                        <stop offset="0%" stop-color="rgba(190, 255, 220, 0.78)" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="rgba(190, 255, 220, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="ribbonGrad-marksman" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#075A35" />
+                        <stop offset="100%" stop-color="#021B10" />
+                      </linearGradient>
+                      <linearGradient id="catRibbonGrad-marksman" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FF5D87" />
+                        <stop offset="100%" stop-color="#9A1B3A" />
+                      </linearGradient>
+                      <linearGradient id="catFoldGrad-marksman" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#8D1735" />
+                        <stop offset="100%" stop-color="#4A071B" />
+                      </linearGradient>
+                    </defs>
+                    <g transform="translate(50, 50)">
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38 L 10 32 L 22 36 L 16 0 Z" fill="url(#ribbonGrad-marksman)" />
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38" fill="#02140C" opacity="0.25" />
+                    </g>
+                    <circle cx="50" cy="50" r="44" fill="url(#haloGrad-marksman)" />
+                    <circle cx="50" cy="50" r="41" fill="#02140C" opacity="0.3" />
+                    <circle cx="50" cy="50" r="40" fill="url(#rimGrad-marksman)" />
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#02140C" stroke-width="2.5" stroke-dasharray="0.8 5.8" opacity="0.5" />
+                    <circle cx="50" cy="50" r="35" fill="url(#faceGrad-marksman)" />
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(190, 255, 220, 0.78)" stroke-width="0.8" opacity="0.55" />
+                    <circle cx="50" cy="50" r="27" fill="url(#innerGrad-marksman)" />
+                    <circle cx="50" cy="50" r="27" fill="none" stroke="#02140C" stroke-width="0.6" opacity="0.55" />
+                    <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-marksman)" />
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#A7FFBF" stroke-width="0.7" stroke-dasharray="2.4 1.6" opacity="0.7" />
+                    <g transform="translate(50, 50)">
+                      <circle r="15" fill="#02140C" opacity="0.08" />
+                      <g transform="translate(-14, -14)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10" stroke="#02140C" stroke-width="3" opacity="0.5" />
+                          <circle cx="12" cy="12" r="6" stroke="#02140C" stroke-width="3" opacity="0.5" />
+                          <circle cx="12" cy="12" r="2" fill="#02140C" opacity="0.5" />
+                          <circle cx="12" cy="12" r="10" stroke="#FFFCE0" stroke-width="1.55" />
+                          <circle cx="12" cy="12" r="6" stroke="#FFFCE0" stroke-width="1.55" />
+                          <circle cx="12" cy="12" r="2" fill="#FFFCE0" />
+                        </svg>
+                      </g>
+                    </g>
+                    <g transform="translate(76, 26)">
+                      <polygon points="0,-4 1.1,-1.1 4,0 1.1,1.1 0,4 -1.1,1.1 -4,0 -1.1,-1.1" fill="rgba(190, 255, 220, 0.78)" opacity="0.85" />
+                    </g>
+                    <g>
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="#4A071B" opacity="0.24" transform="translate(0, 1.4)" />
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="url(#catRibbonGrad-marksman)" />
+                      <path d="M 16 12.5 L 28 6.5 L 31 27 L 17 23 L 21 18 Z" fill="url(#catFoldGrad-marksman)" />
+                      <path d="M 21 18 L 28.6 8.5 L 30.4 25.8 L 17 22.8 Z" fill="#4A071B" opacity="0.16" />
+                      <path d="M 84 12.5 L 72 6.5 L 69 27 L 83 23 L 79 18 Z" fill="url(#catFoldGrad-marksman)" />
+                      <path d="M 79 18 L 71.4 8.5 L 69.6 25.8 L 83 22.8 Z" fill="#4A071B" opacity="0.16" />
+                      <path d="M 27.4 6.5 H 72.6 L 68.4 26 H 31.6 Z" fill="url(#catRibbonGrad-marksman)" />
+                      <path d="M 31.5 21.8 H 68.5 L 68.4 26 H 31.6 Z" fill="#4A071B" opacity="0.1" />
+                      <path d="M 30.8 8.6 H 69.2" stroke="#FFC2D4" stroke-width="0.8" opacity="0.6" stroke-linecap="round" />
+                      <path d="M 28.8 7.6 L 32 25.4 M 71.2 7.6 L 68 25.4" fill="none" stroke="#4A071B" stroke-width="0.55" opacity="0.2" stroke-linecap="round" />
+                      <path d="M 50 7.4 V 25.4" fill="none" stroke="#FFC2D4" stroke-width="0.45" opacity="0.16" stroke-linecap="round" />
+                      <path d="M 18.9 14.6 L 27.2 10.5 M 81.1 14.6 L 72.8 10.5" fill="none" stroke="#FFC2D4" stroke-width="0.55" opacity="0.24" stroke-linecap="round" />
+                    </g>
+                  </svg>
+                </div>
+                
+                <!-- Medal 4: Handwriting (Ceramic Tier) -->
+                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)">
+                  <svg class="showcase-medal-svg" viewBox="0 0 100 100">
+                    <defs>
+                      <linearGradient id="rimGrad-handwriting" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%" stop-color="#C98B65" />
+                        <stop offset="100%" stop-color="#70402B" />
+                      </linearGradient>
+                      <radialGradient id="faceGrad-handwriting" cx="35%" cy="28%" r="80%">
+                        <stop offset="0%" stop-color="#D99B73" />
+                        <stop offset="55%" stop-color="#B66F4D" />
+                        <stop offset="100%" stop-color="#7A452F" />
+                      </radialGradient>
+                      <radialGradient id="innerGrad-handwriting" cx="50%" cy="38%" r="68%">
+                        <stop offset="0%" stop-color="#C77D58" />
+                        <stop offset="100%" stop-color="#7E4931" />
+                      </radialGradient>
+                      <radialGradient id="sheenGrad-handwriting" cx="38%" cy="22%" r="28%">
+                        <stop offset="0%" stop-color="rgba(255, 215, 185, 0.3)" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="rgba(255, 215, 185, 0)" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="ribbonGrad-handwriting" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#8D5439" />
+                        <stop offset="100%" stop-color="#4A2A1D" />
+                      </linearGradient>
+                      <linearGradient id="catRibbonGrad-handwriting" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#B9F55F" />
+                        <stop offset="100%" stop-color="#5D9D26" />
+                      </linearGradient>
+                      <linearGradient id="catFoldGrad-handwriting" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#5D8C1D" />
+                        <stop offset="100%" stop-color="#29470C" />
+                      </linearGradient>
+                    </defs>
+                    <g transform="translate(50, 50)">
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38 L 10 32 L 22 36 L 16 0 Z" fill="url(#ribbonGrad-handwriting)" />
+                      <path d="M -16 0 L -22 36 L -10 32 L 0 38" fill="#3B2218" opacity="0.25" />
+                    </g>
+                    <circle cx="50" cy="50" r="41" fill="#3B2218" opacity="0.3" />
+                    <circle cx="50" cy="50" r="40" fill="url(#rimGrad-handwriting)" />
+                    <circle cx="50" cy="50" r="35" fill="url(#faceGrad-handwriting)" />
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255, 215, 185, 0.3)" stroke-width="0.8" opacity="0.18" />
+                    
+                    <!-- Ceramic Speckles -->
+                    <circle cx="30" cy="36" r="0.75" fill="#3B2218" opacity="0.22" />
+                    <circle cx="68" cy="39" r="0.55" fill="#3B2218" opacity="0.22" />
+                    <circle cx="39" cy="66" r="0.6" fill="#3B2218" opacity="0.22" />
+                    <circle cx="58" cy="70" r="0.7" fill="#3B2218" opacity="0.22" />
+                    <circle cx="72" cy="58" r="0.45" fill="#3B2218" opacity="0.22" />
+                    <circle cx="25" cy="54" r="0.5" fill="#3B2218" opacity="0.22" />
+                    <path d="M 28 61 Q 45 66 71 57" stroke="rgba(255, 215, 185, 0.3)" stroke-width="0.65" fill="none" opacity="0.18" stroke-linecap="round" />
 
-              <!-- Sparkle (top-right) -->
-              <g transform="translate(76, 26)" id="medalSparkle" style="display: block;">
-                <polygon points="0,-4 1.1,-1.1 4,0 1.1,1.1 0,4 -1.1,1.1 -4,0 -1.1,-1.1" fill="rgba(255, 252, 220, 0.8)" opacity="0.85" />
-              </g>
-            </svg>
+                    <circle cx="50" cy="50" r="27" fill="url(#innerGrad-handwriting)" />
+                    <circle cx="50" cy="50" r="27" fill="none" stroke="#3B2218" stroke-width="0.6" opacity="0.32" />
+                    <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-handwriting)" opacity="0.5" />
+                    <g transform="translate(50, 50)">
+                      <circle r="15" fill="#3B2218" opacity="0.08" />
+                      <g transform="translate(-14, -14)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9" stroke="#3B2218" stroke-width="3" opacity="0.5" />
+                          <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" stroke="#3B2218" stroke-width="3" opacity="0.5" />
+                          <path d="M12 20h9" stroke="#FFFCE0" stroke-width="1.55" />
+                          <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" stroke="#FFFCE0" stroke-width="1.55" />
+                        </svg>
+                      </g>
+                    </g>
+                    <g>
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="#29470C" opacity="0.24" transform="translate(0, 1.4)" />
+                      <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" fill="url(#catRibbonGrad-handwriting)" />
+                      <path d="M 16 12.5 L 28 6.5 L 31 27 L 17 23 L 21 18 Z" fill="url(#catFoldGrad-handwriting)" />
+                      <path d="M 21 18 L 28.6 8.5 L 30.4 25.8 L 17 22.8 Z" fill="#29470C" opacity="0.16" />
+                      <path d="M 84 12.5 L 72 6.5 L 69 27 L 83 23 L 79 18 Z" fill="url(#catFoldGrad-handwriting)" />
+                      <path d="M 79 18 L 71.4 8.5 L 69.6 25.8 L 83 22.8 Z" fill="#29470C" opacity="0.16" />
+                      <path d="M 27.4 6.5 H 72.6 L 68.4 26 H 31.6 Z" fill="url(#catRibbonGrad-handwriting)" />
+                      <path d="M 31.5 21.8 H 68.5 L 68.4 26 H 31.6 Z" fill="#29470C" opacity="0.1" />
+                      <path d="M 30.8 8.6 H 69.2" stroke="#FFF4B8" stroke-width="0.8" opacity="0.6" stroke-linecap="round" />
+                      <path d="M 28.8 7.6 L 32 25.4 M 71.2 7.6 L 68 25.4" fill="none" stroke="#29470C" stroke-width="0.55" opacity="0.2" stroke-linecap="round" />
+                      <path d="M 50 7.4 V 25.4" fill="none" stroke="#FFF4B8" stroke-width="0.45" opacity="0.16" stroke-linecap="round" />
+                      <path d="M 18.9 14.6 L 27.2 10.5 M 81.1 14.6 L 72.8 10.5" fill="none" stroke="#FFF4B8" stroke-width="0.55" opacity="0.24" stroke-linecap="round" />
+                    </g>
+                  </svg>
+                </div>
+
+              </div>
+            </div>
           </div>
 
           <!-- Medal details -->
@@ -7702,14 +8086,6 @@
               <span class="medal-req-label">Unlock Milestone</span>
               <span class="medal-req-value" id="medalShowcaseReq">Maintain a 7-Day Study Streak</span>
             </div>
-          </div>
-
-          <!-- Selector pills to toggle medals -->
-          <div class="medal-selector-tabs">
-            <button class="medal-tab-btn is-active" id="medalTab-streak" onclick="switchShowcaseMedal('streak')">Streak</button>
-            <button class="medal-tab-btn" id="medalTab-polymath" onclick="switchShowcaseMedal('polymath')">Polymath</button>
-            <button class="medal-tab-btn" id="medalTab-recovery" onclick="switchShowcaseMedal('recovery')">Recovery</button>
-            <button class="medal-tab-btn" id="medalTab-marksman" onclick="switchShowcaseMedal('marksman')">Marksman</button>
           </div>
         </div>
 
@@ -8244,91 +8620,94 @@
       title: "The Fire Streak",
       desc: "Rewards building durable, consecutive daily learning habits. Make it a daily ritual to keep the flame alive!",
       req: "Maintain a 7-Day Study Streak",
-      glowColor: "radial-gradient(circle, rgba(255, 157, 61, 0.35) 0%, transparent 70%)",
-      rim: ["#FFE89A", "#6E4D00"],
-      face: ["#FFF6BD", "#FFD700", "#A8770A"],
-      inner: ["#FFD954", "#9A6E08"],
-      ribbon: ["#7C5400", "#3F2A00"],
-      catRibbon: ["#FF9D3D", "#B44B0C"],
-      catFold: ["#A9460A", "#4A1C00"],
-      ribbonShadow: "#3A2700",
-      accentRing: "transparent",
-      haloColor: "rgba(255, 215, 0, 0.28)",
-      sparkle: true,
-      diamondRing: false,
-      iconPath: '<circle r="15" fill="#3A2700" opacity="0.08" /><g transform="translate(-14, -14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#3A2700" stroke-width="3" opacity="0.5" /><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="rgba(255, 252, 220, 0.8)" stroke-width="1.2" opacity="0.28" transform="translate(-0.4, -0.4)" /><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#FFFCE0" stroke-width="1.55" /></svg></g>'
+      glowColor: "radial-gradient(circle, rgba(255, 157, 61, 0.35) 0%, transparent 70%)"
     },
     polymath: {
       tier: "Diamond Tier",
       title: "Polymath Overlord",
       desc: "Rewards expanding mastery across diverse subjects and cosmic paths. Expand your knowledge to the edge of space!",
       req: "Complete 340 distinct Galaxy paths",
-      glowColor: "radial-gradient(circle, rgba(124, 255, 255, 0.35) 0%, transparent 70%)",
-      rim: ["#FFF4B8", "#8A6B20"],
-      face: ["#FFFFFF", "#D7DDE7", "#B88B2E"],
-      inner: ["#F7FAFF", "#C99A35"],
-      ribbon: ["#7A6020", "#2D2208"],
-      catRibbon: ["#9B6DFF", "#4B2C86"],
-      catFold: ["#4E2F8F", "#26104D"],
-      ribbonShadow: "#3A2B0A",
-      accentRing: "#DCC7FF",
-      haloColor: "rgba(255, 220, 120, 0.36)",
-      sparkle: true,
-      diamondRing: true,
-      iconPath: '<circle r="15" fill="#3A2B0A" opacity="0.08" /><g transform="translate(-14, -14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#3A2B0A" stroke-width="3" opacity="0.5" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#3A2B0A" stroke-width="3" opacity="0.5" /><path d="M16 2v4l-2.5-1.5L11 6V2" stroke="#3A2B0A" stroke-width="3" opacity="0.5" /><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#FFFCE0" stroke-width="1.55" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#FFFCE0" stroke-width="1.55" /><path d="M16 2v4l-2.5-1.5L11 6V2" stroke="#FFFCE0" stroke-width="1.55" /></svg></g>'
+      glowColor: "radial-gradient(circle, rgba(124, 255, 255, 0.35) 0%, transparent 70%)"
     },
     recovery: {
       tier: "Sapphire Tier",
       title: "Resilient Voyager",
       desc: "Awarded for target-practicing and scoring above 85% on your weak or troubled concepts (black holes). Learn from your misses!",
       req: "Recover from 340 troubled skills",
-      glowColor: "radial-gradient(circle, rgba(60, 140, 255, 0.35) 0%, transparent 70%)",
-      rim: ["#8FD4FF", "#071B57"],
-      face: ["#DDF6FF", "#266DDF", "#071846"],
-      inner: ["#2B6EE8", "#06123B"],
-      ribbon: ["#0C2B76", "#04102F"],
-      catRibbon: ["#54D982", "#248C50"],
-      catFold: ["#1E7042", "#0E3F25"],
-      ribbonShadow: "#020817",
-      accentRing: "#CFFFE0",
-      haloColor: "rgba(60, 140, 255, 0.42)",
-      sparkle: true,
-      diamondRing: false,
-      iconPath: '<circle r="15" fill="#020817" opacity="0.08" /><g transform="translate(-14, -14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z" stroke="#020817" stroke-width="3" opacity="0.5" /><path d="m8 3 4 8 5-5 5 15H2L8 3z" stroke="#FFFCE0" stroke-width="1.55" /></svg></g>'
+      glowColor: "radial-gradient(circle, rgba(60, 140, 255, 0.35) 0%, transparent 70%)"
     },
     marksman: {
       tier: "Emerald Tier",
       title: "Elite Marksman",
       desc: "Awarded for outstanding precision—achieving 85% or higher on Galaxy quizzes or Supercluster exams.",
       req: "Achieve 340 High Scores (85%+)",
-      glowColor: "radial-gradient(circle, rgba(45, 220, 130, 0.35) 0%, transparent 70%)",
-      rim: ["#9BFFD0", "#033E2A"],
-      face: ["#D8FFE9", "#1FAF6B", "#043420"],
-      inner: ["#31C980", "#06391F"],
-      ribbon: ["#075A35", "#021B10"],
-      catRibbon: ["#FF5D87", "#9A1B3A"],
-      catFold: ["#8D1735", "#4A071B"],
-      ribbonShadow: "#02140C",
-      accentRing: "#A7FFBF",
-      haloColor: "rgba(45, 220, 130, 0.4)",
-      sparkle: true,
-      diamondRing: false,
-      iconPath: '<circle r="15" fill="#02140C" opacity="0.08" /><g transform="translate(-14, -14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke="#02140C" stroke-width="3" opacity="0.5" /><circle cx="12" cy="12" r="6" stroke="#02140C" stroke-width="3" opacity="0.5" /><circle cx="12" cy="12" r="2" fill="#02140C" opacity="0.5" /><circle cx="12" cy="12" r="10" stroke="#FFFCE0" stroke-width="1.55" /><circle cx="12" cy="12" r="6" stroke="#FFFCE0" stroke-width="1.55" /><circle cx="12" cy="12" r="2" fill="#FFFCE0" /></svg></g>'
+      glowColor: "radial-gradient(circle, rgba(45, 220, 130, 0.35) 0%, transparent 70%)"
+    },
+    handwriting: {
+      tier: "Ceramic Tier",
+      title: "Handwrite First",
+      desc: "Rewards handwriting and scanning work on paper to encourage paper-and-pencil reasoning and reduce mental fatigue.",
+      req: "Scan 1 Handwritten Answer",
+      glowColor: "radial-gradient(circle, rgba(182, 111, 77, 0.35) 0%, transparent 70%)"
     }
   };
 
-  window.switchShowcaseMedal = function(category) {
-    const data = showcaseMedals[category];
-    if (!data) return;
+  const medalKeys = ['streak', 'polymath', 'recovery', 'marksman', 'handwriting'];
+  let currentRotation = 0;
+  let activeIndex = 0;
+  const totalItems = 5;
+  const radius = 140; // px circular orbit
 
-    // Update active class on tab buttons
-    document.querySelectorAll('.medal-tab-btn').forEach(btn => {
-      if (btn.id === 'medalTab-' + category) {
-        btn.classList.add('is-active');
+  window.rotateCarousel = function(direction) {
+    currentRotation += direction * 72; // 360 / 5 = 72 deg
+    activeIndex = (activeIndex - direction + totalItems) % totalItems;
+    updateCarousel(currentRotation);
+    updateActiveMedalInfo(activeIndex);
+  };
+
+  window.rotateToMedal = function(index) {
+    let diff = index - activeIndex;
+    if (diff > totalItems / 2) diff -= totalItems;
+    if (diff < -totalItems / 2) diff += totalItems;
+    
+    currentRotation -= diff * 72;
+    activeIndex = index;
+    updateCarousel(currentRotation);
+    updateActiveMedalInfo(activeIndex);
+  };
+
+  function updateCarousel(rotation) {
+    const items = document.querySelectorAll('.carousel-3d-item');
+    const track = document.getElementById('carousel3dTrack');
+    if (!track || !items.length) return;
+    
+    track.style.transform = `rotateY(${rotation}deg)`;
+    
+    items.forEach((item, index) => {
+      const itemAngle = index * 72;
+      // Orbit in circle, but counter-rotate so it always faces forward relative to screen
+      item.style.transform = `rotateY(${itemAngle}deg) translateZ(${radius}px) rotateY(${-itemAngle - rotation}deg)`;
+      
+      const normalizedRot = ((rotation % 360) + 360) % 360;
+      const targetAngle = ((360 - itemAngle) % 360 + 360) % 360;
+      
+      const diff = Math.abs(normalizedRot - targetAngle);
+      const isFocused = diff < 15 || diff > 345;
+      
+      if (isFocused) {
+        item.classList.add('is-active');
+        item.classList.remove('is-inactive');
       } else {
-        btn.classList.remove('is-active');
+        item.classList.remove('is-active');
+        item.classList.add('is-inactive');
       }
     });
+  }
+
+  function updateActiveMedalInfo(index) {
+    const key = medalKeys[index];
+    const data = showcaseMedals[key];
+    if (!data) return;
 
     // Update Text Details
     document.getElementById('medalShowcaseTier').textContent = data.tier;
@@ -8337,54 +8716,22 @@
     document.getElementById('medalShowcaseReq').textContent = data.req;
 
     // Update Ambient Spill Glow
-    document.getElementById('medalGlowSpill').style.background = data.glowColor;
-
-    // Update Halo Gradient Glow if present
-    const haloEl = document.getElementById('medalHalo');
-    if (haloEl) {
-      if (data.haloColor) {
-        haloEl.style.display = 'block';
-        document.getElementById('haloStop0').setAttribute('stop-color', data.haloColor);
-      } else {
-        haloEl.style.display = 'none';
-      }
+    const spill = document.getElementById('medalGlowSpill');
+    if (spill) {
+      spill.style.background = data.glowColor;
     }
+  }
 
-    // Update SVG stop colors
-    document.getElementById('rimStop0').setAttribute('stop-color', data.rim[0]);
-    document.getElementById('rimStop1').setAttribute('stop-color', data.rim[1]);
-    
-    document.getElementById('faceStop0').setAttribute('stop-color', data.face[0]);
-    document.getElementById('faceStop1').setAttribute('stop-color', data.face[1]);
-    document.getElementById('faceStop2').setAttribute('stop-color', data.face[2]);
-    
-    document.getElementById('innerStop0').setAttribute('stop-color', data.inner[0]);
-    document.getElementById('innerStop1').setAttribute('stop-color', data.inner[1]);
-    
-    document.getElementById('ribbonStop0').setAttribute('stop-color', data.ribbon[0]);
-    document.getElementById('ribbonStop1').setAttribute('stop-color', data.ribbon[1]);
-    
-    document.getElementById('catRibbonStop0').setAttribute('stop-color', data.catRibbon[0]);
-    document.getElementById('catRibbonStop1').setAttribute('stop-color', data.catRibbon[1]);
-    
-    document.getElementById('catFoldStop0').setAttribute('stop-color', data.catFold[0]);
-    document.getElementById('catFoldStop1').setAttribute('stop-color', data.catFold[1]);
-
-    // Update accents/strokes/shadows
-    document.getElementById('medalRibbonShadow').setAttribute('fill', data.ribbonShadow);
-    document.getElementById('dashedAccentRing').setAttribute('stroke', data.accentRing);
-    document.getElementById('medalCatRibbonShadow').setAttribute('fill', data.catFold[1]);
-    document.getElementById('medalCatRibbonTopAccent').setAttribute('stroke', data.accentRing);
-    document.getElementById('medalCatRibbonCenterStripe').setAttribute('stroke', data.accentRing);
-    document.getElementById('medalCatRibbonWingsAccent').setAttribute('stroke', data.accentRing);
-
-    // Toggle Sparkles & Diamond facets
-    document.getElementById('medalSparkle').style.display = data.sparkle ? 'block' : 'none';
-    document.getElementById('diamondGemstoneRing').style.display = data.diamondRing ? 'block' : 'none';
-
-    // Swap Category Icon Glyph path
-    document.getElementById('medalIconGlyph').innerHTML = data.iconPath;
-  };
+  // Initialize once DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCarousel(0);
+      updateActiveMedalInfo(0);
+    });
+  } else {
+    updateCarousel(0);
+    updateActiveMedalInfo(0);
+  }
   </script>
   <script src="../applied-handwriting-demo.js"></script>
   <script src="../applied-response-slideshow.js"></script>
