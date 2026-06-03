@@ -8560,9 +8560,8 @@
 
           <!-- Medal details -->
           <div class="medal-viewer-info" style="margin-bottom: 20px;">
-            <span class="medal-tier-badge" id="medalShowcaseTier">Gold Tier</span>
             <h3 class="medal-showcase-title" id="medalShowcaseTitle">The Fire Streak</h3>
-            <p class="medal-showcase-desc" id="medalShowcaseDesc">Rewards building durable, consecutive daily learning habits. Make it a daily ritual to keep the flame alive!</p>
+            <p class="medal-showcase-desc" id="medalShowcaseDesc">Build a daily learning habit to keep your study streak active.</p>
             <div class="medal-requirement-box">
               <span class="medal-req-label">Unlock Milestone</span>
               <span class="medal-req-value" id="medalShowcaseReq">Maintain a 7-Day Study Streak</span>
@@ -9141,7 +9140,7 @@
 
   const categoryDetails = {
     streak: {
-      desc: "Rewards building durable, consecutive daily learning habits. Make it a daily ritual to keep the flame alive!",
+      desc: "Build a daily learning habit to keep your study streak active.",
       names: {
         1: "Paper Spark", 2: "Resilient Flame", 3: "Clay Ember", 4: "Bronze Kindle", 5: "Silver Blaze",
         6: "The Fire Streak", 7: "Platinum Flare", 8: "Sapphire Ignition", 9: "Emerald Torch", 10: "Supernova Streak"
@@ -9154,7 +9153,7 @@
       }
     },
     polymath: {
-      desc: "Rewards expanding mastery across diverse subjects and cosmic paths. Expand your knowledge to the edge of space!",
+      desc: "Master diverse subjects and expand your learning paths.",
       names: {
         1: "Paper Scholar", 2: "Plastic Explorer", 3: "Ceramic Apprentice", 4: "Bronze Voyager", 5: "Silver Sage",
         6: "Golden Polymath", 7: "Platinum Pioneer", 8: "Sapphire Archmage", 9: "Emerald Paragon", 10: "Polymath Overlord"
@@ -9167,7 +9166,7 @@
       }
     },
     recovery: {
-      desc: "Awarded for target-practicing and scoring above 85% on your weak or troubled concepts (black holes). Learn from your misses!",
+      desc: "Practice and improve your scores on weak or troubled concepts.",
       names: {
         1: "Paper Recovery", 2: "Plastic Bounceback", 3: "Ceramic Mender", 4: "Bronze Shield", 5: "Silver Defender",
         6: "Golden Survivor", 7: "Platinum Restorer", 8: "Resilient Voyager", 9: "Emerald Warden", 10: "Cosmic Phoenix"
@@ -9180,7 +9179,7 @@
       }
     },
     marksman: {
-      desc: "Awarded for outstanding precision—achieving 85% or higher on Galaxy quizzes or Supercluster exams.",
+      desc: "Achieve high scores (85%+) on quizzes and exams.",
       names: {
         1: "Paper Archer", 2: "Plastic Sight", 3: "Ceramic Hunter", 4: "Bronze Striker", 5: "Silver Sharpshooter",
         6: "Golden Deadeye", 7: "Platinum Sniper", 8: "Sapphire Ranger", 9: "Elite Marksman", 10: "Cosmic Marksman"
@@ -9193,7 +9192,7 @@
       }
     },
     handwriting: {
-      desc: "Rewards handwriting and scanning work on paper to encourage paper-and-pencil reasoning and reduce mental fatigue.",
+      desc: "Scan handwritten answers to practice paper-and-pencil reasoning.",
       names: {
         1: "Paper Scroll", 2: "Plastic Stylus", 3: "Handwrite First", 4: "Bronze Scribe", 5: "Silver Quill",
         6: "Golden Ink", 7: "Platinum Pen", 8: "Sapphire Calligrapher", 9: "Emerald Manuscript", 10: "Chronicle Overlord"
@@ -9412,7 +9411,6 @@
     if (!cat || !tier) return;
 
     // Update Text Details
-    document.getElementById('medalShowcaseTier').textContent = tier.name;
     document.getElementById('medalShowcaseTitle').textContent = cat.names[selectedRank];
     document.getElementById('medalShowcaseDesc').textContent = cat.desc;
     document.getElementById('medalShowcaseReq').textContent = cat.reqs[selectedRank];
