@@ -8378,6 +8378,10 @@
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
+                      <radialGradient id="haloGrad-handwriting" cx="50%" cy="50%" r="55%">
+                        <stop offset="0%" id="haloStop0-handwriting" stop-color="rgba(255, 215, 185, 0.3)" stop-opacity="0.85" />
+                        <stop offset="100%" id="haloStop1-handwriting" stop-color="transparent" stop-opacity="0" />
+                      </radialGradient>
                       <linearGradient id="rimGrad-handwriting" x1="50%" y1="0%" x2="50%" y2="100%">
                         <stop offset="0%" id="rimStop0-handwriting" stop-color="#C98B65" />
                         <stop offset="100%" id="rimStop1-handwriting" stop-color="#70402B" />
@@ -8412,7 +8416,7 @@
                       <path d="M -16 0 L -22 36 L -10 32 L 0 38 L 10 32 L 22 36 L 16 0 Z" fill="url(#ribbonGrad-handwriting)" />
                       <path d="M -16 0 L -22 36 L -10 32 L 0 38" id="medalRibbonShadow-handwriting" fill="#3B2218" opacity="0.25" />
                     </g>
-                    <circle cx="50" cy="50" r="44" id="medalHalo-handwriting" style="display: none;" />
+                    <circle cx="50" cy="50" r="44" id="medalHalo-handwriting" fill="url(#haloGrad-handwriting)" style="display: none;" />
                     <circle cx="50" cy="50" r="41" id="medalShadowRing-handwriting" fill="#3B2218" opacity="0.3" />
                     
                     <!-- Metallic Shape Group -->
@@ -8506,8 +8510,8 @@
                       <circle r="15" id="glyphShadowCircle-handwriting" fill="#3B2218" opacity="0.08" />
                       <g transform="translate(-14, -14)">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M12 20h9" stroke="#3B2218" stroke-width="2" opacity="0.5" id="glyphShadow-handwriting" class="glyph-shadow" />
-                          <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" stroke="#3B2218" stroke-width="2" opacity="0.5" class="glyph-shadow" />
+                          <path d="M12 20h9" stroke="#3B2218" stroke-width="3" opacity="0.5" id="glyphShadow-handwriting" class="glyph-shadow" />
+                          <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" stroke="#3B2218" stroke-width="3" opacity="0.5" class="glyph-shadow" />
                           <path d="M12 20h9" stroke="#FFFCE0" stroke-width="1.55" class="glyph-main" />
                           <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" stroke="#FFFCE0" stroke-width="1.55" class="glyph-main" />
                         </svg>
