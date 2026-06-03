@@ -7548,17 +7548,17 @@
             <div class="step2-theme-panel-container" id="step2ThemePanel" style="display: none;">
               <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select Sky Theme</span>
               <div class="theme-options-beside">
-                <button class="theme-option-btn is-active" data-theme="math" onclick="selectSkyTheme('math', this)">
-                  <span class="theme-dot theme-dot-math"></span>
-                  Math Space
+                <button class="theme-option-btn is-active" data-theme="bigbang" onclick="selectSkyTheme('bigbang', this)">
+                  <span class="theme-dot theme-dot-bigbang"></span>
+                  Big Bang
                 </button>
                 <button class="theme-option-btn" data-theme="retro" onclick="selectSkyTheme('retro', this)">
                   <span class="theme-dot theme-dot-retro"></span>
                   Retro Arcade
                 </button>
-                <button class="theme-option-btn" data-theme="bigbang" onclick="selectSkyTheme('bigbang', this)">
-                  <span class="theme-dot theme-dot-bigbang"></span>
-                  Big Bang
+                <button class="theme-option-btn" data-theme="math" onclick="selectSkyTheme('math', this)">
+                  <span class="theme-dot theme-dot-math"></span>
+                  Math Space
                 </button>
               </div>
             </div>
@@ -8927,9 +8927,9 @@
     if (themePanel) {
       if (stepNumber === 2) {
         themePanel.style.display = 'flex';
-        // Auto-select 'math' theme to ensure a video plays on landing
+        // Auto-select theme to ensure a video plays on landing (defaulting to bigbang)
         const activeThemeBtn = themePanel.querySelector('.theme-option-btn.is-active');
-        const selectedTheme = activeThemeBtn ? activeThemeBtn.getAttribute('data-theme') : 'math';
+        const selectedTheme = activeThemeBtn ? activeThemeBtn.getAttribute('data-theme') : 'bigbang';
         selectSkyTheme(selectedTheme);
       } else {
         themePanel.style.display = 'none';
