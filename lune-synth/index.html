@@ -6045,6 +6045,417 @@
     }
 
     /* ==========================================================================
+       Achievement Medals Showcase Section Styles
+       ========================================================================== */
+    .section--medals {
+      margin-top: 60px;
+      margin-bottom: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 3vh, 32px);
+      position: relative;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 0;
+    }
+
+    .medals-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(20px, 4vw, 40px);
+      width: 100%;
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+      .medals-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    /* Medal Viewer Card (Left) */
+    .medal-viewer-card {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      padding: clamp(20px, 4vh, 36px) clamp(20px, 4vw, 36px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--glow), 0 20px 50px -20px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-sizing: border-box;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .medal-canvas-container {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .medal-glow-spill {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 190, 60, 0.35) 0%, transparent 70%);
+      filter: blur(28px);
+      z-index: -1;
+      opacity: 0.85;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .showcase-medal-svg {
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .medal-viewer-card:hover .showcase-medal-svg {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    .medal-viewer-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .medal-tier-badge {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(100, 168, 255, 0.1);
+      padding: 3px 10px;
+      border-radius: 99px;
+      border: 1px solid rgba(100, 168, 255, 0.2);
+    }
+
+    .medal-showcase-title {
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .medal-showcase-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+      max-width: 320px;
+    }
+
+    .medal-requirement-box {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 8px 16px;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .medal-req-label {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .medal-req-value {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #ffd700; /* Amber/gold value */
+    }
+
+    .medal-selector-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .medal-tab-btn {
+      padding: 8px 14px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      font-size: 10.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .medal-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+    }
+
+    .medal-tab-btn.is-active {
+      background: rgba(16, 28, 54, 0.85);
+      border-color: var(--blue);
+      color: var(--blue);
+      box-shadow: var(--glow);
+    }
+
+    html[data-theme="light"] .medal-tab-btn.is-active {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: var(--blue);
+      color: var(--blue);
+      box-shadow: 0 4px 12px rgba(84, 98, 130, 0.08);
+    }
+
+    /* Medal Ladder Card (Right) */
+    .medal-ladder-card {
+      width: 100%;
+      padding: clamp(20px, 4vh, 32px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.01);
+      box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.005);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    .medal-ladder-header {
+      margin-bottom: 24px;
+    }
+
+    .medal-ladder-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 6px 0 0 0;
+    }
+
+    .medal-ladder-header p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 6px 0 0 0;
+      line-height: 1.4;
+    }
+
+    .medal-ladder-ranks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .ladder-rank-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ladder-rank-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
+      transform: translateX(3px);
+    }
+
+    .ladder-rank-item.current-rank {
+      background: rgba(100, 168, 255, 0.04);
+      border-color: rgba(100, 168, 255, 0.18);
+      box-shadow: 0 0 16px rgba(100, 168, 255, 0.04);
+    }
+
+    .rank-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .current-rank .rank-num {
+      color: var(--blue);
+      background: rgba(100, 168, 255, 0.1);
+    }
+
+    .rank-info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      text-align: left;
+    }
+
+    .rank-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .rank-desc {
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .rank-gem {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      transform: rotate(45deg);
+    }
+
+    .rank-gem-diamond {
+      background: #7cffff;
+      box-shadow: 0 0 8px #7cffff;
+    }
+
+    .rank-gem-emerald {
+      background: #31C980;
+      box-shadow: 0 0 8px #31C980;
+    }
+
+    .rank-gem-sapphire {
+      background: #2B6EE8;
+      box-shadow: 0 0 8px #2B6EE8;
+    }
+
+    .rank-gem-platinum {
+      background: #9dceff;
+      box-shadow: 0 0 8px #9dceff;
+    }
+
+    .rank-gem-gold {
+      background: #ffd700;
+      box-shadow: 0 0 8px #ffd700;
+    }
+
+    .rank-gem-silver {
+      background: #c7ccd4;
+      box-shadow: 0 0 4px #c7ccd4;
+    }
+
+    .rank-gem-bronze {
+      background: #cd7f32;
+      box-shadow: 0 0 6px #cd7f32;
+    }
+
+    .rank-gem-ceramic {
+      background: #b66f4d;
+    }
+
+    .rank-gem-plastic {
+      background: #b6c2c8;
+    }
+
+    .rank-gem-paper {
+      background: #ebdcc6;
+      border-radius: 1px;
+      transform: rotate(0deg);
+      width: 10px;
+      height: 14px;
+    }
+
+    /* Secret Ladder Box */
+    .secret-ladder-box {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 16px;
+      background: rgba(255, 93, 135, 0.03);
+      border: 1px dashed rgba(255, 93, 135, 0.2);
+      border-radius: 14px;
+      text-align: left;
+    }
+
+    .secret-ladder-box .lock-icon {
+      font-size: 20px;
+      filter: drop-shadow(0 0 8px rgba(255, 93, 135, 0.4));
+    }
+
+    .secret-info h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .secret-info p {
+      font-size: 10px;
+      color: var(--muted);
+      margin: 4px 0 0 0;
+      line-height: 1.4;
+    }
+
+    /* Light theme adjustments */
+    html[data-theme="light"] .medal-viewer-card {
+      border-color: rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 24px rgba(84, 98, 130, 0.04), 0 20px 40px rgba(84, 98, 130, 0.06);
+    }
+    
+    html[data-theme="light"] .medal-ladder-card {
+      border-color: rgba(0, 0, 0, 0.04);
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    html[data-theme="light"] .ladder-rank-item {
+      background: rgba(0, 0, 0, 0.01);
+      border-color: rgba(0, 0, 0, 0.03);
+    }
+
+    html[data-theme="light"] .ladder-rank-item:hover {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: rgba(0, 0, 0, 0.05);
+    }
+
+    html[data-theme="light"] .medal-requirement-box {
+      background: rgba(0, 0, 0, 0.01);
+      border-color: rgba(0, 0, 0, 0.03);
+    }
+
+    html[data-theme="light"] .secret-ladder-box {
+      background: rgba(255, 93, 135, 0.02);
+      border-color: rgba(255, 93, 135, 0.15);
+    }
+
+    /* ==========================================================================
        Codebase-Audited Screen Backgrounds
        ========================================================================== */
     /* Earth */
@@ -7090,6 +7501,329 @@
       </div>
     </section>
 
+    <!-- ================= METALS/ACHIEVEMENT MEDALS SECTION ================= -->
+    <section class="section section--medals" id="medals-showcase" aria-labelledby="medals-title">
+      <h2 class="section-title" id="medals-title">Earn 100+ Cosmic Medals</h2>
+      
+      <div class="medals-layout">
+        
+        <!-- Left: Interactive Medal Carousel/Viewer -->
+        <div class="medal-viewer-card" id="medalViewerCard">
+          
+          <div class="medal-canvas-container">
+            <!-- Dynamic Glowing Ambient Underlay -->
+            <div class="medal-glow-spill" id="medalGlowSpill"></div>
+            
+            <!-- Medal SVG structure -->
+            <svg id="liveMedalSvg" class="showcase-medal-svg" viewBox="0 0 100 100" width="160" height="160">
+              <defs>
+                <!-- Halo Gradient -->
+                <radialGradient id="haloGrad" cx="50%" cy="50%" r="55%">
+                  <stop offset="0%" id="haloStop0" stop-color="rgba(255, 215, 0, 0.28)" stop-opacity="0.85" />
+                  <stop offset="100%" id="haloStop1" stop-color="rgba(255, 215, 0, 0)" stop-opacity="0" />
+                </radialGradient>
+                
+                <!-- Rim Gradient -->
+                <linearGradient id="rimGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+                  <stop offset="0%" id="rimStop0" stop-color="#FFE89A" />
+                  <stop offset="100%" id="rimStop1" stop-color="#6E4D00" />
+                </linearGradient>
+
+                <!-- Face Gradient -->
+                <radialGradient id="faceGrad" cx="35%" cy="28%" r="80%">
+                  <stop offset="0%" id="faceStop0" stop-color="#FFF6BD" />
+                  <stop offset="55%" id="faceStop1" stop-color="#FFD700" />
+                  <stop offset="100%" id="faceStop2" stop-color="#A8770A" />
+                </radialGradient>
+
+                <!-- Inner Medallion Gradient -->
+                <radialGradient id="innerGrad" cx="50%" cy="38%" r="68%">
+                  <stop offset="0%" id="innerStop0" stop-color="#FFD954" />
+                  <stop offset="100%" id="innerStop1" stop-color="#9A6E08" />
+                </radialGradient>
+
+                <!-- Sheen Gradient -->
+                <radialGradient id="sheenGrad" cx="38%" cy="22%" r="28%">
+                  <stop offset="0%" id="sheenStop0" stop-color="rgba(255, 252, 220, 0.8)" stop-opacity="0.55" />
+                  <stop offset="100%" id="sheenStop1" stop-color="rgba(255, 252, 220, 0)" stop-opacity="0" />
+                </radialGradient>
+
+                <!-- Ribbon Gradient -->
+                <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" id="ribbonStop0" stop-color="#7C5400" />
+                  <stop offset="100%" id="ribbonStop1" stop-color="#3F2A00" />
+                </linearGradient>
+
+                <!-- Category Ribbon Gradient -->
+                <linearGradient id="catRibbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" id="catRibbonStop0" stop-color="#FF9D3D" />
+                  <stop offset="100%" id="catRibbonStop1" stop-color="#B44B0C" />
+                </linearGradient>
+
+                <!-- Category Ribbon Fold Gradient -->
+                <linearGradient id="catFoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" id="catFoldStop0" stop-color="#A9460A" />
+                  <stop offset="100%" id="catFoldStop1" stop-color="#4A1C00" />
+                </linearGradient>
+              </defs>
+
+              <!-- Ribbon (behind medal) -->
+              <g transform="translate(50, 50)">
+                <path d="M -16 0 L -22 36 L -10 32 L 0 38 L 10 32 L 22 36 L 16 0 Z" id="medalRibbonBack" fill="url(#ribbonGrad)" />
+                <path d="M -16 0 L -22 36 L -10 32 L 0 38" id="medalRibbonShadow" fill="#3A2700" opacity="0.25" />
+              </g>
+
+              <!-- Halo Glow (high-tier only) -->
+              <circle cx="50" cy="50" r="44" id="medalHalo" fill="url(#haloGrad)" />
+
+              <!-- Outer Shadow Ring -->
+              <circle cx="50" cy="50" r="41" id="medalShadowRing" fill="#3A2700" opacity="0.3" />
+
+              <!-- Outer Rim -->
+              <circle cx="50" cy="50" r="40" fill="url(#rimGrad)" />
+
+              <!-- Rim Ticks (for metallic look) -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#3A2700" stroke-width="2.5" stroke-dasharray="0.8 5.8" opacity="0.5" id="medalTicks" />
+
+              <!-- Main Face -->
+              <circle cx="50" cy="50" r="35" fill="url(#faceGrad)" />
+
+              <!-- Beveled inner ring -->
+              <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255, 252, 220, 0.8)" stroke-width="0.8" opacity="0.55" />
+
+              <!-- Inner Medallion -->
+              <circle cx="50" cy="50" r="27" fill="url(#innerGrad)" />
+              <circle cx="50" cy="50" r="27" fill="none" stroke="#3A2700" stroke-width="0.6" opacity="0.55" id="medalInnerBorder" />
+
+              <!-- Sheen Overlay -->
+              <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad)" />
+
+              <!-- Dashed Accent Ring (for premium tiers) -->
+              <circle cx="50" cy="50" r="38" id="dashedAccentRing" fill="none" stroke="transparent" stroke-width="0.7" stroke-dasharray="2.4 1.6" opacity="0.7" />
+
+              <!-- Diamond Gemstone Ring (hidden by default) -->
+              <g id="diamondGemstoneRing" style="display: none;">
+                <circle r="37.6" fill="none" stroke="#3A2B0A" stroke-width="0.55" opacity="0.34" transform="translate(50, 50)" />
+                <circle r="34.6" fill="none" stroke="rgba(255, 248, 210, 0.94)" stroke-width="0.42" opacity="0.4" transform="translate(50, 50)" />
+                <g transform="translate(50, 50)">
+                  <g transform="rotate(0) translate(0, -36.1) scale(0.9)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(30) translate(0, -36.1) scale(0.72)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(60) translate(0, -36.1) scale(0.72)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(90) translate(0, -36.1) scale(0.9)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(120) translate(0, -36.1) scale(0.72)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(150) translate(0, -36.1) scale(0.72)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(180) translate(0, -36.1) scale(0.9)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(210) translate(0, -36.1) scale(0.72)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(240) translate(0, -36.1) scale(0.72)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(270) translate(0, -36.1) scale(0.9)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(300) translate(0, -36.1) scale(0.72)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                  <g transform="rotate(330) translate(0, -36.1) scale(0.72)">
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
+                    <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Top Category Ribbon -->
+              <g id="topCategoryRibbon">
+                <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" id="medalCatRibbonShadow" fill="#2C1306" opacity="0.24" transform="translate(0, 1.4)" />
+                <path d="M 16 12.5 L 28 6.5 H 72 L 84 12.5 L 79 18 L 83 23 L 69 27 H 31 L 17 23 L 21 18 Z" id="medalCatRibbonMain" fill="url(#catRibbonGrad)" />
+                <path d="M 16 12.5 L 28 6.5 L 31 27 L 17 23 L 21 18 Z" id="medalCatRibbonLeftFold" fill="url(#catFoldGrad)" />
+                <path d="M 21 18 L 28.6 8.5 L 30.4 25.8 L 17 22.8 Z" fill="#4A1C00" opacity="0.16" />
+                <path d="M 84 12.5 L 72 6.5 L 69 27 L 83 23 L 79 18 Z" id="medalCatRibbonRightFold" fill="url(#catFoldGrad)" />
+                <path d="M 79 18 L 71.4 8.5 L 69.6 25.8 L 83 22.8 Z" fill="#4A1C00" opacity="0.16" />
+                <path d="M 27.4 6.5 H 72.6 L 68.4 26 H 31.6 Z" id="medalCatRibbonCenterPlate" fill="url(#catRibbonGrad)" />
+                <path d="M 31.5 21.8 H 68.5 L 68.4 26 H 31.6 Z" fill="#4A1C00" opacity="0.1" />
+                <path d="M 30.8 8.6 H 69.2" id="medalCatRibbonTopAccent" stroke="#FFE0A8" stroke-width="0.8" opacity="0.6" stroke-linecap="round" />
+                <path d="M 28.8 7.6 L 32 25.4 M 71.2 7.6 L 68 25.4" fill="none" stroke="#4A1C00" stroke-width="0.55" opacity="0.2" stroke-linecap="round" />
+                <path d="M 50 7.4 V 25.4" id="medalCatRibbonCenterStripe" fill="none" stroke="#FFE0A8" stroke-width="0.45" opacity="0.16" stroke-linecap="round" />
+                <path d="M 18.9 14.6 L 27.2 10.5 M 81.1 14.6 L 72.8 10.5" id="medalCatRibbonWingsAccent" fill="none" stroke="#FFE0A8" stroke-width="0.55" opacity="0.24" stroke-linecap="round" />
+              </g>
+
+              <!-- Category Icon Glyph (Seeded with Flame) -->
+              <g transform="translate(50, 50)" id="medalIconGlyph">
+                <circle r="15" fill="#3A2700" opacity="0.08" />
+                <g transform="translate(-14, -14)">
+                  <!-- Svg paths for Flame -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame">
+                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#3A2700" stroke-width="3" opacity="0.5" />
+                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="rgba(255, 252, 220, 0.8)" stroke-width="1.2" opacity="0.28" transform="translate(-0.4, -0.4)" />
+                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#FFFCE0" stroke-width="1.55" />
+                  </svg>
+                </g>
+              </g>
+
+              <!-- Sparkle (top-right) -->
+              <g transform="translate(76, 26)" id="medalSparkle" style="display: block;">
+                <polygon points="0,-4 1.1,-1.1 4,0 1.1,1.1 0,4 -1.1,1.1 -4,0 -1.1,-1.1" fill="rgba(255, 252, 220, 0.8)" opacity="0.85" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Medal details -->
+          <div class="medal-viewer-info">
+            <span class="medal-tier-badge" id="medalShowcaseTier">Gold Tier</span>
+            <h3 class="medal-showcase-title" id="medalShowcaseTitle">The Fire Streak</h3>
+            <p class="medal-showcase-desc" id="medalShowcaseDesc">Rewards building durable, consecutive daily learning habits. Make it a daily ritual to keep the flame alive!</p>
+            <div class="medal-requirement-box">
+              <span class="medal-req-label">Unlock Milestone</span>
+              <span class="medal-req-value" id="medalShowcaseReq">Maintain a 7-Day Study Streak</span>
+            </div>
+          </div>
+
+          <!-- Selector pills to toggle medals -->
+          <div class="medal-selector-tabs">
+            <button class="medal-tab-btn is-active" id="medalTab-streak" onclick="switchShowcaseMedal('streak')">Streak</button>
+            <button class="medal-tab-btn" id="medalTab-polymath" onclick="switchShowcaseMedal('polymath')">Polymath</button>
+            <button class="medal-tab-btn" id="medalTab-recovery" onclick="switchShowcaseMedal('recovery')">Recovery</button>
+            <button class="medal-tab-btn" id="medalTab-marksman" onclick="switchShowcaseMedal('marksman')">Marksman</button>
+          </div>
+        </div>
+
+        <!-- Right: Medal progression path & ladder -->
+        <div class="medal-ladder-card">
+          <div class="medal-ladder-header">
+            <span class="active-step-badge">Progression Ladder</span>
+            <h3>Rise Through 20 Ranks</h3>
+            <p>Your effort earns better materials. Work your way up to Diamond and prove your dedication!</p>
+          </div>
+          
+          <div class="medal-ladder-ranks">
+            <div class="ladder-rank-item current-rank">
+              <span class="rank-num">10</span>
+              <div class="rank-info">
+                <span class="rank-name">Diamond (Tier 10)</span>
+                <span class="rank-desc">The ultimate visual brilliance. Hardened by focus.</span>
+              </div>
+              <span class="rank-gem rank-gem-diamond"></span>
+            </div>
+            
+            <div class="ladder-rank-item">
+              <span class="rank-num">09</span>
+              <div class="rank-info">
+                <span class="rank-name">Emerald (Tier 9)</span>
+                <span class="rank-desc">Vibrant cosmic green. Earned by deep perseverance.</span>
+              </div>
+              <span class="rank-gem rank-gem-emerald"></span>
+            </div>
+
+            <div class="ladder-rank-item">
+              <span class="rank-num">08</span>
+              <div class="rank-info">
+                <span class="rank-name">Sapphire (Tier 8)</span>
+                <span class="rank-desc">Crystalline electric blue. Real-time response master.</span>
+              </div>
+              <span class="rank-gem rank-gem-sapphire"></span>
+            </div>
+
+            <div class="ladder-rank-item">
+              <span class="rank-num">07</span>
+              <div class="rank-info">
+                <span class="rank-name">Platinum (Tier 7)</span>
+                <span class="rank-desc">Polished white-blue sheen. Highly refined effort.</span>
+              </div>
+              <span class="rank-gem rank-gem-platinum"></span>
+            </div>
+
+            <div class="ladder-rank-item">
+              <span class="rank-num">06</span>
+              <div class="rank-info">
+                <span class="rank-name">Gold (Tier 6)</span>
+                <span class="rank-desc">Shining metallic gold. High-accuracy consistency.</span>
+              </div>
+              <span class="rank-gem rank-gem-gold"></span>
+            </div>
+
+            <div class="ladder-rank-item">
+              <span class="rank-num">05</span>
+              <div class="rank-info">
+                <span class="rank-name">Silver (Tier 5)</span>
+                <span class="rank-desc">Polished silver plating. Solid volume and progress.</span>
+              </div>
+              <span class="rank-gem rank-gem-silver"></span>
+            </div>
+
+            <div class="ladder-rank-item">
+              <span class="rank-num">04</span>
+              <div class="rank-info">
+                <span class="rank-name">Bronze (Tier 4)</span>
+                <span class="rank-desc">Classic warm bronze. Showing reliable daily habit.</span>
+              </div>
+              <span class="rank-gem rank-gem-bronze"></span>
+            </div>
+
+            <div class="ladder-rank-item">
+              <span class="rank-num">03</span>
+              <div class="rank-info">
+                <span class="rank-name">Ceramic (Tier 3)</span>
+                <span class="rank-desc">Kiln-fired earthy clay. Crafted by early consistency.</span>
+              </div>
+              <span class="rank-gem rank-gem-ceramic"></span>
+            </div>
+
+            <div class="ladder-rank-item">
+              <span class="rank-num">02</span>
+              <div class="rank-info">
+                <span class="rank-name">Plastic (Tier 2)</span>
+                <span class="rank-desc">Smooth synthetic polymer. Resilient first milestones.</span>
+              </div>
+              <span class="rank-gem rank-gem-plastic"></span>
+            </div>
+
+            <div class="ladder-rank-item">
+              <span class="rank-num">01</span>
+              <div class="rank-info">
+                <span class="rank-name">Paper (Tier 1)</span>
+                <span class="rank-desc">Flat paper scroll. Where all great journeys begin.</span>
+              </div>
+              <span class="rank-gem rank-gem-paper"></span>
+            </div>
+          </div>
+          
+          <!-- Locked secret tier note -->
+          <div class="secret-ladder-box">
+            <span class="lock-icon">🔒</span>
+            <div class="secret-info">
+              <h4>Ranks 11 to 20: Classified / Secret Cosmic Ranks</h4>
+              <p>Ruby, Painite, Quantum, Singularity, Turing, and Undecidable are hidden from the normal path. Prove your mastery to unlock them.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section" aria-labelledby="engine-title">
       <h2 class="section-title" id="engine-title">The Neuro-Symbolic Engine</h2>
@@ -7502,6 +8236,155 @@
       }
     });
   }
+
+  /* --- Medals Showcase Interactive Handlers --- */
+  const showcaseMedals = {
+    streak: {
+      tier: "Gold Tier",
+      title: "The Fire Streak",
+      desc: "Rewards building durable, consecutive daily learning habits. Make it a daily ritual to keep the flame alive!",
+      req: "Maintain a 7-Day Study Streak",
+      glowColor: "radial-gradient(circle, rgba(255, 157, 61, 0.35) 0%, transparent 70%)",
+      rim: ["#FFE89A", "#6E4D00"],
+      face: ["#FFF6BD", "#FFD700", "#A8770A"],
+      inner: ["#FFD954", "#9A6E08"],
+      ribbon: ["#7C5400", "#3F2A00"],
+      catRibbon: ["#FF9D3D", "#B44B0C"],
+      catFold: ["#A9460A", "#4A1C00"],
+      ribbonShadow: "#3A2700",
+      accentRing: "transparent",
+      haloColor: "rgba(255, 215, 0, 0.28)",
+      sparkle: true,
+      diamondRing: false,
+      iconPath: '<circle r="15" fill="#3A2700" opacity="0.08" /><g transform="translate(-14, -14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#3A2700" stroke-width="3" opacity="0.5" /><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="rgba(255, 252, 220, 0.8)" stroke-width="1.2" opacity="0.28" transform="translate(-0.4, -0.4)" /><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="#FFFCE0" stroke-width="1.55" /></svg></g>'
+    },
+    polymath: {
+      tier: "Diamond Tier",
+      title: "Polymath Overlord",
+      desc: "Rewards expanding mastery across diverse subjects and cosmic paths. Expand your knowledge to the edge of space!",
+      req: "Complete 340 distinct Galaxy paths",
+      glowColor: "radial-gradient(circle, rgba(124, 255, 255, 0.35) 0%, transparent 70%)",
+      rim: ["#FFF4B8", "#8A6B20"],
+      face: ["#FFFFFF", "#D7DDE7", "#B88B2E"],
+      inner: ["#F7FAFF", "#C99A35"],
+      ribbon: ["#7A6020", "#2D2208"],
+      catRibbon: ["#9B6DFF", "#4B2C86"],
+      catFold: ["#4E2F8F", "#26104D"],
+      ribbonShadow: "#3A2B0A",
+      accentRing: "#DCC7FF",
+      haloColor: "rgba(255, 220, 120, 0.36)",
+      sparkle: true,
+      diamondRing: true,
+      iconPath: '<circle r="15" fill="#3A2B0A" opacity="0.08" /><g transform="translate(-14, -14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#3A2B0A" stroke-width="3" opacity="0.5" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#3A2B0A" stroke-width="3" opacity="0.5" /><path d="M16 2v4l-2.5-1.5L11 6V2" stroke="#3A2B0A" stroke-width="3" opacity="0.5" /><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#FFFCE0" stroke-width="1.55" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#FFFCE0" stroke-width="1.55" /><path d="M16 2v4l-2.5-1.5L11 6V2" stroke="#FFFCE0" stroke-width="1.55" /></svg></g>'
+    },
+    recovery: {
+      tier: "Sapphire Tier",
+      title: "Resilient Voyager",
+      desc: "Awarded for target-practicing and scoring above 85% on your weak or troubled concepts (black holes). Learn from your misses!",
+      req: "Recover from 340 troubled skills",
+      glowColor: "radial-gradient(circle, rgba(60, 140, 255, 0.35) 0%, transparent 70%)",
+      rim: ["#8FD4FF", "#071B57"],
+      face: ["#DDF6FF", "#266DDF", "#071846"],
+      inner: ["#2B6EE8", "#06123B"],
+      ribbon: ["#0C2B76", "#04102F"],
+      catRibbon: ["#54D982", "#248C50"],
+      catFold: ["#1E7042", "#0E3F25"],
+      ribbonShadow: "#020817",
+      accentRing: "#CFFFE0",
+      haloColor: "rgba(60, 140, 255, 0.42)",
+      sparkle: true,
+      diamondRing: false,
+      iconPath: '<circle r="15" fill="#020817" opacity="0.08" /><g transform="translate(-14, -14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z" stroke="#020817" stroke-width="3" opacity="0.5" /><path d="m8 3 4 8 5-5 5 15H2L8 3z" stroke="#FFFCE0" stroke-width="1.55" /></svg></g>'
+    },
+    marksman: {
+      tier: "Emerald Tier",
+      title: "Elite Marksman",
+      desc: "Awarded for outstanding precision—achieving 85% or higher on Galaxy quizzes or Supercluster exams.",
+      req: "Achieve 340 High Scores (85%+)",
+      glowColor: "radial-gradient(circle, rgba(45, 220, 130, 0.35) 0%, transparent 70%)",
+      rim: ["#9BFFD0", "#033E2A"],
+      face: ["#D8FFE9", "#1FAF6B", "#043420"],
+      inner: ["#31C980", "#06391F"],
+      ribbon: ["#075A35", "#021B10"],
+      catRibbon: ["#FF5D87", "#9A1B3A"],
+      catFold: ["#8D1735", "#4A071B"],
+      ribbonShadow: "#02140C",
+      accentRing: "#A7FFBF",
+      haloColor: "rgba(45, 220, 130, 0.4)",
+      sparkle: true,
+      diamondRing: false,
+      iconPath: '<circle r="15" fill="#02140C" opacity="0.08" /><g transform="translate(-14, -14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke="#02140C" stroke-width="3" opacity="0.5" /><circle cx="12" cy="12" r="6" stroke="#02140C" stroke-width="3" opacity="0.5" /><circle cx="12" cy="12" r="2" fill="#02140C" opacity="0.5" /><circle cx="12" cy="12" r="10" stroke="#FFFCE0" stroke-width="1.55" /><circle cx="12" cy="12" r="6" stroke="#FFFCE0" stroke-width="1.55" /><circle cx="12" cy="12" r="2" fill="#FFFCE0" /></svg></g>'
+    }
+  };
+
+  window.switchShowcaseMedal = function(category) {
+    const data = showcaseMedals[category];
+    if (!data) return;
+
+    // Update active class on tab buttons
+    document.querySelectorAll('.medal-tab-btn').forEach(btn => {
+      if (btn.id === 'medalTab-' + category) {
+        btn.classList.add('is-active');
+      } else {
+        btn.classList.remove('is-active');
+      }
+    });
+
+    // Update Text Details
+    document.getElementById('medalShowcaseTier').textContent = data.tier;
+    document.getElementById('medalShowcaseTitle').textContent = data.title;
+    document.getElementById('medalShowcaseDesc').textContent = data.desc;
+    document.getElementById('medalShowcaseReq').textContent = data.req;
+
+    // Update Ambient Spill Glow
+    document.getElementById('medalGlowSpill').style.background = data.glowColor;
+
+    // Update Halo Gradient Glow if present
+    const haloEl = document.getElementById('medalHalo');
+    if (haloEl) {
+      if (data.haloColor) {
+        haloEl.style.display = 'block';
+        document.getElementById('haloStop0').setAttribute('stop-color', data.haloColor);
+      } else {
+        haloEl.style.display = 'none';
+      }
+    }
+
+    // Update SVG stop colors
+    document.getElementById('rimStop0').setAttribute('stop-color', data.rim[0]);
+    document.getElementById('rimStop1').setAttribute('stop-color', data.rim[1]);
+    
+    document.getElementById('faceStop0').setAttribute('stop-color', data.face[0]);
+    document.getElementById('faceStop1').setAttribute('stop-color', data.face[1]);
+    document.getElementById('faceStop2').setAttribute('stop-color', data.face[2]);
+    
+    document.getElementById('innerStop0').setAttribute('stop-color', data.inner[0]);
+    document.getElementById('innerStop1').setAttribute('stop-color', data.inner[1]);
+    
+    document.getElementById('ribbonStop0').setAttribute('stop-color', data.ribbon[0]);
+    document.getElementById('ribbonStop1').setAttribute('stop-color', data.ribbon[1]);
+    
+    document.getElementById('catRibbonStop0').setAttribute('stop-color', data.catRibbon[0]);
+    document.getElementById('catRibbonStop1').setAttribute('stop-color', data.catRibbon[1]);
+    
+    document.getElementById('catFoldStop0').setAttribute('stop-color', data.catFold[0]);
+    document.getElementById('catFoldStop1').setAttribute('stop-color', data.catFold[1]);
+
+    // Update accents/strokes/shadows
+    document.getElementById('medalRibbonShadow').setAttribute('fill', data.ribbonShadow);
+    document.getElementById('dashedAccentRing').setAttribute('stroke', data.accentRing);
+    document.getElementById('medalCatRibbonShadow').setAttribute('fill', data.catFold[1]);
+    document.getElementById('medalCatRibbonTopAccent').setAttribute('stroke', data.accentRing);
+    document.getElementById('medalCatRibbonCenterStripe').setAttribute('stroke', data.accentRing);
+    document.getElementById('medalCatRibbonWingsAccent').setAttribute('stroke', data.accentRing);
+
+    // Toggle Sparkles & Diamond facets
+    document.getElementById('medalSparkle').style.display = data.sparkle ? 'block' : 'none';
+    document.getElementById('diamondGemstoneRing').style.display = data.diamondRing ? 'block' : 'none';
+
+    // Swap Category Icon Glyph path
+    document.getElementById('medalIconGlyph').innerHTML = data.iconPath;
+  };
   </script>
   <script src="../applied-handwriting-demo.js"></script>
   <script src="../applied-response-slideshow.js"></script>
