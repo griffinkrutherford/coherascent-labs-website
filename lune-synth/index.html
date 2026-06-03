@@ -6199,6 +6199,8 @@
     }
 
     .carousel-3d-stage {
+      --carousel-item-size: 140px;
+      --carousel-radius: 140px;
       perspective: 1000px;
       width: 100%;
       height: 100%;
@@ -6209,9 +6211,16 @@
       overflow: visible;
     }
 
+    @media (max-width: 480px) {
+      .carousel-3d-stage {
+        --carousel-item-size: 96px;
+        --carousel-radius: 90px;
+      }
+    }
+
     .carousel-3d-track {
-      width: 140px;
-      height: 140px;
+      width: var(--carousel-item-size);
+      height: var(--carousel-item-size);
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -6221,8 +6230,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 140px;
-      height: 140px;
+      width: var(--carousel-item-size);
+      height: var(--carousel-item-size);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -6287,6 +6296,9 @@
         width: 32px;
         height: 32px;
         font-size: 14px;
+      }
+      .medal-viewer-card {
+        padding: 16px 14px;
       }
     }
 
@@ -9178,7 +9190,6 @@
   let currentRotation = 0;
   let activeIndex = 0;
   const totalItems = 5;
-  const radius = 140; // px circular orbit
   let selectedRank = 6; // Default to Rank 06: Gold
 
   window.changeMedalRank = function(rankValue) {
@@ -9340,12 +9351,22 @@
     const items = document.querySelectorAll('.carousel-3d-item');
     const track = document.getElementById('carousel3dTrack');
     if (!track || !items.length) return;
+
+    // Get dynamic radius from computed CSS variable --carousel-radius
+    let r = 140;
+    const stage = document.querySelector('.carousel-3d-stage');
+    if (stage) {
+      const rVal = getComputedStyle(stage).getPropertyValue('--carousel-radius');
+      if (rVal) {
+        r = parseInt(rVal, 10) || 140;
+      }
+    }
     
     track.style.transform = `rotateY(${rotation}deg)`;
     
     items.forEach((item, index) => {
       const itemAngle = index * 72;
-      item.style.transform = `rotateY(${itemAngle}deg) translateZ(${radius}px) rotateY(${-itemAngle - rotation}deg)`;
+      item.style.transform = `rotateY(${itemAngle}deg) translateZ(${r}px) rotateY(${-itemAngle - rotation}deg)`;
       
       const normalizedRot = ((rotation % 360) + 360) % 360;
       const targetAngle = ((360 - itemAngle) % 360 + 360) % 360;
@@ -9398,6 +9419,11 @@
     changeMedalRank(selectedRank);
     updateCarousel(0);
   }
+
+  // Handle window resizing to adjust computed radius dynamic transforms
+  window.addEventListener('resize', () => {
+    updateCarousel(currentRotation);
+  });
   </script>
   <script src="../applied-handwriting-demo.js"></script>
   <script src="../applied-response-slideshow.js"></script>
