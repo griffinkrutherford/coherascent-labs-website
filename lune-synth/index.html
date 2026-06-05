@@ -19,9 +19,11 @@
   <link rel="stylesheet" href="../liquid-glass-cards.css" />
   <noscript>
     <style>
-      .section-title {
+      .section-title,
+      .section-content {
         opacity: 1 !important;
         transform: none !important;
+        transition: none !important;
       }
     </style>
   </noscript>
@@ -898,6 +900,20 @@
     }
 
     .section-title.is-visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .section-content {
+      opacity: 0;
+      transform: scale(0.96) translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+                  transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      transition-delay: 0.15s;
+      will-change: transform, opacity;
+    }
+
+    .section-content.is-visible {
       opacity: 1;
       transform: scale(1) translateY(0);
     }
@@ -6819,7 +6835,7 @@
 
     <section class="section" aria-labelledby="platform-title">
       <h2 class="section-title" id="platform-title">Platform Components</h2>
-      <article class="platform-showcase" aria-label="Handwritten response slideshow">
+      <article class="platform-showcase section-content" aria-label="Handwritten response slideshow">
         <div class="platform-showcase__sheet">
           <div class="platform-showcase__date" id="handwritten-date" data-placeholder="April 28th, 2026"></div>
           <div class="response-carousel__deck" data-response-slideshow aria-live="polite">
@@ -7197,7 +7213,7 @@
         </div>
       </article>
       <h3 class="section-title">You have to actually use your brain</h3>
-      <div class="details">
+      <div class="details section-content">
         <article class="detail-card detail-card--planet-a" data-liquid-glass>
           <strong>Write First</strong>
           <p>Keep students thinking on paper, not wrestling with a prompt box.</p>
@@ -7217,7 +7233,7 @@
 
     <section class="section" aria-labelledby="processing-title">
       <h2 class="section-title" id="processing-title">How grading works</h2>
-      <div class="processing-flow">
+      <div class="processing-flow section-content">
         <div class="processing-flow__grid">
           <article class="processing-card">
             <div class="processing-card__step">01 Capture</div>
@@ -7398,7 +7414,7 @@
     <section class="section section--voice" aria-labelledby="voice-title">
       <div class="voice-flow" data-liquid-glass data-liquid-glass-variant="frosted">
         <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
-        <div class="voice-flow__carousel" data-input-carousel>
+        <div class="voice-flow__carousel section-content" data-input-carousel>
           <div class="voice-flow__controls" aria-label="Input method carousel">
             <button class="voice-flow__control is-active" type="button" data-input-target="0" aria-pressed="true">Voice</button>
             <button class="voice-flow__control" type="button" data-input-target="1" aria-pressed="false">Text</button>
@@ -7520,7 +7536,7 @@
     <section class="section section--constellations-slideshow" id="constellations" aria-labelledby="constellations-title">
       <h2 class="section-title" id="constellations-title">Explore a Vast Study Universe</h2>
 
-      <div class="slideshow-layout">
+      <div class="slideshow-layout section-content">
 
         <!-- Middle: Dynamic Step Info Card -->
         <div class="active-step-info">
@@ -7723,7 +7739,7 @@
     <section class="section section--medals" id="medals-showcase" aria-labelledby="medals-title">
       <h2 class="section-title" id="medals-title">Earn 100+ Cosmic Medals</h2>
       
-      <div class="medals-layout">
+      <div class="medals-layout section-content">
         
         <!-- Center Card Container -->
         <div class="medal-viewer-card" id="medalViewerCard" style="width: 100%; margin: 0 auto;">
@@ -8608,14 +8624,14 @@
 
     <section class="section" aria-labelledby="engine-title">
       <h2 class="section-title" id="engine-title">The Neuro-Symbolic Engine</h2>
-      <div class="note-card" data-liquid-glass>
+      <div class="note-card section-content" data-liquid-glass>
         <p>
           Lune Synth&trade; is built on a unique Neuro-Symbolic AI architecture designed to move beyond "vibes" and
           statistical guesses.
         </p>
       </div>
       <!-- DISABLED: <div class="lune-engine-stage" data-lune-engine></div> -->
-      <div class="timeline">
+      <div class="timeline section-content">
         <div class="timeline-item timeline-item--moon" data-liquid-glass>
           <span>Rubric-Grounded Scoring</span>
           <p>
@@ -8641,7 +8657,7 @@
 
     <section class="section" aria-labelledby="delivery-title">
       <h2 class="section-title" id="delivery-title">Delivery Model</h2>
-      <div class="timeline">
+      <div class="timeline section-content">
         <div class="timeline-item timeline-item--moon" data-liquid-glass>
           <span>Think on Paper</span>
           <p>Students do the work first, then use AI to sharpen it.</p>
@@ -9621,10 +9637,10 @@
     }
   })();
 
-  /* Scroll Pop-In Animation for Headers */
+  /* Scroll Pop-In Animation for Headers & Content */
   (function() {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.section-title').forEach(function(el) {
+      document.querySelectorAll('.section-title, .section-content').forEach(function(el) {
         el.classList.add('is-visible');
       });
       return;
@@ -9638,11 +9654,11 @@
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px -30px 0px'
     });
 
-    document.querySelectorAll('.section-title').forEach(function(el) {
+    document.querySelectorAll('.section-title, .section-content').forEach(function(el) {
       observer.observe(el);
     });
   })();
