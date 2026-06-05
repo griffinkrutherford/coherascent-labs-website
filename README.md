@@ -10,17 +10,18 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Live Structure
 
-The current route structure is directory-based:
+The production site is served from one Railway deployment with host-based routing:
 
-| Route | Purpose |
+| Domain / Route | Purpose |
 | --- | --- |
-| `/` | Main landing page |
-| `/research/` | Research overview and technical program |
-| `/lune-synth/` | Lune Synth product experience |
+| `https://coherascentlabs.com/` | Main landing page |
+| `https://coherascentlabs.com/research/` | Research overview and technical program |
+| `https://lunesynth.com/` | Lune Synth product experience |
 
 Legacy compatibility stubs still exist:
 - `research.html` redirects to `/research/`
-- `applied.html` redirects to `/lune-synth/`
+- `applied.html` redirects to `https://lunesynth.com/`
+- `/lune-synth/` redirects to `https://lunesynth.com/` on the primary domain
 
 ## What’s In The Site
 
@@ -58,18 +59,18 @@ Fonts are loaded from Google Fonts and the site uses local images, SVGs, and han
 
 ## Local Development
 
-Because the project uses directory routes like `/research/` and `/lune-synth/`, run it from a static server at the repo root instead of opening the files directly.
+Because the production deployment routes by domain, run the Node server instead of a generic static server when testing locally.
 
 ```bash
 cd /Users/griffinrutherford/Documents/coherascent-labs
-python3 -m http.server 8000
+npm start
 ```
 
-Then open:
+Then test the host-specific routes with `curl`:
 
-- `http://localhost:8000/`
-- `http://localhost:8000/research/`
-- `http://localhost:8000/lune-synth/`
+- `curl -H "Host: coherascentlabs.com" http://localhost:3000/`
+- `curl -H "Host: coherascentlabs.com" http://localhost:3000/research/`
+- `curl -H "Host: lunesynth.com" http://localhost:3000/`
 
 ## Project Map
 
@@ -78,7 +79,7 @@ Then open:
 ├── index.html
 ├── research/
 │   └── index.html
-├── luna-synthesis/
+├── lune-synth/
 │   └── index.html
 ├── applied/
 │   └── index.html              # legacy redirect stub
