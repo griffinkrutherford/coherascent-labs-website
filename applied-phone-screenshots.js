@@ -238,6 +238,25 @@
     var sourceRect = trigger.getBoundingClientRect();
     var clone = trigger.cloneNode(true);
 
+    // Swap images inside the clone to high resolution (high-res only in full screen view)
+    var hostsWithHighRes = clone.querySelectorAll("[data-screenshot-high]");
+    Array.prototype.forEach.call(hostsWithHighRes, function (host) {
+      var highSrc = host.getAttribute("data-screenshot-high");
+      if (!highSrc) return;
+      var img = host.querySelector("img.phone-screenshot");
+      if (img) {
+        img.src = highSrc;
+      }
+    });
+
+    var imgsWithHighRes = clone.querySelectorAll("img[data-screenshot-high]");
+    Array.prototype.forEach.call(imgsWithHighRes, function (img) {
+      var highSrc = img.getAttribute("data-screenshot-high");
+      if (highSrc) {
+        img.src = highSrc;
+      }
+    });
+
     stripCloneInteractivity(clone);
     prepareFullscreenClone(clone);
     clone.style.visibility = "hidden";
