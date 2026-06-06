@@ -151,6 +151,16 @@ function serveLuneHost(req, res, pathname) {
     return;
   }
 
+  if (pathname === '/privacy' || pathname === '/privacy/') {
+    serveStatic(req, res, '/lune-synth/privacy/index.html');
+    return;
+  }
+
+  if (pathname === '/terms' || pathname === '/terms/') {
+    serveStatic(req, res, '/lune-synth/terms/index.html');
+    return;
+  }
+
   if ((pathname === '/lune-synth' || pathname === '/lune-synth/') && isGetLike(req)) {
     redirect(res, `https://${LUNE_HOST}/${getRequestSuffix(req)}`);
     return;
@@ -181,6 +191,12 @@ function servePrimaryHost(req, res, pathname) {
 const server = http.createServer((req, res) => {
   const host = getHost(req);
   const pathname = getPathname(req);
+
+  if (pathname === '/docs' || pathname.startsWith('/docs/') || pathname === '/scripts' || pathname.startsWith('/scripts/')) {
+    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end('<h1>404 Not Found</h1><p>The requested file does not exist.</p>');
+    return;
+  }
 
   if (isGetLike(req) && host === `www.${PRIMARY_HOST}`) {
     redirect(res, `https://${PRIMARY_HOST}${pathname}${getRequestSuffix(req)}`);

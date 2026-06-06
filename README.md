@@ -114,6 +114,8 @@ Then test the host-specific routes with `curl`:
 - `index-vibe.html` is a sidecar concept file and not part of the main directory-routed site
 - some favicon source assets are kept separately from the currently used favicon files
 - the site is optimized as a polished static experience, not as a CMS-backed marketing stack
+- `docs/legal/` contains draft legal source files; run `npm run build:legal` to regenerate the local `/privacy/` and `/terms/` pages
+- the legal pages are intentionally unlinked and must not be deployed until the entity, contact, governing-law, venue, and effective-date checklist in `docs/legal/README.md` is complete
 
 ## Next Good Improvements
 

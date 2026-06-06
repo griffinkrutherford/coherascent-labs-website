@@ -1,0 +1,250 @@
+:root {
+  --page: #070a12;
+  --surface: #101827;
+  --surface-soft: #121d31;
+  --text: #edf5ff;
+  --muted: #a9bad2;
+  --line: rgba(137, 176, 231, 0.2);
+  --blue: #70b4ff;
+  --purple: #b08cff;
+  --red: #ff6f91;
+  --warning: #ffd36a;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--page);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  color: var(--text);
+  background:
+    radial-gradient(900px 420px at 12% -8%, rgba(112, 180, 255, 0.13), transparent 62%),
+    radial-gradient(760px 380px at 92% 4%, rgba(176, 140, 255, 0.11), transparent 64%),
+    var(--page);
+  font-family: "Roboto Mono", monospace;
+  line-height: 1.72;
+}
+
+a {
+  color: var(--blue);
+  text-underline-offset: 0.2em;
+}
+
+a:hover,
+a:focus-visible {
+  color: #b9dcff;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 10px clamp(18px, 4vw, 48px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 10, 18, 0.9);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.brand img {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2.5vw, 28px);
+  font-size: 13px;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--text);
+}
+
+.draft-banner {
+  width: calc(100% - 36px);
+  max-width: 920px;
+  margin: 28px auto 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 211, 106, 0.48);
+  border-radius: 8px;
+  color: #fff3c9;
+  background: rgba(87, 61, 10, 0.38);
+  font-size: 13px;
+}
+
+.draft-banner strong {
+  color: var(--warning);
+}
+
+.legal-document {
+  width: calc(100% - 36px);
+  max-width: 920px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: clamp(42px, 7vw, 82px) 0 90px;
+}
+
+.legal-document h1,
+.legal-document h2,
+.legal-document h3 {
+  line-height: 1.25;
+}
+
+.legal-document h1 {
+  margin: 0 0 18px;
+  font-size: clamp(32px, 6vw, 54px);
+}
+
+.legal-document h2 {
+  margin: 58px 0 18px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: clamp(20px, 3vw, 27px);
+}
+
+.legal-document h3 {
+  margin: 34px 0 12px;
+  color: #d9e8fb;
+  font-size: 17px;
+}
+
+.legal-document p,
+.legal-document li {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.legal-document strong {
+  color: var(--text);
+}
+
+.legal-document ul,
+.legal-document ol {
+  padding-left: 24px;
+}
+
+.legal-document li + li {
+  margin-top: 8px;
+}
+
+.table-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 24px 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--text);
+  background: var(--surface-soft);
+}
+
+td {
+  color: var(--muted);
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+code {
+  padding: 0.14em 0.36em;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: #dceaff;
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 0.92em;
+}
+
+blockquote {
+  margin: 24px 0;
+  padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--purple);
+  color: var(--muted);
+}
+
+.legal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.legal-footer nav {
+  display: flex;
+  gap: 18px;
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .brand span {
+    font-size: 14px;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .legal-document {
+    padding-top: 38px;
+  }
+}
