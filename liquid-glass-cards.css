@@ -78,7 +78,8 @@ html[data-theme="light"] {
 /* Brand Dropdown Menu styling */
 .brand-dropdown {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 
 .brand {
