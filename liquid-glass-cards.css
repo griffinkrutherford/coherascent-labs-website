@@ -88,7 +88,7 @@ html[data-theme="light"] {
 }
 
 .brand-chevron {
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 6px;
   vertical-align: middle;
   transition: transform 0.3s ease, color 0.3s ease;
