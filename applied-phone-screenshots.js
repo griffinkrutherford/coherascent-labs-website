@@ -59,63 +59,130 @@
     };
   }
 
-  function loadScreenshotQueue(items) {
-    var queue = items.slice().sort(function (a, b) {
+  var screenshotQueue = [];
+  var activeScreenshotLoads = 0;
+  var maxConcurrentScreenshotLoads = 6;
+
+  function enqueueScreenshotLoads(items) {
+    items.forEach(function (item) {
+      if (item.queued || item.loaded) return;
+      item.queued = true;
+      screenshotQueue.push(item);
+    });
+
+    screenshotQueue.sort(function (a, b) {
       if (a.priority.group !== b.priority.group) {
         return a.priority.group - b.priority.group;
       }
       return a.priority.order - b.priority.order;
     });
-    var activeCount = 0;
-    var nextIndex = 0;
-    var maxConcurrentLoads = 3;
 
-    function loadNext() {
-      while (activeCount < maxConcurrentLoads && nextIndex < queue.length) {
-        startLoad(queue[nextIndex]);
-        nextIndex += 1;
-      }
+    loadNextScreenshot();
+  }
+
+  function loadNextScreenshot() {
+    while (activeScreenshotLoads < maxConcurrentScreenshotLoads && screenshotQueue.length) {
+      startScreenshotLoad(screenshotQueue.shift());
+    }
+  }
+
+  function startScreenshotLoad(item) {
+    activeScreenshotLoads += 1;
+
+    var finish = function () {
+      activeScreenshotLoads = Math.max(0, activeScreenshotLoads - 1);
+      loadNextScreenshot();
+    };
+
+    if (item.loaded) {
+      finish();
+      return;
     }
 
-    function startLoad(item) {
-      activeCount += 1;
+    var screenshot = item.screenshot;
 
-      var finish = function () {
-        activeCount = Math.max(0, activeCount - 1);
-        loadNext();
-      };
+    // Apply fetch priority directly to the image element
+    if ("fetchPriority" in screenshot) {
+      screenshot.fetchPriority = item.priority.group === 0 ? "high" : (item.priority.group === 2 ? "low" : "auto");
+    }
 
-      var probe = new Image();
-      if ("fetchPriority" in probe) {
-        probe.fetchPriority = item.priority.group === 0 ? "high" : (item.priority.group === 2 ? "low" : "auto");
-      }
+    var handleLoad = function () {
+      if (item.loaded) return;
 
-      probe.onload = function () {
-        if (!item.host.querySelector(".phone-screenshot--loaded")) {
-          item.screenshot.src = item.src;
-          item.host.insertBefore(item.screenshot, item.host.firstChild);
+      // Force a reflow before adding the loaded class to trigger transition.
+      screenshot.getBoundingClientRect();
+      screenshot.classList.remove("phone-screenshot--loading");
+      screenshot.classList.add("phone-screenshot--loaded");
+      item.host.setAttribute("data-screenshot-loaded", "true");
+      item.host.setAttribute("data-screenshot-replacing", "true");
+      item.loaded = true;
 
-          // Force a reflow before adding the loaded class to trigger transition.
-          item.screenshot.getBoundingClientRect();
-          item.screenshot.classList.remove("phone-screenshot--loading");
-          item.screenshot.classList.add("phone-screenshot--loaded");
-          item.host.setAttribute("data-screenshot-loaded", "true");
-          item.host.setAttribute("data-screenshot-replacing", "true");
+      setTimeout(function() {
+        var low = item.host.querySelector(".phone-screenshot--low");
+        if (low) low.remove();
+      }, 1000);
 
-          setTimeout(function() {
-            var low = item.host.querySelector(".phone-screenshot--low");
-            if (low) low.remove();
-          }, 1000);
+      finish();
+    };
+
+    var handleError = function () {
+      finish();
+    };
+
+    // If the image is already cached/complete, handle it immediately
+    if (screenshot.complete && screenshot.naturalWidth) {
+      handleLoad();
+    } else {
+      screenshot.onload = handleLoad;
+      screenshot.onerror = handleError;
+    }
+
+    // Set src and append to DOM immediately to start download and progressive rendering
+    if (!screenshot.src) {
+      screenshot.src = item.src;
+    }
+
+    if (!screenshot.parentNode) {
+      item.host.insertBefore(screenshot, item.host.firstChild);
+    }
+  }
+
+  function lazyLoadScreenshots(items) {
+    if (!items.length) return;
+
+    var eagerItems = items.filter(function (item) {
+      return item.priority.group === 0;
+    });
+    var deferredItems = items.filter(function (item) {
+      return item.priority.group !== 0;
+    });
+
+    enqueueScreenshotLoads(eagerItems);
+
+    if (!("IntersectionObserver" in window)) {
+      enqueueScreenshotLoads(deferredItems);
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+
+        var item = entry.target._coherascentScreenshotItem;
+        if (item) {
+          enqueueScreenshotLoads([item]);
         }
+        observer.unobserve(entry.target);
+      });
+    }, {
+      rootMargin: "1000px 0px",
+      threshold: 0.01
+    });
 
-        finish();
-      };
-
-      probe.onerror = finish;
-      probe.src = item.src;
-    }
-
-    loadNext();
+    deferredItems.forEach(function (item) {
+      item.host._coherascentScreenshotItem = item;
+      observer.observe(item.host);
+    });
   }
 
   function ensureModal() {
@@ -180,6 +247,17 @@
       host.removeAttribute("data-screenshot-replacing");
       host.removeAttribute("data-screenshot-loaded");
     });
+  }
+
+  function isVisibleInClone(node, clone) {
+    var current = node;
+    while (current && current !== clone) {
+      if (current.hidden || current.style.display === "none") {
+        return false;
+      }
+      current = current.parentElement;
+    }
+    return true;
   }
 
   function getTargetTransform(sourceRect, clone) {
@@ -266,6 +344,8 @@
     // Start playing videos in the clone and add glassy play/pause control button
     var videos = clone.querySelectorAll("video");
     Array.prototype.forEach.call(videos, function (video) {
+      if (!isVisibleInClone(video, clone)) return;
+
       video.play().catch(function() {});
       
       var parent = video.parentNode;
@@ -444,10 +524,10 @@
       lowImg.className = "phone-screenshot phone-screenshot--low";
       lowImg.alt = "";
       lowImg.setAttribute("aria-hidden", "true");
-      lowImg.loading = "eager";
+      lowImg.loading = index < 6 ? "eager" : "lazy";
       lowImg.decoding = "async";
       if ("fetchPriority" in lowImg) {
-        lowImg.fetchPriority = index < 6 ? "high" : "auto";
+        lowImg.fetchPriority = index < 6 ? "high" : "low";
       }
       host.setAttribute("data-screenshot-replacing", "true");
       host.insertBefore(lowImg, host.firstChild);
@@ -470,5 +550,5 @@
     });
   });
 
-  loadScreenshotQueue(screenshotItems);
+  lazyLoadScreenshots(screenshotItems);
 })();

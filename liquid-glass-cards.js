@@ -6,8 +6,7 @@
   var defsHost = document.getElementById("coherascent-liquid-glass-defs");
   var defsNode;
   var resizeTimer;
-  var scrollEndTimer;
-  var scrollTicking = false;
+  var activeCards = [];
 
   if (!defsHost) {
     defsHost = document.createElementNS(SVG_NS, "svg");
@@ -324,8 +323,10 @@
     ].join("");
   }
 
-  function rebuildAll() {
-    cards.forEach(function (card, index) {
+  function rebuildAll(targetCards) {
+    (targetCards || activeCards).forEach(function (card) {
+      var index = cards.indexOf(card);
+      if (index === -1) return;
       rebuildCard(card, index);
     });
   }
@@ -335,21 +336,13 @@
     resizeTimer = window.setTimeout(rebuildAll, 30);
   }
 
-  function handleScroll() {
-    if (!scrollTicking) {
-      scrollTicking = true;
-      window.requestAnimationFrame(function () {
-        rebuildAll();
-        scrollTicking = false;
-      });
-    }
-
-    window.clearTimeout(scrollEndTimer);
-    scrollEndTimer = window.setTimeout(rebuildAll, 90);
+  function activateCard(card) {
+    if (activeCards.indexOf(card) !== -1) return;
+    activeCards.push(card);
+    rebuildCard(card, cards.indexOf(card));
   }
 
   window.addEventListener("resize", scheduleRebuild);
-  window.addEventListener("scroll", handleScroll, { passive: true });
 
   if (typeof ResizeObserver !== "undefined") {
     var observer = new ResizeObserver(scheduleRebuild);
@@ -358,7 +351,28 @@
     });
   }
 
+  if ("IntersectionObserver" in window) {
+    var cardObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        activateCard(entry.target);
+        cardObserver.unobserve(entry.target);
+      });
+    }, {
+      rootMargin: "1200px 0px",
+      threshold: 0
+    });
+
+    cards.forEach(function (card) {
+      cardObserver.observe(card);
+    });
+  } else {
+    cards.forEach(activateCard);
+  }
+
   window.requestAnimationFrame(function () {
-    window.requestAnimationFrame(rebuildAll);
+    window.requestAnimationFrame(function () {
+      cards.slice(0, 4).forEach(activateCard);
+    });
   });
 })();

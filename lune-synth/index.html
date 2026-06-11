@@ -17,6 +17,10 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="../liquid-glass-cards.css" />
+  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp" as="image" fetchpriority="high" />
+  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-low.webp" as="image" fetchpriority="high" />
+  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp" as="image" />
+  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/3-mid.webp" as="image" />
   <noscript>
     <style>
       .section-title,
@@ -118,7 +122,6 @@
         radial-gradient(1000px 700px at 85% 10%, rgba(164, 123, 255, 0.11), transparent 55%),
         radial-gradient(900px 600px at 70% 90%, rgba(255, 93, 135, 0.11), transparent 55%),
         linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-      background-attachment: fixed;
     }
 
     html[data-theme="light"] {
@@ -175,7 +178,6 @@
       z-index: 0;
       opacity: 1;
       transform: translateZ(0);
-      will-change: transform, opacity;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
@@ -218,7 +220,6 @@
       pointer-events: none;
       z-index: 0;
       transform: translateZ(0);
-      will-change: transform, opacity;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
@@ -821,6 +822,20 @@
       margin-top: 72px;
       display: grid;
       gap: 24px;
+      content-visibility: auto;
+      contain-intrinsic-size: 900px;
+    }
+
+    .section.is-near-viewport,
+    .hero + .section {
+      content-visibility: visible;
+      contain-intrinsic-size: auto;
+    }
+
+    html.js-perf-gate .section:not(.is-animating) *,
+    html.js-perf-gate .section:not(.is-animating) *::before,
+    html.js-perf-gate .section:not(.is-animating) *::after {
+      animation-play-state: paused !important;
     }
     .section--voice {
       position: relative;
@@ -902,6 +917,7 @@
     .section-title.is-visible {
       opacity: 1;
       transform: scale(1) translateY(0);
+      will-change: auto;
     }
 
     .section-content {
@@ -916,6 +932,7 @@
     .section-content.is-visible {
       opacity: 1;
       transform: scale(1) translateY(0);
+      will-change: auto;
     }
 
     .section-title::before {
@@ -2477,7 +2494,6 @@
       isolation: isolate;
     }
 
-    .phone-screenshot-host[data-screenshot-low] > :not(.phone-screenshot),
     .phone-screenshot-host[data-screenshot-replacing="true"] > :not(.phone-screenshot) {
       opacity: 0;
     }
@@ -2791,12 +2807,12 @@
       overflow: hidden;
     }
 
-    .voice-scene__screen[data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode-mid.png"] {
-      background: #000 url("../mobile-app-assets/screenshots/applied/voice/voice-mode-mid.png") center / cover no-repeat;
+    .voice-scene__screen[data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp"] {
+      background: #000 url("../mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp") center / cover no-repeat;
     }
 
-    .voice-scene__screen[data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input-mid.png"] {
-      background: #000 url("../mobile-app-assets/screenshots/applied/text/text-input-mid.png") center / cover no-repeat;
+    .voice-scene__screen[data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input-mid.webp"] {
+      background: #000 url("../mobile-app-assets/screenshots/applied/text/text-input-mid.webp") center / cover no-repeat;
     }
 
     html[data-theme="light"] .voice-scene__screen {
@@ -6787,9 +6803,9 @@
       <a class="brand" href="https://coherascentlabs.com/" aria-label="Coherascent Labs home">
         <img
           class="brand-logo"
-          src="../coherascent-labs-logo-march-16-2026.png"
-          data-logo-dark="../coherascent-labs-logo-march-16-2026.png"
-          data-logo-light="../coherascent-labs-streamlined-light-2.png"
+          src="../coherascent-labs-logo-march-16-2026.webp"
+          data-logo-dark="../coherascent-labs-logo-march-16-2026.webp"
+          data-logo-light="../coherascent-labs-streamlined-light-2.webp"
           alt="Coherascent Labs logo"
         />
         <h1>Coherascent Labs</h1>
@@ -6806,7 +6822,16 @@
           <h2 class="hero-app-title" id="applied-page-title">Lune Synth&trade;</h2>
           <p class="hero-tagline">The <span>anti-slop</span> study app</p>
         </div>
-        <img class="hero-app-icon" src="../images/lune-synth-icon.png" alt="Lune Synth app icon" loading="eager" decoding="async" fetchpriority="high" />
+        <img
+          class="hero-app-icon"
+          src="../images/lune-synth-icon-512.png"
+          srcset="../images/lune-synth-icon-120.png 120w, ../images/lune-synth-icon-512.png 512w, ../images/lune-synth-icon.png 910w"
+          sizes="(max-width: 600px) 136px, (max-width: 900px) 160px, 232px"
+          alt="Lune Synth app icon"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
       </div>
       <p>
         Do the work. Scan it in. Get feedback that actually helps. From the Pre-K through the PhD level.
@@ -6847,7 +6872,7 @@
                 <svg class="platform-showcase__svg" viewBox="0 0 360 250" role="presentation"></svg>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/1-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/1.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/1-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/1.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/1-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -6872,7 +6897,7 @@
                 <p class="response-carousel__line">crowding, and sharper class divisions.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/2-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/2.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/2-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/2.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/2-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -6897,7 +6922,7 @@
                 <p class="response-carousel__line response-carousel__line--small">Therefore this ordinance is not exempt.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/3-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/3.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/3-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/3-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/3.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/3-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -6922,7 +6947,7 @@
                 <p class="response-carousel__line">= 11</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/4-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/4.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/4-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/4-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/4.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/4-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -6948,7 +6973,7 @@
                 <p class="response-carousel__line">answer = 2,082</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/5-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/5.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/5-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/5-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/5.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/5-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -6973,7 +6998,7 @@
                 <p class="response-carousel__line response-carousel__line--small">Active tissue gets more oxygen unloading.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/6-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/6.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/6-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/6-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/6.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/6-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -6998,7 +7023,7 @@
                 <p class="response-carousel__line response-carousel__line--small">Since k(k + 1) is even, the expression is divisible by 8.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/7-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/7.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/7-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/7-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/7.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/7-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -7022,7 +7047,7 @@
                 <p class="response-carousel__line response-carousel__line--tiny">Therefore the quadratic f(x) = 1/2 xᵀAx - bᵀx is strictly convex, so the minimizer is unique.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/8-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/8.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/8-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/8-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/8.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/8-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -7047,7 +7072,7 @@
                 <p class="response-carousel__line response-carousel__line--small">Backtrack to recover the set.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/9-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/9.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/9-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/9-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/9.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/9-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -7073,7 +7098,7 @@
                 <p class="response-carousel__line">width = 9</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/10-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/10.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/10-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/10-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/10.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/10-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -7098,7 +7123,7 @@
                 <p class="response-carousel__line response-carousel__line--small">So the cell shrinks in a hypertonic solution.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/11-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/11.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/11-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/11-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/11.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/11-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -7123,7 +7148,7 @@
                 <p class="response-carousel__line response-carousel__line--small">So the events are independent.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/12-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/12.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/12-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/12-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/12.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/12-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -7148,7 +7173,7 @@
                 <p class="response-carousel__line response-carousel__line--small">A clot could travel to the lungs.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/13-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/13.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/13-low.png">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/13-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/13.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/13-low.webp">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -7240,7 +7265,7 @@
             <h3 class="processing-card__title">Scan the work</h3>
             <div class="processing-card__visual capture-scene">
               <div class="capture-scene__page">
-                <img class="capture-scene__page-image" src="../mobile-app-assets/screenshots/screenshot-workflow/1/handwritten-page.png" alt="">
+                <img class="capture-scene__page-image" src="../mobile-app-assets/screenshots/screenshot-workflow/1/handwritten-page.webp" alt="" loading="lazy" decoding="async">
               </div>
               <svg class="capture-scene__arrow" viewBox="0 0 96 64" role="presentation" aria-hidden="true">
                 <defs>
@@ -7254,7 +7279,7 @@
                 <path class="capture-scene__arrow-head" d="M65 16L80 30L61 38" />
               </svg>
               <div class="capture-scene__phone" data-phone-mock="camera">
-                <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock.png" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-low.png">
+                <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock.webp" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-low.webp">
                   <span class="capture-scene__upload">Scan Work</span>
                   <div class="capture-scene__preview">
                     <div class="capture-scene__preview-sheet">
@@ -7280,7 +7305,7 @@
             <div class="processing-card__visual processing-scene">
               <div class="processing-scene__stage">
                 <div class="processing-scene__phone" data-phone-mock="processing">
-                  <div class="processing-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen.png" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-low.png">
+                  <div class="processing-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen.webp" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-low.webp">
                     <div class="processing-scene__cosmos">
                       <div class="processing-scene__nebula processing-scene__nebula--one"></div>
                       <div class="processing-scene__nebula processing-scene__nebula--two"></div>
@@ -7354,7 +7379,7 @@
             <div class="processing-card__visual feedback-scene">
               <div class="feedback-scene__deck">
                 <div class="feedback-scene__phone feedback-scene__phone--far-left feedback-scene__phone--low" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/45-percent-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/45-percent.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/45-percent-low.png">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/45-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/45-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/45-percent-low.webp">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
                       <div class="feedback-scene__score-ring">
@@ -7366,7 +7391,7 @@
                   </div>
                 </div>
                 <div class="feedback-scene__phone feedback-scene__phone--left feedback-scene__phone--mid" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/80-percent-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/80-percent.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/80-percent-low.png">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/80-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/80-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/80-percent-low.webp">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
                       <div class="feedback-scene__score-ring">
@@ -7378,7 +7403,7 @@
                   </div>
                 </div>
                 <div class="feedback-scene__phone feedback-scene__phone--center feedback-scene__phone--mid" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/90-percent-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/90-percent.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/90-percent-low.png">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/90-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/90-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/90-percent-low.webp">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
                       <div class="feedback-scene__score-ring">
@@ -7390,7 +7415,7 @@
                   </div>
                 </div>
                 <div class="feedback-scene__phone feedback-scene__phone--right feedback-scene__phone--high" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/95-percent-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/95-percent.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/95-percent-low.png">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/95-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/95-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/95-percent-low.webp">
                     <div class="feedback-scene__hero">
                       <span class="feedback-scene__label">Results Ready</span>
                       <div class="feedback-scene__score-ring">
@@ -7435,7 +7460,7 @@
             <div class="voice-scene">
               <div class="voice-scene__devices">
                 <div class="voice-scene__phone" data-phone-mock="input">
-                  <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/voice/voice-mode.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/voice/voice-mode-low.png">
+                  <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/voice/voice-mode.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/voice/voice-mode-low.webp">
                     <div class="voice-scene__topbar">
                       <span class="voice-scene__back">Back</span>
                       <span class="voice-scene__title">Voice Upload</span>
@@ -7476,7 +7501,7 @@
                   <span class="voice-scene__ipad-button voice-scene__ipad-button--volume voice-scene__ipad-button--volume-down"></span>
                   <span class="voice-scene__ipad-camera"></span>
                   <div class="voice-scene__ipad-screen">
-                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/voice/voice-mode-ipad-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/voice/voice-mode-ipad.png" alt="" loading="eager" decoding="async">
+                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/voice/voice-mode-ipad-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/voice/voice-mode-ipad.webp" alt="" loading="lazy" decoding="async">
                   </div>
                 </div>
               </div>
@@ -7498,7 +7523,7 @@
             <div class="voice-scene">
               <div class="voice-scene__devices">
                 <div class="voice-scene__phone" data-phone-mock="input">
-                  <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/text/text-input.png" data-screenshot-low="../mobile-app-assets/screenshots/applied/text/text-input-low.png">
+                  <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/text/text-input.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/text/text-input-low.webp">
                     <div class="voice-scene__topbar">
                       <span class="voice-scene__back">Back</span>
                       <span class="voice-scene__title">Text Input</span>
@@ -7522,7 +7547,7 @@
                   <span class="voice-scene__ipad-button voice-scene__ipad-button--volume voice-scene__ipad-button--volume-down"></span>
                   <span class="voice-scene__ipad-camera"></span>
                   <div class="voice-scene__ipad-screen">
-                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/text/text-input-ipad-mid.png" data-screenshot-high="../mobile-app-assets/screenshots/applied/text/text-input-ipad.png" alt="" loading="eager" decoding="async">
+                    <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/text/text-input-ipad-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/text/text-input-ipad.webp" alt="" loading="lazy" decoding="async">
                   </div>
                 </div>
               </div>
@@ -7634,7 +7659,7 @@
                   <!-- Step 1 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-1">
                     <!-- High-performance web-optimized video element -->
-                    <video autoplay loop muted playsinline class="ipad-gif-target">
+                    <video loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-1.webm" type="video/webm">
                       <source src="screenshots/applied/step-1.mp4" type="video/mp4">
                     </video>
@@ -7657,15 +7682,15 @@
                     <!-- Per-theme screen recordings. selectSkyTheme() shows + plays the one
                          matching the picked theme; Earth & Venus have no clip and fall back
                          to the CSS/SVG theme rendering. JS controls playback (no autoplay). -->
-                    <video id="step2Video-math" class="ipad-gif-target" loop muted playsinline preload="auto" style="display: none;">
+                    <video id="step2Video-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-2-math-sky.webm" type="video/webm">
                       <source src="screenshots/applied/step-2-math-sky.mp4" type="video/mp4">
                     </video>
-                    <video id="step2Video-retro" class="ipad-gif-target" loop muted playsinline preload="auto" style="display: none;">
+                    <video id="step2Video-retro" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-2-retro-sky.webm" type="video/webm">
                       <source src="screenshots/applied/step-2-retro-sky.mp4" type="video/mp4">
                     </video>
-                    <video id="step2Video-bigbang" class="ipad-gif-target" loop muted playsinline preload="auto" style="display: none;">
+                    <video id="step2Video-bigbang" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-2-big-bang.webm" type="video/webm">
                       <source src="screenshots/applied/step-2-big-bang.mp4" type="video/mp4">
                     </video>
@@ -7679,7 +7704,7 @@
                   <!-- Step 3 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-3" style="display: none;">
                     <!-- High-performance web-optimized video element -->
-                    <video autoplay loop muted playsinline class="ipad-gif-target">
+                    <video loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-3.webm" type="video/webm">
                       <source src="screenshots/applied/step-3.mp4" type="video/mp4">
                     </video>
@@ -7697,7 +7722,7 @@
                   <!-- Step 4 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-4" style="display: none;">
                     <!-- High-performance web-optimized video element -->
-                    <video autoplay loop muted playsinline class="ipad-gif-target">
+                    <video loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-4.webm" type="video/webm">
                       <source src="screenshots/applied/step-4.mp4" type="video/mp4">
                     </video>
@@ -7712,7 +7737,7 @@
                   <!-- Step 5 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-5" style="display: none;">
                     <!-- High-performance web-optimized video element -->
-                    <video autoplay loop muted playsinline class="ipad-gif-target">
+                    <video loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-5.webm" type="video/webm">
                       <source src="screenshots/applied/step-5.mp4" type="video/mp4">
                     </video>
@@ -8933,7 +8958,54 @@
     }
   };
 
+  let activeSlideshowStep = 1;
+  let isStudyUniverseInView = false;
+
+  function playPreviewVideo(video, shouldPlay) {
+    if (!video) return;
+
+    if (!shouldPlay) {
+      video.pause();
+      return;
+    }
+
+    const p = video.play();
+    if (p && p.catch) p.catch(() => {});
+  }
+
+  function syncIpadVideos() {
+    const activePreview = document.getElementById('previewStep-' + activeSlideshowStep);
+
+    document.querySelectorAll('#ipadScreenCanvas video').forEach(video => {
+      const isVisibleVideo = activePreview && activePreview.contains(video) && video.offsetParent !== null;
+      playPreviewVideo(video, isStudyUniverseInView && isVisibleVideo);
+    });
+  }
+
+  (function observeStudyUniverseVideos() {
+    const section = document.querySelector('.section--constellations-slideshow');
+    if (!section) return;
+
+    if (!('IntersectionObserver' in window)) {
+      isStudyUniverseInView = true;
+      syncIpadVideos();
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      isStudyUniverseInView = entries.some(entry => entry.isIntersecting);
+      syncIpadVideos();
+    }, {
+      rootMargin: '700px 0px',
+      threshold: 0.05
+    });
+
+    observer.observe(section);
+  })();
+
   function switchSlideshowStep(stepNumber) {
+    activeSlideshowStep = stepNumber;
+
     // Update Step Button active states
     const buttons = document.querySelectorAll('.slideshow-step-btn');
     buttons.forEach(btn => btn.classList.remove('is-active'));
@@ -8982,16 +9054,7 @@
       }
     }
 
-    // Step 2's theme videos: resume the currently shown clip when we land on step 2,
-    // and pause all of them whenever we're elsewhere (no off-screen decoding).
-    document.querySelectorAll('#previewStep-2 video').forEach(v => {
-      if (stepNumber === 2 && v.style.display === 'block') {
-        const p = v.play();
-        if (p && p.catch) p.catch(() => {});
-      } else {
-        v.pause();
-      }
-    });
+    syncIpadVideos();
   }
 
   function selectSkyTheme(skyTheme, pillElement) {
@@ -9024,14 +9087,16 @@
       if (!v) return;
       if (v === activeVid) {
         v.style.display = 'block';
-        v.currentTime = 0;
-        const p = v.play();
-        if (p && p.catch) p.catch(() => {}); // ignore autoplay-policy rejections
+        if (isStudyUniverseInView && activeSlideshowStep === 2) {
+          v.currentTime = 0;
+        }
       } else {
         v.pause();
         v.style.display = 'none';
       }
     });
+
+    syncIpadVideos();
   }
 
   /* --- Medals Showcase Interactive Handlers --- */
@@ -9503,9 +9568,65 @@
     updateCarousel(currentRotation);
   });
   </script>
-  <script src="../applied-handwriting-demo.js"></script>
-  <script src="../applied-response-slideshow.js"></script>
-  <script src="../applied-phone-screenshots.js"></script>
+  <script>
+  (function loadLuneEnhancements() {
+    var loaded = {};
+
+    function loadScript(src) {
+      if (loaded[src]) return loaded[src];
+
+      loaded[src] = new Promise(function(resolve, reject) {
+        var script = document.createElement("script");
+        script.src = src;
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      }).catch(function() {});
+
+      return loaded[src];
+    }
+
+    function afterFirstPaint(callback) {
+      window.requestAnimationFrame(function() {
+        window.requestAnimationFrame(function() {
+          if ("requestIdleCallback" in window) {
+            window.requestIdleCallback(callback, { timeout: 1200 });
+          } else {
+            window.setTimeout(callback, 120);
+          }
+        });
+      });
+    }
+
+    function whenNear(selector, callback) {
+      var target = document.querySelector(selector);
+      if (!target || !("IntersectionObserver" in window)) {
+        callback();
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        if (!entries.some(function(entry) { return entry.isIntersecting; })) return;
+        observer.disconnect();
+        callback();
+      }, {
+        rootMargin: "1200px 0px",
+        threshold: 0.01
+      });
+
+      observer.observe(target);
+    }
+
+    whenNear("[data-response-slideshow]", function() {
+      loadScript("../applied-response-slideshow.js").then(function() {
+        loadScript("../applied-handwriting-demo.js");
+      });
+    });
+
+    loadScript("../applied-phone-screenshots.js");
+  })();
+  </script>
 
   <!-- ===================================================================
        iPad Ambilight — the study-universe card's background reflects, in
@@ -9594,9 +9715,19 @@
       }
 
       let last = 0;
+      let rafId = 0;
+      let running = false;
+
       function tick(ts) {
-        requestAnimationFrame(tick);
-        if (ts - last < 90) return; // throttle to ~11fps
+        if (!running) {
+          rafId = 0;
+          return;
+        }
+
+        if (ts - last < 90) {
+          rafId = requestAnimationFrame(tick);
+          return;
+        } // throttle to ~11fps
         last = ts;
 
         updateOrigin(); // read geometry first, before we write any styles below
@@ -9626,8 +9757,41 @@
         ease(accent, tAccent, 0.12);
         card.style.setProperty('--ambi-base', `rgb(${base[0] | 0}, ${base[1] | 0}, ${base[2] | 0})`);
         card.style.setProperty('--ambi-accent', `rgb(${accent[0] | 0}, ${accent[1] | 0}, ${accent[2] | 0})`);
+        rafId = requestAnimationFrame(tick);
       }
-      requestAnimationFrame(tick);
+
+      function setRunning(nextRunning) {
+        if (running === nextRunning) return;
+
+        running = nextRunning;
+        if (running && !rafId) {
+          rafId = requestAnimationFrame(tick);
+        }
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        setRunning(true);
+        return;
+      }
+
+      const observer = new IntersectionObserver(entries => {
+        setRunning(entries.some(entry => entry.isIntersecting) && document.visibilityState !== 'hidden');
+      }, {
+        rootMargin: '700px 0px',
+        threshold: 0.05
+      });
+
+      observer.observe(card);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          setRunning(false);
+          return;
+        }
+
+        const rect = card.getBoundingClientRect();
+        setRunning(rect.top < window.innerHeight + 700 && rect.bottom > -700);
+      });
     };
 
     if (document.readyState === 'loading') {
@@ -9639,6 +9803,40 @@
 
   /* Scroll Pop-In Animation for Headers & Content */
   (function() {
+    document.documentElement.classList.add('js-perf-gate');
+
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.section'));
+    if ('IntersectionObserver' in window) {
+      var nearObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-near-viewport');
+          nearObserver.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0,
+        rootMargin: '1200px 0px'
+      });
+
+      var animationObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          entry.target.classList.toggle('is-animating', entry.isIntersecting);
+        });
+      }, {
+        threshold: 0,
+        rootMargin: '420px 0px'
+      });
+
+      sections.forEach(function(section) {
+        nearObserver.observe(section);
+        animationObserver.observe(section);
+      });
+    } else {
+      sections.forEach(function(section) {
+        section.classList.add('is-near-viewport', 'is-animating');
+      });
+    }
+
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.querySelectorAll('.section-title, .section-content').forEach(function(el) {
         el.classList.add('is-visible');
@@ -9655,7 +9853,7 @@
       });
     }, {
       threshold: 0,
-      rootMargin: '0px 0px 96px 0px'
+      rootMargin: '900px 0px'
     });
 
     document.querySelectorAll('.section-title, .section-content').forEach(function(el) {

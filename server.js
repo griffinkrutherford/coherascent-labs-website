@@ -7,6 +7,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 const waitlistHandler = require('./api/waitlist.js');
 
 const PORT = process.env.PORT || 3000;
@@ -76,6 +77,7 @@ function getContentType(filePath) {
     case '.ico': return 'image/x-icon';
     case '.json': return 'application/json; charset=utf-8';
     case '.avif': return 'image/avif';
+    case '.webp': return 'image/webp';
     case '.mp4': return 'video/mp4';
     case '.webm': return 'video/webm';
     case '.pdf': return 'application/pdf';
@@ -83,12 +85,176 @@ function getContentType(filePath) {
   }
 }
 
+function isCompressible(filePath) {
+  return ['.html', '.css', '.js', '.json', '.svg'].includes(path.extname(filePath));
+}
+
+function isVideo(filePath) {
+  return ['.mp4', '.webm'].includes(path.extname(filePath));
+}
+
+function getCacheControl(filePath) {
+  const extname = path.extname(filePath);
+
+  if (extname === '.html') {
+    return 'no-cache';
+  }
+
+  if (['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.json', '.avif', '.webp', '.mp4', '.webm', '.pdf'].includes(extname)) {
+    return 'public, max-age=31536000, immutable';
+  }
+
+  return 'public, max-age=3600';
+}
+
+function makeWeakEtag(stats) {
+  return `W/"${stats.size.toString(16)}-${Math.floor(stats.mtimeMs).toString(16)}"`;
+}
+
+function getCompression(req, filePath, size) {
+  if (!isCompressible(filePath) || size < 1024 || req.headers.range) {
+    return null;
+  }
+
+  const accepted = req.headers['accept-encoding'] || '';
+  if (accepted.includes('br') && zlib.createBrotliCompress) {
+    return {
+      encoding: 'br',
+      stream: zlib.createBrotliCompress({
+        params: {
+          [zlib.constants.BROTLI_PARAM_QUALITY]: 5,
+        },
+      }),
+    };
+  }
+
+  if (accepted.includes('gzip')) {
+    return {
+      encoding: 'gzip',
+      stream: zlib.createGzip({ level: 6 }),
+    };
+  }
+
+  return null;
+}
+
+function parseRange(rangeHeader, size) {
+  const match = /^bytes=(\d*)-(\d*)$/.exec(rangeHeader || '');
+  if (!match) return null;
+
+  let start = match[1] === '' ? null : Number(match[1]);
+  let end = match[2] === '' ? null : Number(match[2]);
+
+  if (start === null && end === null) return null;
+
+  if (start === null) {
+    const suffixLength = Math.max(0, end || 0);
+    start = Math.max(size - suffixLength, 0);
+    end = size - 1;
+  } else {
+    end = end === null ? size - 1 : Math.min(end, size - 1);
+  }
+
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || start > end || start >= size) {
+    return null;
+  }
+
+  return { start, end };
+}
+
+function sendNotFound(res) {
+  res.writeHead(404, {
+    'Content-Type': 'text/html; charset=utf-8',
+    'Cache-Control': 'no-cache',
+  });
+  res.end('<h1>404 Not Found</h1><p>The requested file does not exist.</p>');
+}
+
+function serveFile(req, res, filePath, stats) {
+  const etag = makeWeakEtag(stats);
+  const lastModified = stats.mtime.toUTCString();
+  const baseHeaders = {
+    'Content-Type': getContentType(filePath),
+    'Cache-Control': getCacheControl(filePath),
+    'ETag': etag,
+    'Last-Modified': lastModified,
+  };
+
+  if (isCompressible(filePath)) {
+    baseHeaders.Vary = 'Accept-Encoding';
+  }
+
+  if (isVideo(filePath)) {
+    baseHeaders['Accept-Ranges'] = 'bytes';
+  }
+
+  if (req.headers['if-none-match'] === etag || req.headers['if-modified-since'] === lastModified) {
+    res.writeHead(304, baseHeaders);
+    res.end();
+    return;
+  }
+
+  if (isVideo(filePath) && req.headers.range) {
+    const range = parseRange(req.headers.range, stats.size);
+
+    if (!range) {
+      res.writeHead(416, {
+        ...baseHeaders,
+        'Content-Range': `bytes */${stats.size}`,
+      });
+      res.end();
+      return;
+    }
+
+    res.writeHead(206, {
+      ...baseHeaders,
+      'Content-Length': range.end - range.start + 1,
+      'Content-Range': `bytes ${range.start}-${range.end}/${stats.size}`,
+    });
+
+    if (req.method === 'HEAD') {
+      res.end();
+      return;
+    }
+
+    fs.createReadStream(filePath, range).pipe(res);
+    return;
+  }
+
+  const compression = getCompression(req, filePath, stats.size);
+  if (compression) {
+    res.writeHead(200, {
+      ...baseHeaders,
+      'Content-Encoding': compression.encoding,
+    });
+
+    if (req.method === 'HEAD') {
+      res.end();
+      return;
+    }
+
+    fs.createReadStream(filePath).pipe(compression.stream).pipe(res);
+    return;
+  }
+
+  res.writeHead(200, {
+    ...baseHeaders,
+    'Content-Length': stats.size,
+  });
+
+  if (req.method === 'HEAD') {
+    res.end();
+    return;
+  }
+
+  fs.createReadStream(filePath).pipe(res);
+}
+
 function serveStatic(req, res, publicPath) {
   const filePath = getSafeFilePath(publicPath);
 
   if (!filePath) {
-    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end('<h1>404 Not Found</h1><p>The requested file does not exist.</p>');
+    sendNotFound(res);
     return;
   }
 
@@ -100,16 +266,18 @@ function serveStatic(req, res, publicPath) {
       resolvedPath = path.join(resolvedPath, 'index.html');
     }
 
-    fs.readFile(resolvedPath, (err, content) => {
+    fs.stat(resolvedPath, (err, resolvedStats) => {
       if (err) {
-        // Page/file not found
-        res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-        res.end('<h1>404 Not Found</h1><p>The requested file does not exist.</p>');
-      } else {
-        // Success: serve file
-        res.writeHead(200, { 'Content-Type': getContentType(resolvedPath) });
-        res.end(req.method === 'HEAD' ? undefined : content);
+        sendNotFound(res);
+        return;
       }
+
+      if (!resolvedStats.isFile()) {
+        sendNotFound(res);
+        return;
+      }
+
+      serveFile(req, res, resolvedPath, resolvedStats);
     });
   });
 }
