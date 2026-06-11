@@ -1630,28 +1630,24 @@
 <body>
   <main>
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Coherascent Labs home">
-        <img
-          class="brand-logo"
-          src="coherascent-labs-logo-march-16-2026.webp"
-          data-logo-dark="coherascent-labs-logo-march-16-2026.webp"
-          data-logo-light="coherascent-labs-streamlined-light-2.webp"
-          alt="Coherascent Labs logo"
-        />
-        <h1>Coherascent Labs</h1>
-      </a>
-      <nav class="nav-links" aria-label="Primary">
-        <div class="nav-dropdown">
-          <button class="nav-link nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">
-            Coherascent Labs
-            <span class="dropdown-chevron" aria-hidden="true">▼</span>
-          </button>
-          <div class="nav-dropdown-content">
-            <a href="/">Home</a>
-            <a href="/research/">Research</a>
-            <a href="https://lunesynth.com/">Lune Synth&trade;</a>
-          </div>
+      <div class="brand-dropdown">
+        <div class="brand" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-label="Coherascent Labs navigation menu">
+          <img
+            class="brand-logo"
+            src="coherascent-labs-logo-march-16-2026.webp"
+            data-logo-dark="coherascent-labs-logo-march-16-2026.webp"
+            data-logo-light="coherascent-labs-streamlined-light-2.webp"
+            alt="Coherascent Labs logo"
+          />
+          <h1>Coherascent Labs <span class="brand-chevron" aria-hidden="true">▼</span></h1>
         </div>
+        <div class="brand-dropdown-content">
+          <a href="/">Home</a>
+          <a href="/research/">Research</a>
+          <a href="https://lunesynth.com/">Lune Synth&trade;</a>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
         <a class="nav-link" href="https://lunesynth.com/#platform-title">Components</a>
         <a class="nav-link" href="https://lunesynth.com/#processing-title">Grading</a>
         <a class="nav-link" href="https://lunesynth.com/#constellations-title">Universe</a>

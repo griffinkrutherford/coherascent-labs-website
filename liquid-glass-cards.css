@@ -75,35 +75,39 @@ html[data-theme="light"] {
   }
 }
 
-/* Navigation Dropdown Menu styling */
-.nav-dropdown {
+/* Brand Dropdown Menu styling */
+.brand-dropdown {
   position: relative;
   display: inline-block;
 }
 
-.nav-dropdown-btn {
+.brand {
   cursor: pointer;
-  gap: 6px;
   user-select: none;
 }
 
-.dropdown-chevron {
-  font-size: 8px;
-  transition: transform 0.3s ease;
+.brand-chevron {
+  font-size: 9px;
+  margin-left: 4px;
+  vertical-align: middle;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: var(--muted);
   pointer-events: none;
+  display: inline-block;
 }
 
-.nav-dropdown:hover .dropdown-chevron,
-.nav-dropdown:focus-within .dropdown-chevron {
+.brand-dropdown:hover .brand-chevron,
+.brand-dropdown:focus-within .brand-chevron {
   transform: rotate(180deg);
+  color: var(--text);
 }
 
-.nav-dropdown-content {
+.brand-dropdown-content {
   position: absolute;
   top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  min-width: 170px;
+  left: 0;
+  transform: translateY(10px);
+  min-width: 190px;
   padding: 8px;
   border-radius: 16px;
   border: 1px solid var(--line);
@@ -120,14 +124,14 @@ html[data-theme="light"] {
   gap: 4px;
 }
 
-.nav-dropdown:hover .nav-dropdown-content,
-.nav-dropdown:focus-within .nav-dropdown-content {
+.brand-dropdown:hover .brand-dropdown-content,
+.brand-dropdown:focus-within .brand-dropdown-content {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(6px);
+  transform: translateY(6px);
 }
 
-.nav-dropdown-content a {
+.brand-dropdown-content a {
   display: block;
   padding: 10px 16px;
   border-radius: 10px;
@@ -141,23 +145,23 @@ html[data-theme="light"] {
   border: 1px solid transparent;
 }
 
-.nav-dropdown-content a:hover {
+.brand-dropdown-content a:hover {
   background: rgba(102, 179, 255, 0.15);
   border-color: rgba(102, 179, 255, 0.22);
   color: #ffffff;
 }
 
-html[data-theme="light"] .nav-dropdown-content {
+html[data-theme="light"] .brand-dropdown-content {
   background: rgba(255, 252, 247, 0.95);
   border-color: rgba(46, 106, 168, 0.18);
   box-shadow: 0 12px 32px rgba(84, 98, 130, 0.12);
 }
 
-html[data-theme="light"] .nav-dropdown-content a {
+html[data-theme="light"] .brand-dropdown-content a {
   color: #1b2436;
 }
 
-html[data-theme="light"] .nav-dropdown-content a:hover {
+html[data-theme="light"] .brand-dropdown-content a:hover {
   background: rgba(46, 106, 168, 0.08);
   border-color: rgba(46, 106, 168, 0.15);
   color: var(--blue);
