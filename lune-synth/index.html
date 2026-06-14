@@ -4933,6 +4933,356 @@
       box-shadow: 0 0 20px rgba(217, 106, 140, 0.08);
     }
 
+    .engine-system {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .engine-panel,
+    .engine-visual {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(164, 123, 255, 0.18);
+      background:
+        radial-gradient(520px 260px at 12% 0%, rgba(100, 168, 255, 0.12), transparent 62%),
+        radial-gradient(460px 260px at 92% 100%, rgba(255, 93, 135, 0.1), transparent 60%),
+        linear-gradient(180deg, rgba(10, 20, 40, 0.82), rgba(6, 13, 28, 0.94));
+      box-shadow: var(--glow);
+      backdrop-filter: blur(10px);
+    }
+
+    .engine-panel > *,
+    .engine-visual > * {
+      position: relative;
+      z-index: 3;
+    }
+
+    html[data-theme="light"] .engine-panel,
+    html[data-theme="light"] .engine-visual {
+      border-color: rgba(127, 99, 214, 0.14);
+      background:
+        radial-gradient(520px 260px at 12% 0%, rgba(79, 132, 214, 0.1), transparent 62%),
+        radial-gradient(460px 260px at 92% 100%, rgba(217, 106, 140, 0.08), transparent 60%),
+        linear-gradient(180deg, rgba(255, 253, 250, 0.96), rgba(245, 239, 247, 0.92));
+      box-shadow:
+        0 18px 36px rgba(138, 151, 181, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+    }
+
+    .engine-panel {
+      min-height: 360px;
+      padding: clamp(24px, 4vw, 42px);
+      border-radius: 24px;
+      display: grid;
+      align-content: space-between;
+      gap: 28px;
+    }
+
+    .engine-panel h3 {
+      margin: 0;
+      max-width: 620px;
+      color: var(--text);
+      font-size: clamp(34px, 5.2vw, 64px);
+      line-height: 0.98;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .engine-panel p {
+      margin: 20px 0 0;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.7vw, 19px);
+      line-height: 1.72;
+    }
+
+    .engine-visual {
+      min-height: 360px;
+      padding: clamp(20px, 3vw, 28px);
+      border-radius: 24px;
+      display: grid;
+      grid-template-rows: 1fr;
+      gap: 18px;
+    }
+
+    .engine-visual::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      z-index: 1;
+      border-radius: 18px;
+      background:
+        linear-gradient(rgba(100, 168, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100, 168, 255, 0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 78%);
+      opacity: 0.8;
+    }
+
+    .engine-infographic {
+      position: relative;
+      min-height: 280px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+      padding-top: 34px;
+    }
+
+    .engine-infographic::before {
+      content: "";
+      position: absolute;
+      left: 12.5%;
+      right: 12.5%;
+      top: 14px;
+      height: 3px;
+      z-index: 1;
+      border-radius: 999px;
+      background:
+        linear-gradient(90deg, rgba(100, 168, 255, 0.18), rgba(164, 123, 255, 0.38), rgba(255, 93, 135, 0.22)),
+        rgba(255, 255, 255, 0.04);
+      box-shadow: 0 0 18px rgba(100, 168, 255, 0.16);
+    }
+
+    .engine-stage {
+      position: relative;
+      z-index: 2;
+      min-height: 230px;
+      padding: 14px;
+      border: 1px solid rgba(100, 168, 255, 0.18);
+      border-radius: 18px;
+      background:
+        radial-gradient(160px 110px at 50% 0%, rgba(100, 168, 255, 0.1), transparent 70%),
+        rgba(5, 12, 26, 0.78);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 16px 36px rgba(4, 10, 24, 0.22);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
+      animation: engineStagePulse 5.6s ease-in-out infinite;
+    }
+
+    .engine-stage::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -28px;
+      z-index: 3;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(237, 245, 255, 0.72);
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(100, 168, 255, 0.92), rgba(164, 123, 255, 0.9));
+      box-shadow:
+        0 0 0 6px rgba(100, 168, 255, 0.08),
+        0 0 18px rgba(100, 168, 255, 0.24);
+      transform: translateX(-50%);
+    }
+
+    .engine-stage:nth-child(2) { animation-delay: 0.35s; }
+    .engine-stage:nth-child(3) { animation-delay: 0.7s; }
+    .engine-stage:nth-child(4) { animation-delay: 1.05s; }
+
+    html[data-theme="light"] .engine-stage {
+      background:
+        radial-gradient(160px 110px at 50% 0%, rgba(79, 132, 214, 0.08), transparent 70%),
+        rgba(255, 255, 255, 0.76);
+      border-color: rgba(79, 132, 214, 0.14);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        0 16px 30px rgba(151, 164, 192, 0.1);
+    }
+
+    html[data-theme="light"] .engine-stage::before {
+      border-color: rgba(255, 255, 255, 0.86);
+      box-shadow:
+        0 0 0 6px rgba(79, 132, 214, 0.08),
+        0 0 18px rgba(79, 132, 214, 0.18);
+    }
+
+    .engine-stage__label {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .engine-stage__title {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .engine-stage__detail {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .engine-work-preview,
+    .engine-rubric-preview,
+    .engine-check-preview,
+    .engine-practice-preview {
+      align-self: center;
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(164, 123, 255, 0.12);
+    }
+
+    html[data-theme="light"] .engine-work-preview,
+    html[data-theme="light"] .engine-rubric-preview,
+    html[data-theme="light"] .engine-check-preview,
+    html[data-theme="light"] .engine-practice-preview {
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .engine-work-line,
+    .engine-rubric-row span:last-child {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(166, 186, 215, 0.2);
+    }
+
+    .engine-work-line {
+      animation: engineLineScan 3.6s ease-in-out infinite;
+    }
+
+    .engine-work-line:nth-child(1) { width: 88%; }
+    .engine-work-line:nth-child(2) { width: 62%; animation-delay: 0.25s; }
+    .engine-work-line:nth-child(3) { width: 78%; background: rgba(255, 93, 135, 0.24); animation-delay: 0.5s; }
+    .engine-work-line:nth-child(4) { width: 54%; animation-delay: 0.75s; }
+
+    .engine-rubric-row {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .engine-rubric-row span:first-child {
+      width: 18px;
+      height: 18px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      box-shadow: 0 0 12px rgba(100, 168, 255, 0.18);
+    }
+
+    .engine-check-preview {
+      gap: 12px;
+    }
+
+    .engine-meter {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(166, 186, 215, 0.16);
+      overflow: hidden;
+    }
+
+    .engine-meter__fill {
+      display: block;
+      width: 74%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--red));
+      animation: engineMeter 4.8s ease-in-out infinite;
+    }
+
+    .engine-check-pill,
+    .engine-practice-pill {
+      min-height: 26px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255, 93, 135, 0.1);
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .engine-practice-pill {
+      background: rgba(100, 168, 255, 0.12);
+    }
+
+    .engine-stage--route .engine-practice-preview {
+      width: min(100%, 132px);
+      justify-self: center;
+      justify-items: stretch;
+      gap: 6px;
+      padding: 10px;
+    }
+
+    .engine-stage--route .engine-practice-pill {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
+      padding: 6px 7px;
+      font-size: 9px;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+
+    .engine-token {
+      position: absolute;
+      z-index: 4;
+      top: 7px;
+      left: 12.5%;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--purple), var(--red));
+      box-shadow:
+        0 0 0 6px rgba(100, 168, 255, 0.08),
+        0 0 22px rgba(100, 168, 255, 0.28);
+      transform: translate(-50%, 0);
+      animation: engineTokenMove 5.8s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+    }
+
+    .engine-token--two {
+      animation-delay: 1.45s;
+      opacity: 0.78;
+    }
+
+    .engine-token--three {
+      animation-delay: 2.9s;
+      opacity: 0.58;
+    }
+
+    @keyframes engineStagePulse {
+      0%, 100% { border-color: rgba(100, 168, 255, 0.18); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 36px rgba(4, 10, 24, 0.22); }
+      50% { border-color: rgba(164, 123, 255, 0.3); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 40px rgba(4, 10, 24, 0.25), 0 0 22px rgba(100, 168, 255, 0.08); }
+    }
+
+    @keyframes engineLineScan {
+      0%, 100% { opacity: 0.56; transform: scaleX(0.82); transform-origin: left; }
+      50% { opacity: 1; transform: scaleX(1); }
+    }
+
+    @keyframes engineMeter {
+      0%, 100% { width: 62%; }
+      50% { width: 82%; }
+    }
+
+    @keyframes engineTokenMove {
+      0% { left: 12.5%; transform: translate(-50%, 0) scale(0.7); opacity: 0; }
+      9% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      31% { left: 37.5%; }
+      58% { left: 62.5%; }
+      84% { left: 87.5%; opacity: 1; transform: translate(-50%, 0) scale(1); }
+      100% { left: 87.5%; opacity: 0; transform: translate(-50%, 0) scale(0.7); }
+    }
+
     .note-card {
       padding: 24px;
       background: var(--glass);
@@ -5117,6 +5467,11 @@
       .timeline-item {
         grid-template-columns: 1fr;
       }
+
+      .engine-system {
+        grid-template-columns: 1fr;
+      }
+
     }
 
     @media (max-width: 640px) {
@@ -5319,6 +5674,51 @@
 
       .hero {
         gap: 18px;
+      }
+
+      .engine-panel,
+      .engine-visual {
+        min-height: auto;
+        border-radius: 20px;
+      }
+
+      .engine-panel {
+        padding: 22px;
+      }
+
+      .engine-panel h3 {
+        font-size: clamp(34px, 12vw, 46px);
+      }
+
+      .engine-infographic {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 14px;
+        padding-top: 0;
+        padding-left: 34px;
+      }
+
+      .engine-infographic::before {
+        left: 16px;
+        right: auto;
+        top: 20px;
+        bottom: 20px;
+        width: 2px;
+        height: auto;
+      }
+
+      .engine-stage {
+        min-height: 160px;
+      }
+
+      .engine-stage::before {
+        left: -18px;
+        top: 22px;
+        transform: translateX(-50%);
+      }
+
+      .engine-token {
+        display: none;
       }
 
       .hero-brandline {
@@ -5870,6 +6270,10 @@
       .processing-scene__step-line,
       .hero .hero-tagline span,
       .hero-app-icon,
+      .engine-stage,
+      .engine-work-line,
+      .engine-meter__fill,
+      .engine-token,
       .voice-scene__ipad::before {
         animation: none;
       }
@@ -7144,6 +7548,24 @@
       white-space: nowrap;
     }
 
+    .lost-cosmos__contrast span:nth-child(1) {
+      color: var(--red);
+      border-color: color-mix(in srgb, var(--red) 40%, transparent);
+      background: color-mix(in srgb, var(--red) 12%, rgba(8, 10, 22, 0.6));
+    }
+
+    .lost-cosmos__contrast span:nth-child(2) {
+      color: var(--purple);
+      border-color: color-mix(in srgb, var(--purple) 40%, transparent);
+      background: color-mix(in srgb, var(--purple) 12%, rgba(8, 10, 22, 0.6));
+    }
+
+    .lost-cosmos__contrast span:nth-child(3) {
+      color: var(--blue);
+      border-color: color-mix(in srgb, var(--blue) 40%, transparent);
+      background: color-mix(in srgb, var(--blue) 12%, rgba(8, 10, 22, 0.6));
+    }
+
     @media (max-width: 900px) {
       .lost-cosmos__content {
         gap: 26px;
@@ -7964,9 +8386,9 @@
               Focus scatters. Learning apps dazzle, then fail. AI does the thinking instead of the student.
             </p>
             <div class="lost-cosmos__contrast" aria-label="Common struggles">
-              <span>Scattered focus</span>
-              <span>Flash over function</span>
-              <span>AI slop that cheats</span>
+              <span>1. Scattered focus</span>
+              <span>2. Flash over function</span>
+              <span>3. AI slop that cheats</span>
             </div>
           </div>
         </div>
@@ -8879,7 +9301,7 @@
 
     <!-- ================= METALS/ACHIEVEMENT MEDALS SECTION ================= -->
     <section class="section section--medals" id="medals-showcase" aria-labelledby="medals-title">
-      <h2 class="section-title" id="medals-title">Earn 200+ Cosmic Medals</h2>
+      <h2 class="section-title" id="medals-title">Earn 100+ Cosmic Medals</h2>
       
       <div class="medals-layout section-content">
         
@@ -9764,57 +10186,62 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="engine-title">
-      <h2 class="section-title" id="engine-title">The Neuro-Symbolic Engine</h2>
-      <div class="note-card section-content" data-liquid-glass>
-        <p>
-          Lune Synth&trade; is built on a unique Neuro-Symbolic AI architecture designed to move beyond "vibes" and
-          statistical guesses.
-        </p>
-      </div>
-      <!-- DISABLED: <div class="lune-engine-stage" data-lune-engine></div> -->
-      <div class="timeline section-content">
-        <div class="timeline-item timeline-item--moon" data-liquid-glass>
-          <span>Rubric-Grounded Scoring</span>
-          <p>
-            The system reads handwritten work, maps each step to explicit rubric rules, and keeps interpretation
-            separate from scoring so feedback has a clear basis.
-          </p>
+    <section class="section section--engine" aria-labelledby="engine-title">
+      <h2 class="section-title" id="engine-title">Engine</h2>
+      <div class="engine-system section-content">
+        <div class="engine-panel" data-liquid-glass>
+          <div>
+            <h3>Built to fight slop.</h3>
+            <p>
+              Well-architected AI keeps the grade tied to the work. Lune Synth&trade; reads messy submissions,
+              scores from rubric evidence, checks for obvious conflicts, and lowers confidence when the answer is unclear.
+            </p>
+          </div>
         </div>
-        <div class="timeline-item timeline-item--comet" data-liquid-glass>
-          <span>Designed to Reduce Grading Slop</span>
-          <p>
-            Instead of relying on plausible guesses, the grading flow checks work against defined criteria.
-            Mistakes are surfaced with supporting evidence, with review paths when a closer look is needed.
-          </p>
-        </div>
-        <div class="timeline-item timeline-item--constellation" data-liquid-glass>
-          <span>Explicit Rules, Not Vibes</span>
-          <p>
-            Students get step-level feedback grounded in visible reasoning, so they can understand what to fix next.
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <section class="section" aria-labelledby="delivery-title">
-      <h2 class="section-title" id="delivery-title">Delivery Model</h2>
-      <div class="timeline section-content">
-        <div class="timeline-item timeline-item--moon" data-liquid-glass>
-          <span>Think on Paper</span>
-          <p>Students do the work first, then use AI to sharpen it.</p>
-        </div>
-        <div class="timeline-item timeline-item--comet" data-liquid-glass>
-          <span>Read the Work</span>
-          <p>Vision turns handwritten reasoning into clean, checkable steps.</p>
-        </div>
-        <div class="timeline-item timeline-item--constellation" data-liquid-glass>
-          <span>Grade the Reasoning</span>
-          <p>Each step is checked for correctness, not vibes.</p>
-        </div>
-        <div class="timeline-item timeline-item--orbit" data-liquid-glass>
-          <span>Practice What Matters</span>
-          <p>Targeted drills, streaks, and progress loops keep students moving.</p>
+        <div class="engine-panel engine-visual" data-liquid-glass aria-label="Lune Synth grading guardrails diagram">
+          <div class="engine-infographic" aria-hidden="true">
+            <article class="engine-stage">
+              <span class="engine-stage__label">01 Read</span>
+              <div class="engine-work-preview">
+                <span class="engine-work-line"></span>
+                <span class="engine-work-line"></span>
+                <span class="engine-work-line"></span>
+                <span class="engine-work-line"></span>
+              </div>
+              <span class="engine-stage__title">Messy Work In</span>
+            </article>
+            <article class="engine-stage">
+              <span class="engine-stage__label">02 Match</span>
+              <div class="engine-rubric-preview">
+                <span class="engine-rubric-row"><span></span><span></span></span>
+                <span class="engine-rubric-row"><span></span><span></span></span>
+                <span class="engine-rubric-row"><span></span><span></span></span>
+              </div>
+              <span class="engine-stage__title">Rubric Evidence</span>
+            </article>
+            <article class="engine-stage">
+              <span class="engine-stage__label">03 Check</span>
+              <div class="engine-check-preview">
+                <span class="engine-meter"><span class="engine-meter__fill"></span></span>
+                <span class="engine-check-pill">Confidence Gate</span>
+                <span class="engine-check-pill">Conflict Check</span>
+              </div>
+              <span class="engine-stage__title">Score Has to Line Up</span>
+            </article>
+            <article class="engine-stage engine-stage--route">
+              <span class="engine-stage__label">04 Route</span>
+              <div class="engine-practice-preview">
+                <span class="engine-practice-pill">Correction</span>
+                <span class="engine-practice-pill">Quick Mission</span>
+                <span class="engine-practice-pill">Constellation Step</span>
+              </div>
+              <span class="engine-stage__title">Next Move Out</span>
+            </article>
+            <span class="engine-token"></span>
+            <span class="engine-token engine-token--two"></span>
+            <span class="engine-token engine-token--three"></span>
+          </div>
         </div>
       </div>
     </section>
