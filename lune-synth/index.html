@@ -6083,7 +6083,26 @@
       z-index: 10;
     }
 
-    /* User GIF Target Class */
+    .ipad-video-thumbnail {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(10px) saturate(0.9);
+      transform: scale(1.08);
+      opacity: 1;
+      transition: opacity 320ms ease, visibility 320ms ease;
+      pointer-events: none;
+    }
+
+    .ipad-video-thumbnail.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
     .ipad-gif-target {
       position: absolute;
       inset: 0;
@@ -6091,7 +6110,13 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      z-index: 5; /* sits above the CSS/SVG fallback content */
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 320ms ease;
+    }
+
+    .ipad-gif-target.is-ready {
+      opacity: 1;
     }
 
     .ipad-preview-layout {
@@ -7758,106 +7783,59 @@
                 <!-- Screen Content Frame -->
                 <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
 
-                  <!-- PLACEHOLDER / BACKUP CONTENT:
-                       This renders beautifully out-of-the-box using CSS & inline SVGs.
-                       When you want to use your iPad GIFs, uncomment the <img> line below
-                       and give it your gif source path. It will cover the backup content automatically! -->
-
-                  <!-- <img src="your-ipad-mock-gif.gif" alt="iPad Progress Mock" class="ipad-gif-target" /> -->
-
                   <!-- Step 1 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-1">
-                    <!-- High-performance web-optimized video element -->
-                    <video loop muted playsinline preload="none" class="ipad-gif-target">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-thumb.jpg" data-video-thumbnail="step1Video" alt="" aria-hidden="true">
+                    <video id="step1Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-1.webm" type="video/webm">
                       <source src="screenshots/applied/step-1.mp4" type="video/mp4">
                     </video>
-                    <div class="brand" style="justify-content: center; margin-bottom: 8px;">
-                      <svg viewBox="0 0 64 64" width="32" height="32" style="fill: var(--blue);">
-                        <path d="M32,2 C15.4,2 2,15.4 2,32 C2,48.6 15.4,62 32,62 C48.6,62 62,48.6 62,32 C62,15.4 48.6,2 32,2 Z" fill="rgba(100,168,255,0.06)" stroke="var(--blue)" stroke-width="1.5" />
-                        <circle cx="32" cy="32" r="12" fill="var(--blue)" />
-                      </svg>
-                    </div>
-                    <h3 style="margin: 0; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;">Luna Synthesizer</h3>
-                    <p style="font-size: 9.5px; color: var(--muted); max-width: 160px; margin: 8px 0 0 0; line-height: 1.5;">
-                      Upload course documents, syllabi, or notes. <br>
-                      <span style="color: var(--blue); font-family: monospace; font-size: 8.5px;">"Luna: Mapping 12 logical skills..."</span>
-                    </p>
-                    <div style="margin-top: 14px; width: 70px; height: 2px; background: linear-gradient(90deg, transparent, var(--blue), transparent); border-radius: 99px;"></div>
                   </div>
 
                   <!-- Step 2 Preview Screen (Includes interactive theme selector buttons) -->
                   <div class="ipad-preview-layout" id="previewStep-2" style="display: none;">
-                    <!-- Per-theme screen recordings. selectSkyTheme() shows + plays the one
-                         matching the picked theme; Earth & Venus have no clip and fall back
-                         to the CSS/SVG theme rendering. JS controls playback (no autoplay). -->
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-math-sky-thumb.jpg" data-video-thumbnail="step2Video-math" alt="" aria-hidden="true" style="display: none;">
                     <video id="step2Video-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-2-math-sky.webm" type="video/webm">
                       <source src="screenshots/applied/step-2-math-sky.mp4" type="video/mp4">
                     </video>
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-retro-sky-thumb.jpg" data-video-thumbnail="step2Video-retro" alt="" aria-hidden="true" style="display: none;">
                     <video id="step2Video-retro" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-2-retro-sky.webm" type="video/webm">
                       <source src="screenshots/applied/step-2-retro-sky.mp4" type="video/mp4">
                     </video>
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-big-bang-thumb.jpg" data-video-thumbnail="step2Video-bigbang" alt="" aria-hidden="true" style="display: none;">
                     <video id="step2Video-bigbang" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-2-big-bang.webm" type="video/webm">
                       <source src="screenshots/applied/step-2-big-bang.mp4" type="video/mp4">
                     </video>
-                    <!-- Dynamic background components representing audited sky files -->
-                    <div class="math-strata" id="mathGridHolo" style="display: none;"></div>
-                    <div class="retro-grid-plane" id="retroGridHolo" style="display: none;"></div>
-                    <div class="bigbang-flare" id="bigbangFlareHolo" style="display: none;"></div>
-
                   </div>
 
                   <!-- Step 3 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-3" style="display: none;">
-                    <!-- High-performance web-optimized video element -->
-                    <video loop muted playsinline preload="none" class="ipad-gif-target">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-3-thumb.jpg" data-video-thumbnail="step3Video" alt="" aria-hidden="true">
+                    <video id="step3Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-3.webm" type="video/webm">
                       <source src="screenshots/applied/step-3.mp4" type="video/mp4">
                     </video>
-                    <svg viewBox="0 0 400 200" width="150" height="75" fill="none" style="margin-bottom: 8px;">
-                      <path d="M 50 100 C 130 30 270 170 350 100" stroke="rgba(255,255,255,0.15)" stroke-width="3" stroke-dasharray="8 6" />
-                      <!-- Floating Nodes -->
-                      <circle cx="50" cy="100" r="12" fill="rgba(164, 123, 255, 0.2)" stroke="var(--purple)" stroke-width="2" />
-                      <circle cx="200" cy="100" r="14" fill="rgba(100, 168, 255, 0.2)" stroke="var(--blue)" stroke-width="2" />
-                      <circle cx="350" cy="100" r="16" fill="rgba(255, 215, 0, 0.2)" stroke="#ffd700" stroke-width="2" />
-                    </svg>
-                    <h3 style="margin: 0; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); font-weight: 700;">Mission Path</h3>
-                    <p style="font-size: 9px; color: var(--muted); margin-top: 4px;">Asteroid &rarr; Planet &rarr; Star</p>
                   </div>
 
                   <!-- Step 4 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-4" style="display: none;">
-                    <!-- High-performance web-optimized video element -->
-                    <video loop muted playsinline preload="none" class="ipad-gif-target">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-4-thumb.jpg" data-video-thumbnail="step4Video" alt="" aria-hidden="true">
+                    <video id="step4Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-4.webm" type="video/webm">
                       <source src="screenshots/applied/step-4.mp4" type="video/mp4">
                     </video>
-                    <div style="border: 1px solid rgba(100, 168, 255, 0.25); background: rgba(10, 20, 40, 0.6); padding: 10px; border-radius: 8px; width: 150px;">
-                      <h3 style="margin: 0; font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--blue); font-weight: bold;">Galaxy Evaluation</h3>
-                      <div style="font-size: 22px; font-weight: 800; color: #ffffff; margin: 4px 0;">86%</div>
-                      <span style="font-size: 8px; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 1px 6px; border-radius: 99px; font-weight: bold; border: 1px solid rgba(16, 185, 129, 0.3);">PASSED GATE</span>
-                    </div>
-                    <p style="font-size: 9px; color: var(--muted); margin-top: 8px; max-width: 150px; line-height: 1.4;">Validates a cluster of 3 to 5 conceptual skills simultaneously.</p>
                   </div>
 
                   <!-- Step 5 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-5" style="display: none;">
-                    <!-- High-performance web-optimized video element -->
-                    <video loop muted playsinline preload="none" class="ipad-gif-target">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-5-thumb.jpg" data-video-thumbnail="step5Video" alt="" aria-hidden="true">
+                    <video id="step5Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-5.webm" type="video/webm">
                       <source src="screenshots/applied/step-5.mp4" type="video/mp4">
                     </video>
-                    <svg viewBox="0 0 60 60" width="48" height="48" style="margin-bottom: 6px;">
-                      <circle cx="30" cy="30" r="28" fill="rgba(255, 215, 0, 0.04)" stroke="#ffd700" stroke-width="1" stroke-dasharray="3 3" />
-                      <!-- Holo Lock -->
-                      <rect x="22" y="26" width="16" height="12" rx="1.5" fill="rgba(0,0,0,0.8)" stroke="#ffd700" stroke-width="1.2" />
-                      <path d="M 26 26 V 21 A 4,4 0 0,1 34 21 V 26" stroke="#ffd700" stroke-width="1.2" fill="none" />
-                    </svg>
-                    <h3 style="margin: 0; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #ffd700; font-weight: 700;">Supercluster Capstone</h3>
-                    <p style="font-size: 9px; color: var(--muted); margin-top: 4px; max-width: 150px; line-height: 1.4;">All 10-15 skills confirmed at &ge;85% EMA.</p>
                   </div>
 
                 </div>
@@ -9070,6 +9048,33 @@
   let activeSlideshowStep = 1;
   let isStudyUniverseInView = false;
 
+  function initIpadVideoLoadingStates() {
+    document.querySelectorAll('#ipadScreenCanvas video.ipad-gif-target').forEach(video => {
+      const thumbnail = document.querySelector('[data-video-thumbnail="' + video.id + '"]');
+      if (!thumbnail) return;
+
+      const showVideo = () => {
+        if (video.readyState < 2) return;
+        video.classList.add('is-ready');
+        thumbnail.classList.add('is-hidden');
+      };
+
+      const showThumbnail = () => {
+        video.classList.remove('is-ready');
+        thumbnail.classList.remove('is-hidden');
+      };
+
+      video.addEventListener('loadstart', showThumbnail);
+      video.addEventListener('emptied', showThumbnail);
+      video.addEventListener('loadeddata', showVideo);
+      video.addEventListener('canplay', showVideo);
+
+      if (video.readyState >= 2) showVideo();
+    });
+  }
+
+  initIpadVideoLoadingStates();
+
   function playPreviewVideo(video, shouldPlay) {
     if (!video) return;
 
@@ -9194,14 +9199,17 @@
     const activeVid = themeVideos[skyTheme] || null;
     Object.values(themeVideos).forEach(v => {
       if (!v) return;
+      const thumbnail = document.querySelector('[data-video-thumbnail="' + v.id + '"]');
       if (v === activeVid) {
         v.style.display = 'block';
+        if (thumbnail) thumbnail.style.display = 'block';
         if (isStudyUniverseInView && activeSlideshowStep === 2) {
           v.currentTime = 0;
         }
       } else {
         v.pause();
         v.style.display = 'none';
+        if (thumbnail) thumbnail.style.display = 'none';
       }
     });
 
