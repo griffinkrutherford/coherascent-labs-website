@@ -550,5 +550,26 @@
     });
   });
 
+  Array.prototype.forEach.call(document.querySelectorAll(phoneSelector), function (trigger) {
+    if (trigger.classList.contains("phone-mock-trigger")) return;
+
+    trigger.classList.add("phone-mock-trigger");
+    trigger.setAttribute("role", "button");
+    trigger.setAttribute("tabindex", "0");
+    if (!trigger.getAttribute("aria-label")) {
+      trigger.setAttribute("aria-label", "Open phone mock");
+    }
+
+    trigger.addEventListener("click", function () {
+      openModal(trigger);
+    });
+
+    trigger.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openModal(trigger);
+    });
+  });
+
   lazyLoadScreenshots(screenshotItems);
 })();
