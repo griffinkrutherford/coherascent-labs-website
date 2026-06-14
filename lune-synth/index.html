@@ -373,6 +373,62 @@
       border-color: rgba(46, 106, 168, 0.18);
     }
 
+    /* Hamburger toggle (mobile only) */
+    .nav-toggle {
+      display: none;
+      position: relative;
+      z-index: 100;
+      width: 46px;
+      height: 46px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 14px;
+      border: 1px solid rgba(102, 179, 255, 0.22);
+      background: rgba(11, 16, 30, 0.5);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    html[data-theme="light"] .nav-toggle {
+      background: rgba(255, 255, 255, 0.64);
+      border-color: rgba(46, 106, 168, 0.18);
+    }
+
+    .nav-toggle__bars,
+    .nav-toggle__bars::before,
+    .nav-toggle__bars::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 2px;
+      margin: -1px 0 0 -10px;
+      border-radius: 2px;
+      background: currentColor;
+      transition: transform 0.3s ease, background 0.2s ease;
+    }
+
+    .nav-toggle__bars::before,
+    .nav-toggle__bars::after {
+      content: "";
+    }
+
+    .nav-toggle__bars::before { transform: translateY(-6px); }
+    .nav-toggle__bars::after { transform: translateY(6px); }
+
+    .site-header.nav-open .nav-toggle__bars {
+      background: transparent;
+    }
+
+    .site-header.nav-open .nav-toggle__bars::before {
+      transform: rotate(45deg);
+    }
+
+    .site-header.nav-open .nav-toggle__bars::after {
+      transform: rotate(-45deg);
+    }
+
     .hero,
     .detail-card,
     .note-card {
@@ -4053,7 +4109,8 @@
     .processing-scene__screen,
     .feedback-scene__screen,
     .voice-scene__screen,
-    .response-carousel__question-screen {
+    .response-carousel__question-screen,
+    .quick-missions__phone-screen {
       box-shadow:
         0 0 0 1px rgba(7, 11, 18, 0.88),
         0 0 0 2px rgba(255, 255, 255, 0.03),
@@ -4066,7 +4123,8 @@
     html[data-theme="light"] .processing-scene__screen,
     html[data-theme="light"] .feedback-scene__screen,
     html[data-theme="light"] .voice-scene__screen,
-    html[data-theme="light"] .response-carousel__question-screen {
+    html[data-theme="light"] .response-carousel__question-screen,
+    html[data-theme="light"] .quick-missions__phone-screen {
       box-shadow:
         0 0 0 1px rgba(200, 211, 230, 0.88),
         0 0 0 2px rgba(255, 255, 255, 0.34),
@@ -5057,16 +5115,71 @@
       }
 
       .brand {
-        gap: 12px;
+        gap: clamp(8px, 2.5vw, 12px);
+        min-width: 0;
       }
 
       .brand img {
-        width: 52px;
-        height: 52px;
+        width: clamp(40px, 11vw, 52px);
+        height: clamp(40px, 11vw, 52px);
+        flex-shrink: 0;
       }
 
       .brand h1 {
+        font-size: clamp(12px, 3.4vw, 16px);
+        letter-spacing: 0.12em;
+        white-space: nowrap;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      /* Hide the hamburger while the Coherascent Labs dropdown overlay is open */
+      .brand-dropdown:hover ~ .nav-toggle,
+      .brand-dropdown:focus-within ~ .nav-toggle {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+        margin: 0;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: stretch;
+        gap: 14px;
+        padding: max(96px, env(safe-area-inset-top)) 24px max(32px, env(safe-area-inset-bottom));
+        background: rgba(6, 8, 16, 0.92);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        z-index: 90;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+        overflow-y: auto;
+      }
+
+      html[data-theme="light"] .nav-links {
+        background: rgba(246, 249, 255, 0.96);
+      }
+
+      .site-header.nav-open .nav-links {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-links .nav-link {
+        justify-content: center;
+        padding: 18px 22px;
+        border-radius: 16px;
         font-size: 16px;
+        letter-spacing: 0.08em;
       }
 
       .hero {
@@ -6220,6 +6333,696 @@
     }
 
     /* ==========================================================================
+       Quick Missions Section
+       ========================================================================== */
+    .section--quick-missions {
+      margin-top: clamp(72px, 10vh, 120px);
+      margin-bottom: clamp(72px, 10vh, 120px);
+      display: grid;
+      gap: clamp(22px, 3vh, 34px);
+      position: relative;
+      width: 100%;
+      padding: 8px 0;
+    }
+
+    #quick-missions-title {
+      scroll-margin-top: var(--sticky-header-height, 106px);
+    }
+
+    .quick-missions {
+      position: relative;
+      isolation: isolate;
+      min-height: clamp(680px, 78svh, 840px);
+      overflow: hidden;
+      border: 1px solid rgba(164, 190, 255, 0.26);
+      border-radius: 30px;
+      background: #080b18;
+      box-shadow:
+        0 34px 90px rgba(3, 7, 20, 0.58),
+        0 0 70px rgba(100, 168, 255, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .quick-missions__video,
+    .quick-missions__veil {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .quick-missions__video {
+      z-index: -3;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.9) contrast(1.04);
+      transform: scale(1.015);
+    }
+
+    .quick-missions__veil {
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(4, 7, 17, 0.42) 0%, rgba(5, 8, 20, 0.3) 30%, rgba(5, 9, 22, 0.84) 68%, rgba(3, 7, 18, 0.97) 100%),
+        linear-gradient(180deg, rgba(4, 7, 18, 0.34) 0%, rgba(4, 7, 18, 0.16) 40%, rgba(3, 6, 16, 0.94) 100%);
+    }
+
+    .quick-missions__veil::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 16% 24%, rgba(100, 168, 255, 0.2), transparent 32%),
+        radial-gradient(circle at 84% 24%, rgba(255, 93, 135, 0.12), transparent 30%);
+      mix-blend-mode: screen;
+    }
+
+    .quick-missions__content {
+      min-height: inherit;
+      display: grid;
+      grid-template-columns: minmax(250px, 0.62fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(34px, 6vw, 92px);
+      padding: clamp(34px, 5vw, 68px);
+    }
+
+    .quick-missions__intro {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      width: min(620px, 100%);
+      color: #f4f7ff;
+      text-align: right;
+      text-shadow: 0 2px 24px rgba(1, 4, 12, 0.7);
+    }
+
+    .quick-missions__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 16px;
+      color: #a9d2ff;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .quick-missions__eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #80bdff;
+      box-shadow: 0 0 14px rgba(128, 189, 255, 0.95);
+    }
+
+    .quick-missions__headline {
+      max-width: 560px;
+      margin: 0 0 0 auto;
+      color: #ffffff;
+      font-size: clamp(34px, 4.5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      text-transform: none;
+    }
+
+    .quick-missions__lede {
+      max-width: 570px;
+      margin: 20px 0 0 auto;
+      color: rgba(232, 240, 255, 0.82);
+      font-family: var(--font-sans);
+      font-size: clamp(14px, 1.25vw, 17px);
+      line-height: 1.7;
+    }
+
+    .quick-missions__contrast {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .quick-missions__contrast span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 31px;
+      padding: 7px 11px;
+      border: 1px solid rgba(184, 211, 255, 0.2);
+      border-radius: 999px;
+      background: rgba(6, 12, 28, 0.5);
+      color: rgba(237, 245, 255, 0.84);
+      backdrop-filter: blur(12px);
+      font-family: var(--font-sans);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.025em;
+    }
+
+    .quick-missions__device-column {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      justify-self: center;
+      gap: 18px;
+    }
+
+    .quick-missions__device-column::before {
+      content: "";
+      position: absolute;
+      top: 14%;
+      left: 50%;
+      width: min(390px, 34vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(100, 168, 255, 0.2), rgba(164, 123, 255, 0.08) 42%, transparent 70%);
+      filter: blur(28px);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .quick-missions__phone {
+      --quick-phone-scale: 1.68;
+      --phone-side-offset: calc(var(--workflow-phone-shell-padding) * var(--quick-phone-scale) * -1.5);
+      --phone-button-width: calc(var(--workflow-phone-button-width) * var(--quick-phone-scale));
+      --phone-volume-top: calc(var(--workflow-phone-volume-top) * var(--quick-phone-scale));
+      --phone-volume-height: calc(var(--workflow-phone-volume-height) * var(--quick-phone-scale));
+      --phone-volume-gap: calc(var(--workflow-phone-volume-gap) * var(--quick-phone-scale));
+      --phone-power-top: calc(var(--workflow-phone-power-top) * var(--quick-phone-scale));
+      --phone-power-height: calc(var(--workflow-phone-power-height) * var(--quick-phone-scale));
+      position: relative;
+      z-index: 1;
+      width: calc(var(--workflow-phone-width) * var(--quick-phone-scale));
+      height: calc(var(--workflow-phone-height) * var(--quick-phone-scale));
+      aspect-ratio: var(--workflow-phone-ratio);
+      padding: calc(var(--workflow-phone-shell-padding) * var(--quick-phone-scale));
+      border: 1px solid rgb(56, 64, 80);
+      border-radius: calc(var(--workflow-phone-shell-radius) * var(--quick-phone-scale));
+      transform: rotate(-5deg);
+    }
+
+    .quick-missions__phone::before {
+      top: calc(var(--workflow-phone-island-top) * var(--quick-phone-scale));
+      width: calc(var(--workflow-phone-island-width) * var(--quick-phone-scale));
+      height: calc(var(--workflow-phone-island-height) * var(--quick-phone-scale) * 2);
+    }
+
+    .quick-missions__phone::after {
+      inset: calc(var(--workflow-phone-overlay-inset) * var(--quick-phone-scale));
+      border-radius: calc((var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset)) * var(--quick-phone-scale));
+    }
+
+    .quick-missions__phone-screen {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: calc(var(--workflow-phone-screen-radius) * var(--quick-phone-scale));
+      background: #060a14;
+    }
+
+    .quick-missions__screen-view {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.025);
+      transition: opacity 260ms ease, visibility 260ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .quick-missions__screen-view.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .quick-missions__screen-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .quick-missions__screen-placeholder {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 72% 16%, rgba(164, 123, 255, 0.32), transparent 30%),
+        radial-gradient(circle at 22% 38%, rgba(100, 168, 255, 0.24), transparent 34%),
+        linear-gradient(180deg, #111a32, #080c19 58%, #050711);
+    }
+
+    .quick-missions__screen-placeholder::before,
+    .quick-missions__screen-placeholder::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(174, 204, 255, 0.15);
+      background: rgba(9, 16, 34, 0.72);
+      box-shadow: 0 14px 30px rgba(1, 4, 12, 0.24);
+    }
+
+    .quick-missions__screen-placeholder--carousel::before {
+      inset: 27% 12% 30%;
+      border-radius: 18px;
+      transform: rotate(-2deg);
+    }
+
+    .quick-missions__screen-placeholder--carousel::after {
+      inset: 31% 7% 26%;
+      z-index: -1;
+      border-radius: 18px;
+      transform: rotate(5deg);
+    }
+
+    .quick-missions__screen-placeholder--grid {
+      background:
+        linear-gradient(rgba(100, 168, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100, 168, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 68% 20%, rgba(164, 123, 255, 0.28), transparent 30%),
+        linear-gradient(180deg, #10192f, #060914);
+      background-size: 32px 32px, 32px 32px, auto, auto;
+    }
+
+    .quick-missions__screen-placeholder--grid::before {
+      inset: 24% 9% 52% 9%;
+      border-radius: 14px;
+      box-shadow:
+        0 112px 0 rgba(9, 16, 34, 0.72),
+        0 112px 0 1px rgba(174, 204, 255, 0.15),
+        0 224px 0 rgba(9, 16, 34, 0.72),
+        0 224px 0 1px rgba(174, 204, 255, 0.15);
+    }
+
+    .quick-missions__screen-placeholder--grid::after {
+      display: none;
+    }
+
+    .quick-missions__view-toggle {
+      position: relative;
+      z-index: 2;
+      width: 190px;
+      height: 44px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 4px;
+      border: 1px solid rgba(191, 212, 255, 0.22);
+      border-radius: 999px;
+      background: rgba(5, 10, 24, 0.74);
+      box-shadow: 0 12px 26px rgba(1, 4, 12, 0.3);
+      backdrop-filter: blur(18px);
+      color: rgba(226, 238, 255, 0.58);
+      cursor: pointer;
+    }
+
+    .quick-missions__view-toggle::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 4px;
+      width: calc(50% - 4px);
+      border: 1px solid rgba(133, 190, 255, 0.32);
+      border-radius: 999px;
+      background: rgba(100, 168, 255, 0.18);
+      box-shadow: 0 0 18px rgba(100, 168, 255, 0.1);
+      transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .quick-missions__view-toggle[aria-pressed="true"]::before {
+      transform: translateX(100%);
+    }
+
+    .quick-missions__view-toggle span {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-sans);
+      font-size: 10.5px;
+      font-weight: 700;
+      transition: color 180ms ease;
+    }
+
+    .quick-missions__view-toggle[aria-pressed="false"] span:first-child,
+    .quick-missions__view-toggle[aria-pressed="true"] span:last-child {
+      color: #fff;
+    }
+
+    .quick-missions__view-toggle:hover {
+      border-color: rgba(133, 190, 255, 0.45);
+    }
+
+    .quick-missions__view-toggle:focus-visible {
+      outline: 2px solid #78b7ff;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 900px) {
+      .quick-missions {
+        min-height: 720px;
+      }
+
+      .quick-missions__content {
+        grid-template-columns: minmax(220px, 0.54fr) minmax(0, 1fr);
+        gap: 24px;
+        padding: 38px 28px 28px;
+      }
+
+      .quick-missions__intro {
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+      }
+
+      .quick-missions__device-column {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .quick-missions__video {
+        object-position: 58% center;
+      }
+
+      .quick-missions__veil {
+        background:
+          linear-gradient(90deg, rgba(4, 7, 17, 0.4) 0%, rgba(5, 9, 22, 0.7) 48%, rgba(3, 7, 18, 0.97) 100%),
+          linear-gradient(180deg, rgba(4, 7, 18, 0.34), rgba(3, 6, 16, 0.95));
+      }
+
+      .quick-missions__phone {
+        --quick-phone-scale: 1.5;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section--quick-missions {
+        margin-top: 68px;
+        margin-bottom: 68px;
+      }
+
+      .quick-missions {
+        min-height: 820px;
+        border-radius: 22px;
+      }
+
+      .quick-missions__content {
+        grid-template-columns: 1fr;
+        align-content: center;
+        gap: 42px;
+        padding: 38px 18px 34px;
+      }
+
+      .quick-missions__intro {
+        width: 100%;
+      }
+
+      .quick-missions__headline {
+        font-size: clamp(32px, 11vw, 46px);
+      }
+
+      .quick-missions__lede {
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .quick-missions__video {
+        object-position: 60% center;
+      }
+
+      .quick-missions__veil {
+        background:
+          linear-gradient(180deg, rgba(3, 7, 18, 0.7) 0%, rgba(4, 8, 20, 0.58) 42%, rgba(3, 6, 16, 0.94) 68%, rgba(3, 6, 16, 0.98) 100%),
+          linear-gradient(90deg, rgba(4, 7, 17, 0.34), rgba(3, 7, 18, 0.72));
+      }
+
+      .quick-missions__phone {
+        --quick-phone-scale: 1.3;
+        width: calc(var(--workflow-phone-width-mobile) * var(--quick-phone-scale));
+        height: calc(var(--workflow-phone-height-mobile) * var(--quick-phone-scale));
+        padding: calc(var(--workflow-phone-shell-padding) * var(--quick-phone-scale));
+        border-radius: calc(var(--workflow-phone-shell-radius) * var(--quick-phone-scale));
+        transform: rotate(-5deg);
+      }
+
+      .quick-missions__phone::before {
+        top: calc(var(--workflow-phone-island-top) * var(--quick-phone-scale));
+        width: calc(var(--workflow-phone-island-width) * var(--quick-phone-scale));
+        height: calc(var(--workflow-phone-island-height) * var(--quick-phone-scale) * 2);
+      }
+
+      .quick-missions__phone::after {
+        inset: calc(var(--workflow-phone-overlay-inset) * var(--quick-phone-scale));
+        border-radius: calc((var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset)) * var(--quick-phone-scale));
+      }
+
+      .quick-missions__phone-screen {
+        border-radius: calc(var(--workflow-phone-screen-radius) * var(--quick-phone-scale));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .quick-missions__video {
+        transform: none;
+      }
+
+      .quick-missions__phone,
+      .quick-missions__screen-view,
+      .quick-missions__view-toggle::before,
+      .quick-missions__view-toggle span {
+        transition: none;
+      }
+    }
+
+    /* ==========================================================================
+       Lost in the Cosmos / Study Crisis Section
+       (Problem statement before the solution components)
+       ========================================================================== */
+    .section--lost-cosmos {
+      margin-top: clamp(48px, 8vh, 96px);
+      margin-bottom: clamp(48px, 8vh, 96px);
+      display: grid;
+      gap: clamp(22px, 3vh, 34px);
+      position: relative;
+      width: 100%;
+      padding: 8px 0;
+    }
+
+    #lost-cosmos-title {
+      scroll-margin-top: var(--sticky-header-height, 106px);
+    }
+
+    .lost-cosmos {
+      position: relative;
+      isolation: isolate;
+      min-height: clamp(440px, 56svh, 600px);
+      overflow: hidden;
+      border: 1px solid rgba(120, 90, 160, 0.28);
+      border-radius: 30px;
+      background: #05070f;
+      box-shadow:
+        0 34px 90px rgba(2, 3, 12, 0.62),
+        0 0 80px rgba(164, 123, 255, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .lost-cosmos__video,
+    .lost-cosmos__veil {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .lost-cosmos__video {
+      z-index: -3;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.85) contrast(1.08) brightness(0.92);
+      transform: scale(1.02);
+    }
+
+    .lost-cosmos__veil {
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(3, 4, 14, 0.48) 0%, rgba(5, 6, 18, 0.32) 28%, rgba(4, 5, 16, 0.88) 65%, rgba(2, 3, 11, 0.98) 100%),
+        linear-gradient(180deg, rgba(3, 4, 15, 0.38) 0%, rgba(3, 4, 15, 0.18) 38%, rgba(2, 3, 10, 0.96) 100%);
+    }
+
+    .lost-cosmos__veil::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(164, 123, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 82% 26%, rgba(255, 93, 135, 0.14), transparent 28%),
+        radial-gradient(circle at 50% 82%, rgba(120, 90, 160, 0.12), transparent 32%);
+      mix-blend-mode: screen;
+    }
+
+    .lost-cosmos__content {
+      min-height: inherit;
+      display: grid;
+      justify-items: end;
+      align-items: center;
+      gap: clamp(30px, 5vw, 80px);
+      padding: clamp(32px, 4.5vw, 62px);
+    }
+
+    .lost-cosmos__intro {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: min(560px, 100%);
+      color: #f2f4ff;
+      text-align: right;
+      text-shadow: 0 2px 22px rgba(1, 3, 10, 0.65);
+    }
+
+    .lost-cosmos__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 20px;
+      color: #c9a4ff;
+      font-family: var(--font-sans);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .lost-cosmos__eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a4ff);
+    }
+
+    .lost-cosmos__headline {
+      margin: 0 0 18px;
+      font-size: clamp(34px, 4.5vw, 64px);
+      line-height: 1.02;
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      color: #f8f9ff;
+    }
+
+    .lost-cosmos__lede {
+      margin: 0 0 24px;
+      max-width: 42ch;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #ccd3ec;
+    }
+
+    .lost-cosmos__resolve {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 22px;
+      margin-top: clamp(26px, 4vh, 44px);
+    }
+
+    .lost-cosmos__transition {
+      margin: 0;
+      max-width: 52ch;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #aab6da;
+    }
+
+    .lost-cosmos__transition strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #e4d2ff;
+      font-size: clamp(18px, 2.6vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .lost-cosmos__scroll {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 0;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(164, 123, 255, 0.34);
+      background: linear-gradient(180deg, rgba(28, 20, 52, 0.6), rgba(8, 10, 22, 0.55));
+      color: #ece4ff;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(2, 3, 12, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .lost-cosmos__scroll:hover {
+      border-color: rgba(164, 123, 255, 0.65);
+      background: linear-gradient(180deg, rgba(40, 28, 72, 0.72), rgba(16, 12, 32, 0.7));
+      box-shadow: 0 12px 30px rgba(2, 3, 12, 0.6), 0 0 24px rgba(164, 123, 255, 0.18);
+      transform: translateY(2px);
+    }
+
+    .lost-cosmos__scroll-arrow {
+      font-size: 14px;
+      line-height: 1;
+      animation: lost-cosmos-bob 1.6s ease-in-out infinite;
+    }
+
+    @keyframes lost-cosmos-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lost-cosmos__scroll-arrow { animation: none; }
+    }
+
+    .lost-cosmos__contrast {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      justify-content: flex-end;
+    }
+
+    .lost-cosmos__contrast span {
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(164, 123, 255, 0.24);
+      background: rgba(8, 10, 22, 0.6);
+      color: #d8c8ff;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .lost-cosmos__content {
+        gap: 26px;
+        padding: 28px 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lost-cosmos__video {
+        transform: none;
+      }
+    }
+
+    /* ==========================================================================
        Achievement Medals Showcase Section Styles
        ========================================================================== */
     .section--medals {
@@ -6708,8 +7511,8 @@
     }
 
     .rank-gem-diamond {
-      background: #7cffff;
-      box-shadow: 0 0 8px #7cffff;
+      background: #aae0ff;
+      box-shadow: 0 0 8px #aae0ff;
     }
 
     .rank-gem-emerald {
@@ -6751,7 +7554,7 @@
     }
 
     .rank-gem-paper {
-      background: #ebdcc6;
+      background: #eadcc6;
       border-radius: 1px;
       transform: rotate(0deg);
       width: 10px;
@@ -6941,13 +7744,18 @@
           <a href="/">Lune Synth&trade;</a>
         </div>
       </div>
-      <nav class="nav-links" aria-label="Primary">
+      <nav class="nav-links" id="primary-nav" aria-label="Primary">
+        <a class="nav-link" href="#lost-cosmos-title">The Crisis</a>
         <a class="nav-link" href="#platform-title">Components</a>
         <a class="nav-link" href="#processing-title">Grading</a>
-        <a class="nav-link" href="#constellations-title">Universe</a>
+        <a class="nav-link" href="#quick-missions-title">Quick Missions</a>
+        <a class="nav-link" href="#constellations-title">Constellations</a>
         <a class="nav-link" href="#medals-title">Medals</a>
         <a class="nav-link" href="#engine-title">Engine</a>
       </nav>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
     </header>
 
     <section class="hero" aria-labelledby="applied-page-title" data-liquid-glass>
@@ -6991,6 +7799,42 @@
         <button class="waitlist-popup__action" type="button" data-waitlist-close>Got it</button>
       </div>
     </div>
+
+    <!-- ================= LOST IN THE COSMOS / STUDY CRISIS SECTION ================= -->
+    <section class="section section--lost-cosmos" id="lost-cosmos" aria-labelledby="lost-cosmos-title">
+      <h2 class="section-title" id="lost-cosmos-title">Lost in the Cosmos</h2>
+
+      <div class="lost-cosmos section-content" data-lost-cosmos>
+        <video class="lost-cosmos__video" data-lost-cosmos-video loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="screenshots/applied/lost-in-the-cosmos.mp4" type="video/mp4">
+        </video>
+        <div class="lost-cosmos__veil" aria-hidden="true"></div>
+
+        <div class="lost-cosmos__content">
+          <div class="lost-cosmos__intro">
+            <h3 class="lost-cosmos__headline">Learning is broken.</h3>
+            <p class="lost-cosmos__lede">
+              Focus scatters. Learning apps dazzle, then fail. AI does the thinking instead of the student.
+            </p>
+            <div class="lost-cosmos__contrast" aria-label="Common struggles">
+              <span>Scattered focus</span>
+              <span>Flash over function</span>
+              <span>AI slop that cheats</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lost-cosmos__resolve section-content">
+        <p class="lost-cosmos__transition">
+          <strong>Lune Synth fixes all three.</strong> Handwritten reasoning. Real feedback. Focused practice.
+        </p>
+        <a class="lost-cosmos__scroll" href="#platform-title">
+          Scroll down to see how
+          <span class="lost-cosmos__scroll-arrow" aria-hidden="true">&#8595;</span>
+        </a>
+      </div>
+    </section>
 
     <section class="section" aria-labelledby="platform-title">
       <h2 class="section-title" id="platform-title">Platform Components</h2>
@@ -7368,6 +8212,7 @@
           <h3 class="platform-showcase__title">Handwrite. Get clear feedback.</h3>
           <p>
             Students solve on paper, scan their work, and get step-level guidance to master any subject.
+            Handwriting is one of the best ways to build the neural pathways that support deeper learning and recall.
           </p>
         </div>
       </article>
@@ -7691,9 +8536,58 @@
       </div>
     </section>
 
+    <!-- ================= QUICK MISSIONS SECTION ================= -->
+    <section class="section section--quick-missions" id="quick-missions" aria-labelledby="quick-missions-title">
+      <h2 class="section-title" id="quick-missions-title">Take One Quick Mission</h2>
+
+      <div class="quick-missions section-content" data-quick-missions>
+        <video class="quick-missions__video" data-quick-missions-video loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="screenshots/applied/quick-mission-video.mp4" type="video/mp4">
+        </video>
+        <div class="quick-missions__veil" aria-hidden="true"></div>
+
+        <div class="quick-missions__content">
+          <div class="quick-missions__intro">
+            <p class="quick-missions__eyebrow">Fast study mode</p>
+            <h3 class="quick-missions__headline">One clear goal. A few focused minutes.</h3>
+            <p class="quick-missions__lede">
+              Constellations organize broader learning objectives. Quick Missions narrow the next few minutes to one
+              fact to recall, one method to practice, or one mistake to fix.
+            </p>
+            <div class="quick-missions__contrast" aria-label="Quick Mission characteristics">
+              <span>2–6 minutes</span>
+              <span>One skill at a time</span>
+              <span>Immediate next step</span>
+            </div>
+          </div>
+
+          <div class="quick-missions__device-column">
+            <div class="quick-missions__phone" data-phone-mock="quick-missions" aria-label="Quick Missions app preview">
+              <div class="quick-missions__phone-screen phone-screenshot-host">
+                <!-- Carousel temporarily disabled -->
+                <!-- <div class="quick-missions__screen-view is-active" data-quick-screen="carousel">
+                  <!-- Replace this placeholder with the Quick Missions carousel screenshot. -->
+                  <div class="quick-missions__screen-placeholder quick-missions__screen-placeholder--carousel" aria-hidden="true"></div>
+                </div> -->
+                <div class="quick-missions__screen-view is-active" data-quick-screen="grid">
+                  <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-grid.png" alt="Quick Missions grid view" loading="lazy" decoding="async">
+                </div>
+              </div>
+            </div>
+
+            <!-- View toggle temporarily disabled (carousel option off) -->
+            <!-- <button class="quick-missions__view-toggle" type="button" data-quick-view-toggle aria-pressed="false" aria-label="Show grid view">
+              <span>Carousel</span>
+              <span>Grid</span>
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= CONSTELLATIONS SLIDESHOW ================= -->
     <section class="section section--constellations-slideshow" id="constellations" aria-labelledby="constellations-title">
-      <h2 class="section-title" id="constellations-title">Explore a Vast Study Universe</h2>
+      <h2 class="section-title" id="constellations-title">Turn a Big Study Goal Into a Constellation</h2>
 
       <div class="slideshow-layout section-content">
 
@@ -7707,7 +8601,7 @@
             <button class="slideshow-step-btn is-active" id="stepBtn-1" onclick="switchSlideshowStep(1)">
               <span class="step-number">01</span>
               <div class="step-details">
-                <h4 class="step-title">Create</h4>
+                <h4 class="step-title">Skill Map</h4>
               </div>
             </button>
 
@@ -7715,7 +8609,7 @@
             <button class="slideshow-step-btn" id="stepBtn-2" onclick="switchSlideshowStep(2)">
               <span class="step-number">02</span>
               <div class="step-details">
-                <h4 class="step-title">Choose Sky</h4>
+                <h4 class="step-title">Roadmap</h4>
               </div>
             </button>
 
@@ -7723,7 +8617,7 @@
             <button class="slideshow-step-btn" id="stepBtn-3" onclick="switchSlideshowStep(3)">
               <span class="step-number">03</span>
               <div class="step-details">
-                <h4 class="step-title">Missions</h4>
+                <h4 class="step-title">Skill Missions</h4>
               </div>
             </button>
 
@@ -7731,7 +8625,7 @@
             <button class="slideshow-step-btn" id="stepBtn-4" onclick="switchSlideshowStep(4)">
               <span class="step-number">04</span>
               <div class="step-details">
-                <h4 class="step-title">Galaxy Quiz</h4>
+                <h4 class="step-title">Galaxy Tests</h4>
               </div>
             </button>
 
@@ -7739,7 +8633,7 @@
             <button class="slideshow-step-btn" id="stepBtn-5" onclick="switchSlideshowStep(5)">
               <span class="step-number">05</span>
               <div class="step-details">
-                <h4 class="step-title">Final Exam</h4>
+                <h4 class="step-title">Supercluster</h4>
               </div>
             </button>
 
@@ -7747,8 +8641,8 @@
 
           <div class="active-step-text">
             <span class="active-step-badge" id="activeStepBadge">Step 01</span>
-            <h3 class="active-step-title" id="activeStepTitle">Create Your Universe</h3>
-            <p class="active-step-desc" id="activeStepDesc">Drop your school notes, homework, or reading guides into <strong>Luna</strong>. In just seconds, she turns them into 10 to 15 fun learning skill nodes. It's like magic—your study path is ready!</p>
+            <h3 class="active-step-title" id="activeStepTitle">Break One Big Goal Into 10–15 Skills</h3>
+            <p class="active-step-desc" id="activeStepDesc">Start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Add your syllabus, notes, homework, or study guides, and <strong>Luna</strong> turns the full goal into 10 to 15 concrete skills to master. Unlike Quick Missions, this mode plans an entire course-scale study journey.</p>
             
             <!-- Dynamic Sky Selector for Step 02 (hidden on other steps) -->
             <div class="step2-theme-panel-container" id="step2ThemePanel" style="display: none;">
@@ -7849,7 +8743,7 @@
 
     <!-- ================= METALS/ACHIEVEMENT MEDALS SECTION ================= -->
     <section class="section section--medals" id="medals-showcase" aria-labelledby="medals-title">
-      <h2 class="section-title" id="medals-title">Earn 100+ Cosmic Medals</h2>
+      <h2 class="section-title" id="medals-title">Earn 200+ Cosmic Medals</h2>
       
       <div class="medals-layout section-content">
         
@@ -7860,16 +8754,16 @@
           <div class="medal-rank-selector-wrapper">
             <label for="medalRankDropdown" class="medal-rank-label">Explore Medal Progression</label>
             <select id="medalRankDropdown" class="medal-rank-dropdown" onchange="changeMedalRank(this.value)">
-              <option value="1">Rank 01: Paper (Tier 1)</option>
-              <option value="2">Rank 02: Plastic (Tier 2)</option>
-              <option value="3">Rank 03: Ceramic (Tier 3)</option>
-              <option value="4">Rank 04: Bronze (Tier 4)</option>
-              <option value="5">Rank 05: Silver (Tier 5)</option>
-              <option value="6" selected>Rank 06: Gold (Tier 6)</option>
-              <option value="7">Rank 07: Platinum (Tier 7)</option>
-              <option value="8">Rank 08: Sapphire (Tier 8)</option>
-              <option value="9">Rank 09: Emerald (Tier 9)</option>
-              <option value="10">Rank 10: Diamond (Tier 10)</option>
+              <option value="1">Rank 01: Paper</option>
+              <option value="2">Rank 02: Plastic</option>
+              <option value="3">Rank 03: Ceramic</option>
+              <option value="4">Rank 04: Bronze</option>
+              <option value="5">Rank 05: Silver</option>
+              <option value="6" selected>Rank 06: Gold</option>
+              <option value="7">Rank 07: Platinum</option>
+              <option value="8">Rank 08: Sapphire</option>
+              <option value="9">Rank 09: Emerald</option>
+              <option value="10">Rank 10: Diamond</option>
               <option value="11">Rank 11+: Classified</option>
             </select>
           </div>
@@ -7969,51 +8863,51 @@
                       <g transform="translate(50, 50)">
                         <g transform="rotate(0) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(30) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(60) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(90) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(120) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(150) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(180) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(210) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(240) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(270) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(300) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(330) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2700" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                       </g>
                     </g>
@@ -8130,51 +9024,51 @@
                       <g transform="translate(50, 50)">
                         <g transform="rotate(0) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(30) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(60) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(90) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(120) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(150) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(180) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(210) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(240) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(270) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(300) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(330) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3A2B0A" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                       </g>
                     </g>
@@ -8295,51 +9189,51 @@
                       <g transform="translate(50, 50)">
                         <g transform="rotate(0) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(30) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(60) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(90) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(120) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(150) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(180) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(210) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(240) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(270) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(300) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(330) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#020817" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                       </g>
                     </g>
@@ -8456,51 +9350,51 @@
                       <g transform="translate(50, 50)">
                         <g transform="rotate(0) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(30) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(60) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(90) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(120) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(150) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(180) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(210) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(240) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(270) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(300) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(330) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#02140C" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                       </g>
                     </g>
@@ -8621,51 +9515,51 @@
                       <g transform="translate(50, 50)">
                         <g transform="rotate(0) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(30) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(60) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(90) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(120) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(150) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(180) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(210) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(240) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(270) translate(0, -36.1) scale(0.9)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#F8FEFF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(300) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                         <g transform="rotate(330) translate(0, -36.1) scale(0.72)">
                           <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#3B2218" opacity="0.42" />
-                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#7CFFFF" stroke-width="0.48" transform="scale(0.82)" />
+                          <polygon points="0,-4 3.2,-1.1 2.1,3.1 0,4.5 -2.1,3.1 -3.2,-1.1" fill="#CFF8FF" stroke="#AAE0FF" stroke-width="0.48" transform="scale(0.82)" />
                         </g>
                       </g>
                     </g>
@@ -8726,7 +9620,7 @@
             <div class="secret-info" style="text-align: center;">
               <h4 style="font-size: 16px; font-weight: 700; color: var(--text); margin: 0 0 8px 0;">Rank 11+: Classified Cosmic Ranks</h4>
               <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 400px; margin: 0 auto;">
-                If you want to see if there are medal ranks beyond rank 10 Diamond, you need to find out for yourself!
+                Ranks 11+ (Ruby through Undecidable) are part of the full system. Unlock them in the app to see the complete progression!
               </p>
             </div>
           </div>
@@ -8821,6 +9715,85 @@
     updateHeader();
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
+  })();
+
+  // Handle top nav links: prevent default jump so we can offset scroll by the
+  // current height of the sticky .site-header (computed at the moment of click,
+  // i.e. with respect to the current scroll position via getBoundingClientRect).
+  // This ensures the full section header (e.g. the .section-title) is visible
+  // below the nav after smooth scrolling. Mirrors the existing --sticky-header-height
+  // maintenance used elsewhere (voice section etc.).
+  (function handleNavScrollOffset() {
+    var links = document.querySelectorAll('.nav-link[href^="#"]');
+    if (!links.length) return;
+
+    var header = document.querySelector(".site-header");
+
+    links.forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        var hash = link.getAttribute("href");
+        if (!hash || hash.length < 2) return;
+
+        var target = document.getElementById(hash.substring(1));
+        if (!target) return;
+
+        e.preventDefault();
+
+        var headerHeight = 0;
+        if (header) {
+          // Calculate live at click time / current scroll position (the header
+          // may have different effective height or the page scroll state affects
+          // layout calculations in responsive / scrolled views).
+          headerHeight = Math.ceil(header.getBoundingClientRect().height);
+        }
+
+        var targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        var scrollToPosition = targetPosition - headerHeight;
+
+        window.scrollTo({
+          top: Math.max(0, scrollToPosition),
+          behavior: "smooth"
+        });
+
+        // Update URL hash for shareability / history without triggering native jump
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, "", hash);
+        } else {
+          window.location.hash = hash;
+        }
+      });
+    });
+  })();
+
+  // Mobile hamburger: toggle the fullscreen nav overlay.
+  (function handleNavToggle() {
+    var header = document.querySelector(".site-header");
+    var toggle = document.querySelector("[data-nav-toggle]");
+    var nav = document.getElementById("primary-nav");
+    if (!header || !toggle || !nav) return;
+
+    function setOpen(open) {
+      header.classList.toggle("nav-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      document.body.style.overflow = open ? "hidden" : "";
+    }
+
+    toggle.addEventListener("click", function () {
+      setOpen(!header.classList.contains("nav-open"));
+    });
+
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () { setOpen(false); });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 640) setOpen(false);
+    });
   })();
 
   (function () {
@@ -9020,28 +9993,28 @@
   const stepData = {
     1: {
       badge: "Step 01",
-      title: "Create Your Universe",
-      desc: 'Drop your school notes, homework, or reading guides into <strong>Luna</strong>. In just seconds, she turns them into 10 to 15 fun learning skill nodes. It\'s like magic—your study path is ready!'
+      title: "Break One Big Goal Into 10–15 Skills",
+      desc: 'Start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Add your syllabus, notes, homework, or study guides, and <strong>Luna</strong> turns the full goal into 10 to 15 concrete skills to master. Unlike Quick Missions, this mode plans an entire course-scale study journey.'
     },
     2: {
       badge: "Step 02",
-      title: "Choose Your Sky & Constellation",
-      desc: "Select from over 50 beautiful skies that act like folders for your lessons! Then, pick your <strong>Constellation</strong>—this is the exact topic you want to study today. Make it look cool while you learn!"
+      title: "Build Your Constellation Roadmap",
+      desc: "Those 10 to 15 skills become connected nodes in a <strong>Constellation</strong>: a visual roadmap for the broader goal. Choose a sky theme, then follow the roadmap as each skill feeds into more demanding missions and assessments."
     },
     3: {
       badge: "Step 03",
-      title: "Go on Fun Missions",
-      desc: "Follow the winding path to learn step-by-step! Play quick 3-question <strong>Asteroid games</strong> to remember things fast, 8-question <strong>Planet runs</strong> to practice, or 12-question <strong>Star challenges</strong> for the big points."
+      title: "Progress From Asteroids to Stars",
+      desc: "Work through <strong>Asteroid, Planet, and Star missions</strong> across the roadmap. Each mission type requires more synthesis of the constellation’s skills, moving from focused practice toward problems that connect ideas across the larger study goal."
     },
     4: {
       badge: "Step 04",
-      title: "Win Galaxy Quizzes",
-      desc: "No more boring cramming! Take a 20-question <strong>Galaxy quiz</strong> to show what you know. Score <strong>80% or higher</strong> to pass the test, lock in your skills, and unlock the next part of space!"
+      title: "Test Skill Groups in Galaxies",
+      desc: "<strong>Galaxy missions</strong> work like quizzes or tests. Each one assesses three to four related skills together, checking whether you can combine them and demonstrate mastery before the final cumulative challenge."
     },
     5: {
       badge: "Step 05",
-      title: "Pass the Final Exam",
-      desc: "Ready for the ultimate challenge? Keep your skill scores at <strong>85% or higher</strong> to unlock the <strong>Supercluster final exam</strong>. Pass it to prove you are a true master of the universe!"
+      title: "Complete the Supercluster Final",
+      desc: "The <strong>Supercluster</strong> is the constellation’s final exam, requiring synthesis across all 10 to 15 skills. Score <strong>above 80%</strong> on the Supercluster to complete the entire Constellation and finish the broader study goal."
     }
   };
 
@@ -9219,16 +10192,16 @@
   /* --- Medals Showcase Interactive Handlers --- */
   const tierInfo = {
     1: {
-      name: "Paper Tier",
+      name: "Paper",
       isPaper: true, isCeramic: false, hasSparkle: false, hasGemstones: false, hasTicks: false, hasAccentRing: false,
-      glowColor: "radial-gradient(circle, rgba(235, 220, 198, 0.12) 0%, transparent 70%)",
+      glowColor: "radial-gradient(circle, rgba(234, 215, 180, 0.12) 0%, transparent 70%)",
       haloColor: "transparent",
       glyphMain: "#5C4A3A", glyphShadow: "transparent",
       baseColor: "rgb(74, 53, 37)",
-      accentColor: "rgb(235, 220, 198)"
+      accentColor: "rgb(234, 215, 180)"
     },
     2: {
-      name: "Plastic Tier",
+      name: "Plastic",
       isPaper: false, isCeramic: false, hasSparkle: false, hasGemstones: false, hasTicks: false, hasAccentRing: false,
       glowColor: "radial-gradient(circle, rgba(200, 200, 200, 0.12) 0%, transparent 70%)",
       haloColor: "transparent",
@@ -9242,7 +10215,7 @@
       accentColor: "rgb(209, 213, 219)"
     },
     3: {
-      name: "Ceramic Tier",
+      name: "Ceramic",
       isPaper: false, isCeramic: true, hasSparkle: false, hasGemstones: false, hasTicks: false, hasAccentRing: false,
       glowColor: "radial-gradient(circle, rgba(182, 111, 77, 0.18) 0%, transparent 70%)",
       haloColor: "transparent",
@@ -9256,7 +10229,7 @@
       accentColor: "rgb(217, 155, 115)"
     },
     4: {
-      name: "Bronze Tier",
+      name: "Bronze",
       isPaper: false, isCeramic: false, hasSparkle: false, hasGemstones: false, hasTicks: true, hasAccentRing: false,
       glowColor: "radial-gradient(circle, rgba(205, 127, 50, 0.22) 0%, transparent 70%)",
       haloColor: "rgba(205, 127, 50, 0.18)",
@@ -9270,7 +10243,7 @@
       accentColor: "rgb(205, 127, 50)"
     },
     5: {
-      name: "Silver Tier",
+      name: "Silver",
       isPaper: false, isCeramic: false, hasSparkle: false, hasGemstones: false, hasTicks: true, hasAccentRing: true,
       glowColor: "radial-gradient(circle, rgba(199, 204, 212, 0.22) 0%, transparent 70%)",
       haloColor: "rgba(199, 204, 212, 0.2)",
@@ -9284,7 +10257,7 @@
       accentColor: "rgb(199, 204, 212)"
     },
     6: {
-      name: "Gold Tier",
+      name: "Gold",
       isPaper: false, isCeramic: false, hasSparkle: true, hasGemstones: false, hasTicks: true, hasAccentRing: true,
       glowColor: "radial-gradient(circle, rgba(255, 215, 0, 0.28) 0%, transparent 70%)",
       haloColor: "rgba(255, 215, 0, 0.24)",
@@ -9298,7 +10271,7 @@
       accentColor: "rgb(255, 215, 0)"
     },
     7: {
-      name: "Platinum Tier",
+      name: "Platinum",
       isPaper: false, isCeramic: false, hasSparkle: true, hasGemstones: false, hasTicks: true, hasAccentRing: true,
       glowColor: "radial-gradient(circle, rgba(157, 206, 255, 0.3) 0%, transparent 70%)",
       haloColor: "rgba(157, 206, 255, 0.26)",
@@ -9312,7 +10285,7 @@
       accentColor: "rgb(157, 206, 255)"
     },
     8: {
-      name: "Sapphire Tier",
+      name: "Sapphire",
       isPaper: false, isCeramic: false, hasSparkle: true, hasGemstones: false, hasTicks: true, hasAccentRing: true,
       glowColor: "radial-gradient(circle, rgba(60, 140, 255, 0.32) 0%, transparent 70%)",
       haloColor: "rgba(60, 140, 255, 0.32)",
@@ -9326,7 +10299,7 @@
       accentColor: "rgb(60, 140, 255)"
     },
     9: {
-      name: "Emerald Tier",
+      name: "Emerald",
       isPaper: false, isCeramic: false, hasSparkle: true, hasGemstones: false, hasTicks: true, hasAccentRing: true,
       glowColor: "radial-gradient(circle, rgba(45, 220, 130, 0.32) 0%, transparent 70%)",
       haloColor: "rgba(45, 220, 130, 0.3)",
@@ -9340,18 +10313,18 @@
       accentColor: "rgb(45, 220, 130)"
     },
     10: {
-      name: "Diamond Tier",
+      name: "Diamond",
       isPaper: false, isCeramic: false, hasSparkle: true, hasGemstones: true, hasTicks: true, hasAccentRing: true,
-      glowColor: "radial-gradient(circle, rgba(124, 255, 255, 0.38) 0%, transparent 70%)",
-      haloColor: "rgba(124, 255, 255, 0.36)",
+      glowColor: "radial-gradient(circle, rgba(170, 220, 255, 0.38) 0%, transparent 70%)",
+      haloColor: "rgba(170, 220, 255, 0.36)",
       glyphMain: "#FFFFFF", glyphShadow: "#051A22",
       rimStop0: "#E6FFFF", rimStop1: "#20728A",
-      faceStop0: "#FFFFFF", faceStop1: "#7CFFFF", faceStop2: "#1A5A6D",
+      faceStop0: "#FFFFFF", faceStop1: "#AAE0FF", faceStop2: "#1A5A6D",
       innerStop0: "#9EFFFF", innerStop1: "#104050",
       sheenStop0: "rgba(255, 255, 255, 0.6)", sheenStop1: "rgba(255, 255, 255, 0)",
       ribbonStop0: "#1D667A", ribbonStop1: "#0A2E38",
       baseColor: "rgb(16, 64, 80)",
-      accentColor: "rgb(124, 255, 255)"
+      accentColor: "rgb(170, 220, 255)"
     }
   };
 
@@ -9360,20 +10333,27 @@
       desc: "Build a daily learning habit to keep your study streak active.",
       names: {
         1: "First Line", 2: "Day One", 3: "Daily Habit", 4: "Week Builder", 5: "Sustained",
-        6: "Two Weeks", 7: "Three Weeks", 8: "One Month", 9: "Six Weeks", 10: "Two Months"
+        6: "Two Weeks", 7: "Three Weeks", 8: "One Month", 9: "Six Weeks", 10: "Two Months",
+        11: "Quarter Year", 12: "Four Months", 13: "Five Months", 14: "Six Months", 15: "Eight Months",
+        16: "Ten Months", 17: "One Year", 18: "500 Days", 19: "Two Years", 20: "Triple Year"
       },
       reqs: {
         1: "Practice on 1 day", 2: "Practice on 2 consecutive days", 3: "Practice on 3 consecutive days",
         4: "Practice on 5 consecutive days", 5: "Practice on 7 consecutive days", 6: "Practice on 10 consecutive days",
         7: "Practice on 14 consecutive days", 8: "Practice on 21 consecutive days", 9: "Practice on 30 consecutive days",
-        10: "Practice on 45 consecutive days"
+        10: "Practice on 45 consecutive days", 11: "Practice on 60 consecutive days", 12: "Practice on 75 consecutive days",
+        13: "Practice on 90 consecutive days", 14: "Practice on 120 consecutive days", 15: "Practice on 150 consecutive days",
+        16: "Practice on 180 consecutive days", 17: "Practice on 240 consecutive days", 18: "Practice on 300 consecutive days",
+        19: "Practice on 365 consecutive days", 20: "Practice on 500 consecutive days"
       }
     },
     polymath: {
       desc: "Master diverse subjects and expand your learning paths.",
       names: {
         1: "Blank Page", 2: "New Solver", 3: "Topic Tour", 4: "Field Walker", 5: "Cross-Pollinator",
-        6: "Renaissance", 7: "Polymath", 8: "Polyglot Mind", 9: "Generalist", 10: "Library Walker"
+        6: "Renaissance", 7: "Polymath", 8: "Polyglot Mind", 9: "Generalist", 10: "Library Walker",
+        11: "Encyclopedic", 12: "Universal Mind", 13: "Knowledge Web", 14: "Galaxy Brain", 15: "Many Worlds",
+        16: "All Domains", 17: "Boundless Curiosity", 18: "Cross-Realm Sage", 19: "Knowledge Machine", 20: "Infinite Topic Space"
       },
       reqs: {
         1: "Complete a galaxy or supercluster in your first subject",
@@ -9385,14 +10365,26 @@
         7: "Complete galaxies or superclusters across 9 different subjects",
         8: "Complete galaxies or superclusters across 12 different subjects",
         9: "Complete galaxies or superclusters across 15 different subjects",
-        10: "Complete galaxies or superclusters across 18 different subjects"
+        10: "Complete galaxies or superclusters across 18 different subjects",
+        11: "Complete galaxies or superclusters across 22 different subjects",
+        12: "Complete galaxies or superclusters across 26 different subjects",
+        13: "Complete galaxies or superclusters across 30 different subjects",
+        14: "Complete galaxies or superclusters across 35 different subjects",
+        15: "Complete galaxies or superclusters across 40 different subjects",
+        16: "Complete galaxies or superclusters across 46 different subjects",
+        17: "Complete galaxies or superclusters across 52 different subjects",
+        18: "Complete galaxies or superclusters across 60 different subjects",
+        19: "Complete galaxies or superclusters across 70 different subjects",
+        20: "Complete galaxies or superclusters across 85 different subjects"
       }
     },
     recovery: {
-      desc: "Practice and improve your scores on weak or troubled concepts.",
+      desc: "Practice and improve your scores on weak or troubled concepts (Black Holes).",
       names: {
         1: "First Black Hole", 2: "Event Horizon", 3: "Gravity Well", 4: "Deep Focus", 5: "Singularity Step",
-        6: "Black-Hole Runner", 7: "Pressure Solver", 8: "Dark Core", 9: "Orbit Breaker", 10: "Horizon Master"
+        6: "Black-Hole Runner", 7: "Pressure Solver", 8: "Dark Core", 9: "Orbit Breaker", 10: "Horizon Master",
+        11: "Gravity Tamer", 12: "Collapse Proof", 13: "Black-Hole Sage", 14: "Pressure Forge", 15: "Pattern Escape",
+        16: "Apex Horizon", 17: "Unbroken Orbit", 18: "Void Walker", 19: "Black-Hole Machine", 20: "Indomitable"
       },
       reqs: {
         1: "Score above 85% on your first black hole",
@@ -9404,14 +10396,26 @@
         7: "Score above 85% on 14 black holes",
         8: "Score above 85% on 19 black holes",
         9: "Score above 85% on 25 black holes",
-        10: "Score above 85% on 33 black holes"
+        10: "Score above 85% on 33 black holes",
+        11: "Score above 85% on 43 black holes",
+        12: "Score above 85% on 55 black holes",
+        13: "Score above 85% on 70 black holes",
+        14: "Score above 85% on 88 black holes",
+        15: "Score above 85% on 110 black holes",
+        16: "Score above 85% on 135 black holes",
+        17: "Score above 85% on 165 black holes",
+        18: "Score above 85% on 200 black holes",
+        19: "Score above 85% on 240 black holes",
+        20: "Score above 85% on 285 black holes"
       }
     },
     marksman: {
       desc: "Achieve high scores (85%+) on quizzes and exams.",
       names: {
         1: "Pencil Mark", 2: "First Shot", 3: "Steady Aim", 4: "Clean Shot", 5: "Bullseye",
-        6: "Sharpshooter", 7: "Marksman", 8: "Sniper", 9: "Precision Score", 10: "Diamond Eye"
+        6: "Sharpshooter", 7: "Marksman", 8: "Sniper", 9: "Precision Score", 10: "Diamond Eye",
+        11: "Quartile Top", 12: "Pin-Drop Accuracy", 13: "Bullseye Streak", 14: "Sterling Score", 15: "Score Forge",
+        16: "Apex Aim", 17: "Boundless Score", 18: "Omni-Accurate", 19: "Score Machine", 20: "Perfect Run"
       },
       reqs: {
         1: "Score 85% or higher on a galaxy or supercluster",
@@ -9423,14 +10427,26 @@
         7: "Score 85% or higher on 14 galaxies or superclusters",
         8: "Score 85% or higher on 20 galaxies or superclusters",
         9: "Score 85% or higher on 28 galaxies or superclusters",
-        10: "Score 85% or higher on 38 galaxies or superclusters"
+        10: "Score 85% or higher on 38 galaxies or superclusters",
+        11: "Score 85% or higher on 50 galaxies or superclusters",
+        12: "Score 85% or higher on 65 galaxies or superclusters",
+        13: "Score 85% or higher on 85 galaxies or superclusters",
+        14: "Score 85% or higher on 110 galaxies or superclusters",
+        15: "Score 85% or higher on 140 galaxies or superclusters",
+        16: "Score 85% or higher on 180 galaxies or superclusters",
+        17: "Score 85% or higher on 230 galaxies or superclusters",
+        18: "Score 85% or higher on 300 galaxies or superclusters",
+        19: "Score 85% or higher on 390 galaxies or superclusters",
+        20: "Score 85% or higher on 500 galaxies or superclusters"
       }
     },
     handwriting: {
       desc: "Scan handwritten answers to practice paper-and-pencil reasoning.",
       names: {
         1: "First Scan", 2: "Pen Down", 3: "Ink Builder", 4: "Steady Hand", 5: "Page Worker",
-        6: "Page Runner", 7: "Notebook Builder", 8: "Margin Master", 9: "Handwriting Pro", 10: "Notebook Master"
+        6: "Page Runner", 7: "Notebook Builder", 8: "Margin Master", 9: "Handwriting Pro", 10: "Notebook Master",
+        11: "Ink Engineer", 12: "Penmanship Forge", 13: "Calligraphy Mind", 14: "Scribe Eternal", 15: "Paper Architect",
+        16: "Apex Writer", 17: "Boundless Pages", 18: "Notebook Cosmos", 19: "Proof Machine", 20: "Infinite Margins"
       },
       reqs: {
         1: "Answer your first question by handwriting",
@@ -9442,12 +10458,22 @@
         7: "Answer 65 questions by handwriting",
         8: "Answer 100 questions by handwriting",
         9: "Answer 150 questions by handwriting",
-        10: "Answer 225 questions by handwriting"
+        10: "Answer 225 questions by handwriting",
+        11: "Answer 325 questions by handwriting",
+        12: "Answer 475 questions by handwriting",
+        13: "Answer 700 questions by handwriting",
+        14: "Answer 1000 questions by handwriting",
+        15: "Answer 1400 questions by handwriting",
+        16: "Answer 1950 questions by handwriting",
+        17: "Answer 2700 questions by handwriting",
+        18: "Answer 3700 questions by handwriting",
+        19: "Answer 5000 questions by handwriting",
+        20: "Answer 6800 questions by handwriting"
       }
     }
   };
 
-  const medalKeys = ['streak', 'polymath', 'recovery', 'marksman', 'handwriting'];
+  const medalKeys = ['streak', 'polymath', 'recovery', 'marksman', 'handwriting']; // showcase subset; full 10 categories in app (see correct medal data)
   let currentRotation = 0;
   let activeIndex = 0;
   const totalItems = 5;
@@ -9460,7 +10486,7 @@
     const details = document.querySelector('.medal-viewer-info');
     const tease = document.getElementById('secretTeaseContainer');
     
-    if (selectedRank === 11) {
+    if (selectedRank >= 11) {
       if (container) container.style.display = 'none';
       if (details) details.style.display = 'none';
       if (tease) tease.style.display = 'flex';
@@ -10164,6 +11190,117 @@
     }
 
     devices.forEach(attach);
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var root = document.querySelector('[data-quick-missions]');
+    if (!root) return;
+
+    var viewToggle = root.querySelector('[data-quick-view-toggle]');
+    var screens = Array.prototype.slice.call(root.querySelectorAll('[data-quick-screen]'));
+    var video = root.querySelector('[data-quick-missions-video]');
+    var view = 'grid';  // temporarily default to grid (carousel option disabled)
+
+    function renderView() {
+      screens.forEach(function (screen) {
+        var isActive = screen.getAttribute('data-quick-screen') === view;
+        screen.classList.toggle('is-active', isActive);
+        screen.setAttribute('aria-hidden', String(!isActive));
+      });
+
+      if (viewToggle) {
+        var isGrid = view === 'grid';
+        viewToggle.setAttribute('aria-pressed', String(isGrid));
+        viewToggle.setAttribute('aria-label', isGrid ? 'Show carousel view' : 'Show grid view');
+      }
+    }
+
+    // temporarily disabled (carousel option off)
+    // if (viewToggle) {
+    //   viewToggle.addEventListener('click', function () {
+    //     view = view === 'carousel' ? 'grid' : 'carousel';
+    //     renderView();
+    //   });
+    // }
+
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var videoIsNear = false;
+
+      function syncVideoPlayback() {
+        if (reducedMotion || document.hidden || !videoIsNear) {
+          video.pause();
+          return;
+        }
+
+        var playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') playAttempt.catch(function () {});
+      }
+
+      if ('IntersectionObserver' in window) {
+        var videoObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            videoIsNear = entry.isIntersecting;
+            syncVideoPlayback();
+          });
+        }, { threshold: 0.08, rootMargin: '300px 0px' });
+        videoObserver.observe(root);
+
+        document.addEventListener('visibilitychange', syncVideoPlayback);
+      } else {
+        videoIsNear = true;
+        syncVideoPlayback();
+      }
+    }
+
+    renderView();
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var root = document.querySelector('[data-lost-cosmos]');
+    if (!root) return;
+
+    var video = root.querySelector('[data-lost-cosmos-video]');
+
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var videoIsNear = false;
+
+      function syncVideoPlayback() {
+        if (reducedMotion || document.hidden || !videoIsNear) {
+          video.pause();
+          return;
+        }
+
+        var playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') playAttempt.catch(function () {});
+      }
+
+      if ('IntersectionObserver' in window) {
+        var videoObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            videoIsNear = entry.isIntersecting;
+            syncVideoPlayback();
+          });
+        }, { threshold: 0.08, rootMargin: '300px 0px' });
+        videoObserver.observe(root);
+
+        document.addEventListener('visibilitychange', syncVideoPlayback);
+      } else {
+        videoIsNear = true;
+        syncVideoPlayback();
+      }
+    }
   })();
   </script>
 
