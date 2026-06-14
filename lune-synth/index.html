@@ -5180,14 +5180,7 @@
         display: inline-flex;
       }
 
-      /* Hide the hamburger while the Coherascent Labs dropdown overlay is open */
-      .brand-dropdown:hover ~ .nav-toggle,
-      .brand-dropdown:focus-within ~ .nav-toggle,
-      .site-header.brand-open .nav-toggle {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
+      /* No longer hiding nav-toggle for brand popup; it serves as the X close button for the full-screen overlay (like hamburger) */
 
       .nav-links {
         position: fixed;
@@ -5218,6 +5211,19 @@
       .site-header.nav-open .nav-links {
         opacity: 1;
         visibility: visible;
+      }
+
+      /* Make the nav-toggle appear as X (close) when the brand full-screen popup is open */
+      .site-header.brand-open .nav-toggle__bars {
+        background: transparent;
+      }
+
+      .site-header.brand-open .nav-toggle__bars::before {
+        transform: rotate(45deg);
+      }
+
+      .site-header.brand-open .nav-toggle__bars::after {
+        transform: rotate(-45deg);
       }
 
       .nav-links .nav-link {
@@ -5288,27 +5294,6 @@
 
       html[data-theme="light"] .brand-dropdown-content .brand-popup-header .brand h1 {
         color: #06111f;
-      }
-
-      .brand-dropdown-content .brand-popup-close {
-        width: 36px;
-        height: 36px;
-        border-radius: 999px;
-        border: 1px solid rgba(102, 179, 255, 0.22);
-        background: rgba(11, 16, 30, 0.5);
-        color: #ffffff;
-        font-size: 20px;
-        line-height: 1;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      html[data-theme="light"] .brand-dropdown-content .brand-popup-close {
-        color: #06111f;
-        background: rgba(255, 255, 255, 0.64);
-        border-color: rgba(46, 106, 168, 0.18);
       }
 
       .brand-dropdown-content a {
@@ -7897,7 +7882,6 @@
               />
               <h1>Coherascent Labs</h1>
             </div>
-            <button class="brand-popup-close" type="button" aria-label="Close menu">&times;</button>
           </div>
           <a href="https://coherascentlabs.com/">Home</a>
           <a href="https://coherascentlabs.com/research/">Research</a>
@@ -9929,6 +9913,14 @@
     }
 
     toggle.addEventListener("click", function () {
+      if (header.classList.contains("brand-open")) {
+        // Close the brand full-screen popup instead (the toggle acts as the X for it)
+        header.classList.remove("brand-open");
+        var brandEl = document.querySelector(".brand");
+        if (brandEl) brandEl.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+        return;
+      }
       setOpen(!header.classList.contains("nav-open"));
     });
 
@@ -9950,7 +9942,6 @@
     var header = document.querySelector(".site-header");
     var brandDropdown = document.querySelector(".brand-dropdown");
     var brand = brandDropdown ? brandDropdown.querySelector(".brand") : null;
-    var closeBtn = document.querySelector(".brand-popup-close");
     if (!header || !brandDropdown || !brand) return;
 
     function setBrandOpen(open) {
@@ -9965,12 +9956,6 @@
         setBrandOpen(!header.classList.contains("brand-open"));
       }
     });
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", function () {
-        setBrandOpen(false);
-      });
-    }
 
     brandDropdown.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
