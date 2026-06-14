@@ -2686,6 +2686,11 @@
       background: transparent;
     }
 
+    .section--voice .voice-flow__feature,
+    .section--voice .voice-scene {
+      overflow: visible;
+    }
+
     .voice-scene__devices {
       position: relative;
       z-index: 2;
@@ -4111,28 +4116,9 @@
         inset 0 0 0 1px rgba(255, 255, 255, 0.68);
     }
 
-    html[data-theme="light"] .voice-scene__ipad::before,
-    html[data-theme="light"] .ipad-mockup::before {
+    html[data-theme="light"] .voice-scene__ipad::before {
       opacity: 0.42;
       animation: device-glow-pulse-light 8.2s ease-in-out infinite;
-    }
-
-    html[data-theme="light"] .ipad-mockup {
-      box-shadow:
-        0 28px 38px rgba(138, 151, 181, 0.18),
-        0 0 22px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 15%, transparent),
-        0 0 40px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 10%, transparent),
-        0 0 56px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 6%, transparent),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.55);
-    }
-
-    html[data-theme="light"] .ipad-mockup:hover {
-      box-shadow:
-        0 35px 50px rgba(138, 151, 181, 0.22),
-        0 0 28px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 20%, transparent),
-        0 0 48px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 13%, transparent),
-        0 0 64px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 7%, transparent),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
     }
 
     .response-carousel__question-label,
@@ -5636,8 +5622,7 @@
       .processing-scene__step-line,
       .hero .hero-tagline span,
       .hero-app-icon,
-      .voice-scene__ipad::before,
-      .ipad-mockup::before {
+      .voice-scene__ipad::before {
         animation: none;
       }
 
@@ -5998,38 +5983,16 @@
       background: linear-gradient(180deg, #1d2129, #0a0c11 60%, #161a22);
       box-shadow:
         0 28px 38px rgba(4, 10, 24, 0.3),
-        0 0 36px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 24%, transparent),
-        0 0 64px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 16%, transparent),
-        0 0 88px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 10%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.04);
       box-sizing: border-box;
       transform: rotateY(-3deg) rotateX(1deg);
       transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .ipad-mockup::before {
-      content: "";
-      position: absolute;
-      inset: -50px;
-      z-index: -1;
-      border-radius: 50%;
-      background:
-        radial-gradient(58% 54% at 40% 26%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 30%, transparent) 0%, transparent 64%),
-        radial-gradient(56% 52% at 68% 70%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 19%, transparent) 0%, transparent 66%),
-        radial-gradient(44% 40% at 32% 76%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 11%, transparent) 0%, transparent 68%);
-      filter: blur(34px);
-      opacity: 0.8;
-      pointer-events: none;
-      animation: device-glow-pulse 7.6s ease-in-out infinite;
-    }
-
     .ipad-mockup:hover {
       transform: rotateY(0deg) rotateX(0deg);
       box-shadow:
         0 35px 50px rgba(4, 10, 24, 0.4),
-        0 0 42px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 32%, transparent),
-        0 0 78px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 20%, transparent),
-        0 0 100px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 12%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.06);
     }
 
@@ -9775,9 +9738,8 @@
   </script>
 
   <!-- ===================================================================
-       iPad Ambilight — the study-universe card + the iPad device frame itself
-       now get glows/haloes that reflect, in real time, whatever is on the
-       iPad screen (matching the "glow effect around the iPads" request).
+       iPad Ambilight — the study-universe card's background reflects, in
+       real time, whatever is on the iPad screen at that moment, with glow.
 
        How it works:
        1. Each ~11fps tick, find the <video> inside the currently visible
@@ -9789,11 +9751,6 @@
           the glow drifts instead of strobing.
        4. Write them to --ambi-base / --ambi-accent on the card; the CSS
           radial pools, halo, border and box-shadow all react automatically.
-       5. Also write the vivid accent to --device-accent on the .ipad-mockup
-          (the physical device frame); its added outer halo + box-shadow glows
-          use color-mix with a fallback chain to --ambi-accent so the "glow
-          around the iPad" tints to the current screen content, just like the
-          card and exactly as requested for the landing page devices.
        Same-origin video keeps the canvas untainted; any read error falls
        back to the brand blue, so it can never throw on screen.
        =================================================================== -->
@@ -9909,15 +9866,6 @@
         ease(accent, tAccent, 0.12);
         card.style.setProperty('--ambi-base', `rgb(${base[0] | 0}, ${base[1] | 0}, ${base[2] | 0})`);
         card.style.setProperty('--ambi-accent', `rgb(${accent[0] | 0}, ${accent[1] | 0}, ${accent[2] | 0})`);
-
-        // Drive the iPad frame's own outer glow/halo (the ::before and box-shadows on .ipad-mockup)
-        // using the same sampled accent so the "glow around the iPad" in this section reflects
-        // the current screen exactly like the .active-step-info card's ambilight does.
-        // (The CSS uses a fallback chain var(--device-accent, var(--ambi-accent, ...)) so the
-        // frame picks up the live --ambi-accent from this card even without the explicit set.)
-        if (ipad) {
-          ipad.style.setProperty('--device-accent', `rgb(${accent[0] | 0}, ${accent[1] | 0}, ${accent[2] | 0})`);
-        }
         rafId = requestAnimationFrame(tick);
       }
 
@@ -9961,16 +9909,16 @@
       start();
     }
   })();
+  </script>
 
   <!-- ===================================================================
        Screen-driven device frame glows
        Makes the outer glows / halos around phones and iPads (the ones added
        for the "around the devices" request) pull their color from the actual
-       screenshot / video content *inside* that specific device, exactly like
-       the ambilight in the "Explore a Vast Study Universe" section does for
-       its card + iPad frame. Sampled colors are eased for smoothness.
+       screenshot / video content *inside* that specific device. Sampled
+       colors are eased for smoothness.
        Works for both static screenshot imgs (most workflow/voice/response
-       phones) and the video-driven iPad in the universe section.
+       phones) and the voice-section iPad.
        =================================================================== -->
   <script>
   (function initScreenDrivenDeviceGlows() {
@@ -9982,8 +9930,6 @@
       '.voice-scene__phone',
       '.response-carousel__question-phone',
       '.voice-scene__ipad'
-      // Note: .ipad-mockup (universe section) is driven exclusively by the ipadAmbilight
-      // sampler + --ambi-accent fallback so its frame glow matches the card + screen.
     ].join(',');
     const devices = Array.prototype.slice.call(document.querySelectorAll(selector));
     if (!devices.length) return;
@@ -10010,6 +9956,10 @@
       for (let i = 0; i < 3; i++) cur[i] += (target[i] - cur[i]) * t;
     }
 
+    function blend(a, b, amount) {
+      return a.map((value, index) => Math.round(value + (b[index] - value) * amount));
+    }
+
     function sample(source) {
       if (!source) return null;
       try {
@@ -10034,7 +9984,10 @@
         }
         if (n === 0) return null;
         const avg = boostSat(r / n, g / n, b / n, 1.55);
-        return { accent: [ar, ag, ab], avg: avg };
+        return {
+          accent: blend([ar, ag, ab], avg, 0.24),
+          avg: avg
+        };
       } catch (_) { return null; }
     }
 
@@ -10042,9 +9995,12 @@
 
     function getState(dev) {
       if (!state.has(dev)) {
-        const s = { accent: FALLBACK.slice(), target: FALLBACK.slice() };
+        const s = {
+          accent: FALLBACK.slice(),
+          target: FALLBACK.slice(),
+          frame: 0
+        };
         state.set(dev, s);
-        // Ensure var exists immediately with fallback so CSS vars resolve
         dev.style.setProperty('--device-accent', 'rgb(164, 123, 255)');
       }
       return state.get(dev);
@@ -10054,32 +10010,72 @@
       dev.style.setProperty('--device-accent', `rgb(${rgb[0]|0}, ${rgb[1]|0}, ${rgb[2]|0})`);
     }
 
+    function animateToTarget(dev) {
+      const st = getState(dev);
+      st.frame = 0;
+
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        st.accent = st.target.slice();
+        apply(dev, st.accent);
+        return;
+      }
+
+      function tick() {
+        ease(st.accent, st.target, 0.18);
+        apply(dev, st.accent);
+
+        const remaining = Math.max(
+          Math.abs(st.target[0] - st.accent[0]),
+          Math.abs(st.target[1] - st.accent[1]),
+          Math.abs(st.target[2] - st.accent[2])
+        );
+
+        if (remaining > 0.75) {
+          st.frame = requestAnimationFrame(tick);
+        } else {
+          st.accent = st.target.slice();
+          apply(dev, st.accent);
+          st.frame = 0;
+        }
+      }
+
+      st.frame = requestAnimationFrame(tick);
+    }
+
     function update(dev, source) {
       const st = getState(dev);
       const cols = sample(source);
-      if (cols && cols.accent) st.target = cols.accent;
-      ease(st.accent, st.target, 0.2);
-      apply(dev, st.accent);
+      if (!cols || !cols.accent) return;
+
+      st.target = cols.accent;
+      if (!st.frame) animateToTarget(dev);
     }
 
     function findSource(dev) {
-      // Injected phone screenshots (primary path for most devices)
-      let el = dev.querySelector('img.phone-screenshot');
+      // Prefer the fully loaded screenshot that is currently covering the screen.
+      let el = dev.querySelector('img.phone-screenshot--loaded');
       if (el) return el;
-      // Voice / constellations ipad shots + videos
-      el = dev.querySelector('img.voice-scene__ipad-shot, img.ipad-gif-target, video');
+
+      // Use the low-resolution placeholder until the primary screenshot is ready.
+      el = dev.querySelector('img.phone-screenshot--low');
       if (el) return el;
-      // Any img fallback (covers other shots)
-      el = dev.querySelector('img');
+
+      // Voice-section iPads render their current screen directly as an image.
+      el = dev.querySelector('img.voice-scene__ipad-shot');
       if (el) return el;
-      // Video fallback
+
+      // Retained for any future non-Universe device that uses a video screen.
       el = dev.querySelector('video');
       if (el) return el;
+
+      el = dev.querySelector('img');
+      if (el) return el;
+
       return null;
     }
 
     function attach(dev) {
-      const st = getState(dev);
+      getState(dev);
 
       function doSample(forced) {
         const src = forced || findSource(dev);
@@ -10098,13 +10094,18 @@
         }
       }
 
-      // Kick off soon (after any initial image load from other scripts)
+      // Kick off soon after the screenshot loader has injected initial layers.
       setTimeout(doSample, 80);
 
-      // Re-sample when high-res swaps or new screenshots are injected (phone-screenshots.js does this)
+      // Re-sample when screenshot layers are injected, loaded, or swapped.
       const mo = new MutationObserver(function (muts) {
         for (const m of muts) {
-          if (m.type === 'attributes' && m.attributeName === 'src' && m.target && m.target.tagName === 'IMG') {
+          if (
+            m.type === 'attributes' &&
+            m.target &&
+            m.target.tagName === 'IMG' &&
+            (m.attributeName === 'src' || m.attributeName === 'class')
+          ) {
             doSample(m.target);
           }
           if (m.addedNodes && m.addedNodes.length) {
@@ -10118,9 +10119,14 @@
           }
         }
       });
-      mo.observe(dev, { subtree: true, childList: true, attributes: true, attributeFilter: ['src', 'data-screenshot-loaded'] });
+      mo.observe(dev, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        attributeFilter: ['src', 'class', 'data-screenshot-loaded']
+      });
 
-      // Videos (the universe iPad previews) get live updates
+      // Videos get live updates.
       const vids = dev.querySelectorAll('video');
       vids.forEach(function (v) {
         let last = 0;
@@ -10150,11 +10156,6 @@
     }
 
     devices.forEach(attach);
-
-    // The main .ipad-mockup in the Explore a Vast Study Universe section relies on the
-    // --ambi-accent from its parent card (via CSS fallback chain in its glow expressions)
-    // plus the ambilight JS updates. No blue seed here to allow screen-reflective colors.
-  } 
   })();
   </script>
 
