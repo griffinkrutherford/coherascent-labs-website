@@ -4984,10 +4984,42 @@
       margin: 0;
       max-width: 620px;
       color: var(--text);
-      font-size: clamp(34px, 5.2vw, 64px);
-      line-height: 0.98;
+      font-size: clamp(30px, 4.4vw, 58px);
+      line-height: 1.14;
       letter-spacing: 0;
       font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .engine-gradient-word {
+      display: inline-block;
+      color: var(--purple);
+      background-image: linear-gradient(
+        120deg,
+        var(--blue) 0%,
+        var(--purple) 16.666%,
+        var(--red) 33.333%,
+        var(--blue) 50%,
+        var(--purple) 66.666%,
+        var(--red) 83.333%,
+        var(--blue) 100%
+      );
+      background-size: 200% 100%;
+      background-position: 0% 50%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      filter:
+        drop-shadow(0 0 14px rgba(100, 168, 255, 0.16))
+        drop-shadow(0 0 14px rgba(255, 93, 135, 0.12));
+      animation: appliedHeadlineShift 8s linear infinite;
+    }
+
+    html[data-theme="light"] .engine-gradient-word {
+      filter:
+        drop-shadow(0 0 10px rgba(79, 132, 214, 0.12))
+        drop-shadow(0 0 10px rgba(217, 106, 140, 0.1));
     }
 
     .engine-panel p {
@@ -5687,7 +5719,7 @@
       }
 
       .engine-panel h3 {
-        font-size: clamp(34px, 12vw, 46px);
+        font-size: clamp(28px, 8.5vw, 38px);
       }
 
       .engine-infographic {
@@ -6269,6 +6301,7 @@
       .processing-scene__step-card,
       .processing-scene__step-line,
       .hero .hero-tagline span,
+      .engine-gradient-word,
       .hero-app-icon,
       .engine-stage,
       .engine-work-line,
@@ -6432,8 +6465,8 @@
     }
 
     .slideshow-step-btn {
-      padding: 12px 14px; /* taller pills */
-      min-height: 48px;
+      padding: 13px 16px; /* taller pills */
+      min-height: 54px;
       border-radius: 999px;
       border: 1px solid transparent;
       background: transparent;
@@ -6464,7 +6497,7 @@
     }
 
     .step-number {
-      font-size: 9.5px;
+      font-size: 10.5px;
       font-weight: 800;
       letter-spacing: 0.05em;
       color: var(--blue);
@@ -6481,8 +6514,8 @@
     }
 
     .step-title {
-      font-size: 11.5px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
       color: var(--text);
       margin: 0;
       letter-spacing: 0.02em;
@@ -6558,18 +6591,18 @@
       flex-direction: column;
       align-items: flex-start; /* Left-aligned! */
       text-align: left; /* Left-aligned text! */
-      gap: 10px;
+      gap: 14px;
       box-sizing: border-box;
     }
     
     .active-step-badge {
-      font-size: 8.5px;
+      font-size: 10px;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--blue);
       background: rgba(100, 168, 255, 0.1);
-      padding: 3px 8px;
+      padding: 5px 10px;
       border-radius: 99px;
       display: inline-block;
       margin-bottom: 0;
@@ -6577,18 +6610,19 @@
     }
     
     .active-step-title {
-      font-size: 16px; /* Back to beautiful premium widescreen title size */
-      font-weight: 700;
+      font-size: clamp(22px, 2.35vw, 32px);
+      font-weight: 800;
       color: var(--text);
       margin: 0;
       letter-spacing: -0.01em;
+      line-height: 1.12;
     }
     
     .active-step-desc {
-      font-size: 11.5px; /* Comfortable reading size */
+      font-size: clamp(15px, 1.25vw, 18px);
       color: var(--muted);
       margin: 0;
-      line-height: 1.5;
+      line-height: 1.62;
       max-width: 100%;
     }
 
@@ -6610,6 +6644,15 @@
       .active-step-text {
         align-items: center;
         text-align: center;
+      }
+
+      .active-step-title {
+        font-size: clamp(24px, 7vw, 32px);
+      }
+
+      .active-step-desc {
+        font-size: 15.5px;
+        line-height: 1.58;
       }
     }
 
@@ -10191,7 +10234,7 @@
       <div class="engine-system section-content">
         <div class="engine-panel" data-liquid-glass>
           <div>
-            <h3>Built to fight slop.</h3>
+            <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
             <p>
               Well-architected AI keeps the grade tied to the work. Lune Synth&trade; reads messy submissions,
               scores from rubric evidence, checks for obvious conflicts, and lowers confidence when the answer is unclear.
