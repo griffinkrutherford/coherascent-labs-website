@@ -1436,8 +1436,8 @@
       box-shadow:
         0 28px 42px rgba(4, 10, 24, 0.42),
         0 0 0 10px rgba(6, 10, 18, 0.2),
-        0 0 32px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 24%, transparent),
-        0 0 58px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 16%, transparent),
+        0 0 32px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 24%, transparent),
+        0 0 58px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 16%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.03);
       filter: drop-shadow(0 0 22px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 20%, transparent)) drop-shadow(0 0 38px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 12%, transparent));
       animation: capture-float 5.8s ease-in-out infinite;
@@ -1715,8 +1715,8 @@
       box-shadow:
         0 28px 42px rgba(4, 10, 24, 0.42),
         0 0 0 10px rgba(6, 10, 18, 0.22),
-        0 0 30px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 22%, transparent),
-        0 0 55px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 15%, transparent),
+        0 0 30px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 22%, transparent),
+        0 0 55px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 15%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.03);
       transform: rotate(-3deg);
       transform-origin: 50% 62%;
@@ -2707,7 +2707,7 @@
       border-radius: calc(var(--workflow-phone-shell-radius) * var(--voice-phone-scale));
       border: 1px solid rgb(56, 64, 80);
       transform: rotate(-5deg);
-      filter: drop-shadow(0 0 18px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 18%, transparent)) drop-shadow(0 0 32px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 11%, transparent));
+      filter: drop-shadow(0 0 18px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 18%, transparent)) drop-shadow(0 0 32px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 11%, transparent));
     }
 
     .voice-scene__ipad {
@@ -2720,7 +2720,7 @@
       border-radius: 25.5px;
       border: 1px solid rgb(120, 132, 154);
       background: linear-gradient(180deg, #1d2129, #0a0c11 60%, #161a22);
-      --device-accent: rgb(100, 168, 255);
+      --device-accent: rgb(164, 123, 255);
       box-shadow:
         0 28px 38px rgba(4, 10, 24, 0.3),
         0 0 36px color-mix(in srgb, var(--device-accent) 24%, transparent),
@@ -2733,15 +2733,15 @@
     .voice-scene__ipad::before {
       content: "";
       position: absolute;
-      inset: -38px;
+      inset: -46px;
       z-index: -1;
-      border-radius: 48%;
+      border-radius: 50%;
       background:
-        radial-gradient(58% 52% at 38% 32%, color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 30%, transparent) 0%, transparent 68%),
-        radial-gradient(62% 58% at 72% 68%, color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 18%, transparent) 0%, transparent 70%),
-        radial-gradient(48% 46% at 28% 78%, color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 11%, transparent) 0%, transparent 72%);
-      filter: blur(26px);
-      opacity: 0.75;
+        radial-gradient(60% 55% at 36% 26%, color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 32%, transparent) 0%, transparent 65%),
+        radial-gradient(58% 54% at 70% 70%, color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 20%, transparent) 0%, transparent 68%),
+        radial-gradient(46% 42% at 30% 78%, color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 12%, transparent) 0%, transparent 70%);
+      filter: blur(30px);
+      opacity: 0.82;
       pointer-events: none;
       animation: device-glow-pulse 7s ease-in-out infinite;
     }
@@ -3096,9 +3096,9 @@
       box-shadow:
         0 28px 42px rgba(4, 10, 24, 0.42),
         0 0 0 10px rgba(6, 10, 18, 0.22),
-        0 0 26px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 20%, transparent),
-        0 0 48px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 13%, transparent),
-        0 0 68px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 8%, transparent),
+        0 0 26px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 20%, transparent),
+        0 0 48px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 13%, transparent),
+        0 0 68px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 8%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.03);
       transform-origin: center center;
     }
@@ -3752,10 +3752,10 @@
       background: linear-gradient(145deg, rgba(31, 42, 62, 0.98), rgba(10, 16, 28, 0.98));
       box-shadow:
         0 18px 28px rgba(4, 10, 24, 0.22),
-        0 0 24px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 18%, transparent),
-        0 0 46px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 12%, transparent),
+        0 0 24px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 18%, transparent),
+        0 0 46px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 12%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-      filter: drop-shadow(0 0 16px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 16%, transparent)) drop-shadow(0 0 28px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 10%, transparent));
+      filter: drop-shadow(0 0 16px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 16%, transparent)) drop-shadow(0 0 28px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 10%, transparent));
       transform: translateX(-50%);
       z-index: 2;
       pointer-events: none;
@@ -3842,21 +3842,20 @@
       border-color: rgb(56, 64, 80);
       background:
         linear-gradient(180deg, #11141b, #05060a 16%, #010102 58%, #07090e);
-      --device-accent: rgb(100, 168, 255);
+      --device-accent: rgb(164, 123, 255);
       box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.04),
-        0 0 28px color-mix(in srgb, var(--device-accent) 22%, transparent),
-        0 0 52px color-mix(in srgb, var(--device-accent) 15%, transparent),
-        0 0 72px color-mix(in srgb, var(--device-accent) 9%, transparent),
+        0 0 38px color-mix(in srgb, var(--device-accent) 26%, transparent),
+        0 0 68px color-mix(in srgb, var(--device-accent) 18%, transparent),
+        0 0 95px color-mix(in srgb, var(--device-accent) 11%, transparent),
         0 34px 42px rgba(4, 10, 24, 0.34),
         0 10px 16px rgba(4, 10, 24, 0.14),
         inset 1px 1px 0 rgba(255, 255, 255, 0.08),
         inset -1px -1px 0 rgba(5, 9, 18, 0.34),
         inset 0 10px 18px rgba(255, 255, 255, 0.025),
         inset 0 -12px 20px rgba(0, 0, 0, 0.22);
-      filter: drop-shadow(0 0 14px color-mix(in srgb, var(--device-accent) 14%, transparent));
+      filter: drop-shadow(0 0 18px color-mix(in srgb, var(--device-accent) 16%, transparent)) drop-shadow(0 0 32px color-mix(in srgb, var(--device-accent) 10%, transparent));
     }
-
 
     [data-phone-mock]::after,
     .capture-scene__phone::after,
@@ -4083,7 +4082,7 @@
     html[data-theme="light"] .feedback-scene__phone,
     html[data-theme="light"] .voice-scene__phone,
     html[data-theme="light"] .response-carousel__question-phone {
-      --device-accent: rgb(79, 132, 214);
+      --device-accent: rgb(127, 99, 214);
       box-shadow:
         0 0 0 1px rgba(200, 211, 230, 0.7),
         0 0 14px color-mix(in srgb, var(--device-accent) 12%, transparent),
@@ -4099,11 +4098,11 @@
 
     html[data-theme="light"] .capture-scene__phone,
     html[data-theme="light"] .response-carousel__question-phone {
-      filter: drop-shadow(0 0 10px color-mix(in srgb, var(--device-accent, rgb(79,132,214)) 12%, transparent)) drop-shadow(0 0 18px color-mix(in srgb, var(--device-accent, rgb(79,132,214)) 8%, transparent));
+      filter: drop-shadow(0 0 10px color-mix(in srgb, var(--device-accent, rgb(127,99,214)) 12%, transparent)) drop-shadow(0 0 18px color-mix(in srgb, var(--device-accent, rgb(127,99,214)) 8%, transparent));
     }
 
     html[data-theme="light"] .voice-scene__ipad {
-      --device-accent: rgb(79, 132, 214);
+      --device-accent: rgb(127, 99, 214);
       box-shadow:
         0 26px 36px rgba(138, 151, 181, 0.18),
         0 0 22px color-mix(in srgb, var(--device-accent) 15%, transparent),
@@ -4121,18 +4120,18 @@
     html[data-theme="light"] .ipad-mockup {
       box-shadow:
         0 28px 38px rgba(138, 151, 181, 0.18),
-        0 0 22px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(79, 132, 214))) 15%, transparent),
-        0 0 40px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(79, 132, 214))) 10%, transparent),
-        0 0 56px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(79, 132, 214))) 6%, transparent),
+        0 0 22px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 15%, transparent),
+        0 0 40px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 10%, transparent),
+        0 0 56px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 6%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.55);
     }
 
     html[data-theme="light"] .ipad-mockup:hover {
       box-shadow:
         0 35px 50px rgba(138, 151, 181, 0.22),
-        0 0 28px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(79, 132, 214))) 20%, transparent),
-        0 0 48px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(79, 132, 214))) 13%, transparent),
-        0 0 64px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(79, 132, 214))) 7%, transparent),
+        0 0 28px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 20%, transparent),
+        0 0 48px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 13%, transparent),
+        0 0 64px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(127, 99, 214))) 7%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.6);
     }
 
@@ -5999,9 +5998,9 @@
       background: linear-gradient(180deg, #1d2129, #0a0c11 60%, #161a22);
       box-shadow:
         0 28px 38px rgba(4, 10, 24, 0.3),
-        0 0 36px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 24%, transparent),
-        0 0 64px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 16%, transparent),
-        0 0 88px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 10%, transparent),
+        0 0 36px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 24%, transparent),
+        0 0 64px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 16%, transparent),
+        0 0 88px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 10%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.04);
       box-sizing: border-box;
       transform: rotateY(-3deg) rotateX(1deg);
@@ -6011,15 +6010,15 @@
     .ipad-mockup::before {
       content: "";
       position: absolute;
-      inset: -42px;
+      inset: -50px;
       z-index: -1;
-      border-radius: 46%;
+      border-radius: 50%;
       background:
-        radial-gradient(56% 54% at 42% 28%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 28%, transparent) 0%, transparent 66%),
-        radial-gradient(60% 56% at 68% 72%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 17%, transparent) 0%, transparent 68%),
-        radial-gradient(46% 44% at 32% 76%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 10%, transparent) 0%, transparent 70%);
-      filter: blur(30px);
-      opacity: 0.72;
+        radial-gradient(58% 54% at 40% 26%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 30%, transparent) 0%, transparent 64%),
+        radial-gradient(56% 52% at 68% 70%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 19%, transparent) 0%, transparent 66%),
+        radial-gradient(44% 40% at 32% 76%, color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 11%, transparent) 0%, transparent 68%);
+      filter: blur(34px);
+      opacity: 0.8;
       pointer-events: none;
       animation: device-glow-pulse 7.6s ease-in-out infinite;
     }
@@ -6028,9 +6027,9 @@
       transform: rotateY(0deg) rotateX(0deg);
       box-shadow:
         0 35px 50px rgba(4, 10, 24, 0.4),
-        0 0 42px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 32%, transparent),
-        0 0 78px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 20%, transparent),
-        0 0 100px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(100, 168, 255))) 12%, transparent),
+        0 0 42px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 32%, transparent),
+        0 0 78px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 20%, transparent),
+        0 0 100px color-mix(in srgb, var(--device-accent, var(--ambi-accent, rgb(164, 123, 255))) 12%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.06);
     }
 
@@ -9989,7 +9988,7 @@
     const devices = Array.prototype.slice.call(document.querySelectorAll(selector));
     if (!devices.length) return;
 
-    const FALLBACK = [100, 168, 255];
+    const FALLBACK = [164, 123, 255];
     const SW = 18, SH = 26;
     const cv = document.createElement('canvas');
     cv.width = SW; cv.height = SH;
@@ -10046,7 +10045,7 @@
         const s = { accent: FALLBACK.slice(), target: FALLBACK.slice() };
         state.set(dev, s);
         // Ensure var exists immediately with fallback so CSS vars resolve
-        dev.style.setProperty('--device-accent', 'rgb(100, 168, 255)');
+        dev.style.setProperty('--device-accent', 'rgb(164, 123, 255)');
       }
       return state.get(dev);
     }
@@ -10152,12 +10151,10 @@
 
     devices.forEach(attach);
 
-    // Also ensure the ambilight-driven main iPad (in universe section) gets its color early
-    // (ambilight already writes it during its tick, this just seeds a good default).
-    const mainIpad = document.querySelector('.ipad-mockup');
-    if (mainIpad && !mainIpad.style.getPropertyValue('--device-accent')) {
-      mainIpad.style.setProperty('--device-accent', 'rgb(100, 168, 255)');
-    }
+    // The main .ipad-mockup in the Explore a Vast Study Universe section relies on the
+    // --ambi-accent from its parent card (via CSS fallback chain in its glow expressions)
+    // plus the ambilight JS updates. No blue seed here to allow screen-reflective colors.
+  } 
   })();
   </script>
 
