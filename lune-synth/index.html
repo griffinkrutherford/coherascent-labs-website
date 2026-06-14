@@ -5213,15 +5213,18 @@
         visibility: visible;
       }
 
-      /* Make the nav-toggle appear as X (close) when the brand full-screen popup is open */
+      /* Make the nav-toggle appear as X (close) when the brand full-screen popup is open (identical to hamburger nav-open X) */
+      .site-header.nav-open .nav-toggle__bars,
       .site-header.brand-open .nav-toggle__bars {
         background: transparent;
       }
 
+      .site-header.nav-open .nav-toggle__bars::before,
       .site-header.brand-open .nav-toggle__bars::before {
         transform: rotate(45deg);
       }
 
+      .site-header.nav-open .nav-toggle__bars::after,
       .site-header.brand-open .nav-toggle__bars::after {
         transform: rotate(-45deg);
       }
@@ -9919,6 +9922,9 @@
         var brandEl = document.querySelector(".brand");
         if (brandEl) brandEl.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";
+        // Reset toggle aria (will be "Open menu" for nav)
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
         return;
       }
       setOpen(!header.classList.contains("nav-open"));
@@ -9942,12 +9948,18 @@
     var header = document.querySelector(".site-header");
     var brandDropdown = document.querySelector(".brand-dropdown");
     var brand = brandDropdown ? brandDropdown.querySelector(".brand") : null;
+    var navToggle = document.querySelector("[data-nav-toggle]");
     if (!header || !brandDropdown || !brand) return;
 
     function setBrandOpen(open) {
       header.classList.toggle("brand-open", open);
       brand.setAttribute("aria-expanded", open ? "true" : "false");
       document.body.style.overflow = open ? "hidden" : "";
+      // Update the shared nav-toggle to act as the X/close for this popup (same as hamburger)
+      if (navToggle) {
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      }
     }
 
     brand.addEventListener("click", function (e) {
