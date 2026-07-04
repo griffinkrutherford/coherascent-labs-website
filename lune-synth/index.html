@@ -652,6 +652,123 @@
       font-size: 15px;
     }
 
+    .hero-store-availability {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: min(calc(100% - 68px), 680px);
+      margin: 48px auto 16px;
+      text-align: center;
+    }
+
+    .store-badge-container {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .store-badge-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      border: 1px solid rgba(164, 123, 255, 0.18);
+      border-radius: 18px;
+      background: rgba(16, 28, 54, 0.5);
+      backdrop-filter: blur(10px);
+      color: var(--muted);
+      min-width: 200px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: default;
+      box-shadow: 0 4px 20px rgba(4, 10, 24, 0.15);
+      position: relative;
+    }
+
+    .store-badge-btn:hover {
+      border-color: rgba(164, 123, 255, 0.35);
+      color: var(--text);
+      box-shadow: 
+        0 8px 24px rgba(100, 168, 255, 0.1),
+        0 0 16px rgba(164, 123, 255, 0.1);
+    }
+
+    html[data-theme="light"] .store-badge-btn {
+      background: rgba(255, 255, 255, 0.8);
+      border-color: rgba(127, 99, 214, 0.16);
+      color: #5d677d;
+      box-shadow: 0 4px 18px rgba(151, 164, 192, 0.08);
+    }
+
+    html[data-theme="light"] .store-badge-btn:hover {
+      border-color: rgba(127, 99, 214, 0.35);
+      color: #06111f;
+      box-shadow: 0 8px 20px rgba(127, 99, 214, 0.12);
+    }
+
+    .store-badge-btn .store-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      color: var(--blue);
+      transition: color 0.3s ease;
+    }
+    
+    html[data-theme="light"] .store-badge-btn .store-icon {
+      color: var(--purple);
+    }
+
+    .store-badge-btn:hover .store-icon {
+      color: var(--text);
+    }
+    
+    html[data-theme="light"] .store-badge-btn:hover .store-icon {
+      color: #06111f;
+    }
+
+    .store-badge-btn .store-text-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .store-badge-btn .store-label-sub {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      font-weight: 500;
+    }
+
+    .store-badge-btn .store-label-main {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .store-badge-btn .store-badge-tag {
+      position: absolute;
+      top: -8px;
+      right: 12px;
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, var(--blue), var(--purple), var(--red));
+      color: #06111f;
+      padding: 2px 6px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+      box-shadow: 0 2px 8px rgba(100, 168, 255, 0.2);
+    }
+
+    html[data-theme="light"] .store-badge-btn .store-badge-tag {
+      color: #fff;
+    }
+
     .hero-waitlist-panel {
       display: grid;
       gap: 14px;
@@ -690,10 +807,10 @@
       margin: 0;
       color: var(--text);
       font-size: clamp(22px, 3vw, 32px);
-      line-height: 1.1;
+      line-height: 1.2;
       letter-spacing: 0;
       text-align: center;
-      white-space: nowrap;
+      text-wrap: balance;
     }
 
     .hero-waitlist-panel p {
@@ -702,7 +819,7 @@
       font-size: 14px;
       line-height: 1.6;
       text-align: center;
-      white-space: nowrap;
+      text-wrap: balance;
     }
 
     .waitlist-offer {
@@ -4938,6 +5055,681 @@
       box-shadow: 0 0 20px rgba(217, 106, 140, 0.08);
     }
 
+    /* ================= LUNA ================= */
+    .luna {
+      display: grid;
+      gap: 22px;
+    }
+
+    .luna-eyebrow {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(164, 123, 255, 0.28);
+      background: rgba(164, 123, 255, 0.1);
+      color: var(--purple);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    html[data-theme="light"] .luna-eyebrow {
+      border-color: rgba(127, 99, 214, 0.24);
+      background: rgba(127, 99, 214, 0.08);
+    }
+
+    .luna-hero,
+    .luna-modes,
+    .luna-visual {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(164, 123, 255, 0.18);
+      border-radius: 24px;
+      background:
+        radial-gradient(520px 260px at 12% 0%, rgba(100, 168, 255, 0.12), transparent 62%),
+        radial-gradient(460px 260px at 92% 100%, rgba(255, 93, 135, 0.1), transparent 60%),
+        linear-gradient(180deg, rgba(10, 20, 40, 0.82), rgba(6, 13, 28, 0.94));
+      box-shadow: var(--glow);
+      backdrop-filter: blur(10px);
+    }
+
+    .luna-hero > *,
+    .luna-modes > *,
+    .luna-visual > * {
+      position: relative;
+      z-index: 3;
+    }
+
+    html[data-theme="light"] .luna-hero,
+    html[data-theme="light"] .luna-modes,
+    html[data-theme="light"] .luna-visual {
+      border-color: rgba(127, 99, 214, 0.14);
+      background:
+        radial-gradient(520px 260px at 12% 0%, rgba(79, 132, 214, 0.1), transparent 62%),
+        radial-gradient(460px 260px at 92% 100%, rgba(217, 106, 140, 0.08), transparent 60%),
+        linear-gradient(180deg, rgba(255, 253, 250, 0.96), rgba(245, 239, 247, 0.92));
+      box-shadow:
+        0 18px 36px rgba(138, 151, 181, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+    }
+
+    /* Hero */
+    .luna-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(260px, 0.95fr);
+      align-items: center;
+      gap: clamp(28px, 4vw, 56px);
+      padding: clamp(28px, 4vw, 48px);
+    }
+
+    .luna-hero__copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .luna-hero__copy h3 {
+      margin: 0;
+      max-width: 560px;
+      color: var(--text);
+      font-size: clamp(28px, 4vw, 50px);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      font-weight: 800;
+    }
+
+    .luna-hero__copy p {
+      margin: 0;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.7vw, 19px);
+      line-height: 1.72;
+    }
+
+    .luna-hero__device {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Placeholder phone (blank screen) */
+    .luna-phone {
+      --luna-phone-scale: 1.5;
+      --phone-side-offset: calc(var(--workflow-phone-shell-padding) * var(--luna-phone-scale) * -1.5);
+      --phone-button-width: calc(var(--workflow-phone-button-width) * var(--luna-phone-scale));
+      --phone-volume-top: calc(var(--workflow-phone-volume-top) * var(--luna-phone-scale));
+      --phone-volume-height: calc(var(--workflow-phone-volume-height) * var(--luna-phone-scale));
+      --phone-volume-gap: calc(var(--workflow-phone-volume-gap) * var(--luna-phone-scale));
+      --phone-power-top: calc(var(--workflow-phone-power-top) * var(--luna-phone-scale));
+      --phone-power-height: calc(var(--workflow-phone-power-height) * var(--luna-phone-scale));
+      position: relative;
+      z-index: 1;
+      width: calc(var(--workflow-phone-width) * var(--luna-phone-scale));
+      height: calc(var(--workflow-phone-height) * var(--luna-phone-scale));
+      aspect-ratio: var(--workflow-phone-ratio);
+      padding: calc(var(--workflow-phone-shell-padding) * var(--luna-phone-scale));
+      border: 1px solid rgb(56, 64, 80);
+      border-radius: calc(var(--workflow-phone-shell-radius) * var(--luna-phone-scale));
+    }
+
+    .luna-phone::before {
+      top: calc(var(--workflow-phone-island-top) * var(--luna-phone-scale));
+      width: calc(var(--workflow-phone-island-width) * var(--luna-phone-scale));
+      height: calc(var(--workflow-phone-island-height) * var(--luna-phone-scale) * 2);
+    }
+
+    .luna-phone::after {
+      inset: calc(var(--workflow-phone-overlay-inset) * var(--luna-phone-scale));
+      border-radius: calc((var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset)) * var(--luna-phone-scale));
+    }
+
+    .luna-phone__screen {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: calc(var(--workflow-phone-screen-radius) * var(--luna-phone-scale));
+      background:
+        radial-gradient(130% 80% at 50% 0%, rgba(164, 123, 255, 0.14), transparent 58%),
+        linear-gradient(180deg, #0a1124, #060a14 60%, #04060e);
+    }
+
+    /* Trait cards */
+    .luna-traits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .luna-trait {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      padding: clamp(20px, 2.4vw, 28px);
+      border-radius: 20px;
+      border: 1px solid rgba(164, 123, 255, 0.16);
+      background: linear-gradient(180deg, rgba(10, 20, 40, 0.72), rgba(6, 13, 28, 0.9));
+      box-shadow: var(--glow);
+      backdrop-filter: blur(10px);
+    }
+
+    .luna-trait::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--red));
+      opacity: 0.72;
+    }
+
+    html[data-theme="light"] .luna-trait {
+      border-color: rgba(127, 99, 214, 0.14);
+      background: linear-gradient(180deg, rgba(255, 253, 250, 0.96), rgba(245, 239, 247, 0.92));
+      box-shadow:
+        0 18px 36px rgba(138, 151, 181, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+    }
+
+    .luna-trait h4 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(17px, 1.8vw, 20px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .luna-trait p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.66;
+    }
+
+    /* Two modes */
+    .luna-modes {
+      display: grid;
+      gap: clamp(20px, 2.6vw, 30px);
+      padding: clamp(26px, 3.4vw, 42px);
+    }
+
+    .luna-modes__lede {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(20px, 2.8vw, 31px);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .luna-modes__accent {
+      color: var(--purple);
+    }
+
+    .luna-modes__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .luna-mode {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding: clamp(20px, 2.2vw, 26px);
+      border-radius: 18px;
+      border: 1px solid rgba(100, 168, 255, 0.2);
+      background: rgba(8, 16, 34, 0.5);
+    }
+
+    .luna-mode--review {
+      border-color: rgba(255, 93, 135, 0.22);
+    }
+
+    html[data-theme="light"] .luna-mode {
+      border-color: rgba(79, 132, 214, 0.2);
+      background: rgba(255, 251, 247, 0.7);
+    }
+
+    html[data-theme="light"] .luna-mode--review {
+      border-color: rgba(217, 106, 140, 0.22);
+    }
+
+    .luna-mode__num {
+      font-family: var(--font-sans);
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--blue);
+    }
+
+    .luna-mode--review .luna-mode__num {
+      color: var(--red);
+    }
+
+    .luna-mode__body {
+      display: grid;
+      gap: 8px;
+    }
+
+    .luna-mode__phase {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .luna-mode__body h4 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 700;
+    }
+
+    .luna-mode__body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.66;
+    }
+
+    /* See it / pullquote */
+    .luna-visual {
+      display: grid;
+      gap: clamp(20px, 2.6vw, 28px);
+      padding: clamp(26px, 3.4vw, 42px);
+    }
+
+    .luna-visual__copy {
+      display: grid;
+      gap: 16px;
+    }
+
+    .luna-visual__copy h3 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .luna-visual__copy p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.7vw, 19px);
+      line-height: 1.72;
+    }
+
+    .luna-quote {
+      position: relative;
+      margin: 0;
+      padding: 18px 22px 18px 26px;
+      border-radius: 14px;
+      background: rgba(164, 123, 255, 0.1);
+      color: var(--text);
+      font-size: clamp(17px, 2vw, 22px);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .luna-quote::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 4px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--blue), var(--purple), var(--red));
+    }
+
+    html[data-theme="light"] .luna-quote {
+      background: rgba(127, 99, 214, 0.08);
+    }
+
+    @media (max-width: 900px) {
+      .luna-hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .luna-modes__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ================= LUNA (video-backed card, layout modeled on Constellations) ================= */
+    .section--luna {
+      margin-top: clamp(48px, 8vh, 96px);
+      margin-bottom: clamp(48px, 8vh, 96px);
+    }
+
+    #luna-title {
+      scroll-margin-top: var(--sticky-header-height, 106px);
+    }
+
+    .luna {
+      position: relative;
+      isolation: isolate;
+      min-height: clamp(700px, 82svh, 860px);
+      overflow: hidden;
+      border: 1px solid rgba(164, 123, 255, 0.26);
+      border-radius: 30px;
+      background: #080b18;
+      box-shadow:
+        0 34px 90px rgba(3, 7, 20, 0.58),
+        0 0 70px rgba(164, 123, 255, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .luna__video,
+    .luna__veil {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .luna__video {
+      z-index: -3;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.85) contrast(1.05) hue-rotate(-8deg) opacity(0.25);
+      transform: scale(1.015);
+    }
+
+    .luna__veil {
+      z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(6, 6, 18, 0.6) 0%, rgba(5, 6, 16, 0.36) 30%, rgba(4, 5, 14, 0.88) 76%, rgba(3, 4, 12, 0.97) 100%),
+        linear-gradient(90deg, rgba(4, 5, 15, 0.48) 0%, rgba(4, 5, 15, 0.2) 50%, rgba(4, 5, 15, 0.48) 100%);
+    }
+
+    .luna__veil::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(164, 123, 255, 0.22), transparent 32%),
+        radial-gradient(circle at 84% 20%, rgba(100, 168, 255, 0.14), transparent 30%);
+      mix-blend-mode: screen;
+    }
+
+    .luna__content {
+      position: relative;
+      min-height: inherit;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      gap: clamp(20px, 2.8vh, 30px);
+      padding: clamp(30px, 4.5vw, 56px);
+    }
+
+    .luna-lead {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 640px;
+      text-align: center;
+      color: #f4f7ff;
+      text-shadow: 0 2px 24px rgba(1, 4, 12, 0.7);
+    }
+
+    .luna-icon {
+      width: clamp(64px, 8vw, 92px);
+      aspect-ratio: 1;
+      object-fit: contain;
+      margin-bottom: 16px;
+      transform: rotate(4deg);
+      transform-origin: center;
+      filter:
+        drop-shadow(0 18px 30px rgba(4, 10, 24, 0.45))
+        drop-shadow(0 0 24px rgba(100, 168, 255, 0.32))
+        drop-shadow(0 0 34px rgba(164, 123, 255, 0.24));
+      animation: luneIconGlow 7.5s ease-in-out infinite;
+    }
+
+    html[data-theme="light"] .luna-icon {
+      animation-name: luneIconGlowLight;
+    }
+
+    .luna-lead h3 {
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: clamp(26px, 3.6vw, 42px);
+      line-height: 1.16;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      padding-bottom: 4px;
+    }
+
+    .luna-lead p {
+      margin: 0;
+      max-width: 46ch;
+      color: rgba(232, 240, 255, 0.82);
+      font-family: var(--font-sans);
+      font-size: clamp(14px, 1.25vw, 17px);
+      line-height: 1.6;
+    }
+
+    .luna-card {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      max-width: 1180px;
+      box-sizing: border-box;
+      border: 1px solid rgba(164, 123, 255, 0.3);
+      border-radius: 22px;
+      background:
+        radial-gradient(520px 260px at 14% 0%, rgba(100, 168, 255, 0.14), transparent 62%),
+        radial-gradient(460px 260px at 92% 100%, rgba(164, 123, 255, 0.16), transparent 60%),
+        linear-gradient(180deg, rgba(12, 20, 42, 0.92), rgba(7, 13, 28, 0.96));
+      box-shadow:
+        var(--glow),
+        0 26px 70px -20px rgba(4, 8, 22, 0.7);
+      backdrop-filter: blur(14px);
+      padding: clamp(16px, 2vw, 22px);
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      grid-template-rows: auto auto;
+      align-items: center;
+      gap: clamp(16px, 2.4vh, 24px) clamp(20px, 3vw, 40px);
+    }
+
+    html[data-theme="light"] .luna-card {
+      border-color: rgba(127, 99, 214, 0.28);
+      background:
+        radial-gradient(520px 260px at 14% 0%, rgba(79, 132, 214, 0.1), transparent 62%),
+        radial-gradient(460px 260px at 92% 100%, rgba(127, 99, 214, 0.12), transparent 60%),
+        rgba(255, 253, 250, 0.96);
+      box-shadow:
+        0 18px 40px rgba(84, 98, 130, 0.14),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .luna-menu {
+      grid-column: 1 / -1;
+      justify-self: end;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      width: min(560px, 100%);
+      padding: 4px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      box-sizing: border-box;
+    }
+
+    .luna-tab-btn {
+      padding: 11px 12px;
+      min-height: 42px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .luna-tab-btn:hover {
+      background: rgba(164, 123, 255, 0.08);
+      border-color: rgba(164, 123, 255, 0.2);
+      color: var(--text);
+    }
+
+    .luna-tab-btn.is-active {
+      border-color: var(--purple);
+      background: rgba(28, 18, 54, 0.85);
+      color: #d9c8ff;
+      box-shadow: 0 0 0 1px rgba(164, 123, 255, 0.3), 0 0 22px rgba(164, 123, 255, 0.25);
+    }
+
+    html[data-theme="light"] .luna-tab-btn.is-active {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: var(--purple);
+      color: var(--purple);
+      box-shadow: 0 4px 12px rgba(84, 98, 130, 0.08);
+    }
+
+    .luna-tab-panel {
+      display: none;
+    }
+
+    .luna-tab-panel.is-active {
+      display: contents;
+    }
+
+    .luna-tab-copy {
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 14px;
+    }
+
+    .luna-tab-copy__lede {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(17px, 1.9vw, 21px);
+      font-weight: 700;
+      line-height: 1.42;
+      letter-spacing: -0.01em;
+    }
+
+    .luna-tab-copy__traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .luna-tab-copy__traits span {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(164, 123, 255, 0.24);
+      background: rgba(164, 123, 255, 0.08);
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .luna-tab-visual {
+      grid-column: 1;
+      grid-row: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .luna-phone--tab {
+      --luna-phone-scale: 1.85;
+      transform: rotate(-5deg);
+    }
+
+    @media (max-width: 860px) {
+      .luna-card {
+        grid-template-columns: 1fr;
+      }
+      .luna-menu {
+        justify-self: stretch;
+        width: 100%;
+      }
+      .luna-tab-copy {
+        grid-column: 1;
+        align-items: center;
+        text-align: center;
+      }
+      .luna-tab-copy__traits {
+        justify-content: center;
+      }
+      .luna-tab-visual {
+        grid-column: 1;
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .luna {
+        min-height: auto;
+      }
+      .luna__content {
+        padding: 26px 18px;
+      }
+      .luna-menu {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        padding: 3px;
+      }
+      .luna-tab-btn {
+        padding: 9px 8px;
+        font-size: 12px;
+        min-height: 36px;
+      }
+      .luna-phone--tab {
+        --luna-phone-scale: 1.15;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .luna-menu {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .luna-tab-btn {
+        padding: 7px 4px;
+        font-size: 10.5px;
+      }
+      .luna-phone--tab {
+        --luna-phone-scale: 1.0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .luna__video {
+        transform: none;
+      }
+    }
+
     .engine-system {
       display: grid;
       grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
@@ -5789,6 +6581,24 @@
       .hero .hero-tagline {
         font-size: clamp(20px, 8vw, 34px);
         white-space: normal;
+      }
+
+      .hero-store-availability {
+        width: calc(100% - 44px);
+        margin: 32px auto 12px;
+        gap: 10px;
+      }
+
+      .store-badge-container {
+        gap: 12px;
+      }
+
+      .store-badge-btn {
+        min-width: 0;
+        width: 100%;
+        padding: 8px 16px;
+        border-radius: 16px;
+        justify-content: center;
       }
 
       .hero-waitlist-panel {
@@ -8372,6 +9182,7 @@
         <a class="nav-link" href="#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="#constellations-title">Constellations</a>
         <a class="nav-link" href="#medals-title">Medals</a>
+        <a class="nav-link" href="#luna-title">Luna</a>
         <a class="nav-link" href="#engine-title">Engine</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
@@ -8400,6 +9211,36 @@
         Do the work. Scan it in. Get feedback that actually helps. From the Pre-K through the PhD level.
       </p>
     </section>
+
+    <div class="hero-store-availability">
+      <div class="store-badge-container">
+        <div class="store-badge-btn" aria-label="Apple App Store (Coming Soon)">
+          <svg class="store-icon" viewBox="0 0 384 512" width="18" height="24" style="aspect-ratio: 384 / 512;">
+            <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 47.5-24.4 76.5 26.9 2.4 51.2-16 68.3-38.9z"/>
+          </svg>
+          <div class="store-text-col">
+            <span class="store-label-sub">Download on the</span>
+            <span class="store-label-main">App Store</span>
+          </div>
+          <span class="store-badge-tag">Coming Soon</span>
+        </div>
+        <div class="store-badge-btn" aria-label="Google Play Store (Coming Soon)">
+          <svg class="store-icon" viewBox="0 0 466 512" width="22" height="24" style="aspect-ratio: 466 / 512;">
+            <g fill-rule="nonzero">
+              <path fill="#EA4335" d="M199.9 237.8 1.4 470.17c7.22 24.57 30.16 41.81 55.8 41.81 11.16 0 20.93-2.79 29.3-8.37l244.16-139.46L199.9 237.8z"/>
+              <path fill="#FBBC04" d="m433.91 205.1-104.65-60-111.61 110.22 113.01 108.83 104.64-58.6c18.14-9.77 30.7-29.3 30.7-50.23-1.4-20.93-13.95-40.46-32.09-50.22z"/>
+              <path fill="#34A853" d="M199.42 273.45 329.27 145.1 87.9 8.37C79.53 2.79 68.36 0 57.2 0 30.7 0 6.98 18.14 1.4 41.86l198.02 231.59z"/>
+              <path fill="#4285F4" d="M1.39 41.86C0 46.04 0 51.63 0 57.2v397.64c0 5.57 0 9.76 1.4 15.34l216.27-214.86L1.39 41.86z"/>
+            </g>
+          </svg>
+          <div class="store-text-col">
+            <span class="store-label-sub">GET IT ON</span>
+            <span class="store-label-main">Google Play</span>
+          </div>
+          <span class="store-badge-tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
 
     <div class="hero-waitlist-panel" aria-labelledby="lune-beta-title">
       <div class="hero-waitlist-copy">
@@ -10238,6 +11079,117 @@
       </div>
     </section>
 
+    <!-- ================= LUNA SECTION ================= -->
+    <section class="section section--luna" id="luna" aria-labelledby="luna-title">
+      <h2 class="section-title" id="luna-title">Luna</h2>
+
+      <div class="luna section-content" data-luna>
+        <video class="luna__video" data-luna-video loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="screenshots/applied/math-animation-luna-tutor-section.mp4" type="video/mp4">
+        </video>
+        <div class="luna__veil" aria-hidden="true"></div>
+
+        <div class="luna__content">
+          <div class="luna-lead">
+            <img
+              class="luna-icon"
+              src="../images/lune-synth-icon-512.png"
+              srcset="../images/lune-synth-icon-120.png 120w, ../images/lune-synth-icon-512.png 512w"
+              sizes="92px"
+              alt="Luna, the Lune Synth tutor"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3>A tutor that <span class="engine-gradient-word">won't</span> do it for you.</h3>
+            <p>Reads your exact work. Small nudges only. Never the answer.</p>
+          </div>
+
+          <div class="luna-card">
+            <!-- Top: Interactive Pill Tabs Menu (pattern from Constellations) -->
+            <div class="luna-menu" role="tablist" aria-label="Ways Luna helps you think">
+              <button class="luna-tab-btn is-active" id="lunaTab-hints" role="tab" aria-controls="lunaPanel-hints" aria-selected="true" onclick="switchLunaTab('hints')">Hints</button>
+              <button class="luna-tab-btn" id="lunaTab-infographics" role="tab" aria-controls="lunaPanel-infographics" aria-selected="false" onclick="switchLunaTab('infographics')">Infographics</button>
+              <button class="luna-tab-btn" id="lunaTab-keyterms" role="tab" aria-controls="lunaPanel-keyterms" aria-selected="false" onclick="switchLunaTab('keyterms')">Key Terms</button>
+              <button class="luna-tab-btn" id="lunaTab-chat" role="tab" aria-controls="lunaPanel-chat" aria-selected="false" onclick="switchLunaTab('chat')">Chat</button>
+            </div>
+
+            <!-- Tab panels: copy left, phone mockup right (pattern from Constellations) -->
+            <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step&mdash;then you finish it.</p>
+                <div class="luna-tab-copy__traits">
+                  <span>One nudge at a time</span>
+                  <span>No copyable solution</span>
+                  <span>Built for your question</span>
+                </div>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <!-- Drop screenshot here using the same pattern as other phones -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="lunaPanel-infographics" role="tabpanel" aria-labelledby="lunaTab-infographics">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Words not enough? A quick diagram from your exact problem.</p>
+                <div class="luna-tab-copy__traits">
+                  <span>Diagrams from the question</span>
+                  <span>Visual next-step guidance</span>
+                  <span>Still no final answer</span>
+                </div>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <!-- Drop screenshot here using the same pattern as other phones -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="lunaPanel-keyterms" role="tabpanel" aria-labelledby="lunaTab-keyterms">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Key terms surface in context exactly when they matter.</p>
+                <div class="luna-tab-copy__traits">
+                  <span>Definitions in context</span>
+                  <span>Subject vocabulary</span>
+                  <span>Quick, no distraction</span>
+                </div>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <!-- Drop screenshot here using the same pattern as other phones -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="lunaPanel-chat" role="tabpanel" aria-labelledby="lunaTab-chat">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Ask while working. Prompts and checks that keep you thinking.</p>
+                <div class="luna-tab-copy__traits">
+                  <span>Socratic guidance</span>
+                  <span>Grounded in your attempt</span>
+                  <span>Refuses direct answers</span>
+                </div>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <!-- Drop screenshot here using the same pattern as other phones -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section--engine" aria-labelledby="engine-title">
       <h2 class="section-title" id="engine-title">Engine</h2>
       <div class="engine-system section-content">
@@ -10812,6 +11764,43 @@
 
     syncIpadVideos();
   }
+
+  function switchLunaTab(tab) {
+    // Deactivate all tab buttons
+    const buttons = document.querySelectorAll('.luna-tab-btn');
+    buttons.forEach(btn => {
+      btn.classList.remove('is-active');
+      btn.setAttribute('aria-selected', 'false');
+    });
+
+    // Activate clicked button
+    const activeBtn = document.getElementById('lunaTab-' + tab);
+    if (activeBtn) {
+      activeBtn.classList.add('is-active');
+      activeBtn.setAttribute('aria-selected', 'true');
+    }
+
+    // Hide all panels
+    const panels = document.querySelectorAll('.luna-tab-panel');
+    panels.forEach(p => p.classList.remove('is-active'));
+
+    // Show target panel
+    const activePanel = document.getElementById('lunaPanel-' + tab);
+    if (activePanel) {
+      activePanel.classList.add('is-active');
+    }
+  }
+
+  // Ensure first tab is ready (static HTML marks it active; this is a safety net)
+  document.addEventListener('DOMContentLoaded', function () {
+    const hasActive = document.querySelector('.luna-tab-panel.is-active');
+    if (!hasActive) {
+      const firstPanel = document.getElementById('lunaPanel-hints');
+      if (firstPanel) firstPanel.classList.add('is-active');
+      const firstBtn = document.getElementById('lunaTab-hints');
+      if (firstBtn) firstBtn.classList.add('is-active');
+    }
+  });
 
   function selectSkyTheme(skyTheme, pillElement) {
     const ipadCanvas = document.getElementById('ipadScreenCanvas');
@@ -11937,6 +12926,48 @@
     if (!root) return;
 
     var video = root.querySelector('[data-lost-cosmos-video]');
+
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var videoIsNear = false;
+
+      function syncVideoPlayback() {
+        if (reducedMotion || document.hidden || !videoIsNear) {
+          video.pause();
+          return;
+        }
+
+        var playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') playAttempt.catch(function () {});
+      }
+
+      if ('IntersectionObserver' in window) {
+        var videoObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            videoIsNear = entry.isIntersecting;
+            syncVideoPlayback();
+          });
+        }, { threshold: 0.08, rootMargin: '300px 0px' });
+        videoObserver.observe(root);
+
+        document.addEventListener('visibilitychange', syncVideoPlayback);
+      } else {
+        videoIsNear = true;
+        syncVideoPlayback();
+      }
+    }
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var root = document.querySelector('[data-luna]');
+    if (!root) return;
+
+    var video = root.querySelector('[data-luna-video]');
 
     if (video) {
       video.muted = true;
