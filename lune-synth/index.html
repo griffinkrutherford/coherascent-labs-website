@@ -301,14 +301,14 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 12px;
       min-width: 0;
     }
 
     .brand img {
-      width: 58px;
-      height: 58px;
-      border-radius: 14px;
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
       object-fit: contain;
       object-position: center;
       box-shadow: var(--glow);
@@ -316,9 +316,10 @@
 
     .brand h1 {
       margin: 0;
-      font-size: 18px;
-      letter-spacing: 0.22em;
+      font-size: 15px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .brand:hover,
@@ -386,21 +387,21 @@
       margin-left: auto;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 6px;
+      flex-wrap: nowrap;
     }
 
     .nav-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 14px;
+      padding: 6px 10px;
       border-radius: 999px;
       border: 1px solid rgba(102, 179, 255, 0.22);
       background: rgba(11, 16, 30, 0.5);
       color: #ffffff;
-      font-size: 11px;
-      letter-spacing: 0.08em;
+      font-size: 9.5px;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
     }
@@ -6213,7 +6214,7 @@
       }
 
       .site-header {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
       }
 
       .hero {
@@ -6378,8 +6379,8 @@
         flex-wrap: nowrap;
         justify-content: center;
         align-items: stretch;
-        gap: 14px;
-        padding: max(96px, env(safe-area-inset-top)) 24px max(32px, env(safe-area-inset-bottom));
+        gap: 8px;
+        padding: max(72px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
         background: rgba(6, 8, 16, 0.92);
         backdrop-filter: blur(28px);
         -webkit-backdrop-filter: blur(28px);
@@ -6417,9 +6418,9 @@
 
       .nav-links .nav-link {
         justify-content: center;
-        padding: 18px 22px;
-        border-radius: 16px;
-        font-size: 16px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-size: 13.5px;
         letter-spacing: 0.08em;
       }
 
@@ -6432,8 +6433,8 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
-        gap: 14px;
-        padding: max(96px, env(safe-area-inset-top)) 24px max(32px, env(safe-area-inset-bottom));
+        gap: 8px;
+        padding: max(72px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
         background: rgba(6, 8, 16, 0.92);
         backdrop-filter: blur(28px);
         -webkit-backdrop-filter: blur(28px);
@@ -6487,9 +6488,9 @@
 
       .brand-dropdown-content a {
         justify-content: center;
-        padding: 18px 22px;
-        border-radius: 16px;
-        font-size: 16px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-size: 13.5px;
         letter-spacing: 0.08em;
         color: #ffffff;
         text-decoration: none;
@@ -9177,12 +9178,13 @@
       </div>
       <nav class="nav-links" id="primary-nav" aria-label="Primary">
         <a class="nav-link" href="#lost-cosmos-title">The Crisis</a>
-        <a class="nav-link" href="#platform-title">Components</a>
+        <a class="nav-link" href="#platform-title">Handwriting</a>
+        <a class="nav-link" href="#luna-title">Luna</a>
         <a class="nav-link" href="#processing-title">Grading</a>
+        <a class="nav-link" href="#voice-title">Input Methods</a>
         <a class="nav-link" href="#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="#constellations-title">Constellations</a>
         <a class="nav-link" href="#medals-title">Medals</a>
-        <a class="nav-link" href="#luna-title">Luna</a>
         <a class="nav-link" href="#engine-title">Engine</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
@@ -9694,6 +9696,117 @@
           <strong>Keep Momentum</strong>
           <p>Smart practice, streaks, and feedback loops turn corrections into progress.</p>
         </article>
+      </div>
+    </section>
+
+    <!-- ================= LUNA SECTION ================= -->
+    <section class="section section--luna" id="luna" aria-labelledby="luna-title">
+      <h2 class="section-title" id="luna-title">Luna</h2>
+
+      <div class="luna section-content" data-luna>
+        <video class="luna__video" data-luna-video loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="screenshots/applied/math-animation-luna-tutor-section.mp4" type="video/mp4">
+        </video>
+        <div class="luna__veil" aria-hidden="true"></div>
+
+        <div class="luna__content">
+          <div class="luna-lead">
+            <img
+              class="luna-icon"
+              src="../images/lune-synth-icon-512.png"
+              srcset="../images/lune-synth-icon-120.png 120w, ../images/lune-synth-icon-512.png 512w"
+              sizes="92px"
+              alt="Luna, the Lune Synth tutor"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3>A tutor that <span class="engine-gradient-word">won't</span> do it for you.</h3>
+            <p>Reads your exact work. Small nudges only. Never the answer.</p>
+          </div>
+
+          <div class="luna-card">
+            <!-- Top: Interactive Pill Tabs Menu (pattern from Constellations) -->
+            <div class="luna-menu" role="tablist" aria-label="Ways Luna helps you think">
+              <button class="luna-tab-btn is-active" id="lunaTab-hints" role="tab" aria-controls="lunaPanel-hints" aria-selected="true" onclick="switchLunaTab('hints')">Hints</button>
+              <button class="luna-tab-btn" id="lunaTab-infographics" role="tab" aria-controls="lunaPanel-infographics" aria-selected="false" onclick="switchLunaTab('infographics')">Infographics</button>
+              <button class="luna-tab-btn" id="lunaTab-keyterms" role="tab" aria-controls="lunaPanel-keyterms" aria-selected="false" onclick="switchLunaTab('keyterms')">Key Terms</button>
+              <button class="luna-tab-btn" id="lunaTab-chat" role="tab" aria-controls="lunaPanel-chat" aria-selected="false" onclick="switchLunaTab('chat')">Chat</button>
+            </div>
+
+            <!-- Tab panels: copy left, phone mockup right (pattern from Constellations) -->
+            <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step&mdash;then you finish it.</p>
+                <div class="luna-tab-copy__traits">
+                  <span>One nudge at a time</span>
+                  <span>No copyable solution</span>
+                  <span>Built for your question</span>
+                </div>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <!-- Drop screenshot here using the same pattern as other phones -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="lunaPanel-infographics" role="tabpanel" aria-labelledby="lunaTab-infographics">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Words not enough? A quick diagram from your exact problem.</p>
+                <div class="luna-tab-copy__traits">
+                  <span>Diagrams from the question</span>
+                  <span>Visual next-step guidance</span>
+                  <span>Still no final answer</span>
+                </div>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <!-- Drop screenshot here using the same pattern as other phones -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="lunaPanel-keyterms" role="tabpanel" aria-labelledby="lunaTab-keyterms">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Key terms surface in context exactly when they matter.</p>
+                <div class="luna-tab-copy__traits">
+                  <span>Definitions in context</span>
+                  <span>Subject vocabulary</span>
+                  <span>Quick, no distraction</span>
+                </div>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <!-- Drop screenshot here using the same pattern as other phones -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="lunaPanel-chat" role="tabpanel" aria-labelledby="lunaTab-chat">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Ask while working. Prompts and checks that keep you thinking.</p>
+                <div class="luna-tab-copy__traits">
+                  <span>Socratic guidance</span>
+                  <span>Grounded in your attempt</span>
+                  <span>Refuses direct answers</span>
+                </div>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <!-- Drop screenshot here using the same pattern as other phones -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -11073,117 +11186,6 @@
               <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 400px; margin: 0 auto;">
                 Ranks 11+ are part of the full system. Unlock them in the app to see the complete progression!
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= LUNA SECTION ================= -->
-    <section class="section section--luna" id="luna" aria-labelledby="luna-title">
-      <h2 class="section-title" id="luna-title">Luna</h2>
-
-      <div class="luna section-content" data-luna>
-        <video class="luna__video" data-luna-video loop muted playsinline preload="metadata" aria-hidden="true">
-          <source src="screenshots/applied/math-animation-luna-tutor-section.mp4" type="video/mp4">
-        </video>
-        <div class="luna__veil" aria-hidden="true"></div>
-
-        <div class="luna__content">
-          <div class="luna-lead">
-            <img
-              class="luna-icon"
-              src="../images/lune-synth-icon-512.png"
-              srcset="../images/lune-synth-icon-120.png 120w, ../images/lune-synth-icon-512.png 512w"
-              sizes="92px"
-              alt="Luna, the Lune Synth tutor"
-              loading="lazy"
-              decoding="async"
-            />
-            <h3>A tutor that <span class="engine-gradient-word">won't</span> do it for you.</h3>
-            <p>Reads your exact work. Small nudges only. Never the answer.</p>
-          </div>
-
-          <div class="luna-card">
-            <!-- Top: Interactive Pill Tabs Menu (pattern from Constellations) -->
-            <div class="luna-menu" role="tablist" aria-label="Ways Luna helps you think">
-              <button class="luna-tab-btn is-active" id="lunaTab-hints" role="tab" aria-controls="lunaPanel-hints" aria-selected="true" onclick="switchLunaTab('hints')">Hints</button>
-              <button class="luna-tab-btn" id="lunaTab-infographics" role="tab" aria-controls="lunaPanel-infographics" aria-selected="false" onclick="switchLunaTab('infographics')">Infographics</button>
-              <button class="luna-tab-btn" id="lunaTab-keyterms" role="tab" aria-controls="lunaPanel-keyterms" aria-selected="false" onclick="switchLunaTab('keyterms')">Key Terms</button>
-              <button class="luna-tab-btn" id="lunaTab-chat" role="tab" aria-controls="lunaPanel-chat" aria-selected="false" onclick="switchLunaTab('chat')">Chat</button>
-            </div>
-
-            <!-- Tab panels: copy left, phone mockup right (pattern from Constellations) -->
-            <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
-              <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step&mdash;then you finish it.</p>
-                <div class="luna-tab-copy__traits">
-                  <span>One nudge at a time</span>
-                  <span>No copyable solution</span>
-                  <span>Built for your question</span>
-                </div>
-              </div>
-              <div class="luna-tab-visual">
-                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
-                  <div class="luna-phone__screen phone-screenshot-host">
-                    <!-- Drop screenshot here using the same pattern as other phones -->
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="luna-tab-panel" id="lunaPanel-infographics" role="tabpanel" aria-labelledby="lunaTab-infographics">
-              <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Words not enough? A quick diagram from your exact problem.</p>
-                <div class="luna-tab-copy__traits">
-                  <span>Diagrams from the question</span>
-                  <span>Visual next-step guidance</span>
-                  <span>Still no final answer</span>
-                </div>
-              </div>
-              <div class="luna-tab-visual">
-                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
-                  <div class="luna-phone__screen phone-screenshot-host">
-                    <!-- Drop screenshot here using the same pattern as other phones -->
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="luna-tab-panel" id="lunaPanel-keyterms" role="tabpanel" aria-labelledby="lunaTab-keyterms">
-              <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Key terms surface in context exactly when they matter.</p>
-                <div class="luna-tab-copy__traits">
-                  <span>Definitions in context</span>
-                  <span>Subject vocabulary</span>
-                  <span>Quick, no distraction</span>
-                </div>
-              </div>
-              <div class="luna-tab-visual">
-                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
-                  <div class="luna-phone__screen phone-screenshot-host">
-                    <!-- Drop screenshot here using the same pattern as other phones -->
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="luna-tab-panel" id="lunaPanel-chat" role="tabpanel" aria-labelledby="lunaTab-chat">
-              <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Ask while working. Prompts and checks that keep you thinking.</p>
-                <div class="luna-tab-copy__traits">
-                  <span>Socratic guidance</span>
-                  <span>Grounded in your attempt</span>
-                  <span>Refuses direct answers</span>
-                </div>
-              </div>
-              <div class="luna-tab-visual">
-                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
-                  <div class="luna-phone__screen phone-screenshot-host">
-                    <!-- Drop screenshot here using the same pattern as other phones -->
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
