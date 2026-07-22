@@ -329,6 +329,11 @@ function serveLuneHost(req, res, pathname) {
     return;
   }
 
+  if (pathname === '/blog' || pathname.startsWith('/blog/')) {
+    serveStatic(req, res, `/lune-synth${pathname}`);
+    return;
+  }
+
   if ((pathname === '/lune-synth' || pathname === '/lune-synth/') && isGetLike(req)) {
     redirect(res, `https://${LUNE_HOST}/${getRequestSuffix(req)}`);
     return;
