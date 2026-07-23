@@ -1224,6 +1224,83 @@
       }
     }
 
+    @media (max-width: 640px) {
+      .section-title,
+      .section-content {
+        filter: none;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        will-change: auto;
+      }
+
+      .section-title {
+        transform: translate3d(0, 26px, 0) scale(0.9);
+      }
+
+      .section-content {
+        transform: translate3d(0, 36px, 0) scale(0.955);
+      }
+
+      .section-title.is-visible {
+        filter: none;
+        animation: section-title-pop-mobile 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        will-change: transform, opacity;
+      }
+
+      .section-content.is-visible {
+        filter: none;
+        animation: section-content-pop-mobile 900ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+        will-change: transform, opacity;
+      }
+
+      .section-title.is-pop-complete,
+      .section-content.is-pop-complete {
+        will-change: auto;
+      }
+
+      .section-content.is-visible:not(.is-pop-complete) *,
+      .section-content.is-visible:not(.is-pop-complete) *::before,
+      .section-content.is-visible:not(.is-pop-complete) *::after {
+        animation-play-state: paused !important;
+      }
+    }
+
+    @keyframes section-title-pop-mobile {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0) scale(0.9);
+      }
+      68% {
+        opacity: 1;
+        transform: translate3d(0, -4px, 0) scale(1.02);
+      }
+      84% {
+        transform: translate3d(0, 2px, 0) scale(0.994);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    @keyframes section-content-pop-mobile {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 36px, 0) scale(0.955);
+      }
+      65% {
+        opacity: 1;
+        transform: translate3d(0, -5px, 0) scale(1.01);
+      }
+      84% {
+        transform: translate3d(0, 2px, 0) scale(0.998);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .section-title,
       .section-content,
@@ -13509,9 +13586,23 @@
 
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.querySelectorAll('.section-title, .section-content').forEach(function(el) {
-        el.classList.add('is-visible');
+        el.classList.add('is-visible', 'is-pop-complete');
       });
       return;
+    }
+
+    var mobilePopIn = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+    if (mobilePopIn) {
+      document.querySelectorAll('.section-title, .section-content').forEach(function(el) {
+        var finishPopIn = function(event) {
+          if (event.target !== el || event.animationName.indexOf('section-') !== 0) return;
+          el.classList.add('is-pop-complete');
+          el.removeEventListener('animationend', finishPopIn);
+          el.removeEventListener('animationcancel', finishPopIn);
+        };
+        el.addEventListener('animationend', finishPopIn);
+        el.addEventListener('animationcancel', finishPopIn);
+      });
     }
 
     var observer = new IntersectionObserver(function(entries) {
