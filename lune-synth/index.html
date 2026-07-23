@@ -56,6 +56,7 @@
       --glass: rgba(16, 28, 54, 0.7);
       --line: rgba(164, 123, 255, 0.2);
       --glow: 0 18px 50px rgba(4, 10, 24, 0.45), 0 0 26px rgba(100, 168, 255, 0.08), 0 0 26px rgba(164, 123, 255, 0.08), 0 0 26px rgba(255, 93, 135, 0.08);
+      --anchor-scroll-gap: clamp(24px, 3vw, 40px);
       --workflow-phone-ratio: 9 / 19.5;
       --workflow-phone-height: 220px;
       --workflow-phone-width: calc(var(--workflow-phone-height) * 9 / 19.5);
@@ -120,6 +121,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--sticky-header-height, 106px) + var(--anchor-scroll-gap));
       background-color: var(--bg-deep);
       background:
         radial-gradient(1200px 700px at 15% 0%, rgba(100, 168, 255, 0.11), transparent 55%),
@@ -1156,6 +1158,10 @@
       transform: translate3d(0, 28px, 0) scale(0.88) rotateX(6deg);
       transform-origin: 20% 100%;
       will-change: transform, opacity, filter;
+    }
+
+    .section-title[id] {
+      scroll-margin-top: calc(var(--sticky-header-height, 106px) + var(--anchor-scroll-gap));
     }
 
     .section-title.is-visible {
@@ -5590,10 +5596,6 @@
       margin-bottom: clamp(48px, 8vh, 96px);
     }
 
-    #luna-title {
-      scroll-margin-top: var(--sticky-header-height, 106px);
-    }
-
     .luna {
       position: relative;
       isolation: isolate;
@@ -8029,10 +8031,6 @@
       padding: 8px 0;
     }
 
-    #quick-missions-title {
-      scroll-margin-top: var(--sticky-header-height, 106px);
-    }
-
     .quick-missions {
       position: relative;
       isolation: isolate;
@@ -8495,10 +8493,6 @@
       position: relative;
       width: 100%;
       padding: 8px 0;
-    }
-
-    #lost-cosmos-title {
-      scroll-margin-top: var(--sticky-header-height, 106px);
     }
 
     .lost-cosmos {
@@ -11794,20 +11788,20 @@
 
         e.preventDefault();
 
-        var headerHeight = 0;
-        if (header) {
-          // Calculate live at click time / current scroll position (the header
-          // may have different effective height or the page scroll state affects
-          // layout calculations in responsive / scrolled views).
-          headerHeight = Math.ceil(header.getBoundingClientRect().height);
-        }
+        // Wait one frame so mobile navigation can close and release the body's
+        // scroll lock before measuring and starting the smooth scroll.
+        window.requestAnimationFrame(function() {
+          var headerHeight = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+          var configuredOffset = parseFloat(window.getComputedStyle(target).scrollMarginTop);
+          var scrollOffset = Number.isFinite(configuredOffset)
+            ? configuredOffset
+            : headerHeight + 32;
+          var targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
 
-        var targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        var scrollToPosition = targetPosition - headerHeight;
-
-        window.scrollTo({
-          top: Math.max(0, scrollToPosition),
-          behavior: "smooth"
+          window.scrollTo({
+            top: Math.max(0, targetPosition - scrollOffset),
+            behavior: "smooth"
+          });
         });
 
         // Update URL hash for shareability / history without triggering native jump
