@@ -310,14 +310,12 @@ main {
 
 .blog-hero h1 {
   margin: 0 0 16px;
+  padding-bottom: 0.06em;
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.14;
   font-size: clamp(36px, 7vw, 62px);
   letter-spacing: -0.02em;
-  background: linear-gradient(115deg, var(--blue), var(--purple) 52%, var(--red));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #b69dff;
 }
 
 .blog-hero p {
@@ -358,7 +356,7 @@ main {
 .post-card__image {
   display: block;
   margin: calc(-1 * clamp(22px, 3vw, 32px)) calc(-1 * clamp(22px, 3vw, 32px)) clamp(18px, 2.5vw, 22px);
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 21 / 9;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   border-radius: 18px 18px 0 0;
@@ -404,10 +402,11 @@ main {
 .post-card h2 {
   margin: 0 0 10px;
   font-weight: 700;
-  line-height: 1.22;
+  line-height: 1.28;
+  padding-bottom: 0.04em;
   font-size: clamp(20px, 3vw, 27px);
   letter-spacing: -0.01em;
-  color: var(--text);
+  color: #b69dff;
 }
 
 .post-card p { margin: 0; color: var(--muted); font-size: 14.5px; }
@@ -438,14 +437,12 @@ main {
 
 .article h1 {
   margin: 0 0 18px;
+  padding-bottom: 0.06em;
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.16;
   font-size: clamp(33px, 6vw, 54px);
   letter-spacing: -0.02em;
-  background: linear-gradient(115deg, var(--blue), var(--purple) 52%, var(--red));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #b69dff;
 }
 
 .article__lede {
@@ -456,6 +453,8 @@ main {
 }
 
 .article__hero {
+  width: 100%;
+  max-width: 620px;
   margin: 22px 0 4px;
   aspect-ratio: 16 / 9;
   overflow: hidden;
@@ -472,7 +471,7 @@ main {
   display: block;
 }
 
-.article__figure { margin: 34px 0; }
+.article__figure { margin: 34px 0; max-width: 560px; }
 
 .article__figure img {
   width: 100%;
