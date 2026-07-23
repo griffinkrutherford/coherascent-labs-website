@@ -420,6 +420,18 @@
       outline-offset: 3px;
     }
 
+    .nav-link--blog {
+      border-color: rgba(164, 123, 255, 0.5);
+      background: rgba(164, 123, 255, 0.14);
+      color: #e4d8ff;
+    }
+
+    html[data-theme="light"] .nav-link--blog {
+      border-color: rgba(127, 99, 214, 0.4);
+      background: rgba(127, 99, 214, 0.12);
+      color: #4a2f9e;
+    }
+
     html[data-theme="light"] .nav-link {
       color: #06111f;
       background: rgba(255, 255, 255, 0.64);
@@ -9335,6 +9347,7 @@
         <a class="nav-link" href="#constellations-title">Constellations</a>
         <a class="nav-link" href="#medals-title">Medals</a>
         <a class="nav-link" href="#engine-title">Engine</a>
+        <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span>
