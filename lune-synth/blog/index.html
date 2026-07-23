@@ -14,19 +14,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/blog/blog.css" />
+  <link rel="stylesheet" href="/blog/blog.css?v=2" />
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="/">
-      <img src="/images/lune-synth-icon.png" alt="" />
-      <span>Lune Synth&trade;</span>
-    </a>
-    <nav class="site-nav" aria-label="Site">
-      <a href="/">Home</a>
-      <a href="/blog/" aria-current="page">Blog</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/terms/">Terms</a>
+    <div class="brand-dropdown">
+      <a class="brand" href="/" role="button" aria-haspopup="true" tabindex="0" aria-label="Coherascent Labs menu">
+        <img class="brand-logo" src="/coherascent-labs-logo-march-16-2026.webp" alt="Coherascent Labs logo" />
+        <h1>Coherascent Labs <span class="brand-chevron" aria-hidden="true">▼</span></h1>
+      </a>
+      <div class="brand-dropdown-content">
+        <a href="https://coherascentlabs.com/">Home</a>
+        <a href="https://coherascentlabs.com/research/">Research</a>
+        <a href="/">Lune Synth&trade;</a>
+      </div>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link" href="/">Lune Synth</a>
+      <a class="nav-link" href="/blog/" aria-current="page">Blog</a>
     </nav>
   </header>
 
@@ -43,9 +48,9 @@
 
       <!--
         To add a post:
-        1. Duplicate the /blog/welcome-to-lune-synth/ folder, rename it to your slug.
+        1. Duplicate a folder under /blog/, rename it to your slug.
         2. Edit its index.html (title, date, body).
-        3. Copy the <li> block below, update the href, tag, date, title, and summary.
+        3. Copy a <li> block below, update the href, tag, date, title, and summary.
         Newest posts go at the top of this list.
       -->
       <ul class="post-list">
@@ -72,8 +77,8 @@
             </div>
             <h2>Welcome to the Lune Synth blog</h2>
             <p>
-              Why we're building a learning app that grades the work you actually did —
-              by hand — and what you can expect to read here.
+              Why we're building a learning app that grades the work you actually did &mdash;
+              by hand &mdash; and what you can expect to read here.
             </p>
             <span class="post-card__more">Read more &rarr;</span>
           </a>
@@ -87,11 +92,13 @@
       <span>Lune Synth&trade;, a Coherascent Labs product</span>
       <nav aria-label="Footer">
         <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
-        <a href="mailto:support@lunesynth.com">Contact</a>
       </nav>
     </footer>
   </div>
+
+  <script src="/blog/blog.js"></script>
 </body>
 </html>

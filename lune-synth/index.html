@@ -420,6 +420,18 @@
       outline-offset: 3px;
     }
 
+    .nav-link--blog {
+      border-color: rgba(164, 123, 255, 0.5);
+      background: rgba(164, 123, 255, 0.14);
+      color: #e4d8ff;
+    }
+
+    html[data-theme="light"] .nav-link--blog {
+      border-color: rgba(127, 99, 214, 0.4);
+      background: rgba(127, 99, 214, 0.12);
+      color: #4a2f9e;
+    }
+
     html[data-theme="light"] .nav-link {
       color: #06111f;
       background: rgba(255, 255, 255, 0.64);
@@ -2620,14 +2632,15 @@
       background: transparent;
       box-shadow: none;
       overflow: hidden;
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.3, 1), visibility 0.5s;
+      transform: translateX(0);
     }
 
     .voice-flow__feature[hidden] {
       display: grid !important; /* Override hidden to allow transition if needed, but we'll use opacity */
       opacity: 0;
       pointer-events: none;
-      transform: translateY(10px);
+      visibility: hidden;
     }
 
     html[data-theme="light"] .voice-flow__feature {
@@ -2650,10 +2663,23 @@
     .voice-flow__carousel {
       display: grid;
       gap: 14px;
+      position: relative;
     }
 
-    .voice-flow__feature[hidden] {
-      display: none;
+    /* Slide transitions for Voice/Text input features */
+    .voice-flow__carousel.slide-next .voice-flow__feature[hidden]:not(.is-leaving) {
+      transform: translateX(50px);
+    }
+    .voice-flow__carousel.slide-prev .voice-flow__feature[hidden]:not(.is-leaving) {
+      transform: translateX(-50px);
+    }
+    .voice-flow__carousel.slide-next .voice-flow__feature.is-leaving {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    .voice-flow__carousel.slide-prev .voice-flow__feature.is-leaving {
+      transform: translateX(50px);
+      opacity: 0;
     }
 
     .voice-flow__controls {
@@ -5667,16 +5693,47 @@
     }
 
     .luna-tab-panel {
-      display: none;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      grid-template-rows: auto auto;
+      align-items: center;
+      gap: clamp(20px, 3vw, 40px);
+      width: 100%;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.3, 1), visibility 0.5s;
     }
 
     .luna-tab-panel.is-active {
-      display: contents;
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    .luna-card.slide-next .luna-tab-panel:not(.is-active):not(.is-leaving) {
+      transform: translateX(50px);
+    }
+    .luna-card.slide-prev .luna-tab-panel:not(.is-active):not(.is-leaving) {
+      transform: translateX(-50px);
+    }
+    .luna-card.slide-next .luna-tab-panel.is-leaving {
+      transform: translateX(-50px);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .luna-card.slide-prev .luna-tab-panel.is-leaving {
+      transform: translateX(50px);
+      opacity: 0;
+      pointer-events: none;
     }
 
     .luna-tab-copy {
       grid-column: 2;
-      grid-row: 2;
+      grid-row: 1; /* inside the panel grid */
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -5694,21 +5751,26 @@
     }
 
     .luna-tab-copy__traits {
+      grid-column: 1 / -1;
+      grid-row: 2; /* full-width row under phone + copy, inside the panel grid */
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      justify-content: center;
       gap: 8px;
+      width: 100%;
+      min-width: 0;
     }
 
     .luna-tab-copy__traits span {
       display: inline-flex;
       align-items: center;
-      padding: 7px 12px;
+      padding: 6px clamp(6px, 1vw, 12px);
       border-radius: 999px;
       border: 1px solid rgba(164, 123, 255, 0.24);
       background: rgba(164, 123, 255, 0.08);
       color: var(--muted);
       font-family: var(--font-sans);
-      font-size: 11px;
+      font-size: clamp(8px, 1.7vw, 11px);
       font-weight: 600;
       letter-spacing: 0.01em;
       white-space: nowrap;
@@ -5716,7 +5778,7 @@
 
     .luna-tab-visual {
       grid-column: 1;
-      grid-row: 2;
+      grid-row: 1; /* inside the panel grid */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -5735,17 +5797,25 @@
         justify-self: stretch;
         width: 100%;
       }
+      .luna-tab-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: clamp(16px, 2.4vh, 24px);
+      }
       .luna-tab-copy {
         grid-column: 1;
+        grid-row: 1;
         align-items: center;
         text-align: center;
       }
-      .luna-tab-copy__traits {
-        justify-content: center;
-      }
       .luna-tab-visual {
         grid-column: 1;
-        grid-row: auto;
+        grid-row: 2;
+      }
+      .luna-tab-copy__traits {
+        grid-column: 1;
+        grid-row: 3;
+        justify-content: center;
       }
     }
 
@@ -5781,6 +5851,9 @@
       }
       .luna-phone--tab {
         --luna-phone-scale: 1.0;
+      }
+      .luna-tab-copy__traits {
+        flex-wrap: wrap;
       }
     }
 
@@ -7694,7 +7767,9 @@
     }
 
     .ipad-preview-layout {
-      position: relative; /* anchor for the .ipad-gif-target overlay */
+      position: absolute; /* Stack them all on top of each other! */
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       padding: 16px;
@@ -7705,6 +7780,33 @@
       align-items: center;
       text-align: center;
       color: #edf5ff;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.3, 1), visibility 0.5s;
+    }
+
+    .ipad-preview-layout.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    /* Slide transition states for iPad previews */
+    .ipad-screen-content.slide-next .ipad-preview-layout:not(.is-active):not(.is-leaving) {
+      transform: translateX(50px);
+    }
+    .ipad-screen-content.slide-prev .ipad-preview-layout:not(.is-active):not(.is-leaving) {
+      transform: translateX(-50px);
+    }
+    .ipad-screen-content.slide-next .ipad-preview-layout.is-leaving {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    .ipad-screen-content.slide-prev .ipad-preview-layout.is-leaving {
+      transform: translateX(50px);
+      opacity: 0;
     }
 
     /* --- Sky Selector Options (Beside the iPad, Step 2 Only) --- */
@@ -9245,6 +9347,7 @@
         <a class="nav-link" href="#constellations-title">Constellations</a>
         <a class="nav-link" href="#medals-title">Medals</a>
         <a class="nav-link" href="#engine-title">Engine</a>
+        <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span>
@@ -9796,11 +9899,6 @@
             <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
               <div class="luna-tab-copy">
                 <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step&mdash;then you finish it.</p>
-                <div class="luna-tab-copy__traits">
-                  <span>One nudge at a time</span>
-                  <span>No copyable solution</span>
-                  <span>Built for your question</span>
-                </div>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
@@ -9809,16 +9907,16 @@
                   </div>
                 </div>
               </div>
+              <div class="luna-tab-copy__traits">
+                <span>One nudge at a time</span>
+                <span>No copyable solution</span>
+                <span>Built for your question</span>
+              </div>
             </div>
 
             <div class="luna-tab-panel" id="lunaPanel-infographics" role="tabpanel" aria-labelledby="lunaTab-infographics">
               <div class="luna-tab-copy">
                 <p class="luna-tab-copy__lede">Words not enough? A quick diagram from your exact problem.</p>
-                <div class="luna-tab-copy__traits">
-                  <span>Diagrams from the question</span>
-                  <span>Visual next-step guidance</span>
-                  <span>Still no final answer</span>
-                </div>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
@@ -9827,16 +9925,16 @@
                   </div>
                 </div>
               </div>
+              <div class="luna-tab-copy__traits">
+                <span>Diagrams from the question</span>
+                <span>Visual next-step guidance</span>
+                <span>Still no final answer</span>
+              </div>
             </div>
 
             <div class="luna-tab-panel" id="lunaPanel-keyterms" role="tabpanel" aria-labelledby="lunaTab-keyterms">
               <div class="luna-tab-copy">
                 <p class="luna-tab-copy__lede">Key terms surface in context exactly when they matter.</p>
-                <div class="luna-tab-copy__traits">
-                  <span>Definitions in context</span>
-                  <span>Subject vocabulary</span>
-                  <span>Quick, no distraction</span>
-                </div>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
@@ -9845,16 +9943,16 @@
                   </div>
                 </div>
               </div>
+              <div class="luna-tab-copy__traits">
+                <span>Definitions in context</span>
+                <span>Subject vocabulary</span>
+                <span>Quick, no distraction</span>
+              </div>
             </div>
 
             <div class="luna-tab-panel" id="lunaPanel-chat" role="tabpanel" aria-labelledby="lunaTab-chat">
               <div class="luna-tab-copy">
                 <p class="luna-tab-copy__lede">Ask while working. Prompts and checks that keep you thinking.</p>
-                <div class="luna-tab-copy__traits">
-                  <span>Socratic guidance</span>
-                  <span>Grounded in your attempt</span>
-                  <span>Refuses direct answers</span>
-                </div>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
@@ -9862,6 +9960,11 @@
                     <!-- Drop screenshot here using the same pattern as other phones -->
                   </div>
                 </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Socratic guidance</span>
+                <span>Grounded in your attempt</span>
+                <span>Refuses direct answers</span>
               </div>
             </div>
           </div>
@@ -10301,7 +10404,7 @@
                 <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
 
                   <!-- Step 1 Preview Screen -->
-                  <div class="ipad-preview-layout" id="previewStep-1">
+                  <div class="ipad-preview-layout is-active" id="previewStep-1">
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-thumb.jpg" data-video-thumbnail="step1Video" alt="" aria-hidden="true">
                     <video id="step1Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-1.webm" type="video/webm">
@@ -10310,7 +10413,7 @@
                   </div>
 
                   <!-- Step 2 Preview Screen (Includes interactive theme selector buttons) -->
-                  <div class="ipad-preview-layout" id="previewStep-2" style="display: none;">
+                  <div class="ipad-preview-layout" id="previewStep-2">
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-math-sky-thumb.jpg" data-video-thumbnail="step2Video-math" alt="" aria-hidden="true" style="display: none;">
                     <video id="step2Video-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-2-math-sky.webm" type="video/webm">
@@ -10329,7 +10432,7 @@
                   </div>
 
                   <!-- Step 3 Preview Screen -->
-                  <div class="ipad-preview-layout" id="previewStep-3" style="display: none;">
+                  <div class="ipad-preview-layout" id="previewStep-3">
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-3-thumb.jpg" data-video-thumbnail="step3Video" alt="" aria-hidden="true">
                     <video id="step3Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-3.webm" type="video/webm">
@@ -10338,7 +10441,7 @@
                   </div>
 
                   <!-- Step 4 Preview Screen -->
-                  <div class="ipad-preview-layout" id="previewStep-4" style="display: none;">
+                  <div class="ipad-preview-layout" id="previewStep-4">
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-4-thumb.jpg" data-video-thumbnail="step4Video" alt="" aria-hidden="true">
                     <video id="step4Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-4.webm" type="video/webm">
@@ -10347,7 +10450,7 @@
                   </div>
 
                   <!-- Step 5 Preview Screen -->
-                  <div class="ipad-preview-layout" id="previewStep-5" style="display: none;">
+                  <div class="ipad-preview-layout" id="previewStep-5">
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-5-thumb.jpg" data-video-thumbnail="step5Video" alt="" aria-hidden="true">
                     <video id="step5Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-5.webm" type="video/webm">
@@ -11486,9 +11589,33 @@
     var controls = Array.prototype.slice.call(carousel.querySelectorAll("[data-input-target]"));
     if (!slides.length || !controls.length) return;
 
+    var currentInputIndex = 0;
+
     function showSlide(nextIndex) {
+      var prevIndex = currentInputIndex;
+      if (nextIndex === prevIndex) return;
+      currentInputIndex = nextIndex;
+
+      var dir = nextIndex > prevIndex ? 'next' : 'prev';
+      carousel.classList.remove('slide-next', 'slide-prev');
+      carousel.classList.add('slide-' + dir);
+
       slides.forEach(function (slide, index) {
-        slide.hidden = index !== nextIndex;
+        if (index === prevIndex) {
+          slide.classList.remove('is-active');
+          slide.classList.add('is-leaving');
+          slide.setAttribute('hidden', '');
+          setTimeout(function () {
+            slide.classList.remove('is-leaving');
+          }, 500);
+        } else if (index === nextIndex) {
+          slide.classList.add('is-active');
+          slide.classList.remove('is-leaving');
+          slide.removeAttribute('hidden');
+        } else {
+          slide.classList.remove('is-active', 'is-leaving');
+          slide.setAttribute('hidden', '');
+        }
       });
 
       controls.forEach(function (control, index) {
@@ -11497,6 +11624,9 @@
         control.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
     }
+
+    // Set initial active class
+    slides[0].classList.add('is-active');
 
     controls.forEach(function (control) {
       control.addEventListener("click", function () {
@@ -11773,7 +11903,16 @@
   })();
 
   function switchSlideshowStep(stepNumber) {
+    const prevStep = activeSlideshowStep;
+    if (stepNumber === prevStep) return;
     activeSlideshowStep = stepNumber;
+
+    const dir = stepNumber > prevStep ? 'next' : 'prev';
+    const ipadCanvas = document.getElementById('ipadScreenCanvas');
+    if (ipadCanvas) {
+      ipadCanvas.classList.remove('slide-next', 'slide-prev');
+      ipadCanvas.classList.add('slide-' + dir);
+    }
 
     // Update Step Button active states
     const buttons = document.querySelectorAll('.slideshow-step-btn');
@@ -11790,23 +11929,42 @@
     const descEl = document.getElementById('activeStepDesc');
     
     if (badgeEl && titleEl && descEl && stepData[stepNumber]) {
-      badgeEl.textContent = stepData[stepNumber].badge;
-      titleEl.innerHTML = stepData[stepNumber].title;
-      descEl.innerHTML = stepData[stepNumber].desc;
-    }
-
-    // Hide all step preview screens inside the iPad screen
-    for (let i = 1; i <= 5; i++) {
-      const screen = document.getElementById('previewStep-' + i);
-      if (screen) {
-        screen.style.display = 'none';
+      const textContainer = document.querySelector('.active-step-text');
+      if (textContainer) {
+        textContainer.style.opacity = 0;
+        textContainer.style.transform = dir === 'next' ? 'translateX(-12px)' : 'translateX(12px)';
+        textContainer.style.transition = 'opacity 0.25s cubic-bezier(0.25, 1, 0.3, 1), transform 0.25s cubic-bezier(0.25, 1, 0.3, 1)';
+        setTimeout(() => {
+          badgeEl.textContent = stepData[stepNumber].badge;
+          titleEl.innerHTML = stepData[stepNumber].title;
+          descEl.innerHTML = stepData[stepNumber].desc;
+          textContainer.style.opacity = 1;
+          textContainer.style.transform = 'translateX(0)';
+        }, 250);
+      } else {
+        badgeEl.textContent = stepData[stepNumber].badge;
+        titleEl.innerHTML = stepData[stepNumber].title;
+        descEl.innerHTML = stepData[stepNumber].desc;
       }
     }
 
-    // Show active step preview screen
-    const activeScreen = document.getElementById('previewStep-' + stepNumber);
-    if (activeScreen) {
-      activeScreen.style.display = 'flex';
+    // Toggle active/leaving states on the step preview screens inside the iPad screen
+    for (let i = 1; i <= 5; i++) {
+      const screen = document.getElementById('previewStep-' + i);
+      if (screen) {
+        // Clear any inline styles that could conflict with class transitions
+        screen.style.display = '';
+        if (i === prevStep) {
+          screen.classList.remove('is-active');
+          screen.classList.add('is-leaving');
+          setTimeout(() => screen.classList.remove('is-leaving'), 500);
+        } else if (i === stepNumber) {
+          screen.classList.add('is-active');
+          screen.classList.remove('is-leaving');
+        } else {
+          screen.classList.remove('is-active', 'is-leaving');
+        }
+      }
     }
 
     // Toggle the theme selector panel visibility beside the iPad
@@ -11826,7 +11984,22 @@
     syncIpadVideos();
   }
 
+  let currentLunaTabIndex = 0;
+  const lunaTabOrder = ['hints', 'infographics', 'keyterms', 'chat'];
+
   function switchLunaTab(tab) {
+    const nextIndex = lunaTabOrder.indexOf(tab);
+    const prevIndex = currentLunaTabIndex;
+    if (nextIndex === prevIndex) return;
+    currentLunaTabIndex = nextIndex;
+
+    const dir = nextIndex > prevIndex ? 'next' : 'prev';
+    const card = document.querySelector('.luna-card');
+    if (card) {
+      card.classList.remove('slide-next', 'slide-prev');
+      card.classList.add('slide-' + dir);
+    }
+
     // Deactivate all tab buttons
     const buttons = document.querySelectorAll('.luna-tab-btn');
     buttons.forEach(btn => {
@@ -11841,9 +12014,17 @@
       activeBtn.setAttribute('aria-selected', 'true');
     }
 
-    // Hide all panels
+    // Hide all panels and toggle active/leaving states
     const panels = document.querySelectorAll('.luna-tab-panel');
-    panels.forEach(p => p.classList.remove('is-active'));
+    panels.forEach(p => {
+      if (p.classList.contains('is-active')) {
+        p.classList.remove('is-active');
+        p.classList.add('is-leaving');
+        setTimeout(() => p.classList.remove('is-leaving'), 500);
+      } else {
+        p.classList.remove('is-leaving');
+      }
+    });
 
     // Show target panel
     const activePanel = document.getElementById('lunaPanel-' + tab);
@@ -11876,9 +12057,11 @@
       }
     });
 
-    // Reset and Apply Theme Class to iPad Frame
+    // Reset and Apply Theme Class to iPad Frame specifically (preserving other slide classnames)
     if (ipadCanvas) {
-      ipadCanvas.className = 'ipad-screen-content'; // clear prior classes
+      Array.from(ipadCanvas.classList).forEach(cls => {
+        if (cls.startsWith('theme-')) ipadCanvas.classList.remove(cls);
+      });
       ipadCanvas.classList.add('theme-' + skyTheme);
     }
 
@@ -12547,7 +12730,7 @@
       function activeVideo() {
         const previews = screen.querySelectorAll('.ipad-preview-layout');
         for (const p of previews) {
-          if (p.style.display !== 'none') {
+          if (p.classList.contains('is-active')) {
             // A preview may hold several videos (Step 02 swaps one per theme); pick the
             // one that's actually on screen. offsetParent is null while display:none.
             const vids = p.querySelectorAll('video');
