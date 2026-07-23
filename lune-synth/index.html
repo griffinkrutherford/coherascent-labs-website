@@ -7361,6 +7361,10 @@
 
     /* Horizontal Pill Tabs Menu (now nested inside .active-step-info, spans full width) */
     .slideshow-menu {
+      --selection-x: 6px;
+      --selection-width: calc((100% - 44px) / 5);
+      position: relative;
+      isolation: isolate;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 8px;
@@ -7374,12 +7378,43 @@
       box-sizing: border-box;
     }
 
+    .slideshow-menu__selection {
+      position: absolute;
+      z-index: 0;
+      top: 6px;
+      bottom: 6px;
+      left: 0;
+      width: var(--selection-width);
+      border: 1px solid var(--blue);
+      border-radius: 999px;
+      background: rgba(16, 28, 54, 0.85);
+      box-shadow: var(--glow);
+      transform: translate3d(var(--selection-x), 0, 0);
+      pointer-events: none;
+    }
+
+    .slideshow-menu.is-ready .slideshow-menu__selection {
+      transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1),
+                  width 440ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html[data-theme="light"] .slideshow-menu__selection {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 20px rgba(84, 98, 130, 0.08);
+    }
+
     @media (max-width: 968px) {
       .slideshow-menu {
+        --selection-x: 4px;
+        --selection-width: calc((100% - 32px) / 5);
         grid-template-columns: repeat(5, 1fr);
         gap: 6px;
         padding: 4px;
         border-radius: 999px;
+      }
+      .slideshow-menu__selection {
+        top: 4px;
+        bottom: 4px;
       }
       .slideshow-step-btn {
         padding: 8px 10px;
@@ -7389,8 +7424,14 @@
 
     @media (max-width: 680px) {
       .slideshow-menu {
+        --selection-x: 3px;
+        --selection-width: calc((100% - 22px) / 5);
         padding: 3px;
         gap: 4px;
+      }
+      .slideshow-menu__selection {
+        top: 3px;
+        bottom: 3px;
       }
       .slideshow-step-btn {
         padding: 6px;
@@ -7417,6 +7458,8 @@
     }
 
     .slideshow-step-btn {
+      position: relative;
+      z-index: 1;
       padding: 13px 16px; /* taller pills */
       min-height: 54px;
       border-radius: 999px;
@@ -7428,7 +7471,6 @@
       justify-content: center;
       align-items: center;
       gap: 6px;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     .slideshow-step-btn:hover {
@@ -7437,15 +7479,21 @@
     }
     
     .slideshow-step-btn.is-active {
-      border-color: var(--blue);
-      background: rgba(16, 28, 54, 0.85);
-      box-shadow: var(--glow);
+      border-color: transparent;
+      background: transparent;
+      box-shadow: none;
     }
 
     html[data-theme="light"] .slideshow-step-btn.is-active {
-      background: rgba(255, 255, 255, 0.95);
-      border-color: var(--blue);
-      box-shadow: 0 8px 20px rgba(84, 98, 130, 0.08);
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slideshow-menu.is-ready .slideshow-menu__selection {
+        transition: none;
+      }
     }
 
     .step-number {
@@ -7501,7 +7549,6 @@
         var(--glow),
         0 0 100px -10px color-mix(in srgb, var(--ambi-accent) 60%, transparent),
         0 22px 100px -20px color-mix(in srgb, var(--ambi-base) 80%, transparent);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       display: grid;
       grid-template-columns: 1.15fr 0.85fr; /* Side-by-side grid layout */
       grid-template-rows: auto 1fr; /* row 1 = pill menu, row 2 = content */
@@ -7783,30 +7830,12 @@
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
-      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.3, 1), visibility 0.5s;
     }
 
     .ipad-preview-layout.is-active {
       opacity: 1;
       pointer-events: auto;
       visibility: visible;
-      transform: translateX(0);
-    }
-
-    /* Slide transition states for iPad previews */
-    .ipad-screen-content.slide-next .ipad-preview-layout:not(.is-active):not(.is-leaving) {
-      transform: translateX(50px);
-    }
-    .ipad-screen-content.slide-prev .ipad-preview-layout:not(.is-active):not(.is-leaving) {
-      transform: translateX(-50px);
-    }
-    .ipad-screen-content.slide-next .ipad-preview-layout.is-leaving {
-      transform: translateX(-50px);
-      opacity: 0;
-    }
-    .ipad-screen-content.slide-prev .ipad-preview-layout.is-leaving {
-      transform: translateX(50px);
-      opacity: 0;
     }
 
     /* --- Sky Selector Options (Beside the iPad, Step 2 Only) --- */
@@ -10323,6 +10352,8 @@
           <!-- Top: Interactive Pill Tabs Menu (now nested inside the blue card) -->
           <div class="slideshow-menu">
 
+            <span class="slideshow-menu__selection" aria-hidden="true"></span>
+
             <!-- Step 1 Button -->
             <button class="slideshow-step-btn is-active" id="stepBtn-1" onclick="switchSlideshowStep(1)">
               <span class="step-number">01</span>
@@ -11833,6 +11864,29 @@
   let activeSlideshowStep = 1;
   let isStudyUniverseInView = false;
 
+  function positionSlideshowPill(activeButton) {
+    const menu = activeButton && activeButton.closest('.slideshow-menu');
+    if (!menu) return;
+
+    menu.style.setProperty('--selection-x', activeButton.offsetLeft + 'px');
+    menu.style.setProperty('--selection-width', activeButton.offsetWidth + 'px');
+  }
+
+  (function initSlideshowPill() {
+    const menu = document.querySelector('.slideshow-menu');
+    const activeButton = menu && menu.querySelector('.slideshow-step-btn.is-active');
+    if (!menu || !activeButton) return;
+
+    positionSlideshowPill(activeButton);
+    window.requestAnimationFrame(function() {
+      menu.classList.add('is-ready');
+    });
+
+    window.addEventListener('resize', function() {
+      positionSlideshowPill(menu.querySelector('.slideshow-step-btn.is-active'));
+    }, { passive: true });
+  })();
+
   function initIpadVideoLoadingStates() {
     document.querySelectorAll('#ipadScreenCanvas video.ipad-gif-target').forEach(video => {
       const thumbnail = document.querySelector('[data-video-thumbnail="' + video.id + '"]');
@@ -11903,16 +11957,8 @@
   })();
 
   function switchSlideshowStep(stepNumber) {
-    const prevStep = activeSlideshowStep;
-    if (stepNumber === prevStep) return;
+    if (stepNumber === activeSlideshowStep) return;
     activeSlideshowStep = stepNumber;
-
-    const dir = stepNumber > prevStep ? 'next' : 'prev';
-    const ipadCanvas = document.getElementById('ipadScreenCanvas');
-    if (ipadCanvas) {
-      ipadCanvas.classList.remove('slide-next', 'slide-prev');
-      ipadCanvas.classList.add('slide-' + dir);
-    }
 
     // Update Step Button active states
     const buttons = document.querySelectorAll('.slideshow-step-btn');
@@ -11921,6 +11967,7 @@
     const activeButton = document.getElementById('stepBtn-' + stepNumber);
     if (activeButton) {
       activeButton.classList.add('is-active');
+      positionSlideshowPill(activeButton);
     }
 
     // Update active step info description card
@@ -11929,41 +11976,18 @@
     const descEl = document.getElementById('activeStepDesc');
     
     if (badgeEl && titleEl && descEl && stepData[stepNumber]) {
-      const textContainer = document.querySelector('.active-step-text');
-      if (textContainer) {
-        textContainer.style.opacity = 0;
-        textContainer.style.transform = dir === 'next' ? 'translateX(-12px)' : 'translateX(12px)';
-        textContainer.style.transition = 'opacity 0.25s cubic-bezier(0.25, 1, 0.3, 1), transform 0.25s cubic-bezier(0.25, 1, 0.3, 1)';
-        setTimeout(() => {
-          badgeEl.textContent = stepData[stepNumber].badge;
-          titleEl.innerHTML = stepData[stepNumber].title;
-          descEl.innerHTML = stepData[stepNumber].desc;
-          textContainer.style.opacity = 1;
-          textContainer.style.transform = 'translateX(0)';
-        }, 250);
-      } else {
-        badgeEl.textContent = stepData[stepNumber].badge;
-        titleEl.innerHTML = stepData[stepNumber].title;
-        descEl.innerHTML = stepData[stepNumber].desc;
-      }
+      badgeEl.textContent = stepData[stepNumber].badge;
+      titleEl.innerHTML = stepData[stepNumber].title;
+      descEl.innerHTML = stepData[stepNumber].desc;
     }
 
-    // Toggle active/leaving states on the step preview screens inside the iPad screen
+    // Swap the iPad preview immediately; the selector pill provides the motion cue.
     for (let i = 1; i <= 5; i++) {
       const screen = document.getElementById('previewStep-' + i);
       if (screen) {
-        // Clear any inline styles that could conflict with class transitions
         screen.style.display = '';
-        if (i === prevStep) {
-          screen.classList.remove('is-active');
-          screen.classList.add('is-leaving');
-          setTimeout(() => screen.classList.remove('is-leaving'), 500);
-        } else if (i === stepNumber) {
-          screen.classList.add('is-active');
-          screen.classList.remove('is-leaving');
-        } else {
-          screen.classList.remove('is-active', 'is-leaving');
-        }
+        screen.classList.toggle('is-active', i === stepNumber);
+        screen.classList.remove('is-leaving');
       }
     }
 
