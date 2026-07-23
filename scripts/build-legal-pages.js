@@ -222,7 +222,6 @@ function pageTemplate(page, content) {
           <a href="https://coherascentlabs.com/">Home</a>
           <a href="https://coherascentlabs.com/research/">Research</a>
           <a href="/">Lune Synth&trade;</a>
-          <a href="https://tano.holdings/">Tano Holdings</a>
         </div>
       </div>
       <nav class="nav-links" id="primary-nav" aria-label="Primary">
@@ -247,11 +246,11 @@ function pageTemplate(page, content) {
     <article class="legal-document">
 ${content}
     <footer class="site-footer" aria-label="Lune Synth footer">
-      <a class="site-footer__identity" href="https://tano.holdings/" aria-label="Tano Holdings home">
+      <a class="site-footer__identity" href="/" aria-label="Lune Synth home">
         <img class="site-footer__mark" src="/images/lune-synth-icon-120.png" alt="" width="36" height="36" />
         <span class="site-footer__copy">
           <strong>Lune Synth&trade;</strong>
-          <span>A Tano Holdings company</span>
+          <span>The anti-slop learning app</span>
         </span>
       </a>
       <nav aria-label="Footer">
