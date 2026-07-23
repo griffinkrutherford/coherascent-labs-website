@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -9,29 +9,66 @@
   <link rel="icon" type="image/png" href="/circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/lune-synth/legal.css?v=3" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/lune-synth/legal.css?v=4" />
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="/">
-      <img src="/images/lune-synth-icon.png" alt="" />
-      <span>Lune Synth</span>
-    </a>
-    <nav class="site-nav" aria-label="Legal pages">
-      <a href="/">Home</a>
-      <a href="/privacy/" aria-current="page">Privacy</a>
-      <a href="/terms/">Terms</a>
-    </nav>
-  </header>
-  <aside class="draft-banner">
-    <strong>Draft only.</strong> This document is not finalized or published. Entity, contact, governing-law, and venue details remain unresolved.
-  </aside>
-  <main class="legal-document">
+  <main class="legal-shell">
+    <header class="site-header">
+      <div class="brand-dropdown">
+        <div class="brand" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-label="Coherascent Labs navigation menu">
+          <img
+            class="brand-logo"
+            src="/coherascent-labs-logo-march-16-2026.webp"
+            data-logo-dark="/coherascent-labs-logo-march-16-2026.webp"
+            data-logo-light="/coherascent-labs-streamlined-light-2.webp"
+            alt="Coherascent Labs logo"
+          />
+          <h1>Coherascent Labs <span class="brand-chevron" aria-hidden="true">▼</span></h1>
+        </div>
+        <div class="brand-dropdown-content">
+          <div class="brand-popup-header">
+            <div class="brand" aria-hidden="true">
+              <img
+                class="brand-logo"
+                src="/coherascent-labs-logo-march-16-2026.webp"
+                data-logo-dark="/coherascent-labs-logo-march-16-2026.webp"
+                data-logo-light="/coherascent-labs-streamlined-light-2.webp"
+                alt="Coherascent Labs logo"
+              />
+              <h1>Coherascent Labs</h1>
+            </div>
+          </div>
+          <a href="https://coherascentlabs.com/">Home</a>
+          <a href="https://coherascentlabs.com/research/">Research</a>
+          <a href="/">Lune Synth&trade;</a>
+          <a href="https://tano.holdings/">Tano Holdings</a>
+        </div>
+      </div>
+      <nav class="nav-links" id="primary-nav" aria-label="Primary">
+        <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
+        <a class="nav-link" href="/#platform-title">Handwriting</a>
+        <a class="nav-link" href="/#luna-title">Luna</a>
+        <a class="nav-link" href="/#processing-title">Grading</a>
+        <a class="nav-link" href="/#voice-title">Input Methods</a>
+        <a class="nav-link" href="/#quick-missions-title">Quick Missions</a>
+        <a class="nav-link" href="/#constellations-title">Constellations</a>
+        <a class="nav-link" href="/#medals-title">Medals</a>
+        <a class="nav-link" href="/#engine-title">Engine</a>
+        <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
+      </nav>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+    </header>
+    <aside class="draft-banner">
+      <strong>Draft only.</strong> This document is not finalized or published. Entity, governing-law, and venue details remain unresolved.
+    </aside>
+    <article class="legal-document">
 <h1>Lune Synth Privacy Policy</h1>
 <p><strong>Effective date:</strong> June 6, 2026</p>
 <h2>1. Scope</h2>
-<p>This Privacy Policy explains how Coherascent Labs (&quot;Coherascent,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects, uses, discloses, and retains personal information through the Lune Synth website, waitlist, mobile applications, beta programs, and related services (collectively, the &quot;Service&quot;).</p>
+<p>This Privacy Policy explains how Coherascent Labs (&quot;Coherascent,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a <a href="https://tano.holdings/">Tano Holdings</a> company, collects, uses, discloses, and retains personal information through the Lune Synth website, waitlist, mobile applications, beta programs, and related services (collectively, the &quot;Service&quot;).</p>
 <p>It does not govern a third-party site or service that has its own privacy policy. A separate school or enterprise agreement may provide additional or different terms for an organization-managed deployment.</p>
 <h2>2. Key Commitments</h2>
 <ul>
@@ -237,7 +274,7 @@
 <li>appeal our decision on a privacy request.</li>
 </ul>
 <p>You may unsubscribe from promotional email through the link in the message. Essential account, security, transaction, and beta-operation messages may continue while you use the Service.</p>
-<p>To exercise a privacy right, email <a href="mailto:support@lunesynth.com">support@lunesynth.com</a> with the subject &quot;Privacy Request.&quot; Describe the request and the account or email address involved. We may ask for information needed to verify identity, authority, or residency. An authorized agent may submit a request where law permits, but we may require proof of authorization or direct confirmation.</p>
+<p>To exercise a privacy right, email <a href="mailto:griffin@lunesynth.com">griffin@lunesynth.com</a> with the subject &quot;Privacy Request.&quot; Describe the request and the account or email address involved. We may ask for information needed to verify identity, authority, or residency. An authorized agent may submit a request where law permits, but we may require proof of authorization or direct confirmation.</p>
 <p>We will not discriminate against you for exercising a privacy right. If we deny a request, you may appeal by replying with the subject &quot;Privacy Appeal.&quot; You may also contact your state attorney general or privacy regulator.</p>
 <p>Some information may be exempt from a request, including information we must retain for security, fraud prevention, legal claims, taxes, or another legal obligation.</p>
 <h3>Do Not Track And Global Privacy Control</h3>
@@ -250,7 +287,7 @@
 <p>California and Colorado residents may use the request and appeal methods in Section 11. California residents may also request information about categories collected, disclosed, sold, or shared where the California Consumer Privacy Act applies. Colorado residents may appeal a denied request and contact the Colorado Attorney General if the appeal is denied.</p>
 <h2>13. Security</h2>
 <p>We use administrative, technical, and organizational safeguards designed to protect personal information. Depending on the environment, these may include encrypted transport, managed authentication, private object storage, short-lived signed file access, role-based authorization, access logging, secrets management, and production access controls.</p>
-<p>No system is completely secure. You are responsible for protecting your credentials and device. Notify <a href="mailto:security@lunesynth.com">security@lunesynth.com</a> promptly if you believe an account or the Service has been compromised.</p>
+<p>No system is completely secure. You are responsible for protecting your credentials and device. Notify <a href="mailto:griffin@lunesynth.com">griffin@lunesynth.com</a> promptly if you believe an account or the Service has been compromised.</p>
 <p>If a data breach requires notice, we will notify affected people and regulators as required by law.</p>
 <h2>14. International Use</h2>
 <p>The initial beta and general waitlist are offered only in the United States. Do not submit personal information through those flows if you are outside the United States unless we expressly authorize your participation.</p>
@@ -260,17 +297,18 @@
 <h2>16. Contact</h2>
 <p>Privacy questions and requests may be sent to:</p>
 <p>Coherascent Labs</p>
+<p>A <a href="https://tano.holdings/">Tano Holdings</a> company</p>
 <p>[[LEGAL ENTITY NAME]]</p>
 <p>[[MAILING ADDRESS]]</p>
 <p>[[PHONE NUMBER]]</p>
-<p><a href="mailto:support@lunesynth.com">support@lunesynth.com</a></p>
-<p>Security reports may be sent to <a href="mailto:security@lunesynth.com">security@lunesynth.com</a>.</p>
+<p><a href="mailto:griffin@lunesynth.com">griffin@lunesynth.com</a></p>
+<p>Security reports may be sent to <a href="mailto:griffin@lunesynth.com">griffin@lunesynth.com</a>.</p>
     <footer class="site-footer" aria-label="Lune Synth footer">
-      <a class="site-footer__identity" href="https://coherascentlabs.com/" aria-label="Coherascent Labs home">
+      <a class="site-footer__identity" href="https://tano.holdings/" aria-label="Tano Holdings home">
         <img class="site-footer__mark" src="/images/lune-synth-icon-120.png" alt="" width="36" height="36" />
         <span class="site-footer__copy">
           <strong>Lune Synth&trade;</strong>
-          <span>A Coherascent Labs product</span>
+          <span>A Tano Holdings company</span>
         </span>
       </a>
       <nav aria-label="Footer">
@@ -278,9 +316,11 @@
         <a href="/blog/">Blog</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
-        <a href="mailto:support@lunesynth.com">Contact</a>
+        <a href="mailto:griffin@lunesynth.com">Contact</a>
       </nav>
     </footer>
+    </article>
   </main>
+  <script src="/blog/blog.js?v=2"></script>
 </body>
 </html>

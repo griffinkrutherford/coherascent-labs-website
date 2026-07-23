@@ -178,11 +178,8 @@ function renderMarkdown(markdown) {
 }
 
 function pageTemplate(page, content) {
-  const currentPrivacy = page.slug === 'privacy' ? ' aria-current="page"' : '';
-  const currentTerms = page.slug === 'terms' ? ' aria-current="page"' : '';
-
   return `<!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -192,32 +189,69 @@ function pageTemplate(page, content) {
   <link rel="icon" type="image/png" href="/circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/lune-synth/legal.css?v=3" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/lune-synth/legal.css?v=4" />
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="/">
-      <img src="/images/lune-synth-icon.png" alt="" />
-      <span>Lune Synth</span>
-    </a>
-    <nav class="site-nav" aria-label="Legal pages">
-      <a href="/">Home</a>
-      <a href="/privacy/"${currentPrivacy}>Privacy</a>
-      <a href="/terms/"${currentTerms}>Terms</a>
-    </nav>
-  </header>
-  <aside class="draft-banner">
-    <strong>Draft only.</strong> This document is not finalized or published. Entity, contact, governing-law, and venue details remain unresolved.
-  </aside>
-  <main class="legal-document">
+  <main class="legal-shell">
+    <header class="site-header">
+      <div class="brand-dropdown">
+        <div class="brand" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-label="Coherascent Labs navigation menu">
+          <img
+            class="brand-logo"
+            src="/coherascent-labs-logo-march-16-2026.webp"
+            data-logo-dark="/coherascent-labs-logo-march-16-2026.webp"
+            data-logo-light="/coherascent-labs-streamlined-light-2.webp"
+            alt="Coherascent Labs logo"
+          />
+          <h1>Coherascent Labs <span class="brand-chevron" aria-hidden="true">▼</span></h1>
+        </div>
+        <div class="brand-dropdown-content">
+          <div class="brand-popup-header">
+            <div class="brand" aria-hidden="true">
+              <img
+                class="brand-logo"
+                src="/coherascent-labs-logo-march-16-2026.webp"
+                data-logo-dark="/coherascent-labs-logo-march-16-2026.webp"
+                data-logo-light="/coherascent-labs-streamlined-light-2.webp"
+                alt="Coherascent Labs logo"
+              />
+              <h1>Coherascent Labs</h1>
+            </div>
+          </div>
+          <a href="https://coherascentlabs.com/">Home</a>
+          <a href="https://coherascentlabs.com/research/">Research</a>
+          <a href="/">Lune Synth&trade;</a>
+          <a href="https://tano.holdings/">Tano Holdings</a>
+        </div>
+      </div>
+      <nav class="nav-links" id="primary-nav" aria-label="Primary">
+        <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
+        <a class="nav-link" href="/#platform-title">Handwriting</a>
+        <a class="nav-link" href="/#luna-title">Luna</a>
+        <a class="nav-link" href="/#processing-title">Grading</a>
+        <a class="nav-link" href="/#voice-title">Input Methods</a>
+        <a class="nav-link" href="/#quick-missions-title">Quick Missions</a>
+        <a class="nav-link" href="/#constellations-title">Constellations</a>
+        <a class="nav-link" href="/#medals-title">Medals</a>
+        <a class="nav-link" href="/#engine-title">Engine</a>
+        <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
+      </nav>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+    </header>
+    <aside class="draft-banner">
+      <strong>Draft only.</strong> This document is not finalized or published. Entity, governing-law, and venue details remain unresolved.
+    </aside>
+    <article class="legal-document">
 ${content}
     <footer class="site-footer" aria-label="Lune Synth footer">
-      <a class="site-footer__identity" href="https://coherascentlabs.com/" aria-label="Coherascent Labs home">
+      <a class="site-footer__identity" href="https://tano.holdings/" aria-label="Tano Holdings home">
         <img class="site-footer__mark" src="/images/lune-synth-icon-120.png" alt="" width="36" height="36" />
         <span class="site-footer__copy">
           <strong>Lune Synth&trade;</strong>
-          <span>A Coherascent Labs product</span>
+          <span>A Tano Holdings company</span>
         </span>
       </a>
       <nav aria-label="Footer">
@@ -225,10 +259,12 @@ ${content}
         <a href="/blog/">Blog</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
-        <a href="mailto:support@lunesynth.com">Contact</a>
+        <a href="mailto:griffin@lunesynth.com">Contact</a>
       </nav>
     </footer>
+    </article>
   </main>
+  <script src="/blog/blog.js?v=2"></script>
 </body>
 </html>
 `;
