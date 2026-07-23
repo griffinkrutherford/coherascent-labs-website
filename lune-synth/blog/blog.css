@@ -1,4 +1,5 @@
-/* Lune Synth blog — matches the main lunesynth.com dark design system. */
+/* Lune Synth blog — matches the main lunesynth.com dark design system.
+   Header markup, CSS, and JS are copied from the main site for parity. */
 :root {
   --font-mono: "Roboto Mono", monospace;
   --font-sans: "Plus Jakarta Sans", sans-serif;
@@ -77,24 +78,39 @@ h1, h2, h3, h4, h5, h6, .nav-link, .brand-dropdown-content a { font-family: var(
 a { color: var(--blue); text-underline-offset: 0.2em; }
 a:hover, a:focus-visible { color: #b9dcff; }
 
-/* ---------- Header (mirrors main site) ---------- */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 48px 24px 120px;
+}
+
+/* ============================================================
+   HEADER — copied verbatim from the main lunesynth.com site.
+   ============================================================ */
 .site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
   position: sticky;
   top: 0;
   z-index: 30;
   isolation: isolate;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 18px clamp(18px, 4vw, 48px);
-  margin-bottom: 8px;
+  --header-padding-y: 24px;
+  margin-bottom: 36px;
+  padding: var(--header-padding-y) 0;
 }
 
 .site-header::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
   z-index: -1;
   pointer-events: none;
   opacity: 0;
@@ -113,31 +129,35 @@ a:hover, a:focus-visible { color: #b9dcff; }
   gap: 12px;
   min-width: 0;
   cursor: pointer;
-  color: var(--text);
-  text-decoration: none;
-  transition: transform 0.3s ease;
 }
 
-.brand:hover, .brand:focus-visible { transform: translateY(-1px); }
-.brand:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 18px; }
-
 .brand img {
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   border-radius: 12px;
   object-fit: contain;
+  object-position: center;
   box-shadow: var(--glow);
 }
 
 .brand h1 {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
+  color: var(--text);
 }
 
-.brand-chevron { font-size: 0.7em; opacity: 0.7; }
+.brand:hover, .brand:focus-visible { transform: translateY(-1px); }
+
+.brand:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+  border-radius: 18px;
+}
+
+.brand-chevron { font-size: 0.7em; opacity: 0.75; }
 
 .brand-dropdown { position: relative; }
 
@@ -145,14 +165,12 @@ a:hover, a:focus-visible { color: #b9dcff; }
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  min-width: 190px;
+  min-width: 180px;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 6px 0;
   box-shadow: var(--glow);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   z-index: 50;
   opacity: 0;
   visibility: hidden;
@@ -169,35 +187,37 @@ a:hover, a:focus-visible { color: #b9dcff; }
 
 .brand-dropdown-content a {
   display: block;
-  padding: 9px 16px;
+  padding: 8px 16px;
   font-size: 13px;
   color: var(--text);
   text-decoration: none;
   white-space: nowrap;
 }
 
-.brand-dropdown-content a:hover { background: rgba(100, 168, 255, 0.1); color: var(--text); }
+.brand-dropdown-content a:hover { background: rgba(100, 168, 255, 0.1); }
+
+/* Hide the mobile popup header (with duplicated logo) in the desktop dropdown */
+.brand-dropdown-content .brand-popup-header { display: none; }
 
 .nav-links {
   margin-left: auto;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: nowrap;
 }
 
 .nav-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 14px;
+  padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid rgba(102, 179, 255, 0.22);
   background: rgba(11, 16, 30, 0.5);
   color: #ffffff;
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
   transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
@@ -209,27 +229,74 @@ a:hover, a:focus-visible { color: #b9dcff; }
   color: var(--text);
 }
 
+.nav-link:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.nav-link--blog {
+  border-color: rgba(164, 123, 255, 0.5);
+  background: rgba(164, 123, 255, 0.14);
+  color: #e4d8ff;
+}
+
 .nav-link[aria-current="page"] {
   border-color: var(--purple);
-  background: rgba(164, 123, 255, 0.14);
-  color: #d9c8ff;
+  background: rgba(164, 123, 255, 0.2);
+  color: #e4d8ff;
 }
+
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 100;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(102, 179, 255, 0.22);
+  background: rgba(11, 16, 30, 0.5);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-toggle__bars,
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  margin: -1px 0 0 -10px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.3s ease, background 0.2s ease;
+}
+
+.nav-toggle__bars::before,
+.nav-toggle__bars::after { content: ""; }
+
+.nav-toggle__bars::before { transform: translateY(-6px); }
+.nav-toggle__bars::after { transform: translateY(6px); }
+
+.site-header.nav-open .nav-toggle__bars { background: transparent; }
+.site-header.nav-open .nav-toggle__bars::before { transform: rotate(45deg); }
+.site-header.nav-open .nav-toggle__bars::after { transform: rotate(-45deg); }
 
 /* ---------- Layout ---------- */
 .wrap {
   position: relative;
   z-index: 1;
-  width: calc(100% - 40px);
+  width: 100%;
   max-width: 940px;
   margin: 0 auto;
 }
 
-main { position: relative; z-index: 1; }
-
 /* ---------- Blog index ---------- */
-.blog-hero {
-  padding: clamp(40px, 7vw, 88px) 0 clamp(26px, 4vw, 44px);
-}
+.blog-hero { padding: clamp(24px, 5vw, 60px) 0 clamp(26px, 4vw, 44px); }
 
 .blog-hero .eyebrow {
   margin: 0 0 14px;
@@ -263,7 +330,7 @@ main { position: relative; z-index: 1; }
 .post-list {
   list-style: none;
   margin: 0;
-  padding: 0 0 100px;
+  padding: 0 0 40px;
   display: grid;
   gap: 20px;
 }
@@ -334,7 +401,7 @@ main { position: relative; z-index: 1; }
 }
 
 /* ---------- Article ---------- */
-.article { padding: clamp(30px, 5vw, 56px) 0 96px; }
+.article { padding: clamp(8px, 2vw, 24px) 0 40px; }
 
 .article__back {
   display: inline-block;
@@ -431,7 +498,7 @@ main { position: relative; z-index: 1; }
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 18px;
-  padding: 30px 0 64px;
+  padding: 30px 0 0;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 12px;
@@ -441,9 +508,135 @@ main { position: relative; z-index: 1; }
 .site-footer a { color: var(--muted); text-decoration: none; }
 .site-footer a:hover { color: var(--text); }
 
+/* ============================================================
+   RESPONSIVE — header behavior copied from the main site.
+   ============================================================ */
+@media (max-width: 900px) {
+  .site-header { margin-bottom: 28px; flex-wrap: nowrap; }
+}
+
 @media (max-width: 640px) {
-  .site-header { flex-wrap: wrap; gap: 14px; padding: 14px 18px; }
-  .brand h1 { font-size: 12px; }
-  .brand img { width: 42px; height: 42px; }
-  .nav-links { width: 100%; justify-content: flex-start; }
+  main { padding: 32px 16px 96px; }
+
+  .site-header { --header-padding-y: 18px; }
+
+  .brand { gap: clamp(8px, 2.5vw, 12px); min-width: 0; }
+
+  .brand img {
+    width: clamp(40px, 11vw, 52px);
+    height: clamp(40px, 11vw, 52px);
+    flex-shrink: 0;
+  }
+
+  .brand h1 {
+    font-size: clamp(12px, 3.4vw, 16px);
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
+  .nav-toggle { display: inline-flex; }
+
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    margin: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 8px;
+    padding: max(72px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+    background: rgba(6, 8, 16, 0.92);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    overflow-y: auto;
+  }
+
+  .site-header.nav-open .nav-links { opacity: 1; visibility: visible; }
+
+  .site-header.nav-open .nav-toggle__bars,
+  .site-header.brand-open .nav-toggle__bars { background: transparent; }
+
+  .site-header.nav-open .nav-toggle__bars::before,
+  .site-header.brand-open .nav-toggle__bars::before { transform: rotate(45deg); }
+
+  .site-header.nav-open .nav-toggle__bars::after,
+  .site-header.brand-open .nav-toggle__bars::after { transform: rotate(-45deg); }
+
+  .nav-links .nav-link {
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    letter-spacing: 0.08em;
+  }
+
+  /* Full screen brand dropdown popup on mobile (Coherascent Labs logo menu) */
+  .brand-dropdown-content {
+    position: fixed;
+    inset: 0;
+    z-index: 95;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 8px;
+    padding: max(72px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+    background: rgba(6, 8, 16, 0.92);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    overflow-y: auto;
+  }
+
+  .site-header.brand-open .brand-dropdown-content { opacity: 1; visibility: visible; }
+
+  .brand-dropdown-content .brand-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(102, 179, 255, 0.2);
+  }
+
+  .brand-dropdown-content .brand-popup-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+  }
+
+  .brand-dropdown-content .brand-popup-header .brand img {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .brand-dropdown-content .brand-popup-header .brand h1 {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .brand-dropdown-content a {
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid rgba(102, 179, 255, 0.22);
+    background: rgba(11, 16, 30, 0.5);
+  }
 }
