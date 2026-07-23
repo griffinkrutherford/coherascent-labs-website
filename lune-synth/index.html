@@ -9324,6 +9324,142 @@
       pointer-events: none;
     }
 
+    /* ---------- From the blog (recent posts preview) ---------- */
+    .blog-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 22px;
+    }
+
+    .blog-preview__card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card);
+      box-shadow: var(--glow);
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .blog-preview__card:hover,
+    .blog-preview__card:focus-visible {
+      transform: translateY(-4px);
+      border-color: rgba(164, 123, 255, 0.5);
+      box-shadow: 0 26px 60px rgba(4, 8, 22, 0.6), 0 0 30px rgba(164, 123, 255, 0.14);
+    }
+
+    .blog-preview__image {
+      display: block;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 17, 34, 0.9);
+    }
+
+    .blog-preview__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .blog-preview__card:hover .blog-preview__image img,
+    .blog-preview__card:focus-visible .blog-preview__image img { transform: scale(1.05); }
+
+    .blog-preview__body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      padding: 18px 20px 22px;
+    }
+
+    .blog-preview__meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .blog-preview__tag {
+      padding: 3px 10px;
+      border: 1px solid rgba(102, 179, 255, 0.28);
+      border-radius: 999px;
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .blog-preview__title {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-transform: none;
+    }
+
+    .blog-preview__excerpt {
+      margin: 0;
+      flex: 1;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .blog-preview__more {
+      margin-top: 2px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .blog-preview__all {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(164, 123, 255, 0.4);
+      background: rgba(164, 123, 255, 0.12);
+      color: #e4d8ff;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .blog-preview__all:hover,
+    .blog-preview__all:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--purple);
+      background: rgba(164, 123, 255, 0.2);
+    }
+
+    html[data-theme="light"] .blog-preview__all {
+      color: #4a2f9e;
+      border-color: rgba(127, 99, 214, 0.4);
+      background: rgba(127, 99, 214, 0.12);
+    }
+
   </style>
   <script type="importmap">
   {
@@ -11443,6 +11579,55 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="section section--blog" aria-labelledby="blog-title">
+      <h2 class="section-title" id="blog-title">From the blog</h2>
+      <div class="blog-preview section-content">
+        <a class="blog-preview__card" href="/blog/why-handwriting-still-wins/">
+          <span class="blog-preview__image">
+            <img src="/blog/images/handwriting-window.jpg" alt="A student writing by hand in a notebook at a sunlit desk" loading="lazy" decoding="async" />
+          </span>
+          <div class="blog-preview__body">
+            <span class="blog-preview__meta">
+              <span class="blog-preview__tag">Learning Science</span>
+              <time datetime="2026-07-23">Jul 23, 2026</time>
+            </span>
+            <h3 class="blog-preview__title">Why writing it out by hand still wins</h3>
+            <span class="blog-preview__excerpt">Typing is faster and neater. For actually learning something, the slow messy pencil wins — and it's not close.</span>
+            <span class="blog-preview__more">Read more &rarr;</span>
+          </div>
+        </a>
+        <a class="blog-preview__card" href="/blog/ai-is-breaking-how-we-learn/">
+          <span class="blog-preview__image">
+            <img src="/blog/images/ai-robot.jpg" alt="A humanoid robot sitting on a bench, reading" loading="lazy" decoding="async" />
+          </span>
+          <div class="blog-preview__body">
+            <span class="blog-preview__meta">
+              <span class="blog-preview__tag">Learning Science</span>
+              <time datetime="2026-07-22">Jul 22, 2026</time>
+            </span>
+            <h3 class="blog-preview__title">AI is quietly breaking how we learn</h3>
+            <span class="blog-preview__excerpt">One way to use AI in school is cheating; the other feels like studying and mostly isn't. Why Lune Synth is built to do the opposite.</span>
+            <span class="blog-preview__more">Read more &rarr;</span>
+          </div>
+        </a>
+        <a class="blog-preview__card" href="/blog/welcome-to-lune-synth/">
+          <span class="blog-preview__image">
+            <img src="/blog/images/welcome-notebook.jpg" alt="An open book and a handwritten notebook on a desk" loading="lazy" decoding="async" />
+          </span>
+          <div class="blog-preview__body">
+            <span class="blog-preview__meta">
+              <span class="blog-preview__tag">Announcements</span>
+              <time datetime="2026-07-22">Jul 22, 2026</time>
+            </span>
+            <h3 class="blog-preview__title">Welcome to the Lune Synth blog</h3>
+            <span class="blog-preview__excerpt">Why we're building a learning app that grades the work you actually did — by hand — and what you can expect to read here.</span>
+            <span class="blog-preview__more">Read more &rarr;</span>
+          </div>
+        </a>
+      </div>
+      <a class="blog-preview__all" href="/blog/">Visit the blog &rarr;</a>
     </section>
 
     <footer class="footer" aria-label="Lune Synth&trade; call to action">
