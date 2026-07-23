@@ -24,9 +24,8 @@ Files in this folder:
   location/contacts/biometric collection, and no analytics/crash SDK in the
   build. Those sections do **not** depend on the entity and are considered
   stable.
-- **Holding-company attribution confirmed.** Coherascent Labs and Lune Synth are
-  part of Tano Holdings (`https://tano.holdings/`). The exact registered operator
-  name still needs to replace the unresolved legal-entity token before release.
+- **Operator details remain incomplete.** The exact registered operator name
+  still needs to replace the unresolved legal-entity token before release.
 - **The website publication trigger has fired.** The deployed Lune Synth
   waitlist collects email addresses. The documents therefore need to be
   finalized promptly, but they must not be published with unresolved entity,
