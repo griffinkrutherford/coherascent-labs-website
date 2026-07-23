@@ -449,7 +449,8 @@ main {
   color: #ffffff;
 }
 
-.article__meta span:last-child { color: var(--muted); }
+.article__author,
+.post-card__author { color: var(--muted); }
 
 .article h1 {
   margin: 0 0 18px;
@@ -471,7 +472,7 @@ main {
 .article__hero {
   width: 100%;
   max-width: 620px;
-  margin: 22px 0 4px;
+  margin: 22px auto 4px;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 18px;
@@ -484,10 +485,15 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
-.article__figure { margin: 34px 0; max-width: 560px; }
+.article__figure {
+  width: 100%;
+  max-width: 560px;
+  margin: 34px auto;
+}
 
 .article__figure img {
   width: 100%;
