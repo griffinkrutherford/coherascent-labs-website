@@ -2632,15 +2632,10 @@
       background: transparent;
       box-shadow: none;
       overflow: hidden;
-      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.3, 1), visibility 0.5s;
-      transform: translateX(0);
     }
 
     .voice-flow__feature[hidden] {
-      display: grid !important; /* Override hidden to allow transition if needed, but we'll use opacity */
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
+      display: none !important;
     }
 
     html[data-theme="light"] .voice-flow__feature {
@@ -2666,23 +2661,9 @@
       position: relative;
     }
 
-    /* Slide transitions for Voice/Text input features */
-    .voice-flow__carousel.slide-next .voice-flow__feature[hidden]:not(.is-leaving) {
-      transform: translateX(50px);
-    }
-    .voice-flow__carousel.slide-prev .voice-flow__feature[hidden]:not(.is-leaving) {
-      transform: translateX(-50px);
-    }
-    .voice-flow__carousel.slide-next .voice-flow__feature.is-leaving {
-      transform: translateX(-50px);
-      opacity: 0;
-    }
-    .voice-flow__carousel.slide-prev .voice-flow__feature.is-leaving {
-      transform: translateX(50px);
-      opacity: 0;
-    }
-
     .voice-flow__controls {
+      position: relative;
+      isolation: isolate;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -2700,6 +2681,46 @@
       -webkit-backdrop-filter: blur(24px) saturate(1.45);
     }
 
+    .moving-selection-pill {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: var(--selection-width, 0px);
+      height: var(--selection-height, 0px);
+      opacity: 0;
+      transform: translate3d(var(--selection-x, 0px), var(--selection-y, 0px), 0);
+      pointer-events: none;
+    }
+
+    [data-moving-selection].is-positioned > .moving-selection-pill {
+      opacity: 1;
+    }
+
+    [data-moving-selection].is-ready > .moving-selection-pill {
+      transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1),
+                  width 440ms cubic-bezier(0.16, 1, 0.3, 1),
+                  height 440ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-moving-selection].is-ready > .moving-selection-pill {
+        transition: none;
+      }
+    }
+
+    .voice-flow__selection {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.1)),
+        linear-gradient(120deg, rgba(100, 168, 255, 0.28), rgba(164, 123, 255, 0.22));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.34),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+        0 8px 20px rgba(4, 10, 24, 0.16);
+    }
+
     html[data-theme="light"] .voice-flow__controls {
       background: rgba(255, 255, 255, 0.58);
       border-color: rgba(255, 255, 255, 0.62);
@@ -2710,6 +2731,8 @@
     }
 
     .voice-flow__control {
+      position: relative;
+      z-index: 1;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -2724,24 +2747,17 @@
       font-size: 12px;
       line-height: 1;
       cursor: pointer;
-      transition: transform 180ms ease, background 180ms ease, color 180ms ease;
     }
 
     .voice-flow__control.is-active {
-      background:
-        linear-gradient(120deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.1)),
-        linear-gradient(120deg, rgba(100, 168, 255, 0.28), rgba(164, 123, 255, 0.22));
+      background: transparent;
       color: var(--text);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.34),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.08),
-        0 8px 20px rgba(4, 10, 24, 0.16);
+      box-shadow: none;
     }
 
     .voice-flow__control:hover,
     .voice-flow__control:focus-visible {
       outline: none;
-      transform: translateY(-1px);
       color: var(--text);
     }
 
@@ -5644,6 +5660,8 @@
     }
 
     .luna-menu {
+      position: relative;
+      isolation: isolate;
       grid-column: 1 / -1;
       justify-self: end;
       display: grid;
@@ -5657,7 +5675,21 @@
       box-sizing: border-box;
     }
 
+    .luna-menu__selection {
+      border: 1px solid var(--purple);
+      border-radius: 999px;
+      background: rgba(28, 18, 54, 0.85);
+      box-shadow: 0 0 0 1px rgba(164, 123, 255, 0.3), 0 0 22px rgba(164, 123, 255, 0.25);
+    }
+
+    html[data-theme="light"] .luna-menu__selection {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(84, 98, 130, 0.08);
+    }
+
     .luna-tab-btn {
+      position: relative;
+      z-index: 1;
       padding: 11px 12px;
       min-height: 42px;
       border-radius: 999px;
@@ -5669,7 +5701,6 @@
       color: var(--muted);
       cursor: pointer;
       text-align: center;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .luna-tab-btn:hover {
@@ -5679,56 +5710,32 @@
     }
 
     .luna-tab-btn.is-active {
-      border-color: var(--purple);
-      background: rgba(28, 18, 54, 0.85);
+      border-color: transparent;
+      background: transparent;
       color: #d9c8ff;
-      box-shadow: 0 0 0 1px rgba(164, 123, 255, 0.3), 0 0 22px rgba(164, 123, 255, 0.25);
+      box-shadow: none;
     }
 
     html[data-theme="light"] .luna-tab-btn.is-active {
-      background: rgba(255, 255, 255, 0.95);
-      border-color: var(--purple);
+      background: transparent;
+      border-color: transparent;
       color: var(--purple);
-      box-shadow: 0 4px 12px rgba(84, 98, 130, 0.08);
+      box-shadow: none;
     }
 
     .luna-tab-panel {
       grid-column: 1 / -1;
       grid-row: 2;
-      display: grid;
+      display: none;
       grid-template-columns: 1.5fr 1fr;
       grid-template-rows: auto auto;
       align-items: center;
       gap: clamp(20px, 3vw, 40px);
       width: 100%;
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.3, 1), visibility 0.5s;
     }
 
     .luna-tab-panel.is-active {
-      opacity: 1;
-      pointer-events: auto;
-      visibility: visible;
-      transform: translateX(0);
-    }
-
-    .luna-card.slide-next .luna-tab-panel:not(.is-active):not(.is-leaving) {
-      transform: translateX(50px);
-    }
-    .luna-card.slide-prev .luna-tab-panel:not(.is-active):not(.is-leaving) {
-      transform: translateX(-50px);
-    }
-    .luna-card.slide-next .luna-tab-panel.is-leaving {
-      transform: translateX(-50px);
-      opacity: 0;
-      pointer-events: none;
-    }
-    .luna-card.slide-prev .luna-tab-panel.is-leaving {
-      transform: translateX(50px);
-      opacity: 0;
-      pointer-events: none;
+      display: grid;
     }
 
     .luna-tab-copy {
@@ -5827,7 +5834,7 @@
         padding: 26px 18px;
       }
       .luna-menu {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 5px;
         padding: 3px;
       }
@@ -7361,8 +7368,6 @@
 
     /* Horizontal Pill Tabs Menu (now nested inside .active-step-info, spans full width) */
     .slideshow-menu {
-      --selection-x: 6px;
-      --selection-width: calc((100% - 44px) / 5);
       position: relative;
       isolation: isolate;
       display: grid;
@@ -7379,23 +7384,10 @@
     }
 
     .slideshow-menu__selection {
-      position: absolute;
-      z-index: 0;
-      top: 6px;
-      bottom: 6px;
-      left: 0;
-      width: var(--selection-width);
       border: 1px solid var(--blue);
       border-radius: 999px;
       background: rgba(16, 28, 54, 0.85);
       box-shadow: var(--glow);
-      transform: translate3d(var(--selection-x), 0, 0);
-      pointer-events: none;
-    }
-
-    .slideshow-menu.is-ready .slideshow-menu__selection {
-      transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1),
-                  width 440ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     html[data-theme="light"] .slideshow-menu__selection {
@@ -7405,16 +7397,10 @@
 
     @media (max-width: 968px) {
       .slideshow-menu {
-        --selection-x: 4px;
-        --selection-width: calc((100% - 32px) / 5);
         grid-template-columns: repeat(5, 1fr);
         gap: 6px;
         padding: 4px;
         border-radius: 999px;
-      }
-      .slideshow-menu__selection {
-        top: 4px;
-        bottom: 4px;
       }
       .slideshow-step-btn {
         padding: 8px 10px;
@@ -7424,14 +7410,8 @@
 
     @media (max-width: 680px) {
       .slideshow-menu {
-        --selection-x: 3px;
-        --selection-width: calc((100% - 22px) / 5);
         padding: 3px;
         gap: 4px;
-      }
-      .slideshow-menu__selection {
-        top: 3px;
-        bottom: 3px;
       }
       .slideshow-step-btn {
         padding: 6px;
@@ -7488,12 +7468,6 @@
       background: transparent;
       border-color: transparent;
       box-shadow: none;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .slideshow-menu.is-ready .slideshow-menu__selection {
-        transition: none;
-      }
     }
 
     .step-number {
@@ -10054,7 +10028,8 @@
 
           <div class="luna-card">
             <!-- Top: Interactive Pill Tabs Menu (pattern from Constellations) -->
-            <div class="luna-menu" role="tablist" aria-label="Ways Luna helps you think">
+            <div class="luna-menu" role="tablist" aria-label="Ways Luna helps you think" data-moving-selection>
+              <span class="moving-selection-pill luna-menu__selection" aria-hidden="true"></span>
               <button class="luna-tab-btn is-active" id="lunaTab-hints" role="tab" aria-controls="lunaPanel-hints" aria-selected="true" onclick="switchLunaTab('hints')">Hints</button>
               <button class="luna-tab-btn" id="lunaTab-infographics" role="tab" aria-controls="lunaPanel-infographics" aria-selected="false" onclick="switchLunaTab('infographics')">Infographics</button>
               <button class="luna-tab-btn" id="lunaTab-keyterms" role="tab" aria-controls="lunaPanel-keyterms" aria-selected="false" onclick="switchLunaTab('keyterms')">Key Terms</button>
@@ -10322,7 +10297,8 @@
       <div class="voice-flow" data-liquid-glass data-liquid-glass-variant="frosted">
         <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
         <div class="voice-flow__carousel section-content" data-input-carousel>
-          <div class="voice-flow__controls" aria-label="Input method carousel">
+          <div class="voice-flow__controls" aria-label="Input method carousel" data-moving-selection>
+            <span class="moving-selection-pill voice-flow__selection" aria-hidden="true"></span>
             <button class="voice-flow__control is-active" type="button" data-input-target="0" aria-pressed="true">Voice</button>
             <button class="voice-flow__control" type="button" data-input-target="1" aria-pressed="false">Text</button>
           </div>
@@ -10487,9 +10463,9 @@
         <div class="active-step-info">
 
           <!-- Top: Interactive Pill Tabs Menu (now nested inside the blue card) -->
-          <div class="slideshow-menu">
+          <div class="slideshow-menu" data-moving-selection>
 
-            <span class="slideshow-menu__selection" aria-hidden="true"></span>
+            <span class="moving-selection-pill slideshow-menu__selection" aria-hidden="true"></span>
 
             <!-- Step 1 Button -->
             <button class="slideshow-step-btn is-active" id="stepBtn-1" onclick="switchSlideshowStep(1)">
@@ -11798,6 +11774,46 @@
     });
   })();
 
+  function positionMovingSelection(activeButton) {
+    var container = activeButton && activeButton.closest('[data-moving-selection]');
+    if (!container) return;
+
+    container.style.setProperty('--selection-x', activeButton.offsetLeft + 'px');
+    container.style.setProperty('--selection-y', activeButton.offsetTop + 'px');
+    container.style.setProperty('--selection-width', activeButton.offsetWidth + 'px');
+    container.style.setProperty('--selection-height', activeButton.offsetHeight + 'px');
+    container.classList.add('is-positioned');
+  }
+
+  (function initMovingSelections() {
+    var containers = Array.prototype.slice.call(document.querySelectorAll('[data-moving-selection]'));
+    if (!containers.length) return;
+
+    function syncSelections() {
+      containers.forEach(function(container) {
+        positionMovingSelection(container.querySelector('button.is-active'));
+      });
+    }
+
+    syncSelections();
+    window.requestAnimationFrame(function() {
+      containers.forEach(function(container) {
+        container.classList.add('is-ready');
+      });
+    });
+
+    window.addEventListener('resize', syncSelections, { passive: true });
+    if ('ResizeObserver' in window) {
+      var selectionResizeObserver = new ResizeObserver(syncSelections);
+      containers.forEach(function(container) {
+        selectionResizeObserver.observe(container);
+      });
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncSelections);
+    }
+  })();
+
   (function () {
     var carousel = document.querySelector("[data-input-carousel]");
     if (!carousel) return;
@@ -11809,30 +11825,13 @@
     var currentInputIndex = 0;
 
     function showSlide(nextIndex) {
-      var prevIndex = currentInputIndex;
-      if (nextIndex === prevIndex) return;
+      if (nextIndex === currentInputIndex) return;
       currentInputIndex = nextIndex;
 
-      var dir = nextIndex > prevIndex ? 'next' : 'prev';
-      carousel.classList.remove('slide-next', 'slide-prev');
-      carousel.classList.add('slide-' + dir);
-
       slides.forEach(function (slide, index) {
-        if (index === prevIndex) {
-          slide.classList.remove('is-active');
-          slide.classList.add('is-leaving');
-          slide.setAttribute('hidden', '');
-          setTimeout(function () {
-            slide.classList.remove('is-leaving');
-          }, 500);
-        } else if (index === nextIndex) {
-          slide.classList.add('is-active');
-          slide.classList.remove('is-leaving');
-          slide.removeAttribute('hidden');
-        } else {
-          slide.classList.remove('is-active', 'is-leaving');
-          slide.setAttribute('hidden', '');
-        }
+        var isActive = index === nextIndex;
+        slide.hidden = !isActive;
+        slide.classList.toggle('is-active', isActive);
       });
 
       controls.forEach(function (control, index) {
@@ -11840,6 +11839,8 @@
         control.classList.toggle("is-active", isActive);
         control.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
+
+      positionMovingSelection(controls[nextIndex]);
     }
 
     // Set initial active class
@@ -12050,29 +12051,6 @@
   let activeSlideshowStep = 1;
   let isStudyUniverseInView = false;
 
-  function positionSlideshowPill(activeButton) {
-    const menu = activeButton && activeButton.closest('.slideshow-menu');
-    if (!menu) return;
-
-    menu.style.setProperty('--selection-x', activeButton.offsetLeft + 'px');
-    menu.style.setProperty('--selection-width', activeButton.offsetWidth + 'px');
-  }
-
-  (function initSlideshowPill() {
-    const menu = document.querySelector('.slideshow-menu');
-    const activeButton = menu && menu.querySelector('.slideshow-step-btn.is-active');
-    if (!menu || !activeButton) return;
-
-    positionSlideshowPill(activeButton);
-    window.requestAnimationFrame(function() {
-      menu.classList.add('is-ready');
-    });
-
-    window.addEventListener('resize', function() {
-      positionSlideshowPill(menu.querySelector('.slideshow-step-btn.is-active'));
-    }, { passive: true });
-  })();
-
   function initIpadVideoLoadingStates() {
     document.querySelectorAll('#ipadScreenCanvas video.ipad-gif-target').forEach(video => {
       const thumbnail = document.querySelector('[data-video-thumbnail="' + video.id + '"]');
@@ -12153,7 +12131,7 @@
     const activeButton = document.getElementById('stepBtn-' + stepNumber);
     if (activeButton) {
       activeButton.classList.add('is-active');
-      positionSlideshowPill(activeButton);
+      positionMovingSelection(activeButton);
     }
 
     // Update active step info description card
@@ -12173,7 +12151,6 @@
       if (screen) {
         screen.style.display = '';
         screen.classList.toggle('is-active', i === stepNumber);
-        screen.classList.remove('is-leaving');
       }
     }
 
@@ -12199,16 +12176,8 @@
 
   function switchLunaTab(tab) {
     const nextIndex = lunaTabOrder.indexOf(tab);
-    const prevIndex = currentLunaTabIndex;
-    if (nextIndex === prevIndex) return;
+    if (nextIndex === currentLunaTabIndex) return;
     currentLunaTabIndex = nextIndex;
-
-    const dir = nextIndex > prevIndex ? 'next' : 'prev';
-    const card = document.querySelector('.luna-card');
-    if (card) {
-      card.classList.remove('slide-next', 'slide-prev');
-      card.classList.add('slide-' + dir);
-    }
 
     // Deactivate all tab buttons
     const buttons = document.querySelectorAll('.luna-tab-btn');
@@ -12222,25 +12191,14 @@
     if (activeBtn) {
       activeBtn.classList.add('is-active');
       activeBtn.setAttribute('aria-selected', 'true');
+      positionMovingSelection(activeBtn);
     }
 
-    // Hide all panels and toggle active/leaving states
+    // Swap panels immediately; the selector pill provides the motion cue.
     const panels = document.querySelectorAll('.luna-tab-panel');
     panels.forEach(p => {
-      if (p.classList.contains('is-active')) {
-        p.classList.remove('is-active');
-        p.classList.add('is-leaving');
-        setTimeout(() => p.classList.remove('is-leaving'), 500);
-      } else {
-        p.classList.remove('is-leaving');
-      }
+      p.classList.toggle('is-active', p.id === 'lunaPanel-' + tab);
     });
-
-    // Show target panel
-    const activePanel = document.getElementById('lunaPanel-' + tab);
-    if (activePanel) {
-      activePanel.classList.add('is-active');
-    }
   }
 
   // Ensure first tab is ready (static HTML marks it active; this is a safety net)
