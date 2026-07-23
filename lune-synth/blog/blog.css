@@ -424,14 +424,30 @@ main {
 .article { padding: clamp(8px, 2vw, 24px) 0 40px; }
 
 .article__back {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 26px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(164, 123, 255, 0.45);
+  background: rgba(164, 123, 255, 0.14);
+  color: #e4d8ff;
   font-family: var(--font-sans);
   font-size: 13px;
-  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-decoration: none;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
-.article__back:hover { color: var(--text); }
+
+.article__back:hover,
+.article__back:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--purple);
+  background: rgba(164, 123, 255, 0.24);
+  color: #ffffff;
+}
 
 .article__meta span:last-child { color: var(--muted); }
 
