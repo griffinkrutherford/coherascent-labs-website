@@ -12,9 +12,10 @@
 ## 1. Scope
 
 This Privacy Policy explains how Coherascent Labs ("Coherascent," "we," "us,"
-or "our") collects, uses, discloses, and retains personal information through
-the Lune Synth website, waitlist, mobile applications, beta programs, and
-related services (collectively, the "Service").
+or "our"), a [Tano Holdings](https://tano.holdings/) company, collects, uses,
+discloses, and retains personal information through the Lune Synth website,
+waitlist, mobile applications, beta programs, and related services
+(collectively, the "Service").
 
 <!-- TODO(legal): once the entity is formed, set the controller above to the
 exact registered legal name (e.g., "Coherascent Labs LLC"). Do not finalize/
@@ -255,7 +256,7 @@ Essential account, security, transaction, and beta-operation messages may
 continue while you use the Service.
 
 To exercise a privacy right, email
-[support@lunesynth.com](mailto:support@lunesynth.com) with the subject
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com) with the subject
 "Privacy Request." Describe the request and the account or email address
 involved. We may ask for information needed to verify identity, authority, or
 residency. An authorized agent may submit a request where law permits, but we
@@ -316,7 +317,7 @@ secrets management, and production access controls.
 
 No system is completely secure. You are responsible for protecting your
 credentials and device. Notify
-[security@lunesynth.com](mailto:security@lunesynth.com) promptly if you believe
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com) promptly if you believe
 an account or the Service has been compromised.
 
 If a data breach requires notice, we will notify affected people and regulators
@@ -344,6 +345,8 @@ Privacy questions and requests may be sent to:
 
 Coherascent Labs
 
+A [Tano Holdings](https://tano.holdings/) company
+
 <!-- TODO(legal): replace with the exact registered legal entity name, mailing
 address, and telephone number once the entity is confirmed. -->
 
@@ -353,7 +356,7 @@ address, and telephone number once the entity is confirmed. -->
 
 [[PHONE NUMBER]]
 
-[support@lunesynth.com](mailto:support@lunesynth.com)
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com)
 
 Security reports may be sent to
-[security@lunesynth.com](mailto:security@lunesynth.com).
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com).

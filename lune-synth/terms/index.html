@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -9,29 +9,66 @@
   <link rel="icon" type="image/png" href="/circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/lune-synth/legal.css?v=3" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/lune-synth/legal.css?v=4" />
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="/">
-      <img src="/images/lune-synth-icon.png" alt="" />
-      <span>Lune Synth</span>
-    </a>
-    <nav class="site-nav" aria-label="Legal pages">
-      <a href="/">Home</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/terms/" aria-current="page">Terms</a>
-    </nav>
-  </header>
-  <aside class="draft-banner">
-    <strong>Draft only.</strong> This document is not finalized or published. Entity, contact, governing-law, and venue details remain unresolved.
-  </aside>
-  <main class="legal-document">
+  <main class="legal-shell">
+    <header class="site-header">
+      <div class="brand-dropdown">
+        <div class="brand" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-label="Coherascent Labs navigation menu">
+          <img
+            class="brand-logo"
+            src="/coherascent-labs-logo-march-16-2026.webp"
+            data-logo-dark="/coherascent-labs-logo-march-16-2026.webp"
+            data-logo-light="/coherascent-labs-streamlined-light-2.webp"
+            alt="Coherascent Labs logo"
+          />
+          <h1>Coherascent Labs <span class="brand-chevron" aria-hidden="true">▼</span></h1>
+        </div>
+        <div class="brand-dropdown-content">
+          <div class="brand-popup-header">
+            <div class="brand" aria-hidden="true">
+              <img
+                class="brand-logo"
+                src="/coherascent-labs-logo-march-16-2026.webp"
+                data-logo-dark="/coherascent-labs-logo-march-16-2026.webp"
+                data-logo-light="/coherascent-labs-streamlined-light-2.webp"
+                alt="Coherascent Labs logo"
+              />
+              <h1>Coherascent Labs</h1>
+            </div>
+          </div>
+          <a href="https://coherascentlabs.com/">Home</a>
+          <a href="https://coherascentlabs.com/research/">Research</a>
+          <a href="/">Lune Synth&trade;</a>
+          <a href="https://tano.holdings/">Tano Holdings</a>
+        </div>
+      </div>
+      <nav class="nav-links" id="primary-nav" aria-label="Primary">
+        <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
+        <a class="nav-link" href="/#platform-title">Handwriting</a>
+        <a class="nav-link" href="/#luna-title">Luna</a>
+        <a class="nav-link" href="/#processing-title">Grading</a>
+        <a class="nav-link" href="/#voice-title">Input Methods</a>
+        <a class="nav-link" href="/#quick-missions-title">Quick Missions</a>
+        <a class="nav-link" href="/#constellations-title">Constellations</a>
+        <a class="nav-link" href="/#medals-title">Medals</a>
+        <a class="nav-link" href="/#engine-title">Engine</a>
+        <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
+      </nav>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+    </header>
+    <aside class="draft-banner">
+      <strong>Draft only.</strong> This document is not finalized or published. Entity, governing-law, and venue details remain unresolved.
+    </aside>
+    <article class="legal-document">
 <h1>Lune Synth Terms of Service</h1>
 <p><strong>Effective date:</strong> June 6, 2026</p>
 <h2>1. Agreement To These Terms</h2>
-<p>These Terms of Service (&quot;Terms&quot;) govern access to and use of the Lune Synth website, waitlist, mobile applications, beta programs, and related services (collectively, the &quot;Service&quot;). The Service is operated by Coherascent Labs (&quot;Coherascent,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).</p>
+<p>These Terms of Service (&quot;Terms&quot;) govern access to and use of the Lune Synth website, waitlist, mobile applications, beta programs, and related services (collectively, the &quot;Service&quot;). The Service is operated by Coherascent Labs, a <a href="https://tano.holdings/">Tano Holdings</a> company (&quot;Coherascent,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).</p>
 <p>By creating an account, joining the waitlist, accepting a beta invitation, or using the Service, you agree to these Terms and acknowledge the <a href="/privacy/">Privacy Policy</a>. If you do not agree, do not use the Service.</p>
 <p>If you use the Service for a school, employer, or other organization, you represent that you have authority to accept these Terms for that organization. A separate written agreement controls if it conflicts with these Terms.</p>
 <h2>2. What Lune Synth Does</h2>
@@ -60,7 +97,7 @@
 <h2>5. Waitlist And Beta Service</h2>
 <p>Joining the waitlist does not guarantee admission, a launch date, feature availability, or continued access. We may admit users in cohorts, impose usage limits, restrict subjects or submission types, and pause or end a beta.</p>
 <p>Beta features may be incomplete, inaccurate, unavailable, or changed without notice. Data created during a beta may not carry into a later release. Do not rely on a beta as the only copy of important work.</p>
-<p>You may provide candid beta feedback, but you must not attempt to access other users&#39; information or disclose nonpublic security details in a way that creates risk. Report suspected vulnerabilities privately to <code>security@lunesynth.com</code>.</p>
+<p>You may provide candid beta feedback, but you must not attempt to access other users&#39; information or disclose nonpublic security details in a way that creates risk. Report suspected vulnerabilities privately to <a href="mailto:griffin@lunesynth.com">griffin@lunesynth.com</a>.</p>
 <h2>6. Beta Promotional Offer</h2>
 <p>The landing page may advertise two months free and a lifetime 50% discount on Lune Synth Pro for eligible beta users. Unless the offer page states otherwise:</p>
 <ul>
@@ -108,7 +145,7 @@
 <p>We may investigate suspected violations and cooperate with lawful requests.</p>
 <h2>11. Coherascent Content And Trademarks</h2>
 <p>The Service, software, interfaces, grading structures, visual systems, documentation, and other materials we provide are owned by Coherascent or its licensors and are protected by intellectual-property laws. Subject to these Terms, we grant you a limited, revocable, nonexclusive, nontransferable right to use the Service for personal educational purposes or an approved organizational purpose.</p>
-<p>Coherascent Labs, Lune Synth, associated logos, and related names and designs are trademarks or brand assets of Coherascent. These Terms do not grant a license to use them.</p>
+<p>Coherascent Labs, Lune Synth, associated logos, and related names and designs are trademarks or brand assets of Coherascent. Coherascent Labs and Lune Synth are part of <a href="https://tano.holdings/">Tano Holdings</a>. These Terms do not grant a license to use them.</p>
 <h2>12. Third-Party Services</h2>
 <p>The Service may rely on third parties for authentication, hosting, storage, artificial intelligence, transcription, app distribution, payment processing, and other infrastructure. Third-party terms may apply to features such as Google or Apple sign-in and app-store purchases.</p>
 <p>We are not responsible for third-party products outside our control. We may replace providers or change integrations as the Service evolves.</p>
@@ -147,20 +184,21 @@
 <p><strong>Severability.</strong> If any provision of these Terms is held unenforceable, that provision will be limited or removed to the minimum extent necessary, and the remaining provisions will remain in full force and effect.</p>
 <p><strong>Assignment.</strong> You may not assign or transfer these Terms or your account without our prior written consent. We may assign these Terms to an affiliate or in connection with a merger, acquisition, reorganization, financing, or sale of assets. These Terms bind and benefit the parties and their permitted successors and assigns.</p>
 <p><strong>No Waiver.</strong> Our failure to enforce a provision is not a waiver of our right to enforce it later. A waiver is effective only if it is in writing and signed by an authorized representative of Coherascent.</p>
-<p><strong>Notices.</strong> We may give you notice through the Service, by email to the address associated with your account, or by another reasonable method. You must send legal notices to Coherascent at [[MAILING ADDRESS]], with a courtesy copy to <a href="mailto:support@lunesynth.com">support@lunesynth.com</a>. Notices are effective when delivered.</p>
+<p><strong>Notices.</strong> We may give you notice through the Service, by email to the address associated with your account, or by another reasonable method. You must send legal notices to Coherascent at [[MAILING ADDRESS]], with a courtesy copy to <a href="mailto:griffin@lunesynth.com">griffin@lunesynth.com</a>. Notices are effective when delivered.</p>
 <h2>23. Contact</h2>
 <p>Questions about these Terms may be sent to:</p>
 <p>Coherascent Labs</p>
+<p>A <a href="https://tano.holdings/">Tano Holdings</a> company</p>
 <p>[[LEGAL ENTITY NAME]]</p>
 <p>[[MAILING ADDRESS]]</p>
 <p>[[PHONE NUMBER]]</p>
-<p><a href="mailto:support@lunesynth.com">support@lunesynth.com</a></p>
+<p><a href="mailto:griffin@lunesynth.com">griffin@lunesynth.com</a></p>
     <footer class="site-footer" aria-label="Lune Synth footer">
-      <a class="site-footer__identity" href="https://coherascentlabs.com/" aria-label="Coherascent Labs home">
+      <a class="site-footer__identity" href="https://tano.holdings/" aria-label="Tano Holdings home">
         <img class="site-footer__mark" src="/images/lune-synth-icon-120.png" alt="" width="36" height="36" />
         <span class="site-footer__copy">
           <strong>Lune Synth&trade;</strong>
-          <span>A Coherascent Labs product</span>
+          <span>A Tano Holdings company</span>
         </span>
       </a>
       <nav aria-label="Footer">
@@ -168,9 +206,11 @@
         <a href="/blog/">Blog</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
-        <a href="mailto:support@lunesynth.com">Contact</a>
+        <a href="mailto:griffin@lunesynth.com">Contact</a>
       </nav>
     </footer>
+    </article>
   </main>
+  <script src="/blog/blog.js?v=2"></script>
 </body>
 </html>

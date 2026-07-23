@@ -24,9 +24,9 @@ Files in this folder:
   location/contacts/biometric collection, and no analytics/crash SDK in the
   build. Those sections do **not** depend on the entity and are considered
   stable.
-- **Blocked on entity formation.** Both documents name "Coherascent Labs" as the
-  operator and indemnified party. They must not be finalized or published naming
-  an entity (e.g., "Coherascent Labs LLC") that does not yet legally exist.
+- **Holding-company attribution confirmed.** Coherascent Labs and Lune Synth are
+  part of Tano Holdings (`https://tano.holdings/`). The exact registered operator
+  name still needs to replace the unresolved legal-entity token before release.
 - **The website publication trigger has fired.** The deployed Lune Synth
   waitlist collects email addresses. The documents therefore need to be
   finalized promptly, but they must not be published with unresolved entity,
@@ -77,7 +77,7 @@ Publish an **individual-operator** variant instead of guessing an entity name:
 - Governing law = **your home state of residence** (the honest default for an
   individual operator now).
 - Real contact: a public-facing mailing address (a **PO box** is the usual
-  move), phone, and the `support@` / `security@` addresses.
+  move), phone, and the `griffin@lunesynth.com` address.
 - Add a transition sentence (operated by an individual; will transfer to a newly
   formed affiliated entity; continued use after the posted update constitutes
   acceptance). The existing Assignment + Changes sections make that valid.

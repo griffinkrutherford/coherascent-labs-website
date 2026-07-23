@@ -11,8 +11,9 @@
 
 These Terms of Service ("Terms") govern access to and use of the Lune Synth
 website, waitlist, mobile applications, beta programs, and related services
-(collectively, the "Service"). The Service is operated by Coherascent Labs
-("Coherascent," "we," "us," or "our").
+(collectively, the "Service"). The Service is operated by Coherascent Labs, a
+[Tano Holdings](https://tano.holdings/) company ("Coherascent," "we," "us," or
+"our").
 
 <!-- TODO(legal): once the entity is formed, set the operator above to the exact
 registered legal name (e.g., "Coherascent Labs LLC"). This identification line —
@@ -111,7 +112,7 @@ rely on a beta as the only copy of important work.
 You may provide candid beta feedback, but you must not attempt to access other
 users' information or disclose nonpublic security details in a way that creates
 risk. Report suspected vulnerabilities privately to
-`security@lunesynth.com`.
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com).
 
 ## 6. Beta Promotional Offer
 
@@ -225,7 +226,8 @@ to use the Service for personal educational purposes or an approved
 organizational purpose.
 
 Coherascent Labs, Lune Synth, associated logos, and related names and designs
-are trademarks or brand assets of Coherascent. These Terms do not grant a
+are trademarks or brand assets of Coherascent. Coherascent Labs and Lune Synth
+are part of [Tano Holdings](https://tano.holdings/). These Terms do not grant a
 license to use them.
 
 ## 12. Third-Party Services
@@ -373,7 +375,7 @@ by an authorized representative of Coherascent.
 **Notices.** We may give you notice through the Service, by email to the address
 associated with your account, or by another reasonable method. You must send
 legal notices to Coherascent at [[MAILING ADDRESS]], with a courtesy copy to
-[support@lunesynth.com](mailto:support@lunesynth.com). Notices are effective when
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com). Notices are effective when
 delivered.
 
 ## 23. Contact
@@ -381,6 +383,8 @@ delivered.
 Questions about these Terms may be sent to:
 
 Coherascent Labs
+
+A [Tano Holdings](https://tano.holdings/) company
 
 <!-- TODO(legal): replace with the exact registered legal entity name, mailing
 address, and telephone number once the entity is confirmed. -->
@@ -391,4 +395,4 @@ address, and telephone number once the entity is confirmed. -->
 
 [[PHONE NUMBER]]
 
-[support@lunesynth.com](mailto:support@lunesynth.com)
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com)
