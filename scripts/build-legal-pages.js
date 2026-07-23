@@ -193,7 +193,7 @@ function pageTemplate(page, content) {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/lune-synth/legal.css?v=2" />
+  <link rel="stylesheet" href="/lune-synth/legal.css?v=3" />
 </head>
 <body>
   <header class="site-header">
@@ -214,7 +214,7 @@ function pageTemplate(page, content) {
 ${content}
     <footer class="site-footer" aria-label="Lune Synth footer">
       <a class="site-footer__identity" href="https://coherascentlabs.com/" aria-label="Coherascent Labs home">
-        <span class="site-footer__mark" aria-hidden="true"></span>
+        <img class="site-footer__mark" src="/images/lune-synth-icon-120.png" alt="" width="36" height="36" />
         <span class="site-footer__copy">
           <strong>Lune Synth&trade;</strong>
           <span>A Coherascent Labs product</span>

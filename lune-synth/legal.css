@@ -109,7 +109,7 @@ a:focus-visible {
 
 .legal-document {
   width: calc(100% - 36px);
-  max-width: 920px;
+  max-width: 940px;
   min-width: 0;
   margin: 0 auto;
   padding: clamp(42px, 7vw, 82px) 0 90px;
@@ -216,12 +216,14 @@ blockquote {
 .site-footer {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 940px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 22px;
-  margin-top: clamp(56px, 8vw, 88px);
+  margin: clamp(56px, 8vw, 88px) auto 0;
   padding: 24px 26px;
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -246,10 +248,8 @@ blockquote {
   width: 36px;
   height: 36px;
   flex: 0 0 auto;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.96), transparent 18%),
-    linear-gradient(145deg, var(--blue), var(--purple) 58%, var(--red));
+  border-radius: 9px;
+  object-fit: cover;
   box-shadow: 0 0 22px rgba(176, 140, 255, 0.26);
 }
 
