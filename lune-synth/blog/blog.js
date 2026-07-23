@@ -110,3 +110,87 @@
     if (window.innerWidth > 900) setBrandOpen(false);
   });
 })();
+
+// Three-column blog grid with URL-aware client-side pagination.
+(function initBlogPagination() {
+  var list = document.querySelector("[data-post-list]");
+  var pagination = document.querySelector("[data-blog-pagination]");
+  if (!list || !pagination) return;
+
+  var posts = Array.prototype.slice.call(list.children);
+  var previousButton = pagination.querySelector("[data-page-previous]");
+  var nextButton = pagination.querySelector("[data-page-next]");
+  var pageNumbers = pagination.querySelector("[data-page-numbers]");
+  var pageStatus = pagination.querySelector("[data-page-status]");
+  var postsPerPage = 6;
+  var totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
+  var currentPage = 1;
+  var numberButtons = [];
+
+  function pageFromUrl() {
+    var value = Number(new URL(window.location.href).searchParams.get("page"));
+    return Number.isFinite(value) && value >= 1 ? Math.floor(value) : 1;
+  }
+
+  function urlForPage(page) {
+    var url = new URL(window.location.href);
+    if (page === 1) url.searchParams.delete("page");
+    else url.searchParams.set("page", String(page));
+    return url.pathname + url.search + url.hash;
+  }
+
+  function renderPage(page, updateHistory, scrollToGrid) {
+    currentPage = Math.min(Math.max(page, 1), totalPages);
+    var firstPost = (currentPage - 1) * postsPerPage;
+    var lastPost = firstPost + postsPerPage;
+
+    posts.forEach(function (post, index) {
+      post.hidden = index < firstPost || index >= lastPost;
+    });
+
+    numberButtons.forEach(function (button, index) {
+      var isCurrent = index + 1 === currentPage;
+      if (isCurrent) button.setAttribute("aria-current", "page");
+      else button.removeAttribute("aria-current");
+    });
+
+    previousButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
+    pageStatus.textContent = "Page " + currentPage + " of " + totalPages + " · " + posts.length + " posts";
+
+    if (updateHistory) {
+      window.history.pushState({ blogPage: currentPage }, "", urlForPage(currentPage));
+    }
+    if (scrollToGrid) list.scrollIntoView({ block: "start" });
+  }
+
+  for (var page = 1; page <= totalPages; page += 1) {
+    var button = document.createElement("button");
+    button.className = "blog-pagination__page";
+    button.type = "button";
+    button.textContent = String(page);
+    button.setAttribute("aria-label", "Go to page " + page);
+    button.setAttribute("data-page", String(page));
+    button.addEventListener("click", function () {
+      renderPage(Number(this.getAttribute("data-page")), true, true);
+    });
+    pageNumbers.appendChild(button);
+    numberButtons.push(button);
+  }
+
+  previousButton.addEventListener("click", function () {
+    renderPage(currentPage - 1, true, true);
+  });
+  nextButton.addEventListener("click", function () {
+    renderPage(currentPage + 1, true, true);
+  });
+  window.addEventListener("popstate", function () {
+    renderPage(pageFromUrl(), false, false);
+  });
+
+  var requestedPage = pageFromUrl();
+  renderPage(requestedPage, false, false);
+  if (requestedPage !== currentPage) {
+    window.history.replaceState({ blogPage: currentPage }, "", urlForPage(currentPage));
+  }
+})();

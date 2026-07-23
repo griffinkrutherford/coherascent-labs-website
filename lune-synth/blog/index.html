@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/blog/blog.css?v=7" />
+  <link rel="stylesheet" href="/blog/blog.css?v=8" />
 </head>
 <body>
   <main>
@@ -65,7 +65,7 @@
       </button>
     </header>
 
-    <div class="wrap">
+    <div class="wrap blog-index">
       <section class="blog-hero">
         <p class="eyebrow">The Lune Synth Blog</p>
         <h1>Notes from the anti-slop lab</h1>
@@ -82,7 +82,7 @@
         3. Copy a <li> block below, update the href, tag, date, title, and summary.
         Newest posts go at the top of this list.
       -->
-      <ul class="post-list">
+      <ul class="post-list" data-post-list>
         <li>
           <a class="post-card" href="/blog/why-handwriting-still-wins/">
             <span class="post-card__image">
@@ -140,6 +140,13 @@
           </a>
         </li>
       </ul>
+
+      <nav class="blog-pagination" data-blog-pagination aria-label="Blog pagination">
+        <button class="blog-pagination__arrow" type="button" data-page-previous aria-label="Previous page">&larr; Previous</button>
+        <div class="blog-pagination__pages" data-page-numbers aria-label="Page numbers"></div>
+        <span class="blog-pagination__status" data-page-status aria-live="polite"></span>
+        <button class="blog-pagination__arrow" type="button" data-page-next aria-label="Next page">Next &rarr;</button>
+      </nav>
     </div>
 
     <div class="wrap">
@@ -155,6 +162,6 @@
     </div>
   </main>
 
-  <script src="/blog/blog.js"></script>
+  <script src="/blog/blog.js?v=2"></script>
 </body>
 </html>
