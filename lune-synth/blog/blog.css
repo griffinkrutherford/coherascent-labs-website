@@ -896,3 +896,147 @@ main {
     background: rgba(11, 16, 30, 0.5);
   }
 }
+
+/* ============================================================
+   Share dock — side pop-up on article pages (built by blog.js)
+   ============================================================ */
+.share-dock {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 12px;
+}
+
+.share-dock__toggle {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(164, 123, 255, 0.45);
+  background: rgba(164, 123, 255, 0.16);
+  color: #e4d8ff;
+  cursor: pointer;
+  box-shadow: var(--glow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.share-dock__toggle svg { width: 22px; height: 22px; }
+
+.share-dock__toggle:hover,
+.share-dock__toggle:focus-visible {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--purple);
+  background: rgba(164, 123, 255, 0.26);
+  color: #ffffff;
+}
+
+.share-dock.is-open .share-dock__toggle {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: #0a0a14;
+}
+
+.share-dock__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 194px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: var(--glow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: translateX(12px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.share-dock.is-open .share-dock__panel {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.share-dock__heading {
+  padding: 2px 8px 8px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.share-dock__link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 11px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.share-dock__link:hover,
+.share-dock__link:focus-visible {
+  background: rgba(164, 123, 255, 0.14);
+  border-color: rgba(164, 123, 255, 0.32);
+  transform: translateX(-2px);
+  color: var(--text);
+}
+
+.share-dock__link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.share-dock__link--linkedin svg { color: #4aa3e4; }
+.share-dock__link--x svg { color: #e8eef7; }
+.share-dock__link--facebook svg { color: #5a8cf0; }
+.share-dock__link--email svg { color: #c4a0ff; }
+.share-dock__link--copy svg { color: #7fd6a3; }
+
+.share-dock__link--copy.is-copied {
+  background: rgba(127, 214, 163, 0.16);
+  border-color: rgba(127, 214, 163, 0.4);
+  color: #bff2d4;
+}
+
+@media (max-width: 1200px) {
+  .share-dock {
+    top: auto;
+    bottom: 20px;
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .share-dock { right: 14px; bottom: 14px; }
+  .share-dock__toggle { width: 48px; height: 48px; }
+  .share-dock__panel { width: 176px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .share-dock__toggle,
+  .share-dock__panel,
+  .share-dock__link { transition: none; }
+}
