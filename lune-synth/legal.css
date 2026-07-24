@@ -109,7 +109,7 @@ a:focus-visible {
   box-shadow: var(--glow);
 }
 
-.brand h1 {
+.brand .brand-name {
   margin: 0;
   color: var(--text);
   font-family: var(--font-sans);
@@ -344,6 +344,11 @@ a:focus-visible {
   border-radius: 6px;
 }
 
+.table-wrap:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
 table {
   width: 100%;
   min-width: 620px;
@@ -470,6 +475,43 @@ blockquote {
   background: rgba(164, 123, 255, 0.08);
 }
 
+@media (max-width: 1100px) {
+  .nav-toggle { display: inline-flex; }
+
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    width: 100vw;
+    height: 100dvh;
+    margin: 0;
+    padding: max(88px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 8px;
+    background: rgba(6, 8, 16, 0.96);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  html[data-theme="light"] .nav-links { background: rgba(246, 249, 255, 0.98); }
+  .site-header.nav-open .nav-links { opacity: 1; visibility: visible; }
+
+  .nav-links .nav-link {
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    letter-spacing: 0.08em;
+  }
+}
+
 @media (max-width: 900px) {
   .site-header {
     flex-wrap: nowrap;
@@ -497,7 +539,7 @@ blockquote {
     flex-shrink: 0;
   }
 
-  .brand h1 {
+  .brand .brand-name {
     font-size: clamp(12px, 3.4vw, 16px);
     letter-spacing: 0.12em;
     white-space: nowrap;
@@ -603,7 +645,7 @@ blockquote {
     border-radius: 8px;
   }
 
-  .brand-dropdown-content .brand-popup-header .brand h1 {
+  .brand-dropdown-content .brand-popup-header .brand .brand-name {
     margin: 0;
     color: #ffffff;
     font-size: 14px;
@@ -635,4 +677,8 @@ blockquote {
     justify-content: center;
     width: 100%;
   }
+}
+
+@media (max-width: 1100px) and (max-height: 600px) {
+  .site-header .nav-links { justify-content: flex-start; }
 }

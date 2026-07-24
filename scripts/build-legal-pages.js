@@ -113,7 +113,7 @@ function renderMarkdown(markdown) {
         index += 1;
       }
 
-      output.push('<div class="table-wrap"><table><thead><tr>');
+      output.push('<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr>');
       headers.forEach(cell => output.push(`<th>${renderInline(cell)}</th>`));
       output.push('</tr></thead><tbody>');
       rows.forEach(row => {
@@ -186,11 +186,12 @@ function pageTemplate(page, content) {
   <meta name="robots" content="noindex,nofollow,noarchive" />
   <title>Draft ${page.title} | Lune Synth</title>
   <meta name="description" content="Draft Lune Synth ${page.title}. Not finalized or published." />
-  <link rel="icon" type="image/png" href="/circle_favicon.png" />
+  <link rel="icon" type="image/png" href="/images/lune-synth-icon-120.png" />
+  <link rel="apple-touch-icon" href="/images/lune-synth-icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/lune-synth/legal.css?v=4" />
+  <link rel="stylesheet" href="/lune-synth/legal.css?v=5" />
 </head>
 <body>
   <main class="legal-shell">
@@ -204,7 +205,7 @@ function pageTemplate(page, content) {
             data-logo-light="/coherascent-labs-streamlined-light-2.webp"
             alt="Coherascent Labs logo"
           />
-          <h1>Coherascent Labs <span class="brand-chevron" aria-hidden="true">▼</span></h1>
+          <span class="brand-name">Coherascent Labs <span class="brand-chevron" aria-hidden="true">▼</span></span>
         </div>
         <div class="brand-dropdown-content">
           <div class="brand-popup-header">
@@ -216,7 +217,7 @@ function pageTemplate(page, content) {
                 data-logo-light="/coherascent-labs-streamlined-light-2.webp"
                 alt="Coherascent Labs logo"
               />
-              <h1>Coherascent Labs</h1>
+              <span class="brand-name">Coherascent Labs</span>
             </div>
           </div>
           <a href="https://coherascentlabs.com/">Home</a>
@@ -263,7 +264,7 @@ ${content}
     </footer>
     </article>
   </main>
-  <script src="/blog/blog.js?v=2"></script>
+  <script src="/blog/blog.js?v=12"></script>
 </body>
 </html>
 `;

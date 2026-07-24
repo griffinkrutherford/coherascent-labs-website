@@ -13,6 +13,46 @@ const waitlistHandler = require('./api/waitlist.js');
 const PORT = process.env.PORT || 3000;
 const PRIMARY_HOST = process.env.PRIMARY_DOMAIN || 'coherascentlabs.com';
 const LUNE_HOST = process.env.LUNE_SYNTH_DOMAIN || 'lunesynth.com';
+const MAX_JSON_BODY_BYTES = 16 * 1024;
+const PUBLIC_ROOT_FILES = new Set([
+  'index.html',
+  'research.html',
+  'applied.html',
+  'applied-handwriting-demo.js',
+  'applied-phone-screenshots.js',
+  'applied-response-slideshow.js',
+  'circle_favicon.png',
+  'coherascent-labs-logo-march-16-2026.webp',
+  'coherascent-labs-streamlined-light-2.webp',
+  'liquid-glass-cards.css',
+  'liquid-glass-cards.js',
+]);
+
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "connect-src 'self'",
+  "font-src 'self' https://fonts.gstatic.com data:",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  "img-src 'self' data:",
+  "media-src 'self'",
+  "object-src 'none'",
+  "script-src 'self' 'unsafe-inline' https://unpkg.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+].join('; ');
+
+function setSecurityHeaders(req, res) {
+  res.setHeader('Content-Security-Policy', CONTENT_SECURITY_POLICY);
+  res.setHeader('Permissions-Policy', 'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+
+  if ((req.headers['x-forwarded-proto'] || '').split(',')[0].trim() === 'https') {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000');
+  }
+}
 
 function getHost(req) {
   return (req.headers.host || '').split(':')[0].toLowerCase();
@@ -29,6 +69,52 @@ function isGetLike(req) {
 function redirect(res, location, statusCode = 301) {
   res.writeHead(statusCode, { Location: location });
   res.end();
+}
+
+function sendText(req, res, statusCode, contentType, body, cacheControl = 'no-cache') {
+  const payload = Buffer.from(body, 'utf8');
+  res.writeHead(statusCode, {
+    'Content-Type': contentType,
+    'Content-Length': payload.length,
+    'Cache-Control': cacheControl,
+  });
+
+  if (req.method === 'HEAD') {
+    res.end();
+    return;
+  }
+
+  res.end(payload);
+}
+
+function serveRobots(req, res, host) {
+  const origin = isLuneHost(host) ? `https://${LUNE_HOST}` : `https://${PRIMARY_HOST}`;
+  sendText(
+    req,
+    res,
+    200,
+    'text/plain; charset=utf-8',
+    `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`,
+    'public, max-age=3600'
+  );
+}
+
+function serveSitemap(req, res, host) {
+  const urls = isLuneHost(host)
+    ? [
+        `https://${LUNE_HOST}/`,
+        `https://${LUNE_HOST}/blog/`,
+        `https://${LUNE_HOST}/blog/why-handwriting-still-wins/`,
+        `https://${LUNE_HOST}/blog/ai-is-breaking-how-we-learn/`,
+        `https://${LUNE_HOST}/blog/welcome-to-lune-synth/`,
+      ]
+    : [
+        `https://${PRIMARY_HOST}/`,
+        `https://${PRIMARY_HOST}/research/`,
+      ];
+  const entries = urls.map(url => `  <url><loc>${url}</loc></url>`).join('\n');
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
+  sendText(req, res, 200, 'application/xml; charset=utf-8', sitemap, 'public, max-age=3600');
 }
 
 function getPathname(req) {
@@ -54,6 +140,8 @@ function getSafeFilePath(publicPath) {
   }
 
   const normalizedPath = path.normalize(decodedPath).replace(/^[/\\]+/, '');
+  if (!isPublicFilePath(normalizedPath)) return null;
+
   const filePath = path.join(__dirname, normalizedPath);
 
   if (!filePath.startsWith(__dirname + path.sep) && filePath !== __dirname) {
@@ -61,6 +149,27 @@ function getSafeFilePath(publicPath) {
   }
 
   return filePath;
+}
+
+function isPublicFilePath(relativePath) {
+  const normalized = relativePath.split(path.sep).join('/').replace(/\/$/, '');
+  if (!normalized || normalized.split('/').some(segment => segment.startsWith('.'))) return false;
+  if (PUBLIC_ROOT_FILES.has(normalized)) return true;
+
+  if (normalized === 'research' || normalized === 'research/index.html') return true;
+  if (normalized === 'applied' || normalized === 'applied/index.html') return true;
+  if (/^images\/[a-z0-9._-]+\.(?:png|jpe?g|webp|avif|svg)$/i.test(normalized)) return true;
+  if (/^mobile-app-assets\/screenshots\/[a-z0-9_./-]+\.(?:png|jpe?g|webp|avif)$/i.test(normalized)) return true;
+
+  if (normalized === 'lune-synth/index.html' || normalized === 'lune-synth/legal.css') return true;
+  if (normalized === 'lune-synth/privacy/index.html' || normalized === 'lune-synth/terms/index.html') return true;
+  if (normalized === 'lune-synth/blog' || /^lune-synth\/blog\/[a-z0-9-]+$/i.test(normalized)) return true;
+  if (/^lune-synth\/blog\/(?:index\.html|blog\.(?:css|js))$/i.test(normalized)) return true;
+  if (/^lune-synth\/blog\/images\/[a-z0-9._-]+\.(?:png|jpe?g|webp|avif)$/i.test(normalized)) return true;
+  if (/^lune-synth\/blog\/[a-z0-9-]+\/index\.html$/i.test(normalized)) return true;
+  if (/^lune-synth\/screenshots\/applied\/[a-z0-9._-]+\.(?:png|jpe?g|webp|mp4|webm)$/i.test(normalized)) return true;
+
+  return false;
 }
 
 // Helper to determine HTTP Content-Type header
@@ -93,14 +202,26 @@ function isVideo(filePath) {
   return ['.mp4', '.webm'].includes(path.extname(filePath));
 }
 
-function getCacheControl(filePath) {
+function getCacheControl(filePath, requestUrl = '') {
   const extname = path.extname(filePath);
 
   if (extname === '.html') {
     return 'no-cache';
   }
 
-  if (['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.json', '.avif', '.webp', '.mp4', '.webm', '.pdf'].includes(extname)) {
+  if (['.css', '.js'].includes(extname)) {
+    const query = requestUrl.includes('?') ? requestUrl.slice(requestUrl.indexOf('?') + 1) : '';
+    if (new URLSearchParams(query).has('v')) {
+      return 'public, max-age=31536000, immutable';
+    }
+    return 'no-cache';
+  }
+
+  if (['.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.json', '.avif', '.webp', '.mp4', '.webm', '.pdf'].includes(extname)) {
+    return 'public, max-age=86400, stale-while-revalidate=604800';
+  }
+
+  if (extname) {
     return 'public, max-age=31536000, immutable';
   }
 
@@ -175,7 +296,7 @@ function serveFile(req, res, filePath, stats) {
   const lastModified = stats.mtime.toUTCString();
   const baseHeaders = {
     'Content-Type': getContentType(filePath),
-    'Cache-Control': getCacheControl(filePath),
+    'Cache-Control': getCacheControl(filePath, req.url),
     'ETag': etag,
     'Last-Modified': lastModified,
   };
@@ -188,7 +309,12 @@ function serveFile(req, res, filePath, stats) {
     baseHeaders['Accept-Ranges'] = 'bytes';
   }
 
-  if (req.headers['if-none-match'] === etag || req.headers['if-modified-since'] === lastModified) {
+  const ifNoneMatch = req.headers['if-none-match'];
+  const isNotModified = ifNoneMatch
+    ? ifNoneMatch.split(',').map(value => value.trim()).includes(etag)
+    : req.headers['if-modified-since'] === lastModified;
+
+  if (isNotModified) {
     res.writeHead(304, baseHeaders);
     res.end();
     return;
@@ -266,70 +392,137 @@ function serveStatic(req, res, publicPath) {
       resolvedPath = path.join(resolvedPath, 'index.html');
     }
 
-    fs.stat(resolvedPath, (err, resolvedStats) => {
-      if (err) {
+    fs.realpath(resolvedPath, (realPathError, realPath) => {
+      if (realPathError) {
         sendNotFound(res);
         return;
       }
 
-      if (!resolvedStats.isFile()) {
+      const realRelativePath = path.relative(__dirname, realPath);
+      if (!isPublicFilePath(realRelativePath)) {
         sendNotFound(res);
         return;
       }
 
-      serveFile(req, res, resolvedPath, resolvedStats);
+      fs.stat(realPath, (resolvedError, resolvedStats) => {
+        if (resolvedError || !resolvedStats.isFile()) {
+          sendNotFound(res);
+          return;
+        }
+
+        serveFile(req, res, realPath, resolvedStats);
+      });
     });
   });
 }
 
 function handleWaitlist(req, res) {
+    res.status = (statusCode) => {
+      res.statusCode = statusCode;
+      return res;
+    };
+
+    res.json = (data) => {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.end(JSON.stringify(data));
+      return res;
+    };
+
+    if (req.method !== 'POST') {
+      req.body = {};
+      waitlistHandler(req, res);
+      return;
+    }
+
+    if (!(req.headers['content-type'] || '').toLowerCase().startsWith('application/json')) {
+      res.status(415).json({ error: 'Content-Type must be application/json.' });
+      return;
+    }
+
+    const declaredLength = Number(req.headers['content-length'] || 0);
+    if (Number.isFinite(declaredLength) && declaredLength > MAX_JSON_BODY_BYTES) {
+      res.status(413).json({ error: 'Request body is too large.' });
+      return;
+    }
+
     let body = '';
+    let bodyBytes = 0;
+    let rejected = false;
 
     req.on('data', chunk => {
+      if (rejected) return;
+      bodyBytes += chunk.length;
+      if (bodyBytes > MAX_JSON_BODY_BYTES) {
+        rejected = true;
+        res.status(413).json({ error: 'Request body is too large.' });
+        return;
+      }
       body += chunk.toString();
     });
 
     req.on('end', () => {
+      if (rejected || res.writableEnded) return;
+
       try {
         req.body = body ? JSON.parse(body) : {};
       } catch (e) {
-        req.body = {};
+        res.status(400).json({ error: 'Request body must be valid JSON.' });
+        return;
       }
 
-      // Inject Express-like response helpers to match Vercel's API signature in waitlist.js
-      res.status = (statusCode) => {
-        res.statusCode = statusCode;
-        return res;
-      };
-
-      res.json = (data) => {
-        res.setHeader('Content-Type', 'application/json; charset=utf-8');
-        res.end(JSON.stringify(data));
-        return res;
-      };
-
-      // Call our secure backend handler
       waitlistHandler(req, res);
+    });
+
+    req.on('error', error => {
+      console.error('Waitlist request stream error:', error.message);
+      if (!res.writableEnded) {
+        res.status(400).json({ error: 'Could not read request body.' });
+      }
     });
 }
 
 function serveLuneHost(req, res, pathname) {
-  if (pathname === '/' || pathname === '/index.html') {
+  if (pathname === '/index.html') {
+    redirect(res, `/${getRequestSuffix(req)}`);
+    return;
+  }
+
+  if (pathname === '/') {
     serveStatic(req, res, '/lune-synth/index.html');
     return;
   }
 
-  if (pathname === '/privacy' || pathname === '/privacy/') {
+  if (pathname === '/privacy') {
+    redirect(res, `/privacy/${getRequestSuffix(req)}`);
+    return;
+  }
+
+  if (pathname === '/privacy/') {
     serveStatic(req, res, '/lune-synth/privacy/index.html');
     return;
   }
 
-  if (pathname === '/terms' || pathname === '/terms/') {
+  if (pathname === '/terms') {
+    redirect(res, `/terms/${getRequestSuffix(req)}`);
+    return;
+  }
+
+  if (pathname === '/terms/') {
     serveStatic(req, res, '/lune-synth/terms/index.html');
     return;
   }
 
-  if (pathname === '/blog' || pathname.startsWith('/blog/')) {
+  if (pathname === '/blog') {
+    redirect(res, `/blog/${getRequestSuffix(req)}`);
+    return;
+  }
+
+  if (pathname.startsWith('/blog/') && !pathname.endsWith('/') && !path.extname(pathname)) {
+    redirect(res, `${pathname}/${getRequestSuffix(req)}`);
+    return;
+  }
+
+  if (pathname.startsWith('/blog/')) {
     serveStatic(req, res, `/lune-synth${pathname}`);
     return;
   }
@@ -358,12 +551,37 @@ function servePrimaryHost(req, res, pathname) {
     return;
   }
 
+  if (pathname === '/index.html') {
+    redirect(res, `/${getRequestSuffix(req)}`);
+    return;
+  }
+
+  if ((pathname === '/research' || pathname === '/research.html') && isGetLike(req)) {
+    redirect(res, `/research/${getRequestSuffix(req)}`);
+    return;
+  }
+
   serveStatic(req, res, pathname === '/' ? '/index.html' : pathname);
 }
 
 const server = http.createServer((req, res) => {
+  const requestStartedAt = Date.now();
+  setSecurityHeaders(req, res);
+
   const host = getHost(req);
   const pathname = getPathname(req);
+
+  res.on('finish', () => {
+    if (res.statusCode < 400) return;
+    console.warn(JSON.stringify({
+      event: 'http_response',
+      method: req.method,
+      host,
+      path: pathname,
+      status: res.statusCode,
+      durationMs: Date.now() - requestStartedAt,
+    }));
+  });
 
   if (pathname === '/docs' || pathname.startsWith('/docs/') || pathname === '/scripts' || pathname.startsWith('/scripts/')) {
     res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -381,9 +599,51 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (isGetLike(req) && pathname === '/healthz') {
+    sendText(req, res, 200, 'application/json; charset=utf-8', '{"status":"ok"}\n', 'no-store');
+    return;
+  }
+
+  if (isGetLike(req) && pathname === '/readyz') {
+    const ready = Boolean(process.env.RESEND_API_KEY);
+    sendText(
+      req,
+      res,
+      ready ? 200 : 503,
+      'application/json; charset=utf-8',
+      ready ? '{"status":"ready"}\n' : '{"status":"not_ready"}\n',
+      'no-store'
+    );
+    return;
+  }
+
+  if (isGetLike(req) && pathname === '/robots.txt') {
+    serveRobots(req, res, host);
+    return;
+  }
+
+  if (isGetLike(req) && pathname === '/sitemap.xml') {
+    serveSitemap(req, res, host);
+    return;
+  }
+
   // 1. Intercept the waitlist API route
   if (pathname === '/api/waitlist') {
+    if (!isLuneHost(host)) {
+      sendNotFound(res);
+      return;
+    }
     handleWaitlist(req, res);
+    return;
+  }
+
+  if (!isGetLike(req)) {
+    res.writeHead(405, {
+      'Allow': 'GET, HEAD',
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store',
+    });
+    res.end(JSON.stringify({ error: 'Method Not Allowed' }));
     return;
   }
 
@@ -399,3 +659,20 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Server successfully running on port ${PORT}`);
 });
+
+server.requestTimeout = 15_000;
+server.headersTimeout = 10_000;
+server.keepAliveTimeout = 5_000;
+
+function shutdown(signal) {
+  console.log(`${signal} received; closing HTTP server.`);
+  server.close(error => {
+    if (error) {
+      console.error('HTTP server shutdown failed:', error.message);
+      process.exitCode = 1;
+    }
+  });
+}
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

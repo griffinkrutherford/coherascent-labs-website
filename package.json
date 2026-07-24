@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Coherascent Labs and Lune Synth Landing Pages",
   "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build:legal": "node scripts/build-legal-pages.js",
     "start": "node server.js"

@@ -43,6 +43,12 @@
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      window.requestAnimationFrame(function () {
+        var firstLink = nav.querySelector("a");
+        if (firstLink) firstLink.focus();
+      });
+    }
   }
 
   toggle.addEventListener("click", function () {
@@ -63,11 +69,35 @@
   });
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") setOpen(false);
+    if (e.key === "Escape" && header.classList.contains("nav-open")) {
+      setOpen(false);
+      toggle.focus();
+      return;
+    }
+
+    if (e.key === "Tab" && header.classList.contains("nav-open")) {
+      var focusable = Array.prototype.slice.call(nav.querySelectorAll("a[href]"));
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        toggle.focus();
+      } else if (!e.shiftKey && document.activeElement === toggle) {
+        e.preventDefault();
+        first.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        toggle.focus();
+      } else if (e.shiftKey && document.activeElement === toggle) {
+        e.preventDefault();
+        last.focus();
+      }
+    }
   });
 
   window.addEventListener("resize", function () {
-    if (window.innerWidth > 640) setOpen(false);
+    if (window.innerWidth > 1100) setOpen(false);
   });
 })();
 
@@ -90,7 +120,14 @@
   }
 
   brand.addEventListener("click", function (e) {
-    if (window.innerWidth <= 900) {
+    if (window.innerWidth <= 640) {
+      e.preventDefault();
+      setBrandOpen(!header.classList.contains("brand-open"));
+    }
+  });
+
+  brand.addEventListener("keydown", function (e) {
+    if (window.innerWidth <= 640 && (e.key === "Enter" || e.key === " ")) {
       e.preventDefault();
       setBrandOpen(!header.classList.contains("brand-open"));
     }
@@ -107,7 +144,7 @@
   });
 
   window.addEventListener("resize", function () {
-    if (window.innerWidth > 900) setBrandOpen(false);
+    if (window.innerWidth > 640) setBrandOpen(false);
   });
 })();
 
@@ -232,27 +269,34 @@
   var dock = document.createElement("div");
   dock.className = "share-dock";
   dock.innerHTML =
-    '<div class="share-dock__panel" aria-label="Share this article">' +
+    '<div class="share-dock__panel" id="share-dock-panel" aria-label="Share this article" hidden>' +
       '<span class="share-dock__heading">Share this post</span>' +
       linksHtml +
       '<button type="button" class="share-dock__link share-dock__link--copy" data-share-copy>' +
         icons.copy + "<span>Copy link</span></button>" +
     "</div>" +
-    '<button type="button" class="share-dock__toggle" aria-expanded="false" aria-label="Share this article">' +
+    '<button type="button" class="share-dock__toggle" aria-expanded="false" aria-controls="share-dock-panel" aria-label="Share this article">' +
       icons.share + "</button>";
   document.body.appendChild(dock);
 
   var toggle = dock.querySelector(".share-dock__toggle");
+  var panel = dock.querySelector(".share-dock__panel");
   var copyBtn = dock.querySelector("[data-share-copy]");
 
   function setOpen(open) {
     dock.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    panel.hidden = !open;
   }
 
   toggle.addEventListener("click", function (e) {
     e.stopPropagation();
-    setOpen(!dock.classList.contains("is-open"));
+    var open = !dock.classList.contains("is-open");
+    setOpen(open);
+    if (open) {
+      var firstShareLink = panel.querySelector("a, button");
+      if (firstShareLink) firstShareLink.focus();
+    }
   });
 
   // Open social shares in a centered popup window instead of a new tab.
