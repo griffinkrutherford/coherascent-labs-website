@@ -2,7 +2,11 @@
 
 ## Lune Synth blog publishing
 
-When publishing a post under `lune-synth/blog/`, also add its preview card to
-`lune-synth/blog/index.html`. Put the newest post first in the `data-post-list`
-and keep the preview's URL, image, tag, publication date, author, title, and
-summary consistent with the article.
+When publishing a post under `lune-synth/blog/`, add its preview card to both:
+
+- `lune-synth/blog/index.html`, at the top of the `data-post-list`.
+- The `From the blog` section in `lune-synth/index.html`, at the start of
+  `.blog-preview`. Keep this homepage section to the three newest posts.
+
+Keep each preview's URL, image, tag, publication date, author (where displayed),
+title, and summary consistent with the article.
