@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/blog/blog.css?v=10" />
+  <link rel="stylesheet" href="/blog/blog.css?v=11" />
 </head>
 <body>
   <main>
@@ -270,6 +270,28 @@
       </div>
     </article>
 
+    <div class="blog-newsletter">
+      <div class="hero-waitlist-panel" aria-labelledby="lune-beta-title">
+        <div class="hero-waitlist-copy">
+          <h3 id="lune-beta-title">Join the beta waitlist</h3>
+          <p class="waitlist-offer">Beta users get <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.</p>
+        </div>
+        <form class="hero-waitlist" data-waitlist-form novalidate>
+          <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
+          <button type="submit">Join Waitlist</button>
+        </form>
+      </div>
+
+      <div class="waitlist-popup" data-waitlist-popup role="dialog" aria-modal="true" aria-labelledby="waitlist-popup-title" hidden>
+        <div class="waitlist-popup__panel">
+          <button class="waitlist-popup__close" type="button" data-waitlist-close aria-label="Close waitlist message">&times;</button>
+          <h3 id="waitlist-popup-title">You're on the list!</h3>
+          <p data-waitlist-message>Thank you for joining the Lune Synth&trade; beta waitlist. We will notify you as soon as invites are ready.</p>
+          <button class="waitlist-popup__action" type="button" data-waitlist-close>Got it</button>
+        </div>
+      </div>
+    </div>
+
     <div class="wrap">
       <footer class="site-footer" aria-label="Lune Synth footer">
         <a class="site-footer__identity" href="/" aria-label="Lune Synth home">
@@ -290,6 +312,6 @@
     </div>
   </main>
 
-  <script src="/blog/blog.js?v=2"></script>
+  <script src="/blog/blog.js?v=3"></script>
 </body>
 </html>

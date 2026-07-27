@@ -194,3 +194,112 @@
     window.history.replaceState({ blogPage: currentPage }, "", urlForPage(currentPage));
   }
 })();
+
+// ---------- Newsletter / waitlist capture (matches homepage) ----------
+(function () {
+  var form = document.querySelector("[data-waitlist-form]");
+  var popup = document.querySelector("[data-waitlist-popup]");
+  if (!form || !popup) return;
+
+  var closeControls = Array.prototype.slice.call(popup.querySelectorAll("[data-waitlist-close]"));
+  var closeButton = popup.querySelector("[data-waitlist-close]");
+  var lastFocusedElement = null;
+
+  function openPopup() {
+    lastFocusedElement = document.activeElement;
+    popup.hidden = false;
+    document.body.style.overflow = "hidden";
+
+    if (closeButton) {
+      closeButton.focus();
+    }
+  }
+
+  function closePopup() {
+    popup.hidden = true;
+    document.body.style.overflow = "";
+
+    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+      lastFocusedElement.focus();
+    }
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var emailInput = form.querySelector('input[type="email"]');
+    var submitButton = form.querySelector('button[type="submit"]');
+    if (!emailInput || !submitButton) return;
+
+    var email = emailInput.value.trim();
+    if (!email) return;
+
+    // Disable inputs and show loading state
+    var originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    emailInput.disabled = true;
+    submitButton.textContent = "Joining...";
+
+    // Get popup elements to update messaging dynamically
+    var popupTitle = popup.querySelector("#waitlist-popup-title");
+    var popupMessage = popup.querySelector("[data-waitlist-message]");
+
+    fetch("/api/waitlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function (response) {
+      return response.json().then(function (data) {
+        if (response.ok && data.success) {
+          // Success
+          if (popupTitle) popupTitle.textContent = "You're on the list!";
+          if (popupMessage) {
+            popupMessage.textContent = data.message || "Thank you for joining the Lune Synth™ beta waitlist. We will notify you as soon as invites are ready.";
+          }
+          form.reset();
+          openPopup();
+        } else {
+          // Server error
+          if (popupTitle) popupTitle.textContent = "Oops!";
+          if (popupMessage) {
+            popupMessage.textContent = data.error || "Something went wrong. Please check your email and try again.";
+          }
+          openPopup();
+        }
+      });
+    })
+    .catch(function (error) {
+      // Network/Connection failure
+      if (popupTitle) popupTitle.textContent = "Connection Error";
+      if (popupMessage) {
+        popupMessage.textContent = "Could not reach the server. Please check your internet connection and try again.";
+      }
+      openPopup();
+    })
+    .finally(function () {
+      // Re-enable inputs and restore button text
+      submitButton.disabled = false;
+      emailInput.disabled = false;
+      submitButton.textContent = originalButtonText;
+    });
+  });
+
+  popup.addEventListener("click", function (event) {
+    if (event.target === popup) {
+      closePopup();
+    }
+  });
+
+  closeControls.forEach(function (control) {
+    control.addEventListener("click", closePopup);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !popup.hidden) {
+      closePopup();
+    }
+  });
+})();
