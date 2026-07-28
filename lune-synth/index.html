@@ -74,7 +74,7 @@
       --workflow-phone-power-height: calc(var(--workflow-phone-height) * 0.136364);
       --workflow-phone-height-mobile: 204px;
       --workflow-phone-width-mobile: calc(var(--workflow-phone-height-mobile) * 9 / 19.5);
-      --response-phone-scale: 1.4545;
+      --response-phone-scale: 1.85;
       --response-phone-height: calc(var(--workflow-phone-height) * var(--response-phone-scale));
       --response-phone-width: calc(var(--workflow-phone-width) * var(--response-phone-scale));
       --response-phone-height-mobile: calc(var(--workflow-phone-height-mobile) * 1.2353);
@@ -8942,14 +8942,20 @@
       filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
     }
 
-    .showcase-medal-svg {
+    .showcase-medal-svg,
+    .showcase-medal-image {
       width: 100%;
       height: 100%;
+      object-fit: contain;
       filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .carousel-3d-item.is-active:hover .showcase-medal-svg {
+    .showcase-medal-svg {
+      display: none;
+    }
+
+    .carousel-3d-item.is-active:hover .showcase-medal-image {
       transform: translateY(-6px) scale(1.06);
     }
 
@@ -9005,7 +9011,9 @@
       align-items: center;
       gap: 8px;
       width: 100%;
+      height: 180px;
       margin-bottom: 24px;
+      box-sizing: border-box;
     }
 
     .medal-tier-badge {
@@ -9023,8 +9031,13 @@
     .medal-showcase-title {
       font-size: clamp(18px, 2.5vw, 22px);
       font-weight: 700;
+      line-height: 1.25;
       color: var(--text);
       margin: 0;
+      min-height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .medal-showcase-desc {
@@ -9033,6 +9046,10 @@
       line-height: 1.5;
       margin: 0;
       max-width: 320px;
+      height: 54px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
     }
 
     .medal-requirement-box {
@@ -9048,6 +9065,8 @@
       box-sizing: border-box;
       width: 100%;
       max-width: 280px;
+      height: 82px;
+      flex-shrink: 0;
     }
 
     .medal-req-label {
@@ -9061,6 +9080,7 @@
     .medal-req-value {
       font-size: 11.5px;
       font-weight: 600;
+      line-height: 1.35;
       color: #ffd700; /* Amber/gold value */
     }
 
@@ -9551,6 +9571,225 @@
       color: #4a2f9e;
       border-color: rgba(127, 99, 214, 0.4);
       background: rgba(127, 99, 214, 0.12);
+    }
+
+    /* ============================================================
+       MOBILE DEVICE RENDERS (phones + portrait tablets, <= 900px)
+       Big, upright, near-full-width device mockups with the copy
+       stacked above/below. One device per scene. Desktop untouched.
+       ============================================================ */
+    @media (max-width: 900px) {
+      /* Enlarge each phone to near-full-width while keeping the EXACT desktop
+         chassis (bezel, dynamic island, corner radii, buttons). Every chassis
+         part derives from --workflow-phone-height, so redeclaring that metric
+         set from a bigger, responsive base rescales the whole chassis in
+         proportion. Per-scene multipliers are neutralized to 1 so nothing
+         double-scales. */
+      .capture-scene__phone,
+      .processing-scene__phone,
+      .feedback-scene__phone--center,
+      .voice-scene__phone,
+      .luna-phone--tab,
+      .quick-missions__phone {
+        --workflow-phone-height: calc(min(88vw, 400px) * 19.5 / 9);
+        --workflow-phone-width: calc(var(--workflow-phone-height) * 9 / 19.5);
+        --workflow-phone-shell-padding: calc(var(--workflow-phone-height) * 0.013636);
+        --workflow-phone-shell-radius: calc(var(--workflow-phone-height) * 0.122727);
+        --workflow-phone-screen-radius: calc(var(--workflow-phone-height) * 0.104545);
+        --workflow-phone-overlay-inset: calc(var(--workflow-phone-shell-padding) * 0.333333);
+        --workflow-phone-island-top: calc(var(--workflow-phone-height) * 0.0275);
+        --workflow-phone-island-width: calc(var(--workflow-phone-width) * 0.433333);
+        --workflow-phone-island-height: calc(var(--workflow-phone-height) * 0.021875);
+        --workflow-phone-button-width: calc(var(--workflow-phone-height) * 0.0068);
+        --workflow-phone-volume-top: calc(var(--workflow-phone-height) * 0.245455);
+        --workflow-phone-volume-height: calc(var(--workflow-phone-height) * 0.081818);
+        --workflow-phone-volume-gap: calc(var(--workflow-phone-height) * 0.031818);
+        --workflow-phone-power-top: calc(var(--workflow-phone-height) * 0.345455);
+        --workflow-phone-power-height: calc(var(--workflow-phone-height) * 0.136364);
+        --voice-phone-scale: 1;
+        --luna-phone-scale: 1;
+        --quick-phone-scale: 1;
+        position: relative !important;
+        inset: auto !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: var(--workflow-phone-width) !important;
+        height: var(--workflow-phone-height) !important;
+        padding: var(--workflow-phone-shell-padding) !important;
+        border-radius: var(--workflow-phone-shell-radius) !important;
+        aspect-ratio: var(--workflow-phone-ratio) !important;
+        margin: 0 auto !important;
+        transform: none !important;
+        animation: none !important;
+        flex: 0 0 auto !important;
+      }
+
+      /* --- "How grading works": 3 cards, one phone each, text above/below --- */
+      .processing-flow__grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .processing-card__visual {
+        min-height: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      /* Scan the work: show only the phone (drop the paper/arrow/flash). */
+      .capture-scene {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 0 !important;
+        padding: 8px 0 !important;
+        overflow: visible !important;
+      }
+
+      .capture-scene__page,
+      .capture-scene__arrow,
+      .capture-scene__flash {
+        display: none !important;
+      }
+
+      /* Turn work into steps: phone only, straight (drop floating step cards). */
+      .processing-scene {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 0 !important;
+        padding: 8px 0 !important;
+        overflow: visible !important;
+      }
+
+      .processing-scene__stage {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        width: auto !important;
+        height: auto !important;
+        transform: none !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+
+      .processing-scene__step-flow {
+        display: none !important;
+      }
+
+      /* Know what to fix: keep the center phone only, un-fan the deck. */
+      .feedback-scene {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+      }
+
+      .feedback-scene__deck {
+        position: relative !important;
+        inset: auto !important;
+        padding: 8px 0 !important;
+      }
+
+      .feedback-scene__phone--far-left,
+      .feedback-scene__phone--left,
+      .feedback-scene__phone--right {
+        display: none !important;
+      }
+
+      .feedback-scene__phone + .feedback-scene__phone {
+        margin-left: auto !important;
+      }
+
+      /* --- "Don't want to handwrite?": keep the phone, drop the iPad --- */
+      .section--voice {
+        height: auto !important;
+      }
+
+      .section--voice .voice-flow {
+        min-height: 0 !important;
+      }
+
+      .section--voice .voice-scene {
+        min-height: 0 !important;
+      }
+
+      .voice-scene__devices {
+        justify-content: center !important;
+        transform: none !important;
+      }
+
+      .voice-scene__ipad {
+        display: none !important;
+      }
+
+      /* --- Luna: enlarge the tabbed phone --- */
+      .section--luna .luna,
+      .section--luna {
+        min-height: 0 !important;
+      }
+
+      /* --- Quick Missions: single-column, big upright phone --- */
+      .quick-missions {
+        min-height: 0 !important;
+      }
+
+      .quick-missions__content {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* --- Constellations: straighten & enlarge the (portrait) iPad, keeping
+         the desktop chassis proportions (bezel, camera, side buttons, radii
+         all scale from the same responsive width). --- */
+      .ipad-mockup {
+        --ipad-w: min(90vw, 460px);
+        width: var(--ipad-w) !important;
+        padding: calc(var(--ipad-w) * 0.006048) !important;
+        border-radius: calc(var(--ipad-w) * 0.102823) !important;
+        transform: none !important;
+      }
+
+      .ipad-mockup:hover {
+        transform: none !important;
+      }
+
+      .ipad-screen-wrapper {
+        padding: calc(var(--ipad-w) * 0.032258) !important;
+        border-radius: calc(var(--ipad-w) * 0.096774) !important;
+      }
+
+      .ipad-screen-content {
+        border-radius: calc(var(--ipad-w) * 0.056452) !important;
+      }
+
+      .ipad-camera {
+        right: calc(var(--ipad-w) * 0.016129) !important;
+        width: calc(var(--ipad-w) * 0.012097) !important;
+        height: calc(var(--ipad-w) * 0.012097) !important;
+      }
+
+      .ipad-button--power {
+        top: calc(var(--ipad-w) * -0.010081) !important;
+        right: calc(var(--ipad-w) * 0.112903) !important;
+        width: calc(var(--ipad-w) * 0.076613) !important;
+        height: calc(var(--ipad-w) * 0.010081) !important;
+      }
+
+      .ipad-button--volume {
+        right: calc(var(--ipad-w) * -0.010081) !important;
+        width: calc(var(--ipad-w) * 0.010081) !important;
+        height: calc(var(--ipad-w) * 0.060484) !important;
+      }
+
+      .ipad-button--volume-up {
+        top: calc(var(--ipad-w) * 0.137097) !important;
+      }
+
+      .ipad-button--volume-down {
+        top: calc(var(--ipad-w) * 0.213710) !important;
+      }
     }
 
   </style>
@@ -10770,6 +11009,7 @@
                 
                 <!-- Medal 0: Streak (Gold Tier Default) -->
                 <div class="carousel-3d-item is-active" onclick="rotateToMedal(0)">
+                  <img class="showcase-medal-image" id="medalImage-streak" src="lune-synth-landing-medals/06-gold/streak.png" alt="Gold streak medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-streak" cx="50%" cy="50%" r="55%">
@@ -10929,8 +11169,9 @@
                   </svg>
                 </div>
                 
-                <!-- Medal 1: Polymath (Diamond Tier Default) -->
+                <!-- Medal 1: Polymath (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(1)">
+                  <img class="showcase-medal-image" id="medalImage-polymath" src="lune-synth-landing-medals/06-gold/polymath.png" alt="Gold polymath medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-polymath" cx="50%" cy="50%" r="55%">
@@ -11094,8 +11335,9 @@
                   </svg>
                 </div>
                 
-                <!-- Medal 2: Recovery (Sapphire Tier Default) -->
+                <!-- Medal 2: Recovery (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(2)">
+                  <img class="showcase-medal-image" id="medalImage-recovery" src="lune-synth-landing-medals/06-gold/recovery.png" alt="Gold recovery medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-recovery" cx="50%" cy="50%" r="55%">
@@ -11255,8 +11497,9 @@
                   </svg>
                 </div>
                 
-                <!-- Medal 3: Marksman (Emerald Tier Default) -->
+                <!-- Medal 3: Marksman (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(3)">
+                  <img class="showcase-medal-image" id="medalImage-marksman" src="lune-synth-landing-medals/06-gold/marksman.png" alt="Gold marksman medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-marksman" cx="50%" cy="50%" r="55%">
@@ -11420,8 +11663,9 @@
                   </svg>
                 </div>
                 
-                <!-- Medal 4: Handwriting (Ceramic Tier Default) -->
+                <!-- Medal 4: Handwriting (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)">
+                  <img class="showcase-medal-image" id="medalImage-handwriting" src="lune-synth-landing-medals/06-gold/handwriting.png" alt="Gold handwriting medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-handwriting" cx="50%" cy="50%" r="55%">
@@ -12675,6 +12919,10 @@
   };
 
   const medalKeys = ['streak', 'polymath', 'recovery', 'marksman', 'handwriting']; // showcase subset; full 10 categories in app (see correct medal data)
+  const medalTierSlugs = {
+    1: '01-paper', 2: '02-plastic', 3: '03-ceramic', 4: '04-bronze', 5: '05-silver',
+    6: '06-gold', 7: '07-platinum', 8: '08-sapphire', 9: '09-emerald', 10: '10-diamond'
+  };
   let currentRotation = 0;
   let activeIndex = 0;
   const totalItems = 5;
@@ -12712,7 +12960,7 @@
         }
       }
       
-      // Update SVG visuals for all medal keys
+      // Update the exported medal images and legacy SVG fallback state for all showcase categories
       medalKeys.forEach(key => {
         updateMedalVisuals(key, selectedRank);
       });
@@ -12732,6 +12980,12 @@
   function updateMedalVisuals(key, rank) {
     const info = tierInfo[rank];
     if (!info) return;
+
+    const medalImage = document.getElementById(`medalImage-${key}`);
+    if (medalImage) {
+      medalImage.src = `lune-synth-landing-medals/${medalTierSlugs[rank]}/${key}.png`;
+      medalImage.alt = `${info.name} ${key} medal`;
+    }
 
     // Toggle Groups
     const metalGroup = document.getElementById(`metalGroup-${key}`);

@@ -474,7 +474,12 @@
 
   initPhoneHardware();
 
+  // Click/tap-to-zoom (lightbox) is a desktop-only affordance. On phones and
+  // tablets (<=900px) the mocks already render large, so skip wiring it up.
+  var zoomEnabled = !(window.matchMedia && window.matchMedia("(max-width: 900px)").matches);
+
   Array.prototype.forEach.call(document.querySelectorAll(".voice-scene__ipad, .ipad-mockup"), function (ipad) {
+    if (!zoomEnabled) return;
     if (ipad.classList.contains("phone-mock-trigger")) return;
     ipad.classList.add("phone-mock-trigger");
     ipad.setAttribute("role", "button");
@@ -501,21 +506,23 @@
     var lowSrc = host.getAttribute("data-screenshot-low");
     if (!src) return;
 
-    var trigger = host.closest(phoneSelector) || host;
-    trigger.classList.add("phone-mock-trigger");
-    trigger.setAttribute("role", "button");
-    trigger.setAttribute("tabindex", "0");
-    trigger.setAttribute("aria-label", "Open phone mock");
+    if (zoomEnabled) {
+      var trigger = host.closest(phoneSelector) || host;
+      trigger.classList.add("phone-mock-trigger");
+      trigger.setAttribute("role", "button");
+      trigger.setAttribute("tabindex", "0");
+      trigger.setAttribute("aria-label", "Open phone mock");
 
-    trigger.addEventListener("click", function () {
-      openModal(trigger);
-    });
+      trigger.addEventListener("click", function () {
+        openModal(trigger);
+      });
 
-    trigger.addEventListener("keydown", function (event) {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      event.preventDefault();
-      openModal(trigger);
-    });
+      trigger.addEventListener("keydown", function (event) {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        openModal(trigger);
+      });
+    }
 
     // 1. Immediately inject low-quality placeholder if available.
     // Hosts with data-screenshot-low hide handcrafted fallback in CSS, so this is the first visible mock state.
@@ -551,6 +558,7 @@
   });
 
   Array.prototype.forEach.call(document.querySelectorAll(phoneSelector), function (trigger) {
+    if (!zoomEnabled) return;
     if (trigger.classList.contains("phone-mock-trigger")) return;
 
     trigger.classList.add("phone-mock-trigger");
