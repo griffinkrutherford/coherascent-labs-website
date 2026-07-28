@@ -11019,7 +11019,7 @@
                 
                 <!-- Medal 0: Streak (Gold Tier Default) -->
                 <div class="carousel-3d-item is-active" onclick="rotateToMedal(0)">
-                  <img class="showcase-medal-image" id="medalImage-streak" src="lune-synth-landing-medals/06-gold/streak.png" alt="Gold streak medal">
+                  <img class="showcase-medal-image" id="medalImage-streak" src="/lune-synth/lune-synth-landing-medals/06-gold/streak.png" alt="Gold streak medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-streak" cx="50%" cy="50%" r="55%">
@@ -11181,7 +11181,7 @@
                 
                 <!-- Medal 1: Polymath (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(1)">
-                  <img class="showcase-medal-image" id="medalImage-polymath" src="lune-synth-landing-medals/06-gold/polymath.png" alt="Gold polymath medal">
+                  <img class="showcase-medal-image" id="medalImage-polymath" src="/lune-synth/lune-synth-landing-medals/06-gold/polymath.png" alt="Gold polymath medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-polymath" cx="50%" cy="50%" r="55%">
@@ -11347,7 +11347,7 @@
                 
                 <!-- Medal 2: Recovery (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(2)">
-                  <img class="showcase-medal-image" id="medalImage-recovery" src="lune-synth-landing-medals/06-gold/recovery.png" alt="Gold recovery medal">
+                  <img class="showcase-medal-image" id="medalImage-recovery" src="/lune-synth/lune-synth-landing-medals/06-gold/recovery.png" alt="Gold recovery medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-recovery" cx="50%" cy="50%" r="55%">
@@ -11509,7 +11509,7 @@
                 
                 <!-- Medal 3: Marksman (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(3)">
-                  <img class="showcase-medal-image" id="medalImage-marksman" src="lune-synth-landing-medals/06-gold/marksman.png" alt="Gold marksman medal">
+                  <img class="showcase-medal-image" id="medalImage-marksman" src="/lune-synth/lune-synth-landing-medals/06-gold/marksman.png" alt="Gold marksman medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-marksman" cx="50%" cy="50%" r="55%">
@@ -11675,7 +11675,7 @@
                 
                 <!-- Medal 4: Handwriting (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)">
-                  <img class="showcase-medal-image" id="medalImage-handwriting" src="lune-synth-landing-medals/06-gold/handwriting.png" alt="Gold handwriting medal">
+                  <img class="showcase-medal-image" id="medalImage-handwriting" src="/lune-synth/lune-synth-landing-medals/06-gold/handwriting.png" alt="Gold handwriting medal">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-handwriting" cx="50%" cy="50%" r="55%">
@@ -12993,7 +12993,7 @@
 
     const medalImage = document.getElementById(`medalImage-${key}`);
     if (medalImage) {
-      medalImage.src = `lune-synth-landing-medals/${medalTierSlugs[rank]}/${key}.png`;
+      medalImage.src = `/lune-synth/lune-synth-landing-medals/${medalTierSlugs[rank]}/${key}.png`;
       medalImage.alt = `${info.name} ${key} medal`;
     }
 
