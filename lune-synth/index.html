@@ -5414,6 +5414,45 @@
         linear-gradient(180deg, #0a1124, #060a14 60%, #04060e);
     }
 
+    /* "Video demo coming soon" placeholder shown until Luna clips are added */
+    .luna-phone__soon {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 0 12%;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .luna-phone__soon-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      padding-left: 3px;
+      border-radius: 50%;
+      border: 1px solid rgba(164, 123, 255, 0.4);
+      background: rgba(164, 123, 255, 0.12);
+      box-shadow: 0 0 22px rgba(164, 123, 255, 0.22);
+      color: #cbb8ff;
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .luna-phone__soon-text {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: clamp(13px, 3.4vw, 15px);
+      letter-spacing: 0.01em;
+      line-height: 1.35;
+      color: rgba(214, 226, 255, 0.92);
+    }
+
     /* Trait cards */
     .luna-traits {
       display: grid;
@@ -10484,7 +10523,10 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <!-- Drop screenshot here using the same pattern as other phones -->
+                    <div class="luna-phone__soon">
+                      <span class="luna-phone__soon-icon" aria-hidden="true">&#9654;</span>
+                      <span class="luna-phone__soon-text">Video demo<br>coming soon</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -10502,7 +10544,10 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <!-- Drop screenshot here using the same pattern as other phones -->
+                    <div class="luna-phone__soon">
+                      <span class="luna-phone__soon-icon" aria-hidden="true">&#9654;</span>
+                      <span class="luna-phone__soon-text">Video demo<br>coming soon</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -10520,7 +10565,10 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <!-- Drop screenshot here using the same pattern as other phones -->
+                    <div class="luna-phone__soon">
+                      <span class="luna-phone__soon-icon" aria-hidden="true">&#9654;</span>
+                      <span class="luna-phone__soon-text">Video demo<br>coming soon</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -10538,7 +10586,10 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <!-- Drop screenshot here using the same pattern as other phones -->
+                    <div class="luna-phone__soon">
+                      <span class="luna-phone__soon-icon" aria-hidden="true">&#9654;</span>
+                      <span class="luna-phone__soon-text">Video demo<br>coming soon</span>
+                    </div>
                   </div>
                 </div>
               </div>
