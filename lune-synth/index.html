@@ -4896,10 +4896,11 @@
       min-width: 42px;
       height: 42px;
       padding: 0;
-      border: 1px solid rgba(100, 168, 255, 0.18);
+      border: 1px solid #315985;
       border-radius: 999px;
-      background: rgba(12, 23, 44, 0.08);
-      color: #000000;
+      background: #142a48;
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(8, 18, 34, 0.24);
       font: inherit;
       cursor: pointer;
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
@@ -4931,7 +4932,7 @@
       outline: none;
       transform: translateY(-1px);
       border-color: rgba(164, 123, 255, 0.36);
-      background: rgba(12, 23, 44, 0.14);
+      background: #1d3b63;
     }
 
     .response-carousel__copy {
@@ -7180,10 +7181,19 @@
       }
 
       .response-carousel__dots {
-        justify-content: flex-end;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(7, 8px);
+        grid-template-rows: repeat(2, 8px);
+        justify-content: initial;
         gap: 4px;
-        width: min(100%, 108px);
+        width: 80px;
+      }
+
+      .response-carousel__dots::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        visibility: hidden;
       }
 
       .response-carousel__button {
