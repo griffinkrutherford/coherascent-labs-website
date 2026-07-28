@@ -1,0 +1,829 @@
+{
+  "categories": [
+    "polymath",
+    "marksman",
+    "streak",
+    "veteran",
+    "recovery",
+    "assessments",
+    "handwriting",
+    "voice",
+    "text",
+    "multichoice"
+  ],
+  "count": 100,
+  "medals": [
+    {
+      "category": "polymath",
+      "file": "01-paper/polymath.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "01-paper/marksman.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "01-paper/streak.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "01-paper/veteran.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "01-paper/recovery.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "01-paper/assessments.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "01-paper/handwriting.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "01-paper/voice.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "01-paper/text.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "01-paper/multichoice.png",
+      "height": 512,
+      "rank": 1,
+      "tier": "paper",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "02-plastic/polymath.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "02-plastic/marksman.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "02-plastic/streak.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "02-plastic/veteran.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "02-plastic/recovery.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "02-plastic/assessments.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "02-plastic/handwriting.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "02-plastic/voice.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "02-plastic/text.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "02-plastic/multichoice.png",
+      "height": 512,
+      "rank": 2,
+      "tier": "plastic",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "03-ceramic/polymath.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "03-ceramic/marksman.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "03-ceramic/streak.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "03-ceramic/veteran.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "03-ceramic/recovery.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "03-ceramic/assessments.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "03-ceramic/handwriting.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "03-ceramic/voice.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "03-ceramic/text.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "03-ceramic/multichoice.png",
+      "height": 512,
+      "rank": 3,
+      "tier": "ceramic",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "04-bronze/polymath.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "04-bronze/marksman.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "04-bronze/streak.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "04-bronze/veteran.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "04-bronze/recovery.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "04-bronze/assessments.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "04-bronze/handwriting.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "04-bronze/voice.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "04-bronze/text.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "04-bronze/multichoice.png",
+      "height": 512,
+      "rank": 4,
+      "tier": "bronze",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "05-silver/polymath.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "05-silver/marksman.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "05-silver/streak.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "05-silver/veteran.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "05-silver/recovery.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "05-silver/assessments.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "05-silver/handwriting.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "05-silver/voice.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "05-silver/text.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "05-silver/multichoice.png",
+      "height": 512,
+      "rank": 5,
+      "tier": "silver",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "06-gold/polymath.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "06-gold/marksman.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "06-gold/streak.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "06-gold/veteran.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "06-gold/recovery.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "06-gold/assessments.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "06-gold/handwriting.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "06-gold/voice.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "06-gold/text.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "06-gold/multichoice.png",
+      "height": 512,
+      "rank": 6,
+      "tier": "gold",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "07-platinum/polymath.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "07-platinum/marksman.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "07-platinum/streak.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "07-platinum/veteran.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "07-platinum/recovery.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "07-platinum/assessments.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "07-platinum/handwriting.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "07-platinum/voice.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "07-platinum/text.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "07-platinum/multichoice.png",
+      "height": 512,
+      "rank": 7,
+      "tier": "platinum",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "08-sapphire/polymath.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "08-sapphire/marksman.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "08-sapphire/streak.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "08-sapphire/veteran.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "08-sapphire/recovery.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "08-sapphire/assessments.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "08-sapphire/handwriting.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "08-sapphire/voice.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "08-sapphire/text.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "08-sapphire/multichoice.png",
+      "height": 512,
+      "rank": 8,
+      "tier": "sapphire",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "09-emerald/polymath.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "09-emerald/marksman.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "09-emerald/streak.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "09-emerald/veteran.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "09-emerald/recovery.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "09-emerald/assessments.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "09-emerald/handwriting.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "09-emerald/voice.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "09-emerald/text.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "09-emerald/multichoice.png",
+      "height": 512,
+      "rank": 9,
+      "tier": "emerald",
+      "width": 512
+    },
+    {
+      "category": "polymath",
+      "file": "10-diamond/polymath.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "marksman",
+      "file": "10-diamond/marksman.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "streak",
+      "file": "10-diamond/streak.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "veteran",
+      "file": "10-diamond/veteran.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "recovery",
+      "file": "10-diamond/recovery.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "assessments",
+      "file": "10-diamond/assessments.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "handwriting",
+      "file": "10-diamond/handwriting.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "voice",
+      "file": "10-diamond/voice.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "text",
+      "file": "10-diamond/text.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    },
+    {
+      "category": "multichoice",
+      "file": "10-diamond/multichoice.png",
+      "height": 512,
+      "rank": 10,
+      "tier": "diamond",
+      "width": 512
+    }
+  ],
+  "tiers": [
+    "paper",
+    "plastic",
+    "ceramic",
+    "bronze",
+    "silver",
+    "gold",
+    "platinum",
+    "sapphire",
+    "emerald",
+    "diamond"
+  ]
+}
