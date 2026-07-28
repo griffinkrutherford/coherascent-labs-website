@@ -153,6 +153,44 @@
       background-size: cover;
     }
 
+    /* Keep a painted star field on the mobile document canvas itself. Mobile
+       browsers may temporarily defer fixed pseudo-element compositing during
+       fast or elastic scrolling, so the fixed decorative layer cannot be the
+       only source of stars. */
+    @media (max-width: 900px) {
+      html,
+      body {
+        overscroll-behavior-y: none;
+        background-color: #000000;
+        background-image:
+          radial-gradient(1.2px 1.2px at 24px 30px, rgba(255, 255, 255, 0.9) 98%, transparent 100%),
+          radial-gradient(1px 1px at 80px 90px, rgba(100, 168, 255, 0.72) 98%, transparent 100%),
+          radial-gradient(1px 1px at 50px 120px, rgba(164, 123, 255, 0.66) 98%, transparent 100%),
+          radial-gradient(900px 560px at 15% 0%, rgba(100, 168, 255, 0.11), transparent 58%),
+          radial-gradient(760px 520px at 88% 12%, rgba(164, 123, 255, 0.11), transparent 58%),
+          linear-gradient(180deg, #000000 0%, #02040a 100%);
+        background-size: 180px 180px, 220px 220px, 260px 260px, auto, auto, auto;
+        background-position: 0 0, 40px 70px, 120px 20px, 0 0, 0 0, 0 0;
+        background-repeat: repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
+      }
+
+      body {
+        min-height: 100dvh;
+      }
+
+      html[data-theme="light"],
+      html[data-theme="light"] body {
+        background-color: #f4efff;
+        background-image:
+          radial-gradient(1.2px 1.2px at 24px 30px, rgba(102, 113, 145, 0.28) 98%, transparent 100%),
+          radial-gradient(1px 1px at 80px 90px, rgba(79, 132, 214, 0.22) 98%, transparent 100%),
+          radial-gradient(1px 1px at 50px 120px, rgba(127, 99, 214, 0.2) 98%, transparent 100%),
+          radial-gradient(900px 560px at 15% 0%, rgba(100, 168, 255, 0.18), transparent 58%),
+          radial-gradient(760px 520px at 88% 12%, rgba(164, 123, 255, 0.16), transparent 58%),
+          linear-gradient(180deg, #f9f5ff 0%, #eef3ff 100%);
+      }
+    }
+
     h2, h3, h4, h5, h6, .nav-link, .brand-dropdown-content a, button, input {
       font-family: var(--font-sans);
     }
