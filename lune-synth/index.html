@@ -6540,6 +6540,26 @@
       background: rgba(164, 123, 255, 0.08);
     }
 
+    .site-footer__powered-by {
+      flex: 1 0 100%;
+      margin: 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(164, 123, 255, 0.14);
+      color: var(--muted);
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .site-footer__powered-by strong {
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 700;
+    }
+
+    html[data-theme="light"] .site-footer__powered-by {
+      border-top-color: rgba(127, 99, 214, 0.14);
+    }
+
     @media (max-width: 640px) {
       .site-footer {
         justify-content: center;
@@ -12131,6 +12151,9 @@
         <a href="/terms/">Terms</a>
         <a href="mailto:griffin@lunesynth.com">Contact</a>
       </nav>
+      <p class="site-footer__powered-by">
+        Powered by <strong>GPT-5.6-Luna</strong> &mdash; rigorous feedback, adaptive tutoring, and a little cosmic humor when studying gets heavy.
+      </p>
     </footer>
   </main>
   <script src="../liquid-glass-cards.js"></script>
