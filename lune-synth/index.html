@@ -8119,6 +8119,16 @@
       background: #4a90e2;
       box-shadow: 0 0 8px rgba(74, 144, 226, 0.8);
     }
+
+    .theme-dot-earth {
+      background: #55b9ff;
+      box-shadow: 0 0 8px rgba(85, 185, 255, 0.8);
+    }
+
+    .theme-dot-jupiter {
+      background: #d89a5b;
+      box-shadow: 0 0 8px rgba(216, 154, 91, 0.8);
+    }
     
     .theme-dot-retro {
       background: #ff007f;
@@ -9481,6 +9491,13 @@
       background:
         radial-gradient(circle at 50% 0%, rgba(108, 176, 220, 0.16), transparent 50%),
         linear-gradient(180deg, #02030A 0%, #071029 50%, #040616 100%);
+    }
+
+    /* Jupiter World */
+    .ipad-screen-content.theme-jupiter {
+      background:
+        radial-gradient(circle at 50% 100%, rgba(216, 154, 91, 0.24), transparent 54%),
+        linear-gradient(180deg, #080604 0%, #2e190b 58%, #8a542a 100%);
     }
 
     /* Venus */
@@ -11116,9 +11133,13 @@
             <div class="world-theme-panel-container" id="worldThemePanel">
               <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select World</span>
               <div class="theme-options-beside">
-                <button class="theme-option-btn is-active" data-theme="bigbang" onclick="selectWorld('bigbang', this)">
-                  <span class="theme-dot theme-dot-bigbang"></span>
-                  Big Bang
+                <button class="theme-option-btn is-active" data-theme="earth" onclick="selectWorld('earth', this)">
+                  <span class="theme-dot theme-dot-earth"></span>
+                  Earth
+                </button>
+                <button class="theme-option-btn" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
+                  <span class="theme-dot theme-dot-jupiter"></span>
+                  Jupiter
                 </button>
                 <button class="theme-option-btn" data-theme="retro" onclick="selectWorld('retro', this)">
                   <span class="theme-dot theme-dot-retro"></span>
@@ -11143,7 +11164,7 @@
                 <div class="ipad-glare"></div>
 
                 <!-- Screen Content Frame -->
-                <div class="ipad-screen-content theme-bigbang" id="ipadScreenCanvas">
+                <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
 
                   <!-- Step 2 Preview Screen: choose or create a Constellation -->
                   <div class="ipad-preview-layout" id="previewStep-2">
@@ -11156,20 +11177,21 @@
 
                   <!-- Step 1 Preview Screen: navigate Worlds -->
                   <div class="ipad-preview-layout is-active" id="previewStep-1">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-math-sky-thumb.jpg" data-video-thumbnail="step2Video-math" alt="" aria-hidden="true" style="display: none;">
-                    <video id="step2Video-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
-                      <source src="screenshots/applied/step-2-math-sky.webm" type="video/webm">
-                      <source src="screenshots/applied/step-2-math-sky.mp4" type="video/mp4">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-earth-world-thumb.jpg" data-video-thumbnail="worldVideo-earth" alt="" aria-hidden="true">
+                    <video id="worldVideo-earth" class="ipad-gif-target" loop muted playsinline preload="none">
+                      <source src="screenshots/applied/step-1-earth-world.mp4" type="video/mp4">
                     </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-retro-sky-thumb.jpg" data-video-thumbnail="step2Video-retro" alt="" aria-hidden="true" style="display: none;">
-                    <video id="step2Video-retro" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
-                      <source src="screenshots/applied/step-2-retro-sky.webm" type="video/webm">
-                      <source src="screenshots/applied/step-2-retro-sky.mp4" type="video/mp4">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-jupiter-world-thumb.jpg" data-video-thumbnail="worldVideo-jupiter" alt="" aria-hidden="true" style="display: none;">
+                    <video id="worldVideo-jupiter" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
+                      <source src="screenshots/applied/step-1-jupiter-world.mp4" type="video/mp4">
                     </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-big-bang-thumb.jpg" data-video-thumbnail="step2Video-bigbang" alt="" aria-hidden="true">
-                    <video id="step2Video-bigbang" class="ipad-gif-target" loop muted playsinline preload="none">
-                      <source src="screenshots/applied/step-2-big-bang.webm" type="video/webm">
-                      <source src="screenshots/applied/step-2-big-bang.mp4" type="video/mp4">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-retro-arcade-world-thumb.jpg" data-video-thumbnail="worldVideo-retro" alt="" aria-hidden="true" style="display: none;">
+                    <video id="worldVideo-retro" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
+                      <source src="screenshots/applied/step-1-retro-arcade-world.mp4" type="video/mp4">
+                    </video>
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-math-space-world-thumb.jpg" data-video-thumbnail="worldVideo-math" alt="" aria-hidden="true" style="display: none;">
+                    <video id="worldVideo-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
+                      <source src="screenshots/applied/step-1-math-space-world.mp4" type="video/mp4">
                     </video>
                   </div>
 
@@ -12778,9 +12800,9 @@
     if (themePanel) {
       if (stepNumber === 1) {
         themePanel.style.display = 'flex';
-        // Auto-select theme to ensure a video plays on landing (defaulting to bigbang)
+        // Auto-select a World to ensure its video plays on landing (defaulting to Earth)
         const activeThemeBtn = themePanel.querySelector('.theme-option-btn.is-active');
-        const selectedTheme = activeThemeBtn ? activeThemeBtn.getAttribute('data-theme') : 'bigbang';
+        const selectedTheme = activeThemeBtn ? activeThemeBtn.getAttribute('data-theme') : 'earth';
         selectWorld(selectedTheme);
       } else {
         themePanel.style.display = 'none';
@@ -12854,9 +12876,10 @@
 
     // Swap the per-theme screen recording.
     const worldVideos = {
-      math: document.getElementById('step2Video-math'),
-      retro: document.getElementById('step2Video-retro'),
-      bigbang: document.getElementById('step2Video-bigbang')
+      earth: document.getElementById('worldVideo-earth'),
+      jupiter: document.getElementById('worldVideo-jupiter'),
+      retro: document.getElementById('worldVideo-retro'),
+      math: document.getElementById('worldVideo-math')
     };
     const activeVid = worldVideos[worldTheme] || null;
     Object.values(worldVideos).forEach(v => {

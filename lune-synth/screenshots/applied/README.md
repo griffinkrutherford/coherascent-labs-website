@@ -12,5 +12,5 @@ renderable frame.
 - File names must match the sources and `data-video-thumbnail` mapping in
   `../../index.html`.
 - Step 1 has separate World recordings and thumbnails; the current options are
-  Big Bang, Retro Arcade, and Math Space.
+  Earth, Jupiter, Retro Arcade, and Math Space.
 - Videos and thumbnails use `object-fit: cover` and fill the portrait iPad screen.
