@@ -8360,11 +8360,16 @@
       transform: scale(1);
     }
 
-    .quick-missions__screen-image {
+    .quick-missions__screen-image,
+    .quick-missions__screen-video {
       width: 100%;
       height: 100%;
       display: block;
       object-fit: cover;
+    }
+
+    .quick-missions__screen-video {
+      background: #060a14;
     }
 
     .quick-missions__screen-placeholder {
@@ -10968,7 +10973,10 @@
             <div class="quick-missions__phone" data-phone-mock="quick-missions" aria-label="Quick Missions app preview">
               <div class="quick-missions__phone-screen phone-screenshot-host">
                 <div class="quick-missions__screen-view is-active" data-quick-screen="grid">
-                  <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-grid.png" alt="Quick Missions grid view" loading="lazy" decoding="async">
+                  <video class="quick-missions__screen-video" data-quick-screen-video autoplay loop muted playsinline preload="metadata" poster="screenshots/applied/quick-mission-screen-poster.png" aria-label="Quick Missions app walkthrough">
+                    <source src="screenshots/applied/quick-mission-screen.mp4" type="video/mp4">
+                    <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-screen-poster.png" alt="Quick Missions app preview">
+                  </video>
                 </div>
               </div>
             </div>
@@ -13825,7 +13833,7 @@
 
     var viewToggle = root.querySelector('[data-quick-view-toggle]');
     var screens = Array.prototype.slice.call(root.querySelectorAll('[data-quick-screen]'));
-    var video = root.querySelector('[data-quick-missions-video]');
+    var videos = Array.prototype.slice.call(root.querySelectorAll('[data-quick-missions-video], [data-quick-screen-video]'));
     var view = 'grid';  // temporarily default to grid (carousel option disabled)
 
     function renderView() {
@@ -13850,21 +13858,25 @@
     //   });
     // }
 
-    if (video) {
-      video.muted = true;
-      video.defaultMuted = true;
+    if (videos.length) {
+      videos.forEach(function (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+      });
 
       var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var videoIsNear = false;
 
       function syncVideoPlayback() {
-        if (reducedMotion || document.hidden || !videoIsNear) {
-          video.pause();
-          return;
-        }
+        videos.forEach(function (video) {
+          if (reducedMotion || document.hidden || !videoIsNear) {
+            video.pause();
+            return;
+          }
 
-        var playAttempt = video.play();
-        if (playAttempt && typeof playAttempt.catch === 'function') playAttempt.catch(function () {});
+          var playAttempt = video.play();
+          if (playAttempt && typeof playAttempt.catch === 'function') playAttempt.catch(function () {});
+        });
       }
 
       if ('IntersectionObserver' in window) {
