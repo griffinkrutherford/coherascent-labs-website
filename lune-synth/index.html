@@ -9952,6 +9952,61 @@
       }
     }
 
+    /* ============================================================
+       3D SCROLL-REVEAL for device mocks (desktop + mobile).
+       Each phone / tablet starts tilted in 3D and rotates flat to
+       face the viewer as it scrolls into view. Uses the individual
+       `rotate` property so it composes with each device's existing
+       transform (resting tilt, float, translate) without disturbing
+       it. Enabled only once JS confirms support (html[data-tilt-ready])
+       and fully disabled under prefers-reduced-motion.
+       ============================================================ */
+    @media (prefers-reduced-motion: no-preference) {
+      html[data-tilt-ready] .capture-scene,
+      html[data-tilt-ready] .processing-scene__stage,
+      html[data-tilt-ready] .feedback-scene__deck,
+      html[data-tilt-ready] .voice-scene__devices,
+      html[data-tilt-ready] .luna-tab-visual,
+      html[data-tilt-ready] .quick-missions__device-column {
+        perspective: 1600px;
+      }
+
+      html[data-tilt-ready] .capture-scene__phone,
+      html[data-tilt-ready] .processing-scene__phone,
+      html[data-tilt-ready] .feedback-scene__phone,
+      html[data-tilt-ready] .voice-scene__phone,
+      html[data-tilt-ready] .voice-scene__ipad,
+      html[data-tilt-ready] .luna-phone--tab,
+      html[data-tilt-ready] .quick-missions__phone,
+      html[data-tilt-ready] .ipad-mockup {
+        transition: rotate 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+        backface-visibility: hidden;
+      }
+
+      /* Keep the iPad's existing hover transform transition alongside the reveal. */
+      html[data-tilt-ready] .ipad-mockup {
+        transition: rotate 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Starting angles — varied so devices don't all pivot the same way. */
+      html[data-tilt-ready] .capture-scene__phone { rotate: 2 5 0 -44deg; }
+      html[data-tilt-ready] .processing-scene__phone { rotate: 0 1 0 34deg; }
+      html[data-tilt-ready] .feedback-scene__phone--far-left { rotate: 0 1 0 -48deg; }
+      html[data-tilt-ready] .feedback-scene__phone--left { rotate: 0 1 0 -26deg; }
+      html[data-tilt-ready] .feedback-scene__phone--center { rotate: 1 0 0 -26deg; }
+      html[data-tilt-ready] .feedback-scene__phone--right { rotate: 0 1 0 44deg; }
+      html[data-tilt-ready] .voice-scene__phone { rotate: 0 1 0 -40deg; }
+      html[data-tilt-ready] .voice-scene__ipad { rotate: 1 3 0 42deg; }
+      html[data-tilt-ready] .luna-phone--tab { rotate: 0 1 0 -36deg; }
+      html[data-tilt-ready] .quick-missions__phone { rotate: 0 1 0 34deg; }
+      html[data-tilt-ready] .ipad-mockup { rotate: 2 5 0 -40deg; }
+
+      /* Revealed: rotate to face the viewer. Existing transform is untouched,
+         so each device lands in the exact position it holds today. */
+      html[data-tilt-ready] .is-tilt-revealed { rotate: 0deg !important; }
+    }
+
   </style>
   <script type="importmap">
   {
@@ -9961,6 +10016,17 @@
     }
   }
   </script>
+<script>
+  /* Enable the 3D device tilt-reveal before first paint (so devices render
+     already tilted, no load-time wobble). Skipped for reduced-motion / no IO. */
+  (function () {
+    try {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!('IntersectionObserver' in window)) return;
+      document.documentElement.setAttribute('data-tilt-ready', '');
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
   <main>
@@ -14056,6 +14122,43 @@
     document.querySelectorAll('.section-title, .section-content').forEach(function(el) {
       observer.observe(el);
     });
+  })();
+  </script>
+  <script>
+  /* 3D device tilt-reveal: rotate each phone/tablet flat as it scrolls in.
+     The device scenes live inside content-visibility sections, where an
+     observer on the deep device element is unreliable — so we observe each
+     device's `.section-content` wrapper (the same target the site's other
+     scroll animations use) and reveal the devices inside it. One-shot. */
+  (function () {
+    if (!document.documentElement.hasAttribute('data-tilt-ready')) return;
+    if (!('IntersectionObserver' in window)) return;
+    var sel = '.capture-scene__phone, .processing-scene__phone, .feedback-scene__phone,'
+            + '.voice-scene__phone, .voice-scene__ipad, .luna-phone--tab,'
+            + '.quick-missions__phone, .ipad-mockup';
+    var devices = Array.prototype.slice.call(document.querySelectorAll(sel));
+    if (!devices.length) return;
+    var groups = [];
+    devices.forEach(function (el) {
+      var host = el.closest('.section-content') || el.closest('.section') || el.parentElement;
+      var g = null;
+      for (var i = 0; i < groups.length; i++) { if (groups[i].host === host) { g = groups[i]; break; } }
+      if (!g) { g = { host: host, items: [] }; groups.push(g); }
+      g.items.push(el);
+    });
+    var tiltObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        for (var i = 0; i < groups.length; i++) {
+          if (groups[i].host === entry.target) {
+            groups[i].items.forEach(function (el) { el.classList.add('is-tilt-revealed'); });
+            break;
+          }
+        }
+        tiltObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+    groups.forEach(function (g) { tiltObserver.observe(g.host); });
   })();
   </script>
 </body>
