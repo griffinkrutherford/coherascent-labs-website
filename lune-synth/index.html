@@ -8044,8 +8044,8 @@
       visibility: visible;
     }
 
-    /* --- Sky Selector Options (Beside the iPad, Step 2 Only) --- */
-    .step2-theme-panel-container {
+    /* --- World Selector Options (Beside the iPad, Step 1 Only) --- */
+    .world-theme-panel-container {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -9490,14 +9490,14 @@
         linear-gradient(180deg, #080402 0%, #5A2E0E 60%, #D08A32 100%);
     }
 
-    /* Math Space (Light Sky Theme) */
+    /* Math Space World */
     .ipad-screen-content.theme-math {
       background:
         radial-gradient(circle at 50% 0%, #F8FBFF, #FFFFFF 100%);
       color: #1d2433;
     }
 
-    /* Retro Sky */
+    /* Retro Arcade World */
     .ipad-screen-content.theme-retro {
       background:
         radial-gradient(circle at 50% 0%, rgba(255, 69, 216, 0.18), transparent 55%),
@@ -11069,7 +11069,7 @@
             <button class="slideshow-step-btn is-active" id="stepBtn-1" onclick="switchSlideshowStep(1)">
               <span class="step-number">01</span>
               <div class="step-details">
-                <h4 class="step-title">Skill Map</h4>
+                <h4 class="step-title">Worlds</h4>
               </div>
             </button>
 
@@ -11077,7 +11077,7 @@
             <button class="slideshow-step-btn" id="stepBtn-2" onclick="switchSlideshowStep(2)">
               <span class="step-number">02</span>
               <div class="step-details">
-                <h4 class="step-title">Roadmap</h4>
+                <h4 class="step-title">Choose / Create</h4>
               </div>
             </button>
 
@@ -11109,22 +11109,22 @@
 
           <div class="active-step-text">
             <span class="active-step-badge" id="activeStepBadge">Step 01</span>
-            <h3 class="active-step-title" id="activeStepTitle">Break One Big Goal Into 10–15 Skills</h3>
-            <p class="active-step-desc" id="activeStepDesc">Start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Add your syllabus, notes, homework, or study guides, and <strong>Luna</strong> turns the full goal into 10 to 15 concrete skills to master. Unlike Quick Missions, this mode plans an entire course-scale study journey.</p>
+            <h3 class="active-step-title" id="activeStepTitle">Explore Your Learning Worlds</h3>
+            <p class="active-step-desc" id="activeStepDesc">Start by navigating your personalized study universe. Choose from over 50 visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.</p>
             
-            <!-- Dynamic Sky Selector for Step 02 (hidden on other steps) -->
-            <div class="step2-theme-panel-container" id="step2ThemePanel" style="display: none;">
-              <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select Sky Theme</span>
+            <!-- Dynamic World Selector for Step 01 (hidden on other steps) -->
+            <div class="world-theme-panel-container" id="worldThemePanel">
+              <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select World</span>
               <div class="theme-options-beside">
-                <button class="theme-option-btn is-active" data-theme="bigbang" onclick="selectSkyTheme('bigbang', this)">
+                <button class="theme-option-btn is-active" data-theme="bigbang" onclick="selectWorld('bigbang', this)">
                   <span class="theme-dot theme-dot-bigbang"></span>
                   Big Bang
                 </button>
-                <button class="theme-option-btn" data-theme="retro" onclick="selectSkyTheme('retro', this)">
+                <button class="theme-option-btn" data-theme="retro" onclick="selectWorld('retro', this)">
                   <span class="theme-dot theme-dot-retro"></span>
                   Retro Arcade
                 </button>
-                <button class="theme-option-btn" data-theme="math" onclick="selectSkyTheme('math', this)">
+                <button class="theme-option-btn" data-theme="math" onclick="selectWorld('math', this)">
                   <span class="theme-dot theme-dot-math"></span>
                   Math Space
                 </button>
@@ -11143,10 +11143,10 @@
                 <div class="ipad-glare"></div>
 
                 <!-- Screen Content Frame -->
-                <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
+                <div class="ipad-screen-content theme-bigbang" id="ipadScreenCanvas">
 
-                  <!-- Step 1 Preview Screen -->
-                  <div class="ipad-preview-layout is-active" id="previewStep-1">
+                  <!-- Step 2 Preview Screen: choose or create a Constellation -->
+                  <div class="ipad-preview-layout" id="previewStep-2">
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-thumb.jpg" data-video-thumbnail="step1Video" alt="" aria-hidden="true">
                     <video id="step1Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-1.webm" type="video/webm">
@@ -11154,8 +11154,8 @@
                     </video>
                   </div>
 
-                  <!-- Step 2 Preview Screen (Includes interactive theme selector buttons) -->
-                  <div class="ipad-preview-layout" id="previewStep-2">
+                  <!-- Step 1 Preview Screen: navigate Worlds -->
+                  <div class="ipad-preview-layout is-active" id="previewStep-1">
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-math-sky-thumb.jpg" data-video-thumbnail="step2Video-math" alt="" aria-hidden="true" style="display: none;">
                     <video id="step2Video-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-2-math-sky.webm" type="video/webm">
@@ -11166,8 +11166,8 @@
                       <source src="screenshots/applied/step-2-retro-sky.webm" type="video/webm">
                       <source src="screenshots/applied/step-2-retro-sky.mp4" type="video/mp4">
                     </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-big-bang-thumb.jpg" data-video-thumbnail="step2Video-bigbang" alt="" aria-hidden="true" style="display: none;">
-                    <video id="step2Video-bigbang" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-2-big-bang-thumb.jpg" data-video-thumbnail="step2Video-bigbang" alt="" aria-hidden="true">
+                    <video id="step2Video-bigbang" class="ipad-gif-target" loop muted playsinline preload="none">
                       <source src="screenshots/applied/step-2-big-bang.webm" type="video/webm">
                       <source src="screenshots/applied/step-2-big-bang.mp4" type="video/mp4">
                     </video>
@@ -12642,13 +12642,13 @@
   const stepData = {
     1: {
       badge: "Step 01",
-      title: "Break One Big Goal Into 10–15 Skills",
-      desc: 'Start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Add your syllabus, notes, homework, or study guides, and <strong>Luna</strong> turns the full goal into 10 to 15 concrete skills to master. Unlike Quick Missions, this mode plans an entire course-scale study journey.'
+      title: "Explore Your Learning Worlds",
+      desc: 'Start by navigating your personalized study universe. Choose from over 50 visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.'
     },
     2: {
       badge: "Step 02",
-      title: "Build Your Constellation Roadmap",
-      desc: "Those 10 to 15 skills become connected nodes in a <strong>Constellation</strong>: a visual roadmap for the broader goal. Unlock over 50 sky themes to personalize your view, then follow the roadmap as each skill feeds into more demanding missions and assessments."
+      title: "Choose or Create a Constellation",
+      desc: 'Open an existing Constellation or start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Add your syllabus, notes, homework, or study guides, and <strong>Luna</strong> turns the goal into 10 to 15 connected skills to master.'
     },
     3: {
       badge: "Step 03",
@@ -12774,14 +12774,14 @@
     }
 
     // Toggle the theme selector panel visibility beside the iPad
-    const themePanel = document.getElementById('step2ThemePanel');
+    const themePanel = document.getElementById('worldThemePanel');
     if (themePanel) {
-      if (stepNumber === 2) {
+      if (stepNumber === 1) {
         themePanel.style.display = 'flex';
         // Auto-select theme to ensure a video plays on landing (defaulting to bigbang)
         const activeThemeBtn = themePanel.querySelector('.theme-option-btn.is-active');
         const selectedTheme = activeThemeBtn ? activeThemeBtn.getAttribute('data-theme') : 'bigbang';
-        selectSkyTheme(selectedTheme);
+        selectWorld(selectedTheme);
       } else {
         themePanel.style.display = 'none';
       }
@@ -12831,13 +12831,13 @@
     }
   });
 
-  function selectSkyTheme(skyTheme, pillElement) {
+  function selectWorld(worldTheme, pillElement) {
     const ipadCanvas = document.getElementById('ipadScreenCanvas');
 
     // Update active button state in the side panel options
     const buttons = document.querySelectorAll('.theme-option-btn');
     buttons.forEach(btn => {
-      if (btn.getAttribute('data-theme') === skyTheme) {
+      if (btn.getAttribute('data-theme') === worldTheme) {
         btn.classList.add('is-active');
       } else {
         btn.classList.remove('is-active');
@@ -12849,23 +12849,23 @@
       Array.from(ipadCanvas.classList).forEach(cls => {
         if (cls.startsWith('theme-')) ipadCanvas.classList.remove(cls);
       });
-      ipadCanvas.classList.add('theme-' + skyTheme);
+      ipadCanvas.classList.add('theme-' + worldTheme);
     }
 
     // Swap the per-theme screen recording.
-    const themeVideos = {
+    const worldVideos = {
       math: document.getElementById('step2Video-math'),
       retro: document.getElementById('step2Video-retro'),
       bigbang: document.getElementById('step2Video-bigbang')
     };
-    const activeVid = themeVideos[skyTheme] || null;
-    Object.values(themeVideos).forEach(v => {
+    const activeVid = worldVideos[worldTheme] || null;
+    Object.values(worldVideos).forEach(v => {
       if (!v) return;
       const thumbnail = document.querySelector('[data-video-thumbnail="' + v.id + '"]');
       if (v === activeVid) {
         v.style.display = 'block';
         if (thumbnail) thumbnail.style.display = 'block';
-        if (isStudyUniverseInView && activeSlideshowStep === 2) {
+        if (isStudyUniverseInView && activeSlideshowStep === 1) {
           v.currentTime = 0;
         }
       } else {
