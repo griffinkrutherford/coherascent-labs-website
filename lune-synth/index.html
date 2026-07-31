@@ -8108,36 +8108,41 @@
       box-shadow: 0 4px 12px rgba(84, 98, 130, 0.08);
     }
     
-    .theme-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    
-    .theme-dot-math {
-      background: #4a90e2;
-      box-shadow: 0 0 8px rgba(74, 144, 226, 0.8);
+    .world-option-icon {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 7px rgba(100, 168, 255, 0.32));
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
     }
 
-    .theme-dot-earth {
-      background: #55b9ff;
-      box-shadow: 0 0 8px rgba(85, 185, 255, 0.8);
+    .theme-option-btn:hover .world-option-icon,
+    .theme-option-btn.is-active .world-option-icon {
+      transform: scale(1.12) rotate(-3deg);
+      filter: drop-shadow(0 0 9px rgba(100, 168, 255, 0.55));
     }
 
-    .theme-dot-jupiter {
-      background: #d89a5b;
-      box-shadow: 0 0 8px rgba(216, 154, 91, 0.8);
+    .world-count {
+      font-weight: 900;
+      color: transparent;
+      background: linear-gradient(90deg, #64a8ff, #9c6cff, #ff6fae, #ffd36a, #64a8ff);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: world-count-gradient 4s linear infinite;
     }
-    
-    .theme-dot-retro {
-      background: #ff007f;
-      box-shadow: 0 0 8px rgba(255, 0, 127, 0.8);
+
+    @keyframes world-count-gradient {
+      to { background-position: 300% 50%; }
     }
-    
-    .theme-dot-bigbang {
-      background: #ffd700;
-      box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+
+    @media (prefers-reduced-motion: reduce) {
+      .world-count {
+        animation: none;
+        background-position: 50% 50%;
+      }
     }
 
     /* ==========================================================================
@@ -11127,26 +11132,26 @@
           <div class="active-step-text">
             <span class="active-step-badge" id="activeStepBadge">Step 01</span>
             <h3 class="active-step-title" id="activeStepTitle">Explore Your Learning Worlds</h3>
-            <p class="active-step-desc" id="activeStepDesc">Start by navigating your personalized study universe. Choose from over 50 visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.</p>
+            <p class="active-step-desc" id="activeStepDesc">Start by navigating your personalized study universe. Choose from over <strong class="world-count">50</strong> visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.</p>
             
             <!-- Dynamic World Selector for Step 01 (hidden on other steps) -->
             <div class="world-theme-panel-container" id="worldThemePanel">
               <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select World</span>
               <div class="theme-options-beside">
                 <button class="theme-option-btn is-active" data-theme="earth" onclick="selectWorld('earth', this)">
-                  <span class="theme-dot theme-dot-earth"></span>
+                  <img class="world-option-icon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="28" height="28">
                   Earth
                 </button>
                 <button class="theme-option-btn" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
-                  <span class="theme-dot theme-dot-jupiter"></span>
+                  <img class="world-option-icon" src="/lune-synth/images/world-icons/jupiter.png" alt="" aria-hidden="true" width="28" height="28">
                   Jupiter
                 </button>
                 <button class="theme-option-btn" data-theme="retro" onclick="selectWorld('retro', this)">
-                  <span class="theme-dot theme-dot-retro"></span>
+                  <img class="world-option-icon" src="/lune-synth/images/world-icons/retro-arcade.png" alt="" aria-hidden="true" width="28" height="28">
                   Retro Arcade
                 </button>
                 <button class="theme-option-btn" data-theme="math" onclick="selectWorld('math', this)">
-                  <span class="theme-dot theme-dot-math"></span>
+                  <img class="world-option-icon" src="/lune-synth/images/world-icons/math-space.png" alt="" aria-hidden="true" width="28" height="28">
                   Math Space
                 </button>
               </div>
@@ -12665,7 +12670,7 @@
     1: {
       badge: "Step 01",
       title: "Explore Your Learning Worlds",
-      desc: 'Start by navigating your personalized study universe. Choose from over 50 visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.'
+      desc: 'Start by navigating your personalized study universe. Choose from over <strong class="world-count">50</strong> visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.'
     },
     2: {
       badge: "Step 02",
