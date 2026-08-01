@@ -5421,6 +5421,15 @@
         linear-gradient(180deg, #0a1124, #060a14 60%, #04060e);
     }
 
+    .luna-phone__demo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background: #050714;
+    }
+
     /* "Video demo coming soon" placeholder shown until Luna clips are added */
     .luna-phone__soon {
       position: absolute;
@@ -10649,10 +10658,9 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <div class="luna-phone__soon">
-                      <span class="luna-phone__soon-icon" aria-hidden="true">&#9654;</span>
-                      <span class="luna-phone__soon-text">Video demo<br>coming soon</span>
-                    </div>
+                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" aria-label="Luna giving a contextual hint">
+                      <source src="screenshots/applied/luna-hints.mp4" type="video/mp4">
+                    </video>
                   </div>
                 </div>
               </div>
@@ -10670,10 +10678,9 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <div class="luna-phone__soon">
-                      <span class="luna-phone__soon-icon" aria-hidden="true">&#9654;</span>
-                      <span class="luna-phone__soon-text">Video demo<br>coming soon</span>
-                    </div>
+                    <video class="luna-phone__demo" data-luna-demo data-playback-rate="2" loop muted playsinline preload="metadata" aria-label="Luna creating a visual infographic">
+                      <source src="screenshots/applied/luna-infographics.mp4" type="video/mp4">
+                    </video>
                   </div>
                 </div>
               </div>
@@ -10691,10 +10698,9 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <div class="luna-phone__soon">
-                      <span class="luna-phone__soon-icon" aria-hidden="true">&#9654;</span>
-                      <span class="luna-phone__soon-text">Video demo<br>coming soon</span>
-                    </div>
+                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" aria-label="Luna surfacing key terms in context">
+                      <source src="screenshots/applied/luna-key-terms.mp4" type="video/mp4">
+                    </video>
                   </div>
                 </div>
               </div>
@@ -10712,10 +10718,9 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <div class="luna-phone__soon">
-                      <span class="luna-phone__soon-icon" aria-hidden="true">&#9654;</span>
-                      <span class="luna-phone__soon-text">Video demo<br>coming soon</span>
-                    </div>
+                    <video class="luna-phone__demo" data-luna-demo data-playback-rate="2" loop muted playsinline preload="metadata" aria-label="A guided conversation with Luna">
+                      <source src="screenshots/applied/luna-chat.mp4" type="video/mp4">
+                    </video>
                   </div>
                 </div>
               </div>
@@ -12819,6 +12824,20 @@
 
   let currentLunaTabIndex = 0;
   const lunaTabOrder = ['hints', 'infographics', 'keyterms', 'chat'];
+  let lunaDemoIsNear = true;
+
+  function syncLunaDemoVideos() {
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('[data-luna-demo]').forEach(video => {
+      const panel = video.closest('.luna-tab-panel');
+      const shouldPlay = Boolean(panel && panel.classList.contains('is-active') && lunaDemoIsNear && !document.hidden && !reducedMotion);
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playbackRate = Number(video.dataset.playbackRate || 1);
+      playPreviewVideo(video, shouldPlay);
+    });
+  }
 
   function switchLunaTab(tab) {
     const nextIndex = lunaTabOrder.indexOf(tab);
@@ -12845,6 +12864,8 @@
     panels.forEach(p => {
       p.classList.toggle('is-active', p.id === 'lunaPanel-' + tab);
     });
+
+    syncLunaDemoVideos();
   }
 
   // Ensure first tab is ready (static HTML marks it active; this is a safety net)
@@ -12856,6 +12877,18 @@
       const firstBtn = document.getElementById('lunaTab-hints');
       if (firstBtn) firstBtn.classList.add('is-active');
     }
+
+    const lunaSection = document.querySelector('[data-luna]');
+    if ('IntersectionObserver' in window && lunaSection) {
+      const lunaDemoObserver = new IntersectionObserver(entries => {
+        lunaDemoIsNear = entries.some(entry => entry.isIntersecting);
+        syncLunaDemoVideos();
+      }, { rootMargin: '180px 0px', threshold: 0.01 });
+      lunaDemoObserver.observe(lunaSection);
+    }
+
+    document.addEventListener('visibilitychange', syncLunaDemoVideos);
+    syncLunaDemoVideos();
   });
 
   function selectWorld(worldTheme, pillElement) {
