@@ -10056,12 +10056,17 @@
       html[data-tilt-ready] .quick-missions__phone,
       html[data-tilt-ready] .ipad-mockup {
         transform-style: preserve-3d;
-        /* A `filter` computes transform-style to flat, which would collapse
-           the 3D depth and let the opaque back face cover the screen. These
-           devices carry accent-glow filters (incl. light-theme variants), so
-           drop them here — their box-shadow glow remains — whenever the 3D
-           treatment is active. */
+        /* `filter` and `isolation: isolate` are both "grouping" properties
+           that compute transform-style to flat — which collapses the 3D depth
+           and lets the opaque back face cover the screen (blank phones). The
+           phones carry both (accent-glow filters incl. light-theme variants,
+           and isolation on the shared shell rule), so neutralize them here
+           whenever the 3D treatment is active. The reveal `rotate`/`transform`
+           still establishes a stacking context, so dropping isolation does not
+           let the phones' internal z-index bleed into siblings. Box-shadow glow
+           is retained. */
         filter: none !important;
+        isolation: auto !important;
       }
 
       /* Each face carries a metallic edge palette so the walls read as a real
