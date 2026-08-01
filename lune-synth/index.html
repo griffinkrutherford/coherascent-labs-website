@@ -1848,8 +1848,9 @@
         0 0 0 10px rgba(6, 10, 18, 0.2),
         0 0 32px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 24%, transparent),
         0 0 58px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 16%, transparent),
+        0 0 22px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 20%, transparent),
+        0 0 38px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 12%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-      filter: drop-shadow(0 0 22px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 20%, transparent)) drop-shadow(0 0 38px color-mix(in srgb, var(--device-accent, rgb(100,168,255)) 12%, transparent));
       animation: capture-float 5.8s ease-in-out infinite;
     }
 
@@ -3152,7 +3153,9 @@
       border-radius: calc(var(--workflow-phone-shell-radius) * var(--voice-phone-scale));
       border: 1px solid rgb(56, 64, 80);
       transform: rotate(-5deg);
-      filter: drop-shadow(0 0 18px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 18%, transparent)) drop-shadow(0 0 32px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 11%, transparent));
+      box-shadow:
+        0 0 18px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 18%, transparent),
+        0 0 32px color-mix(in srgb, var(--device-accent, rgb(164,123,255)) 11%, transparent);
     }
 
     .voice-scene__ipad {
@@ -7884,7 +7887,7 @@
       position: relative;
       z-index: 2;
       flex: 0 0 auto;
-      width: clamp(190px, 17vw, 248px); /* Exactly matching the size and proportions of .voice-scene__ipad! */
+      width: clamp(214px, 19vw, 278px); /* Constellations tablet, enlarged ~12% from the .voice-scene__ipad size while keeping its proportions. */
       aspect-ratio: 1668 / 2420;
       padding: 1.5px;
       border-radius: 25.5px; /* Exactly matching .voice-scene__ipad roundness */
@@ -10010,13 +10013,13 @@
       html[data-tilt-ready] .luna-phone--tab,
       html[data-tilt-ready] .quick-missions__phone,
       html[data-tilt-ready] .ipad-mockup {
-        transition: rotate 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: rotate 2.6s cubic-bezier(0.16, 1, 0.3, 1);
         backface-visibility: hidden;
       }
 
       /* Keep the iPad's existing hover transform transition alongside the reveal. */
       html[data-tilt-ready] .ipad-mockup {
-        transition: rotate 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+        transition: rotate 2.6s cubic-bezier(0.16, 1, 0.3, 1),
                     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
@@ -10036,6 +10039,62 @@
       /* Revealed: rotate to face the viewer. Existing transform is untouched,
          so each device lands in the exact position it holds today. */
       html[data-tilt-ready] .is-tilt-revealed { rotate: 0deg !important; }
+
+      /* --- Real device thickness. Each device gets preserve-3d and five
+         extruded faces (back + four side walls) injected as children by the
+         tilt JS. The side walls are perpendicular to the screen, so they are
+         edge-on (zero-width, invisible) when the device faces the viewer —
+         the flat front view is pixel-identical — but reveal a solid slab as
+         the device turns. --dev-depth is tuned per device to its on-screen
+         size. Rounded-corner seams are approximate (walls are straight). --- */
+      html[data-tilt-ready] .capture-scene__phone,
+      html[data-tilt-ready] .processing-scene__phone,
+      html[data-tilt-ready] .feedback-scene__phone,
+      html[data-tilt-ready] .voice-scene__phone,
+      html[data-tilt-ready] .voice-scene__ipad,
+      html[data-tilt-ready] .luna-phone--tab,
+      html[data-tilt-ready] .quick-missions__phone,
+      html[data-tilt-ready] .ipad-mockup {
+        transform-style: preserve-3d;
+      }
+
+      html[data-tilt-ready] .dev-face {
+        position: absolute;
+        pointer-events: none;
+        border-radius: 0;
+        background: linear-gradient(150deg, #1b1f27 0%, #0b0e14 55%, #12161d 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      }
+      html[data-tilt-ready] .dev-face--back {
+        inset: 0;
+        border-radius: inherit;
+        transform: translateZ(calc(var(--dev-depth, 12px) * -1));
+      }
+      html[data-tilt-ready] .dev-face--left {
+        top: 0; left: 0; height: 100%; width: var(--dev-depth, 12px);
+        transform-origin: left center; transform: rotateY(90deg);
+      }
+      html[data-tilt-ready] .dev-face--right {
+        top: 0; right: 0; height: 100%; width: var(--dev-depth, 12px);
+        transform-origin: right center; transform: rotateY(-90deg);
+      }
+      html[data-tilt-ready] .dev-face--top {
+        top: 0; left: 0; width: 100%; height: var(--dev-depth, 12px);
+        transform-origin: center top; transform: rotateX(-90deg);
+      }
+      html[data-tilt-ready] .dev-face--bottom {
+        bottom: 0; left: 0; width: 100%; height: var(--dev-depth, 12px);
+        transform-origin: center bottom; transform: rotateX(90deg);
+      }
+
+      html[data-tilt-ready] .feedback-scene__phone { --dev-depth: 9px; }
+      html[data-tilt-ready] .capture-scene__phone,
+      html[data-tilt-ready] .processing-scene__phone { --dev-depth: 10px; }
+      html[data-tilt-ready] .voice-scene__ipad { --dev-depth: 12px; }
+      html[data-tilt-ready] .ipad-mockup { --dev-depth: 14px; }
+      html[data-tilt-ready] .voice-scene__phone,
+      html[data-tilt-ready] .quick-missions__phone { --dev-depth: 16px; }
+      html[data-tilt-ready] .luna-phone--tab { --dev-depth: 17px; }
     }
 
   </style>
@@ -14199,6 +14258,17 @@
             + '.quick-missions__phone, .ipad-mockup';
     var devices = Array.prototype.slice.call(document.querySelectorAll(sel));
     if (!devices.length) return;
+    /* Give each device real thickness: back panel + four side walls.
+       The walls are edge-on head-on, so the resting front view is unchanged. */
+    devices.forEach(function (el) {
+      if (el.querySelector(':scope > .dev-face')) return;
+      ['back', 'left', 'right', 'top', 'bottom'].forEach(function (side) {
+        var f = document.createElement('div');
+        f.className = 'dev-face dev-face--' + side;
+        f.setAttribute('aria-hidden', 'true');
+        el.appendChild(f);
+      });
+    });
     var groups = [];
     devices.forEach(function (el) {
       var host = el.closest('.section-content') || el.closest('.section') || el.parentElement;
