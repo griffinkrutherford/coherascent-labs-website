@@ -10076,82 +10076,42 @@
         isolation: auto !important;
       }
 
-      /* Each face carries a metallic edge palette so the walls read as a real
-         device side rail: a dark front lip (screen bezel), a light-catching
-         chamfer, then darker metal toward the back. Gunmetal by default;
-         iPads override to silver aluminum below. The chamfer highlight is
-         biased toward the FRONT edge of every wall (stop order matches each
-         wall's front->back direction after its rotate). */
-      html[data-tilt-ready] .dev-face {
+      /* Thickness is built from a stack of rounded-rectangle slices stepped
+         along Z (injected by the tilt JS). Every slice inherits the device's
+         border-radius, so the extruded edge is rounded all the way around —
+         corners included — instead of the flat straight walls that left the
+         rounded corners open. Each slice is opaque and the same silhouette as
+         the front, so head-on the front face fully occludes them (the flat
+         view is unchanged); tilted, they peek past the receding edge to form
+         a solid rounded rim. --i / --n (0..1 front->back) drive both the Z
+         step and a front-bright to back-dark metallic gradient. Gunmetal by
+         default; iPads override to silver. */
+      html[data-tilt-ready] .dev-slice {
         position: absolute;
-        pointer-events: none;
-        border-radius: 0;
-        --edge-lip: #04060a;
-        --edge-hi: #4b5468;
-        --edge-metal: #262c39;
-        --edge-dark: #090c12;
-      }
-      html[data-tilt-ready] .dev-face--back {
         inset: 0;
+        pointer-events: none;
         border-radius: inherit;
-        background: linear-gradient(150deg, var(--edge-metal), var(--edge-dark) 58%, #13171f);
-        transform: translateZ(calc(var(--dev-depth, 12px) * -1));
+        --edge-hi: #4b5468;
+        --edge-dark: #090c12;
+        transform: translateZ(calc(var(--i) / var(--n) * var(--dev-depth, 12px) * -1));
+        background: color-mix(in srgb,
+          var(--edge-hi), var(--edge-dark) calc(var(--i) / var(--n) * 100%));
       }
-      /* Side walls run only along each straight edge — inset from the corners
-         by the device's corner radius — so the extrusion follows the rounded
-         silhouette instead of forming a square-cornered box around it. */
-      html[data-tilt-ready] .dev-face--left {
-        top: var(--dev-radius, 24px); left: 0;
-        height: calc(100% - 2 * var(--dev-radius, 24px)); width: var(--dev-depth, 12px);
-        transform-origin: left center; transform: rotateY(90deg);
-        background: linear-gradient(to right,
-          var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
-          var(--edge-metal) 64%, var(--edge-dark) 100%);
-      }
-      html[data-tilt-ready] .dev-face--right {
-        top: var(--dev-radius, 24px); right: 0;
-        height: calc(100% - 2 * var(--dev-radius, 24px)); width: var(--dev-depth, 12px);
-        transform-origin: right center; transform: rotateY(-90deg);
-        background: linear-gradient(to left,
-          var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
-          var(--edge-metal) 64%, var(--edge-dark) 100%);
-      }
-      html[data-tilt-ready] .dev-face--top {
-        top: 0; left: var(--dev-radius, 24px);
-        width: calc(100% - 2 * var(--dev-radius, 24px)); height: var(--dev-depth, 12px);
-        transform-origin: center top; transform: rotateX(-90deg);
-        background: linear-gradient(to bottom,
-          var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
-          var(--edge-metal) 64%, var(--edge-dark) 100%);
-      }
-      html[data-tilt-ready] .dev-face--bottom {
-        bottom: 0; left: var(--dev-radius, 24px);
-        width: calc(100% - 2 * var(--dev-radius, 24px)); height: var(--dev-depth, 12px);
-        transform-origin: center bottom; transform: rotateX(90deg);
-        background: linear-gradient(to top,
-          var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
-          var(--edge-metal) 64%, var(--edge-dark) 100%);
-      }
-
-      /* iPads: lighter silver-aluminum rail. */
-      html[data-tilt-ready] .voice-scene__ipad .dev-face,
-      html[data-tilt-ready] .ipad-mockup .dev-face {
-        --edge-lip: #0c0f16;
+      /* iPads: lighter silver-aluminum rim. */
+      html[data-tilt-ready] .voice-scene__ipad .dev-slice,
+      html[data-tilt-ready] .ipad-mockup .dev-slice {
         --edge-hi: #9aa2b6;
-        --edge-metal: #565d70;
         --edge-dark: #171b24;
       }
 
-      /* --dev-radius approximates each device's corner radius so the walls
-         stop where the rounded corner begins (biased slightly large). */
-      html[data-tilt-ready] .feedback-scene__phone { --dev-depth: 11px; --dev-radius: 22px; }
+      html[data-tilt-ready] .feedback-scene__phone { --dev-depth: 11px; }
       html[data-tilt-ready] .capture-scene__phone,
-      html[data-tilt-ready] .processing-scene__phone { --dev-depth: 12px; --dev-radius: 24px; }
-      html[data-tilt-ready] .voice-scene__ipad { --dev-depth: 13px; --dev-radius: 24px; }
-      html[data-tilt-ready] .ipad-mockup { --dev-depth: 15px; --dev-radius: 26px; }
+      html[data-tilt-ready] .processing-scene__phone { --dev-depth: 12px; }
+      html[data-tilt-ready] .voice-scene__ipad { --dev-depth: 13px; }
+      html[data-tilt-ready] .ipad-mockup { --dev-depth: 15px; }
       html[data-tilt-ready] .voice-scene__phone,
-      html[data-tilt-ready] .quick-missions__phone { --dev-depth: 18px; --dev-radius: 42px; }
-      html[data-tilt-ready] .luna-phone--tab { --dev-depth: 19px; --dev-radius: 48px; }
+      html[data-tilt-ready] .quick-missions__phone { --dev-depth: 18px; }
+      html[data-tilt-ready] .luna-phone--tab { --dev-depth: 19px; }
 
       /* --- Hardware side buttons as real extrusions. The power/volume keys sit
          on the flat front by default; on a 3D device (.dev-3d, tagged by the
@@ -14353,15 +14313,18 @@
     if (!devices.length) return;
     /* Give each device real thickness: back panel + four side walls.
        The walls are edge-on head-on, so the resting front view is unchanged. */
+    var SLICES = 16;
     devices.forEach(function (el) {
       el.classList.add('dev-3d');
-      if (el.querySelector(':scope > .dev-face')) return;
-      ['back', 'left', 'right', 'top', 'bottom'].forEach(function (side) {
-        var f = document.createElement('div');
-        f.className = 'dev-face dev-face--' + side;
-        f.setAttribute('aria-hidden', 'true');
-        el.appendChild(f);
-      });
+      if (el.querySelector(':scope > .dev-slice')) return;
+      for (var i = 1; i <= SLICES; i++) {
+        var s = document.createElement('div');
+        s.className = 'dev-slice';
+        s.setAttribute('aria-hidden', 'true');
+        s.style.setProperty('--i', i);
+        s.style.setProperty('--n', SLICES);
+        el.appendChild(s);
+      }
     });
     var groups = [];
     devices.forEach(function (el) {
