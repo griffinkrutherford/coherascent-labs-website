@@ -10056,6 +10056,12 @@
       html[data-tilt-ready] .quick-missions__phone,
       html[data-tilt-ready] .ipad-mockup {
         transform-style: preserve-3d;
+        /* A `filter` computes transform-style to flat, which would collapse
+           the 3D depth and let the opaque back face cover the screen. These
+           devices carry accent-glow filters (incl. light-theme variants), so
+           drop them here — their box-shadow glow remains — whenever the 3D
+           treatment is active. */
+        filter: none !important;
       }
 
       html[data-tilt-ready] .dev-face {
@@ -12317,7 +12323,7 @@
         <a href="mailto:griffin@lunesynth.com">Contact</a>
       </nav>
       <p class="site-footer__powered-by">
-        Powered by <strong>GPT-5.6-Luna</strong> &mdash; rigorous feedback, adaptive tutoring, and a little cosmic humor when studying gets heavy.
+        Powered by <strong>GPT-5.6-Luna</strong> &mdash; yes, really. We named the app Lune Synth, named the tutor Luna, and then the model showed up wearing the same name. Nobody planned it, so we're just calling it fate.
       </p>
     </footer>
   </main>
