@@ -10064,43 +10064,74 @@
         filter: none !important;
       }
 
+      /* Each face carries a metallic edge palette so the walls read as a real
+         device side rail: a dark front lip (screen bezel), a light-catching
+         chamfer, then darker metal toward the back. Gunmetal by default;
+         iPads override to silver aluminum below. The chamfer highlight is
+         biased toward the FRONT edge of every wall (stop order matches each
+         wall's front->back direction after its rotate). */
       html[data-tilt-ready] .dev-face {
         position: absolute;
         pointer-events: none;
         border-radius: 0;
-        background: linear-gradient(150deg, #1b1f27 0%, #0b0e14 55%, #12161d 100%);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        --edge-lip: #04060a;
+        --edge-hi: #4b5468;
+        --edge-metal: #262c39;
+        --edge-dark: #090c12;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
       }
       html[data-tilt-ready] .dev-face--back {
         inset: 0;
         border-radius: inherit;
+        background: linear-gradient(150deg, var(--edge-metal), var(--edge-dark) 58%, #13171f);
         transform: translateZ(calc(var(--dev-depth, 12px) * -1));
       }
       html[data-tilt-ready] .dev-face--left {
         top: 0; left: 0; height: 100%; width: var(--dev-depth, 12px);
         transform-origin: left center; transform: rotateY(90deg);
+        background: linear-gradient(to right,
+          var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
+          var(--edge-metal) 64%, var(--edge-dark) 100%);
       }
       html[data-tilt-ready] .dev-face--right {
         top: 0; right: 0; height: 100%; width: var(--dev-depth, 12px);
         transform-origin: right center; transform: rotateY(-90deg);
+        background: linear-gradient(to left,
+          var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
+          var(--edge-metal) 64%, var(--edge-dark) 100%);
       }
       html[data-tilt-ready] .dev-face--top {
         top: 0; left: 0; width: 100%; height: var(--dev-depth, 12px);
         transform-origin: center top; transform: rotateX(-90deg);
+        background: linear-gradient(to bottom,
+          var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
+          var(--edge-metal) 64%, var(--edge-dark) 100%);
       }
       html[data-tilt-ready] .dev-face--bottom {
         bottom: 0; left: 0; width: 100%; height: var(--dev-depth, 12px);
         transform-origin: center bottom; transform: rotateX(90deg);
+        background: linear-gradient(to top,
+          var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
+          var(--edge-metal) 64%, var(--edge-dark) 100%);
       }
 
-      html[data-tilt-ready] .feedback-scene__phone { --dev-depth: 9px; }
+      /* iPads: lighter silver-aluminum rail. */
+      html[data-tilt-ready] .voice-scene__ipad .dev-face,
+      html[data-tilt-ready] .ipad-mockup .dev-face {
+        --edge-lip: #0c0f16;
+        --edge-hi: #9aa2b6;
+        --edge-metal: #565d70;
+        --edge-dark: #171b24;
+      }
+
+      html[data-tilt-ready] .feedback-scene__phone { --dev-depth: 11px; }
       html[data-tilt-ready] .capture-scene__phone,
-      html[data-tilt-ready] .processing-scene__phone { --dev-depth: 10px; }
-      html[data-tilt-ready] .voice-scene__ipad { --dev-depth: 12px; }
-      html[data-tilt-ready] .ipad-mockup { --dev-depth: 14px; }
+      html[data-tilt-ready] .processing-scene__phone { --dev-depth: 12px; }
+      html[data-tilt-ready] .voice-scene__ipad { --dev-depth: 13px; }
+      html[data-tilt-ready] .ipad-mockup { --dev-depth: 15px; }
       html[data-tilt-ready] .voice-scene__phone,
-      html[data-tilt-ready] .quick-missions__phone { --dev-depth: 16px; }
-      html[data-tilt-ready] .luna-phone--tab { --dev-depth: 17px; }
+      html[data-tilt-ready] .quick-missions__phone { --dev-depth: 18px; }
+      html[data-tilt-ready] .luna-phone--tab { --dev-depth: 19px; }
     }
 
   </style>
