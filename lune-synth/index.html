@@ -10083,7 +10083,6 @@
         --edge-hi: #4b5468;
         --edge-metal: #262c39;
         --edge-dark: #090c12;
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
       }
       html[data-tilt-ready] .dev-face--back {
         inset: 0;
@@ -10091,29 +10090,36 @@
         background: linear-gradient(150deg, var(--edge-metal), var(--edge-dark) 58%, #13171f);
         transform: translateZ(calc(var(--dev-depth, 12px) * -1));
       }
+      /* Side walls run only along each straight edge — inset from the corners
+         by the device's corner radius — so the extrusion follows the rounded
+         silhouette instead of forming a square-cornered box around it. */
       html[data-tilt-ready] .dev-face--left {
-        top: 0; left: 0; height: 100%; width: var(--dev-depth, 12px);
+        top: var(--dev-radius, 24px); left: 0;
+        height: calc(100% - 2 * var(--dev-radius, 24px)); width: var(--dev-depth, 12px);
         transform-origin: left center; transform: rotateY(90deg);
         background: linear-gradient(to right,
           var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
           var(--edge-metal) 64%, var(--edge-dark) 100%);
       }
       html[data-tilt-ready] .dev-face--right {
-        top: 0; right: 0; height: 100%; width: var(--dev-depth, 12px);
+        top: var(--dev-radius, 24px); right: 0;
+        height: calc(100% - 2 * var(--dev-radius, 24px)); width: var(--dev-depth, 12px);
         transform-origin: right center; transform: rotateY(-90deg);
         background: linear-gradient(to left,
           var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
           var(--edge-metal) 64%, var(--edge-dark) 100%);
       }
       html[data-tilt-ready] .dev-face--top {
-        top: 0; left: 0; width: 100%; height: var(--dev-depth, 12px);
+        top: 0; left: var(--dev-radius, 24px);
+        width: calc(100% - 2 * var(--dev-radius, 24px)); height: var(--dev-depth, 12px);
         transform-origin: center top; transform: rotateX(-90deg);
         background: linear-gradient(to bottom,
           var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
           var(--edge-metal) 64%, var(--edge-dark) 100%);
       }
       html[data-tilt-ready] .dev-face--bottom {
-        bottom: 0; left: 0; width: 100%; height: var(--dev-depth, 12px);
+        bottom: 0; left: var(--dev-radius, 24px);
+        width: calc(100% - 2 * var(--dev-radius, 24px)); height: var(--dev-depth, 12px);
         transform-origin: center bottom; transform: rotateX(90deg);
         background: linear-gradient(to top,
           var(--edge-lip) 0%, var(--edge-lip) 8%, var(--edge-hi) 32%,
@@ -10129,14 +10135,16 @@
         --edge-dark: #171b24;
       }
 
-      html[data-tilt-ready] .feedback-scene__phone { --dev-depth: 11px; }
+      /* --dev-radius approximates each device's corner radius so the walls
+         stop where the rounded corner begins (biased slightly large). */
+      html[data-tilt-ready] .feedback-scene__phone { --dev-depth: 11px; --dev-radius: 22px; }
       html[data-tilt-ready] .capture-scene__phone,
-      html[data-tilt-ready] .processing-scene__phone { --dev-depth: 12px; }
-      html[data-tilt-ready] .voice-scene__ipad { --dev-depth: 13px; }
-      html[data-tilt-ready] .ipad-mockup { --dev-depth: 15px; }
+      html[data-tilt-ready] .processing-scene__phone { --dev-depth: 12px; --dev-radius: 24px; }
+      html[data-tilt-ready] .voice-scene__ipad { --dev-depth: 13px; --dev-radius: 24px; }
+      html[data-tilt-ready] .ipad-mockup { --dev-depth: 15px; --dev-radius: 26px; }
       html[data-tilt-ready] .voice-scene__phone,
-      html[data-tilt-ready] .quick-missions__phone { --dev-depth: 18px; }
-      html[data-tilt-ready] .luna-phone--tab { --dev-depth: 19px; }
+      html[data-tilt-ready] .quick-missions__phone { --dev-depth: 18px; --dev-radius: 42px; }
+      html[data-tilt-ready] .luna-phone--tab { --dev-depth: 19px; --dev-radius: 48px; }
     }
 
   </style>
