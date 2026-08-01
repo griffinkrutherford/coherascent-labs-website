@@ -21,6 +21,9 @@
 * { box-sizing: border-box; }
 
 html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
   background-color: var(--bg-deep);
   background:
@@ -31,6 +34,8 @@ html {
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-mono);
@@ -81,6 +86,8 @@ a:hover, a:focus-visible { color: #b9dcff; }
 main {
   position: relative;
   z-index: 1;
+  width: 100%;
+  min-width: 0;
   max-width: 1400px;
   margin: 0 auto;
   padding: 48px 24px 120px;
@@ -291,6 +298,7 @@ main {
   position: relative;
   z-index: 1;
   width: 100%;
+  min-width: 0;
   max-width: 940px;
   margin: 0 auto;
 }
@@ -564,6 +572,7 @@ main {
   font-size: clamp(33px, 6vw, 54px);
   letter-spacing: -0.02em;
   color: #b69dff;
+  overflow-wrap: anywhere;
 }
 
 .article__lede {
@@ -614,7 +623,23 @@ main {
   text-align: center;
 }
 
-.article__body { font-size: 16px; }
+.article__body {
+  min-width: 0;
+  font-size: 16px;
+}
+
+.article__body img,
+.article__body video,
+.article__body iframe,
+.article__body table,
+.article__body pre {
+  max-width: 100%;
+}
+
+.article__body pre,
+.article__body table {
+  overflow-x: auto;
+}
 
 .article__body h2 {
   margin: 54px 0 16px;
@@ -785,9 +810,75 @@ main {
   }
 
   .brand h1 {
-    font-size: clamp(12px, 3.4vw, 16px);
-    letter-spacing: 0.12em;
+    max-width: calc(100vw - 126px);
+    overflow: hidden;
+    font-size: clamp(11px, 3.4vw, 14px);
+    letter-spacing: 0.08em;
+    text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .article {
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .article__back {
+    margin-bottom: 22px;
+    padding: 9px 16px;
+  }
+
+  .article__meta {
+    gap: 8px 10px;
+    margin-bottom: 12px;
+    font-size: 11px;
+  }
+
+  .article__tag { padding: 3px 9px; }
+
+  .article h1 {
+    margin-bottom: 14px;
+    font-size: clamp(29px, 9.5vw, 40px);
+    line-height: 1.12;
+  }
+
+  .article__lede {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .article__hero {
+    margin-top: 20px;
+    border-radius: 14px;
+  }
+
+  .article__body {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .article__body h2 {
+    margin-top: 40px;
+    padding-top: 12px;
+    font-size: 22px;
+  }
+
+  .article__body h3 { margin-top: 28px; }
+
+  .article__body ul,
+  .article__body ol { padding-left: 20px; }
+
+  .article__body blockquote {
+    margin: 24px 0;
+    padding: 13px 15px;
+  }
+
+  .article__figure { margin: 28px auto; }
+
+  .article__cta {
+    margin-top: 32px;
+    padding: 18px;
+    border-radius: 14px;
   }
 
   .nav-toggle { display: inline-flex; }
@@ -1035,6 +1126,40 @@ main {
   box-shadow:
     0 12px 28px rgba(100, 168, 255, 0.2),
     0 12px 28px rgba(255, 93, 135, 0.16);
+}
+
+@media (max-width: 640px) {
+  .blog-newsletter {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-waitlist-panel {
+    width: 100%;
+    max-width: 520px;
+    padding: 20px 16px;
+  }
+
+  .hero-waitlist {
+    width: 100%;
+    max-width: 420px;
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    border-radius: 20px;
+  }
+
+  .hero-waitlist input {
+    width: 100%;
+    flex: 0 0 42px;
+    text-align: center;
+  }
+
+  .hero-waitlist button {
+    width: min(100%, 220px);
+    align-self: center;
+  }
 }
 
 .waitlist-popup[hidden] {
