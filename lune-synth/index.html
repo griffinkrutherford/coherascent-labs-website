@@ -10161,10 +10161,15 @@
   </script>
 <script>
   /* Enable the 3D device tilt-reveal before first paint (so devices render
-     already tilted, no load-time wobble). Skipped for reduced-motion / no IO. */
+     already tilted, no load-time wobble). Skipped for reduced-motion / no IO.
+     Also skipped on mobile (<=900px): the reveal popped in awkwardly there,
+     so those devices stay in their original static (pre-3D) layout. The whole
+     3D system is gated on this attribute — CSS reveal, slice injection, and
+     button folding all no-op without it. */
   (function () {
     try {
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia && window.matchMedia('(max-width: 900px)').matches) return;
       if (!('IntersectionObserver' in window)) return;
       document.documentElement.setAttribute('data-tilt-ready', '');
     } catch (e) {}
