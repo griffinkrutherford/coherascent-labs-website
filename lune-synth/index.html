@@ -10123,15 +10123,23 @@
       html[data-tilt-ready] .dev-3d .phone-shell-buttons__rail {
         transform-style: preserve-3d;
       }
+      /* Each key spans the full rim depth and protrudes outward by ~11% of the
+         depth (--btn-out), so it stands off the rim as a raised nub. The metal
+         gradient runs ACROSS the depth, bright in the middle and dark at both
+         ends, so the key is symmetric front-to-back on the rim and reads the
+         same whether the device leans toward or away — it "makes sense" from
+         both quarter views instead of looking like a one-sided panel. */
       html[data-tilt-ready] .dev-3d .phone-shell-buttons__rail--right .phone-shell-button {
         width: var(--dev-depth, 12px);
         transform-origin: right center;
-        transform: rotateY(-90deg);
+        transform: rotateY(-90deg) translateZ(calc(var(--dev-depth, 12px) * -0.11));
+        background: linear-gradient(to right, #1a1e28, #aab3c6 50%, #1a1e28);
       }
       html[data-tilt-ready] .dev-3d .phone-shell-buttons__rail--left .phone-shell-button {
         width: var(--dev-depth, 12px);
         transform-origin: left center;
-        transform: rotateY(90deg);
+        transform: rotateY(90deg) translateZ(calc(var(--dev-depth, 12px) * -0.11));
+        background: linear-gradient(to right, #1a1e28, #aab3c6 50%, #1a1e28);
       }
       /* iPads: volume on the right rail (vertical), power on the top rail. */
       html[data-tilt-ready] .dev-3d .ipad-button--volume,
@@ -10139,14 +10147,16 @@
         right: 0;
         width: var(--dev-depth, 12px);
         transform-origin: right center;
-        transform: rotateY(-90deg);
+        transform: rotateY(-90deg) translateZ(calc(var(--dev-depth, 12px) * -0.11));
+        background: linear-gradient(to right, #232833, #c2cad9 50%, #232833);
       }
       html[data-tilt-ready] .dev-3d .ipad-button--power,
       html[data-tilt-ready] .dev-3d .voice-scene__ipad-button--power {
         top: 0;
         height: var(--dev-depth, 12px);
         transform-origin: center top;
-        transform: rotateX(-90deg);
+        transform: rotateX(-90deg) translateZ(calc(var(--dev-depth, 12px) * -0.11));
+        background: linear-gradient(to bottom, #232833, #c2cad9 50%, #232833);
       }
     }
 
