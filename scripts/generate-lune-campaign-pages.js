@@ -7,6 +7,46 @@ const root = path.resolve(__dirname, "..");
 const contentPath = path.join(root, "lune-synth", "campaign", "pages.json");
 const pages = JSON.parse(fs.readFileSync(contentPath, "utf8"));
 
+const defaultBenefits = {
+  subject: [
+    { number: "01", title: "Do the work", body: "Write, draw, calculate, recall, or explain so your reasoning stays visible." },
+    { number: "02", title: "Get precise feedback", body: "Find the specific gap without replacing your attempt with a finished answer." },
+    { number: "03", title: "Practice what is weak", body: "Turn the mistake into a short mission focused on the skill that needs repetition." }
+  ],
+  "test-prep": [
+    { number: "01", title: "Make a real attempt", body: "Practice the decisions and reasoning you will need to produce on test day." },
+    { number: "02", title: "Diagnose the miss", body: "Separate concept gaps from rushed work, misreads, and incomplete reasoning." },
+    { number: "03", title: "Target the next set", body: "Use limited prep time on the patterns most likely to improve your next attempt." }
+  ],
+  parent: [
+    { number: "01", title: "See the real attempt", body: "Visible work shows how your child approached the problem, not only where they landed." },
+    { number: "02", title: "Protect their confidence", body: "Feedback preserves what worked and narrows attention to one manageable correction." },
+    { number: "03", title: "Build independence", body: "A precise hint helps your child continue without handing the work to a person or machine." }
+  ],
+  student: [
+    { number: "01", title: "Start small", body: "Turn an overwhelming goal into one clear attempt you can complete now." },
+    { number: "02", title: "Know what to fix", body: "Replace vague frustration with feedback tied to the work you actually produced." },
+    { number: "03", title: "Keep moving", body: "Build momentum through short targeted missions and visible progress." }
+  ],
+  family: [
+    { number: "01", title: "Keep learning visible", body: "Capture handwritten work so reasoning remains part of the learning record." },
+    { number: "02", title: "Add focused support", body: "Give students a precise next step without surrendering the curriculum or the teaching relationship." },
+    { number: "03", title: "Practice with purpose", body: "Generate short missions around the skills that need reinforcement next." }
+  ]
+};
+
+function normalizePage(page) {
+  return Object.assign({
+    benefits: defaultBenefits[page.family] || defaultBenefits.subject,
+    contrastBefore: "Consume another finished answer",
+    contrastAfter: "Produce an attempt and improve it",
+    exampleKicker: "One attempt. One useful next step.",
+    exampleHeadline: "Feedback that responds to the work.",
+    attemptLabel: "Student attempt",
+    clarifier: "Join for early access to Lune Synth."
+  }, page);
+}
+
 function escapeHtml(value) {
   return String(value || "")
     .replace(/&/g, "&amp;")
@@ -181,7 +221,8 @@ ${disclaimer ? `    ${disclaimer}\n` : ""}  </footer>
 `;
 }
 
-for (const page of pages) {
+for (const sourcePage of pages) {
+  const page = normalizePage(sourcePage);
   const outputPath = path.join(root, page.output);
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, render(page));
