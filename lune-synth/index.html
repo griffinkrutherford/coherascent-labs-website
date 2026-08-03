@@ -7295,7 +7295,7 @@
       .response-carousel__dots {
         display: grid;
         grid-template-columns: repeat(7, 8px);
-        grid-template-rows: repeat(2, 8px);
+        grid-auto-rows: 8px;
         justify-content: initial;
         gap: 4px;
         width: 80px;
@@ -13549,6 +13549,7 @@
     updateCarousel(currentRotation);
   });
   </script>
+  <script src="../applied-response-slides.js?v=1"></script>
   <script>
   (function loadLuneEnhancements() {
     var loaded = {};
