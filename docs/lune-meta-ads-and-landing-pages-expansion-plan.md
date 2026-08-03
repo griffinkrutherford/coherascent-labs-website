@@ -135,6 +135,226 @@ Primary promise: reward productive learning behaviors rather than passive screen
 - Headline: `EARN PROGRESS FOR DOING THE WORK.`
 - Landing page route: `/features/achievements/`.
 
+## Modular Quick Missions and Constellations on every landing page
+
+The landing pages should not contain copied versions of the homepage sections. Quick Missions and Constellations should each have one canonical implementation that is used by the homepage and every generated campaign page. The visuals, phone or iPad chassis, animation, interaction, responsive behavior, and accessibility stay identical; only the copy and selected content change by campaign.
+
+### Recommended component architecture
+
+Create two reusable components:
+
+```html
+<lune-quick-missions data-campaign-variant="calculus"></lune-quick-missions>
+<lune-constellations data-campaign-variant="calculus"></lune-constellations>
+```
+
+Recommended shared files:
+
+```text
+lune-synth/campaign/features/
+  feature-sections.css
+  feature-sections.js
+  quick-missions.js
+  constellations.js
+  defaults.js
+```
+
+Responsibilities:
+
+- `feature-sections.css` owns the canonical visuals, breakpoints, chassis, glows, tabs, slideshow states, and reduced-motion behavior.
+- `quick-missions.js` owns Quick Mission markup, media handling, and interaction.
+- `constellations.js` owns World selection, Constellation steps, slideshow state, and media handling.
+- `defaults.js` provides fallback copy by campaign family.
+- `feature-sections.js` registers the custom elements and connects analytics and progressive enhancement.
+
+Do not maintain a second simplified design for campaign pages. Extract the proven homepage markup, styles, and behavior into these shared modules, then make the homepage consume the same components. That makes visual parity structural rather than dependent on manually keeping two implementations synchronized.
+
+### Progressive enhancement and accessibility
+
+The campaign-page generator should emit meaningful section markup or a `<template>` fallback so headings and core explanations remain available when JavaScript fails. JavaScript may enhance the section with tabs, autoplay, World switching, and slideshow motion.
+
+Both components must include:
+
+- Unique heading IDs generated from the page variant.
+- Keyboard-operable tabs and controls.
+- Correct `aria-selected`, `aria-controls`, and live-state announcements.
+- Paused motion under `prefers-reduced-motion: reduce`.
+- Posters or static images when video cannot load.
+- Descriptive media alt text without repeating nearby copy.
+- No autoplay audio.
+
+### Campaign-manifest schema
+
+Add a `featureSections` object to each record in `lune-synth/campaign/pages.json`. A page should only specify copy or content that differs from its family defaults.
+
+Example:
+
+```json
+{
+  "variant": "calculus",
+  "featureSections": {
+    "order": ["quickMissions", "constellations"],
+    "quickMissions": {
+      "enabled": true,
+      "eyebrow": "Focused calculus practice",
+      "headline": "Turn one weak rule into one clear mission.",
+      "body": "Practice the exact derivative, limit, or integral step that broke down in your last attempt.",
+      "contrastBefore": "Open another two-hour review video",
+      "contrastAfter": "Complete one targeted calculus mission",
+      "media": "/screenshots/applied/quick-mission-screen-poster.png",
+      "mediaAlt": "A short calculus Quick Mission in Lune Synth"
+    },
+    "constellations": {
+      "enabled": true,
+      "eyebrow": "A visible path through calculus",
+      "headline": "Turn the syllabus into a constellation of skills.",
+      "body": "Move from functions and limits through derivatives and integrals without losing sight of what comes next.",
+      "defaultWorld": "math",
+      "goalLabel": "Calculus mastery",
+      "mediaAlt": "A calculus learning constellation in the Math Space World"
+    }
+  }
+}
+```
+
+The generator should merge values in this order:
+
+1. Global component defaults
+2. Campaign-family defaults (`subject`, `test-prep`, `student`, `parent`, or `family`)
+3. Individual page overrides
+
+This keeps most page records concise while allowing niche-specific copy. `enabled: false` should remain available for a controlled experiment, but the intended production default is for both sections to appear on every landing page.
+
+### Family-level default copy strategy
+
+Use defaults that remain useful when a page has not yet received bespoke copy:
+
+| Family | Quick Missions default | Constellations default |
+|---|---|---|
+| Subject | Turn the last weak step into a short targeted practice set. | Turn a full course into a visible sequence of connected skills. |
+| Test prep | Spend the next few minutes on the error pattern most likely to affect the next score. | Map the path from today's baseline to exam day. |
+| Student | Start one useful mission when a full study session feels too large. | Break an overwhelming goal into visible, finishable steps. |
+| Parent | Give the learner one focused task without taking over the work. | Make progress visible without reducing learning to grades alone. |
+| Family | Fit focused practice into the rhythm of the curriculum. | Organize long-term learning into a path the family can understand. |
+
+Individual page copy should mention the actual niche, but it should not describe capabilities that the product does not yet support.
+
+### Placement within generated landing pages
+
+Use this default order:
+
+1. Hero and global CTA
+2. Problem framing
+3. Lune Synth attempt-and-feedback loop
+4. Concrete feedback example
+5. Quick Missions
+6. Constellations
+7. Final global CTA
+
+Quick Missions follows the feedback example because it answers, “What should I practice next?” Constellations follows Quick Missions because it expands that immediate action into a longer path. The final CTA then arrives after both short-term and long-term value have been demonstrated.
+
+Allow `featureSections.order` to reverse the two only when campaign intent supports it. For example, a study-consistency page should lead with Quick Missions, while a long-horizon exam campaign may test Constellations first.
+
+### Visual parity with the homepage
+
+- Reuse the same homepage section DOM structure and class names inside the shared components.
+- Move the relevant homepage CSS into the shared stylesheet without restyling it.
+- Reuse the exact phone and iPad chassis variables rather than recreating approximate devices.
+- Reuse the current Quick Mission poster/video and Constellation World media.
+- Expose only controlled CSS custom properties for campaign palette accents.
+- Keep geometry, typography, spacing, shadows, animation timing, and control styling locked.
+- Permit text length differences through balanced headings and documented character guidance, not one-off CSS.
+- Any visual fix must be made in the shared component so the homepage and every landing page receive it simultaneously.
+
+Suggested theme interface:
+
+```css
+lune-quick-missions,
+lune-constellations {
+  --feature-accent-a: var(--blue);
+  --feature-accent-b: var(--purple);
+  --feature-accent-c: var(--red);
+}
+```
+
+The page may set these variables from its niche palette, but it must not override component layout rules.
+
+### Media-selection rules
+
+Quick Missions:
+
+- Use the existing generic footage until a niche-specific mission has been recorded.
+- Prefer a niche-specific poster and video when the visible prompt matches the landing page.
+- Never show a medical prompt on an elementary-math page or an SAT prompt on an MCAT page.
+
+Constellations:
+
+- Use Math Space for mathematics, statistics, physics, engineering, and quantitative test prep.
+- Use Earth for history, writing, economics, accounting, and general academic campaigns.
+- Use Jupiter for science, medical, and high-intensity test-prep campaigns.
+- Use Retro Arcade for younger learners, motivation, and study-consistency campaigns.
+- Treat this as a default map; a per-page override may select a better World when real niche footage exists.
+
+### Generator changes
+
+Update `scripts/generate-lune-campaign-pages.js` to:
+
+1. Normalize `featureSections` with family and global defaults.
+2. Render both component hosts between the feedback section and final CTA.
+3. Include the shared feature stylesheet and script once per page.
+4. Escape all manifest-supplied text before rendering it.
+5. Pass configuration through safe JSON or generated child markup rather than long HTML data attributes.
+6. Generate stable analytics attributes such as `data-feature="quick-missions"` and `data-feature="constellations"`.
+7. Keep all CTA rendering unchanged and centralized.
+
+Do not hand-edit the generated landing-page HTML. All per-page copy belongs in `pages.json`; all shared structure belongs in the generator or component modules.
+
+### Performance requirements
+
+- Lazy-load feature video and noncritical images below the fold.
+- Provide responsive poster images and avoid downloading desktop media on small screens.
+- Load the shared feature JavaScript with `defer` or as a module.
+- Use one copy of shared CSS and JavaScript regardless of how many components appear.
+- Pause video when its section is outside the viewport.
+- Respect data-saving preferences where available.
+- Reserve media dimensions to avoid layout shift.
+- Do not allow these sections to delay the hero image, headline, or CTA.
+
+### Analytics
+
+Track the same normalized events on every page:
+
+- `feature_section_view` with `feature_name` and `campaign_variant`
+- `quick_mission_play`
+- `quick_mission_complete_preview`
+- `constellation_step_change`
+- `constellation_world_change`
+- CTA clicks occurring after each feature section
+
+Analytics should describe the interaction, not contain page-specific event names. Campaign variant and landing path provide the niche context.
+
+### Testing and rollout
+
+1. Extract Quick Missions into a shared component and replace the homepage implementation with it.
+2. Confirm pixel-level parity at desktop and mobile widths.
+3. Repeat for Constellations.
+4. Add both components to one representative subject page, one test-prep page, and one parent page.
+5. Validate accessibility, reduced motion, media fallback, analytics, and CTA behavior.
+6. Add family defaults and generate every campaign page.
+7. Review copy length, media relevance, and mobile layout across all variants.
+8. Add bespoke copy to the highest-priority paid campaigns first.
+9. Roll out to all landing pages and compare conversion performance against pages without the feature sections.
+
+Acceptance criteria:
+
+- Homepage and landing-page components are visually identical at the same viewport.
+- A shared visual change requires editing one component stylesheet or script only.
+- Per-page Quick Missions and Constellations copy requires editing only `pages.json`.
+- Every page builds successfully through `npm run build:campaigns`.
+- No horizontal overflow occurs at 320px width.
+- Videos remain optional and have poster fallbacks.
+- The global CTA remains the only source of offer and destination configuration.
+
 ## Landing-page requirements
 
 Every new niche or feature page should include:
