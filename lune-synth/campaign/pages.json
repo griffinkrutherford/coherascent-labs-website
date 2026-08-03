@@ -454,6 +454,24 @@
     "disclaimer": "MCAT is a registered trademark of the Association of American Medical Colleges, which is not affiliated with or endorsing Lune Synth."
   },
   {
+    "route": "/test-prep/phd-qualifying-exams/", "output": "lune-synth/test-prep/phd-qualifying-exams/index.html", "variant": "phd-qualifying-exams", "family": "test-prep", "audience": "doctoral-students",
+    "metaTitle": "PhD Qualifying Exam Practice With Precise Feedback | Lune Synth", "metaDescription": "Practice proof-based optimization and doctoral qualifying exam problems by hand with precise feedback from Lune Synth.",
+    "eyebrow": "Lune Synth for PhD qualifying exams", "headline": "Make every proof step defensible before exam day.", "heroBody": "Work through optimization, analysis, and proof-based problems in your own notation. Lune Synth responds to the reasoning you produce and identifies the exact claim that still needs support.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/8-mid.webp", "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/8.webp", "phoneAlt": "Lune Synth displaying an expert PhD optimization qualifying-exam problem", "phoneLabel": "PhD-level optimization in Lune Synth",
+    "problemKicker": "A correct conclusion is not yet a proof", "problemHeadline": "Qualifying exams reward explicit control of assumptions and implications.", "problemBody": "At doctoral depth, the weak point is often a missing justification rather than a missing formula. Written work makes coercivity, definiteness, existence, uniqueness, and edge cases available for inspection.",
+    "contrastBefore": "Read another polished solution", "contrastAfter": "Produce a proof and stress-test it",
+    "benefits": [
+      {"number": "01", "title": "Build the argument", "body": "Write the proof, derivation, or counterexample in the form you would defend at the board."},
+      {"number": "02", "title": "Locate the unsupported step", "body": "Separate a sound strategy from the precise implication, assumption, or boundary case that is incomplete."},
+      {"number": "03", "title": "Practice the weak structure", "body": "Turn the gap into focused follow-up problems instead of rereading an entire chapter."}
+    ],
+    "processHeadline": "You do the mathematics. The technology interrogates the gap.",
+    "exampleKicker": "One proof. One useful next step.", "exampleHeadline": "Feedback that respects advanced reasoning.",
+    "attemptLabel": "Your attempt", "attempt": "The stationary point is identified, but uniqueness is asserted before positive definiteness is connected to strict convexity.",
+    "observation": "The candidate minimizer is correct. The global uniqueness argument still needs its controlling theorem.", "hint": "What does a positive-definite Hessian imply about the shape of this quadratic?", "nextPractice": "Next mission: prove existence and uniqueness for three unconstrained quadratic objectives.",
+    "closingHeadline": "Practice the argument you will have to defend.", "closingBody": "Join the beta for qualifying-exam feedback built around your actual written reasoning.", "clarifier": "Join for early PhD qualifying-exam access."
+  },
+  {
     "route": "/test-prep/lsat/", "output": "lune-synth/test-prep/lsat/index.html", "variant": "lsat", "family": "test-prep", "audience": "lsat-students",
     "metaTitle": "LSAT Prep With Visible Logical Reasoning | Lune Synth", "metaDescription": "Practice LSAT logic and argument analysis through explicit reasoning and targeted feedback with Lune Synth.",
     "eyebrow": "LSAT prep with Lune Synth", "headline": "Make the logical move visible before choosing the answer.", "heroBody": "Diagram the rule, identify the gap, and defend the choice in your own words. Lune Synth helps diagnose the reasoning pattern behind the miss.",
