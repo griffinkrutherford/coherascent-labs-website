@@ -7,6 +7,65 @@ const root = path.resolve(__dirname, "..");
 const contentPath = path.join(root, "lune-synth", "campaign", "pages.json");
 const pages = JSON.parse(fs.readFileSync(contentPath, "utf8"));
 
+const featureTopics = {
+  "math": "mathematics",
+  "sat": "SAT Math",
+  "act": "ACT Math",
+  "parent-math-help": "math confidence",
+  "physics": "physics",
+  "chemistry": "chemistry",
+  "biology": "biology",
+  "computer-science": "computer science",
+  "engineering": "engineering",
+  "statistics": "statistics",
+  "economics": "economics",
+  "psychology": "psychology",
+  "history": "history",
+  "psat": "PSAT preparation",
+  "ap-exams": "AP exam preparation",
+  "ged": "GED preparation",
+  "gre": "GRE preparation",
+  "parent-ai-homework": "independent homework",
+  "parent-homework-help": "productive homework",
+  "student-behind-math": "math recovery",
+  "student-study-consistency": "consistent study",
+  "homeschool": "your homeschool curriculum",
+  "algebra": "algebra",
+  "calculus": "calculus",
+  "geometry": "geometry",
+  "arithmetic": "arithmetic",
+  "organic-chemistry": "organic chemistry",
+  "anatomy-physiology": "anatomy and physiology",
+  "nursing": "nursing",
+  "accounting": "accounting",
+  "finance": "finance",
+  "writing": "writing",
+  "mcat": "MCAT preparation",
+  "phd-qualifying-exams": "PhD qualifying-exam preparation",
+  "lsat": "LSAT reasoning",
+  "gmat": "GMAT preparation",
+  "usmle": "USMLE clinical reasoning",
+  "ib-exams": "IB exam preparation",
+  "state-assessments": "state assessment preparation",
+  "parent-middle-school-math": "middle school math",
+  "parent-high-school-math": "high school math",
+  "college-study": "college study",
+  "adult-learners": "returning to learning"
+};
+
+const mathWorldVariants = new Set([
+  "math", "sat", "act", "parent-math-help", "physics", "computer-science", "engineering", "statistics",
+  "psat", "ged", "gre", "parent-homework-help", "student-behind-math", "algebra", "calculus", "geometry",
+  "arithmetic", "accounting", "finance", "phd-qualifying-exams", "gmat", "ib-exams", "state-assessments",
+  "parent-middle-school-math", "parent-high-school-math"
+]);
+
+const jupiterWorldVariants = new Set([
+  "chemistry", "biology", "organic-chemistry", "anatomy-physiology", "nursing", "mcat", "usmle", "ap-exams"
+]);
+
+const retroWorldVariants = new Set(["student-study-consistency", "adult-learners"]);
+
 const defaultBenefits = {
   subject: [
     { number: "01", title: "Do the work", body: "Write, draw, calculate, recall, or explain so your reasoning stays visible." },
@@ -56,6 +115,72 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+function jsonForHtml(value) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+function defaultWorldFor(page) {
+  if (mathWorldVariants.has(page.variant)) return "math";
+  if (jupiterWorldVariants.has(page.variant)) return "jupiter";
+  if (retroWorldVariants.has(page.variant)) return "retro";
+  return "earth";
+}
+
+function featureConfig(page) {
+  const topic = featureTopics[page.variant] || page.eyebrow || "your study goal";
+  const isParent = page.family === "parent" || page.family === "family";
+  const quickHeadline = isParent
+    ? `Turn today's ${topic} struggle into one manageable mission.`
+    : `Turn one ${topic} gap into one clear mission.`;
+  const quickBody = isParent
+    ? `Lune Synth narrows the next few minutes to the specific skill visible in the learner's work. ${page.nextPractice}`
+    : `Use the feedback from your latest attempt to focus the next few minutes on what actually needs practice. ${page.nextPractice}`;
+  const constellationHeadline = isParent
+    ? `See the path from today's work to lasting ${topic} confidence.`
+    : `Turn ${topic} into a path you can see.`;
+  const constellationBody = isParent
+    ? `Constellations organize a larger learning goal into connected skills, so progress stays visible without reducing learning to a final score.`
+    : `Build a visible roadmap from the skill in front of you to the larger goal, then move through focused missions, connected tests, and cumulative mastery.`;
+
+  const overrides = page.featureSections || {};
+  return {
+    quickMissions: Object.assign({
+      featureName: "quick-missions",
+      variant: page.variant,
+      sectionTitle: "Take One Quick Mission",
+      eyebrow: `${topic} quick practice`,
+      headline: quickHeadline,
+      body: quickBody,
+      skillChip: `One ${topic} skill`,
+      mediaAlt: `A focused Quick Mission for ${topic} in Lune Synth`
+    }, overrides.quickMissions || {}),
+    constellations: Object.assign({
+      featureName: "constellations",
+      variant: page.variant,
+      sectionTitle: "Turn a Big Study Goal Into a Constellation",
+      eyebrow: `${topic} roadmap`,
+      headline: constellationHeadline,
+      body: constellationBody,
+      topic,
+      goal: page.closingHeadline || topic,
+      defaultWorld: defaultWorldFor(page),
+      mediaAlt: `A ${topic} learning Constellation in Lune Synth`
+    }, overrides.constellations || {})
+  };
+}
+
+function featureMarkup(page) {
+  const config = featureConfig(page);
+  return `
+    <lune-quick-missions>
+      <script type="application/json">${jsonForHtml(config.quickMissions)}</script>
+    </lune-quick-missions>
+
+    <lune-constellations>
+      <script type="application/json">${jsonForHtml(config.constellations)}</script>
+    </lune-constellations>`;
+}
+
 function benefitMarkup(benefits) {
   return benefits.map((benefit) => `
           <article class="benefit-card" data-reveal>
@@ -93,8 +218,10 @@ function render(page) {
   <link rel="preload" href="${escapeHtml(page.phoneImage)}" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=2" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
+  <link rel="stylesheet" href="/campaign/features.css?v=1" />
   <script src="/campaign/cta-config.js?v=1" defer></script>
   <script src="/campaign/cta.js?v=1" defer></script>
+  <script src="/campaign/features.js?v=1" defer></script>
   <script src="/campaign/landing.js?v=1" defer></script>
 </head>
 <body>
@@ -194,6 +321,8 @@ function render(page) {
         </div>
       </div>
     </section>
+
+${featureMarkup(page)}
 
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
