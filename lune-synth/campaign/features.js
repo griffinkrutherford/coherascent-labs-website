@@ -102,6 +102,15 @@
               </div>
               <div class="feature-quick__device" data-reveal>
                 <div class="feature-phone" aria-label="${escapeHtml(config.mediaAlt)}">
+                  <span class="feature-phone__buttons" aria-hidden="true">
+                    <span class="feature-phone__rail feature-phone__rail--left">
+                      <span class="feature-phone__button feature-phone__button--volume"></span>
+                      <span class="feature-phone__button feature-phone__button--volume-secondary"></span>
+                    </span>
+                    <span class="feature-phone__rail feature-phone__rail--right">
+                      <span class="feature-phone__button feature-phone__button--power"></span>
+                    </span>
+                  </span>
                   <div class="feature-phone__screen">
                     <video loop muted playsinline preload="none" poster="/screenshots/applied/quick-mission-screen-poster.png">
                       <source src="/screenshots/applied/quick-mission-screen.mp4" type="video/mp4">
@@ -229,11 +238,17 @@
               </div>
               <div class="feature-ipad-wrap" data-reveal>
                 <div class="feature-ipad" aria-label="${escapeHtml(config.mediaAlt)}">
+                  <span class="feature-ipad__button feature-ipad__button--power" aria-hidden="true"></span>
+                  <span class="feature-ipad__button feature-ipad__button--volume feature-ipad__button--volume-up" aria-hidden="true"></span>
+                  <span class="feature-ipad__button feature-ipad__button--volume feature-ipad__button--volume-down" aria-hidden="true"></span>
+                  <span class="feature-ipad__camera" aria-hidden="true"></span>
                   <div class="feature-ipad__screen">
-                    <img class="feature-ipad__poster" src="${worldAssets[defaultWorld].poster}" alt="${escapeHtml(config.mediaAlt)}">
-                    <video class="feature-ipad__media" loop muted playsinline preload="none">
-                      <source src="${worldAssets[defaultWorld].video}" type="video/mp4">
-                    </video>
+                    <div class="feature-ipad__screen-content">
+                      <img class="feature-ipad__poster" src="${worldAssets[defaultWorld].poster}" alt="${escapeHtml(config.mediaAlt)}">
+                      <video class="feature-ipad__media" loop muted playsinline preload="none">
+                        <source src="${worldAssets[defaultWorld].video}" type="video/mp4">
+                      </video>
+                    </div>
                   </div>
                 </div>
               </div>
