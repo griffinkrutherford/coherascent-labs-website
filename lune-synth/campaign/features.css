@@ -188,7 +188,7 @@ lune-constellations {
 }
 
 .feature-phone {
-  --feature-phone-height: 370px;
+  --feature-phone-height: 430px;
   --feature-phone-width: calc(var(--feature-phone-height) * 9 / 19.5);
   --feature-phone-padding: calc(var(--feature-phone-height) * 0.013636);
   --feature-phone-radius: calc(var(--feature-phone-height) * 0.122727);
@@ -216,7 +216,7 @@ lune-constellations {
     0 10px 16px rgba(4, 10, 24, 0.14),
     inset 0 0 0 1px rgba(0, 0, 0, 0.5),
     inset 0 -12px 20px rgba(0, 0, 0, 0.22);
-  transform: rotate(-5deg);
+  transform: rotate(5deg);
   box-sizing: border-box;
 }
 
