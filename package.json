@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build:legal": "node scripts/build-legal-pages.js",
+    "build:campaigns": "node scripts/generate-lune-campaign-pages.js",
     "start": "node server.js"
   },
   "dependencies": {}

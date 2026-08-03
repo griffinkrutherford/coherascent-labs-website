@@ -22,6 +22,21 @@ function isLuneHost(host) {
   return host === LUNE_HOST || host === `www.${LUNE_HOST}`;
 }
 
+function isLocalPreviewHost(host) {
+  return host === 'localhost' || host === '127.0.0.1';
+}
+
+function isLuneCampaignPath(pathname) {
+  return (
+    pathname === '/campaign' || pathname.startsWith('/campaign/') ||
+    pathname === '/study' || pathname.startsWith('/study/') ||
+    pathname === '/test-prep' || pathname.startsWith('/test-prep/') ||
+    pathname === '/for-parents' || pathname.startsWith('/for-parents/') ||
+    pathname === '/for-students' || pathname.startsWith('/for-students/') ||
+    pathname === '/for-families' || pathname.startsWith('/for-families/')
+  );
+}
+
 function isGetLike(req) {
   return req.method === 'GET' || req.method === 'HEAD';
 }
@@ -334,6 +349,11 @@ function serveLuneHost(req, res, pathname) {
     return;
   }
 
+  if (isLuneCampaignPath(pathname)) {
+    serveStatic(req, res, `/lune-synth${pathname}`);
+    return;
+  }
+
   if ((pathname === '/lune-synth' || pathname === '/lune-synth/') && isGetLike(req)) {
     redirect(res, `https://${LUNE_HOST}/${getRequestSuffix(req)}`);
     return;
@@ -389,6 +409,11 @@ const server = http.createServer((req, res) => {
 
   // 2. Route public pages by domain while keeping shared static assets in one deployment
   if (isLuneHost(host)) {
+    serveLuneHost(req, res, pathname);
+    return;
+  }
+
+  if (isLocalPreviewHost(host) && isLuneCampaignPath(pathname)) {
     serveLuneHost(req, res, pathname);
     return;
   }

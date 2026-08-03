@@ -1,0 +1,213 @@
+lune-synth-cta {
+  display: block;
+  min-height: 260px;
+}
+
+.lune-cta {
+  width: 100%;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid rgba(164, 123, 255, 0.26);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(100, 168, 255, 0.16), transparent 38%),
+    radial-gradient(circle at 88% 20%, rgba(255, 93, 135, 0.14), transparent 36%),
+    rgba(7, 14, 30, 0.88);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.lune-cta__copy {
+  display: grid;
+  gap: 8px;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.lune-cta__headline {
+  margin: 0;
+  color: #edf5ff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.15;
+}
+
+.lune-cta__offer,
+.lune-cta__clarifier {
+  margin: 0;
+  color: #a6bad7;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.lune-cta__clarifier { font-size: 12px; }
+
+.cta-accent {
+  font-weight: 800;
+  color: #edf5ff;
+}
+
+.cta-accent--blue { color: #8cc2ff; }
+.cta-accent--red { color: #ff86a4; }
+
+.lune-cta__form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 560px);
+  margin: 20px auto 0;
+  padding: 6px;
+  border: 1px solid rgba(164, 123, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(2, 7, 18, 0.68);
+}
+
+.lune-cta__form input {
+  min-width: 0;
+  height: 44px;
+  flex: 1 1 auto;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 999px;
+  outline: 0;
+  background: transparent;
+  color: #edf5ff;
+  font: inherit;
+  font-size: 14px;
+}
+
+.lune-cta__form input:focus-visible { box-shadow: inset 0 0 0 2px #64a8ff; }
+
+.lune-cta__form button,
+.lune-cta__popup-action {
+  min-height: 44px;
+  flex: 0 0 auto;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #64a8ff, #a47bff, #ff5d87);
+  color: #06111f;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.lune-cta__form button:disabled { cursor: wait; opacity: 0.72; }
+
+.lune-cta__status {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 16px;
+  right: 16px;
+  margin: 0;
+  color: #ff9bb3;
+  font-size: 12px;
+}
+
+.lune-cta__stores {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.lune-cta__store {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border: 1px solid rgba(164, 123, 255, 0.34);
+  border-radius: 14px;
+  background: rgba(2, 7, 18, 0.82);
+  color: #edf5ff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lune-cta__popup[hidden] { display: none; }
+
+.lune-cta__popup {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(2, 5, 13, 0.76);
+  backdrop-filter: blur(12px);
+}
+
+.lune-cta__popup-panel {
+  position: relative;
+  width: min(100%, 430px);
+  padding: 34px 28px 28px;
+  border: 1px solid rgba(164, 123, 255, 0.3);
+  border-radius: 24px;
+  background: #091226;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+}
+
+.lune-cta__popup-panel h3 {
+  margin: 0;
+  color: #edf5ff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 26px;
+}
+
+.lune-cta__popup-panel p {
+  margin: 12px 0 0;
+  color: #a6bad7;
+  line-height: 1.65;
+}
+
+.lune-cta__popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(164, 123, 255, 0.24);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: #edf5ff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.lune-cta__popup-action { margin-top: 22px; }
+
+body.has-modal { overflow: hidden; }
+
+@media (max-width: 600px) {
+  lune-synth-cta { min-height: 330px; }
+
+  .lune-cta { padding: 22px 16px; border-radius: 20px; }
+
+  .lune-cta__form {
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 8px;
+  }
+
+  .lune-cta__form input {
+    width: 100%;
+    flex-basis: 44px;
+    text-align: center;
+  }
+
+  .lune-cta__form button { width: min(100%, 220px); }
+
+  .lune-cta__status { position: static; min-height: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lune-cta *, .lune-cta *::before, .lune-cta *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
