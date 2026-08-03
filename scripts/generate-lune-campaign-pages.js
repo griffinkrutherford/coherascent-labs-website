@@ -51,7 +51,7 @@ function render(page) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="preload" href="${escapeHtml(page.phoneImage)}" as="image" />
-  <link rel="stylesheet" href="/campaign/landing.css?v=1" />
+  <link rel="stylesheet" href="/campaign/landing.css?v=2" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <script src="/campaign/cta-config.js?v=1" defer></script>
   <script src="/campaign/cta.js?v=1" defer></script>
@@ -82,13 +82,24 @@ function render(page) {
         </div>
       </div>
 
-      <div class="campaign-hero__visual" data-reveal>
+      <div class="campaign-hero__visual" id="product-preview" data-reveal>
         <figure class="phone-mock">
-          <div class="phone-mock__frame">
-            <picture>
-              <source media="(min-width: 900px)" srcset="${escapeHtml(page.phoneImageHigh)}" />
-              <img src="${escapeHtml(page.phoneImage)}" alt="${escapeHtml(page.phoneAlt)}" width="480" height="1043" decoding="async" />
-            </picture>
+          <div class="phone-mock__frame" data-phone-mock>
+            <div class="phone-mock__screen">
+              <picture>
+                <source media="(min-width: 900px)" srcset="${escapeHtml(page.phoneImageHigh)}" />
+                <img src="${escapeHtml(page.phoneImage)}" alt="${escapeHtml(page.phoneAlt)}" width="480" height="1043" decoding="async" />
+              </picture>
+            </div>
+            <div class="phone-shell-buttons" aria-hidden="true">
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                <span class="phone-shell-button phone-shell-button--volume"></span>
+                <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+              </span>
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                <span class="phone-shell-button phone-shell-button--power"></span>
+              </span>
+            </div>
           </div>
           <figcaption class="phone-mock__label">${escapeHtml(page.phoneLabel)}</figcaption>
         </figure>
