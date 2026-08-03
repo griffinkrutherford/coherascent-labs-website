@@ -10102,51 +10102,13 @@
       html[data-tilt-ready] .quick-missions__phone { --dev-depth: 18px; }
       html[data-tilt-ready] .luna-phone--tab { --dev-depth: 19px; }
 
-      /* --- Hardware side buttons as real extrusions. The power/volume keys sit
-         on the flat front by default; on a 3D device (.dev-3d, tagged by the
-         tilt JS) fold each key onto its side rail so it stands off the metal as
-         the device turns. Scoped to .dev-3d so non-extruded phones (e.g. the
-         response carousel) keep their flat buttons. The button containers need
-         preserve-3d for the rotate to gain depth. --- */
-      html[data-tilt-ready] .dev-3d .phone-shell-buttons,
-      html[data-tilt-ready] .dev-3d .phone-shell-buttons__rail {
-        transform-style: preserve-3d;
-      }
-      /* Each key spans the full rim depth and protrudes outward by ~11% of the
-         depth (--btn-out), so it stands off the rim as a raised nub. The metal
-         gradient runs ACROSS the depth, bright in the middle and dark at both
-         ends, so the key is symmetric front-to-back on the rim and reads the
-         same whether the device leans toward or away — it "makes sense" from
-         both quarter views instead of looking like a one-sided panel. */
-      html[data-tilt-ready] .dev-3d .phone-shell-buttons__rail--right .phone-shell-button {
-        width: var(--dev-depth, 12px);
-        transform-origin: right center;
-        transform: rotateY(-90deg) translateZ(calc(var(--dev-depth, 12px) * -0.11));
-        background: linear-gradient(to right, #1a1e28, #aab3c6 50%, #1a1e28);
-      }
-      html[data-tilt-ready] .dev-3d .phone-shell-buttons__rail--left .phone-shell-button {
-        width: var(--dev-depth, 12px);
-        transform-origin: left center;
-        transform: rotateY(90deg) translateZ(calc(var(--dev-depth, 12px) * -0.11));
-        background: linear-gradient(to right, #1a1e28, #aab3c6 50%, #1a1e28);
-      }
-      /* iPads: volume on the right rail (vertical), power on the top rail. */
-      html[data-tilt-ready] .dev-3d .ipad-button--volume,
-      html[data-tilt-ready] .dev-3d .voice-scene__ipad-button--volume {
-        right: 0;
-        width: var(--dev-depth, 12px);
-        transform-origin: right center;
-        transform: rotateY(-90deg) translateZ(calc(var(--dev-depth, 12px) * -0.11));
-        background: linear-gradient(to right, #232833, #c2cad9 50%, #232833);
-      }
-      html[data-tilt-ready] .dev-3d .ipad-button--power,
-      html[data-tilt-ready] .dev-3d .voice-scene__ipad-button--power {
-        top: 0;
-        height: var(--dev-depth, 12px);
-        transform-origin: center top;
-        transform: rotateX(-90deg) translateZ(calc(var(--dev-depth, 12px) * -0.11));
-        background: linear-gradient(to bottom, #232833, #c2cad9 50%, #232833);
-      }
+      /* NOTE: the power/volume keys are intentionally left on the flat front
+         face (their default styling) rather than folded onto the side rail.
+         Folding them (rotateY/rotateX 90deg) made them edge-on and therefore
+         invisible whenever the device is viewed flat — the full-screen /
+         at-rest state — so the keys read as a solid visible detail in every
+         view instead. The device body still carries real 3D thickness via the
+         .dev-slice stack. */
     }
 
   </style>
