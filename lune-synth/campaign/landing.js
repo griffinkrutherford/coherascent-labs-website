@@ -1,6 +1,14 @@
 (function () {
   "use strict";
 
+  if (!document.querySelector('script[data-lune-site-footer]')) {
+    var footerScript = document.createElement("script");
+    footerScript.src = "/campaign/site-footer.js?v=1";
+    footerScript.defer = true;
+    footerScript.dataset.luneSiteFooter = "";
+    document.head.appendChild(footerScript);
+  }
+
   var year = document.querySelector("[data-current-year]");
   if (year) year.textContent = String(new Date().getFullYear());
 
