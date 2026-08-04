@@ -17,13 +17,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/13-mid.webp" as="image" />
-  <link rel="stylesheet" href="/campaign/landing.css?v=2" />
+  <link rel="stylesheet" href="/campaign/landing.css?v=3" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=3" />
   <script src="/campaign/cta-config.js?v=1" defer></script>
   <script src="/campaign/cta.js?v=1" defer></script>
   <script src="/campaign/features.js?v=3" defer></script>
-  <script src="/campaign/landing.js?v=1" defer></script>
+  <script src="/campaign/landing.js?v=2" defer></script>
 </head>
 <body>
   <header class="campaign-header campaign-shell">
@@ -158,50 +158,8 @@
     </section>
   </main>
 
-  <footer class="campaign-footer campaign-shell">
-    <section class="campaign-footer__subjects" aria-labelledby="subject-links-title">
-      <h2 id="subject-links-title">Study by subject</h2>
-      <div class="campaign-footer__subject-groups">
-        <nav aria-label="Math subjects">
-          <h3>Mathematics</h3>
-          <a href="/study/arithmetic/">Arithmetic</a>
-          <a href="/study/algebra/">Algebra</a>
-          <a href="/study/geometry/">Geometry</a>
-          <a href="/study/calculus/">Calculus</a>
-          <a href="/study/statistics/">Statistics</a>
-          <a href="/study/math/">Mathematics</a>
-        </nav>
-        <nav aria-label="Science and technology subjects">
-          <h3>Science &amp; technology</h3>
-          <a href="/study/anatomy-physiology/">Anatomy &amp; Physiology</a>
-          <a href="/study/biology/">Biology</a>
-          <a href="/study/chemistry/">Chemistry</a>
-          <a href="/study/organic-chemistry/">Organic Chemistry</a>
-          <a href="/study/physics/">Physics</a>
-          <a href="/study/nursing/">Nursing</a>
-          <a href="/study/computer-science/">Computer Science</a>
-          <a href="/study/engineering/">Engineering</a>
-        </nav>
-        <nav aria-label="Business and humanities subjects">
-          <h3>Business &amp; humanities</h3>
-          <a href="/study/accounting/">Accounting</a>
-          <a href="/study/economics/">Economics</a>
-          <a href="/study/finance/">Finance</a>
-          <a href="/study/history/">History</a>
-          <a href="/study/psychology/">Psychology</a>
-          <a href="/study/writing/">Writing</a>
-        </nav>
-      </div>
-    </section>
-    <span>&copy; <span data-current-year>2026</span> Coherascent Labs LLC</span>
-    <nav class="campaign-footer__primary" aria-label="Footer">
-      <a href="/">Lune Synth</a>
-      <a href="/blog/">Blog</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/terms/">Terms</a>
-      <a href="mailto:griffin@lunesynth.com">Contact</a>
-    </nav>
-    <p class="campaign-footer__disclaimer">USMLE is a registered trademark of the Federation of State Medical Boards and National Board of Medical Examiners, neither of which is affiliated with or endorsing Lune Synth. Lune Synth does not provide medical advice.</p>
-  </footer>
+  <lune-site-footer id="site-footer">
+    <span data-footer-note>USMLE is a registered trademark of the Federation of State Medical Boards and National Board of Medical Examiners, neither of which is affiliated with or endorsing Lune Synth. Lune Synth does not provide medical advice.</span>
+  </lune-site-footer>
 </body>
 </html>
