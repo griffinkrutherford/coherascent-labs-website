@@ -1,5 +1,10 @@
 lune-site-footer { display: block; }
 
+/* The homepage footer already receives this breathing room from the page's
+   main container. Landing-page footers sit directly under body, so mirror the
+   same desktop and mobile spacing here without doubling it on the homepage. */
+body > lune-site-footer .site-footer { margin-bottom: 120px; }
+
 .site-footer {
   width: min(calc(100% - 40px), 940px);
   max-width: 940px;
@@ -156,4 +161,8 @@ html[data-theme="light"] .site-footer__note { border-top-color: rgba(127, 99, 21
     grid-template-columns: 1fr;
     text-align: left;
   }
+}
+
+@media (max-width: 900px) {
+  body > lune-site-footer .site-footer { margin-bottom: 96px; }
 }
