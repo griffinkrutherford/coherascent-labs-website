@@ -336,8 +336,42 @@ ${featureMarkup(page)}
   </main>
 
   <footer class="campaign-footer campaign-shell">
+    <section class="campaign-footer__subjects" aria-labelledby="subject-links-title">
+      <h2 id="subject-links-title">Study by subject</h2>
+      <div class="campaign-footer__subject-groups">
+        <nav aria-label="Math subjects">
+          <h3>Mathematics</h3>
+          <a href="/study/arithmetic/">Arithmetic</a>
+          <a href="/study/algebra/">Algebra</a>
+          <a href="/study/geometry/">Geometry</a>
+          <a href="/study/calculus/">Calculus</a>
+          <a href="/study/statistics/">Statistics</a>
+          <a href="/study/math/">Mathematics</a>
+        </nav>
+        <nav aria-label="Science and technology subjects">
+          <h3>Science &amp; technology</h3>
+          <a href="/study/anatomy-physiology/">Anatomy &amp; Physiology</a>
+          <a href="/study/biology/">Biology</a>
+          <a href="/study/chemistry/">Chemistry</a>
+          <a href="/study/organic-chemistry/">Organic Chemistry</a>
+          <a href="/study/physics/">Physics</a>
+          <a href="/study/nursing/">Nursing</a>
+          <a href="/study/computer-science/">Computer Science</a>
+          <a href="/study/engineering/">Engineering</a>
+        </nav>
+        <nav aria-label="Business and humanities subjects">
+          <h3>Business &amp; humanities</h3>
+          <a href="/study/accounting/">Accounting</a>
+          <a href="/study/economics/">Economics</a>
+          <a href="/study/finance/">Finance</a>
+          <a href="/study/history/">History</a>
+          <a href="/study/psychology/">Psychology</a>
+          <a href="/study/writing/">Writing</a>
+        </nav>
+      </div>
+    </section>
     <span>&copy; <span data-current-year>2026</span> Coherascent Labs LLC</span>
-    <nav aria-label="Footer">
+    <nav class="campaign-footer__primary" aria-label="Footer">
       <a href="/">Lune Synth</a>
       <a href="/blog/">Blog</a>
       <a href="/privacy/">Privacy</a>

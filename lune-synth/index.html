@@ -6548,6 +6548,38 @@
       background: rgba(164, 123, 255, 0.08);
     }
 
+    .site-footer__subjects {
+      flex: 1 0 100%;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(164, 123, 255, 0.14);
+    }
+
+    .site-footer__subjects h2,
+    .site-footer__subjects h3 {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--font-sans);
+    }
+
+    .site-footer__subjects h2 { font-size: 18px; }
+    .site-footer__subjects h3 { font-size: 12px; }
+
+    .site-footer__subject-groups {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 18px;
+    }
+
+    .site-footer__subject-groups nav {
+      display: grid;
+      align-content: start;
+      justify-content: stretch;
+      gap: 4px;
+    }
+
+    .site-footer__subject-groups nav a { padding: 5px 0; }
+
     .site-footer__powered-by {
       flex: 1 0 100%;
       margin: 0;
@@ -6578,6 +6610,11 @@
       .site-footer nav {
         justify-content: center;
         width: 100%;
+      }
+
+      .site-footer__subject-groups {
+        grid-template-columns: 1fr;
+        text-align: left;
       }
     }
 
@@ -12321,6 +12358,40 @@
     </section>
 
     <footer class="site-footer" aria-label="Lune Synth footer">
+      <section class="site-footer__subjects" aria-labelledby="site-subject-links-title">
+        <h2 id="site-subject-links-title">Study by subject</h2>
+        <div class="site-footer__subject-groups">
+          <nav aria-label="Math subjects">
+            <h3>Mathematics</h3>
+            <a href="/study/arithmetic/">Arithmetic</a>
+            <a href="/study/algebra/">Algebra</a>
+            <a href="/study/geometry/">Geometry</a>
+            <a href="/study/calculus/">Calculus</a>
+            <a href="/study/statistics/">Statistics</a>
+            <a href="/study/math/">Mathematics</a>
+          </nav>
+          <nav aria-label="Science and technology subjects">
+            <h3>Science &amp; technology</h3>
+            <a href="/study/anatomy-physiology/">Anatomy &amp; Physiology</a>
+            <a href="/study/biology/">Biology</a>
+            <a href="/study/chemistry/">Chemistry</a>
+            <a href="/study/organic-chemistry/">Organic Chemistry</a>
+            <a href="/study/physics/">Physics</a>
+            <a href="/study/nursing/">Nursing</a>
+            <a href="/study/computer-science/">Computer Science</a>
+            <a href="/study/engineering/">Engineering</a>
+          </nav>
+          <nav aria-label="Business and humanities subjects">
+            <h3>Business &amp; humanities</h3>
+            <a href="/study/accounting/">Accounting</a>
+            <a href="/study/economics/">Economics</a>
+            <a href="/study/finance/">Finance</a>
+            <a href="/study/history/">History</a>
+            <a href="/study/psychology/">Psychology</a>
+            <a href="/study/writing/">Writing</a>
+          </nav>
+        </div>
+      </section>
       <a class="site-footer__identity" href="/" aria-label="Lune Synth home">
         <img class="site-footer__mark" src="/images/lune-synth-icon-120.png" alt="" width="36" height="36" />
         <span class="site-footer__copy">
