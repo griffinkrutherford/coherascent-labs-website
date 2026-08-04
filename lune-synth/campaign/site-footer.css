@@ -93,37 +93,47 @@ html[data-theme="light"] .site-footer {
   background: rgba(164, 123, 255, 0.08);
 }
 
-.site-footer__subjects {
+.site-footer__directory {
   flex: 1 0 100%;
-  padding-bottom: 20px;
+  display: grid;
+  gap: 26px;
+  padding-bottom: 24px;
   border-bottom: 1px solid rgba(164, 123, 255, 0.14);
 }
 
-.site-footer__subjects h2,
-.site-footer__subjects h3 {
+.site-footer__section + .site-footer__section {
+  padding-top: 24px;
+  border-top: 1px solid rgba(164, 123, 255, 0.1);
+}
+
+.site-footer__section h2,
+.site-footer__section h3 {
   margin: 0;
   color: var(--text);
   font-family: var(--font-sans);
 }
 
-.site-footer__subjects h2 { font-size: 18px; }
-.site-footer__subjects h3 { font-size: 12px; }
+.site-footer__section h2 { font-size: 18px; }
+.site-footer__section h3 { font-size: 12px; }
 
-.site-footer__subject-groups {
+.site-footer__link-groups {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   margin-top: 18px;
 }
 
-.site-footer__subject-groups nav {
+.site-footer__link-groups--subjects { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.site-footer__link-groups--tests,
+.site-footer__link-groups--audiences { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.site-footer__link-groups nav {
   display: grid;
   align-content: start;
   justify-content: stretch;
   gap: 4px;
 }
 
-.site-footer__subject-groups nav a { padding: 5px 0; }
+.site-footer__link-groups nav a { padding: 5px 0; }
 
 .site-footer__powered-by,
 .site-footer__note {
@@ -147,9 +157,17 @@ html[data-theme="light"] .site-footer__note { border-top-color: rgba(127, 99, 21
 
 @media (max-width: 640px) {
   .site-footer {
+    width: min(calc(100% - 28px), 940px);
     justify-content: center;
-    padding: 22px 18px;
+    padding: 22px 20px;
     text-align: center;
+  }
+
+  .site-footer > * {
+    width: 100%;
+    min-width: 0;
+    margin-right: 0;
+    margin-left: 0;
   }
 
   .site-footer nav {
@@ -157,10 +175,21 @@ html[data-theme="light"] .site-footer__note { border-top-color: rgba(127, 99, 21
     width: 100%;
   }
 
-  .site-footer__subject-groups {
+  .site-footer__section { text-align: left; }
+
+  .site-footer__link-groups--subjects,
+  .site-footer__link-groups--tests,
+  .site-footer__link-groups--audiences {
     grid-template-columns: 1fr;
     text-align: left;
   }
+
+  .site-footer__link-groups nav {
+    justify-content: stretch;
+    text-align: left;
+  }
+
+  .site-footer__identity { justify-content: center; }
 }
 
 @media (max-width: 900px) {

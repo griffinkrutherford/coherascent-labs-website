@@ -4,9 +4,10 @@
   function footerMarkup(notes) {
     return `
       <footer class="site-footer" aria-label="Lune Synth footer">
-        <section class="site-footer__subjects" aria-labelledby="site-subject-links-title">
+        <div class="site-footer__directory">
+        <section class="site-footer__section" aria-labelledby="site-subject-links-title">
           <h2 id="site-subject-links-title">Study by subject</h2>
-          <div class="site-footer__subject-groups">
+          <div class="site-footer__link-groups site-footer__link-groups--subjects">
             <nav aria-label="Math subjects">
               <h3>Mathematics</h3>
               <a href="/study/arithmetic/">Arithmetic</a>
@@ -38,6 +39,52 @@
             </nav>
           </div>
         </section>
+        <section class="site-footer__section" aria-labelledby="site-test-prep-links-title">
+          <h2 id="site-test-prep-links-title">Test preparation</h2>
+          <div class="site-footer__link-groups site-footer__link-groups--tests">
+            <nav aria-label="School and college entrance tests">
+              <h3>School &amp; college</h3>
+              <a href="/test-prep/sat/">SAT</a>
+              <a href="/test-prep/act/">ACT</a>
+              <a href="/test-prep/psat/">PSAT</a>
+              <a href="/test-prep/ap-exams/">AP Exams</a>
+              <a href="/test-prep/ib-exams/">IB Exams</a>
+              <a href="/test-prep/ged/">GED</a>
+              <a href="/test-prep/state-assessments/">State Assessments</a>
+            </nav>
+            <nav aria-label="Graduate and professional tests">
+              <h3>Graduate &amp; professional</h3>
+              <a href="/test-prep/gre/">GRE</a>
+              <a href="/test-prep/gmat/">GMAT</a>
+              <a href="/test-prep/lsat/">LSAT</a>
+              <a href="/test-prep/mcat/">MCAT</a>
+              <a href="/test-prep/usmle/">USMLE</a>
+              <a href="/test-prep/phd-qualifying-exams/">PhD Qualifying Exams</a>
+            </nav>
+          </div>
+        </section>
+        <section class="site-footer__section" aria-labelledby="site-audience-links-title">
+          <h2 id="site-audience-links-title">Find your path</h2>
+          <div class="site-footer__link-groups site-footer__link-groups--audiences">
+            <nav aria-label="Resources for students">
+              <h3>For students</h3>
+              <a href="/for-students/behind-in-math/">Behind in Math</a>
+              <a href="/for-students/study-consistency/">Study Consistency</a>
+              <a href="/for-students/college-study/">College Study</a>
+              <a href="/for-students/adult-learners/">Adult Learners</a>
+            </nav>
+            <nav aria-label="Resources for parents and families">
+              <h3>For parents &amp; families</h3>
+              <a href="/for-parents/math-help/">Math Help</a>
+              <a href="/for-parents/homework-help/">Homework Help</a>
+              <a href="/for-parents/ai-and-homework/">AI &amp; Homework</a>
+              <a href="/for-parents/middle-school-math/">Middle School Math</a>
+              <a href="/for-parents/high-school-math/">High School Math</a>
+              <a href="/for-families/homeschool/">Homeschool</a>
+            </nav>
+          </div>
+        </section>
+        </div>
         <a class="site-footer__identity" href="/" aria-label="Lune Synth home">
           <img class="site-footer__mark" src="/images/lune-synth-icon-120.png" alt="" width="36" height="36" />
           <span class="site-footer__copy">
