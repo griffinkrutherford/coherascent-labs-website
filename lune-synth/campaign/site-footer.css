@@ -133,7 +133,7 @@ html[data-theme="light"] .site-footer {
   gap: 4px;
 }
 
-.site-footer__link-groups nav a { padding: 5px 0; }
+.site-footer__link-groups nav a { padding: 5px 10px; }
 
 .site-footer__powered-by,
 .site-footer__note {
