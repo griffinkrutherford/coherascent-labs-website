@@ -997,6 +997,131 @@
         0 12px 28px rgba(255, 93, 135, 0.16);
     }
 
+    .hero-highlight-reel {
+      display: grid;
+      justify-items: center;
+      gap: 14px;
+      width: min(calc(100% - 40px), 760px);
+      margin: clamp(34px, 6vw, 64px) auto clamp(28px, 5vw, 52px);
+      text-align: center;
+    }
+
+    .hero-highlight-reel__copy {
+      display: grid;
+      gap: 6px;
+    }
+
+    .hero-highlight-reel__copy h3,
+    .hero-highlight-reel__copy p {
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    .hero-highlight-reel__copy h3 {
+      color: var(--text);
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.15;
+    }
+
+    .hero-highlight-reel__copy p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .hero-highlight-reel__phone {
+      --highlight-phone-width: clamp(260px, 38vw, 356px);
+      --highlight-phone-height: calc(var(--highlight-phone-width) * 19.55 / 9);
+      --phone-side-offset: calc(var(--highlight-phone-height) * -0.020455);
+      --phone-button-width: calc(var(--highlight-phone-height) * 0.0068);
+      --phone-volume-top: calc(var(--highlight-phone-height) * 0.245455);
+      --phone-volume-height: calc(var(--highlight-phone-height) * 0.081818);
+      --phone-volume-gap: calc(var(--highlight-phone-height) * 0.031818);
+      --phone-power-top: calc(var(--highlight-phone-height) * 0.345455);
+      --phone-power-height: calc(var(--highlight-phone-height) * 0.136364);
+      --device-accent: rgb(164, 123, 255);
+      isolation: isolate;
+      width: var(--highlight-phone-width);
+      height: var(--highlight-phone-height);
+      aspect-ratio: 9 / 19.55;
+      padding: calc(var(--highlight-phone-height) * 0.013636);
+      border: 1px solid rgb(56, 64, 80);
+      border-radius: calc(var(--highlight-phone-height) * 0.122727);
+      background: linear-gradient(180deg, #11141b, #05060a 16%, #010102 58%, #07090e);
+      box-shadow:
+        0 0 0 1px rgb(18, 23, 34),
+        0 0 14px color-mix(in srgb, var(--device-accent) 10%, transparent),
+        0 34px 42px rgba(4, 10, 24, 0.34),
+        0 10px 16px rgba(4, 10, 24, 0.14),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+        inset 0 -12px 20px rgba(0, 0, 0, 0.22);
+      position: relative;
+    }
+
+    .hero-highlight-reel__phone::before,
+    .hero-highlight-reel__phone::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .hero-highlight-reel__phone::before {
+      top: calc(var(--highlight-phone-height) * 0.0275);
+      left: 50%;
+      width: calc(var(--highlight-phone-width) * 0.433333);
+      height: calc(var(--highlight-phone-height) * 0.04375);
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 72% 50%, rgba(62, 76, 104, 0.92) 0 1.8px, rgba(8, 10, 16, 0.98) 2px),
+        linear-gradient(180deg, rgba(20, 23, 31, 0.98), rgba(5, 7, 12, 0.98));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 1px 0 rgba(255, 255, 255, 0.03);
+      transform: translateX(-50%);
+      z-index: 30;
+    }
+
+    .hero-highlight-reel__phone::after {
+      inset: calc(var(--highlight-phone-height) * 0.004545);
+      border: 1px solid rgba(0, 0, 0, 0.72);
+      border-radius: calc(var(--highlight-phone-height) * 0.118182);
+      background: transparent;
+      box-shadow: inset 0 0 0 1px #000, inset 0 0 0 2px rgba(0, 0, 0, 0.42);
+      z-index: 3;
+    }
+
+    .hero-highlight-reel__phone video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: calc(var(--highlight-phone-height) * 0.104545);
+      background: #020714;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-highlight-reel__phone video:fullscreen,
+    .hero-highlight-reel__phone video:-webkit-full-screen {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+      background: #000;
+      object-fit: contain;
+    }
+
+    html[data-theme="light"] .hero-highlight-reel__phone {
+      --device-accent: rgb(127, 99, 214);
+      box-shadow:
+        0 0 0 1px rgba(200, 211, 230, 0.7),
+        0 0 14px color-mix(in srgb, var(--device-accent) 12%, transparent),
+        0 0 26px color-mix(in srgb, var(--device-accent) 8%, transparent),
+        0 34px 42px rgba(138, 151, 181, 0.16),
+        0 10px 16px rgba(138, 151, 181, 0.1),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.6),
+        inset -1px -1px 0 rgba(171, 184, 208, 0.3),
+        inset 0 10px 18px rgba(255, 255, 255, 0.35),
+        inset 0 -12px 20px rgba(171, 184, 208, 0.18);
+    }
+
     .waitlist-popup[hidden] {
       display: none;
     }
@@ -10125,6 +10250,36 @@
         <button type="submit">Join Waitlist</button>
       </form>
     </div>
+
+    <figure class="hero-highlight-reel" aria-labelledby="highlight-reel-title">
+      <figcaption class="hero-highlight-reel__copy">
+        <h3 id="highlight-reel-title">See what we&rsquo;ve been building</h3>
+        <p>A quick look at Lune Synth in action.</p>
+      </figcaption>
+      <div class="hero-highlight-reel__phone">
+        <video
+          autoplay
+          controls
+          muted
+          playsinline
+          preload="metadata"
+          poster="screenshots/applied/lune-synth-highlight-reel-poster.jpg"
+          aria-label="Lune Synth product highlight reel"
+        >
+          <source src="screenshots/applied/lune-synth-highlight-reel.m4v" type="video/mp4">
+          Your browser does not support embedded video.
+        </video>
+        <div class="phone-shell-buttons" aria-hidden="true">
+          <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+            <span class="phone-shell-button phone-shell-button--volume"></span>
+            <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+          </span>
+          <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+            <span class="phone-shell-button phone-shell-button--power"></span>
+          </span>
+        </div>
+      </div>
+    </figure>
 
     <div class="waitlist-popup" data-waitlist-popup role="dialog" aria-modal="true" aria-labelledby="waitlist-popup-title" hidden>
       <div class="waitlist-popup__panel">
