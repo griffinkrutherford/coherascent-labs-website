@@ -329,6 +329,11 @@ function handleWaitlist(req, res) {
 }
 
 function serveLuneHost(req, res, pathname) {
+  if ((pathname === '/beta-offer' || pathname === '/beta-offer/') && isGetLike(req)) {
+    redirect(res, `https://${LUNE_HOST}/${getRequestSuffix(req)}`, 302);
+    return;
+  }
+
   if (pathname === '/' || pathname === '/index.html') {
     serveStatic(req, res, '/lune-synth/index.html');
     return;
