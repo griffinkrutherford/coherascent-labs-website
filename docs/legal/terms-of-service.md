@@ -117,7 +117,8 @@ risk. Report suspected vulnerabilities privately to
 ## 6. Beta Promotional Offer
 
 The landing page may advertise two months free and a lifetime 50% discount on
-Lune Synth Pro for eligible beta users. Unless the offer page states otherwise:
+Lune Synth Pro as a limited-time offer for the first 100 eligible beta users.
+Unless the offer page states otherwise:
 
 - waitlist signup alone does not earn the offer;
 - the offer is limited to invited beta users who activate by any disclosed

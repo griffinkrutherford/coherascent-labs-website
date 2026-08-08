@@ -18,7 +18,9 @@
   />
   <link rel="stylesheet" href="../liquid-glass-cards.css?v=1.0.6" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=4" />
+  <link rel="stylesheet" href="/campaign/offer-popup.css?v=1" />
   <script src="/campaign/site-footer.js?v=4" defer></script>
+  <script src="/campaign/offer-popup.js?v=1" defer></script>
   <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp?v=2" as="image" fetchpriority="high" />
   <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-low.webp?v=2" as="image" fetchpriority="high" />
   <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp?v=2" as="image" />
@@ -10243,7 +10245,7 @@
     <div class="hero-waitlist-panel" aria-labelledby="lune-beta-title">
       <div class="hero-waitlist-copy">
         <h3 id="lune-beta-title">Join the beta waitlist</h3>
-        <p class="waitlist-offer">Beta users get <span class="blue-glow">2 months free</span> & a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.</p>
+        <p class="waitlist-offer">Limited-time offer for the first 100 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.</p>
       </div>
       <form class="hero-waitlist" data-waitlist-form novalidate>
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
@@ -12660,6 +12662,7 @@
               popupMessage.textContent = data.message || "Thank you for joining the Lune Synth\u2122 beta waitlist. We will notify you as soon as invites are ready.";
             }
             form.reset();
+            window.dispatchEvent(new CustomEvent("lune:waitlist_success", { detail: { cta_placement: "homepage" } }));
             openPopup();
           } else {
             // Server error

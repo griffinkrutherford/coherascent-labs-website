@@ -38,7 +38,7 @@ All campaign pages will use the exact existing CTA:
 
 > Join the beta waitlist
 >
-> Beta users get 2 months free & a lifetime 50% off Lune Synth™ Pro.
+> Limited-time offer for the first 100 users: 2 months free & a lifetime 50% off Lune Synth™ Pro.
 
 The form fields, submit button, success message, validation, and `/api/waitlist` submission behavior must remain identical across every variant.
 

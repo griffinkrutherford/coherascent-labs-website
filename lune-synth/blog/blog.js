@@ -195,6 +195,23 @@
   }
 })();
 
+// ---------- Shared limited beta-offer popup ----------
+(function loadBetaOfferPopup() {
+  if (!document.querySelector('link[data-beta-offer-popup]')) {
+    var stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = "/campaign/offer-popup.css?v=1";
+    stylesheet.dataset.betaOfferPopup = "";
+    document.head.appendChild(stylesheet);
+  }
+  if (!document.querySelector('script[data-beta-offer-popup]')) {
+    var script = document.createElement("script");
+    script.src = "/campaign/offer-popup.js?v=1";
+    script.dataset.betaOfferPopup = "";
+    document.head.appendChild(script);
+  }
+})();
+
 // ---------- Newsletter / waitlist capture (matches homepage) ----------
 (function () {
   var form = document.querySelector("[data-waitlist-form]");
@@ -260,6 +277,7 @@
             popupMessage.textContent = data.message || "Thank you for joining the Lune Synth™ beta waitlist. We will notify you as soon as invites are ready.";
           }
           form.reset();
+          window.dispatchEvent(new CustomEvent("lune:waitlist_success", { detail: { cta_placement: "blog" } }));
           openPopup();
         } else {
           // Server error
