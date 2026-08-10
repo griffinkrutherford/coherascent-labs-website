@@ -267,12 +267,20 @@ submissions, and progress from our active systems, subject to the retention
 exceptions described in Section 8 and to the time it takes deletion to propagate
 through backups.
 
-If you use Lune Synth as a guest without creating an account, in-app deletion is
-not available, because a guest session has no account credential to authenticate
-the request against. To request deletion of information associated with a guest
-session, email us using the method below. We may need information that
-identifies the session, and we may be unable to locate guest data you cannot
-help us identify.
+If you use Lune Synth as a guest, in-app deletion is not available directly,
+because a guest session has no account credential to authenticate the request
+against. You have two ways to delete anyway:
+
+- Add an email address and password in the app to convert the guest session into
+  an account. Your missions, progress, and streak carry over, and you can then
+  delete the account using the step above. This is the reliable route, because it
+  gives your existing data an identity we can verify you own.
+- Uninstall the app. A guest session cannot be recovered without the device it
+  was created on.
+
+If neither option is workable, email us using the method below. We may need
+information that identifies the session, and without an account we may be unable
+to locate guest data you cannot help us identify.
 
 You may unsubscribe from promotional email through the link in the message.
 Essential account, security, transaction, and beta-operation messages may

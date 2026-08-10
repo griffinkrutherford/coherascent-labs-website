@@ -31,6 +31,9 @@ Files in this folder:
 
 - `privacy-policy.md`
 - `terms-of-service.md`
+- `delete-account.md` — ported from the app repo's
+  `docs/store-assets/account-deletion-page.md`; that file remains the origin of
+  the copy, so keep the two in sync if either changes
 
 ## Status: FINAL PENDING TOKENS — not yet publishable
 
@@ -55,17 +58,41 @@ now baked in, and what invalidates each:
 | Product analytics are first-party; fixed ~31-event allowlist to our own API and Postgres | Privacy §2, §3, §6 | Adding **any** third-party analytics/attribution SDK |
 | No third-party crash SDK; crash data comes from TestFlight / Play Console | Privacy §3, §6 | **Adding Sentry — currently under consideration.** Needs a processor row in §6, a source line in §3, and a Play Data safety update |
 | Beta cohort is free; IAP may be enabled mid-beta | Terms §13 | Nothing — worded to cover the flip. Confirm §6 offer terms are live before charging |
-| In-app account deletion exists for **account holders**; guests cannot delete in-app and must email | Privacy §11, Terms §15 | Shipping a build without in-app deletion (also breaks Apple 5.1.1(v)), or giving guest sessions a delete path |
+| In-app deletion for **account holders**; guests convert to an account in place (data carries over) and then delete, or uninstall | Privacy §11, Terms §15, `/delete-account` | Shipping without in-app deletion (breaks Apple 5.1.1(v)); changing guest upgrade so it no longer preserves identity (`guestAccountUpgrade.ts` enforces id equality) |
+| Voice audio is never stored — transcribed and discarded in-request | Privacy §8, `/delete-account` | Any audio path in the API performing an insert, storage upload, or file write |
 | Beta builds via TestFlight / Play tracks, subject to Apple's and Google's terms | Terms §5 | Changing distribution channel |
+
+### BLOCKER: apex mail is misconfigured
+
+`lunesynth.com` publishes **both** a CNAME (`gpilo7pa.up.railway.app.`) and an
+MX (`smtp.google.com`) at the apex. RFC 1034 §3.6.2 forbids any other record
+coexisting with a CNAME, so resolvers that follow the CNAME never see the MX and
+mail to `@lunesynth.com` can silently disappear for some senders.
+
+This is not only a `support@` problem. **Every published contact address is
+affected, including the `griffin@lunesynth.com` already printed throughout the
+Privacy Policy and Terms.** A privacy policy whose contact address drops mail is
+a compliance failure, not just a failed reviewer test — a deletion or
+access request that never arrives is still a request you were obligated to
+answer.
+
+Fix before publishing any of these pages. The usual remedy is to drop the apex
+CNAME and use A/ALIAS/ANAME records (Railway supports this), keeping MX intact.
+Verify with `dig lunesynth.com CNAME` returning empty and `dig lunesynth.com MX`
+returning the Google host, then send a live test to the published address.
+
+**Also decide which address is canonical.** `/delete-account` uses
+`support@lunesynth.com`; the Privacy Policy and Terms use
+`griffin@lunesynth.com`. Two different addresses across legal surfaces is a
+defect regardless of DNS.
 
 ### Store submission checklist
 
-- **`https://lunesynth.com/delete-account` is currently 404 — blocking.** Apple
-  5.1.1(v) is satisfied by the in-app path, but Google requires a deletion URL
-  reachable **without installing** the app. Copy is already drafted in the app
-  repo at `docs/store-assets/account-deletion-page.md`; it needs porting into
-  this repo and publishing alongside `/privacy/` and `/terms/`. Privacy §11 does
-  **not** link it yet, and must not until the page exists.
+- **`/delete-account` now exists in this repo** (`docs/legal/delete-account.md`
+  → `lune-synth/delete-account/index.html`), draft-gated like the other two.
+  Google requires this URL reachable **without installing** the app. Privacy §11
+  deliberately does **not** link it yet — add the link only once it is live.
+  Consider whether it also belongs in `campaign/site-footer.js`.
 - **Apple privacy nutrition labels: undrafted, unowned.** Unlike Play, there is
   no draft of these anywhere in either repo. They must match Privacy §3
   field-for-field, including the first-party analytics — being the controller

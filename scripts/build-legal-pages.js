@@ -21,6 +21,14 @@ const pages = [
     slug: 'terms',
     title: 'Terms of Service',
   },
+  // Google requires a deletion URL reachable without installing the app, so
+  // this one must stay publicly accessible once published.
+  {
+    source: path.join(ROOT, 'docs/legal/delete-account.md'),
+    output: path.join(ROOT, 'lune-synth/delete-account/index.html'),
+    slug: 'delete-account',
+    title: 'Delete Your Account',
+  },
 ];
 
 function escapeHtml(value) {
