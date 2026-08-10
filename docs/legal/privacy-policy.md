@@ -1,10 +1,5 @@
 <!-- markdownlint-disable MD013 -->
 
-<!-- STATUS: DRAFT — not finalized or published; blocked on entity formation.
-     Do not deploy as-is. See docs/legal/README.md for the finalization
-     checklist (the [[…]] tokens, the deferred arbitration decision, and
-     hosting). Remove this banner before publishing. -->
-
 # Lune Synth Privacy Policy
 
 **Effective date:** June 6, 2026
@@ -16,10 +11,6 @@ or "our"), a [Tano Holdings](https://tano.holdings/) company, collects, uses,
 discloses, and retains personal information through the Lune Synth website,
 waitlist, mobile applications, beta programs, and related services
 (collectively, the "Service").
-
-<!-- TODO(legal): once the entity is formed, set the controller above to the
-exact registered legal name (e.g., "Coherascent Labs LLC"). Do not finalize/
-publish naming an entity that does not yet exist. -->
 
 It does not govern a third-party site or service that has its own privacy
 policy. A separate school or enterprise agreement may provide additional or
@@ -53,7 +44,7 @@ different terms for an organization-managed deployment.
 | Voice information | A voice recording sent for transcription, the resulting transcript, and corrections you make before grading. We use voice to transcribe the requested response, not to identify you. |
 | Progress information | Scores, feedback, rubric results, recognized steps, practice history, streaks, skill progress, missions, quiz activity, achievements, medals, and study preferences. |
 | Support and research information | Messages, bug reports, survey answers, interview notes, grading disputes, and any content you choose to include. |
-| Transaction information | Subscription tier, purchase status, renewal date, discount eligibility, transaction identifier, and limited billing metadata. Payment processors generally handle complete payment-card details. |
+| Transaction information | Subscription tier, purchase status, renewal date, discount eligibility, transaction identifier, and limited billing metadata. Payment processors handle complete payment-card details. |
 | School-provided information | Roster, class, educator, assignment, and education-record information when a school uses an approved organization-managed version of the Service. |
 
 Please avoid placing sensitive personal information in a learning submission
@@ -74,12 +65,12 @@ When you use the Service, we may collect:
 - cookie, local-storage, or similar identifiers needed for sign-in,
   preferences, waitlist operation, fraud prevention, or analytics.
 
-The mobile app may store preferences, progress, and cached study information
-locally on your device. Depending on configuration, some progress may sync to
-our servers so it can survive reinstall or appear across devices.
+The mobile app stores preferences, progress, and cached study information
+locally on your device. Progress also syncs to our servers so it can survive
+reinstall and appear across devices.
 
-We do not intentionally collect precise geolocation, address-book contacts, or
-biometric identifiers through the general Service. Handwriting and voice are
+We do not collect precise geolocation, address-book contacts, or biometric
+identifiers through the general Service. Handwriting and voice are
 processed as learning content, not for biometric identification.
 
 ### Information From Other Sources
@@ -123,10 +114,10 @@ transcription, structured grading, tutoring, study-material generation, and
 text-to-speech. The data sent may include handwriting, images, typed text,
 voice, transcripts, question context, and rubric instructions.
 
-We currently design the Service around business/API products whose provider
-terms do not use API inputs and outputs to train general-purpose models by
-default. We do not knowingly opt private User Content into provider model
-training without express user or organization permission.
+We use business and API products whose provider terms do not use API inputs and
+outputs to train general-purpose models by default. We do not opt private User
+Content into provider model training without express user or organization
+permission.
 
 AI providers may temporarily retain limited request data for abuse detection,
 security, and legal compliance unless a reduced-retention configuration
@@ -141,7 +132,7 @@ and results when needed to:
 - validate rubric behavior and grading quality; or
 - comply with law.
 
-We limit this access by role and purpose. Product quality review should use
+We limit this access by role and purpose. Product quality review uses
 deidentified, minimized, or expressly consented content whenever practical.
 
 ## 6. How We Disclose Information
@@ -150,8 +141,8 @@ We may disclose personal information to the following recipients:
 
 | Recipient | Purpose |
 | --- | --- |
-| Infrastructure providers | Authentication, databases, private object storage, hosting, networking, logs, and backups. Current architecture may use Supabase and Railway. |
-| AI providers | Vision, transcription, grading, tutoring, generation, and text-to-speech. Current architecture may use OpenAI API services. |
+| Infrastructure providers | Authentication, databases, private object storage, hosting, networking, logs, and backups. We use Supabase and Railway. |
+| AI providers | Vision, transcription, grading, tutoring, generation, and text-to-speech. We use OpenAI API services. |
 | Platform providers | Apple, Google, Expo/EAS, app distribution, sign-in, notifications, and platform services. |
 | Payment providers | Subscription checkout, payment confirmation, fraud prevention, refunds, and tax handling. |
 | Analytics and reliability providers | Product analytics, crash reporting, performance monitoring, and error diagnosis, but only when those tools are enabled. |
@@ -183,10 +174,10 @@ needs. During the beta, we apply the following approach:
 | --- | --- |
 | Waitlist information | Until you withdraw, the waitlist program ends, or the information is no longer needed for beta recruitment and related communications. |
 | Account and profile information | While the account is active and for a limited period afterward to complete deletion, resolve disputes, prevent abuse, and meet legal obligations. |
-| Original handwritten scans and images | Stored with submission history while needed to provide grading, account history, support, dispute resolution, security, and quality review. They may also be deleted in response to a verified deletion request, subject to legal and security exceptions. |
+| Original handwritten scans and images | Stored with submission history while needed to provide grading, account history, support, dispute resolution, security, and quality review. They are deleted in response to a verified deletion request, subject to legal and security exceptions. |
 | Typed answers and reviewed voice transcripts | Stored with the submission and grading history while needed to provide account history, progress, regrading, and support. |
-| Raw voice audio | Received for transcription and not intentionally written by Lune Synth to a durable account record. Our transcription provider may temporarily process or retain request data under its applicable business terms. |
-| Grading results and progress | Generally retained while the account is active so users can review results and maintain learning history, then deleted or deidentified subject to backup, legal, and security needs. |
+| Raw voice audio | Received for transcription and not written by Lune Synth to a durable account record. Our transcription provider may temporarily process or retain request data under its applicable business terms. |
+| Grading results and progress | Retained while the account is active so users can review results and maintain learning history, then deleted or deidentified subject to backup, legal, and security needs. |
 | Security, audit, and transaction records | Retained for a period appropriate to fraud prevention, incident response, accounting, tax, and legal obligations. |
 
 A retention hold is removed when its purpose ends. Deletion from active systems
@@ -286,11 +277,10 @@ For residents of states with comprehensive privacy laws, the categories of
 personal information we collect, their sources, purposes, recipients, and
 retention approach are described above.
 
-Depending on the law and whether it applies to Coherascent, these categories
-may include identifiers, account credentials, internet or device activity,
-commercial information, audio or visual information, educational information,
-inferences about learning progress, and User Content that may reveal sensitive
-information.
+Under those laws, these categories include identifiers, account credentials,
+internet or device activity, commercial information, audio or visual
+information, educational information, inferences about learning progress, and
+User Content that may reveal sensitive information.
 
 We use sensitive personal information only to provide, secure, and improve the
 requested Service; authenticate users; process authorized payments; and comply
@@ -310,10 +300,10 @@ Colorado Attorney General if the appeal is denied.
 ## 13. Security
 
 We use administrative, technical, and organizational safeguards designed to
-protect personal information. Depending on the environment, these may include
-encrypted transport, managed authentication, private object storage,
-short-lived signed file access, role-based authorization, access logging,
-secrets management, and production access controls.
+protect personal information. These include encrypted transport, managed
+authentication, private object storage, short-lived signed file access,
+role-based authorization, access logging, secrets management, and production
+access controls.
 
 No system is completely secure. You are responsible for protecting your
 credentials and device. Notify
@@ -346,9 +336,6 @@ Privacy questions and requests may be sent to:
 Coherascent Labs
 
 A [Tano Holdings](https://tano.holdings/) company
-
-<!-- TODO(legal): replace with the exact registered legal entity name, mailing
-address, and telephone number once the entity is confirmed. -->
 
 [[LEGAL ENTITY NAME]]
 

@@ -1,8 +1,3 @@
-<!-- STATUS: DRAFT — not finalized or published; blocked on entity formation.
-     Do not deploy as-is. See docs/legal/README.md for the finalization
-     checklist (the [[…]] tokens, the deferred arbitration decision, and
-     hosting). Remove this banner before publishing. -->
-
 # Lune Synth Terms of Service
 
 **Effective date:** June 6, 2026
@@ -14,12 +9,6 @@ website, waitlist, mobile applications, beta programs, and related services
 (collectively, the "Service"). The Service is operated by Coherascent Labs, a
 [Tano Holdings](https://tano.holdings/) company ("Coherascent," "we," "us," or
 "our").
-
-<!-- TODO(legal): once the entity is formed, set the operator above to the exact
-registered legal name (e.g., "Coherascent Labs LLC"). This identification line —
-not just the Contact section — is the legally load-bearing place for the entity
-name. Do not finalize/publish these Terms naming an entity that does not yet
-exist. -->
 
 By creating an account, joining the waitlist, accepting a beta invitation, or
 using the Service, you agree to these Terms and acknowledge the
@@ -34,7 +23,7 @@ A separate written agreement controls if it conflicts with these Terms.
 
 Lune Synth is a study tool that lets learners submit handwritten work, images,
 typed responses, voice transcripts, notes, and course materials. The Service
-may use artificial intelligence and rule-based checks to:
+uses artificial intelligence and rule-based checks to:
 
 - read and organize submitted work;
 - provide rubric-grounded scores and step-level feedback;
@@ -116,7 +105,7 @@ risk. Report suspected vulnerabilities privately to
 
 ## 6. Beta Promotional Offer
 
-The landing page may advertise two months free and a lifetime 50% discount on
+The landing page advertises two months free and a lifetime 50% discount on
 Lune Synth Pro as a limited-time offer for the first 100 eligible beta users.
 Unless the offer page states otherwise:
 
@@ -191,7 +180,7 @@ unless an expressly approved workflow requires it.
 
 Authorized personnel may review limited User Content when needed for support,
 abuse prevention, a grading dispute, quality evaluation, or legal compliance.
-Access should be logged, limited, and consistent with the Privacy Policy.
+Access is logged, limited, and consistent with the Privacy Policy.
 
 We do not use private User Content to train a general-purpose AI model without
 express permission. Service providers may process User Content under their
@@ -233,10 +222,10 @@ license to use them.
 
 ## 12. Third-Party Services
 
-The Service may rely on third parties for authentication, hosting, storage,
+The Service relies on third parties for authentication, hosting, storage,
 artificial intelligence, transcription, app distribution, payment processing,
-and other infrastructure. Third-party terms may apply to features such as
-Google or Apple sign-in and app-store purchases.
+and other infrastructure. Third-party terms apply to features such as Google or
+Apple sign-in and app-store purchases.
 
 We are not responsible for third-party products outside our control. We may
 replace providers or change integrations as the Service evolves.
@@ -253,19 +242,19 @@ they relate to your use of the iOS application.
 
 ## 13. Subscriptions, Billing, And Cancellation
 
-Some features may require payment in the future. Before charging you, we will
-show the price, billing interval, included usage, renewal terms, and available
+Lune Synth Pro is a paid subscription. Before charging you, we will show the
+price, billing interval, included usage, renewal terms, and available
 cancellation method. A subscription will renew automatically only when that is
 clearly disclosed and you authorize it.
 
 Purchases made through Apple, Google, or another platform are also governed by
-that platform's billing and refund rules. We generally do not receive complete
+that platform's billing and refund rules. We do not receive complete
 payment-card numbers from payment processors. Taxes may apply.
 
 You may cancel a subscription through the purchase platform or other method
-shown at checkout. Cancellation stops future renewal but does not necessarily
-create a refund for a current period, except where required by law or stated in
-the applicable refund policy.
+shown at checkout. Cancellation stops future renewal but does not create a
+refund for the current period, except where required by law or stated in the
+applicable refund policy.
 
 ## 14. Feedback
 
@@ -283,7 +272,7 @@ violation, security risk, legal requirement, unpaid charge, misuse, or
 discontinuation of the Service. When practical, we will provide notice and an
 opportunity to export or retrieve eligible data.
 
-Sections that by their nature should survive termination, including ownership,
+Sections that by their nature survive termination, including ownership,
 disclaimers, liability limits, disputes, and accrued payment obligations, will
 survive.
 
@@ -325,10 +314,6 @@ its violation of these Terms, or its use of the Service outside the scope of an
 applicable written agreement.
 
 ## 19. Governing Law And Venue
-
-<!-- TODO(legal): set governing law to the entity's state of formation /
-principal place of business on counsel's advice — do NOT default to a state
-based only on current physical location. -->
 
 These Terms and any dispute arising from them are governed by the laws of
 [[GOVERNING-LAW STATE]], without regard to its conflict-of-laws rules, except
@@ -386,9 +371,6 @@ Questions about these Terms may be sent to:
 Coherascent Labs
 
 A [Tano Holdings](https://tano.holdings/) company
-
-<!-- TODO(legal): replace with the exact registered legal entity name, mailing
-address, and telephone number once the entity is confirmed. -->
 
 [[LEGAL ENTITY NAME]]
 

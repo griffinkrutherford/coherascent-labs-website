@@ -3,6 +3,11 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 
+// Set to false once Tano Holdings LLC is registered and every [[TOKEN]] in
+// docs/legal/*.md is filled in. Controls the draft banner, the noindex robots
+// tag, and the canonical link. The build refuses to publish with tokens left.
+const DRAFT = true;
+
 const pages = [
   {
     source: path.join(ROOT, 'docs/legal/privacy-policy.md'),
@@ -183,10 +188,9 @@ function pageTemplate(page, content) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow,noarchive" />
-  <title>Draft ${page.title} | Lune Synth</title>
-  <meta name="description" content="Draft Lune Synth ${page.title}. Not finalized or published." />
-  <link rel="icon" type="image/png" href="/circle_favicon.png" />
+${DRAFT ? '  <meta name="robots" content="noindex,nofollow,noarchive" />\n' : ''}  <title>${DRAFT ? 'Draft ' : ''}${page.title} | Lune Synth</title>
+  <meta name="description" content="${DRAFT ? `Draft Lune Synth ${page.title}. Not finalized or published.` : `The Lune Synth ${page.title}.`}" />
+${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}/" />\n`}  <link rel="icon" type="image/png" href="/circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
@@ -240,10 +244,10 @@ function pageTemplate(page, content) {
         <span class="nav-toggle__bars" aria-hidden="true"></span>
       </button>
     </header>
-    <aside class="draft-banner">
+${DRAFT ? `    <aside class="draft-banner">
       <strong>Draft only.</strong> This document is not finalized or published. Entity, governing-law, and venue details remain unresolved.
     </aside>
-    <article class="legal-document">
+` : ''}    <article class="legal-document">
 ${content}
     <footer class="site-footer" aria-label="Lune Synth footer">
       <a class="site-footer__identity" href="/" aria-label="Lune Synth home">
@@ -271,8 +275,17 @@ ${content}
 
 pages.forEach(page => {
   const markdown = fs.readFileSync(page.source, 'utf8');
-  const html = pageTemplate(page, renderMarkdown(markdown));
+  const content = renderMarkdown(markdown);
+
+  const tokens = [...new Set(content.match(/\[\[[^\]]+\]\]/g) || [])];
+  if (tokens.length && !DRAFT) {
+    console.error(`\nRefusing to publish ${path.relative(ROOT, page.source)} with unresolved tokens:`);
+    tokens.forEach(token => console.error(`  ${token}`));
+    console.error('\nFill them in, or set DRAFT = true in this script.\n');
+    process.exit(1);
+  }
+
   fs.mkdirSync(path.dirname(page.output), { recursive: true });
-  fs.writeFileSync(page.output, html);
-  console.log(`Built ${path.relative(ROOT, page.output)}`);
+  fs.writeFileSync(page.output, pageTemplate(page, content));
+  console.log(`Built ${path.relative(ROOT, page.output)}${tokens.length ? ` (draft — ${tokens.length} unresolved token${tokens.length === 1 ? '' : 's'})` : ''}`);
 });

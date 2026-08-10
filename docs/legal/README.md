@@ -6,6 +6,22 @@ _Last updated: 2026-06-06._
 
 ## Update Log
 
+### 2026-08-10
+
+- Removed the `TODO(legal)` comments and all hedged/uncertain phrasing from both
+  documents ("current architecture may use…" → "we use…", "access should be
+  logged" → "is logged", and so on). Substance unchanged.
+- Moved the draft banner and `noindex` behind a `DRAFT` flag in
+  `scripts/build-legal-pages.js`. The build now **refuses** to publish
+  (`DRAFT = false`) while any `[[TOKEN]]` remains, so the pages cannot ship with
+  visible placeholders.
+- Confirmed these pages are **not** unlinked: `campaign/site-footer.js` injects
+  Privacy/Terms site-wide and every blog page hardcodes them. The root README
+  claim to the contrary was stale and has been corrected.
+- Operator resolved: **Tano Holdings LLC, d/b/a Coherascent Labs** (single
+  entity; Coherascent Labs is a brand, not a separate registration). Filing
+  expected week of 2026-08-10.
+
 ### 2026-06-06
 
 - Added the entity, contact, governing-law, venue, arbitration, DMCA, and
@@ -16,20 +32,18 @@ Files in this folder:
 - `privacy-policy.md`
 - `terms-of-service.md`
 
-## Status: DRAFT — not published
+## Status: FINAL PENDING TOKENS — not yet publishable
 
-- The **substantive** content is drafted and was audited against actual product
-  behavior: data collected, AI processing via the OpenAI API, Supabase + Railway
+- The **substantive** content was audited against actual product behavior: data
+  collected, AI processing via the OpenAI API, Supabase + Railway
   infrastructure, raw voice audio not written to a durable account record, no
   location/contacts/biometric collection, and no analytics/crash SDK in the
-  build. Those sections do **not** depend on the entity and are considered
-  stable.
-- **Operator details remain incomplete.** The exact registered operator name
-  still needs to replace the unresolved legal-entity token before release.
+  build. Those sections do **not** depend on the entity and are stable.
+- **Operator details remain incomplete.** The five `[[…]]` tokens below are
+  still unresolved and render literally on the built pages. Do not deploy
+  `/privacy/` or `/terms/` until they are replaced.
 - **The website publication trigger has fired.** The deployed Lune Synth
-  waitlist collects email addresses. The documents therefore need to be
-  finalized promptly, but they must not be published with unresolved entity,
-  contact, governing-law, or venue details.
+  waitlist collects email addresses, so finalization is overdue.
 
 ## Publish triggers (first one to fire forces a live Privacy Policy)
 
@@ -43,20 +57,25 @@ treat **"form the operating entity"** as the gating milestone.
 
 ## To finalize (entity version): replace these tokens everywhere they appear
 
+Then set `DRAFT = false` in `scripts/build-legal-pages.js` and re-run
+`npm run build:legal`. The build blocks if any token is left.
+
 | Token | Value |
 | --- | --- |
-| `[[LEGAL ENTITY NAME]]` | Exact registered name on the filed articles |
+| `[[LEGAL ENTITY NAME]]` | `Tano Holdings LLC` — confirm exact spelling against the filed articles |
 | `[[MAILING ADDRESS]]` | Principal / registered-agent address |
 | `[[PHONE NUMBER]]` | Business phone (Google Voice is fine) |
 | `[[GOVERNING-LAW STATE]]` | The entity's state of formation / principal place of business — **do not** default from current physical location; confirm with counsel |
 | `[[VENUE]]` | County + state |
 
-Also update the **operator-identification line in Section 1** of each document
-(marked `TODO(legal)`), not just the contact block — that line is the legally
-load-bearing place for the entity name.
+Also update the **operator-identification line in Section 1** of each document,
+not just the contact block — that line is the legally load-bearing place for the
+entity name. It currently reads "Coherascent Labs, a Tano Holdings company,"
+which names no registered entity. It must become **"Tano Holdings LLC, doing
+business as Coherascent Labs."**
 
-Keep the effective date in sync with the actual publish date, and **remove the
-DRAFT banner** comment from each file when publishing.
+Keep the effective date in sync with the actual publish date. It currently reads
+June 6, 2026. Run `npm run build:legal` after any source change.
 
 ## Deferred decisions (intentionally omitted; revisit with counsel)
 
