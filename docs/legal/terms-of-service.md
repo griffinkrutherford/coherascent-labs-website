@@ -98,6 +98,13 @@ Beta features may be incomplete, inaccurate, unavailable, or changed without
 notice. Data created during a beta may not carry into a later release. Do not
 rely on a beta as the only copy of important work.
 
+Beta builds are distributed through Apple TestFlight and Google Play testing
+tracks. Your use of those channels is also governed by Apple's and Google's own
+terms, and beta builds stop working on the expiration schedule those platforms
+set. We may add testers, remove testers, or end a testing track at any time. If
+you leave the cohort or a track closes, you may lose access to the build and to
+data held only inside it.
+
 You may provide candid beta feedback, but you must not attempt to access other
 users' information or disclose nonpublic security details in a way that creates
 risk. Report suspected vulnerabilities privately to
@@ -242,10 +249,12 @@ they relate to your use of the iOS application.
 
 ## 13. Subscriptions, Billing, And Cancellation
 
-Lune Synth Pro is a paid subscription. Before charging you, we will show the
-price, billing interval, included usage, renewal terms, and available
-cancellation method. A subscription will renew automatically only when that is
-clearly disclosed and you authorize it.
+Lune Synth Pro is a paid subscription. **The beta cohort is free.** No charge
+occurs during the beta unless we enable in-app purchasing and you expressly
+authorize a purchase. Before charging you, we will show the price, billing
+interval, included usage, renewal terms, and available cancellation method. A
+subscription will renew automatically only when that is clearly disclosed and
+you authorize it.
 
 Purchases made through Apple, Google, or another platform are also governed by
 that platform's billing and refund rules. We do not receive complete
@@ -264,8 +273,9 @@ compensation. This does not give us ownership of your User Content.
 
 ## 15. Suspension And Termination
 
-You may stop using the Service at any time and may request account deletion as
-described in the Privacy Policy.
+You may stop using the Service at any time. You can delete your account from
+inside the Lune Synth app, or request deletion as described in the Privacy
+Policy.
 
 We may suspend or terminate access when reasonably necessary to address a Terms
 violation, security risk, legal requirement, unpaid charge, misuse, or

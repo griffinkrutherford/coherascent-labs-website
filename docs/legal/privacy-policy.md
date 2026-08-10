@@ -22,6 +22,8 @@ different terms for an organization-managed deployment.
   sell behavioral advertising profiles.
 - We do not sell personal information or share it for cross-context behavioral
   advertising.
+- Product analytics are first-party. We do not use a third-party analytics,
+  attribution, or advertising SDK.
 - We do not use private learning submissions to train a general-purpose AI
   model without express permission.
 - During the initial beta, direct accounts and the general waitlist are not
@@ -65,6 +67,17 @@ When you use the Service, we may collect:
 - cookie, local-storage, or similar identifiers needed for sign-in,
   preferences, waitlist operation, fraud prevention, or analytics.
 
+Product analytics are first-party. The app emits a fixed, predefined set of
+product events — such as screen views, missions started, completed, or
+abandoned, answers submitted, grading completed or failed, tutor sessions
+opened, and API failures — to our own API, where they are stored in our own
+database. We do not use a third-party analytics, attribution, or advertising
+SDK, and we do not send these events to an ad network.
+
+Crash and performance reports for beta builds come from Apple TestFlight and
+the Google Play Console rather than from a third-party crash SDK. See
+Section 3, "Information From Other Sources."
+
 The mobile app stores preferences, progress, and cached study information
 locally on your device. Progress also syncs to our servers so it can survive
 reinstall and appear across devices.
@@ -78,6 +91,9 @@ processed as learning content, not for biometric identification.
 We may receive information from:
 
 - Apple, Google, or another login provider;
+- Apple TestFlight and Google Play testing tracks, which provide tester email
+  addresses, install and session counts, tester feedback and screenshots, and
+  crash and performance reports for beta builds;
 - app stores and payment processors;
 - a school, educator, parent, or organization that authorizes access;
 - referral partners or beta recruiters; and
@@ -143,9 +159,8 @@ We may disclose personal information to the following recipients:
 | --- | --- |
 | Infrastructure providers | Authentication, databases, private object storage, hosting, networking, logs, and backups. We use Supabase and Railway. |
 | AI providers | Vision, transcription, grading, tutoring, generation, and text-to-speech. We use OpenAI API services. |
-| Platform providers | Apple, Google, Expo/EAS, app distribution, sign-in, notifications, and platform services. |
+| Platform providers | Apple, Google, Expo/EAS, app distribution, sign-in, notifications, and platform services. This includes beta distribution through Apple TestFlight and Google Play testing tracks, which return tester, install, feedback, and crash information to us. |
 | Payment providers | Subscription checkout, payment confirmation, fraud prevention, refunds, and tax handling. |
-| Analytics and reliability providers | Product analytics, crash reporting, performance monitoring, and error diagnosis, but only when those tools are enabled. |
 | Schools or organizations | Account, assignment, progress, and result information for an approved organization-managed deployment, according to the applicable agreement and authorization. |
 | Professional advisers | Lawyers, auditors, insurers, and consultants who need the information to provide services and are subject to confidentiality duties. |
 | Authorities and affected parties | When reasonably necessary to comply with law, protect rights or safety, investigate misuse, or address a security incident. |
@@ -153,6 +168,10 @@ We may disclose personal information to the following recipients:
 
 Service providers may use personal information only to perform services for us
 or as otherwise permitted by their contracts and applicable law.
+
+We do not disclose personal information to a third-party analytics, attribution,
+crash-reporting, or advertising provider. Product analytics are collected and
+stored by us, as described in Section 3.
 
 ## 7. No Sale Or Behavioral Advertising
 
@@ -241,6 +260,12 @@ Depending on where you live, you may have the right to:
 - opt out of targeted advertising, sale, or certain profiling;
 - restrict or object to certain processing; and
 - appeal our decision on a privacy request.
+
+You can delete your account from inside the Lune Synth app, without contacting
+us first. Deleting your account removes your profile, learning submissions, and
+progress from our active systems, subject to the retention exceptions described
+in Section 8 and to the time it takes deletion to propagate through backups. You
+may also request deletion by email using the method below.
 
 You may unsubscribe from promotional email through the link in the message.
 Essential account, security, transaction, and beta-operation messages may

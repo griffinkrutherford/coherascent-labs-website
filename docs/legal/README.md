@@ -45,6 +45,33 @@ Files in this folder:
 - **The website publication trigger has fired.** The deployed Lune Synth
   waitlist collects email addresses, so finalization is overdue.
 
+## Beta cohort (TestFlight + Play closed testing)
+
+Both documents are scoped to the closed beta as written. Phase-specific facts
+now baked in, and what invalidates each:
+
+| Documented as | Where | Invalidated by |
+| --- | --- | --- |
+| Product analytics are first-party; fixed ~31-event allowlist to our own API and Postgres | Privacy §2, §3, §6 | Adding **any** third-party analytics/attribution SDK |
+| No third-party crash SDK; crash data comes from TestFlight / Play Console | Privacy §3, §6 | **Adding Sentry — currently under consideration.** Needs a processor row in §6, a source line in §3, and a Play Data safety update |
+| Beta cohort is free; IAP may be enabled mid-beta | Terms §13 | Nothing — worded to cover the flip. Confirm §6 offer terms are live before charging |
+| In-app account deletion exists | Privacy §11, Terms §15 | Shipping a build without it (also breaks Apple 5.1.1(v)) |
+| Beta builds via TestFlight / Play tracks, subject to Apple's and Google's terms | Terms §5 | Changing distribution channel |
+
+### Store submission checklist
+
+- **App Store privacy nutrition labels** and **Play Data safety** must match
+  Privacy §3 field-for-field. §3 is detailed, so under-declaring is the easy
+  mistake. First-party analytics still gets declared — being the controller does
+  not exempt the collection from disclosure.
+- **External TestFlight** (beyond internal testers) goes through Beta App Review
+  and needs a reachable privacy-policy URL. Internal testing does not.
+- **Play** wants a deletion-request URL reachable **without installing** the app,
+  in addition to the in-app path.
+- Google OAuth can stay in Testing mode for a closed cohort (100-user cap).
+  Flipping to Production requires both URLs live on the verified `lunesynth.com`
+  domain — see the publish triggers below.
+
 ## Publish triggers (first one to fire forces a live Privacy Policy)
 
 1. A public **waitlist/landing page** that collects emails.
