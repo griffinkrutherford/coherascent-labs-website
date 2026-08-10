@@ -261,11 +261,18 @@ Depending on where you live, you may have the right to:
 - restrict or object to certain processing; and
 - appeal our decision on a privacy request.
 
-You can delete your account from inside the Lune Synth app, without contacting
-us first. Deleting your account removes your profile, learning submissions, and
-progress from our active systems, subject to the retention exceptions described
-in Section 8 and to the time it takes deletion to propagate through backups. You
-may also request deletion by email using the method below.
+If you have a Lune Synth account, you can delete it from inside the app, without
+contacting us first. Deleting your account removes your profile, learning
+submissions, and progress from our active systems, subject to the retention
+exceptions described in Section 8 and to the time it takes deletion to propagate
+through backups.
+
+If you use Lune Synth as a guest without creating an account, in-app deletion is
+not available, because a guest session has no account credential to authenticate
+the request against. To request deletion of information associated with a guest
+session, email us using the method below. We may need information that
+identifies the session, and we may be unable to locate guest data you cannot
+help us identify.
 
 You may unsubscribe from promotional email through the link in the message.
 Essential account, security, transaction, and beta-operation messages may

@@ -55,22 +55,35 @@ now baked in, and what invalidates each:
 | Product analytics are first-party; fixed ~31-event allowlist to our own API and Postgres | Privacy §2, §3, §6 | Adding **any** third-party analytics/attribution SDK |
 | No third-party crash SDK; crash data comes from TestFlight / Play Console | Privacy §3, §6 | **Adding Sentry — currently under consideration.** Needs a processor row in §6, a source line in §3, and a Play Data safety update |
 | Beta cohort is free; IAP may be enabled mid-beta | Terms §13 | Nothing — worded to cover the flip. Confirm §6 offer terms are live before charging |
-| In-app account deletion exists | Privacy §11, Terms §15 | Shipping a build without it (also breaks Apple 5.1.1(v)) |
+| In-app account deletion exists for **account holders**; guests cannot delete in-app and must email | Privacy §11, Terms §15 | Shipping a build without in-app deletion (also breaks Apple 5.1.1(v)), or giving guest sessions a delete path |
 | Beta builds via TestFlight / Play tracks, subject to Apple's and Google's terms | Terms §5 | Changing distribution channel |
 
 ### Store submission checklist
 
-- **App Store privacy nutrition labels** and **Play Data safety** must match
-  Privacy §3 field-for-field. §3 is detailed, so under-declaring is the easy
-  mistake. First-party analytics still gets declared — being the controller does
-  not exempt the collection from disclosure.
+- **`https://lunesynth.com/delete-account` is currently 404 — blocking.** Apple
+  5.1.1(v) is satisfied by the in-app path, but Google requires a deletion URL
+  reachable **without installing** the app. Copy is already drafted in the app
+  repo at `docs/store-assets/account-deletion-page.md`; it needs porting into
+  this repo and publishing alongside `/privacy/` and `/terms/`. Privacy §11 does
+  **not** link it yet, and must not until the page exists.
+- **Apple privacy nutrition labels: undrafted, unowned.** Unlike Play, there is
+  no draft of these anywhere in either repo. They must match Privacy §3
+  field-for-field, including the first-party analytics — being the controller
+  does not exempt the collection from disclosure.
+- **Play Data safety: already drafted correctly**, in the app repo at
+  `docs/2026-08-02-play-console-submission-package.md` (declares App activity →
+  App interactions: Collected, citing `analytics_events`). The draft is right;
+  only the console form is unfilled. Do not "fix" the draft.
 - **External TestFlight** (beyond internal testers) goes through Beta App Review
-  and needs a reachable privacy-policy URL. Internal testing does not.
-- **Play** wants a deletion-request URL reachable **without installing** the app,
-  in addition to the in-app path.
+  and needs a reachable privacy-policy URL. Internal testing does not, so an
+  internal cohort can start before these pages are final.
 - Google OAuth can stay in Testing mode for a closed cohort (100-user cap).
   Flipping to Production requires both URLs live on the verified `lunesynth.com`
   domain — see the publish triggers below.
+- Keep the account-deletion menu path **out** of the published policy. It is
+  Settings → Delete Account today, but naming it means the policy goes stale on
+  the first nav change. Put the exact path on `/delete-account`, which is
+  trivially updatable.
 
 ## Publish triggers (first one to fire forces a live Privacy Policy)
 
@@ -112,9 +125,14 @@ June 6, 2026. Run `npm run build:legal` after any source change.
   Copyright Office, not just policy text; low urgency for private coursework
   uploads.
 
-## Interim option (only if a publish trigger fires before the LLC exists)
+## Interim option — entity formation does NOT block publishing
 
-Publish an **individual-operator** variant instead of guessing an entity name:
+**Do not treat the LLC filing as being on the critical path for a beta cohort.**
+A reachable privacy-policy URL is blocked by a decision plus five values, not by
+a company formation. If a publish trigger fires first, publish an
+**individual-operator** variant instead of waiting or guessing an entity name.
+Four of the five tokens (address, phone, governing-law state, venue) are
+identical under either path, so the work is not wasted:
 
 - Operator = "**[Your Full Legal Name], an individual doing business as
   'Coherascent Labs'**". An individual is a valid contracting party; a

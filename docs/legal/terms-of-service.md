@@ -273,9 +273,9 @@ compensation. This does not give us ownership of your User Content.
 
 ## 15. Suspension And Termination
 
-You may stop using the Service at any time. You can delete your account from
-inside the Lune Synth app, or request deletion as described in the Privacy
-Policy.
+You may stop using the Service at any time. If you have an account, you can
+delete it from inside the Lune Synth app. Guest users, who have no account to
+delete, may request deletion as described in the Privacy Policy.
 
 We may suspend or terminate access when reasonably necessary to address a Terms
 violation, security risk, legal requirement, unpaid charge, misuse, or
