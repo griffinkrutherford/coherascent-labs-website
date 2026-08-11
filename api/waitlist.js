@@ -3,6 +3,57 @@
  * Path: /api/waitlist.js
  */
 
+const { sendWaitlistConfirmation } = require('./waitlist-confirmation.js');
+
+// Copy shown in the site's success popup. Returned as `message` so the clients
+// (blog.js, cta.js) pick it up centrally rather than each hardcoding it.
+const MESSAGE_NEW =
+  'Check your inbox — we just emailed you one quick question: is your phone Android or iPhone? ' +
+  '(If Android, we need the Google account email your Play Store uses.) ' +
+  'Reply to that email so your invite reaches the right place.';
+
+const MESSAGE_EXISTING =
+  'You’re already on the list. If you haven’t told us whether your phone is Android or iPhone yet, ' +
+  'reply to your confirmation email — or email griffin@lunesynth.com. ' +
+  'Android invites go to your Google account, so we need that address to reach you.';
+
+/**
+ * Process-local guard against sending twice for rapid repeat submits (a
+ * double-clicked button, a retried request). This is deliberately NOT the
+ * primary dedup mechanism -- it is lost on restart and not shared across
+ * instances. Real dedup comes from the contact store rejecting the duplicate
+ * before we ever reach the send.
+ */
+const RECENT_TTL_MS = 60 * 60 * 1000;
+const RECENT_MAX = 5000;
+const recentlySent = new Map();
+
+function markSent(email) {
+  if (recentlySent.size >= RECENT_MAX) recentlySent.clear();
+  recentlySent.set(email, Date.now());
+}
+
+function sentRecently(email) {
+  const at = recentlySent.get(email);
+  if (!at) return false;
+  if (Date.now() - at > RECENT_TTL_MS) {
+    recentlySent.delete(email);
+    return false;
+  }
+  return true;
+}
+
+function looksLikeDuplicate(data, status) {
+  if (status === 409) return true;
+  const message = typeof data?.message === 'string' ? data.message.toLowerCase() : '';
+  return (
+    message.includes('already exists')
+    || message.includes('already registered')
+    || message.includes('duplicate')
+    || message.includes('contact already')
+  );
+}
+
 module.exports = async (req, res) => {
   // Add CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -57,11 +108,12 @@ module.exports = async (req, res) => {
     const data = await response.json();
 
     if (!response.ok) {
-      // Gracefully handle duplicate emails
-      if (data.message && (data.message.includes('already exists') || data.message.includes('duplicate'))) {
+      // Gracefully handle duplicate emails. Already on the list, so no second
+      // confirmation -- they got one when they first signed up.
+      if (looksLikeDuplicate(data, response.status)) {
         return res.status(200).json({
           success: true,
-          message: 'Already subscribed! You are already on the waitlist.'
+          message: MESSAGE_EXISTING
         });
       }
 
@@ -71,9 +123,26 @@ module.exports = async (req, res) => {
       });
     }
 
+    // The address is stored. Everything below is a courtesy: the confirmation
+    // must never fail, delay, or reject the submission.
+    //
+    // Not awaited. This runs on a persistent Railway process, so the send
+    // completes after the response is flushed and the form stays snappy.
+    // sendWaitlistConfirmation never throws, so there is no unhandled rejection.
+    if (!sentRecently(trimmedEmail)) {
+      markSent(trimmedEmail);
+      sendWaitlistConfirmation(trimmedEmail, RESEND_API_KEY).then((result) => {
+        if (!result.sent) {
+          console.error(
+            `[waitlist] stored ${trimmedEmail} but confirmation not sent (${result.reason})`
+          );
+        }
+      });
+    }
+
     return res.status(200).json({
       success: true,
-      message: 'Successfully added to waitlist!'
+      message: MESSAGE_NEW
     });
 
   } catch (error) {
