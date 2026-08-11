@@ -9,7 +9,7 @@
     submitLabel: "Join Waitlist",
     loadingLabel: "Joining…",
     successTitle: "You're on the list!",
-    successMessage: "Thank you for joining the Lune Synth™ beta waitlist. We will notify you as soon as invites are ready.",
+    successMessage: "Check your inbox — we just emailed you one quick question: is your phone Android or iPhone? If Android, we need the Google account email your Play Store uses. Reply to that email so your invite reaches the right place.",
     appStoreUrl: "",
     playStoreUrl: "",
     appStoreLabel: "Download on the App Store",
