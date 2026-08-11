@@ -1,0 +1,267 @@
+/**
+ * Waitlist confirmation email.
+ *
+ * Sent after an address is stored, purely as a courtesy — the caller must never
+ * fail a waitlist submission because this failed. See sendWaitlistConfirmation.
+ *
+ * The email asks the recruiting question (phone platform, and the Google account
+ * email for Android users) because Play closed-testing invites key off the
+ * tester's Google account, which is often not their signup address.
+ *
+ * Mail-client constraints this file is written against:
+ *   - Gmail strips <style> blocks, so every style is inline.
+ *   - Outlook ignores background-image, so every gradient carries a solid
+ *     background-color fallback near the sweep's midpoint.
+ *   - CSS custom properties are unsupported, so hex values are repeated.
+ *   - No web font is fetched, so stacks lead with system fallbacks.
+ */
+
+const RESEND_ENDPOINT = 'https://api.resend.com/emails';
+
+// mail.lunesynth.com is the verified sending domain. The apex lunesynth.com is
+// NOT verified for sending and will be rejected.
+const FROM = 'Lune Synth <noreply@mail.lunesynth.com>';
+const REPLY_TO = 'griffin@lunesynth.com';
+
+const SUBJECT = "You're on the Lune Synth beta list — one quick question";
+const PREHEADER = 'One quick question so your invite reaches the right place.';
+
+const LOGO_URL = 'https://lunesynth.com/images/lune-synth-icon-120.png';
+
+const TIMEOUT_MS = 3000;
+const MAX_ATTEMPTS = 2;
+
+// Brand tokens, repeated literally because var() does not work in email.
+const PAGE_BG = '#050914';
+const CARD_BG = '#081122';
+const BORDER = '#251f3f';
+const TEXT = '#edf5ff';
+const MUTED = '#a6bad7';
+const FAINT = '#6d82a3';
+const ON_ACCENT = '#06111f';
+const SWEEP = 'linear-gradient(120deg,#64a8ff 0%,#a47bff 50%,#ff5d87 100%)';
+// Midpoint of the sweep, used wherever Outlook will drop the gradient.
+const SWEEP_FALLBACK = '#a47bff';
+
+const SANS = "'Plus Jakarta Sans',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+const MONO = "'Roboto Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace";
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function buildHtml() {
+  const replyHref = `mailto:${REPLY_TO}?subject=${encodeURIComponent('My phone: Android / iPhone')}`;
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<title>${escapeHtml(SUBJECT)}</title>
+</head>
+<body style="margin:0;padding:0;background-color:${PAGE_BG};">
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:${PAGE_BG};opacity:0;">${escapeHtml(PREHEADER)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${PAGE_BG};margin:0;padding:0;">
+<tr>
+<td align="center" style="padding:32px 16px;">
+
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background-color:${CARD_BG};border:1px solid ${BORDER};border-radius:14px;overflow:hidden;">
+
+<tr>
+<td height="3" style="height:3px;line-height:3px;font-size:0;background-color:${SWEEP_FALLBACK};background-image:${SWEEP};">&nbsp;</td>
+</tr>
+
+<tr>
+<td style="padding:30px 34px 0 34px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td valign="middle" style="padding-right:12px;">
+<img src="${LOGO_URL}" width="44" height="44" alt="Lune Synth" style="display:block;width:44px;height:44px;border:0;outline:none;text-decoration:none;" />
+</td>
+<td valign="middle" style="font-family:${MONO};font-size:13px;font-weight:700;letter-spacing:3px;color:${TEXT};text-transform:uppercase;">LUNE&nbsp;SYNTH</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td style="padding:26px 34px 0 34px;font-family:${SANS};font-size:25px;line-height:1.28;font-weight:800;color:${TEXT};">You&rsquo;re on the list.</td>
+</tr>
+
+<tr>
+<td style="padding:14px 34px 0 34px;font-family:${SANS};font-size:15px;line-height:1.65;color:${MUTED};">
+Thanks for joining the Lune Synth beta waitlist. Invites go out in small cohorts, and yours is reserved.
+</td>
+</tr>
+
+<tr>
+<td style="padding:22px 34px 0 34px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${PAGE_BG};border:1px solid ${BORDER};border-radius:10px;">
+<tr>
+<td style="padding:20px 22px;font-family:${SANS};font-size:15px;line-height:1.65;color:${TEXT};">
+<div style="font-family:${MONO};font-size:11px;font-weight:700;letter-spacing:2px;color:${FAINT};text-transform:uppercase;padding-bottom:10px;">Before we can invite you</div>
+<strong style="color:${TEXT};">Could you reply with two things?</strong>
+<div style="padding-top:12px;color:${MUTED};">
+1. Is your phone <strong style="color:${TEXT};">Android</strong> or <strong style="color:${TEXT};">iPhone</strong>?<br />
+2. If Android &mdash; what&rsquo;s the <strong style="color:${TEXT};">Google account email</strong> on that phone? That&rsquo;s the one your Play Store uses.
+</div>
+<div style="padding-top:14px;font-size:14px;color:${FAINT};">
+Android invites are sent to your Google account, which often isn&rsquo;t the address you signed up with. If it&rsquo;s the wrong one, the app simply never appears for you.
+</div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td align="left" style="padding:24px 34px 0 34px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center" bgcolor="${SWEEP_FALLBACK}" style="border-radius:9px;background-color:${SWEEP_FALLBACK};background-image:${SWEEP};">
+<a href="${replyHref}" style="display:inline-block;padding:14px 30px;font-family:${SANS};font-size:15px;font-weight:700;line-height:1;color:${ON_ACCENT};text-decoration:none;border-radius:9px;">Reply with your answer</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td style="padding:16px 34px 0 34px;font-family:${SANS};font-size:14px;line-height:1.65;color:${FAINT};">
+Or just hit reply &mdash; it reaches a person, not a robot.
+</td>
+</tr>
+
+<tr>
+<td style="padding:28px 34px 30px 34px;">
+<div style="border-top:1px solid ${BORDER};padding-top:18px;font-family:${SANS};font-size:12px;line-height:1.6;color:${FAINT};">
+You received this because you joined the Lune Synth beta waitlist at lunesynth.com.<br />
+Lune Synth&trade; &mdash; the anti-slop learning app.
+</div>
+</td>
+</tr>
+
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>`;
+}
+
+function buildText() {
+  return `You're on the list.
+
+Thanks for joining the Lune Synth beta waitlist. Invites go out in small
+cohorts, and yours is reserved.
+
+BEFORE WE CAN INVITE YOU
+
+Could you reply with two things?
+
+  1. Is your phone Android or iPhone?
+  2. If Android - what's the Google account email on that phone? That's the
+     one your Play Store uses.
+
+Android invites are sent to your Google account, which often isn't the address
+you signed up with. If it's the wrong one, the app simply never appears for you.
+
+Just reply to this email - it reaches a person, not a robot.
+
+--
+You received this because you joined the Lune Synth beta waitlist at
+lunesynth.com.
+Lune Synth - the anti-slop learning app.
+`;
+}
+
+/**
+ * Sends the confirmation. Resolves with a result object; never throws.
+ *
+ * Retries at most once, and only for 429 / 5xx / network failures. A 422
+ * (unverified sending domain, malformed address) fails identically on every
+ * attempt, so retrying it only delays the log line.
+ */
+async function sendWaitlistConfirmation(email, apiKey) {
+  if (!apiKey) {
+    return { sent: false, reason: 'missing_api_key' };
+  }
+
+  const payload = JSON.stringify({
+    from: FROM,
+    to: [email],
+    reply_to: REPLY_TO,
+    subject: SUBJECT,
+    html: buildHtml(),
+    text: buildText(),
+  });
+
+  let lastReason = 'unknown';
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+    try {
+      const response = await fetch(RESEND_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: payload,
+        signal: controller.signal,
+      });
+
+      if (response.ok) {
+        const data = await response.json().catch(() => ({}));
+        return { sent: true, id: data.id };
+      }
+
+      const body = await response.text().catch(() => '');
+      lastReason = `http_${response.status}`;
+
+      const retriable = response.status === 429 || response.status >= 500;
+      if (!retriable || attempt === MAX_ATTEMPTS) {
+        console.error(
+          `[waitlist] confirmation email failed (${lastReason}, attempt ${attempt}):`,
+          body.slice(0, 500)
+        );
+        return { sent: false, reason: lastReason };
+      }
+
+      console.warn(`[waitlist] confirmation email ${lastReason}, retrying once`);
+    } catch (error) {
+      lastReason = error.name === 'AbortError' ? 'timeout' : 'network_error';
+
+      if (attempt === MAX_ATTEMPTS) {
+        console.error(
+          `[waitlist] confirmation email failed (${lastReason}, attempt ${attempt}):`,
+          error.message
+        );
+        return { sent: false, reason: lastReason };
+      }
+
+      console.warn(`[waitlist] confirmation email ${lastReason}, retrying once`);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  return { sent: false, reason: lastReason };
+}
+
+module.exports = {
+  sendWaitlistConfirmation,
+  // Exported for local preview/testing without sending mail.
+  buildHtml,
+  buildText,
+  SUBJECT,
+};
