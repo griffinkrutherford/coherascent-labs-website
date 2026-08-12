@@ -31,6 +31,12 @@
     ".lune-wq__btn[aria-pressed='true']{border-color:#64a8ff;color:#edf5ff;background:rgba(100,168,255,.14);}",
     ".lune-wq__android{margin:12px 0 0;}",
     ".lune-wq__android[hidden]{display:none;}",
+    ".lune-wq__presume{display:block;font-size:13.5px;line-height:1.5;color:#a6bad7;margin:0 0 10px;}",
+    ".lune-wq__presume strong{color:#edf5ff;font-weight:600;word-break:break-all;}",
+    ".lune-wq__toggle{display:flex;align-items:flex-start;gap:9px;cursor:pointer;margin:0 0 10px;}",
+    ".lune-wq__toggle input{flex:0 0 auto;width:16px;height:16px;margin:1px 0 0;accent-color:#64a8ff;cursor:pointer;}",
+    ".lune-wq__toggle span{font-size:13px;line-height:1.45;color:#a6bad7;}",
+    ".lune-wq__diff[hidden]{display:none;}",
     ".lune-wq__label{display:block;font-size:13px;font-weight:600;color:#a6bad7;margin:0 0 6px;}",
     ".lune-wq__row{display:flex;gap:8px;flex-wrap:wrap;}",
     ".lune-wq__input{flex:1 1 190px;min-width:0;box-sizing:border-box;padding:11px 13px;",
@@ -84,9 +90,18 @@
       '<button type="button" class="lune-wq__btn" data-wq-pick="android" aria-pressed="false">Android</button>',
       "</div>",
       '<div class="lune-wq__android" data-wq-android hidden>',
-      '<label class="lune-wq__label" for="' + inputId + '">Google account email (the one your Play Store uses)</label>',
-      '<div class="lune-wq__row">',
+      // Most people sign up with the same address their Play Store uses, so
+      // assume that and let them correct it, rather than asking everyone.
+      '<span class="lune-wq__presume">We’ll send your Play invite to <strong data-wq-presumed></strong>.</span>',
+      '<label class="lune-wq__toggle">',
+      '<input type="checkbox" data-wq-different />',
+      "<span>That’s not my Google account — I’ll enter a different one</span>",
+      "</label>",
+      '<div class="lune-wq__diff" data-wq-diff hidden>',
+      '<label class="lune-wq__label" for="' + inputId + '">Google account email</label>',
       '<input class="lune-wq__input" id="' + inputId + '" type="email" autocomplete="email" placeholder="you@gmail.com" data-wq-google />',
+      "</div>",
+      '<div class="lune-wq__row" style="margin-top:10px;">',
       '<button type="button" class="lune-wq__save" data-wq-save>Save</button>',
       "</div>",
       "</div>",
@@ -100,6 +115,20 @@
     var saveButton = wrap.querySelector("[data-wq-save]");
     var status = wrap.querySelector("[data-wq-status]");
     var buttons = wrap.querySelectorAll("[data-wq-pick]");
+    var differentToggle = wrap.querySelector("[data-wq-different]");
+    var differentBlock = wrap.querySelector("[data-wq-diff]");
+
+    wrap.querySelector("[data-wq-presumed]").textContent = email;
+
+    differentToggle.addEventListener("change", function () {
+      differentBlock.hidden = !differentToggle.checked;
+      setStatus("");
+      if (differentToggle.checked) {
+        try { googleInput.focus({ preventScroll: true }); } catch (e) { googleInput.focus(); }
+      } else {
+        googleInput.value = "";
+      }
+    });
 
     function setStatus(text, isError) {
       status.textContent = text || "";
@@ -140,12 +169,18 @@
     });
 
     saveButton.addEventListener("click", function () {
-      var value = googleInput.value.trim().toLowerCase();
-      if (!value || value.indexOf("@") === -1 || value.indexOf(".") === -1) {
-        setStatus("Please enter the Google account email your Play Store uses.", true);
-        googleInput.focus();
-        return;
+      // Unless they said otherwise, the signup address is the Google account.
+      var value = email;
+
+      if (differentToggle.checked) {
+        value = googleInput.value.trim().toLowerCase();
+        if (!value || value.indexOf("@") === -1 || value.indexOf(".") === -1) {
+          setStatus("Please enter the Google account email your Play Store uses.", true);
+          googleInput.focus();
+          return;
+        }
       }
+
       saveButton.disabled = true;
       setStatus("Saving…");
       post(email, "android", value).then(function () {
