@@ -37,8 +37,8 @@ const SUBJECT = "You're on the Lune Synth beta list — one quick question";
 // Sender already reads "Griffin at Lune Synth", so the brand does not need
 // repeating here. Leads with the cohort for context, ends on the actual
 // question so it still reads as a person asking something rather than an
-// announcement. 32 chars, so it survives truncation on mobile.
-const SUBJECT_REMINDER = "First cohort: Android or iPhone?";
+// announcement. 31 chars, so it survives truncation on mobile.
+const SUBJECT_REMINDER = "Beta cohort: Android or iPhone?";
 const PREHEADER = 'One quick question so your invite reaches the right place.';
 
 const LOGO_URL = 'https://lunesynth.com/images/lune-synth-icon-120.png';
