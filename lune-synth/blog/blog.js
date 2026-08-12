@@ -251,6 +251,17 @@
     var email = emailInput.value.trim();
     if (!email) return;
 
+    var fields = window.LuneWaitlistFields;
+    var check = fields ? fields.validate(form) : { ok: true };
+    if (!check.ok) {
+      var titleEl = popup.querySelector("#waitlist-popup-title");
+      var msgEl = popup.querySelector("[data-waitlist-message]");
+      if (titleEl) titleEl.textContent = "One more thing";
+      if (msgEl) msgEl.textContent = check.message;
+      openPopup();
+      return;
+    }
+
     // Disable inputs and show loading state
     var originalButtonText = submitButton.textContent;
     submitButton.disabled = true;
@@ -266,7 +277,7 @@
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ email: email })
+      body: JSON.stringify(Object.assign({ email: email }, fields ? fields.collect(form) : {}))
     })
     .then(function (response) {
       return response.json().then(function (data) {

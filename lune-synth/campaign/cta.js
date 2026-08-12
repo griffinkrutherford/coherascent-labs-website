@@ -59,7 +59,7 @@
 
   function formMarkup(settings, id) {
     return [
-      '<form class="lune-cta__form" data-cta-form novalidate>',
+      '<form class="lune-cta__form" data-cta-form data-waitlist-form novalidate>',
       '<label class="sr-only" for="' + id + '-email">Email address</label>',
       '<input id="' + id + '-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="' + settings.emailPlaceholder + '" required />',
       '<button type="submit">' + settings.submitLabel + "</button>",
@@ -135,6 +135,15 @@
           return;
         }
 
+        var fields = window.LuneWaitlistFields;
+        if (fields) {
+          var check = fields.validate(form);
+          if (!check.ok) {
+            status.textContent = check.message;
+            return;
+          }
+        }
+
         var originalLabel = button.textContent;
         button.disabled = true;
         input.disabled = true;
@@ -145,7 +154,7 @@
           var response = await fetch("/api/waitlist", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(Object.assign({ email: email }, details))
+            body: JSON.stringify(Object.assign({ email: email }, details, fields ? fields.collect(form) : {}))
           });
           var data = await response.json();
           if (!response.ok) throw new Error(data.error || "Unable to join the waitlist.");

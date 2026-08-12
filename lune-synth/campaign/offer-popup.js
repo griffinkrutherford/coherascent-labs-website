@@ -31,7 +31,7 @@
       '      <p class="beta-offer-popup__eyebrow">First 100 users only</p>',
       '      <h2 id="beta-offer-title">Get in early. Keep the savings.</h2>',
       '      <p class="beta-offer-popup__lede">The first 100 users get <strong>2 months free</strong> and a <strong>lifetime 50% off</strong> Lune Synth&trade; Pro.</p>',
-      '      <form class="beta-offer-popup__form" data-beta-offer-form novalidate>',
+      '      <form class="beta-offer-popup__form" data-beta-offer-form data-waitlist-form novalidate>',
       '        <label class="sr-only" for="beta-offer-email">Email address</label>',
       '        <input id="beta-offer-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Email address" aria-label="Email address" required>',
       '        <button type="submit">Join Waitlist</button>',
@@ -96,6 +96,15 @@
         return;
       }
 
+      var fields = window.LuneWaitlistFields;
+      if (fields) {
+        var check = fields.validate(form);
+        if (!check.ok) {
+          status.textContent = check.message;
+          return;
+        }
+      }
+
       var originalLabel = button.textContent;
       input.disabled = true;
       button.disabled = true;
@@ -104,11 +113,11 @@
       fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+        body: JSON.stringify(Object.assign({
           email: email,
           cta_placement: "limited_offer_popup",
           landing_path: window.location.pathname
-        })
+        }, fields ? fields.collect(form) : {}))
       })
       .then(function (response) {
         return response.json().then(function (data) {
