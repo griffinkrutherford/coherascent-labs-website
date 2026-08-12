@@ -172,7 +172,7 @@ Or just hit reply &mdash; it reaches a person, not a robot.
 <tr>
 <td style="padding:14px 34px 0 34px;font-family:${SANS};font-size:15px;line-height:1.65;color:${MUTED};">
 ${options.reminder
-  ? 'You joined the Lune Synth beta waitlist a little while back, and your spot is still reserved. We&rsquo;re assembling the first cohort now &mdash; the first 100 users get 2 months free and lifetime 50% off Pro. One thing we need before we can send your invite.'
+  ? 'You joined the Lune Synth beta waitlist a little while back, and your spot is still reserved. We&rsquo;re assembling the first cohort now, and there&rsquo;s one thing we need before we can send your invite.'
   : 'Thanks for joining the Lune Synth beta waitlist. Invites go out in small cohorts, and yours is reserved.'}
 </td>
 </tr>
@@ -265,9 +265,8 @@ Nothing else needed from you right now.`,
 
   const intro = options.reminder
     ? `You joined the Lune Synth beta waitlist a little while back, and your spot
-is still reserved. We're assembling the first cohort now - the first 100 users
-get 2 months free and lifetime 50% off Pro. One thing we need before we can
-send your invite.`
+is still reserved. We're assembling the first cohort now, and there's one thing
+we need before we can send your invite.`
     : `Thanks for joining the Lune Synth beta waitlist. Invites go out in small
 cohorts, and yours is reserved.`;
 
