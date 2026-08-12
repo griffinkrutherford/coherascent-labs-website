@@ -75,24 +75,25 @@ function questionState({ platform, googleEmail } = {}) {
 function buildHtml(options = {}) {
   const state = questionState(options);
   const unsubscribeUrl = options.unsubscribeUrl || '';
+  const recipient = options.email || 'your signup email';
   const googleEmail = options.googleEmail || '';
   const replyHref = `mailto:${REPLY_TO}?subject=${encodeURIComponent('My phone: Android / iPhone')}`;
 
   const blocks = {
     unknown: {
       eyebrow: 'Before we can invite you',
-      title: 'Could you reply with two things?',
-      body: '1. Is your phone <strong style="color:' + TEXT + ';">Android</strong> or <strong style="color:' + TEXT + ';">iPhone</strong>?<br />'
-        + '2. If Android &mdash; what&rsquo;s the <strong style="color:' + TEXT + ';">Google account email</strong> on that phone? That&rsquo;s the one your Play Store uses.',
-      note: 'Android invites are sent to your Google account, which often isn&rsquo;t the address you signed up with. If it&rsquo;s the wrong one, the app simply never appears for you.',
-      cta: 'Reply with your answer',
+      title: 'Reply with one word: <span style="color:' + TEXT + ';">Android</span> or <span style="color:' + TEXT + ';">iPhone</span>.',
+      body: 'That&rsquo;s it &mdash; that&rsquo;s the whole ask.',
+      note: '<strong style="color:' + MUTED + ';">Android only:</strong> your Play invite goes to the Google account on your phone. '
+        + 'If that isn&rsquo;t <span style="color:' + TEXT + ';">' + escapeHtml(recipient) + '</span>, include the right address. Otherwise nothing else needed.',
+      cta: 'Reply Android or iPhone',
     },
     android_needs_email: {
       eyebrow: 'One thing still missing',
-      title: 'What&rsquo;s the Google account on your Android phone?',
-      body: 'Reply with the <strong style="color:' + TEXT + ';">Google account email</strong> your Play Store uses.',
-      note: 'Play invites are sent to your Google account, which often isn&rsquo;t the address you signed up with. Without it, the app never appears for you.',
-      cta: 'Send your Google account email',
+      title: 'Is your Play Store on <span style="color:' + TEXT + ';">' + escapeHtml(recipient) + '</span>?',
+      body: 'If so, you&rsquo;re done &mdash; no need to reply.',
+      note: 'If your phone uses a different Google account, reply with that address and we&rsquo;ll send the invite there instead.',
+      cta: 'Mine is a different account',
     },
     android_known: {
       eyebrow: 'Your invite is set',
@@ -178,6 +179,12 @@ ${options.reminder
 </tr>
 
 <tr>
+<td style="padding:12px 34px 0 34px;font-family:${SANS};font-size:14px;line-height:1.6;color:${FAINT};">
+Lune Synth is the anti-slop learning app: you do the work by hand, and it grades your actual reasoning step by step instead of handing you the answer.
+</td>
+</tr>
+
+<tr>
 <td style="padding:22px 34px 0 34px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${PAGE_BG};border:1px solid ${BORDER};border-radius:10px;">
 <tr>
@@ -220,31 +227,26 @@ Lune Synth&trade; &mdash; the anti-slop learning app.${unsubscribeUrl
 function buildText(options = {}) {
   const state = questionState(options);
   const unsubscribeUrl = options.unsubscribeUrl || '';
+  const recipient = options.email || 'your signup email';
   const googleEmail = options.googleEmail || '';
 
   const bodies = {
     unknown: `BEFORE WE CAN INVITE YOU
 
-Could you reply with two things?
+Reply with one word: Android or iPhone. That's the whole ask.
 
-  1. Is your phone Android or iPhone?
-  2. If Android - what's the Google account email on that phone? That's the
-     one your Play Store uses.
-
-Android invites are sent to your Google account, which often isn't the address
-you signed up with. If it's the wrong one, the app simply never appears for you.
+Android only: your Play invite goes to the Google account on your phone. If
+that isn't ${recipient}, include the right address. Otherwise nothing else
+needed.
 
 Just reply to this email - it reaches a person, not a robot.`,
 
     android_needs_email: `ONE THING STILL MISSING
 
-What's the Google account email your Play Store uses? Reply with it and
-you're set.
+Is your Play Store on ${recipient}? If so, you're done - no need to reply.
 
-Play invites are sent to your Google account, which often isn't the address
-you signed up with. Without it, the app never appears for you.
-
-Just reply to this email - it reaches a person, not a robot.`,
+If your phone uses a different Google account, reply with that address and
+we'll send the invite there instead.`,
 
     android_known: `YOUR INVITE IS SET
 
@@ -274,6 +276,9 @@ cohorts, and yours is reserved.`;
 
 ${intro}
 
+Lune Synth is the anti-slop learning app: you do the work by hand, and it
+grades your actual reasoning step by step instead of handing you the answer.
+
 ${bodies[state]}
 
 --
@@ -297,7 +302,7 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
 
   const state = questionState(options);
   const unsubscribeUrl = buildUrl(email, apiKey);
-  const withUnsubscribe = { ...options, unsubscribeUrl };
+  const withUnsubscribe = { ...options, unsubscribeUrl, email };
   const payload = JSON.stringify({
     from: FROM,
     to: [email],
