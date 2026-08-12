@@ -113,10 +113,13 @@ invalid per RFC 1034, but it is demonstrably not blocking inbound mail.
   Google requires this URL reachable **without installing** the app. Privacy §11
   deliberately does **not** link it yet — add the link only once it is live.
   Consider whether it also belongs in `campaign/site-footer.js`.
-- **Apple privacy nutrition labels: undrafted, unowned.** Unlike Play, there is
-  no draft of these anywhere in either repo. They must match Privacy §3
-  field-for-field, including the first-party analytics — being the controller
-  does not exempt the collection from disclosure.
+- **Apple privacy nutrition labels: drafted** at
+  `docs/store-assets/apple-privacy-nutrition-labels.md`. Answers every App
+  Privacy question with the Privacy Policy section it derives from. Three items
+  flagged there need confirmation against the running code before submission:
+  coarse location (do we derive region from IP, or only log it?), in-app search
+  history (is any query captured in the event allowlist?), and the timing of the
+  Purchases declaration.
 - **Play Data safety: already drafted correctly**, in the app repo at
   `docs/2026-08-02-play-console-submission-package.md` (declares App activity →
   App interactions: Collected, citing `analytics_events`). The draft is right;
