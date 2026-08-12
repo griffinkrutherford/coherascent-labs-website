@@ -376,38 +376,48 @@ function buildPlainLetter(options = {}) {
   const googleEmail = options.googleEmail || '';
   const unsubscribeUrl = options.unsubscribeUrl || '';
 
+  // Deliberately references their position in the cohort, not the discount
+  // itself. Naming a specific offer makes this a commercial message under
+  // CAN-SPAM, which requires a physical postal address we do not yet have.
+  // Status is a fact about their place in line, not an advertisement.
   const opening = options.reminder
-    ? `Hi — you joined the Lune Synth beta waitlist a while back, and your spot's
-still reserved. We're putting the first cohort together now.`
-    : `Hi — thanks for joining the Lune Synth beta waitlist. Invites go out in
-small cohorts, and yours is reserved.`;
+    ? `Hi, thank you for joining the Lune Synth beta waitlist. Your spot is
+still reserved, and you're in the first group we're inviting, which is
+where the founding-member perks apply. We're putting that first cohort
+together now.`
+    : `Hi, thank you for joining the Lune Synth beta waitlist. Your spot is
+reserved. Invites go out in small cohorts, and yours is in the first
+group, which is where the founding-member perks apply.`;
 
   const asks = {
     unknown: `One thing before I can send your invite: is your phone Android or iPhone?
 Just reply with the one word.
 
-(Android only — your Play invite goes to the Google account on your phone.
+(Android only: your Play invite goes to the Google account on your phone.
 If that isn't ${recipient}, send me the right address.)
 
-Once you reply, your access email comes next — with the build and how to
-get started.`,
+Once you reply, your access email comes next, with the build, what you get
+as an early member, and how to get started.`,
 
     android_needs_email: `One thing before I can send your invite: is your Play Store on ${recipient}?
-If so you're all set — no need to reply.
+If so you're all set, no need to reply.
 
 If your phone uses a different Google account, send me that address and
 I'll point the invite there instead.
 
-Your access email comes next, with the build and how to get started.`,
+Your access email comes next, with the build, what you get as an early
+member, and how to get started.`,
 
-    android_known: `You're all set — your Play invite will go to ${googleEmail}. If that's
-wrong, just reply and I'll fix it.
+    android_known: `You're all set. Your Play invite will go to ${googleEmail}. If that's wrong,
+just reply and I'll fix it.
 
-Your access email comes next, with the build and how to get started.`,
+Your access email comes next, with the build, what you get as an early
+member, and how to get started.`,
 
-    ios_known: `You're all set for TestFlight. Nothing else needed from you.
+    ios_known: `You're all set for TestFlight, nothing else needed from you.
 
-Your access email comes next, with the build and how to get started.`,
+Your access email comes next, with the build, what you get as an early
+member, and how to get started.`,
   };
 
   return `${opening}
@@ -416,6 +426,8 @@ ${asks[state]}
 
 Lune Synth is the anti-slop learning app: you do the work by hand, and it
 grades your reasoning step by step instead of handing you an answer.
+
+Thanks for being early. It genuinely helps.
 
 — Griffin
 Lune Synth
