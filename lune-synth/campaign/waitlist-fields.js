@@ -83,8 +83,8 @@
     var wrap = document.createElement("div");
     wrap.className = "lune-wq";
     wrap.innerHTML = [
-      '<strong class="lune-wq__q">One quick thing — which phone will you use?</strong>',
-      '<span class="lune-wq__why">Android invites go to your Google account, which often isn’t your signup email. Getting this right is what makes the app actually appear for you.</span>',
+      '<strong class="lune-wq__q">Which phone will you use?</strong>',
+      '<span class="lune-wq__why">Android invites go to your Google account, not your signup email.</span>',
       '<div class="lune-wq__opts">',
       '<button type="button" class="lune-wq__btn" data-wq-pick="ios" aria-pressed="false">iPhone</button>',
       '<button type="button" class="lune-wq__btn" data-wq-pick="android" aria-pressed="false">Android</button>',
@@ -92,10 +92,10 @@
       '<div class="lune-wq__android" data-wq-android hidden>',
       // Most people sign up with the same address their Play Store uses, so
       // assume that and let them correct it, rather than asking everyone.
-      '<span class="lune-wq__presume">We’ll send your Play invite to <strong data-wq-presumed></strong>.</span>',
+      '<span class="lune-wq__presume">Invite goes to <strong data-wq-presumed></strong>.</span>',
       '<label class="lune-wq__toggle">',
       '<input type="checkbox" data-wq-different />',
-      "<span>That’s not my Google account — I’ll enter a different one</span>",
+      "<span>Use a different Google account</span>",
       "</label>",
       '<div class="lune-wq__diff" data-wq-diff hidden>',
       '<label class="lune-wq__label" for="' + inputId + '">Google account email</label>',
@@ -160,10 +160,10 @@
         androidBlock.hidden = true;
         setStatus("Saving…");
         post(email, "ios").then(function () {
-          finish("Perfect — we’ll send your TestFlight invite to <strong>" + email + "</strong> when your cohort opens.");
+          finish("Done — invite goes to <strong>" + email + "</strong>.");
         }).catch(function () {
           // The signup itself already succeeded, so this is never fatal.
-          setStatus("Could not save that just now. You can also reply to the confirmation email.", true);
+          setStatus("Couldn’t save — reply to the confirmation email instead.", true);
         });
       });
     });
@@ -175,7 +175,7 @@
       if (differentToggle.checked) {
         value = googleInput.value.trim().toLowerCase();
         if (!value || value.indexOf("@") === -1 || value.indexOf(".") === -1) {
-          setStatus("Please enter the Google account email your Play Store uses.", true);
+          setStatus("Enter your Google account email.", true);
           googleInput.focus();
           return;
         }
@@ -184,10 +184,10 @@
       saveButton.disabled = true;
       setStatus("Saving…");
       post(email, "android", value).then(function () {
-        finish("Got it — your Play invite will go to <strong>" + value + "</strong>.");
+        finish("Done — invite goes to <strong>" + value + "</strong>.");
       }).catch(function () {
         saveButton.disabled = false;
-        setStatus("Could not save that just now. You can also reply to the confirmation email.", true);
+        setStatus("Couldn’t save — reply to the confirmation email instead.", true);
       });
     });
 

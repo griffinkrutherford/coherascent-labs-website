@@ -274,7 +274,7 @@
           // Success
           if (popupTitle) popupTitle.textContent = "You're on the list!";
           if (popupMessage) {
-            popupMessage.textContent = data.message || "You’re on the list — a confirmation is on its way to your inbox.";
+            popupMessage.textContent = data.message || "You’re on the list.";
           }
           if (window.LuneWaitlistFields && popupMessage) {
             window.LuneWaitlistFields.mountQuestion(popupMessage, email);

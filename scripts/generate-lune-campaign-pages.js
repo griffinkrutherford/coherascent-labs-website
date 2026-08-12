@@ -221,7 +221,7 @@ function render(page) {
   <link rel="stylesheet" href="/campaign/features.css?v=3" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=1" />
   <script src="/campaign/cta-config.js?v=2" defer></script>
-  <script src="/campaign/waitlist-fields.js?v=3" defer></script>
+  <script src="/campaign/waitlist-fields.js?v=4" defer></script>
   <script src="/campaign/cta.js?v=2" defer></script>
   <script src="/campaign/features.js?v=3" defer></script>
   <script src="/campaign/landing.js?v=3" defer></script>

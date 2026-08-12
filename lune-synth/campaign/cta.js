@@ -9,7 +9,7 @@
     submitLabel: "Join Waitlist",
     loadingLabel: "Joining…",
     successTitle: "You're on the list!",
-    successMessage: "You’re on the list — a confirmation is on its way to your inbox.",
+    successMessage: "You’re on the list.",
     appStoreUrl: "",
     playStoreUrl: "",
     appStoreLabel: "Download on the App Store",

@@ -8,10 +8,10 @@ const { sendWaitlistConfirmation } = require('./waitlist-confirmation.js');
 // Copy shown in the site's success popup. Returned as `message` so the clients
 // (blog.js, cta.js) pick it up centrally rather than each hardcoding it.
 const MESSAGE_NEW =
-  'You’re on the list — a confirmation is on its way to your inbox.';
+  'You’re on the list.';
 
 const MESSAGE_EXISTING =
-  'You’re already on the list, so we haven’t sent a second confirmation.';
+  'You’re already on the list.';
 
 const MESSAGE_ANSWERED = 'Saved.';
 
