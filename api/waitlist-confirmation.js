@@ -34,7 +34,11 @@ const SUBJECT = "You're on the Lune Synth beta list — one quick question";
 // not a brand impression. A short question reads as a person writing to
 // you; an announcement-shaped subject reads as a campaign and sorts that
 // way in Gmail.
-const SUBJECT_REMINDER = "Android or iPhone?";
+// Sender already reads "Griffin at Lune Synth", so the brand does not need
+// repeating here. Leads with the cohort for context, ends on the actual
+// question so it still reads as a person asking something rather than an
+// announcement. 32 chars, so it survives truncation on mobile.
+const SUBJECT_REMINDER = "First cohort: Android or iPhone?";
 const PREHEADER = 'One quick question so your invite reaches the right place.';
 
 const LOGO_URL = 'https://lunesynth.com/images/lune-synth-icon-120.png';
