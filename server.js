@@ -9,6 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
 const waitlistHandler = require('./api/waitlist.js');
+const unsubscribeHandler = require('./api/unsubscribe.js');
 
 const PORT = process.env.PORT || 3000;
 const PRIMARY_HOST = process.env.PRIMARY_DOMAIN || 'coherascentlabs.com';
@@ -415,6 +416,19 @@ const server = http.createServer((req, res) => {
   // 1. Intercept the waitlist API route
   if (pathname === '/api/waitlist') {
     handleWaitlist(req, res);
+    return;
+  }
+
+  // 1b. Unsubscribe. GET is the link in the email footer; POST is
+  // List-Unsubscribe-Post (RFC 8058), which Gmail and Apple Mail call directly.
+  if (pathname === '/unsubscribe' || pathname === '/unsubscribe/') {
+    if (req.method === 'GET' || req.method === 'POST' || req.method === 'HEAD') {
+      const query = new URL(req.url, `http://${req.headers.host || 'localhost'}`).searchParams;
+      unsubscribeHandler(req, res, query);
+    } else {
+      res.statusCode = 405;
+      res.end('Method Not Allowed');
+    }
     return;
   }
 

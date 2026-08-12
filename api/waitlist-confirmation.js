@@ -16,6 +16,8 @@
  *   - No web font is fetched, so stacks lead with system fallbacks.
  */
 
+const { buildUrl } = require('./unsubscribe-token.js');
+
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 
 // mail.lunesynth.com is the verified sending domain; the apex lunesynth.com is
@@ -72,6 +74,7 @@ function questionState({ platform, googleEmail } = {}) {
 
 function buildHtml(options = {}) {
   const state = questionState(options);
+  const unsubscribeUrl = options.unsubscribeUrl || '';
   const googleEmail = options.googleEmail || '';
   const replyHref = `mailto:${REPLY_TO}?subject=${encodeURIComponent('My phone: Android / iPhone')}`;
 
@@ -199,7 +202,9 @@ ${ctaRow}
 <td style="padding:28px 34px 30px 34px;">
 <div style="border-top:1px solid ${BORDER};padding-top:18px;font-family:${SANS};font-size:12px;line-height:1.6;color:${FAINT};">
 You received this because you joined the Lune Synth beta waitlist at lunesynth.com.<br />
-Lune Synth&trade; &mdash; the anti-slop learning app.
+Lune Synth&trade; &mdash; the anti-slop learning app.${unsubscribeUrl
+  ? `<br /><a href="${unsubscribeUrl}" style="color:${FAINT};text-decoration:underline;">Unsubscribe</a>`
+  : ''}
 </div>
 </td>
 </tr>
@@ -214,6 +219,7 @@ Lune Synth&trade; &mdash; the anti-slop learning app.
 
 function buildText(options = {}) {
   const state = questionState(options);
+  const unsubscribeUrl = options.unsubscribeUrl || '';
   const googleEmail = options.googleEmail || '';
 
   const bodies = {
@@ -275,7 +281,7 @@ ${bodies[state]}
 You received this because you joined the Lune Synth beta waitlist at
 lunesynth.com.
 Lune Synth - the anti-slop learning app.
-`;
+${unsubscribeUrl ? `\nUnsubscribe: ${unsubscribeUrl}\n` : ''}`;
 }
 
 /**
@@ -291,15 +297,24 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
   }
 
   const state = questionState(options);
+  const unsubscribeUrl = buildUrl(email, apiKey);
+  const withUnsubscribe = { ...options, unsubscribeUrl };
   const payload = JSON.stringify({
     from: FROM,
     to: [email],
     reply_to: REPLY_TO,
+    // RFC 8058 one-click unsubscribe. Gmail and Apple Mail surface a native
+    // "Unsubscribe" control from these, which diverts people who would
+    // otherwise reach for the spam button.
+    headers: {
+      'List-Unsubscribe': `<${unsubscribeUrl}>`,
+      'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+    },
     subject: state === 'unknown' || state === 'android_needs_email'
       ? SUBJECT
       : "You're on the Lune Synth beta list",
-    html: buildHtml(options),
-    text: buildText(options),
+    html: buildHtml(withUnsubscribe),
+    text: buildText(withUnsubscribe),
   });
 
   let lastReason = 'unknown';
