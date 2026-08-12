@@ -23,7 +23,7 @@ deletion request for one. Two options:
 ## By email
 
 If you can't access the app, email
-[support@lunesynth.com](mailto:support@lunesynth.com) from the address on your
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com) from the address on your
 account with the subject "Delete my account". We'll verify the request comes
 from the account owner and complete the deletion within 30 days.
 
@@ -49,6 +49,6 @@ archived copy to restore from.
 
 ## Questions
 
-[support@lunesynth.com](mailto:support@lunesynth.com)
+[griffin@lunesynth.com](mailto:griffin@lunesynth.com)
 
 Lune Synth is operated by [[LEGAL ENTITY NAME]].

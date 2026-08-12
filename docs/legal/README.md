@@ -86,6 +86,26 @@ returning the Google host, then send a live test to the published address.
 `griffin@lunesynth.com`. Two different addresses across legal surfaces is a
 defect regardless of DNS.
 
+### Contact addresses — verified 2026-08-12
+
+Resend delivery logs settled which published addresses actually work:
+
+| Address | Result |
+| --- | --- |
+| `griffin@lunesynth.com` | **delivered** — apex mail works inbound despite the CNAME/MX conflict |
+| `support@lunesynth.com` | **permanent bounce** — no mailbox exists |
+
+`/delete-account` originally published `support@`. Switched to `griffin@`
+because a deletion contact that bounces is worse than an imperfect one, and
+Google exercises that address during Play review.
+
+**If you create `support@` later** (a Google Workspace alias onto `griffin@` is
+enough), revert `docs/legal/delete-account.md` to it and rebuild — it is the
+better long-term address. Until then it must not appear in published copy.
+
+This also downgrades the apex-DNS item below: the CNAME/MX coexistence is still
+invalid per RFC 1034, but it is demonstrably not blocking inbound mail.
+
 ### Store submission checklist
 
 - **`/delete-account` now exists in this repo** (`docs/legal/delete-account.md`
