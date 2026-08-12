@@ -84,6 +84,15 @@ module.exports = async (req, res) => {
     }
 
     const trimmedEmail = email.trim().toLowerCase();
+
+    // Platform answers from the signup form. Client-side validation already
+    // enforces these, but a direct POST can omit them, so treat both as
+    // optional here and let the confirmation email ask for whatever is missing.
+    const rawPlatform = typeof req.body.platform === 'string' ? req.body.platform.trim().toLowerCase() : '';
+    const platform = rawPlatform === 'android' || rawPlatform === 'ios' ? rawPlatform : '';
+    const rawGoogle = typeof req.body.google_email === 'string' ? req.body.google_email.trim().toLowerCase() : '';
+    const googleEmail = platform === 'android' && rawGoogle.includes('@') ? rawGoogle : '';
+
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
     if (!RESEND_API_KEY) {
@@ -101,7 +110,14 @@ module.exports = async (req, res) => {
       },
       body: JSON.stringify({
         email: trimmedEmail,
-        unsubscribed: false
+        unsubscribed: false,
+        // Resend contacts have no custom-field support, so the two name fields
+        // carry the answers. This is deliberate: it makes an audience CSV
+        // export directly usable for bulk-adding Play testers, which is the
+        // whole point of collecting them. Revisit if contacts ever gain
+        // metadata, or if these get used for personalisation.
+        first_name: platform,
+        last_name: googleEmail
       }),
     });
 
@@ -129,9 +145,15 @@ module.exports = async (req, res) => {
     // Not awaited. This runs on a persistent Railway process, so the send
     // completes after the response is flushed and the form stays snappy.
     // sendWaitlistConfirmation never throws, so there is no unhandled rejection.
+    // Logged so the answers survive even if the contact write is not doing what
+    // we expect -- Railway logs are currently the only durable record.
+    console.log(
+      `[waitlist] stored ${trimmedEmail} platform=${platform || 'unknown'} google=${googleEmail || 'none'}`
+    );
+
     if (!sentRecently(trimmedEmail)) {
       markSent(trimmedEmail);
-      sendWaitlistConfirmation(trimmedEmail, RESEND_API_KEY).then((result) => {
+      sendWaitlistConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail }).then((result) => {
         if (!result.sent) {
           console.error(
             `[waitlist] stored ${trimmedEmail} but confirmation not sent (${result.reason})`

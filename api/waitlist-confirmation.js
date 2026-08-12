@@ -55,8 +55,75 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
-function buildHtml() {
+/**
+ * The signup form now asks for platform up front, so most recipients have
+ * already answered. Only re-ask when the answer is genuinely missing --
+ * repeating a question they just answered reads as broken.
+ */
+function questionState({ platform, googleEmail } = {}) {
+  if (platform === 'ios') return 'ios_known';
+  if (platform === 'android') return googleEmail ? 'android_known' : 'android_needs_email';
+  return 'unknown';
+}
+
+function buildHtml(options = {}) {
+  const state = questionState(options);
+  const googleEmail = options.googleEmail || '';
   const replyHref = `mailto:${REPLY_TO}?subject=${encodeURIComponent('My phone: Android / iPhone')}`;
+
+  const blocks = {
+    unknown: {
+      eyebrow: 'Before we can invite you',
+      title: 'Could you reply with two things?',
+      body: '1. Is your phone <strong style="color:' + TEXT + ';">Android</strong> or <strong style="color:' + TEXT + ';">iPhone</strong>?<br />'
+        + '2. If Android &mdash; what&rsquo;s the <strong style="color:' + TEXT + ';">Google account email</strong> on that phone? That&rsquo;s the one your Play Store uses.',
+      note: 'Android invites are sent to your Google account, which often isn&rsquo;t the address you signed up with. If it&rsquo;s the wrong one, the app simply never appears for you.',
+      cta: 'Reply with your answer',
+    },
+    android_needs_email: {
+      eyebrow: 'One thing still missing',
+      title: 'What&rsquo;s the Google account on your Android phone?',
+      body: 'Reply with the <strong style="color:' + TEXT + ';">Google account email</strong> your Play Store uses.',
+      note: 'Play invites are sent to your Google account, which often isn&rsquo;t the address you signed up with. Without it, the app never appears for you.',
+      cta: 'Send your Google account email',
+    },
+    android_known: {
+      eyebrow: 'Your invite is set',
+      title: 'We&rsquo;ll send your Play invite here:',
+      body: '<span style="font-family:' + MONO + ';color:' + TEXT + ';">' + escapeHtml(googleEmail) + '</span>',
+      note: 'That&rsquo;s the Google account your Play Store uses. If it&rsquo;s wrong, just reply and we&rsquo;ll fix it &mdash; otherwise the app never appears for you.',
+      cta: 'That&rsquo;s not right',
+    },
+    ios_known: {
+      eyebrow: 'Your invite is set',
+      title: 'You&rsquo;re all set for TestFlight.',
+      body: 'We&rsquo;ll send your iPhone invite to this address when your cohort opens.',
+      note: 'Nothing else needed from you right now.',
+      cta: null,
+    },
+  };
+
+  const block = blocks[state];
+  const ctaRow = block.cta
+    ? `
+<tr>
+<td align="left" style="padding:24px 34px 0 34px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center" bgcolor="${SWEEP_FALLBACK}" style="border-radius:9px;background-color:${SWEEP_FALLBACK};background-image:${SWEEP};">
+<a href="${replyHref}" style="display:inline-block;padding:14px 30px;font-family:${SANS};font-size:15px;font-weight:700;line-height:1;color:${ON_ACCENT};text-decoration:none;border-radius:9px;">${block.cta}</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td style="padding:16px 34px 0 34px;font-family:${SANS};font-size:14px;line-height:1.65;color:${FAINT};">
+Or just hit reply &mdash; it reaches a person, not a robot.
+</td>
+</tr>`
+    : '';
 
   return `<!doctype html>
 <html lang="en">
@@ -106,14 +173,13 @@ Thanks for joining the Lune Synth beta waitlist. Invites go out in small cohorts
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${PAGE_BG};border:1px solid ${BORDER};border-radius:10px;">
 <tr>
 <td style="padding:20px 22px;font-family:${SANS};font-size:15px;line-height:1.65;color:${TEXT};">
-<div style="font-family:${MONO};font-size:11px;font-weight:700;letter-spacing:2px;color:${FAINT};text-transform:uppercase;padding-bottom:10px;">Before we can invite you</div>
-<strong style="color:${TEXT};">Could you reply with two things?</strong>
+<div style="font-family:${MONO};font-size:11px;font-weight:700;letter-spacing:2px;color:${FAINT};text-transform:uppercase;padding-bottom:10px;">${block.eyebrow}</div>
+<strong style="color:${TEXT};">${block.title}</strong>
 <div style="padding-top:12px;color:${MUTED};">
-1. Is your phone <strong style="color:${TEXT};">Android</strong> or <strong style="color:${TEXT};">iPhone</strong>?<br />
-2. If Android &mdash; what&rsquo;s the <strong style="color:${TEXT};">Google account email</strong> on that phone? That&rsquo;s the one your Play Store uses.
+${block.body}
 </div>
 <div style="padding-top:14px;font-size:14px;color:${FAINT};">
-Android invites are sent to your Google account, which often isn&rsquo;t the address you signed up with. If it&rsquo;s the wrong one, the app simply never appears for you.
+${block.note}
 </div>
 </td>
 </tr>
@@ -121,23 +187,7 @@ Android invites are sent to your Google account, which often isn&rsquo;t the add
 </td>
 </tr>
 
-<tr>
-<td align="left" style="padding:24px 34px 0 34px;">
-<table role="presentation" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td align="center" bgcolor="${SWEEP_FALLBACK}" style="border-radius:9px;background-color:${SWEEP_FALLBACK};background-image:${SWEEP};">
-<a href="${replyHref}" style="display:inline-block;padding:14px 30px;font-family:${SANS};font-size:15px;font-weight:700;line-height:1;color:${ON_ACCENT};text-decoration:none;border-radius:9px;">Reply with your answer</a>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-
-<tr>
-<td style="padding:16px 34px 0 34px;font-family:${SANS};font-size:14px;line-height:1.65;color:${FAINT};">
-Or just hit reply &mdash; it reaches a person, not a robot.
-</td>
-</tr>
+${ctaRow}
 
 <tr>
 <td style="padding:28px 34px 30px 34px;">
@@ -156,13 +206,12 @@ Lune Synth&trade; &mdash; the anti-slop learning app.
 </html>`;
 }
 
-function buildText() {
-  return `You're on the list.
+function buildText(options = {}) {
+  const state = questionState(options);
+  const googleEmail = options.googleEmail || '';
 
-Thanks for joining the Lune Synth beta waitlist. Invites go out in small
-cohorts, and yours is reserved.
-
-BEFORE WE CAN INVITE YOU
+  const bodies = {
+    unknown: `BEFORE WE CAN INVITE YOU
 
 Could you reply with two things?
 
@@ -173,7 +222,41 @@ Could you reply with two things?
 Android invites are sent to your Google account, which often isn't the address
 you signed up with. If it's the wrong one, the app simply never appears for you.
 
-Just reply to this email - it reaches a person, not a robot.
+Just reply to this email - it reaches a person, not a robot.`,
+
+    android_needs_email: `ONE THING STILL MISSING
+
+What's the Google account email your Play Store uses? Reply with it and
+you're set.
+
+Play invites are sent to your Google account, which often isn't the address
+you signed up with. Without it, the app never appears for you.
+
+Just reply to this email - it reaches a person, not a robot.`,
+
+    android_known: `YOUR INVITE IS SET
+
+We'll send your Play invite here:
+
+  ${googleEmail}
+
+That's the Google account your Play Store uses. If it's wrong, just reply and
+we'll fix it - otherwise the app never appears for you.`,
+
+    ios_known: `YOUR INVITE IS SET
+
+You're all set for TestFlight. We'll send your iPhone invite to this address
+when your cohort opens.
+
+Nothing else needed from you right now.`,
+  };
+
+  return `You're on the list.
+
+Thanks for joining the Lune Synth beta waitlist. Invites go out in small
+cohorts, and yours is reserved.
+
+${bodies[state]}
 
 --
 You received this because you joined the Lune Synth beta waitlist at
@@ -189,18 +272,21 @@ Lune Synth - the anti-slop learning app.
  * (unverified sending domain, malformed address) fails identically on every
  * attempt, so retrying it only delays the log line.
  */
-async function sendWaitlistConfirmation(email, apiKey) {
+async function sendWaitlistConfirmation(email, apiKey, options = {}) {
   if (!apiKey) {
     return { sent: false, reason: 'missing_api_key' };
   }
 
+  const state = questionState(options);
   const payload = JSON.stringify({
     from: FROM,
     to: [email],
     reply_to: REPLY_TO,
-    subject: SUBJECT,
-    html: buildHtml(),
-    text: buildText(),
+    subject: state === 'unknown' || state === 'android_needs_email'
+      ? SUBJECT
+      : "You're on the Lune Synth beta list",
+    html: buildHtml(options),
+    text: buildText(options),
   });
 
   let lastReason = 'unknown';
