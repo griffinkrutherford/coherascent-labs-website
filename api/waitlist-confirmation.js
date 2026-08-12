@@ -30,6 +30,11 @@ const FROM = 'Griffin at Lune Synth <griffin@mail.lunesynth.com>';
 const REPLY_TO = 'griffin@lunesynth.com';
 
 const SUBJECT = "You're on the Lune Synth beta list — one quick question";
+// The backfill goes to people who signed up weeks ago and needs a reply,
+// not a brand impression. A short question reads as a person writing to
+// you; an announcement-shaped subject reads as a campaign and sorts that
+// way in Gmail.
+const SUBJECT_REMINDER = "Android or iPhone?";
 const PREHEADER = 'One quick question so your invite reaches the right place.';
 
 const LOGO_URL = 'https://lunesynth.com/images/lune-synth-icon-120.png';
@@ -322,9 +327,11 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
       'List-Unsubscribe': `<${unsubscribeUrl}>`,
       'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
     },
-    subject: state === 'unknown' || state === 'android_needs_email'
-      ? SUBJECT
-      : "You're on the Lune Synth beta list",
+    subject: options.reminder
+      ? SUBJECT_REMINDER
+      : (state === 'unknown' || state === 'android_needs_email'
+        ? SUBJECT
+        : "You're on the Lune Synth beta list"),
     ...(textOnly ? {} : { html: buildHtml(withUnsubscribe) }),
     text: buildText(withUnsubscribe),
   });
