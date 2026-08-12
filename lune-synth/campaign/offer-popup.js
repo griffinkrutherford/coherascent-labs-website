@@ -31,7 +31,7 @@
       '      <p class="beta-offer-popup__eyebrow">First 100 users only</p>',
       '      <h2 id="beta-offer-title">Get in early. Keep the savings.</h2>',
       '      <p class="beta-offer-popup__lede">The first 100 users get <strong>2 months free</strong> and a <strong>lifetime 50% off</strong> Lune Synth&trade; Pro.</p>',
-      '      <form class="beta-offer-popup__form" data-beta-offer-form data-waitlist-form novalidate>',
+      '      <form class="beta-offer-popup__form" data-beta-offer-form novalidate>',
       '        <label class="sr-only" for="beta-offer-email">Email address</label>',
       '        <input id="beta-offer-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Email address" aria-label="Email address" required>',
       '        <button type="submit">Join Waitlist</button>',
@@ -42,8 +42,8 @@
       '    </div>',
       '    <div class="beta-offer-popup__success" data-beta-offer-success hidden>',
       '      <p class="beta-offer-popup__eyebrow">You&rsquo;re on the list</p>',
-      '      <h2>Check your inbox.</h2>',
-      '      <p>We just emailed you one quick question: is your phone Android or iPhone? If Android, we need the Google account email your Play Store uses &mdash; otherwise your invite never reaches you. Just reply to that email.</p>',
+      '      <h2>You&rsquo;re in.</h2>',
+      '      <p data-beta-offer-message>We&rsquo;ll email you when your Lune Synth beta invitation is ready.</p>',
       '      <button class="beta-offer-popup__done" type="button" data-beta-offer-dismiss>Done</button>',
       '    </div>',
       '  </div>',
@@ -96,15 +96,6 @@
         return;
       }
 
-      var fields = window.LuneWaitlistFields;
-      if (fields) {
-        var check = fields.validate(form);
-        if (!check.ok) {
-          status.textContent = check.message;
-          return;
-        }
-      }
-
       var originalLabel = button.textContent;
       input.disabled = true;
       button.disabled = true;
@@ -113,11 +104,11 @@
       fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.assign({
+        body: JSON.stringify({
           email: email,
           cta_placement: "limited_offer_popup",
           landing_path: window.location.pathname
-        }, fields ? fields.collect(form) : {}))
+        })
       })
       .then(function (response) {
         return response.json().then(function (data) {
@@ -126,6 +117,10 @@
           store(DISMISSED_KEY);
           popup.querySelector("[data-beta-offer-content]").hidden = true;
           popup.querySelector("[data-beta-offer-success]").hidden = false;
+          var successMessage = popup.querySelector("[data-beta-offer-message]");
+          if (successMessage && window.LuneWaitlistFields) {
+            window.LuneWaitlistFields.mountQuestion(successMessage, email);
+          }
           popup.querySelector("[data-beta-offer-dismiss]").focus();
         });
       })

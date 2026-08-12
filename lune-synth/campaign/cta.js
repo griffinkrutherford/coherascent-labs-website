@@ -9,7 +9,7 @@
     submitLabel: "Join Waitlist",
     loadingLabel: "Joining…",
     successTitle: "You're on the list!",
-    successMessage: "Check your inbox — we just emailed you one quick question: is your phone Android or iPhone? If Android, we need the Google account email your Play Store uses. Reply to that email so your invite reaches the right place.",
+    successMessage: "You’re on the list — a confirmation is on its way to your inbox.",
     appStoreUrl: "",
     playStoreUrl: "",
     appStoreLabel: "Download on the App Store",
@@ -59,7 +59,7 @@
 
   function formMarkup(settings, id) {
     return [
-      '<form class="lune-cta__form" data-cta-form data-waitlist-form novalidate>',
+      '<form class="lune-cta__form" data-cta-form novalidate>',
       '<label class="sr-only" for="' + id + '-email">Email address</label>',
       '<input id="' + id + '-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="' + settings.emailPlaceholder + '" required />',
       '<button type="submit">' + settings.submitLabel + "</button>",
@@ -135,15 +135,6 @@
           return;
         }
 
-        var fields = window.LuneWaitlistFields;
-        if (fields) {
-          var check = fields.validate(form);
-          if (!check.ok) {
-            status.textContent = check.message;
-            return;
-          }
-        }
-
         var originalLabel = button.textContent;
         button.disabled = true;
         input.disabled = true;
@@ -154,13 +145,13 @@
           var response = await fetch("/api/waitlist", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(Object.assign({ email: email }, details, fields ? fields.collect(form) : {}))
+            body: JSON.stringify(Object.assign({ email: email }, details))
           });
           var data = await response.json();
           if (!response.ok) throw new Error(data.error || "Unable to join the waitlist.");
 
           form.reset();
-          this.openPopup(data.message || settings.successMessage);
+          this.openPopup(data.message || settings.successMessage, email);
           track("waitlist_success", details);
         } catch (error) {
           status.textContent = error.message || "Something went wrong. Please try again.";
@@ -187,11 +178,14 @@
       });
     }
 
-    openPopup(message) {
+    openPopup(message, email) {
       var popup = this.querySelector("[data-cta-popup]");
       if (!popup) return;
       var messageElement = popup.querySelector("[data-cta-message]");
       if (messageElement) messageElement.textContent = message;
+      if (email && messageElement && window.LuneWaitlistFields) {
+        window.LuneWaitlistFields.mountQuestion(messageElement, email);
+      }
       this.lastFocusedElement = document.activeElement;
       popup.hidden = false;
       document.body.classList.add("has-modal");

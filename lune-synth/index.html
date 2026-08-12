@@ -10288,7 +10288,7 @@
       <div class="waitlist-popup__panel">
         <button class="waitlist-popup__close" type="button" data-waitlist-close aria-label="Close waitlist message">&times;</button>
         <h3 id="waitlist-popup-title">You're on the list!</h3>
-        <p data-waitlist-message>Check your inbox &mdash; we just emailed you one quick question: is your phone Android or iPhone? If Android, we need the Google account email your Play Store uses. Reply to that email so your invite reaches the right place.</p>
+        <p data-waitlist-message>You&rsquo;re on the list &mdash; a confirmation is on its way to your inbox.</p>
         <button class="waitlist-popup__action" type="button" data-waitlist-close>Got it</button>
       </div>
     </div>
@@ -12637,17 +12637,6 @@
       var email = emailInput.value.trim();
       if (!email) return;
 
-      var fields = window.LuneWaitlistFields;
-      var check = fields ? fields.validate(form) : { ok: true };
-      if (!check.ok) {
-        var preTitle = popup.querySelector("#waitlist-popup-title");
-        var preMessage = popup.querySelector("[data-waitlist-message]");
-        if (preTitle) preTitle.textContent = "One more thing";
-        if (preMessage) preMessage.textContent = check.message;
-        openPopup();
-        return;
-      }
-
       // Disable inputs and show loading state
       var originalButtonText = submitButton.textContent;
       submitButton.disabled = true;
@@ -12663,7 +12652,7 @@
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(Object.assign({ email: email }, fields ? fields.collect(form) : {}))
+        body: JSON.stringify({ email: email })
       })
       .then(function (response) {
         return response.json().then(function (data) {
@@ -12671,7 +12660,10 @@
             // Success
             if (popupTitle) popupTitle.textContent = "You're on the list!";
             if (popupMessage) {
-              popupMessage.textContent = data.message || "Check your inbox — we just emailed you one quick question: is your phone Android or iPhone? If Android, we need the Google account email your Play Store uses. Reply to that email so your invite reaches the right place.";
+              popupMessage.textContent = data.message || "You’re on the list — a confirmation is on its way to your inbox.";
+            }
+            if (window.LuneWaitlistFields && popupMessage) {
+              window.LuneWaitlistFields.mountQuestion(popupMessage, email);
             }
             form.reset();
             window.dispatchEvent(new CustomEvent("lune:waitlist_success", { detail: { cta_placement: "homepage" } }));

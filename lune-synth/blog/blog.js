@@ -251,17 +251,6 @@
     var email = emailInput.value.trim();
     if (!email) return;
 
-    var fields = window.LuneWaitlistFields;
-    var check = fields ? fields.validate(form) : { ok: true };
-    if (!check.ok) {
-      var titleEl = popup.querySelector("#waitlist-popup-title");
-      var msgEl = popup.querySelector("[data-waitlist-message]");
-      if (titleEl) titleEl.textContent = "One more thing";
-      if (msgEl) msgEl.textContent = check.message;
-      openPopup();
-      return;
-    }
-
     // Disable inputs and show loading state
     var originalButtonText = submitButton.textContent;
     submitButton.disabled = true;
@@ -277,7 +266,7 @@
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(Object.assign({ email: email }, fields ? fields.collect(form) : {}))
+      body: JSON.stringify({ email: email })
     })
     .then(function (response) {
       return response.json().then(function (data) {
@@ -285,7 +274,10 @@
           // Success
           if (popupTitle) popupTitle.textContent = "You're on the list!";
           if (popupMessage) {
-            popupMessage.textContent = data.message || "Check your inbox — we just emailed you one quick question: is your phone Android or iPhone? If Android, we need the Google account email your Play Store uses. Reply to that email so your invite reaches the right place.";
+            popupMessage.textContent = data.message || "You’re on the list — a confirmation is on its way to your inbox.";
+          }
+          if (window.LuneWaitlistFields && popupMessage) {
+            window.LuneWaitlistFields.mountQuestion(popupMessage, email);
           }
           form.reset();
           window.dispatchEvent(new CustomEvent("lune:waitlist_success", { detail: { cta_placement: "blog" } }));
