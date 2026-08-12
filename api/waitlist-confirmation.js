@@ -284,7 +284,8 @@ function buildLetterHtml(options = {}) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${PAGE_BG};">
 <tr><td align="center" style="padding:34px 20px;">
 <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;">
-<tr><td style="font-family:${MONO};font-size:11px;font-weight:700;letter-spacing:3px;color:${FAINT};text-transform:uppercase;padding-bottom:22px;">LUNE&nbsp;SYNTH</td></tr>
+<tr><td height="3" style="height:3px;line-height:3px;font-size:0;background-color:${SWEEP_FALLBACK};background-image:${SWEEP};">&nbsp;</td></tr>
+<tr><td style="font-family:${MONO};font-size:11px;font-weight:700;letter-spacing:3px;color:${FAINT};text-transform:uppercase;padding:20px 0 22px;">LUNE&nbsp;SYNTH</td></tr>
 <tr><td style="font-family:${SANS};font-size:15px;line-height:1.7;">
 ${paragraphs}
 </td></tr>
