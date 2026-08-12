@@ -8,14 +8,79 @@ const { sendWaitlistConfirmation } = require('./waitlist-confirmation.js');
 // Copy shown in the site's success popup. Returned as `message` so the clients
 // (blog.js, cta.js) pick it up centrally rather than each hardcoding it.
 const MESSAGE_NEW =
-  'Check your inbox — we just emailed you one quick question: is your phone Android or iPhone? ' +
-  '(If Android, we need the Google account email your Play Store uses.) ' +
-  'Reply to that email so your invite reaches the right place.';
+  'You’re on the list — a confirmation is on its way to your inbox.';
 
 const MESSAGE_EXISTING =
-  'You’re already on the list. If you haven’t told us whether your phone is Android or iPhone yet, ' +
-  'reply to your confirmation email — or email griffin@lunesynth.com. ' +
-  'Android invites go to your Google account, so we need that address to reach you.';
+  'You’re already on the list, so we haven’t sent a second confirmation.';
+
+const MESSAGE_ANSWERED = 'Saved.';
+
+/**
+ * The confirmation is held briefly rather than sent on the spot, because the
+ * success popup asks for platform immediately afterwards. Waiting lets the one
+ * email we send already reflect the answer -- an email asking a question the
+ * reader answered ten seconds earlier reads as broken.
+ *
+ * A platform answer arriving inside the window cancels the timer and sends the
+ * tailored version at once, so the usual wait is seconds, not the full delay.
+ */
+const CONFIRMATION_DELAY_MS = 90 * 1000;
+const pendingConfirmations = new Map();
+
+function deliverConfirmation(email, apiKey, options) {
+  return sendWaitlistConfirmation(email, apiKey, options).then((result) => {
+    if (!result.sent) {
+      console.error(`[waitlist] stored ${email} but confirmation not sent (${result.reason})`);
+    }
+  });
+}
+
+function scheduleConfirmation(email, apiKey, options) {
+  if (pendingConfirmations.has(email) || sentRecently(email)) return;
+  markSent(email);
+  const timer = setTimeout(() => {
+    pendingConfirmations.delete(email);
+    deliverConfirmation(email, apiKey, options);
+  }, CONFIRMATION_DELAY_MS);
+  // Never hold the process open for a courtesy email.
+  if (typeof timer.unref === 'function') timer.unref();
+  pendingConfirmations.set(email, timer);
+}
+
+/**
+ * Sends the confirmation now with the answers included. Returns false when the
+ * email already went out, so a late answer does not trigger a second one.
+ */
+function flushConfirmation(email, apiKey, options) {
+  const timer = pendingConfirmations.get(email);
+  if (!timer) return false;
+  clearTimeout(timer);
+  pendingConfirmations.delete(email);
+  deliverConfirmation(email, apiKey, options);
+  return true;
+}
+
+async function updateContactProperties(email, properties, apiKey) {
+  try {
+    const response = await fetch(`https://api.resend.com/contacts/${encodeURIComponent(email)}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ properties }),
+      signal: AbortSignal.timeout(3000),
+    });
+    if (!response.ok) {
+      const text = await response.text().catch(() => '');
+      console.error(`[waitlist] property update failed for ${email} (${response.status}): ${text.slice(0, 300)}`);
+    }
+    return response.ok;
+  } catch (error) {
+    console.error(`[waitlist] property update errored for ${email}: ${error.message}`);
+    return false;
+  }
+}
 
 /**
  * Backstop for two cases the contact lookup cannot cover: requests that race
@@ -159,19 +224,29 @@ module.exports = async (req, res) => {
       return res.status(500).json({ error: 'Server configuration error.' });
     }
 
+    const properties = {};
+    if (platform) properties.platform = platform;
+    if (googleEmail) properties.google_account = googleEmail;
+
     // Ask first: Resend answers 200 whether or not the contact already exists,
     // so only an explicit lookup can tell a new signup from a repeat.
     const existing = await lookupContact(trimmedEmail, RESEND_API_KEY);
+
     if (existing === 'exists') {
+      // The popup's platform answer arrives as a second request for an address
+      // we already stored. That is an update, not a duplicate signup.
+      if (platform) {
+        await updateContactProperties(trimmedEmail, properties, RESEND_API_KEY);
+        console.log(`[waitlist] updated ${trimmedEmail} platform=${platform} google=${googleEmail || 'none'}`);
+        flushConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail });
+        return res.status(200).json({ success: true, message: MESSAGE_ANSWERED });
+      }
+
       return res.status(200).json({
         success: true,
         message: MESSAGE_EXISTING
       });
     }
-
-    const properties = {};
-    if (platform) properties.platform = platform;
-    if (googleEmail) properties.google_account = googleEmail;
 
     const response = await createContact(trimmedEmail, properties, RESEND_API_KEY);
     const data = await response.json().catch(() => ({}));
@@ -202,15 +277,14 @@ module.exports = async (req, res) => {
       `[waitlist] stored ${trimmedEmail} platform=${platform || 'unknown'} google=${googleEmail || 'none'}`
     );
 
-    if (!sentRecently(trimmedEmail)) {
-      markSent(trimmedEmail);
-      sendWaitlistConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail }).then((result) => {
-        if (!result.sent) {
-          console.error(
-            `[waitlist] stored ${trimmedEmail} but confirmation not sent (${result.reason})`
-          );
-        }
-      });
+    if (platform) {
+      // Signup already carried the answer, so nothing to wait for.
+      if (!sentRecently(trimmedEmail)) {
+        markSent(trimmedEmail);
+        deliverConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail });
+      }
+    } else {
+      scheduleConfirmation(trimmedEmail, RESEND_API_KEY, {});
     }
 
     return res.status(200).json({
