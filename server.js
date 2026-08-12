@@ -349,6 +349,12 @@ function serveLuneHost(req, res, pathname) {
     return;
   }
 
+  // Google requires this URL to be reachable without installing the app.
+  if (pathname === '/delete-account' || pathname === '/delete-account/') {
+    serveStatic(req, res, '/lune-synth/delete-account/index.html');
+    return;
+  }
+
   if (pathname === '/blog' || pathname.startsWith('/blog/')) {
     serveStatic(req, res, `/lune-synth${pathname}`);
     return;
