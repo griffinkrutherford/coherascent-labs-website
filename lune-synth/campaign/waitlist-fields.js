@@ -44,10 +44,7 @@
     "color:#edf5ff;font-size:15px;font-family:inherit;}",
     ".lune-wq__input::placeholder{color:#6d82a3;}",
     ".lune-wq__input:focus{outline:none;border-color:#64a8ff;}",
-    ".lune-wq__save{flex:0 0 auto;padding:11px 20px;border-radius:9px;border:0;",
-    "background-color:#a47bff;background-image:linear-gradient(120deg,#64a8ff 0%,#a47bff 50%,#ff5d87 100%);",
-    "color:#06111f;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}",
-    ".lune-wq__save[disabled]{opacity:.6;cursor:default;}",
+    ".lune-wq__hint{display:block;font-size:12px;line-height:1.5;color:#6d82a3;margin:6px 0 0;}",
     ".lune-wq__status{display:block;font-size:13px;line-height:1.5;margin:10px 0 0;color:#a6bad7;}",
     ".lune-wq__status--err{color:#ff5d87;}",
     ".lune-wq__done{display:block;font-size:14px;line-height:1.55;color:#edf5ff;margin:14px 0 0;}"
@@ -76,6 +73,12 @@
 
   function mountQuestion(afterEl, email) {
     if (!afterEl || !afterEl.parentNode || !email) return null;
+
+    // Submitting twice would otherwise stack a second block below the first,
+    // leaving a live form sitting above an already-answered "Done" line.
+    var previous = afterEl.parentNode.querySelector(".lune-wq");
+    if (previous) previous.parentNode.removeChild(previous);
+
     injectStyles();
     seq += 1;
     var inputId = "lune-wq-google-" + seq;
@@ -100,9 +103,7 @@
       '<div class="lune-wq__diff" data-wq-diff hidden>',
       '<label class="lune-wq__label" for="' + inputId + '">Google account email</label>',
       '<input class="lune-wq__input" id="' + inputId + '" type="email" autocomplete="email" placeholder="you@gmail.com" data-wq-google />',
-      "</div>",
-      '<div class="lune-wq__row" style="margin-top:10px;">',
-      '<button type="button" class="lune-wq__save" data-wq-save>Save</button>',
+      '<span class="lune-wq__hint">Press Enter to save.</span>',
       "</div>",
       "</div>",
       '<span class="lune-wq__status" data-wq-status role="status" aria-live="polite"></span>'
@@ -112,13 +113,28 @@
 
     var androidBlock = wrap.querySelector("[data-wq-android]");
     var googleInput = wrap.querySelector("[data-wq-google]");
-    var saveButton = wrap.querySelector("[data-wq-save]");
     var status = wrap.querySelector("[data-wq-status]");
     var buttons = wrap.querySelectorAll("[data-wq-pick]");
     var differentToggle = wrap.querySelector("[data-wq-different]");
     var differentBlock = wrap.querySelector("[data-wq-diff]");
+    var presumed = wrap.querySelector("[data-wq-presumed]");
 
-    wrap.querySelector("[data-wq-presumed]").textContent = email;
+    presumed.textContent = email;
+
+    // Tracks what is actually stored, so a correction only posts when the value
+    // really changed and unticking can restore the signup address.
+    var lastSaved = email;
+
+    function saveAndroid(value) {
+      setStatus("Saving…");
+      return post(email, "android", value).then(function () {
+        lastSaved = value;
+        presumed.textContent = value;
+        setStatus("Saved.");
+      }).catch(function () {
+        setStatus("Couldn’t save — reply to the confirmation email instead.", true);
+      });
+    }
 
     differentToggle.addEventListener("change", function () {
       differentBlock.hidden = !differentToggle.checked;
@@ -127,6 +143,7 @@
         try { googleInput.focus({ preventScroll: true }); } catch (e) { googleInput.focus(); }
       } else {
         googleInput.value = "";
+        if (lastSaved !== email) saveAndroid(email);
       }
     });
 
@@ -152,15 +169,18 @@
         setStatus("");
 
         if (value === "android") {
+          // Saved straight away using the signup address, which is correct for
+          // most people. The block stays open so it can still be corrected,
+          // which is why this does not call finish().
           androidBlock.hidden = false;
-          try { googleInput.focus({ preventScroll: true }); } catch (e) { googleInput.focus(); }
+          saveAndroid(email);
           return;
         }
 
         androidBlock.hidden = true;
         setStatus("Saving…");
         post(email, "ios").then(function () {
-          finish("Done — invite goes to <strong>" + email + "</strong>.");
+          finish("Done. Your invite goes to <strong>" + email + "</strong>.");
         }).catch(function () {
           // The signup itself already succeeded, so this is never fatal.
           setStatus("Couldn’t save — reply to the confirmation email instead.", true);
@@ -168,32 +188,22 @@
       });
     });
 
-    saveButton.addEventListener("click", function () {
-      // Unless they said otherwise, the signup address is the Google account.
-      var value = email;
-
-      if (differentToggle.checked) {
-        value = googleInput.value.trim().toLowerCase();
-        if (!value || value.indexOf("@") === -1 || value.indexOf(".") === -1) {
-          setStatus("Enter your Google account email.", true);
-          googleInput.focus();
-          return;
-        }
+    // No second CTA: the corrected address commits on Enter or on blur, leaving
+    // "Got it" as the popup's only button.
+    function saveCorrection() {
+      var value = googleInput.value.trim().toLowerCase();
+      if (!value || value === lastSaved) return;
+      if (value.indexOf("@") === -1 || value.indexOf(".") === -1) {
+        setStatus("That doesn’t look like an email address.", true);
+        return;
       }
-
-      saveButton.disabled = true;
-      setStatus("Saving…");
-      post(email, "android", value).then(function () {
-        finish("Done — invite goes to <strong>" + value + "</strong>.");
-      }).catch(function () {
-        saveButton.disabled = false;
-        setStatus("Couldn’t save — reply to the confirmation email instead.", true);
-      });
-    });
+      saveAndroid(value);
+    }
 
     googleInput.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") { event.preventDefault(); saveButton.click(); }
+      if (event.key === "Enter") { event.preventDefault(); googleInput.blur(); }
     });
+    googleInput.addEventListener("blur", saveCorrection);
 
     return wrap;
   }
