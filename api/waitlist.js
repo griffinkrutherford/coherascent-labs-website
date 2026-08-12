@@ -18,11 +18,9 @@ const MESSAGE_EXISTING =
   'Android invites go to your Google account, so we need that address to reach you.';
 
 /**
- * Process-local guard against sending twice for rapid repeat submits (a
- * double-clicked button, a retried request). This is deliberately NOT the
- * primary dedup mechanism -- it is lost on restart and not shared across
- * instances. Real dedup comes from the contact store rejecting the duplicate
- * before we ever reach the send.
+ * Backstop for two cases the contact lookup cannot cover: requests that race
+ * each other (a double-clicked button, where neither has been written yet when
+ * both look), and a lookup that errored. Durable dedup is lookupContact().
  */
 const RECENT_TTL_MS = 60 * 60 * 1000;
 const RECENT_MAX = 5000;
@@ -52,6 +50,67 @@ function looksLikeDuplicate(data, status) {
     || message.includes('duplicate')
     || message.includes('contact already')
   );
+}
+
+/**
+ * Authoritative dedup. Resend returns 200 when creating a contact that already
+ * exists, so the create response cannot distinguish new from repeat -- only
+ * this lookup can. Unlike the in-process map it survives restarts and is shared
+ * across instances.
+ *
+ * Returns 'exists' | 'missing' | 'unknown'. On 'unknown' the caller falls back
+ * to the in-process guard rather than risking a duplicate send.
+ */
+async function lookupContact(email, apiKey) {
+  try {
+    const response = await fetch(`https://api.resend.com/contacts/${encodeURIComponent(email)}`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${apiKey}` },
+      signal: AbortSignal.timeout(3000),
+    });
+    if (response.ok) return 'exists';
+    if (response.status === 404) return 'missing';
+    return 'unknown';
+  } catch (error) {
+    console.warn(`[waitlist] contact lookup failed (${error.name}); falling back to local guard`);
+    return 'unknown';
+  }
+}
+
+/**
+ * Creates the contact, carrying the platform answers as custom properties.
+ *
+ * If the properties are rejected -- most likely because
+ * scripts/resend-setup-properties.js has not been run against this key -- the
+ * create is retried bare. Storing the metadata must never cost us the signup.
+ */
+async function createContact(email, properties, apiKey) {
+  const send = (body) => fetch('https://api.resend.com/contacts', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  const base = { email, unsubscribed: false };
+  const hasProperties = Object.keys(properties).length > 0;
+
+  let response = await send(hasProperties ? { ...base, properties } : base);
+  if (response.ok || !hasProperties) return response;
+
+  const text = await response.clone().text().catch(() => '');
+  if (/propert/i.test(text)) {
+    console.error(
+      `[waitlist] contact properties rejected (${response.status}); retrying without them. `
+      + 'Run scripts/resend-setup-properties.js to define them. Response: '
+      + text.slice(0, 300)
+    );
+    response = await send(base);
+  }
+
+  return response;
 }
 
 module.exports = async (req, res) => {
@@ -100,32 +159,24 @@ module.exports = async (req, res) => {
       return res.status(500).json({ error: 'Server configuration error.' });
     }
 
-    // Call Resend's Contacts API
-    // We send: email, unsubscribed: false, and a custom property to mark the source
-    const response = await fetch('https://api.resend.com/contacts', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: trimmedEmail,
-        unsubscribed: false,
-        // Resend contacts have no custom-field support, so the two name fields
-        // carry the answers. This is deliberate: it makes an audience CSV
-        // export directly usable for bulk-adding Play testers, which is the
-        // whole point of collecting them. Revisit if contacts ever gain
-        // metadata, or if these get used for personalisation.
-        first_name: platform,
-        last_name: googleEmail
-      }),
-    });
+    // Ask first: Resend answers 200 whether or not the contact already exists,
+    // so only an explicit lookup can tell a new signup from a repeat.
+    const existing = await lookupContact(trimmedEmail, RESEND_API_KEY);
+    if (existing === 'exists') {
+      return res.status(200).json({
+        success: true,
+        message: MESSAGE_EXISTING
+      });
+    }
 
-    const data = await response.json();
+    const properties = {};
+    if (platform) properties.platform = platform;
+    if (googleEmail) properties.google_account = googleEmail;
+
+    const response = await createContact(trimmedEmail, properties, RESEND_API_KEY);
+    const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      // Gracefully handle duplicate emails. Already on the list, so no second
-      // confirmation -- they got one when they first signed up.
       if (looksLikeDuplicate(data, response.status)) {
         return res.status(200).json({
           success: true,
