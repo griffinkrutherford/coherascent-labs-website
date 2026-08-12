@@ -15,6 +15,8 @@ const MESSAGE_EXISTING =
 
 const MESSAGE_ANSWERED = 'Saved.';
 
+const MESSAGE_RESUBSCRIBED = 'You’re back on the list.';
+
 /**
  * The confirmation is held briefly rather than sent on the spot, because the
  * success popup asks for platform immediately afterwards. Waiting lets the one
@@ -123,8 +125,12 @@ function looksLikeDuplicate(data, status) {
  * this lookup can. Unlike the in-process map it survives restarts and is shared
  * across instances.
  *
- * Returns 'exists' | 'missing' | 'unknown'. On 'unknown' the caller falls back
- * to the in-process guard rather than risking a duplicate send.
+ * Returns { status: 'exists' | 'missing' | 'unknown', unsubscribed }.
+ *
+ * The unsubscribed flag matters: an opted-out contact still exists, so treating
+ * existence alone as "already on the list" silently strands anyone who
+ * unsubscribes and later rejoins -- which both the unsubscribe page and the
+ * deletion page explicitly invite them to do.
  */
 async function lookupContact(email, apiKey) {
   try {
@@ -133,12 +139,39 @@ async function lookupContact(email, apiKey) {
       headers: { Authorization: `Bearer ${apiKey}` },
       signal: AbortSignal.timeout(3000),
     });
-    if (response.ok) return 'exists';
-    if (response.status === 404) return 'missing';
-    return 'unknown';
+    if (response.ok) {
+      const body = await response.json().catch(() => ({}));
+      const contact = body && body.data ? body.data : body;
+      return { status: 'exists', unsubscribed: contact ? contact.unsubscribed === true : false };
+    }
+    if (response.status === 404) return { status: 'missing', unsubscribed: false };
+    return { status: 'unknown', unsubscribed: false };
   } catch (error) {
     console.warn(`[waitlist] contact lookup failed (${error.name}); falling back to local guard`);
-    return 'unknown';
+    return { status: 'unknown', unsubscribed: false };
+  }
+}
+
+/** Clears the opt-out so a rejoining contact actually receives mail again. */
+async function resubscribeContact(email, apiKey) {
+  try {
+    const response = await fetch(`https://api.resend.com/contacts/${encodeURIComponent(email)}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ unsubscribed: false }),
+      signal: AbortSignal.timeout(3000),
+    });
+    if (!response.ok) {
+      const text = await response.text().catch(() => '');
+      console.error(`[waitlist] resubscribe failed for ${email} (${response.status}): ${text.slice(0, 300)}`);
+    }
+    return response.ok;
+  } catch (error) {
+    console.error(`[waitlist] resubscribe errored for ${email}: ${error.message}`);
+    return false;
   }
 }
 
@@ -232,7 +265,24 @@ module.exports = async (req, res) => {
     // so only an explicit lookup can tell a new signup from a repeat.
     const existing = await lookupContact(trimmedEmail, RESEND_API_KEY);
 
-    if (existing === 'exists') {
+    // Rejoining after unsubscribing is a real signup, not a duplicate. Clear
+    // the opt-out and fall through so they get a confirmation like anyone else.
+    if (existing.status === 'exists' && existing.unsubscribed) {
+      await resubscribeContact(trimmedEmail, RESEND_API_KEY);
+      if (Object.keys(properties).length) {
+        await updateContactProperties(trimmedEmail, properties, RESEND_API_KEY);
+      }
+      console.log(`[waitlist] resubscribed ${trimmedEmail} platform=${platform || 'unknown'}`);
+
+      if (platform) {
+        deliverConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail });
+      } else {
+        scheduleConfirmation(trimmedEmail, RESEND_API_KEY, {});
+      }
+      return res.status(200).json({ success: true, message: MESSAGE_RESUBSCRIBED });
+    }
+
+    if (existing.status === 'exists') {
       // The popup's platform answer arrives as a second request for an address
       // we already stored. That is an update, not a duplicate signup.
       if (platform) {
