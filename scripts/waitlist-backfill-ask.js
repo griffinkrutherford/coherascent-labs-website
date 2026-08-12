@@ -23,6 +23,9 @@ const SEND = process.argv.includes('--send');
 // Text-only sends look personal and are far likelier to reach Primary
 // rather than Promotions -- which matters when the goal is a reply.
 const PLAIN = process.argv.includes('--plain');
+// Brand typography without the Promotions fingerprint -- no button, no
+// logo image, no card. For broadcasts that want both look and a reply.
+const LETTER = process.argv.includes('--letter');
 const LIMIT_ARG = process.argv.find(a => a.startsWith('--limit='));
 const LIMIT = LIMIT_ARG ? parseInt(LIMIT_ARG.split('=')[1], 10) : Infinity;
 
@@ -147,7 +150,7 @@ async function getProperties(email, apiKey) {
   let failed = 0;
 
   for (const email of targets.slice(0, LIMIT)) {
-    const result = await sendWaitlistConfirmation(email, apiKey, { reminder: true, plain: PLAIN });
+    const result = await sendWaitlistConfirmation(email, apiKey, { reminder: true, plain: PLAIN, style: LETTER ? 'letter' : 'full' });
 
     if (result.sent) {
       // Marked immediately, not at the end: a crash must not re-email anyone.

@@ -229,6 +229,70 @@ Lune Synth&trade; &mdash; the anti-slop learning app.${unsubscribeUrl
 </html>`;
 }
 
+/**
+ * Letter-style HTML: brand typography and colour, none of the Promotions
+ * fingerprint.
+ *
+ * Gmail weights a large styled CTA button and a hero image far more heavily
+ * than background colour or font choice, so this drops the button, the logo
+ * image and the card chrome, and keeps everything that costs nothing. The
+ * wordmark is set as letterspaced text rather than an <img>.
+ *
+ * Use for broadcasts that need brand presence AND a reply. For a send whose
+ * only job is a one-word answer, plain text still wins.
+ */
+function buildLetterHtml(options = {}) {
+  const state = questionState(options);
+  const unsubscribeUrl = options.unsubscribeUrl || '';
+  const recipient = options.email || 'your signup email';
+  const googleEmail = options.googleEmail || '';
+
+  const intro = options.reminder
+    ? 'You joined the Lune Synth beta waitlist a little while back, and your spot is still reserved. We&rsquo;re assembling the first cohort now, and there&rsquo;s one thing we need before we can send your invite.'
+    : 'Thanks for joining the Lune Synth beta waitlist. Invites go out in small cohorts, and yours is reserved.';
+
+  const asks = {
+    unknown: `<p style="margin:0 0 16px;">Reply with one word: <strong style="color:${TEXT};">Android</strong> or <strong style="color:${TEXT};">iPhone</strong>. That&rsquo;s the whole ask.</p>
+<p style="margin:0 0 16px;color:${FAINT};">Android only: your Play invite goes to the Google account on your phone. If that isn&rsquo;t ${escapeHtml(recipient)}, include the right address. Otherwise nothing else needed.</p>`,
+    android_needs_email: `<p style="margin:0 0 16px;">Is your Play Store on <strong style="color:${TEXT};">${escapeHtml(recipient)}</strong>? If so you&rsquo;re done &mdash; no need to reply.</p>
+<p style="margin:0 0 16px;color:${FAINT};">If your phone uses a different Google account, reply with that address and we&rsquo;ll send the invite there instead.</p>`,
+    android_known: `<p style="margin:0 0 16px;">We&rsquo;ll send your Play invite to <strong style="color:${TEXT};">${escapeHtml(googleEmail)}</strong>.</p>
+<p style="margin:0 0 16px;color:${FAINT};">If that&rsquo;s wrong, just reply &mdash; otherwise the app never appears for you.</p>`,
+    ios_known: `<p style="margin:0 0 16px;">You&rsquo;re all set for TestFlight. We&rsquo;ll send your invite to this address when your cohort opens.</p>`,
+  };
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<title>${escapeHtml(SUBJECT_REMINDER)}</title>
+</head>
+<body style="margin:0;padding:0;background-color:${PAGE_BG};">
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:${PAGE_BG};opacity:0;">${escapeHtml(PREHEADER)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${PAGE_BG};">
+<tr><td align="center" style="padding:34px 20px;">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;">
+<tr><td style="font-family:${MONO};font-size:11px;font-weight:700;letter-spacing:3px;color:${FAINT};text-transform:uppercase;padding-bottom:22px;">LUNE&nbsp;SYNTH</td></tr>
+<tr><td style="font-family:${SANS};font-size:15px;line-height:1.7;color:${MUTED};">
+<p style="margin:0 0 16px;">${intro}</p>
+<p style="margin:0 0 16px;color:${FAINT};">Lune Synth is the anti-slop learning app: you do the work by hand, and it grades your actual reasoning step by step instead of handing you the answer.</p>
+${asks[state]}
+<p style="margin:0 0 16px;">&mdash; Griffin</p>
+</td></tr>
+<tr><td style="padding-top:22px;font-family:${SANS};font-size:12px;line-height:1.6;color:${FAINT};border-top:1px solid ${BORDER};">
+You received this because you joined the Lune Synth beta waitlist at lunesynth.com.${unsubscribeUrl
+  ? `<br /><a href="${unsubscribeUrl}" style="color:${FAINT};text-decoration:underline;">Unsubscribe</a>`
+  : ''}
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
+}
+
 function buildText(options = {}) {
   const state = questionState(options);
   const unsubscribeUrl = options.unsubscribeUrl || '';
@@ -315,6 +379,8 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
   // text-only message looks like a person wrote it and lands in Primary far
   // more often. Brand impression is worth less than being read.
   const textOnly = options.plain === true;
+  const letter = options.style === 'letter';
+  const renderHtml = letter ? buildLetterHtml : buildHtml;
 
   const payload = JSON.stringify({
     from: FROM,
@@ -332,7 +398,7 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
       : (state === 'unknown' || state === 'android_needs_email'
         ? SUBJECT
         : "You're on the Lune Synth beta list"),
-    ...(textOnly ? {} : { html: buildHtml(withUnsubscribe) }),
+    ...(textOnly ? {} : { html: renderHtml(withUnsubscribe) }),
     text: buildText(withUnsubscribe),
   });
 
@@ -393,6 +459,7 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
 
 module.exports = {
   sendWaitlistConfirmation,
+  buildLetterHtml,
   // Exported for local preview/testing without sending mail.
   buildHtml,
   buildText,
