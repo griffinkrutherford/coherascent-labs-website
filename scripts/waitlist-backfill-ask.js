@@ -20,6 +20,9 @@ const { sendWaitlistConfirmation } = require('../api/waitlist-confirmation.js');
 
 const API = 'https://api.resend.com';
 const SEND = process.argv.includes('--send');
+// Text-only sends look personal and are far likelier to reach Primary
+// rather than Promotions -- which matters when the goal is a reply.
+const PLAIN = process.argv.includes('--plain');
 const LIMIT_ARG = process.argv.find(a => a.startsWith('--limit='));
 const LIMIT = LIMIT_ARG ? parseInt(LIMIT_ARG.split('=')[1], 10) : Infinity;
 
@@ -98,6 +101,7 @@ async function getProperties(email, apiKey) {
   }
 
   console.log(SEND ? 'MODE: SENDING\n' : 'MODE: dry run — nothing will be sent. Add --send to actually send.\n');
+  console.log(PLAIN ? 'FORMAT: plain text (better Primary-inbox odds)\n' : 'FORMAT: branded HTML (add --plain for plain text)\n');
 
   const contacts = await listAllContacts(apiKey);
   console.log(`Audience: ${contacts.length} contact(s)\n`);
@@ -143,7 +147,7 @@ async function getProperties(email, apiKey) {
   let failed = 0;
 
   for (const email of targets.slice(0, LIMIT)) {
-    const result = await sendWaitlistConfirmation(email, apiKey, { reminder: true });
+    const result = await sendWaitlistConfirmation(email, apiKey, { reminder: true, plain: PLAIN });
 
     if (result.sent) {
       // Marked immediately, not at the end: a crash must not re-email anyone.

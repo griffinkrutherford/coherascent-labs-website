@@ -303,6 +303,14 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
   const state = questionState(options);
   const unsubscribeUrl = buildUrl(email, apiKey);
   const withUnsubscribe = { ...options, unsubscribeUrl, email };
+
+  // Gmail sorts on appearance as much as content: table layout, a logo, a
+  // styled CTA button and List-Unsubscribe together read as bulk marketing and
+  // land in Promotions. When the whole point of a send is to get a reply, a
+  // text-only message looks like a person wrote it and lands in Primary far
+  // more often. Brand impression is worth less than being read.
+  const textOnly = options.plain === true;
+
   const payload = JSON.stringify({
     from: FROM,
     to: [email],
@@ -317,7 +325,7 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
     subject: state === 'unknown' || state === 'android_needs_email'
       ? SUBJECT
       : "You're on the Lune Synth beta list",
-    html: buildHtml(withUnsubscribe),
+    ...(textOnly ? {} : { html: buildHtml(withUnsubscribe) }),
     text: buildText(withUnsubscribe),
   });
 
