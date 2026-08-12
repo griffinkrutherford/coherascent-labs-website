@@ -49,7 +49,10 @@ async function createProperty({ key, type, fallbackValue, note }, apiKey) {
     return true;
   }
 
-  if (/already exists|duplicate|taken/i.test(body)) {
+  // 409 is the authoritative "already defined" signal. Match on the status
+  // rather than the message text, which reads "There is already a contact
+  // property with this key" and defeated an earlier substring check.
+  if (response.status === 409 || /already|duplicate|taken|exists/i.test(body)) {
     console.log(`  exists   ${key.padEnd(16)} (${type})  -- ${note}`);
     return true;
   }
