@@ -25,6 +25,12 @@ const PROPERTIES = [
     note: 'Play Store Google account, required to send an Android invite',
   },
   {
+    key: 'access_sent',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Date beta access was sent; keeps the access send idempotent',
+  },
+  {
     key: 'platform_asked',
     type: 'string',
     fallbackValue: '',
