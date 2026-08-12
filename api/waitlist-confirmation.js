@@ -358,6 +358,71 @@ ${unsubscribeUrl ? `\nUnsubscribe: ${unsubscribeUrl}\n` : ''}`;
 }
 
 /**
+ * Standalone plain-text letter.
+ *
+ * Not the same thing as buildText(), which is the text alternative inside a
+ * multipart HTML email and mirrors that email's structure. This is what gets
+ * sent when there is no HTML part at all, so it has to read like a person
+ * wrote it -- no all-caps section headers, no repeated tagline, no template
+ * voice. A stripped-down newsletter reads as cheap; a short signed note does
+ * not.
+ *
+ * Also sets expectation for the access email that follows, so the second one
+ * arrives expected rather than cold.
+ */
+function buildPlainLetter(options = {}) {
+  const state = questionState(options);
+  const recipient = options.email || 'the address you signed up with';
+  const googleEmail = options.googleEmail || '';
+  const unsubscribeUrl = options.unsubscribeUrl || '';
+
+  const opening = options.reminder
+    ? `Hi — you joined the Lune Synth beta waitlist a while back, and your spot's
+still reserved. We're putting the first cohort together now.`
+    : `Hi — thanks for joining the Lune Synth beta waitlist. Invites go out in
+small cohorts, and yours is reserved.`;
+
+  const asks = {
+    unknown: `One thing before I can send your invite: is your phone Android or iPhone?
+Just reply with the one word.
+
+(Android only — your Play invite goes to the Google account on your phone.
+If that isn't ${recipient}, send me the right address.)
+
+Once you reply, your access email comes next — with the build and how to
+get started.`,
+
+    android_needs_email: `One thing before I can send your invite: is your Play Store on ${recipient}?
+If so you're all set — no need to reply.
+
+If your phone uses a different Google account, send me that address and
+I'll point the invite there instead.
+
+Your access email comes next, with the build and how to get started.`,
+
+    android_known: `You're all set — your Play invite will go to ${googleEmail}. If that's
+wrong, just reply and I'll fix it.
+
+Your access email comes next, with the build and how to get started.`,
+
+    ios_known: `You're all set for TestFlight. Nothing else needed from you.
+
+Your access email comes next, with the build and how to get started.`,
+  };
+
+  return `${opening}
+
+${asks[state]}
+
+Lune Synth is the anti-slop learning app: you do the work by hand, and it
+grades your reasoning step by step instead of handing you an answer.
+
+— Griffin
+Lune Synth
+${unsubscribeUrl ? `\nUnsubscribe: ${unsubscribeUrl}\n` : ''}`;
+}
+
+/**
  * Sends the confirmation. Resolves with a result object; never throws.
  *
  * Retries at most once, and only for 429 / 5xx / network failures. A 422
@@ -399,7 +464,7 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
         ? SUBJECT
         : "You're on the Lune Synth beta list"),
     ...(textOnly ? {} : { html: renderHtml(withUnsubscribe) }),
-    text: buildText(withUnsubscribe),
+    text: textOnly ? buildPlainLetter(withUnsubscribe) : buildText(withUnsubscribe),
   });
 
   let lastReason = 'unknown';
@@ -459,6 +524,7 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
 
 module.exports = {
   sendWaitlistConfirmation,
+  buildPlainLetter,
   buildLetterHtml,
   // Exported for local preview/testing without sending mail.
   buildHtml,
