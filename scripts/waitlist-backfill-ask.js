@@ -44,6 +44,17 @@ const NEVER_SEND = new Set([
   'support@lunesynth.com', // permanent bounce 2026-08-12: no mailbox exists
 ]);
 
+/**
+ * Restrict the run to specific addresses: --only=a@b.com,c@d.com
+ *
+ * --limit=1 depends on audience order, which changes as people sign up and get
+ * marked. --only makes a test send deterministic.
+ */
+const ONLY_ARG = process.argv.find(a => a.startsWith('--only='));
+const ONLY = ONLY_ARG
+  ? new Set(ONLY_ARG.split('=')[1].split(',').map(e => e.trim().toLowerCase()).filter(Boolean))
+  : null;
+
 const EXCLUDE_ARG = process.argv.find(a => a.startsWith('--exclude='));
 if (EXCLUDE_ARG) {
   EXCLUDE_ARG.split('=')[1].split(',')
@@ -105,6 +116,7 @@ async function getProperties(email, apiKey) {
 
   console.log(SEND ? 'MODE: SENDING\n' : 'MODE: dry run — nothing will be sent. Add --send to actually send.\n');
   console.log(PLAIN ? 'FORMAT: plain text (better Primary-inbox odds)\n' : 'FORMAT: branded HTML (add --plain for plain text)\n');
+  if (ONLY) console.log(`RESTRICTED to: ${[...ONLY].join(', ')}\n`);
 
   const contacts = await listAllContacts(apiKey);
   console.log(`Audience: ${contacts.length} contact(s)\n`);
@@ -113,6 +125,7 @@ async function getProperties(email, apiKey) {
   const skipped = { answered: 0, asked: 0, unsubscribed: 0, unreadable: 0, blocked: 0 };
 
   for (const contact of contacts) {
+    if (ONLY && !ONLY.has(contact.email.toLowerCase())) continue;
     if (NEVER_SEND.has(contact.email.toLowerCase())) {
       skipped.blocked += 1;
       console.log(`  excluded ${contact.email} (known bad address)`);
@@ -124,8 +137,10 @@ async function getProperties(email, apiKey) {
     await sleep(PACE_MS);
 
     if (properties === null) { skipped.unreadable += 1; continue; }
-    if (properties.platform) { skipped.answered += 1; continue; }
-    if (properties.platform_asked) { skipped.asked += 1; continue; }
+    // --only is an explicit instruction, so it overrides the "already asked"
+    // guard -- otherwise a second test send to yourself silently does nothing.
+    if (!ONLY && properties.platform) { skipped.answered += 1; continue; }
+    if (!ONLY && properties.platform_asked) { skipped.asked += 1; continue; }
 
     targets.push(contact.email);
   }
