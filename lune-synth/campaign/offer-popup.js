@@ -117,7 +117,10 @@
           store(DISMISSED_KEY);
           popup.querySelector("[data-beta-offer-content]").hidden = true;
           popup.querySelector("[data-beta-offer-success]").hidden = false;
+          var successHeading = popup.querySelector("[data-beta-offer-success] h2");
+          if (successHeading && data.title) successHeading.textContent = data.title;
           var successMessage = popup.querySelector("[data-beta-offer-message]");
+          if (successMessage && data.message) successMessage.textContent = data.message;
           if (successMessage && window.LuneWaitlistFields) {
             window.LuneWaitlistFields.mountQuestion(successMessage, email);
           }

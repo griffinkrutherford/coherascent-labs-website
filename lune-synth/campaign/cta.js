@@ -151,7 +151,7 @@
           if (!response.ok) throw new Error(data.error || "Unable to join the waitlist.");
 
           form.reset();
-          this.openPopup(data.message || settings.successMessage, email);
+          this.openPopup(data.message || settings.successMessage, email, data.title);
           track("waitlist_success", details);
         } catch (error) {
           status.textContent = error.message || "Something went wrong. Please try again.";
@@ -178,9 +178,11 @@
       });
     }
 
-    openPopup(message, email) {
+    openPopup(message, email, title) {
       var popup = this.querySelector("[data-cta-popup]");
       if (!popup) return;
+      var titleElement = popup.querySelector("h3");
+      if (titleElement && title) titleElement.textContent = title;
       var messageElement = popup.querySelector("[data-cta-message]");
       if (messageElement) messageElement.textContent = message;
       if (email && messageElement && window.LuneWaitlistFields) {

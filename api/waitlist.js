@@ -7,15 +7,15 @@ const { sendWaitlistConfirmation } = require('./waitlist-confirmation.js');
 
 // Copy shown in the site's success popup. Returned as `message` so the clients
 // (blog.js, cta.js) pick it up centrally rather than each hardcoding it.
-const MESSAGE_NEW =
-  'You’re on the list.';
-
-const MESSAGE_EXISTING =
-  'You’re already on the list.';
-
-const MESSAGE_ANSWERED = 'Saved.';
-
-const MESSAGE_RESUBSCRIBED = 'You’re back on the list.';
+// Title and body are returned together so they cannot contradict each other.
+// The clients previously hardcoded "You're on the list!" as the heading while
+// the body came from here, which read as a stutter on every state.
+const COPY = {
+  new: { title: 'You’re on the list!', message: 'A confirmation email is on its way.' },
+  existing: { title: 'Already on the list', message: 'We haven’t sent a second confirmation.' },
+  resubscribed: { title: 'Welcome back!', message: 'Your spot is restored.' },
+  answered: { title: 'Saved', message: 'Thanks — that’s everything we need.' },
+};
 
 /**
  * The confirmation is held briefly rather than sent on the spot, because the
@@ -279,7 +279,7 @@ module.exports = async (req, res) => {
       } else {
         scheduleConfirmation(trimmedEmail, RESEND_API_KEY, {});
       }
-      return res.status(200).json({ success: true, message: MESSAGE_RESUBSCRIBED });
+      return res.status(200).json({ success: true, ...COPY.resubscribed });
     }
 
     if (existing.status === 'exists') {
@@ -289,12 +289,12 @@ module.exports = async (req, res) => {
         await updateContactProperties(trimmedEmail, properties, RESEND_API_KEY);
         console.log(`[waitlist] updated ${trimmedEmail} platform=${platform} google=${googleEmail || 'none'}`);
         flushConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail });
-        return res.status(200).json({ success: true, message: MESSAGE_ANSWERED });
+        return res.status(200).json({ success: true, ...COPY.answered });
       }
 
       return res.status(200).json({
         success: true,
-        message: MESSAGE_EXISTING
+        ...COPY.existing
       });
     }
 
@@ -305,7 +305,7 @@ module.exports = async (req, res) => {
       if (looksLikeDuplicate(data, response.status)) {
         return res.status(200).json({
           success: true,
-          message: MESSAGE_EXISTING
+          ...COPY.existing
         });
       }
 
@@ -339,7 +339,7 @@ module.exports = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: MESSAGE_NEW
+      ...COPY.new
     });
 
   } catch (error) {

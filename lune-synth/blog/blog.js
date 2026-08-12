@@ -272,7 +272,7 @@
       return response.json().then(function (data) {
         if (response.ok && data.success) {
           // Success
-          if (popupTitle) popupTitle.textContent = "You're on the list!";
+          if (popupTitle) popupTitle.textContent = data.title || "You're on the list!";
           if (popupMessage) {
             popupMessage.textContent = data.message || "You’re on the list.";
           }
