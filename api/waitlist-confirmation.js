@@ -246,24 +246,30 @@ Lune Synth&trade; &mdash; the anti-slop learning app.${unsubscribeUrl
  * only job is a one-word answer, plain text still wins.
  */
 function buildLetterHtml(options = {}) {
-  const state = questionState(options);
   const unsubscribeUrl = options.unsubscribeUrl || '';
-  const recipient = options.email || 'your signup email';
-  const googleEmail = options.googleEmail || '';
 
-  const intro = options.reminder
-    ? 'You joined the Lune Synth beta waitlist a little while back, and your spot is still reserved. We&rsquo;re assembling the first cohort now, and there&rsquo;s one thing we need before we can send your invite.'
-    : 'Thanks for joining the Lune Synth beta waitlist. Invites go out in small cohorts, and yours is reserved.';
+  // Rendered FROM the plain letter rather than duplicating its copy. An earlier
+  // version kept its own prose and silently went stale when the letter was
+  // reworked -- gratitude, founding-member reference and access-email priming
+  // were all missing. One source means that cannot happen again.
+  const body = buildPlainLetter({ ...options, unsubscribeUrl: '' }).trim();
 
-  const asks = {
-    unknown: `<p style="margin:0 0 16px;">Reply with one word: <strong style="color:${TEXT};">Android</strong> or <strong style="color:${TEXT};">iPhone</strong>. That&rsquo;s the whole ask.</p>
-<p style="margin:0 0 16px;color:${FAINT};">Android only: your Play invite goes to the Google account on your phone. If that isn&rsquo;t ${escapeHtml(recipient)}, include the right address. Otherwise nothing else needed.</p>`,
-    android_needs_email: `<p style="margin:0 0 16px;">Is your Play Store on <strong style="color:${TEXT};">${escapeHtml(recipient)}</strong>? If so you&rsquo;re done &mdash; no need to reply.</p>
-<p style="margin:0 0 16px;color:${FAINT};">If your phone uses a different Google account, reply with that address and we&rsquo;ll send the invite there instead.</p>`,
-    android_known: `<p style="margin:0 0 16px;">We&rsquo;ll send your Play invite to <strong style="color:${TEXT};">${escapeHtml(googleEmail)}</strong>.</p>
-<p style="margin:0 0 16px;color:${FAINT};">If that&rsquo;s wrong, just reply &mdash; otherwise the app never appears for you.</p>`,
-    ios_known: `<p style="margin:0 0 16px;">You&rsquo;re all set for TestFlight. We&rsquo;ll send your invite to this address when your cohort opens.</p>`,
-  };
+  const paragraphs = body
+    .split(/\n{2,}/)
+    .map(block => block.trim())
+    .filter(Boolean)
+    .map(block => {
+      const escaped = escapeHtml(block);
+      // The sign-off is the one place hard line breaks are meaningful; every
+      // other paragraph is wrapped for plain text and should reflow in HTML.
+      const isSignature = block.startsWith('\u2014');
+      const html = isSignature
+        ? escaped.replace(/\n/g, '<br />')
+        : escaped.replace(/\n/g, ' ');
+      const colour = isSignature ? TEXT : MUTED;
+      return `<p style="margin:0 0 16px;color:${colour};">${html}</p>`;
+    })
+    .join('\n');
 
   return `<!doctype html>
 <html lang="en">
@@ -279,11 +285,8 @@ function buildLetterHtml(options = {}) {
 <tr><td align="center" style="padding:34px 20px;">
 <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;">
 <tr><td style="font-family:${MONO};font-size:11px;font-weight:700;letter-spacing:3px;color:${FAINT};text-transform:uppercase;padding-bottom:22px;">LUNE&nbsp;SYNTH</td></tr>
-<tr><td style="font-family:${SANS};font-size:15px;line-height:1.7;color:${MUTED};">
-<p style="margin:0 0 16px;">${intro}</p>
-<p style="margin:0 0 16px;color:${FAINT};">Lune Synth is the anti-slop learning app: you do the work by hand, and it grades your actual reasoning step by step instead of handing you the answer.</p>
-${asks[state]}
-<p style="margin:0 0 16px;">&mdash; Griffin</p>
+<tr><td style="font-family:${SANS};font-size:15px;line-height:1.7;">
+${paragraphs}
 </td></tr>
 <tr><td style="padding-top:22px;font-family:${SANS};font-size:12px;line-height:1.6;color:${FAINT};border-top:1px solid ${BORDER};">
 You received this because you joined the Lune Synth beta waitlist at lunesynth.com.${unsubscribeUrl
@@ -480,7 +483,7 @@ async function sendWaitlistConfirmation(email, apiKey, options = {}) {
         ? SUBJECT
         : "You're on the Lune Synth beta list"),
     ...(textOnly ? {} : { html: renderHtml(withUnsubscribe) }),
-    text: textOnly ? buildPlainLetter(withUnsubscribe) : buildText(withUnsubscribe),
+    text: (textOnly || letter) ? buildPlainLetter(withUnsubscribe) : buildText(withUnsubscribe),
   });
 
   let lastReason = 'unknown';
