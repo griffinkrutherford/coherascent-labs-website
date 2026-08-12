@@ -18,9 +18,13 @@
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 
-// mail.lunesynth.com is the verified sending domain. The apex lunesynth.com is
-// NOT verified for sending and will be rejected.
-const FROM = 'Lune Synth <noreply@mail.lunesynth.com>';
+// mail.lunesynth.com is the verified sending domain; the apex lunesynth.com is
+// NOT verified for sending and will be rejected. Sending from the subdomain
+// also keeps the apex's reputation insulated from anything that happens here.
+//
+// A human From rather than noreply@: this email exists to get replies, and
+// "noreply" tells people not to bother.
+const FROM = 'Griffin at Lune Synth <griffin@mail.lunesynth.com>';
 const REPLY_TO = 'griffin@lunesynth.com';
 
 const SUBJECT = "You're on the Lune Synth beta list — one quick question";
@@ -165,7 +169,7 @@ Or just hit reply &mdash; it reaches a person, not a robot.
 <tr>
 <td style="padding:14px 34px 0 34px;font-family:${SANS};font-size:15px;line-height:1.65;color:${MUTED};">
 ${options.reminder
-  ? 'You joined the Lune Synth beta waitlist a little while back, and your spot is still reserved. We&rsquo;re putting the first cohort together now &mdash; there&rsquo;s one thing we need from you before we can send your invite.'
+  ? 'You joined the Lune Synth beta waitlist a little while back, and your spot is still reserved. We&rsquo;re assembling the first cohort now &mdash; the first 100 users get 2 months free and lifetime 50% off Pro. One thing we need before we can send your invite.'
   : 'Thanks for joining the Lune Synth beta waitlist. Invites go out in small cohorts, and yours is reserved.'}
 </td>
 </tr>
@@ -255,8 +259,9 @@ Nothing else needed from you right now.`,
 
   const intro = options.reminder
     ? `You joined the Lune Synth beta waitlist a little while back, and your spot
-is still reserved. We're putting the first cohort together now - there's one
-thing we need from you before we can send your invite.`
+is still reserved. We're assembling the first cohort now - the first 100 users
+get 2 months free and lifetime 50% off Pro. One thing we need before we can
+send your invite.`
     : `Thanks for joining the Lune Synth beta waitlist. Invites go out in small
 cohorts, and yours is reserved.`;
 
