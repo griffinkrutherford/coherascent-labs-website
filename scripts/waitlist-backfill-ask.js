@@ -27,6 +27,25 @@ const LIMIT = LIMIT_ARG ? parseInt(LIMIT_ARG.split('=')[1], 10) : Infinity;
 // a send and a PATCH, so pace conservatively -- this is a one-off.
 const PACE_MS = 700;
 
+/**
+ * Never send to these. Re-sending to an address that has already hard-bounced
+ * damages the sending domain's reputation, which matters most while the domain
+ * is new and has no history to absorb it.
+ *
+ * Extend at the command line with --exclude=a@b.com,c@d.com
+ */
+const NEVER_SEND = new Set([
+  'support@lunesynth.com', // permanent bounce 2026-08-12: no mailbox exists
+]);
+
+const EXCLUDE_ARG = process.argv.find(a => a.startsWith('--exclude='));
+if (EXCLUDE_ARG) {
+  EXCLUDE_ARG.split('=')[1].split(',')
+    .map(e => e.trim().toLowerCase())
+    .filter(Boolean)
+    .forEach(e => NEVER_SEND.add(e));
+}
+
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 async function api(path, options, apiKey) {
@@ -84,9 +103,14 @@ async function getProperties(email, apiKey) {
   console.log(`Audience: ${contacts.length} contact(s)\n`);
 
   const targets = [];
-  const skipped = { answered: 0, asked: 0, unsubscribed: 0, unreadable: 0 };
+  const skipped = { answered: 0, asked: 0, unsubscribed: 0, unreadable: 0, blocked: 0 };
 
   for (const contact of contacts) {
+    if (NEVER_SEND.has(contact.email.toLowerCase())) {
+      skipped.blocked += 1;
+      console.log(`  excluded ${contact.email} (known bad address)`);
+      continue;
+    }
     if (contact.unsubscribed) { skipped.unsubscribed += 1; continue; }
 
     const properties = await getProperties(contact.email, apiKey);
@@ -104,6 +128,7 @@ async function getProperties(email, apiKey) {
   console.log(`  ${String(skipped.asked).padStart(4)}  already asked by a previous run`);
   console.log(`  ${String(skipped.unsubscribed).padStart(4)}  unsubscribed`);
   console.log(`  ${String(skipped.unreadable).padStart(4)}  could not read properties`);
+  console.log(`  ${String(skipped.blocked).padStart(4)}  excluded (bounced / --exclude)`);
   console.log(`\nWould email ${targets.length} contact(s):`);
   targets.slice(0, 50).forEach(e => console.log(`  ${e}`));
   if (targets.length > 50) console.log(`  ... and ${targets.length - 50} more`);
