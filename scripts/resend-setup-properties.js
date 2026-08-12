@@ -24,6 +24,12 @@ const PROPERTIES = [
     fallbackValue: '',
     note: 'Play Store Google account, required to send an Android invite',
   },
+  {
+    key: 'platform_asked',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Date the backfill broadcast asked this contact; keeps re-runs idempotent',
+  },
 ];
 
 async function createProperty({ key, type, fallbackValue, note }, apiKey) {
