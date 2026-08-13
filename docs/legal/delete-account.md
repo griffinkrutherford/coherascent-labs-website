@@ -51,4 +51,4 @@ archived copy to restore from.
 
 [griffin@lunesynth.com](mailto:griffin@lunesynth.com)
 
-Lune Synth is operated by [[LEGAL ENTITY NAME]].
+Lune Synth is operated by [[OPERATOR]], operating as Coherascent Labs.

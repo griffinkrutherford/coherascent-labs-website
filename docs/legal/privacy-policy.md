@@ -6,9 +6,9 @@
 
 ## 1. Scope
 
-This Privacy Policy explains how Coherascent Labs ("Coherascent," "we," "us,"
-or "our"), a [Tano Holdings](https://tano.holdings/) company, collects, uses,
-discloses, and retains personal information through the Lune Synth website,
+This Privacy Policy explains how [[OPERATOR]] ("we," "us," or "our"), operating
+as Coherascent Labs, collects, uses, discloses, and retains personal
+information through the Lune Synth website,
 waitlist, mobile applications, beta programs, and related services
 (collectively, the "Service").
 
@@ -373,15 +373,9 @@ additional notice or obtain consent when required.
 
 Privacy questions and requests may be sent to:
 
-Coherascent Labs
+[[OPERATOR]]
 
-A [Tano Holdings](https://tano.holdings/) company
-
-[[LEGAL ENTITY NAME]]
-
-[[MAILING ADDRESS]]
-
-[[PHONE NUMBER]]
+Coherascent Labs, a [Tano Holdings](https://tano.holdings/) brand
 
 [griffin@lunesynth.com](mailto:griffin@lunesynth.com)
 
