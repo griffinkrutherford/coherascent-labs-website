@@ -1,14 +1,19 @@
 # Lune Synth Terms of Service
 
-**Effective date:** June 6, 2026
+**Effective date:** August 13, 2026
 
 ## 1. Agreement To These Terms
 
 These Terms of Service ("Terms") govern access to and use of the Lune Synth
 website, waitlist, mobile applications, beta programs, and related services
-(collectively, the "Service"). The Service is operated by [[OPERATOR]],
-operating as Coherascent Labs, a [Tano Holdings](https://tano.holdings/) brand
-("we," "us," or "our").
+(collectively, the "Service"). The Service is operated by Griffin Kwan Rutherford, an individual
+doing business as Coherascent Labs, a [Tano Holdings](https://tano.holdings/)
+brand ("we," "us," or "our").
+
+The Service is currently operated by an individual. We expect to transfer it to
+a newly formed affiliated entity. If that happens we will post updated Terms
+naming the new operator, and your continued use after the stated effective date
+will constitute acceptance, as described in Section 21.
 
 By creating an account, joining the waitlist, accepting a beta invitation, or
 using the Service, you agree to these Terms and acknowledge the
@@ -326,10 +331,10 @@ applicable written agreement.
 ## 19. Governing Law And Venue
 
 These Terms and any dispute arising from them are governed by the laws of
-[[STATE]], without regard to its conflict-of-laws rules, except where a
+New Mexico, without regard to its conflict-of-laws rules, except where a
 mandatory consumer-protection law of your home jurisdiction provides otherwise.
 Subject to Section 20 and to any non-waivable right you have to bring a claim
-elsewhere, the state and federal courts located in [[STATE]] will have
+elsewhere, the state and federal courts located in New Mexico will have
 jurisdiction over disputes not otherwise resolved.
 
 ## 20. Informal Dispute Resolution
@@ -377,7 +382,7 @@ are effective when delivered.
 
 Questions about these Terms may be sent to:
 
-[[OPERATOR]]
+Griffin Kwan Rutherford
 
 Coherascent Labs, a [Tano Holdings](https://tano.holdings/) brand
 

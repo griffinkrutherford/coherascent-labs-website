@@ -35,7 +35,37 @@ Files in this folder:
   `docs/store-assets/account-deletion-page.md`; that file remains the origin of
   the copy, so keep the two in sync if either changes
 
-## Status: FINAL PENDING TOKENS — not yet publishable
+## Status: PUBLISHED 2026-08-13 — individual operator
+
+Live at `/privacy/`, `/terms/` and `/delete-account/`. `DRAFT = false` in
+`scripts/build-legal-pages.js`; the banner, `noindex` and all placeholders are
+gone, and canonical links are in place.
+
+**Operator is Griffin Kwan Rutherford, an individual doing business as
+Coherascent Labs.** Governing law and venue are New Mexico. Terms §1 carries a
+transition clause covering the move to an entity.
+
+### When Tano Holdings LLC is filed
+
+1. Replace the operator name in `privacy-policy.md` §1, `terms-of-service.md` §1
+   and `delete-account.md` with the exact registered name from the articles,
+   phrased "Tano Holdings LLC, doing business as Coherascent Labs".
+2. Drop the "currently operated by an individual" paragraph in Terms §1.
+3. Reconsider governing law: New Mexico was chosen as the operator's state of
+   residence. The entity's state of formation may differ.
+4. Bump the effective date and run `npm run build:legal`.
+
+Continued use after the new effective date constitutes acceptance under Terms
+§21, so no re-consent flow is needed.
+
+### Deliberately omitted
+
+A postal address and phone number are not in these documents. Email is an
+acceptable contact method under CCPA and neither store requires a mailing
+address. **A postal address is still required by CAN-SPAM for the beta access
+email**, which names the offer -- `sendAccessEmail` refuses to send without one.
+
+## Superseded: token checklist
 
 - The **substantive** content was audited against actual product behavior: data
   collected, AI processing via the OpenAI API, Supabase + Railway

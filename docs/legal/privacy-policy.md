@@ -2,13 +2,13 @@
 
 # Lune Synth Privacy Policy
 
-**Effective date:** June 6, 2026
+**Effective date:** August 13, 2026
 
 ## 1. Scope
 
-This Privacy Policy explains how [[OPERATOR]] ("we," "us," or "our"), operating
-as Coherascent Labs, collects, uses, discloses, and retains personal
-information through the Lune Synth website,
+This Privacy Policy explains how Griffin Kwan Rutherford, an individual doing business as
+Coherascent Labs ("we," "us," or "our"), collects, uses, discloses, and retains
+personal information through the Lune Synth website,
 waitlist, mobile applications, beta programs, and related services
 (collectively, the "Service").
 
@@ -373,7 +373,7 @@ additional notice or obtain consent when required.
 
 Privacy questions and requests may be sent to:
 
-[[OPERATOR]]
+Griffin Kwan Rutherford
 
 Coherascent Labs, a [Tano Holdings](https://tano.holdings/) brand
 

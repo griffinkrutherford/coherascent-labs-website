@@ -6,7 +6,7 @@ const ROOT = path.resolve(__dirname, '..');
 // Set to false once Tano Holdings LLC is registered and every [[TOKEN]] in
 // docs/legal/*.md is filled in. Controls the draft banner, the noindex robots
 // tag, and the canonical link. The build refuses to publish with tokens left.
-const DRAFT = true;
+const DRAFT = false;
 
 const pages = [
   {
