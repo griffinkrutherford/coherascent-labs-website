@@ -21,6 +21,15 @@ const pages = [
     slug: 'terms',
     title: 'Terms of Service',
   },
+  // Apple requires a Support URL on the app record and reviewers open it; a
+  // placeholder page is a rejection, so this has to be recognisably about the
+  // app. Google only requires a support email but checks the URL if provided.
+  {
+    source: path.join(ROOT, 'docs/legal/support.md'),
+    output: path.join(ROOT, 'lune-synth/support/index.html'),
+    slug: 'support',
+    title: 'Support',
+  },
   // Google requires a deletion URL reachable without installing the app, so
   // this one must stay publicly accessible once published.
   {
@@ -268,6 +277,7 @@ ${content}
       <nav aria-label="Footer">
         <a href="/">Home</a>
         <a href="/blog/">Blog</a>
+        <a href="/support/">Support</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
         <a href="mailto:griffin@lunesynth.com">Contact</a>

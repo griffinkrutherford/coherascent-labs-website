@@ -350,6 +350,12 @@ function serveLuneHost(req, res, pathname) {
     return;
   }
 
+  // Apple requires a Support URL on the app record, and reviewers open it.
+  if (pathname === '/support' || pathname === '/support/') {
+    serveStatic(req, res, '/lune-synth/support/index.html');
+    return;
+  }
+
   // Google requires this URL to be reachable without installing the app.
   if (pathname === '/delete-account' || pathname === '/delete-account/') {
     serveStatic(req, res, '/lune-synth/delete-account/index.html');
