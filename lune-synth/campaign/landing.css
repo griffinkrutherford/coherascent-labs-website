@@ -680,7 +680,9 @@ img { max-width: 100%; }
   .campaign-hero__visual { margin-top: 16px; }
   .campaign-score__path { grid-template-columns: 1fr; }
   .campaign-score__path > div { min-height: 0; }
-  .phone-mock { width: min(74vw, 286px); transform: rotate(1.5deg); }
+  /* Upright once the hero stacks: a lone centred phone reads as skewed rather
+     than dynamic, and .feature-phone / .feature-ipad already zero out here. */
+  .phone-mock { width: min(74vw, 286px); transform: none; }
   .benefit-grid { grid-template-columns: 1fr; }
   .benefit-card h3 { margin-top: 20px; }
   .feedback-panel { grid-template-columns: 1fr; gap: 16px; }
