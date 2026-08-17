@@ -6551,6 +6551,131 @@
       100% { left: 87.5%; opacity: 0; transform: translate(-50%, 0) scale(0.7); }
     }
 
+    .engine-panel--metrics {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: 32px;
+      align-items: center;
+      min-height: auto;
+      padding: clamp(28px, 4vw, 44px);
+    }
+
+    .engine-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(100, 168, 255, 0.12);
+      border: 1px solid rgba(100, 168, 255, 0.24);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    html[data-theme="light"] .engine-badge {
+      background: rgba(79, 132, 214, 0.1);
+      border-color: rgba(79, 132, 214, 0.2);
+    }
+
+    .engine-metrics-title {
+      font-size: clamp(22px, 2.5vw, 32px) !important;
+      line-height: 1.25 !important;
+      margin: 0 !important;
+      white-space: normal !important;
+    }
+
+    .engine-metrics-header p {
+      margin: 12px 0 0 !important;
+      font-size: 15px !important;
+      line-height: 1.6 !important;
+      color: var(--muted);
+    }
+
+    .engine-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .engine-stat-card {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(164, 123, 255, 0.14);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    html[data-theme="light"] .engine-stat-card {
+      background: rgba(255, 255, 255, 0.6);
+      border-color: rgba(127, 99, 214, 0.14);
+    }
+
+    .engine-stat-num {
+      font-size: clamp(32px, 3.5vw, 44px);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--text), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .engine-stat-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 2px;
+    }
+
+    .engine-stat-desc {
+      font-size: 12.5px !important;
+      line-height: 1.5 !important;
+      color: var(--muted);
+      margin: 4px 0 0 !important;
+    }
+
+    .engine-panel--disclosure {
+      grid-column: 1 / -1;
+      min-height: auto;
+      padding: 20px clamp(20px, 3vw, 28px);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(166, 186, 215, 0.14);
+    }
+
+    .engine-disclosure-heading {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .engine-disclosure-body p {
+      margin: 0 !important;
+      font-size: 13.5px !important;
+      line-height: 1.6 !important;
+      color: var(--muted);
+      max-width: 100% !important;
+    }
+
+    @media (max-width: 860px) {
+      .engine-panel--metrics {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .engine-stat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .note-card {
       padding: 24px;
       background: var(--glass);
@@ -12301,6 +12426,37 @@
             <span class="engine-token"></span>
             <span class="engine-token engine-token--two"></span>
             <span class="engine-token engine-token--three"></span>
+          </div>
+        </div>
+
+        <div class="engine-panel engine-panel--metrics" data-liquid-glass>
+          <div class="engine-metrics-header">
+            <span class="engine-badge">Pre-Beta Internal Evaluation</span>
+            <h3 class="engine-metrics-title">Measured on real work, not marketing claims.</h3>
+            <p>
+              We evaluate multimodal grading and question generation against rigorous rubric benchmarks before rolling out to beta cohorts.
+            </p>
+          </div>
+          <div class="engine-stat-grid">
+            <div class="engine-stat-card">
+              <span class="engine-stat-num">95.2%</span>
+              <span class="engine-stat-label">Observed grading accuracy</span>
+              <p class="engine-stat-desc">119 of 125 live responses avoided material feedback error (95% Wilson CI: 89.9%–97.8% across typed, spoken, and handwritten inputs; 91.4% distinct-prompt rate).</p>
+            </div>
+            <div class="engine-stat-card">
+              <span class="engine-stat-num">95.8%</span>
+              <span class="engine-stat-label">Defect-free question generation</span>
+              <p class="engine-stat-desc">115 of 120 graduate-level questions generated without material defect (95% Wilson CI: 90.6%–98.2% across 12 subject contexts; 79.2% full 5-item set rate).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="engine-panel engine-panel--disclosure" data-liquid-glass>
+          <div class="engine-disclosure-body">
+            <h4 class="engine-disclosure-heading">AI Fallibility & Student Agency</h4>
+            <p>
+              AI tutors are powerful diagnostic aids, but they are not infallible authorities. Lune Synth is designed with explicit confidence thresholds, rubric grounding, and one-tap correction challenges so students and educators always inspect, verify, and stay in control of the learning process.
+            </p>
           </div>
         </div>
       </div>
