@@ -8309,6 +8309,7 @@
     }
 
     /* --- World Selector Options (Beside the iPad, Step 1 Only) --- */
+    /* --- World Selector Dropdown Pop-up (Step 1 Only) --- */
     .world-theme-panel-container {
       display: flex;
       flex-direction: column;
@@ -8317,74 +8318,174 @@
       margin-top: clamp(12px, 2vh, 18px);
       animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
-    .theme-options-beside {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      width: 100%;
+
+    .world-select-dropdown {
+      position: relative;
       margin-top: 6px;
-    }
-    
-    .theme-option-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .theme-option-btn:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(100, 168, 255, 0.3);
-      color: var(--text);
-    }
-    
-    .theme-option-btn.is-active {
-      background: rgba(16, 28, 54, 0.9);
-      border-color: var(--blue);
-      color: var(--blue);
-      box-shadow: var(--glow);
-    }
-    
-    html[data-theme="light"] .theme-option-btn {
-      background: rgba(0, 0, 0, 0.02);
-      border-color: rgba(0, 0, 0, 0.08);
-      color: #5d677d;
-    }
-    
-    html[data-theme="light"] .theme-option-btn:hover {
-      background: rgba(0, 0, 0, 0.04);
-      color: var(--text);
-    }
-    
-    html[data-theme="light"] .theme-option-btn.is-active {
-      background: rgba(255, 255, 255, 0.95);
-      border-color: var(--blue);
-      color: var(--blue);
-      box-shadow: 0 4px 12px rgba(84, 98, 130, 0.08);
-    }
-    
-    .world-option-icon {
-      width: 28px;
-      height: 28px;
-      flex: 0 0 28px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 7px rgba(100, 168, 255, 0.32));
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+      z-index: 20;
     }
 
-    .theme-option-btn:hover .world-option-icon,
-    .theme-option-btn.is-active .world-option-icon {
-      transform: scale(1.12) rotate(-3deg);
-      filter: drop-shadow(0 0 9px rgba(100, 168, 255, 0.55));
+    .world-select-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 210px;
+      padding: 8px 16px 8px 10px;
+      border-radius: 999px;
+      background: rgba(14, 24, 50, 0.75);
+      border: 1px solid rgba(164, 123, 255, 0.28);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(4, 10, 24, 0.25);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .world-select-trigger:hover,
+    .world-select-dropdown.is-open .world-select-trigger {
+      border-color: var(--blue);
+      background: rgba(20, 34, 68, 0.88);
+      box-shadow: 0 12px 30px rgba(4, 10, 24, 0.35), 0 0 20px rgba(100, 168, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    html[data-theme="light"] .world-select-trigger {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(79, 132, 214, 0.25);
+      color: var(--text);
+      box-shadow: 0 6px 18px rgba(151, 164, 192, 0.14);
+    }
+
+    html[data-theme="light"] .world-select-trigger:hover,
+    html[data-theme="light"] .world-select-dropdown.is-open .world-select-trigger {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: var(--blue);
+      box-shadow: 0 8px 24px rgba(79, 132, 214, 0.2);
+    }
+
+    .world-select-trigger__current {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .world-select-chevron {
+      color: var(--blue);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .world-select-dropdown.is-open .world-select-chevron {
+      transform: rotate(180deg);
+    }
+
+    .world-select-popup {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 220px;
+      padding: 8px;
+      border-radius: 18px;
+      background: rgba(8, 16, 36, 0.94);
+      border: 1px solid rgba(164, 123, 255, 0.28);
+      box-shadow: 0 22px 50px rgba(2, 6, 18, 0.55), 0 0 26px rgba(100, 168, 255, 0.12);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px) scale(0.96);
+      transform-origin: top left;
+      transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s ease;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .world-select-dropdown.is-open .world-select-popup {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    html[data-theme="light"] .world-select-popup {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: rgba(79, 132, 214, 0.22);
+      box-shadow: 0 20px 44px rgba(151, 164, 192, 0.25);
+    }
+
+    .world-select-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .world-select-item:hover,
+    .world-select-item:focus-visible {
+      background: rgba(100, 168, 255, 0.12);
+      color: #ffffff;
+      outline: none;
+    }
+
+    html[data-theme="light"] .world-select-item:hover,
+    html[data-theme="light"] .world-select-item:focus-visible {
+      background: rgba(79, 132, 214, 0.08);
+      color: var(--text);
+    }
+
+    .world-select-item.is-active {
+      background: rgba(100, 168, 255, 0.18);
+      border-color: rgba(100, 168, 255, 0.32);
+      color: var(--blue);
+    }
+
+    html[data-theme="light"] .world-select-item.is-active {
+      background: rgba(79, 132, 214, 0.14);
+      border-color: rgba(79, 132, 214, 0.28);
+      color: var(--blue);
+    }
+
+    .world-select-item__label {
+      flex: 1;
+    }
+
+    .world-select-item__check {
+      opacity: 0;
+      color: var(--blue);
+      transition: opacity 0.18s ease;
+      flex-shrink: 0;
+    }
+
+    .world-select-item.is-active .world-select-item__check {
+      opacity: 1;
+    }
+
+    .world-option-icon {
+      width: 26px;
+      height: 26px;
+      flex: 0 0 26px;
+      object-fit: contain;
+      border-radius: 7px;
+      filter: drop-shadow(0 0 6px rgba(100, 168, 255, 0.32));
     }
 
     .world-count {
@@ -11504,26 +11605,49 @@
             <h3 class="active-step-title" id="activeStepTitle">Explore Your Learning Worlds</h3>
             <p class="active-step-desc" id="activeStepDesc">Start by navigating your personalized study universe. Choose from over <strong class="world-count">50</strong> visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.</p>
             
-            <!-- Dynamic World Selector for Step 01 (hidden on other steps) -->
+            <!-- Dynamic World Selector Dropdown for Step 01 (hidden on other steps) -->
             <div class="world-theme-panel-container" id="worldThemePanel">
               <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select World</span>
-              <div class="theme-options-beside">
-                <button class="theme-option-btn is-active" data-theme="earth" onclick="selectWorld('earth', this)">
-                  <img class="world-option-icon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="28" height="28">
-                  Earth
+              <div class="world-select-dropdown" id="worldSelectDropdown">
+                <button class="world-select-trigger" id="worldSelectTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Learning World">
+                  <span class="world-select-trigger__current">
+                    <img class="world-option-icon" id="worldSelectActiveIcon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26">
+                    <span id="worldSelectActiveLabel">Earth</span>
+                  </span>
+                  <svg class="world-select-chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                    <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </button>
-                <button class="theme-option-btn" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
-                  <img class="world-option-icon" src="/lune-synth/images/world-icons/jupiter.png" alt="" aria-hidden="true" width="28" height="28">
-                  Jupiter
-                </button>
-                <button class="theme-option-btn" data-theme="retro" onclick="selectWorld('retro', this)">
-                  <img class="world-option-icon" src="/lune-synth/images/world-icons/retro-arcade.png" alt="" aria-hidden="true" width="28" height="28">
-                  Retro Arcade
-                </button>
-                <button class="theme-option-btn" data-theme="math" onclick="selectWorld('math', this)">
-                  <img class="world-option-icon" src="/lune-synth/images/world-icons/math-space.png" alt="" aria-hidden="true" width="28" height="28">
-                  Math Space
-                </button>
+                <div class="world-select-popup" id="worldSelectPopup" role="listbox" aria-label="Learning Worlds">
+                  <button class="world-select-item is-active" type="button" role="option" aria-selected="true" data-theme="earth" onclick="selectWorld('earth', this)">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26">
+                    <span class="world-select-item__label">Earth</span>
+                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/jupiter.png" alt="" aria-hidden="true" width="26" height="26">
+                    <span class="world-select-item__label">Jupiter</span>
+                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="retro" onclick="selectWorld('retro', this)">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/retro-arcade.png" alt="" aria-hidden="true" width="26" height="26">
+                    <span class="world-select-item__label">Retro Arcade</span>
+                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="math" onclick="selectWorld('math', this)">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/math-space.png" alt="" aria-hidden="true" width="26" height="26">
+                    <span class="world-select-item__label">Math Space</span>
+                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -13232,8 +13356,7 @@
     if (themePanel) {
       if (stepNumber === 1) {
         themePanel.style.display = 'flex';
-        // Auto-select a World to ensure its video plays on landing (defaulting to Earth)
-        const activeThemeBtn = themePanel.querySelector('.theme-option-btn.is-active');
+        const activeThemeBtn = themePanel.querySelector('.world-select-item.is-active');
         const selectedTheme = activeThemeBtn ? activeThemeBtn.getAttribute('data-theme') : 'earth';
         selectWorld(selectedTheme);
       } else {
@@ -13313,18 +13436,36 @@
     syncLunaDemoVideos();
   });
 
-  function selectWorld(worldTheme, pillElement) {
+  const worldConfigMap = {
+    earth: { label: 'Earth', icon: '/lune-synth/images/world-icons/earth.png' },
+    jupiter: { label: 'Jupiter', icon: '/lune-synth/images/world-icons/jupiter.png' },
+    retro: { label: 'Retro Arcade', icon: '/lune-synth/images/world-icons/retro-arcade.png' },
+    math: { label: 'Math Space', icon: '/lune-synth/images/world-icons/math-space.png' }
+  };
+
+  function selectWorld(worldTheme, itemElement) {
     const ipadCanvas = document.getElementById('ipadScreenCanvas');
 
-    // Update active button state in the side panel options
-    const buttons = document.querySelectorAll('.theme-option-btn');
-    buttons.forEach(btn => {
-      if (btn.getAttribute('data-theme') === worldTheme) {
-        btn.classList.add('is-active');
-      } else {
-        btn.classList.remove('is-active');
-      }
+    // Update active state in the dropdown list
+    const items = document.querySelectorAll('.world-select-item');
+    items.forEach(item => {
+      const match = item.getAttribute('data-theme') === worldTheme;
+      item.classList.toggle('is-active', match);
+      item.setAttribute('aria-selected', match ? 'true' : 'false');
     });
+
+    // Update the trigger button display
+    const activeData = worldConfigMap[worldTheme] || worldConfigMap.earth;
+    const activeLabel = document.getElementById('worldSelectActiveLabel');
+    const activeIcon = document.getElementById('worldSelectActiveIcon');
+    if (activeLabel) activeLabel.textContent = activeData.label;
+    if (activeIcon) activeIcon.src = activeData.icon;
+
+    // Close the dropdown popup
+    const dropdown = document.getElementById('worldSelectDropdown');
+    const trigger = document.getElementById('worldSelectTrigger');
+    if (dropdown) dropdown.classList.remove('is-open');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
 
     // Reset and Apply Theme Class to iPad Frame specifically (preserving other slide classnames)
     if (ipadCanvas) {
@@ -13360,6 +13501,34 @@
 
     syncIpadVideos();
   }
+
+  // Setup dropdown toggle & outside click listener
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdown = document.getElementById('worldSelectDropdown');
+    const trigger = document.getElementById('worldSelectTrigger');
+    if (trigger && dropdown) {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dropdown.classList.contains('is-open')) {
+          dropdown.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        }
+      });
+    }
+  });
 
   /* --- Medals Showcase Interactive Handlers --- */
   const tierInfo = {

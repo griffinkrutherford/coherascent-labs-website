@@ -209,13 +209,31 @@
         </button>`;
       }).join("");
 
-      var worldButtons = Object.keys(worldAssets).map(function (key) {
+      var worldItems = Object.keys(worldAssets).map(function (key) {
         var world = worldAssets[key];
-        return `<button class="feature-world${key === defaultWorld ? " is-active" : ""}" type="button" data-world="${key}" aria-pressed="${key === defaultWorld ? "true" : "false"}">
+        var isActive = key === defaultWorld;
+        return `<button class="feature-world-item${isActive ? " is-active" : ""}" type="button" role="option" data-world="${key}" aria-selected="${isActive ? "true" : "false"}">
           <img src="${world.icon}" alt="" width="24" height="24">
-          ${escapeHtml(world.label)}
+          <span class="feature-world-item__label">${escapeHtml(world.label)}</span>
+          <svg class="feature-world-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>`;
       }).join("");
+
+      var worldDropdown = `
+        <div class="feature-world-dropdown" aria-label="Select World">
+          <button class="feature-world-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Learning World">
+            <span class="feature-world-trigger__current">
+              <img class="feature-world-trigger__icon" src="${worldAssets[defaultWorld].icon}" alt="" width="24" height="24">
+              <span class="feature-world-trigger__label">${escapeHtml(worldAssets[defaultWorld].label)}</span>
+            </span>
+            <svg class="feature-world-chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="feature-world-popup" role="listbox" aria-label="Learning Worlds">${worldItems}</div>
+        </div>`;
 
       this.innerHTML = `
         <section class="campaign-feature" aria-labelledby="${id}-title" data-feature="constellations">
@@ -233,7 +251,7 @@
                   <span class="feature-step-copy__badge">Step 01</span>
                   <h4>${escapeHtml(steps[0].title)}</h4>
                   <p>${escapeHtml(steps[0].body)}</p>
-                  <div class="feature-worlds" aria-label="Select World">${worldButtons}</div>
+                  ${worldDropdown}
                 </div>
               </div>
               <div class="feature-ipad-wrap" data-reveal>
@@ -278,6 +296,34 @@
         syncNear();
       });
 
+      var dropdown = this.querySelector(".feature-world-dropdown");
+      var trigger = this.querySelector(".feature-world-trigger");
+      var triggerIcon = this.querySelector(".feature-world-trigger__icon");
+      var triggerLabel = this.querySelector(".feature-world-trigger__label");
+
+      if (trigger && dropdown) {
+        trigger.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var isOpen = dropdown.classList.toggle("is-open");
+          trigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove("is-open");
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && dropdown.classList.contains("is-open")) {
+            dropdown.classList.remove("is-open");
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          }
+        });
+      }
+
       this.querySelectorAll(".feature-step").forEach(function (button) {
         button.addEventListener("click", function () {
           activeStep = Number(button.dataset.step);
@@ -291,21 +337,24 @@
           panel.querySelector(".feature-step-copy__badge").textContent = "Step " + String(activeStep).padStart(2, "0");
           panel.querySelector("h4").textContent = step.title;
           panel.querySelector("p").textContent = step.body;
-          var worlds = panel.querySelector(".feature-worlds");
-          if (worlds) worlds.hidden = activeStep !== 1;
+          if (dropdown) dropdown.hidden = activeStep !== 1;
           loadMedia(activeStep === 1 ? worldAssets[activeWorld] : stepAssets[activeStep]);
           pushEvent("constellation_step_change", config, { constellation_step: activeStep });
         }.bind(this));
       }, this);
 
-      this.querySelectorAll(".feature-world").forEach(function (button) {
+      this.querySelectorAll(".feature-world-item").forEach(function (button) {
         button.addEventListener("click", function () {
           activeWorld = button.dataset.world;
-          this.querySelectorAll(".feature-world").forEach(function (item) {
+          this.querySelectorAll(".feature-world-item").forEach(function (item) {
             var active = item === button;
             item.classList.toggle("is-active", active);
-            item.setAttribute("aria-pressed", active ? "true" : "false");
+            item.setAttribute("aria-selected", active ? "true" : "false");
           });
+          if (triggerIcon && worldAssets[activeWorld]) triggerIcon.src = worldAssets[activeWorld].icon;
+          if (triggerLabel && worldAssets[activeWorld]) triggerLabel.textContent = worldAssets[activeWorld].label;
+          if (dropdown) dropdown.classList.remove("is-open");
+          if (trigger) trigger.setAttribute("aria-expanded", "false");
           if (activeStep === 1) loadMedia(worldAssets[activeWorld]);
           pushEvent("constellation_world_change", config, { constellation_world: activeWorld });
         }.bind(this));

@@ -430,40 +430,144 @@ lune-constellations {
   line-height: 1.65;
 }
 
-.feature-worlds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
+.feature-world-dropdown {
+  position: relative;
+  margin-top: 16px;
+  z-index: 20;
+  display: inline-block;
 }
 
-.feature-world {
+.feature-world-trigger {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 38px;
-  padding: 6px 11px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 200px;
+  padding: 8px 14px 8px 10px;
   border-radius: 999px;
-  background: rgba(4, 10, 24, 0.6);
-  color: var(--feature-muted);
-  font: 700 10px/1 var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  background: rgba(8, 16, 36, 0.85);
+  border: 1px solid rgba(164, 123, 255, 0.28);
+  color: var(--feature-text);
+  font: 700 13.5px/1.2 var(--font-sans, "Plus Jakarta Sans", sans-serif);
   cursor: pointer;
+  box-shadow: 0 10px 24px rgba(4, 10, 24, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.feature-world:hover,
-.feature-world:focus-visible,
-.feature-world.is-active {
-  border-color: color-mix(in srgb, var(--feature-blue) 48%, transparent);
-  color: #fff;
-  outline: none;
-  background: linear-gradient(120deg, rgba(100, 168, 255, 0.2), rgba(164, 123, 255, 0.18));
+.feature-world-trigger:hover,
+.feature-world-dropdown.is-open .feature-world-trigger {
+  border-color: var(--feature-blue);
+  background: rgba(16, 28, 60, 0.95);
+  box-shadow: 0 12px 30px rgba(4, 10, 24, 0.38), 0 0 20px rgba(100, 168, 255, 0.18);
+  transform: translateY(-1px);
 }
 
-.feature-world img {
+.feature-world-trigger__current {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-world-trigger__icon {
   width: 24px;
   height: 24px;
-  border-radius: 7px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.feature-world-chevron {
+  color: var(--feature-blue);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.feature-world-dropdown.is-open .feature-world-chevron {
+  transform: rotate(180deg);
+}
+
+.feature-world-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 210px;
+  padding: 8px;
+  border-radius: 18px;
+  background: rgba(8, 16, 36, 0.95);
+  border: 1px solid rgba(164, 123, 255, 0.28);
+  box-shadow: 0 22px 50px rgba(2, 6, 18, 0.6), 0 0 26px rgba(100, 168, 255, 0.12);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px) scale(0.96);
+  transform-origin: top left;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s ease;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.feature-world-dropdown.is-open .feature-world-popup {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.feature-world-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--feature-text);
+  font: 600 13px/1.2 var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.feature-world-item:hover,
+.feature-world-item:focus-visible {
+  background: rgba(100, 168, 255, 0.12);
+  color: #ffffff;
+  outline: none;
+}
+
+.feature-world-item.is-active {
+  background: rgba(100, 168, 255, 0.18);
+  border-color: rgba(100, 168, 255, 0.32);
+  color: var(--feature-blue);
+}
+
+.feature-world-item img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.feature-world-item__label {
+  flex: 1;
+}
+
+.feature-world-item__check {
+  opacity: 0;
+  color: var(--feature-blue);
+  transition: opacity 0.18s ease;
+  flex-shrink: 0;
+}
+
+.feature-world-item.is-active .feature-world-item__check {
+  opacity: 1;
 }
 
 .feature-ipad-wrap {
