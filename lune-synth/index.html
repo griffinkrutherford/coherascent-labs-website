@@ -6554,58 +6554,191 @@
     .engine-results-row {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 24px;
+      gap: 14px;
+      margin-top: 22px;
     }
 
     .engine-result-card {
+      position: relative;
       padding: 16px 18px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(164, 123, 255, 0.14);
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+      border-radius: 18px;
+      background:
+        radial-gradient(160px 100px at 0% 0%, rgba(100, 168, 255, 0.08), transparent 70%),
+        rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(164, 123, 255, 0.16);
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 14px;
+      align-items: center;
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
     .engine-result-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(100, 168, 255, 0.3);
+      border-color: rgba(100, 168, 255, 0.32);
     }
 
     html[data-theme="light"] .engine-result-card {
-      background: rgba(255, 255, 255, 0.65);
-      border-color: rgba(127, 99, 214, 0.14);
+      background:
+        radial-gradient(160px 100px at 0% 0%, rgba(79, 132, 214, 0.06), transparent 70%),
+        rgba(255, 255, 255, 0.72);
+      border-color: rgba(127, 99, 214, 0.16);
     }
 
-    .engine-result-num {
-      font-size: clamp(26px, 3vw, 34px);
+    .engine-metric-visual {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .engine-metric-ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .engine-metric-ring circle {
+      fill: none;
+      stroke-width: 8;
+    }
+
+    .engine-metric-ring__bg {
+      stroke: rgba(166, 186, 215, 0.12);
+    }
+
+    html[data-theme="light"] .engine-metric-ring__bg {
+      stroke: rgba(0, 0, 0, 0.07);
+    }
+
+    .engine-metric-ring__fill {
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .engine-metric-ring__fill--blue {
+      stroke: url(#engineBlueGrad);
+    }
+
+    .engine-metric-ring__fill--purple {
+      stroke: url(#enginePurpleGrad);
+    }
+
+    .engine-metric-number {
+      position: relative;
+      z-index: 2;
+      font-size: 15px;
       font-weight: 800;
       color: var(--text);
-      line-height: 1;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--text), var(--blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-family: inherit;
     }
 
     .engine-result-info {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
     }
 
     .engine-result-info strong {
       font-size: 13.5px;
       font-weight: 700;
       color: var(--text);
+      line-height: 1.25;
     }
 
     .engine-result-info span {
       font-size: 12px;
-      line-height: 1.45;
+      line-height: 1.4;
       color: var(--muted);
+    }
+
+    .engine-diligence-drawer {
+      grid-column: 1 / -1;
+      border: 1px solid rgba(166, 186, 215, 0.14);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      overflow: hidden;
+      margin-top: 4px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .engine-diligence-drawer[open] {
+      background: rgba(255, 255, 255, 0.035);
+      border-color: rgba(100, 168, 255, 0.25);
+    }
+
+    html[data-theme="light"] .engine-diligence-drawer {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .engine-diligence-trigger {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      list-style: none;
+    }
+
+    .engine-diligence-trigger::-webkit-details-marker {
+      display: none;
+    }
+
+    .engine-diligence-trigger__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      transition: transform 0.25s ease;
+    }
+
+    .engine-diligence-trigger__icon svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .engine-diligence-drawer[open] .engine-diligence-trigger__icon {
+      transform: rotate(180deg);
+    }
+
+    .engine-diligence-body {
+      padding: 0 18px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    html[data-theme="light"] .engine-diligence-body {
+      border-top-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .engine-diligence-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+      padding-top: 14px;
+    }
+
+    .engine-diligence-item {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .engine-diligence-item strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
     }
 
     .engine-visual-note {
@@ -6622,8 +6755,11 @@
       border-top-color: rgba(0, 0, 0, 0.06);
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .engine-results-row {
+        grid-template-columns: 1fr;
+      }
+      .engine-diligence-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -12326,27 +12462,53 @@
     <section class="section section--engine" aria-labelledby="engine-title">
       <h2 class="section-title" id="engine-title">Engine</h2>
       <div class="engine-system section-content">
+        <svg width="0" height="0" style="position: absolute; pointer-events: none;" aria-hidden="true">
+          <defs>
+            <linearGradient id="engineBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#64a8ff" />
+              <stop offset="100%" stop-color="#a47bff" />
+            </linearGradient>
+            <linearGradient id="enginePurpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#a47bff" />
+              <stop offset="100%" stop-color="#ff5d87" />
+            </linearGradient>
+          </defs>
+        </svg>
+
         <div class="engine-panel" data-liquid-glass>
           <div>
             <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
             <p>
-              Lune Synth is engineered from the ground up to give you remarkably accurate feedback using anti-slop software design. Instead of guessing or agreeing blindly, it reads messy handwriting, scores against real rubric evidence, and checks confidence before every step.
+              Lune Synth is engineered with anti-slop software design to give you remarkably accurate, rubric-grounded feedback. Instead of guessing or agreeing blindly, it reads messy handwriting, matches proof steps, and gates confidence before every response.
             </p>
           </div>
 
           <div class="engine-results-row">
             <div class="engine-result-card">
-              <span class="engine-result-num" data-count="95.2">95.2%</span>
+              <div class="engine-metric-visual">
+                <svg class="engine-metric-ring" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class="engine-metric-ring__bg" cx="50" cy="50" r="42" />
+                  <circle class="engine-metric-ring__fill engine-metric-ring__fill--blue" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="263.89" data-target-offset="12.67" />
+                </svg>
+                <span class="engine-metric-number" data-count="95.2">95.2%</span>
+              </div>
               <div class="engine-result-info">
-                <strong>Grading Precision</strong>
-                <span>Step-level accuracy on real handwritten, spoken, and typed student work.</span>
+                <strong>Observed Grading Accuracy</strong>
+                <span>119 of 125 live responses avoided material error on real student work.</span>
               </div>
             </div>
+
             <div class="engine-result-card">
-              <span class="engine-result-num" data-count="95.8">95.8%</span>
+              <div class="engine-metric-visual">
+                <svg class="engine-metric-ring" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class="engine-metric-ring__bg" cx="50" cy="50" r="42" />
+                  <circle class="engine-metric-ring__fill engine-metric-ring__fill--purple" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="263.89" data-target-offset="11.08" />
+                </svg>
+                <span class="engine-metric-number" data-count="95.8">95.8%</span>
+              </div>
               <div class="engine-result-info">
-                <strong>Question Quality</strong>
-                <span>Defect-free practice generation across higher-ed subjects.</span>
+                <strong>Defect-Free Generation</strong>
+                <span>115 of 120 graduate questions generated without flaws across 12 subjects.</span>
               </div>
             </div>
           </div>
@@ -12396,9 +12558,38 @@
             <span class="engine-token engine-token--three"></span>
           </div>
           <div class="engine-visual-note">
-            Human agency first: Built with confidence thresholds &amp; 1-tap review so you stay in control.
+            Human agency first: Confidence thresholds &amp; 1-tap review so you stay in control.
           </div>
         </div>
+
+        <details class="engine-diligence-drawer">
+          <summary class="engine-diligence-trigger">
+            <span class="engine-diligence-trigger__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span>Technical details &amp; statistical methodology (Wilson 95% CI)</span>
+          </summary>
+          <div class="engine-diligence-body">
+            <div class="engine-diligence-grid">
+              <div class="engine-diligence-item">
+                <strong>Grading Precision (95% Wilson CI: 89.9%–97.8%):</strong>
+                <span>119 of 125 live responses avoided material error across typed, spoken, and handwritten inputs (91.4% distinct-prompt rate). The remaining 4.8% were minor omissions or slight phrasing nuances, with zero hallucinations.</span>
+              </div>
+              <div class="engine-diligence-item">
+                <strong>Question Generation (95% Wilson CI: 90.6%–98.2%):</strong>
+                <span>115 of 120 graduate-level questions generated without material defect across 12 subject contexts; 79.2% full 5-item set rate. Non-passes had minor clarity omissions.</span>
+              </div>
+              <div class="engine-diligence-item">
+                <strong>AI Fallibility &amp; Student Agency:</strong>
+                <span>Explicit confidence gates lower certainty and ask clarifying questions on ambiguous work. Scores are rubric-anchored, and 1-tap review lets learners inspect reasoning and challenge mistakes.</span>
+              </div>
+              <div class="engine-diligence-item">
+                <strong>Runtime Reliability &amp; Execution:</strong>
+                <span>100% transport and runtime success (zero execution dropouts across all 125 grading evaluations and 24 question-set generation runs).</span>
+              </div>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -14435,19 +14626,29 @@
 
   /* ================= ENGINE RESULTS ANIMATION ================= */
   (function () {
-    var resultsRow = document.querySelector(".engine-results-row");
-    if (!resultsRow) return;
+    var engineSec = document.querySelector(".section--engine");
+    if (!engineSec) return;
 
     var animated = false;
 
-    function animateResults() {
+    function animateEngineMetrics() {
       if (animated) return;
       animated = true;
 
-      var numbers = resultsRow.querySelectorAll(".engine-result-num");
+      // Animate SVG rings
+      var rings = engineSec.querySelectorAll(".engine-metric-ring__fill");
+      rings.forEach(function (ring) {
+        var targetOffset = ring.getAttribute("data-target-offset");
+        if (targetOffset) {
+          ring.style.strokeDashoffset = targetOffset;
+        }
+      });
+
+      // Animate Numbers with smooth ease-out counter
+      var numbers = engineSec.querySelectorAll(".engine-metric-number");
       numbers.forEach(function (numEl) {
         var target = parseFloat(numEl.getAttribute("data-count") || "0");
-        var duration = 1500;
+        var duration = 1600;
         var startTime = null;
 
         function step(timestamp) {
@@ -14470,14 +14671,14 @@
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            animateResults();
+            animateEngineMetrics();
             obs.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.25 });
-      obs.observe(resultsRow);
+      }, { threshold: 0.2 });
+      obs.observe(engineSec);
     } else {
-      animateResults();
+      animateEngineMetrics();
     }
   })();
   </script>
