@@ -6551,44 +6551,80 @@
       100% { left: 87.5%; opacity: 0; transform: translate(-50%, 0) scale(0.7); }
     }
 
-    .engine-results-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 22px;
+    .engine-system {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .engine-result-card {
+    .engine-panel--unified {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: clamp(24px, 3.5vw, 36px);
+    }
+
+    .engine-header-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: clamp(20px, 3vw, 36px);
+      align-items: center;
+    }
+
+    .engine-header-copy h3 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+
+    .engine-lead {
+      font-size: clamp(14.5px, 1.6vw, 16px);
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .engine-gauges-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .engine-gauge-card {
       position: relative;
-      padding: 16px 18px;
-      border-radius: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
       background:
-        radial-gradient(160px 100px at 0% 0%, rgba(100, 168, 255, 0.08), transparent 70%),
+        radial-gradient(140px 90px at 0% 0%, rgba(100, 168, 255, 0.08), transparent 70%),
         rgba(255, 255, 255, 0.025);
       border: 1px solid rgba(164, 123, 255, 0.16);
       display: grid;
-      grid-template-columns: 68px 1fr;
-      gap: 14px;
+      grid-template-columns: 62px 1fr;
+      gap: 12px;
       align-items: center;
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
-    .engine-result-card:hover {
+    .engine-gauge-card:hover {
       transform: translateY(-2px);
       border-color: rgba(100, 168, 255, 0.32);
     }
 
-    html[data-theme="light"] .engine-result-card {
+    html[data-theme="light"] .engine-gauge-card {
       background:
-        radial-gradient(160px 100px at 0% 0%, rgba(79, 132, 214, 0.06), transparent 70%),
+        radial-gradient(140px 90px at 0% 0%, rgba(79, 132, 214, 0.06), transparent 70%),
         rgba(255, 255, 255, 0.72);
       border-color: rgba(127, 99, 214, 0.16);
     }
 
     .engine-metric-visual {
       position: relative;
-      width: 68px;
-      height: 68px;
+      width: 62px;
+      height: 62px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -6632,34 +6668,33 @@
     .engine-metric-number {
       position: relative;
       z-index: 2;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 800;
       color: var(--text);
       letter-spacing: -0.02em;
       font-family: inherit;
     }
 
-    .engine-result-info {
+    .engine-gauge-info {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
-    .engine-result-info strong {
-      font-size: 13.5px;
+    .engine-gauge-info strong {
+      font-size: 13px;
       font-weight: 700;
       color: var(--text);
       line-height: 1.25;
     }
 
-    .engine-result-info span {
-      font-size: 12px;
-      line-height: 1.4;
+    .engine-gauge-info span {
+      font-size: 11.5px;
+      line-height: 1.35;
       color: var(--muted);
     }
 
     .engine-diligence-drawer {
-      grid-column: 1 / -1;
       border: 1px solid rgba(166, 186, 215, 0.14);
       border-radius: 14px;
       background: rgba(255, 255, 255, 0.02);
@@ -6725,7 +6760,7 @@
     .engine-diligence-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 18px;
+      gap: 14px 20px;
       padding-top: 14px;
     }
 
@@ -6741,25 +6776,20 @@
       margin-bottom: 2px;
     }
 
-    .engine-visual-note {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    html[data-theme="light"] .engine-visual-note {
-      border-top-color: rgba(0, 0, 0, 0.06);
-    }
-
-    @media (max-width: 768px) {
-      .engine-results-row {
+    @media (max-width: 860px) {
+      .engine-header-row {
         grid-template-columns: 1fr;
       }
+      .engine-gauges-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
       .engine-diligence-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .engine-gauges-row {
         grid-template-columns: 1fr;
       }
     }
@@ -12475,47 +12505,47 @@
           </defs>
         </svg>
 
-        <div class="engine-panel" data-liquid-glass>
-          <div>
-            <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
-            <p>
-              Lune Synth is engineered with anti-slop software design to give you remarkably accurate, rubric-grounded feedback. Instead of guessing or agreeing blindly, it reads messy handwriting, matches proof steps, and gates confidence before every response.
-            </p>
-          </div>
-
-          <div class="engine-results-row">
-            <div class="engine-result-card">
-              <div class="engine-metric-visual">
-                <svg class="engine-metric-ring" viewBox="0 0 100 100" aria-hidden="true">
-                  <circle class="engine-metric-ring__bg" cx="50" cy="50" r="42" />
-                  <circle class="engine-metric-ring__fill engine-metric-ring__fill--blue" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="263.89" data-target-offset="12.67" />
-                </svg>
-                <span class="engine-metric-number" data-count="95.2">95.2%</span>
-              </div>
-              <div class="engine-result-info">
-                <strong>Observed Grading Accuracy</strong>
-                <span>119 of 125 live responses avoided material error on real student work.</span>
-              </div>
+        <div class="engine-panel engine-panel--unified" data-liquid-glass>
+          <div class="engine-header-row">
+            <div class="engine-header-copy">
+              <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
+              <p class="engine-lead">
+                Lune Synth uses anti-slop software design to read messy work, anchor scores to rubric evidence, and verify confidence before giving feedback.
+              </p>
             </div>
 
-            <div class="engine-result-card">
-              <div class="engine-metric-visual">
-                <svg class="engine-metric-ring" viewBox="0 0 100 100" aria-hidden="true">
-                  <circle class="engine-metric-ring__bg" cx="50" cy="50" r="42" />
-                  <circle class="engine-metric-ring__fill engine-metric-ring__fill--purple" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="263.89" data-target-offset="11.08" />
-                </svg>
-                <span class="engine-metric-number" data-count="95.8">95.8%</span>
+            <div class="engine-gauges-row">
+              <div class="engine-gauge-card">
+                <div class="engine-metric-visual">
+                  <svg class="engine-metric-ring" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle class="engine-metric-ring__bg" cx="50" cy="50" r="42" />
+                    <circle class="engine-metric-ring__fill engine-metric-ring__fill--blue" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="263.89" data-target-offset="12.67" />
+                  </svg>
+                  <span class="engine-metric-number" data-count="95.2">95.2%</span>
+                </div>
+                <div class="engine-gauge-info">
+                  <strong>Grading Accuracy</strong>
+                  <span>119 of 125 live trials avoided error on real work.</span>
+                </div>
               </div>
-              <div class="engine-result-info">
-                <strong>Defect-Free Generation</strong>
-                <span>115 of 120 graduate questions generated without flaws across 12 subjects.</span>
+
+              <div class="engine-gauge-card">
+                <div class="engine-metric-visual">
+                  <svg class="engine-metric-ring" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle class="engine-metric-ring__bg" cx="50" cy="50" r="42" />
+                    <circle class="engine-metric-ring__fill engine-metric-ring__fill--purple" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="263.89" data-target-offset="11.08" />
+                  </svg>
+                  <span class="engine-metric-number" data-count="95.8">95.8%</span>
+                </div>
+                <div class="engine-gauge-info">
+                  <strong>Question Quality</strong>
+                  <span>115 of 120 graduate questions defect-free.</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="engine-panel engine-visual" data-liquid-glass aria-label="Lune Synth grading guardrails diagram">
-          <div class="engine-infographic" aria-hidden="true">
+          <div class="engine-infographic" aria-label="Grading pipeline flow" aria-hidden="true">
             <article class="engine-stage">
               <span class="engine-stage__label">01 Read</span>
               <div class="engine-work-preview">
@@ -12557,39 +12587,36 @@
             <span class="engine-token engine-token--two"></span>
             <span class="engine-token engine-token--three"></span>
           </div>
-          <div class="engine-visual-note">
-            Human agency first: Confidence thresholds &amp; 1-tap review so you stay in control.
-          </div>
-        </div>
 
-        <details class="engine-diligence-drawer">
-          <summary class="engine-diligence-trigger">
-            <span class="engine-diligence-trigger__icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span>Technical details &amp; statistical methodology (Wilson 95% CI)</span>
-          </summary>
-          <div class="engine-diligence-body">
-            <div class="engine-diligence-grid">
-              <div class="engine-diligence-item">
-                <strong>Grading Precision (95% Wilson CI: 89.9%–97.8%):</strong>
-                <span>119 of 125 live responses avoided material error across typed, spoken, and handwritten inputs (91.4% distinct-prompt rate). The remaining 4.8% were minor omissions or slight phrasing nuances, with zero hallucinations.</span>
-              </div>
-              <div class="engine-diligence-item">
-                <strong>Question Generation (95% Wilson CI: 90.6%–98.2%):</strong>
-                <span>115 of 120 graduate-level questions generated without material defect across 12 subject contexts; 79.2% full 5-item set rate. Non-passes had minor clarity omissions.</span>
-              </div>
-              <div class="engine-diligence-item">
-                <strong>AI Fallibility &amp; Student Agency:</strong>
-                <span>Explicit confidence gates lower certainty and ask clarifying questions on ambiguous work. Scores are rubric-anchored, and 1-tap review lets learners inspect reasoning and challenge mistakes.</span>
-              </div>
-              <div class="engine-diligence-item">
-                <strong>Runtime Reliability &amp; Execution:</strong>
-                <span>100% transport and runtime success (zero execution dropouts across all 125 grading evaluations and 24 question-set generation runs).</span>
+          <details class="engine-diligence-drawer">
+            <summary class="engine-diligence-trigger">
+              <span class="engine-diligence-trigger__icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>Technical Diligence, Statistical Methods &amp; Safeguards (Wilson 95% CI)</span>
+            </summary>
+            <div class="engine-diligence-body">
+              <div class="engine-diligence-grid">
+                <div class="engine-diligence-item">
+                  <strong>Grading Precision (95% Wilson CI: 89.9%–97.8%):</strong>
+                  <span>119 of 125 live responses avoided material error across typed, spoken, and handwritten inputs (91.4% distinct-prompt rate). The remaining 4.8% were minor omissions or slight phrasing nuances, with zero hallucinations.</span>
+                </div>
+                <div class="engine-diligence-item">
+                  <strong>Curriculum Generation (95% Wilson CI: 90.6%–98.2%):</strong>
+                  <span>115 of 120 graduate-level questions generated without material defect across 12 subject contexts; 79.2% full 5-item set rate. Remaining items had minor clarity omissions.</span>
+                </div>
+                <div class="engine-diligence-item">
+                  <strong>AI Fallibility &amp; Student Agency:</strong>
+                  <span>Confidence gates lower certainty and prompt clarifying questions on ambiguous work. Scores are strictly rubric-anchored, and 1-tap review lets learners inspect reasoning and challenge mistakes.</span>
+                </div>
+                <div class="engine-diligence-item">
+                  <strong>Reliability &amp; Error Classification:</strong>
+                  <span>Strict zero-tolerance defect logging across all 149 evaluation calls with 100% transport and runtime success.</span>
+                </div>
               </div>
             </div>
-          </div>
-        </details>
+          </details>
+        </div>
       </div>
     </section>
 
