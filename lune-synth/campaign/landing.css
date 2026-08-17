@@ -38,7 +38,8 @@ body {
     var(--bg);
   color: var(--text);
   font-family: var(--font-mono);
-  line-height: 1.65;
+  font-size: clamp(16px, 1.1vw, 17.5px);
+  line-height: 1.68;
 }
 
 body::before {
@@ -408,7 +409,8 @@ img { max-width: 100%; }
   max-width: 760px;
   margin: 22px 0 0;
   color: var(--muted);
-  font-size: clamp(15px, 1.6vw, 18px);
+  font-size: clamp(16.5px, 1.8vw, 19px);
+  line-height: 1.68;
 }
 
 .contrast {
@@ -469,7 +471,7 @@ img { max-width: 100%; }
   font-size: 22px;
 }
 
-.benefit-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.benefit-card p { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.65; }
 
 .feedback-panel {
   display: grid;
@@ -532,12 +534,12 @@ img { max-width: 100%; }
   display: block;
   margin-bottom: 4px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.feedback-step p { margin: 0; color: var(--text); font-size: 14px; }
+.feedback-step p { margin: 0; color: var(--text); font-size: 15.5px; line-height: 1.65; }
 
 .campaign-score {
   margin-top: clamp(70px, 10vw, 120px);
@@ -566,7 +568,8 @@ img { max-width: 100%; }
   max-width: 780px;
   margin: 20px 0 0;
   color: var(--muted);
-  font-size: clamp(15px, 1.5vw, 18px);
+  font-size: clamp(16px, 1.7vw, 19px);
+  line-height: 1.68;
 }
 
 .campaign-score__path {
@@ -595,7 +598,7 @@ img { max-width: 100%; }
 
 .campaign-score__path span {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 

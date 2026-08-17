@@ -145,6 +145,8 @@
       margin: 0;
       min-height: 100vh;
       font-family: var(--font-mono);
+      font-size: clamp(16px, 1.1vw, 17.5px);
+      line-height: 1.68;
       color: var(--text);
       overflow-x: hidden;
       background-color: var(--bg-deep);
@@ -155,6 +157,10 @@
         linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
       background-repeat: no-repeat;
       background-size: cover;
+    }
+
+    p {
+      line-height: 1.68;
     }
 
     /* Keep a painted star field on the mobile document canvas itself. Mobile
@@ -360,7 +366,7 @@
 
     .brand h1 {
       margin: 0;
-      font-size: 15px;
+      font-size: 16px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -385,7 +391,7 @@
       position: absolute;
       top: calc(100% + 8px);
       left: 0;
-      min-width: 180px;
+      min-width: 190px;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 12px;
@@ -407,8 +413,8 @@
 
     .brand-dropdown-content a {
       display: block;
-      padding: 8px 16px;
-      font-size: 13px;
+      padding: 9px 18px;
+      font-size: 14px;
       color: inherit;
       text-decoration: none;
       white-space: nowrap;
@@ -431,7 +437,7 @@
       margin-left: auto;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       flex-wrap: nowrap;
     }
 
@@ -439,12 +445,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 6px 10px;
+      padding: 7px 12px;
       border-radius: 999px;
       border: 1px solid rgba(102, 179, 255, 0.22);
       background: rgba(11, 16, 30, 0.5);
       color: #ffffff;
-      font-size: 9.5px;
+      font-size: 11px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
@@ -880,8 +886,8 @@
     .hero-waitlist-panel p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 16px;
+      line-height: 1.65;
       text-align: center;
       text-wrap: balance;
     }
@@ -889,8 +895,8 @@
     .waitlist-offer {
       margin: 6px 0 0 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 15.5px;
+      line-height: 1.65;
       text-align: center;
       font-weight: 500;
       text-wrap: balance;
@@ -1027,8 +1033,8 @@
 
     .hero-highlight-reel__copy p {
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 16px;
+      line-height: 1.65;
     }
 
     .hero-highlight-reel__phone {
@@ -1699,8 +1705,8 @@
     .platform-showcase__copy p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.8;
-      font-size: 15px;
+      line-height: 1.75;
+      font-size: 16.5px;
     }
 
     .platform-showcase__signals {
@@ -1820,8 +1826,8 @@
     .processing-card > p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.8;
-      font-size: 14px;
+      line-height: 1.7;
+      font-size: 16px;
     }
 
     .processing-card__visual {
@@ -2866,8 +2872,8 @@
       max-width: 640px;
       margin: 0;
       color: var(--muted);
-      line-height: 1.7;
-      font-size: 14px;
+      line-height: 1.68;
+      font-size: 16px;
     }
 
     .voice-flow__feature {
@@ -3045,7 +3051,7 @@
       margin: 0;
       color: var(--muted);
       line-height: 1.7;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .voice-flow__signals {
@@ -5735,8 +5741,8 @@
     .luna-mode__body p {
       margin: 0;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.66;
+      font-size: 16.5px;
+      line-height: 1.68;
     }
 
     /* See it / pullquote */
@@ -6068,13 +6074,13 @@
     .luna-tab-copy__traits span {
       display: inline-flex;
       align-items: center;
-      padding: 6px clamp(6px, 1vw, 12px);
+      padding: 6px clamp(8px, 1.2vw, 14px);
       border-radius: 999px;
       border: 1px solid rgba(164, 123, 255, 0.24);
       background: rgba(164, 123, 255, 0.08);
       color: var(--muted);
       font-family: var(--font-sans);
-      font-size: clamp(8px, 1.7vw, 11px);
+      font-size: clamp(11px, 1.8vw, 13px);
       font-weight: 600;
       letter-spacing: 0.01em;
       white-space: nowrap;
@@ -9894,7 +9900,7 @@
       align-items: center;
       gap: 12px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 12.5px;
       color: var(--muted);
     }
 
@@ -9903,7 +9909,7 @@
       border: 1px solid rgba(102, 179, 255, 0.28);
       border-radius: 999px;
       font-family: var(--font-sans);
-      font-size: 9px;
+      font-size: 10.5px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -9914,7 +9920,7 @@
       margin: 0;
       font-family: var(--font-sans);
       font-weight: 700;
-      font-size: 18px;
+      font-size: 19px;
       line-height: 1.3;
       padding-bottom: 0.04em;
       letter-spacing: -0.01em;
@@ -9926,15 +9932,15 @@
       margin: 0;
       flex: 1;
       font-family: var(--font-mono);
-      font-size: 13px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.65;
       color: var(--muted);
     }
 
     .blog-preview__more {
       margin-top: 2px;
       font-family: var(--font-sans);
-      font-size: 12px;
+      font-size: 13.5px;
       font-weight: 600;
       color: var(--blue);
     }

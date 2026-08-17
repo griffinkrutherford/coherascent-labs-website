@@ -35,7 +35,8 @@ body {
     radial-gradient(760px 380px at 92% 4%, rgba(164, 123, 255, 0.11), transparent 64%),
     var(--page);
   font-family: "Roboto Mono", monospace;
-  line-height: 1.72;
+  font-size: 16.5px;
+  line-height: 1.75;
 }
 
 a {
@@ -58,25 +59,22 @@ a:focus-visible {
 
 .site-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
   position: sticky;
   top: 0;
-  z-index: 30;
-  isolation: isolate;
-  --header-padding-y: 24px;
-  margin-bottom: 36px;
-  padding: var(--header-padding-y) 0;
+  z-index: 20;
+  padding: 18px 0;
+  background: transparent;
 }
 
 .site-header::before {
   content: "";
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 50%;
   width: 100vw;
+  height: 100%;
   transform: translateX(-50%);
   z-index: -1;
   pointer-events: none;
@@ -113,7 +111,7 @@ a:focus-visible {
   margin: 0;
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -144,7 +142,7 @@ a:focus-visible {
   top: calc(100% + 8px);
   left: 0;
   z-index: 50;
-  min-width: 180px;
+  min-width: 190px;
   padding: 6px 0;
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -165,10 +163,10 @@ a:focus-visible {
 
 .brand-dropdown-content a {
   display: block;
-  padding: 8px 16px;
+  padding: 9px 18px;
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -185,7 +183,7 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 6px;
+  gap: 7px;
   margin-left: auto;
 }
 
@@ -193,13 +191,12 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 10px;
+  padding: 7px 12px;
   border: 1px solid rgba(102, 179, 255, 0.22);
   border-radius: 999px;
   background: rgba(11, 16, 30, 0.5);
   color: #ffffff;
-  font-family: var(--font-sans);
-  font-size: 9.5px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
@@ -318,6 +315,8 @@ a:focus-visible {
 .legal-document p,
 .legal-document li {
   color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
   overflow-wrap: anywhere;
 }
 
@@ -348,7 +347,7 @@ table {
   width: 100%;
   min-width: 620px;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14.5px;
 }
 
 th,
