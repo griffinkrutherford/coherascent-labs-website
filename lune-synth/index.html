@@ -6873,6 +6873,67 @@
       border-top-color: rgba(79, 132, 214, 0.12);
     }
 
+    .engine-diligence-tldr {
+      padding: 16px 20px;
+      border-radius: 14px;
+      background: rgba(100, 168, 255, 0.07);
+      border: 1px solid rgba(100, 168, 255, 0.24);
+      box-shadow: inset 0 0 20px rgba(100, 168, 255, 0.05);
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    html[data-theme="light"] .engine-diligence-tldr {
+      background: rgba(79, 132, 214, 0.08);
+      border-color: rgba(79, 132, 214, 0.25);
+      box-shadow: 0 4px 14px rgba(151, 164, 192, 0.12);
+    }
+
+    .engine-diligence-tldr__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .engine-diligence-tldr__badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: linear-gradient(120deg, var(--blue), var(--purple));
+      color: #ffffff;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .engine-diligence-tldr__header strong {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .engine-diligence-tldr__text {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .engine-diligence-tldr__text strong {
+      color: var(--text);
+    }
+
+    .engine-diligence-tldr__text code {
+      font-family: var(--font-mono, monospace);
+      font-size: 12px;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--cyan);
+    }
+
     .engine-diligence-section-heading {
       display: flex;
       align-items: center;
@@ -12984,6 +13045,23 @@
             </summary>
             <div class="engine-diligence-body">
               
+              <!-- TL;DR Executive Summary -->
+              <div class="engine-diligence-tldr">
+                <div class="engine-diligence-tldr__header">
+                  <span class="engine-diligence-tldr__badge">TL;DR</span>
+                  <strong>Executive Summary &amp; Key Findings</strong>
+                </div>
+                <p class="engine-diligence-tldr__text">
+                  <strong>Observed Soundness:</strong> <strong>95.2%</strong> of multimodal grading evaluations (119/125 live trials; 95% Wilson CI: [89.9%, 97.8%]) and <strong>95.8%</strong> of curriculum question items (115/120 items; 95% Wilson CI: [90.6%, 98.2%]) avoided material defects across 12 graduate disciplines.
+                  <br>
+                  <strong>Honest Distribution:</strong> Across 125 grading trials, <strong>89.6%</strong> (112/125) were completely clean, <strong>5.6%</strong> (7/125) had minor non-material phrasing nuances, and <strong>4.8%</strong> (6/125) had flagged conceptual errors—all transparently audited below.
+                  <br>
+                  <strong>Anti-Slop Mechanism:</strong> Lune Synth eliminates unanchored scores via explicit confidence gates (<code>τ = 0.85</code>), deterministic rubric penalty catalogs, step deduction conflict checks, and 1-tap student verification to inspect and challenge every step.
+                  <br>
+                  <strong>Pipeline Execution:</strong> <strong>100%</strong> transport and execution success across all 149 evaluated API and grading calls.
+                </p>
+              </div>
+
               <!-- Section 1: Empirical Benchmark Suite Summary Table -->
               <div class="engine-diligence-section-heading">
                 <h4>01 · Empirical Benchmark Summary (Side-by-Side Audit)</h4>
