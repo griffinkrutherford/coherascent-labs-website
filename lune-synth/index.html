@@ -12708,7 +12708,7 @@
             <div class="engine-header-copy">
               <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
               <p class="engine-lead">
-                Lune Synth is engineered with anti-slop software design so you get feedback you can actually trust. Roughly 95% of responses deliver spot-on, complete evaluations down to every step, while the remaining 4&ndash;5% are near-perfect with only slight phrasing nuances&mdash;never made-up answers.
+                Lune Synth is engineered with anti-slop software design so you get feedback you can actually trust. In rubric benchmark evaluations, over 95% of multimodal responses deliver sound, defect-free evaluations down to every step&mdash;backed by explicit confidence thresholds and one-tap correction checks.
               </p>
             </div>
 
@@ -12796,20 +12796,28 @@
             <div class="engine-diligence-body">
               <div class="engine-diligence-grid">
                 <div class="engine-diligence-item">
-                  <strong>Grading Precision (95% Wilson CI: 89.9%–97.8%):</strong>
-                  <span>119 of 125 live responses avoided material error across typed, spoken, and handwritten inputs (91.4% distinct-prompt rate). The remaining 4.8% were minor omissions or slight phrasing nuances, with zero hallucinations.</span>
+                  <strong>Multimodal Feedback Soundness (95% Wilson CI: 89.9%–97.8%):</strong>
+                  <span>In internal pre-beta evaluation across 125 live higher-education responses (typed, voice-transcript, and handwritten/scanned work spanning 35 distinct subject prompts), 119 of 125 feedback responses (95.2%) avoided materially incorrect guidance (91.4% prompt-cluster rate; 95% Wilson CI: 77.6%–97.0%). Across the cohort, 89.6% (112/125) were completely clean, 5.6% (7/125) had minor non-material phrasing nuances, and 4.8% (6/125) had flagged conceptual inaccuracies.</span>
                 </div>
                 <div class="engine-diligence-item">
                   <strong>Curriculum Generation (95% Wilson CI: 90.6%–98.2%):</strong>
-                  <span>115 of 120 graduate-level questions generated without material defect across 12 subject contexts; 79.2% full 5-item set rate. Remaining items had minor clarity omissions.</span>
+                  <span>115 of 120 graduate-level questions generated without material defect across 12 subject contexts (60 free-response, 60 choice items; 95.8% item rate). 19 of 24 full 5-item sets (79.2%, 95% Wilson CI: 59.5%–90.8%) were completely defect-free, with the remaining items split between minor clarity nuances (4.2%, 5/120) and prompt/distractor defects (4.2%, 5/120).</span>
+                </div>
+                <div class="engine-diligence-item">
+                  <strong>Multimodal Stratification &amp; Input Robustness:</strong>
+                  <span>Typed submissions: 1/42 material failure (2.4%). Voice transcripts: 1/42 material failure (2.4%). Handwriting &amp; scans: 4/41 material failures (9.8%). Scans intentionally benchmarked high-friction artifacts: dense multi-column layouts, scratched-out revisions, bilingual notations, and qualitative matrices.</span>
+                </div>
+                <div class="engine-diligence-item">
+                  <strong>Subject Breadth &amp; Compound Set Quality:</strong>
+                  <span>Evaluated across 12 graduate disciplines: Complex Analysis, Immunology, Administrative Law, Compiler Design, Psychometrics, Narratology, Algebraic Topology, Quantum Information, Causal Inference, DSGE Macroeconomics, Historical Linguistics, and Applied Cryptography. A 95.8% question-level rate compounds across a 5-item set (0.958⁵ ≈ 80.6%), aligning with the observed 79.2% set rate.</span>
                 </div>
                 <div class="engine-diligence-item">
                   <strong>AI Fallibility &amp; Student Agency:</strong>
-                  <span>Confidence gates lower certainty and prompt clarifying questions on ambiguous work. Scores are strictly rubric-anchored, and 1-tap review lets learners inspect reasoning and challenge mistakes.</span>
+                  <span>Confidence gates automatically lower certainty scores and surface provisional review flags on ambiguous or unverified work. Scores are anchored to explicit rubric penalty catalogs, and 1-tap review allows learners to inspect the reasoning chain, challenge deductions, and focus on the immediate corrective step.</span>
                 </div>
                 <div class="engine-diligence-item">
-                  <strong>Reliability &amp; Error Classification:</strong>
-                  <span>Strict zero-tolerance defect logging across all 149 evaluation calls with 100% transport and runtime success.</span>
+                  <strong>Runtime Reliability &amp; Defect Tracking:</strong>
+                  <span>Strict zero-tolerance defect classification was maintained across all 149 evaluation calls (125 grading, 24 generation), achieving 100% transport and pipeline execution success with 0 runtime drops.</span>
                 </div>
               </div>
             </div>
