@@ -6184,18 +6184,17 @@
     .engine-visual {
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       background:
-        radial-gradient(780px 360px at 12% 10%, rgba(100, 168, 255, 0.12), transparent 62%),
-        radial-gradient(720px 340px at 88% 82%, rgba(255, 93, 135, 0.1), transparent 62%),
-        linear-gradient(180deg, rgba(5, 11, 24, 0.32), rgba(10, 18, 36, 0.56));
+        radial-gradient(780px 360px at 12% 10%, rgba(100, 168, 255, 0.16), transparent 62%),
+        radial-gradient(720px 340px at 88% 82%, rgba(255, 93, 135, 0.12), transparent 62%),
+        linear-gradient(180deg, rgba(6, 12, 28, 0.88), rgba(8, 16, 36, 0.94));
       box-shadow:
-        0 30px 74px rgba(4, 10, 24, 0.24),
-        0 0 0 1px rgba(124, 247, 255, 0.025),
-        inset 0 1px 0 rgba(255, 255, 255, 0.14),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.035);
-      backdrop-filter: blur(20px) saturate(1.3);
-      -webkit-backdrop-filter: blur(20px) saturate(1.3);
+        0 30px 74px rgba(2, 6, 18, 0.55),
+        0 0 0 1px rgba(124, 247, 255, 0.035),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
     }
 
     .engine-panel > *,
@@ -6206,14 +6205,14 @@
 
     html[data-theme="light"] .engine-panel,
     html[data-theme="light"] .engine-visual {
-      border-color: rgba(79, 132, 214, 0.14);
+      border-color: rgba(79, 132, 214, 0.2);
       background:
-        radial-gradient(780px 360px at 12% 10%, rgba(79, 132, 214, 0.1), transparent 62%),
-        radial-gradient(720px 340px at 88% 82%, rgba(217, 106, 140, 0.08), transparent 62%),
-        linear-gradient(180deg, rgba(255, 253, 250, 0.65), rgba(245, 239, 247, 0.72));
+        radial-gradient(780px 360px at 12% 10%, rgba(79, 132, 214, 0.14), transparent 62%),
+        radial-gradient(720px 340px at 88% 82%, rgba(217, 106, 140, 0.1), transparent 62%),
+        linear-gradient(180deg, rgba(255, 253, 250, 0.94), rgba(245, 239, 247, 0.96));
       box-shadow:
-        0 18px 36px rgba(138, 151, 181, 0.12),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+        0 18px 44px rgba(138, 151, 181, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
     }
 
     .engine-panel {
@@ -6575,43 +6574,6 @@
       flex-direction: column;
       gap: 26px;
       padding: clamp(24px, 3.5vw, 36px);
-    }
-
-    .engine-panel[data-liquid-glass] {
-      background:
-        radial-gradient(780px 360px at 12% 10%, rgba(100, 168, 255, 0.16), transparent 62%),
-        radial-gradient(720px 340px at 88% 82%, rgba(255, 93, 135, 0.12), transparent 62%),
-        linear-gradient(180deg, rgba(6, 12, 28, 0.88), rgba(8, 16, 36, 0.94)) !important;
-    }
-
-    .engine-panel[data-liquid-glass].liquid-glass-card {
-      border: 1px solid rgba(255, 255, 255, 0.14) !important;
-      box-shadow:
-        0 30px 74px rgba(2, 6, 18, 0.55),
-        0 0 0 1px rgba(124, 247, 255, 0.035),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.04) !important;
-    }
-
-    .engine-panel[data-liquid-glass] > .liquid-glass-overlay {
-      background: transparent;
-      box-shadow:
-        inset 0 0 28px -6px rgba(255, 255, 255, 0.28),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-    }
-
-    .engine-panel[data-liquid-glass] > .liquid-glass-filter {
-      backdrop-filter: blur(24px) saturate(1.4);
-      -webkit-backdrop-filter: blur(24px) saturate(1.4);
-    }
-
-    html[data-theme="light"] .engine-panel[data-liquid-glass] {
-      background:
-        radial-gradient(780px 360px at 12% 10%, rgba(79, 132, 214, 0.14), transparent 62%),
-        radial-gradient(720px 340px at 88% 82%, rgba(217, 106, 140, 0.1), transparent 62%),
-        linear-gradient(180deg, rgba(255, 253, 250, 0.94), rgba(245, 239, 247, 0.96)) !important;
-      border: 1px solid rgba(79, 132, 214, 0.2) !important;
-      box-shadow: 0 18px 44px rgba(138, 151, 181, 0.2) !important;
     }
 
     .engine-header-row {
@@ -13045,7 +13007,7 @@
           </defs>
         </svg>
 
-        <div class="engine-panel engine-panel--unified" data-liquid-glass>
+        <div class="engine-panel engine-panel--unified">
           <div class="engine-header-row">
             <div class="engine-header-copy">
               <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
