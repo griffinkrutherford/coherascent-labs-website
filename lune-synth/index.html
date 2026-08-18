@@ -706,6 +706,23 @@
         drop-shadow(0 0 10px rgba(217, 106, 140, 0.1));
     }
 
+    /* Outcome-first hero headline (wraps) + secondary anti-slop identity line. */
+    .hero .hero-copy .hero-tagline--outcome {
+      white-space: normal;
+      font-size: clamp(26px, 6.2vw, 46px);
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+    }
+
+    .hero .hero-copy .hero-tagline--note {
+      white-space: normal;
+      font-size: clamp(13px, 3.4vw, 19px);
+      line-height: 1.3;
+      letter-spacing: -0.005em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
     .hero p,
     .detail-card p,
     .note-card p {
@@ -1504,6 +1521,36 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 18px;
+    }
+
+    /* Outcome-oriented copy line shown under a section title. */
+    .section-outcome-note {
+      margin: -4px 0 2px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* Links to the matching subject / test-prep landing pages inside outcome cards. */
+    .detail-card .outcome-card__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+      margin: 14px 0 0;
+    }
+
+    .detail-card .outcome-card__links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .detail-card .outcome-card__links a:hover,
+    .detail-card .outcome-card__links a:focus-visible {
+      text-decoration: underline;
     }
 
     .platform-showcase {
@@ -8210,6 +8257,12 @@
       margin-bottom: clamp(12px, 2vh, 28px);
     }
 
+    /* Keep the outcome note left-aligned with the title in this centered flex section. */
+    .section--constellations-slideshow .section-outcome-note {
+      align-self: flex-start;
+      margin: 0;
+    }
+
     .slideshow-layout {
       display: flex;
       flex-direction: column;
@@ -10891,14 +10944,14 @@
       </div>
       <nav class="nav-links" id="primary-nav" aria-label="Primary">
         <a class="nav-link" href="#lost-cosmos-title">The Crisis</a>
-        <a class="nav-link" href="#platform-title">Handwriting</a>
-        <a class="nav-link" href="#luna-title">Luna</a>
-        <a class="nav-link" href="#processing-title">Grading</a>
-        <a class="nav-link" href="#voice-title">Input Methods</a>
+        <a class="nav-link" href="#platform-title">Real Homework</a>
+        <a class="nav-link" href="#luna-title">Luna Tutor</a>
+        <a class="nav-link" href="#processing-title">How It Works</a>
+        <a class="nav-link" href="#voice-title">Input Modes</a>
         <a class="nav-link" href="#quick-missions-title">Quick Missions</a>
-        <a class="nav-link" href="#constellations-title">Constellations</a>
-        <a class="nav-link" href="#medals-title">Medals</a>
-        <a class="nav-link" href="#engine-title">Engine</a>
+        <a class="nav-link" href="#constellations-title">Roadmaps</a>
+        <a class="nav-link" href="#medals-title">100+ Medals</a>
+        <a class="nav-link" href="#engine-title">Accuracy</a>
         <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
@@ -10910,7 +10963,8 @@
       <div class="hero-brandline">
         <div class="hero-copy">
           <h2 class="hero-app-title" id="applied-page-title">Lune Synth&trade;</h2>
-          <p class="hero-tagline">The <span>anti-slop</span> learning app</p>
+          <p class="hero-tagline hero-tagline--outcome">Study for the score you&rsquo;re actually chasing.</p>
+          <p class="hero-tagline hero-tagline--note">The <span>anti-slop</span> learning app &mdash; you have to actually use your brain.</p>
         </div>
         <img
           class="hero-app-icon"
@@ -10924,7 +10978,7 @@
         />
       </div>
       <p>
-        Do the work. Scan it in. Get feedback that actually helps. From the Pre-K through the PhD level.
+        Upload homework or a study guide. Get immediate step-by-step feedback that walks you through how to solve it, then a targeted practice set that drills exactly what you missed &mdash; so it sticks for the test. From Pre-K through PhD.
       </p>
     </section>
 
@@ -11008,6 +11062,68 @@
       </div>
     </div>
 
+    <!-- ================= OUTCOMES SECTION ================= -->
+    <section class="section" id="outcomes" aria-labelledby="outcomes-title">
+      <h2 class="section-title" id="outcomes-title">The score you&rsquo;re studying for</h2>
+      <p class="section-outcome-note">
+        The whole app is built around one thing: the grade or exam you&rsquo;re already working toward. Here&rsquo;s the goal each learner brings &mdash; and the loop built to serve it.
+      </p>
+      <div class="details section-content">
+        <article class="detail-card" data-liquid-glass>
+          <strong>Higher SAT / ACT scores</strong>
+          <p>Practice aimed at the exact question types you keep missing, in the format the test uses &mdash; so review time lands where it moves the score.</p>
+          <p class="outcome-card__links">
+            <a href="test-prep/sat/">SAT practice &rarr;</a>
+            <a href="test-prep/act/">ACT practice &rarr;</a>
+          </p>
+        </article>
+        <article class="detail-card" data-liquid-glass>
+          <strong>Higher test scores in class</strong>
+          <p>Tonight&rsquo;s homework becomes tomorrow&rsquo;s reps: scan your work, get walked through it step by step, then drill exactly what tripped you up before it&rsquo;s on the test.</p>
+        </article>
+        <article class="detail-card" data-liquid-glass>
+          <strong>Grades that carry a college application</strong>
+          <p>Consistent, step-level feedback on your actual coursework &mdash; built to keep the grades admissions officers read moving in the right direction.</p>
+        </article>
+        <article class="detail-card" data-liquid-glass>
+          <strong>Undergrad grades strong enough for grad school</strong>
+          <p>Close the gaps in tough major courses before they cost you the GPA a graduate program will weigh.</p>
+        </article>
+        <article class="detail-card" data-liquid-glass>
+          <strong>GRE / MCAT / LSAT / USMLE, step-by-step</strong>
+          <p>Work through practice questions and demonstration scenarios one reasoned step at a time, then re-drill precisely what you missed.</p>
+          <p class="outcome-card__links">
+            <a href="test-prep/gre/">GRE &rarr;</a>
+            <a href="test-prep/mcat/">MCAT &rarr;</a>
+            <a href="test-prep/lsat/">LSAT &rarr;</a>
+            <a href="test-prep/usmle/">USMLE &rarr;</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= STUDENT STORIES SECTION ================= -->
+    <section class="section" id="student-stories" aria-labelledby="student-stories-title">
+      <h2 class="section-title" id="student-stories-title">Student stories</h2>
+      <p class="section-outcome-note">
+        Lune Synth is in pre-beta. Rather than invent quotes, we&rsquo;re reserving this space for the real thing: as our beta cohort works through the loop, their stories &mdash; with the measurement context behind any result &mdash; will land here.
+      </p>
+      <div class="details section-content">
+        <article class="detail-card" data-liquid-glass>
+          <strong>Beta cohort in progress</strong>
+          <p>Real student stories land here as they come in &mdash; named, specific, and tied to what was actually measured.</p>
+        </article>
+        <article class="detail-card" data-liquid-glass>
+          <strong>Case studies, not slogans</strong>
+          <p>Short before-and-after walkthroughs of the upload &rarr; feedback &rarr; practice loop on real coursework, once cohort work is complete.</p>
+        </article>
+        <article class="detail-card" data-liquid-glass>
+          <strong>Outcomes with their context</strong>
+          <p>When we can measure correction success, practice completion, or score movement, those numbers show up here beside how they were measured &mdash; never as a bare promise.</p>
+        </article>
+      </div>
+    </section>
+
     <!-- ================= LOST IN THE COSMOS / STUDY CRISIS SECTION ================= -->
     <section class="section section--lost-cosmos" id="lost-cosmos" aria-labelledby="lost-cosmos-title">
       <h2 class="section-title" id="lost-cosmos-title">Lost in the Cosmos</h2>
@@ -11035,7 +11151,7 @@
 
       <div class="lost-cosmos__resolve section-content">
         <p class="lost-cosmos__transition">
-          <strong>Lune Synth fixes all three.</strong> Handwritten reasoning. Real feedback. Focused practice.
+          <strong>Lune Synth fixes all three</strong> &mdash; and points them at the score you&rsquo;re studying for: real feedback on your actual work, then focused practice on exactly what you got wrong.
         </p>
         <a class="lost-cosmos__scroll" href="#platform-title">
           Scroll down to see how
@@ -11045,7 +11161,7 @@
     </section>
 
     <section class="section" aria-labelledby="platform-title">
-      <h2 class="section-title" id="platform-title">Platform Components</h2>
+      <h2 class="section-title" id="platform-title">See it work on real homework</h2>
       <article class="platform-showcase section-content" aria-label="Handwritten response slideshow">
         <div class="platform-showcase__sheet">
           <div class="platform-showcase__date" id="handwritten-date" data-placeholder="April 28th, 2026"></div>
@@ -11421,6 +11537,7 @@
           <p>
             Students solve on paper, scan their work, and get step-level guidance across a growing range of subjects.
             Handwriting is one of the best ways to build the neural pathways that support deeper learning and recall.
+            And the feedback isn&rsquo;t the finish line: each correction flows into a targeted practice set that drills the exact gap before it shows up on the test.
           </p>
         </div>
       </article>
@@ -11564,7 +11681,10 @@
     </section>
 
     <section class="section" aria-labelledby="processing-title">
-      <h2 class="section-title" id="processing-title">How grading works</h2>
+      <h2 class="section-title" id="processing-title">What happens when you scan your page</h2>
+      <p class="section-outcome-note">
+        See the exact step that cost you points &mdash; then fix it before it&rsquo;s graded. Every capture runs the same path from messy work to the one move that raises the score.
+      </p>
       <div class="processing-flow section-content">
         <div class="processing-flow__grid">
           <article class="processing-card">
@@ -11745,7 +11865,7 @@
 
     <section class="section section--voice" aria-labelledby="voice-title">
       <div class="voice-flow" data-liquid-glass data-liquid-glass-variant="frosted">
-        <h2 class="section-title" id="voice-title">Don't want to handwrite?</h2>
+        <h2 class="section-title" id="voice-title">Snap a photo. Talk it out. Or type.</h2>
         <div class="voice-flow__carousel section-content" data-input-carousel>
           <div class="voice-flow__controls" aria-label="Input method carousel" data-moving-selection>
             <span class="moving-selection-pill voice-flow__selection" aria-hidden="true"></span>
@@ -11867,7 +11987,7 @@
 
     <!-- ================= QUICK MISSIONS SECTION ================= -->
     <section class="section section--quick-missions" id="quick-missions" aria-labelledby="quick-missions-title">
-      <h2 class="section-title" id="quick-missions-title">Take One Quick Mission</h2>
+      <h2 class="section-title" id="quick-missions-title">5-minute practice when you&rsquo;re short on time</h2>
 
       <div class="quick-missions section-content" data-quick-missions>
         <video class="quick-missions__video" data-quick-missions-video loop muted playsinline preload="metadata" aria-hidden="true">
@@ -11881,7 +12001,8 @@
             <h3 class="quick-missions__headline">One clear goal. A few focused minutes.</h3>
             <p class="quick-missions__lede">
               Quick Missions are ideal when you have a bite-sized goal. They narrow the next few minutes to one
-              fact to recall, one method to practice, or one mistake to fix.
+              fact to recall, one method to practice, or one mistake to fix &mdash; a few focused minutes on the
+              exact thing that&rsquo;ll be on the test.
             </p>
             <div class="quick-missions__contrast" aria-label="Quick Mission characteristics">
               <span>2–6 minutes</span>
@@ -11908,7 +12029,10 @@
 
     <!-- ================= CONSTELLATIONS SLIDESHOW ================= -->
     <section class="section section--constellations-slideshow" id="constellations" aria-labelledby="constellations-title">
-      <h2 class="section-title" id="constellations-title">Turn a Big Study Goal Into a Constellation</h2>
+      <h2 class="section-title" id="constellations-title">A clear roadmap to the grade you want</h2>
+      <p class="section-outcome-note">
+        Turn a big goal &mdash; raise your calc grade, prep for the MCAT &mdash; into a path you actually finish, one mission at a time.
+      </p>
 
       <div class="slideshow-layout section-content">
 
@@ -12095,7 +12219,10 @@
     <!-- ================= METALS/ACHIEVEMENT MEDALS SECTION ================= -->
     <section class="section section--medals" id="medals-showcase" aria-labelledby="medals-title">
       <h2 class="section-title" id="medals-title">Earn 100+ Cosmic Medals</h2>
-      
+      <p class="section-outcome-note">
+        Streaks and medals track the one thing that reliably moves a score: the volume of focused practice reps you actually put in.
+      </p>
+
       <div class="medals-layout section-content">
         
         <!-- Center Card Container -->
@@ -13005,7 +13132,7 @@
             <div class="engine-header-copy">
               <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
               <p class="engine-lead">
-                Lune Synth is engineered with anti-slop software design so you get feedback you can actually trust. In rubric benchmark evaluations, over 95% of multimodal responses deliver sound, defect-free evaluations down to every step&mdash;backed by explicit confidence thresholds and one-tap correction checks.
+                Lune Synth is engineered to catch mistakes AI normally misses. That rigor is the point: feedback is only worth studying from if it&rsquo;s right. Every step is anchored to your work and the rubric before it reaches you, so you never learn the wrong method for the test. In rubric evaluations, over 95% of step evaluations deliver sound, defect-free guidance&mdash;backed by confidence checks and one-tap student verification.
               </p>
             </div>
 
@@ -13019,7 +13146,7 @@
                   <span class="engine-metric-number" data-count="95.2">95.2%</span>
                 </div>
                 <div class="engine-gauge-info">
-                  <strong><span class="engine-word-glow engine-word-glow--blue">Perfect</span> Grading Accuracy</strong>
+                  <strong><span class="engine-word-glow engine-word-glow--blue">Rubric-Grounded</span> Grading Accuracy</strong>
                   <span>Spot-on step evaluations on real handwritten &amp; typed work.</span>
                 </div>
               </div>
@@ -13033,8 +13160,8 @@
                   <span class="engine-metric-number" data-count="95.8">95.8%</span>
                 </div>
                 <div class="engine-gauge-info">
-                  <strong><span class="engine-word-glow engine-word-glow--purple">Perfect</span> Question Quality</strong>
-                  <span>Flawless practice sets across college &amp; test-prep subjects.</span>
+                  <strong><span class="engine-word-glow engine-word-glow--purple">Targeted</span> Question Quality</strong>
+                  <span>Defect-free practice sets across college &amp; test-prep subjects.</span>
                 </div>
               </div>
             </div>
