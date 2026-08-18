@@ -344,15 +344,17 @@
 
   window.addEventListener("resize", scheduleRebuild);
 
+  var observer;
   if (typeof ResizeObserver !== "undefined") {
-    var observer = new ResizeObserver(scheduleRebuild);
+    observer = new ResizeObserver(scheduleRebuild);
     cards.forEach(function (card) {
       observer.observe(card);
     });
   }
 
+  var cardObserver;
   if ("IntersectionObserver" in window) {
-    var cardObserver = new IntersectionObserver(function (entries) {
+    cardObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         activateCard(entry.target);
@@ -368,6 +370,42 @@
     });
   } else {
     cards.forEach(activateCard);
+  }
+
+  function scanCards() {
+    var allCards = Array.prototype.slice.call(document.querySelectorAll("[data-liquid-glass]"));
+    allCards.forEach(function (card) {
+      if (cards.indexOf(card) === -1) {
+        cards.push(card);
+        if (observer) {
+          observer.observe(card);
+        }
+        if (cardObserver) {
+          cardObserver.observe(card);
+        } else {
+          activateCard(card);
+        }
+      }
+    });
+  }
+
+  window.initLiquidGlass = function () {
+    scanCards();
+    rebuildAll();
+  };
+
+  if (typeof MutationObserver !== "undefined") {
+    var mutObserver = new MutationObserver(function (mutations) {
+      var hasNew = false;
+      for (var i = 0; i < mutations.length; i++) {
+        if (mutations[i].addedNodes && mutations[i].addedNodes.length) {
+          hasNew = true;
+          break;
+        }
+      }
+      if (hasNew) scanCards();
+    });
+    mutObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
   }
 
   window.requestAnimationFrame(function () {
