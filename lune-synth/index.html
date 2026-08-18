@@ -6762,6 +6762,56 @@
       line-height: 1.3;
     }
 
+    .engine-word-glow {
+      display: inline-block;
+      font-weight: 800;
+      transition: filter 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .engine-word-glow--blue {
+      color: #64a8ff;
+      background-image: linear-gradient(120deg, #64a8ff, #a47bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px rgba(100, 168, 255, 0.65));
+    }
+
+    .engine-word-glow--purple {
+      color: #a47bff;
+      background-image: linear-gradient(120deg, #a47bff, #ff5d87);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px rgba(255, 93, 135, 0.65));
+    }
+
+    .engine-gauge-card:hover .engine-word-glow--blue {
+      filter: drop-shadow(0 0 14px rgba(100, 168, 255, 0.9));
+    }
+
+    .engine-gauge-card:hover .engine-word-glow--purple {
+      filter: drop-shadow(0 0 14px rgba(255, 93, 135, 0.9));
+    }
+
+    html[data-theme="light"] .engine-word-glow--blue {
+      color: #2b78d6;
+      background-image: linear-gradient(120deg, #2b78d6, #7e48d6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 8px rgba(79, 132, 214, 0.4));
+    }
+
+    html[data-theme="light"] .engine-word-glow--purple {
+      color: #8c3ed6;
+      background-image: linear-gradient(120deg, #8c3ed6, #d93868);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 8px rgba(217, 106, 140, 0.4));
+    }
+
     .engine-gauge-info span {
       font-size: 12px;
       line-height: 1.45;
@@ -12969,7 +13019,7 @@
                   <span class="engine-metric-number" data-count="95.2">95.2%</span>
                 </div>
                 <div class="engine-gauge-info">
-                  <strong>Perfect Grading Accuracy</strong>
+                  <strong><span class="engine-word-glow engine-word-glow--blue">Perfect</span> Grading Accuracy</strong>
                   <span>Spot-on step evaluations on real handwritten &amp; typed work.</span>
                 </div>
               </div>
@@ -12983,7 +13033,7 @@
                   <span class="engine-metric-number" data-count="95.8">95.8%</span>
                 </div>
                 <div class="engine-gauge-info">
-                  <strong>Perfect Question Quality</strong>
+                  <strong><span class="engine-word-glow engine-word-glow--purple">Perfect</span> Question Quality</strong>
                   <span>Flawless practice sets across college &amp; test-prep subjects.</span>
                 </div>
               </div>
