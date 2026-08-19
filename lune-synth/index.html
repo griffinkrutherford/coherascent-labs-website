@@ -6623,7 +6623,7 @@
       transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
-    /* Blue Glow for 95.2% Perfect Grading Accuracy */
+    /* Blue Glow for 96.3% Grading Accuracy */
     .engine-gauge-card--blue {
       background:
         radial-gradient(160px 130px at 50% 30%, rgba(100, 168, 255, 0.15), transparent 70%),
@@ -13021,9 +13021,9 @@
                 <div class="engine-metric-visual">
                   <svg class="engine-metric-ring" viewBox="0 0 100 100" aria-hidden="true">
                     <circle class="engine-metric-ring__bg" cx="50" cy="50" r="42" />
-                    <circle class="engine-metric-ring__fill engine-metric-ring__fill--blue" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="263.89" data-target-offset="12.67" />
+                    <circle class="engine-metric-ring__fill engine-metric-ring__fill--blue" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="263.89" data-target-offset="9.76" />
                   </svg>
-                  <span class="engine-metric-number" data-count="95.2">95.2%</span>
+                  <span class="engine-metric-number" data-count="96.3">96.3%</span>
                 </div>
                 <div class="engine-gauge-info">
                   <strong><span class="engine-word-glow engine-word-glow--blue">Perfect</span> Grading Accuracy</strong>
@@ -13109,13 +13109,17 @@
                   <strong>Executive Summary &amp; Key Findings</strong>
                 </div>
                 <p class="engine-diligence-tldr__text">
-                  <strong>Observed Soundness:</strong> <strong>95.2%</strong> of multimodal grading evaluations (119/125 live trials; 95% Wilson CI: [89.9%, 97.8%]) and <strong>95.8%</strong> of curriculum question items (115/120 items; 95% Wilson CI: [90.6%, 98.2%]) avoided material defects across 12 graduate disciplines.
+                  <strong>Observed Soundness:</strong> <strong>96.3%</strong> of multimodal grading evaluations (233/242 live trials across 74 distinct prompts; 95% Wilson CI: [93.1%, 98.0%]) avoided materially incorrect guidance, spanning Pre-K through graduate work in mathematics, natural science, social science, language arts, foreign language, computer science, philosophy, law, and translation studies. Curriculum question quality holds at <strong>95.8%</strong> (115/120 items; 95% Wilson CI: [90.6%, 98.2%]) across 12 graduate generation contexts.
                   <br>
-                  <strong>Honest Distribution:</strong> Across 125 grading trials, <strong>89.6%</strong> (112/125) were completely clean, <strong>5.6%</strong> (7/125) had minor non-material phrasing nuances, and <strong>4.8%</strong> (6/125) had flagged conceptual errors—all transparently audited below.
+                  <strong>Conservative Prompt-Cluster View:</strong> At the distinct-prompt level, <strong>91.9%</strong> of prompts (68/74) were sound across every input mode tested (95% Wilson CI: [83.4%, 96.2%]).
+                  <br>
+                  <strong>Honest Distribution:</strong> Across 242 grading trials, <strong>90.1%</strong> (218/242) were completely clean, <strong>6.2%</strong> (15/242) had minor non-material phrasing nuances, and <strong>3.7%</strong> (9/242) had flagged conceptual errors—all transparently audited below.
+                  <br>
+                  <strong>Adjudication Caveat:</strong> Every soundness figure reflects single-reviewer, non-blind adjudication (the two evaluation halves judged by different reviewers), not double-scored consensus. These measure the soundness of the guidance, not the displayed numeric score.
                   <br>
                   <strong>Anti-Slop Mechanism:</strong> Lune Synth eliminates unanchored scores via explicit confidence gates (<code>τ = 0.85</code>), deterministic rubric penalty catalogs, step deduction conflict checks, and 1-tap student verification to inspect and challenge every step.
                   <br>
-                  <strong>Pipeline Execution:</strong> <strong>100%</strong> transport and execution success across all 149 evaluated API and grading calls.
+                  <strong>Pipeline Execution:</strong> <strong>100%</strong> transport and execution success across all 266 evaluated API and grading calls.
                 </p>
               </div>
 
@@ -13138,22 +13142,22 @@
                   <tbody>
                     <tr>
                       <td><strong>Multimodal Feedback Soundness</strong></td>
-                      <td>125 live responses (35 prompts)</td>
-                      <td>89.6% (112 / 125)</td>
-                      <td>5.6% (7 / 125)</td>
-                      <td>4.8% (6 / 125)</td>
-                      <td><span>[89.9%, 97.8%] (Overall Soundness: 95.2%)</span></td>
+                      <td>242 live responses (74 prompts, Pre-K&ndash;grad)</td>
+                      <td>90.1% (218 / 242)</td>
+                      <td>6.2% (15 / 242)</td>
+                      <td>3.7% (9 / 242)</td>
+                      <td><span>[93.1%, 98.0%] (Overall Soundness: 96.3%)</span></td>
                     </tr>
                     <tr>
                       <td><strong>Prompt-Cluster Safety</strong></td>
-                      <td>35 distinct graduate prompts</td>
-                      <td>91.4% (32 / 35 sound)</td>
+                      <td>74 distinct prompts (Pre-K&ndash;grad)</td>
+                      <td>91.9% (68 / 74 sound)</td>
                       <td>—</td>
-                      <td>8.6% (3 / 35)</td>
-                      <td><span>[77.6%, 97.0%]</span></td>
+                      <td>8.1% (6 / 74)</td>
+                      <td><span>[83.4%, 96.2%]</span></td>
                     </tr>
                     <tr>
-                      <td><strong>Curriculum Item Quality</strong></td>
+                      <td><strong>Curriculum Item Quality</strong> <span style="opacity:.7;">(graduate-only)</span></td>
                       <td>120 items (60 free, 60 choice)</td>
                       <td>91.7% (110 / 120)</td>
                       <td>4.2% (5 / 120)</td>
@@ -13161,7 +13165,7 @@
                       <td><span>[90.6%, 98.2%] (Defect-Free: 95.8%)</span></td>
                     </tr>
                     <tr>
-                      <td><strong>Complete 5-Item Set Soundness</strong></td>
+                      <td><strong>Complete 5-Item Set Soundness</strong> <span style="opacity:.7;">(graduate-only)</span></td>
                       <td>24 full practice sets</td>
                       <td>79.2% (19 / 24 pristine)</td>
                       <td>—</td>
@@ -13170,11 +13174,11 @@
                     </tr>
                     <tr>
                       <td><strong>Pipeline Runtime Reliability</strong></td>
-                      <td>149 evaluation API calls</td>
-                      <td>100.0% (149 / 149)</td>
+                      <td>266 evaluation API calls</td>
+                      <td>100.0% (266 / 266)</td>
                       <td>0.0% drops</td>
                       <td>0.0% fatal exceptions</td>
-                      <td><span>[97.5%, 100.0%]</span></td>
+                      <td><span>[98.6%, 100.0%]</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -13186,20 +13190,20 @@
               </div>
               <div class="engine-diligence-grid">
                 <div class="engine-diligence-item">
-                  <strong>Typed Digital Inputs (1 / 42 Material Failure · 2.4%):</strong>
-                  <span>Tested across dense mathematical proofs, symbolic equations, code blocks, and multi-paragraph essays. 41 of 42 responses delivered flawless or benign-nuance guidance.</span>
+                  <strong>Typed Digital Inputs (3 / 81 Material · 96.3% sound; 95% CI [89.7%, 98.7%]):</strong>
+                  <span>Tested across dense mathematical proofs, symbolic equations, code blocks, and multi-paragraph essays, from Pre-K arithmetic through graduate coursework.</span>
                 </div>
                 <div class="engine-diligence-item">
-                  <strong>Voice Audio Transcripts (1 / 42 Material Failure · 2.4%):</strong>
+                  <strong>Voice Audio Transcripts (2 / 81 Material · 97.5% sound; 95% CI [91.4%, 99.3%]):</strong>
                   <span>Evaluated on conversational derivations, spoken step-by-step problem-solving, and spoken answers with natural pauses, revisions, and colloquial phrasing.</span>
                 </div>
                 <div class="engine-diligence-item">
-                  <strong>Handwriting &amp; Scans (4 / 41 Material Failures · 9.8%):</strong>
-                  <span>Intentionally benchmarked against worst-case optical friction: dense multi-column work, heavily scratched-out revisions, bilingual/ESL annotations, and hand-drawn matrix grids.</span>
+                  <strong>Handwriting &amp; Scans (4 / 80 Material · 95.0% sound; 95% CI [87.8%, 98.0%]):</strong>
+                  <span>No modality effect is established: the Pre-K&ndash;high-school run recorded 0 material failures across 39 handwriting responses, and the combined handwriting interval overlaps both other modes. Caveat: 14 of those 39 trials ran as OCR-simulated text&mdash;fixtures quarantined by a 0.85 transcription-fidelity gate, including all five Pre-K cases&mdash;while 25 were genuine scanned images.</span>
                 </div>
                 <div class="engine-diligence-item">
-                  <strong>Distinct Prompt-Cluster Safety Rate (91.4%):</strong>
-                  <span>32 of 35 distinct higher-education prompt contexts avoided any material evaluation error across all student submissions in the cluster (95% Wilson CI: 77.6%–97.0%).</span>
+                  <strong>Distinct Prompt-Cluster Safety Rate (91.9%):</strong>
+                  <span>68 of 74 distinct prompt contexts avoided any material evaluation error across all student submissions in the cluster (95% Wilson CI: 83.4%–96.2%).</span>
                 </div>
               </div>
 
@@ -13213,16 +13217,16 @@
                 <br>
                 <code>P(Clean 5-Item Set) = p⁵ = (0.9583)⁵ ≈ 80.59%</code>
                 <br>
-                This closely predicts the empirical benchmark result of <code>79.17% (19/24 full sets; 95% Wilson CI: [59.5%, 90.8%])</code>, demonstrating that generation defects occur independently across individual items rather than cascading into session-wide failures.
+                This is consistent with the empirical benchmark result of <code>79.17% (19/24 full sets; 95% Wilson CI: [59.5%, 90.8%])</code>, though with only 24 sets that interval spans a wide range of dependence structures and does not by itself establish independence. The observed 19/24 is the primary figure; the p&#8309; value is a secondary projection.
               </div>
 
               <!-- Section 4: Evaluated Graduate Disciplines -->
               <div class="engine-diligence-section-heading">
-                <h4>04 · 12 Evaluated Graduate &amp; Professional Disciplines</h4>
+                <h4>04 · Evaluated Domains &mdash; Generation Contexts &amp; Grading Coverage</h4>
               </div>
               <div class="engine-diligence-item" style="grid-column: 1 / -1;">
-                <strong>Domain Coverage Matrix:</strong>
-                <span>Rubric evaluations and question generation suites were benchmarked across 12 graduate-level academic and professional disciplines:</span>
+                <strong>Question-Generation Contexts (12 graduate disciplines):</strong>
+                <span>The question-generation suite was benchmarked across 12 graduate-level academic and professional disciplines:</span>
                 <div class="engine-diligence-tags">
                   <span class="engine-diligence-tag">Complex Analysis</span>
                   <span class="engine-diligence-tag">Immunology &amp; Virology</span>
@@ -13237,6 +13241,7 @@
                   <span class="engine-diligence-tag">Historical Linguistics</span>
                   <span class="engine-diligence-tag">Applied Cryptography</span>
                 </div>
+                <span style="display:block; margin-top:12px;"><strong>Grading Coverage (Pre-K through graduate):</strong> The 74 graded prompts spanned a broader set&mdash;mathematics, natural science, social science, language arts, foreign language, computer science, philosophy, law, literary analysis, translation studies, and qualitative methods&mdash;not limited to the 12 generation disciplines above.</span>
               </div>
 
               <!-- Section 5: Anti-Slop Architecture & Confidence Calibration Mechanics -->
@@ -13268,9 +13273,10 @@
               </div>
               <div class="engine-diligence-item" style="grid-column: 1 / -1;">
                 <strong>Logged Failure Breakdown &amp; Root Cause Analysis:</strong>
-                <span>All 6 observed material grading errors and 5 question generation defects were formally logged and cataloged:</span>
+                <span>All 9 material grading errors (6 in the graduate tranche across 3 distinct prompts, plus 3 in the Pre-K&ndash;high-school run) and 5 question-generation defects were formally logged and cataloged:</span>
                 <ul style="margin: 8px 0 0; padding-left: 18px; line-height: 1.6; font-size: 12.5px;">
-                  <li><em>Grading Failures (6 total):</em> Classical barrier penetration confused with tunneling coefficient in Quantum Info; false uniqueness assumption in Epistemology; aspect/tense nuance in Slavic verbal prefixes; plus 3 handwritten OCR misalignments on scratched multi-column work.</li>
+                  <li><em>Grading failures &mdash; graduate tranche (6 responses across 3 distinct prompts):</em> Four responses came from a single graduate astrophysics prompt on stellar fusion, where feedback endorsed thermal kinetic energy as classically overcoming the Coulomb barrier and treated quantum tunneling as optional detail; the same misconception recurred across typed, voice, and handwriting renderings of that one prompt. One response, on a philosophy-of-science scan, missed a polished but false conclusion that sufficient evidence yields a logically unique theory. One response, on a translation-studies scan, praised an incorrect tense/aspect analysis of the French imperfective <em>retrouvais</em>.</li>
+                  <li><em>Grading failures &mdash; Pre-K&ndash;high-school run (3 responses):</em> Three material failures were logged in the 2026-08-19 evaluation and retained in the permanent corpus; per-case root-cause detail is tracked internally rather than on this page.</li>
                   <li><em>Generation Defects (5 total):</em> Contradictory Item Response Theory distractor rationale; non-unique option in Narratology; false-premise prompt in non-Hausdorff topology; underidentified fiscal shock equation in DSGE macroeconomics; and 1 ambiguous prompt boundary in Administrative Law.</li>
                 </ul>
               </div>

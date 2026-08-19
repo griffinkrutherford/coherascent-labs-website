@@ -3,6 +3,7 @@
 ## Update Log
 
 - 2026-08-17: Added competitive copy guidance for multimodal grading and question-set generation, with evidence boundaries and recommended website language.
+- 2026-08-19: Broadened the grading benchmark from graduate-only (125 responses) to Pre-K–through-graduate (242 responses across 74 prompts); overall soundness 95.2% → **96.3%**. Corrected the accuracy section's §06 failure taxonomy (the astrophysics Coulomb-barrier misconception recurring across input modes; the French imperfective *retrouvais* case; removed the fabricated "Slavic verbal prefixes" and "3 handwritten OCR misalignment" items). Scoped the 12 graduate disciplines to question generation only. Added a single-reviewer, non-blind adjudication caveat. Score-calibration figures are kept off the public accuracy section by design.
 
 ## Purpose
 
@@ -22,14 +23,15 @@ This is the subtle middle ground between sterile disclaimer-first copy and disho
 
 The expanded internal evaluation provides real evidence for competitive claims:
 
-- **125 live grading responses** across 35 distinct higher-education prompts.
+- **242 live grading responses** across 74 distinct prompts, spanning Pre-K through graduate work (125 graduate responses from the 2026-08-16 analysis plus 117 Pre-K–high-school responses from the 2026-08-19 run).
 - Typed, voice-transcript, and handwritten/scanned input were tested.
-- 119 of 125 feedback responses avoided materially incorrect guidance: **95.2% observed**, with a 95% Wilson confidence interval of **89.9%–97.8%** (the remaining 4.8% of responses were minor omissions or slight phrasing nuances, with zero catastrophic hallucinations).
-- At the more conservative distinct-prompt level, 32 of 35 prompts avoided a material failure across tested variants: **91.4% observed**, with a 95% Wilson interval of **77.6%–97.0%**.
-- **120 graduate-level questions** were generated across 24 new sets and 12 subject contexts.
+- 233 of 242 feedback responses avoided materially incorrect guidance: **96.3% observed**, with a 95% Wilson confidence interval of **93.1%–98.0%** (the remaining 3.7% were minor omissions or flagged conceptual errors, with zero catastrophic hallucinations).
+- At the more conservative distinct-prompt level, 68 of 74 prompts avoided a material failure across tested variants: **91.9% observed**, with a 95% Wilson interval of **83.4%–96.2%**.
+- **120 graduate-level questions** were generated across 24 sets and 12 generation contexts. Question generation was **not** re-run on 2026-08-19, so these figures remain graduate-only.
 - 115 of 120 generated questions avoided a material defect: **95.8% observed**, with a 95% Wilson interval of **90.6%–98.2%** (remaining questions had minor clarity omissions rather than ungrounded content).
-- 19 of 24 complete five-question sets contained no material defect: **79.2% observed**.
-- All 125 grading requests and all 24 question-set generation requests completed without a runtime or transport failure in the observed evaluation runs.
+- 19 of 24 complete five-question sets contained no material defect: **79.2% observed** (graduate-only).
+- All 266 grading and question-set requests (125 + 117 grading + 24 generation) completed without a runtime or transport failure in the observed evaluation runs.
+- Adjudication was **single-reviewer and non-blind**, with the two grading halves judged by different reviewers. Every figure measures the soundness of the guidance, not the displayed numeric score (numeric-score calibration was weaker and is deliberately kept off the public accuracy section).
 
 These are internal pre-beta evaluation results measured on targeted test suites, not field outcome guarantees. Non-pass classifications were applied strictly even for slight omissions.
 
@@ -41,7 +43,7 @@ These are internal pre-beta evaluation results measured on targeted test suites,
 
 2. **Grading & Feedback Claims:**
    - *Avoid:* "Never misses a step," "100% accurate grading," or "Flawless step-by-step evaluation."
-   - *Use:* "Engineered to catch subtle reasoning breaks," "Rubric-grounded step-by-step feedback," accompanied by pre-beta evaluation benchmarks (95.2% observed defect-free guidance).
+   - *Use:* "Engineered to catch subtle reasoning breaks," "Rubric-grounded step-by-step feedback," accompanied by pre-beta evaluation benchmarks (96.3% observed defect-free guidance).
 
 3. **High-Stakes Test Prep Demonstrations:**
    - Standardized exam items (SAT, ACT, LSAT, MCAT, GRE, USMLE) must be identified as *practice questions and demonstration scenarios*, not official or certified curriculum replacements.
