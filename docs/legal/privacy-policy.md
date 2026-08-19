@@ -27,7 +27,8 @@ different terms for an organization-managed deployment.
 - We do not use private learning submissions to train a general-purpose AI
   model without express permission.
 - During the initial beta, direct accounts and the general waitlist are not
-  available for independent use by children under 13.
+  intended for independent use by children under 13, and we ask that children
+  under 13 not sign up on their own.
 - AI feedback is processed by service providers and may be reviewed by a
   limited number of authorized people when support, safety, or quality review
   requires it.
@@ -206,9 +207,10 @@ deidentified information that cannot reasonably be linked to you.
 ## 9. Children And Teen Users
 
 During the initial beta, the general waitlist and direct-to-consumer Service
-are not available for independent use by children under 13, and we do not
+are not intended for independent use by children under 13; we ask that a child
+under 13 not create an account or join the waitlist on their own, and we do not
 knowingly collect their personal information through those flows. This is a
-current product and consent-control boundary, not a permanent exclusion of
+current product and consent-control policy, not a permanent exclusion of
 younger learners. The phrase "Pre-K through PhD" describes the range of
 learning material the product aims to support; it does not change current
 account-age requirements.
@@ -355,9 +357,9 @@ as required by law.
 
 ## 14. International Use
 
-The initial beta and general waitlist are offered only in the United States.
-Do not submit personal information through those flows if you are outside the
-United States unless we expressly authorize your participation.
+The initial beta and general waitlist are operated from the United States and
+may be offered to participants in more than one country. Availability and some
+features or legal terms can vary by region depending on where you are located.
 
 Our systems and providers may process information in the United States and
 other countries whose laws may differ from those where you live.

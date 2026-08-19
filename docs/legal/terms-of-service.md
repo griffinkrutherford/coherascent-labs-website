@@ -50,9 +50,11 @@ If you are under the age of legal majority where you live, you may use the
 Service only with permission from a parent or legal guardian who agrees to
 these Terms.
 
-The initial beta and general waitlist are offered only to people in the United
-States. Do not join the waitlist or use the beta from another country unless we
-expressly authorize it.
+The initial beta and general waitlist are operated from the United States and
+may be offered to participants in more than one country. Availability may vary
+by region, and by joining you agree that your information will be handled as
+described in these Terms and our Privacy Policy regardless of where you access
+the Service.
 
 During the initial beta, a child under 13 may not independently create an
 account, join the general waitlist, or submit personal information through the
