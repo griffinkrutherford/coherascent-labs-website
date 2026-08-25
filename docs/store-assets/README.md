@@ -6,9 +6,10 @@
 
 - Added shared native iPhone source captures and separate Google Play and iOS
   marketing exports.
-- Standardized the store graphics on the flyers' thin graphite phone treatment
-  with a near-flush display and restrained metallic edge, while keeping every
-  app interface as an untouched screenshot layer.
+- Standardized the store graphics specifically on flyer 36's black titanium
+  phone treatment: varied left/right three-quarter views, near-flush displays,
+  polished sidewalls, segmented bands, and restrained metallic edges. Every
+  app interface remains an untouched screenshot layer.
 
 ## Structure
 
