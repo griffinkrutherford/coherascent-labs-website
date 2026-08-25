@@ -28,18 +28,17 @@ to rebuild both screenshot sets and the Play feature graphic.
 
 ## Current screenshot order
 
-1. Questions built from your material
-2. Practice across subjects
-3. Know what to fix
-4. See every step
-5. Your subjects, mapped
+1. Your subjects, mapped
+2. Questions built from your material
+3. Practice across subjects
+4. Know what to fix
+5. See every step
 6. Progress in one place
 
-The first frame uses the newest full-resolution statistics question-set capture
-available in the website repository. The second uses the current multiple-choice
-set capture, the third uses the current 90% Results Ready capture, and frames
-four through six use the other current native captures in
-`play-source-screenshots/`.
+The constellation map leads the sequence as the most visually distinctive
+screen. It is followed by the newest full-resolution statistics question-set
+capture, the current multiple-choice set, the 90% Results Ready capture, the
+step-by-step reasoning screen, and the progress screen.
 
 ## Export constraints
 

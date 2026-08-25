@@ -13,11 +13,11 @@ struct Shot {
 
 let sourceRoot = "\(root)/docs/store-assets/play-source-screenshots"
 let shots = [
-    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/question-prompts/19-stats.png", name: "01-questions-from-your-material", caption: "Questions built from your material", rotation: -5.2),
-    Shot(source: "\(sourceRoot)/choice-set.png", name: "02-practice-across-subjects", caption: "Practice across subjects", rotation: 3.8),
-    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/results/90-percent.png", name: "03-know-what-to-fix", caption: "Know what to fix", rotation: -3.6),
-    Shot(source: "\(sourceRoot)/problem-solver-reasoning.png", name: "04-see-every-step", caption: "See every step", rotation: 5.0),
-    Shot(source: "\(sourceRoot)/constellations.png", name: "05-your-subjects-mapped", caption: "Your subjects, mapped", rotation: -4.4),
+    Shot(source: "\(sourceRoot)/constellations.png", name: "01-your-subjects-mapped", caption: "Your subjects, mapped", rotation: -4.4),
+    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/question-prompts/19-stats.png", name: "02-questions-from-your-material", caption: "Questions built from your material", rotation: -5.2),
+    Shot(source: "\(sourceRoot)/choice-set.png", name: "03-practice-across-subjects", caption: "Practice across subjects", rotation: 3.8),
+    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/results/90-percent.png", name: "04-know-what-to-fix", caption: "Know what to fix", rotation: -3.6),
+    Shot(source: "\(sourceRoot)/problem-solver-reasoning.png", name: "05-see-every-step", caption: "See every step", rotation: 5.0),
     Shot(source: "\(sourceRoot)/leaderboard.png", name: "06-progress-in-one-place", caption: "Progress in one place", rotation: 3.2),
 ]
 
@@ -333,7 +333,7 @@ for shot in shots {
 }
 
 let featureBackground = load("\(playOutput)/feature-background-master.png")
-let featurePhone = load(shots[0].source)
+let featurePhone = load("\(root)/mobile-app-assets/screenshots/applied/question-prompts/19-stats.png")
 let feature = canvas(width: 1024, height: 500) {
     drawCover(featureBackground, in: NSRect(x: 0, y: 0, width: 1024, height: 500))
     let titleAttrs: [NSAttributedString.Key: Any] = [
