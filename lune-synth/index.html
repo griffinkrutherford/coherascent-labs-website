@@ -3281,6 +3281,10 @@
       width: min(100%, 520px);
     }
 
+    .voice-scene__devices--single {
+      width: min(100%, 360px);
+    }
+
     .voice-scene__phone {
       --voice-phone-scale: 1.68;
       position: relative;
@@ -3429,6 +3433,10 @@
 
     .voice-scene__screen[data-screenshot-src="../mobile-app-assets/screenshots/applied/text/text-input-mid.webp"] {
       background: #000 url("../mobile-app-assets/screenshots/applied/text/text-input-mid.webp") center / cover no-repeat;
+    }
+
+    .voice-scene__screen[data-screenshot-src="../mobile-app-assets/screenshots/applied/choice/choice-set-mid.webp"] {
+      background: #000 url("../mobile-app-assets/screenshots/applied/choice/choice-set-mid.webp") center / cover no-repeat;
     }
 
     html[data-theme="light"] .voice-scene__screen {
@@ -11758,6 +11766,7 @@
             <span class="moving-selection-pill voice-flow__selection" aria-hidden="true"></span>
             <button class="voice-flow__control is-active" type="button" data-input-target="0" aria-pressed="true">Voice</button>
             <button class="voice-flow__control" type="button" data-input-target="1" aria-pressed="false">Text</button>
+            <button class="voice-flow__control" type="button" data-input-target="2" aria-pressed="false">Choice</button>
           </div>
           <article class="voice-flow__feature" data-input-slide="0">
             <div class="voice-flow__copy">
@@ -11864,6 +11873,27 @@
                   <div class="voice-scene__ipad-screen">
                     <img class="voice-scene__ipad-shot" src="../mobile-app-assets/screenshots/applied/text/text-input-ipad-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/text/text-input-ipad.webp" alt="" loading="lazy" decoding="async">
                   </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="voice-flow__feature" data-input-slide="2" hidden>
+            <div class="voice-flow__copy">
+              <span class="voice-flow__eyebrow">Choice Sets</span>
+              <h3>Choose, commit, and check why.</h3>
+              <p>
+                Students can answer a choice question, commit to one option, and review the reasoning alongside the result.
+              </p>
+              <ul class="voice-flow__signals" aria-label="Choice set features">
+                <li>Choose</li>
+                <li>Commit</li>
+                <li>Review</li>
+              </ul>
+            </div>
+            <div class="voice-scene">
+              <div class="voice-scene__devices voice-scene__devices--single">
+                <div class="voice-scene__phone" data-phone-mock="input">
+                  <div class="voice-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/choice/choice-set-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/choice/choice-set.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/choice/choice-set-low.webp"></div>
                 </div>
               </div>
             </div>
