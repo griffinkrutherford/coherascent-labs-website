@@ -6,8 +6,9 @@
 
 - Added shared native iPhone source captures and separate Google Play and iOS
   marketing exports.
-- Standardized the store graphics on the flyer-style phone treatment while
-  keeping every app interface as an untouched screenshot layer.
+- Standardized the store graphics on the flyers' thin graphite phone treatment
+  with a near-flush display and restrained metallic edge, while keeping every
+  app interface as an untouched screenshot layer.
 
 ## Structure
 

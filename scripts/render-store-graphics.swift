@@ -86,12 +86,15 @@ func centeredText(_ text: String, y: CGFloat, width: CGFloat, size: CGFloat) {
 }
 
 func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat) {
-    let bezel: CGFloat = max(14, screenRect.width * 0.034)
+    // Flyer treatment: a thin, glossy graphite iPhone shell with a restrained
+    // silver lip. The display remains the dominant surface.
+    let bezel: CGFloat = max(8, screenRect.width * 0.021)
     let body = screenRect.insetBy(dx: -bezel, dy: -bezel)
-    let bodyRadius = screenRect.width * 0.105
+    let bodyRadius = screenRect.width * 0.096
     let screenRadius = screenRect.width * 0.084
     let center = NSPoint(x: body.midX, y: body.midY)
-    let depth = max(5, screenRect.width * 0.012)
+    let depth = max(5, screenRect.width * 0.010)
+    let depthX: CGFloat = rotation < 0 ? -depth : depth
 
     NSGraphicsContext.saveGraphicsState()
     let transform = NSAffineTransform()
@@ -100,21 +103,13 @@ func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat
     transform.translateX(by: -center.x, yBy: -center.y)
     transform.concat()
 
-    let groundShadow = NSShadow()
-    groundShadow.shadowColor = NSColor(calibratedWhite: 0, alpha: 0.48)
-    groundShadow.shadowBlurRadius = max(42, screenRect.width * 0.10)
-    groundShadow.shadowOffset = NSSize(width: rotation * -1.2, height: -screenRect.width * 0.055)
-    groundShadow.set()
-    NSColor(calibratedWhite: 0, alpha: 0.82).setFill()
-    NSBezierPath(ovalIn: NSRect(x: body.minX + body.width * 0.10, y: body.minY - body.width * 0.025, width: body.width * 0.80, height: body.width * 0.11)).fill()
-
     let shadow = NSShadow()
-    shadow.shadowColor = NSColor(calibratedWhite: 0, alpha: 0.72)
-    shadow.shadowBlurRadius = max(22, screenRect.width * 0.055)
-    shadow.shadowOffset = NSSize(width: -rotation * 0.8, height: -screenRect.width * 0.025)
+    shadow.shadowColor = NSColor(calibratedWhite: 0, alpha: 0.78)
+    shadow.shadowBlurRadius = max(34, screenRect.width * 0.070)
+    shadow.shadowOffset = NSSize(width: depthX * 1.2, height: -screenRect.width * 0.035)
     shadow.set()
     NSColor.black.setFill()
-    NSBezierPath(roundedRect: body.offsetBy(dx: rotation > 0 ? -depth : depth, dy: -depth), xRadius: bodyRadius, yRadius: bodyRadius).fill()
+    NSBezierPath(roundedRect: body.offsetBy(dx: depthX, dy: -depth), xRadius: bodyRadius, yRadius: bodyRadius).fill()
     NSGraphicsContext.restoreGraphicsState()
 
     NSGraphicsContext.saveGraphicsState()
@@ -124,58 +119,53 @@ func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat
     transform2.translateX(by: -center.x, yBy: -center.y)
     transform2.concat()
 
-    // Dark titanium body with a brighter rolled edge and a separate rear depth plane.
-    let backPlane = body.offsetBy(dx: rotation > 0 ? -depth : depth, dy: -depth)
+    // A shallow dark sidewall supplies the flyer-style physical depth without
+    // turning the phone into a bright illustrated frame.
+    let backPlane = body.offsetBy(dx: depthX, dy: -depth)
     let backMetal = NSGradient(colorsAndLocations:
-        (NSColor(calibratedRed: 0.46, green: 0.52, blue: 0.60, alpha: 1), 0.0),
-        (NSColor(calibratedRed: 0.08, green: 0.10, blue: 0.14, alpha: 1), 0.52),
-        (NSColor(calibratedRed: 0.30, green: 0.38, blue: 0.48, alpha: 1), 1.0)
+        (NSColor(calibratedWhite: 0.24, alpha: 1), 0.0),
+        (NSColor(calibratedWhite: 0.025, alpha: 1), 0.42),
+        (NSColor(calibratedWhite: 0.12, alpha: 1), 1.0)
     )!
-    backMetal.draw(in: NSBezierPath(roundedRect: backPlane, xRadius: bodyRadius, yRadius: bodyRadius), angle: 5)
+    backMetal.draw(in: NSBezierPath(roundedRect: backPlane, xRadius: bodyRadius, yRadius: bodyRadius), angle: 0)
 
     let chassis = NSGradient(colorsAndLocations:
-        (NSColor(calibratedRed: 0.80, green: 0.84, blue: 0.89, alpha: 1), 0.0),
-        (NSColor(calibratedRed: 0.28, green: 0.32, blue: 0.39, alpha: 1), 0.10),
-        (NSColor(calibratedRed: 0.055, green: 0.065, blue: 0.09, alpha: 1), 0.42),
-        (NSColor(calibratedRed: 0.14, green: 0.18, blue: 0.24, alpha: 1), 0.82),
-        (NSColor(calibratedRed: 0.70, green: 0.78, blue: 0.86, alpha: 1), 1.0)
+        (NSColor(calibratedWhite: 0.46, alpha: 1), 0.0),
+        (NSColor(calibratedWhite: 0.09, alpha: 1), 0.075),
+        (NSColor(calibratedWhite: 0.018, alpha: 1), 0.42),
+        (NSColor(calibratedWhite: 0.055, alpha: 1), 0.88),
+        (NSColor(calibratedWhite: 0.34, alpha: 1), 1.0)
     )!
-    chassis.draw(in: NSBezierPath(roundedRect: body, xRadius: bodyRadius, yRadius: bodyRadius), angle: -12)
+    chassis.draw(in: NSBezierPath(roundedRect: body, xRadius: bodyRadius, yRadius: bodyRadius), angle: 0)
 
-    // A narrow polished rail gives the shell the layered, machined look used on the flyers.
-    let rail = NSBezierPath(roundedRect: body.insetBy(dx: bezel * 0.24, dy: bezel * 0.24), xRadius: bodyRadius - bezel * 0.2, yRadius: bodyRadius - bezel * 0.2)
-    rail.lineWidth = max(2.2, bezel * 0.18)
-    NSColor(calibratedRed: 0.72, green: 0.78, blue: 0.86, alpha: 0.42).setStroke()
-    rail.stroke()
+    let outerLip = NSBezierPath(roundedRect: body.insetBy(dx: 0.8, dy: 0.8), xRadius: bodyRadius, yRadius: bodyRadius)
+    outerLip.lineWidth = max(1.2, screenRect.width * 0.0022)
+    NSColor(calibratedWhite: 0.82, alpha: 0.62).setStroke()
+    outerLip.stroke()
 
-    let innerRail = NSBezierPath(roundedRect: screenRect.insetBy(dx: -bezel * 0.50, dy: -bezel * 0.50), xRadius: screenRadius + bezel * 0.55, yRadius: screenRadius + bezel * 0.55)
-    innerRail.lineWidth = max(1.4, bezel * 0.10)
-    NSColor(calibratedWhite: 0.92, alpha: 0.24).setStroke()
-    innerRail.stroke()
-
-    // Fine antenna breaks and polished caps keep the silhouette from reading as a flat outline.
-    NSColor(calibratedWhite: 0.05, alpha: 0.85).setStroke()
+    // Fine antenna breaks and compact black controls match the flyer references.
+    NSColor(calibratedWhite: 0.02, alpha: 0.92).setStroke()
     for y in [body.minY + body.height * 0.18, body.maxY - body.height * 0.18] {
         let leftBreak = NSBezierPath()
         leftBreak.move(to: NSPoint(x: body.minX + 1, y: y))
-        leftBreak.line(to: NSPoint(x: body.minX + bezel * 0.55, y: y))
-        leftBreak.lineWidth = max(2, bezel * 0.12)
+        leftBreak.line(to: NSPoint(x: body.minX + bezel * 0.70, y: y))
+        leftBreak.lineWidth = max(1.2, bezel * 0.10)
         leftBreak.stroke()
         let rightBreak = NSBezierPath()
-        rightBreak.move(to: NSPoint(x: body.maxX - bezel * 0.55, y: y))
+        rightBreak.move(to: NSPoint(x: body.maxX - bezel * 0.70, y: y))
         rightBreak.line(to: NSPoint(x: body.maxX - 1, y: y))
-        rightBreak.lineWidth = max(2, bezel * 0.12)
+        rightBreak.lineWidth = max(1.2, bezel * 0.10)
         rightBreak.stroke()
     }
 
-    let sideWidth = max(5, bezel * 0.46)
-    let leftX = body.minX - sideWidth * 0.62
-    let buttonGradient = NSGradient(starting: NSColor(calibratedWhite: 0.46, alpha: 1), ending: NSColor(calibratedWhite: 0.08, alpha: 1))!
+    let sideWidth = max(3.5, bezel * 0.34)
+    let leftX = body.minX - sideWidth * 0.48
+    let buttonGradient = NSGradient(starting: NSColor(calibratedWhite: 0.27, alpha: 1), ending: NSColor(calibratedWhite: 0.025, alpha: 1))!
     for button in [
-        NSRect(x: leftX, y: body.maxY - body.height * 0.24, width: sideWidth, height: body.height * 0.035),
-        NSRect(x: leftX, y: body.maxY - body.height * 0.35, width: sideWidth, height: body.height * 0.075),
-        NSRect(x: leftX, y: body.maxY - body.height * 0.45, width: sideWidth, height: body.height * 0.075),
-        NSRect(x: body.maxX - sideWidth * 0.38, y: body.maxY - body.height * 0.38, width: sideWidth, height: body.height * 0.14),
+        NSRect(x: leftX, y: body.maxY - body.height * 0.25, width: sideWidth, height: body.height * 0.030),
+        NSRect(x: leftX, y: body.maxY - body.height * 0.35, width: sideWidth, height: body.height * 0.064),
+        NSRect(x: leftX, y: body.maxY - body.height * 0.44, width: sideWidth, height: body.height * 0.064),
+        NSRect(x: body.maxX - sideWidth * 0.52, y: body.maxY - body.height * 0.37, width: sideWidth, height: body.height * 0.12),
     ] {
         NSGraphicsContext.saveGraphicsState()
         let buttonShadow = NSShadow()
@@ -187,23 +177,18 @@ func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat
         NSGraphicsContext.restoreGraphicsState()
     }
 
-    NSColor.black.setFill()
-    NSBezierPath(roundedRect: screenRect.insetBy(dx: -3, dy: -3), xRadius: screenRadius + 3, yRadius: screenRadius + 3).fill()
+    NSColor(calibratedWhite: 0.002, alpha: 1).setFill()
+    NSBezierPath(roundedRect: screenRect.insetBy(dx: -2.0, dy: -2.0), xRadius: screenRadius + 2, yRadius: screenRadius + 2).fill()
     NSGraphicsContext.saveGraphicsState()
     NSBezierPath(roundedRect: screenRect, xRadius: screenRadius, yRadius: screenRadius).addClip()
     screenshot.draw(in: screenRect, from: .zero, operation: .copy, fraction: 1, respectFlipped: true, hints: [.interpolation: NSImageInterpolation.high])
     NSGraphicsContext.restoreGraphicsState()
 
-    // Subtle glass edge only; it never crosses or modifies the UI pixels.
-    let glassEdge = NSBezierPath(roundedRect: screenRect.insetBy(dx: 1.2, dy: 1.2), xRadius: screenRadius, yRadius: screenRadius)
-    glassEdge.lineWidth = max(1.2, screenRect.width * 0.0025)
-    NSColor(calibratedWhite: 1, alpha: 0.30).setStroke()
+    // A single glass hairline; no bright nested rings and nothing over the UI.
+    let glassEdge = NSBezierPath(roundedRect: screenRect.insetBy(dx: 0.75, dy: 0.75), xRadius: screenRadius, yRadius: screenRadius)
+    glassEdge.lineWidth = max(0.9, screenRect.width * 0.0015)
+    NSColor(calibratedWhite: 1, alpha: 0.22).setStroke()
     glassEdge.stroke()
-
-    NSColor(calibratedRed: 0.70, green: 0.82, blue: 1.0, alpha: 0.34).setStroke()
-    let rim = NSBezierPath(roundedRect: body.insetBy(dx: 1.5, dy: 1.5), xRadius: bodyRadius, yRadius: bodyRadius)
-    rim.lineWidth = max(2, screenRect.width * 0.004)
-    rim.stroke()
     NSGraphicsContext.restoreGraphicsState()
 }
 
