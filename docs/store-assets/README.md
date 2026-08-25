@@ -33,9 +33,10 @@ to rebuild both screenshot sets and the Play feature graphic.
 5. Your subjects, mapped
 6. Progress in one place
 
-The first two frames use the newest full-resolution question-set captures
-available in the website repository. The remaining frames use the current
-native captures in `play-source-screenshots/`.
+The first frame uses the newest full-resolution statistics question-set capture
+available in the website repository. The second uses the current multiple-choice
+set capture, and frames three through six use the other current native captures
+in `play-source-screenshots/`.
 
 ## Export constraints
 
