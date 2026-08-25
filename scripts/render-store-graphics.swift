@@ -15,7 +15,7 @@ let sourceRoot = "\(root)/docs/store-assets/play-source-screenshots"
 let shots = [
     Shot(source: "\(root)/mobile-app-assets/screenshots/applied/question-prompts/19-stats.png", name: "01-questions-from-your-material", caption: "Questions built from your material", rotation: -3.0),
     Shot(source: "\(sourceRoot)/choice-set.png", name: "02-practice-across-subjects", caption: "Practice across subjects", rotation: 2.6),
-    Shot(source: "\(sourceRoot)/problem-solver-outline.png", name: "03-outlines-into-practice", caption: "Turn outlines into practice", rotation: -2.5),
+    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/results/90-percent.png", name: "03-know-what-to-fix", caption: "Know what to fix", rotation: -2.5),
     Shot(source: "\(sourceRoot)/problem-solver-reasoning.png", name: "04-see-every-step", caption: "See every step", rotation: 2.8),
     Shot(source: "\(sourceRoot)/constellations.png", name: "05-your-subjects-mapped", caption: "Your subjects, mapped", rotation: -2.4),
     Shot(source: "\(sourceRoot)/leaderboard.png", name: "06-progress-in-one-place", caption: "Progress in one place", rotation: 2.5),
@@ -86,11 +86,12 @@ func centeredText(_ text: String, y: CGFloat, width: CGFloat, size: CGFloat) {
 }
 
 func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat) {
-    let bezel: CGFloat = max(12, screenRect.width * 0.031)
+    let bezel: CGFloat = max(14, screenRect.width * 0.034)
     let body = screenRect.insetBy(dx: -bezel, dy: -bezel)
     let bodyRadius = screenRect.width * 0.105
     let screenRadius = screenRect.width * 0.084
     let center = NSPoint(x: body.midX, y: body.midY)
+    let depth = max(5, screenRect.width * 0.012)
 
     NSGraphicsContext.saveGraphicsState()
     let transform = NSAffineTransform()
@@ -113,7 +114,7 @@ func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat
     shadow.shadowOffset = NSSize(width: -rotation * 0.8, height: -screenRect.width * 0.025)
     shadow.set()
     NSColor.black.setFill()
-    NSBezierPath(roundedRect: body, xRadius: bodyRadius, yRadius: bodyRadius).fill()
+    NSBezierPath(roundedRect: body.offsetBy(dx: rotation > 0 ? -depth : depth, dy: -depth), xRadius: bodyRadius, yRadius: bodyRadius).fill()
     NSGraphicsContext.restoreGraphicsState()
 
     NSGraphicsContext.saveGraphicsState()
@@ -123,12 +124,21 @@ func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat
     transform2.translateX(by: -center.x, yBy: -center.y)
     transform2.concat()
 
+    // Dark titanium body with a brighter rolled edge and a separate rear depth plane.
+    let backPlane = body.offsetBy(dx: rotation > 0 ? -depth : depth, dy: -depth)
+    let backMetal = NSGradient(colorsAndLocations:
+        (NSColor(calibratedRed: 0.46, green: 0.52, blue: 0.60, alpha: 1), 0.0),
+        (NSColor(calibratedRed: 0.08, green: 0.10, blue: 0.14, alpha: 1), 0.52),
+        (NSColor(calibratedRed: 0.30, green: 0.38, blue: 0.48, alpha: 1), 1.0)
+    )!
+    backMetal.draw(in: NSBezierPath(roundedRect: backPlane, xRadius: bodyRadius, yRadius: bodyRadius), angle: 5)
+
     let chassis = NSGradient(colorsAndLocations:
-        (NSColor(calibratedRed: 0.64, green: 0.70, blue: 0.78, alpha: 1), 0.0),
-        (NSColor(calibratedRed: 0.18, green: 0.21, blue: 0.27, alpha: 1), 0.12),
-        (NSColor(calibratedWhite: 0.025, alpha: 1), 0.46),
-        (NSColor(calibratedRed: 0.10, green: 0.14, blue: 0.20, alpha: 1), 0.78),
-        (NSColor(calibratedRed: 0.58, green: 0.68, blue: 0.78, alpha: 1), 1.0)
+        (NSColor(calibratedRed: 0.80, green: 0.84, blue: 0.89, alpha: 1), 0.0),
+        (NSColor(calibratedRed: 0.28, green: 0.32, blue: 0.39, alpha: 1), 0.10),
+        (NSColor(calibratedRed: 0.055, green: 0.065, blue: 0.09, alpha: 1), 0.42),
+        (NSColor(calibratedRed: 0.14, green: 0.18, blue: 0.24, alpha: 1), 0.82),
+        (NSColor(calibratedRed: 0.70, green: 0.78, blue: 0.86, alpha: 1), 1.0)
     )!
     chassis.draw(in: NSBezierPath(roundedRect: body, xRadius: bodyRadius, yRadius: bodyRadius), angle: -12)
 
@@ -137,6 +147,26 @@ func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat
     rail.lineWidth = max(2.2, bezel * 0.18)
     NSColor(calibratedRed: 0.72, green: 0.78, blue: 0.86, alpha: 0.42).setStroke()
     rail.stroke()
+
+    let innerRail = NSBezierPath(roundedRect: screenRect.insetBy(dx: -bezel * 0.50, dy: -bezel * 0.50), xRadius: screenRadius + bezel * 0.55, yRadius: screenRadius + bezel * 0.55)
+    innerRail.lineWidth = max(1.4, bezel * 0.10)
+    NSColor(calibratedWhite: 0.92, alpha: 0.24).setStroke()
+    innerRail.stroke()
+
+    // Fine antenna breaks and polished caps keep the silhouette from reading as a flat outline.
+    NSColor(calibratedWhite: 0.05, alpha: 0.85).setStroke()
+    for y in [body.minY + body.height * 0.18, body.maxY - body.height * 0.18] {
+        let leftBreak = NSBezierPath()
+        leftBreak.move(to: NSPoint(x: body.minX + 1, y: y))
+        leftBreak.line(to: NSPoint(x: body.minX + bezel * 0.55, y: y))
+        leftBreak.lineWidth = max(2, bezel * 0.12)
+        leftBreak.stroke()
+        let rightBreak = NSBezierPath()
+        rightBreak.move(to: NSPoint(x: body.maxX - bezel * 0.55, y: y))
+        rightBreak.line(to: NSPoint(x: body.maxX - 1, y: y))
+        rightBreak.lineWidth = max(2, bezel * 0.12)
+        rightBreak.stroke()
+    }
 
     let sideWidth = max(5, bezel * 0.46)
     let leftX = body.minX - sideWidth * 0.62
@@ -147,7 +177,14 @@ func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat
         NSRect(x: leftX, y: body.maxY - body.height * 0.45, width: sideWidth, height: body.height * 0.075),
         NSRect(x: body.maxX - sideWidth * 0.38, y: body.maxY - body.height * 0.38, width: sideWidth, height: body.height * 0.14),
     ] {
+        NSGraphicsContext.saveGraphicsState()
+        let buttonShadow = NSShadow()
+        buttonShadow.shadowColor = NSColor.black.withAlphaComponent(0.72)
+        buttonShadow.shadowBlurRadius = 3
+        buttonShadow.shadowOffset = NSSize(width: 1.5, height: -1.5)
+        buttonShadow.set()
         buttonGradient.draw(in: NSBezierPath(roundedRect: button, xRadius: sideWidth / 2, yRadius: sideWidth / 2), angle: 0)
+        NSGraphicsContext.restoreGraphicsState()
     }
 
     NSColor.black.setFill()

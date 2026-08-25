@@ -28,15 +28,16 @@ to rebuild both screenshot sets and the Play feature graphic.
 
 1. Questions built from your material
 2. Practice across subjects
-3. Turn outlines into practice
+3. Know what to fix
 4. See every step
 5. Your subjects, mapped
 6. Progress in one place
 
 The first frame uses the newest full-resolution statistics question-set capture
 available in the website repository. The second uses the current multiple-choice
-set capture, and frames three through six use the other current native captures
-in `play-source-screenshots/`.
+set capture, the third uses the current 90% Results Ready capture, and frames
+four through six use the other current native captures in
+`play-source-screenshots/`.
 
 ## Export constraints
 
