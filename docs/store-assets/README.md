@@ -6,10 +6,10 @@
 
 - Added shared native iPhone source captures and separate Google Play and iOS
   marketing exports.
-- Standardized the store graphics specifically on flyer 36's black titanium
-  phone treatment: varied left/right three-quarter views, near-flush displays,
-  polished sidewalls, segmented bands, and restrained metallic edges. Every
-  app interface remains an untouched screenshot layer.
+- Standardized the store graphics on the website's existing phone mock: the
+  same shell padding, corner radii, black gradient, inset edge stack, attached
+  button rails, and shadows. Every app interface remains an untouched
+  screenshot layer.
 
 ## Structure
 
