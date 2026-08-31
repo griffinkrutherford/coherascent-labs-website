@@ -200,6 +200,14 @@ function renderMarkdown(markdown) {
 }
 
 function pageTemplate(page, content) {
+  const socialTitle = `${DRAFT ? 'Draft ' : ''}${page.title} | Lune Synth`;
+  const socialDescription = DRAFT
+    ? `Draft Lune Synth ${page.title}. Not finalized or published.`
+    : `The Lune Synth ${page.title}.`;
+  // These pages have no artwork of their own, so they share the homepage
+  // 1200x630 social card rather than a portrait screenshot.
+  const socialImage = 'https://lunesynth.com/lune-synth/og-card.png';
+
   return `<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
@@ -207,7 +215,20 @@ function pageTemplate(page, content) {
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 ${DRAFT ? '  <meta name="robots" content="noindex,nofollow,noarchive" />\n' : ''}  <title>${DRAFT ? 'Draft ' : ''}${page.title} | Lune Synth</title>
   <meta name="description" content="${DRAFT ? `Draft Lune Synth ${page.title}. Not finalized or published.` : `The Lune Synth ${page.title}.`}" />
-${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}/" />\n`}  <link rel="icon" type="image/png" href="/circle_favicon.png" />
+${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}/" />\n`}  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lune Synth" />
+  <meta property="og:url" content="https://lunesynth.com/${page.slug}/" />
+  <meta property="og:title" content="${socialTitle}" />
+  <meta property="og:description" content="${socialDescription}" />
+  <meta property="og:image" content="${socialImage}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Lune Synth — the anti-slop learning app, with the Lune Synth astronaut app icon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${socialTitle}" />
+  <meta name="twitter:description" content="${socialDescription}" />
+  <meta name="twitter:image" content="${socialImage}" />
+  <link rel="icon" type="image/png" href="/circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
@@ -251,6 +272,7 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
         <a class="nav-link" href="/#luna-title">Luna</a>
         <a class="nav-link" href="/#processing-title">Grading</a>
         <a class="nav-link" href="/#voice-title">Input Methods</a>
+        <a class="nav-link" href="/#problem-solver-title">Problem Solver</a>
         <a class="nav-link" href="/#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="/#constellations-title">Constellations</a>
         <a class="nav-link" href="/#medals-title">Medals</a>

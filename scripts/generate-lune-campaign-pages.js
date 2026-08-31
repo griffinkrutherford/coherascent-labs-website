@@ -192,7 +192,11 @@ function benefitMarkup(benefits) {
 
 function render(page) {
   const canonical = `https://lunesynth.com${page.route}`;
-  const ogImage = `https://lunesynth.com${page.phoneImageHigh}`;
+  // Social scrapers want a 1.91:1 landscape card; the phone screenshots are
+  // portrait and get cropped to an unreadable sliver. Each page ships its own
+  // 1200x630 og-card.jpg next to its index.html.
+  const ogImage = `${canonical.replace(/\/$/, "")}/og-card.jpg`;
+  const ogImageAlt = `${page.metaTitle.replace(/\s*\|\s*Lune Synth™?\s*$/, "")} — Lune Synth, the anti-slop learning app`;
   const disclaimer = page.disclaimer
     ? `<p class="campaign-footer__disclaimer">${escapeHtml(page.disclaimer)}</p>`
     : "";
@@ -210,7 +214,11 @@ function render(page) {
   <meta property="og:description" content="${escapeHtml(page.metaDescription)}" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:image" content="${ogImage}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="${escapeHtml(ogImageAlt)}" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="${ogImage}" />
   <link rel="icon" type="image/png" href="/circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
