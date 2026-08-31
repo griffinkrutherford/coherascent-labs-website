@@ -557,6 +557,33 @@
     });
   });
 
+  // Problem Solver carousel phones use direct screenshots/placeholders rather
+  // than data-screenshot-src hosts. A side phone selects its slide (handled by
+  // the carousel); only the centered phone opens in the lightbox.
+  Array.prototype.forEach.call(document.querySelectorAll(".problem-solver__phone"), function (phone) {
+    if (phone.classList.contains("phone-mock-trigger")) return;
+    phone.classList.add("phone-mock-trigger");
+    phone.setAttribute("role", "button");
+    phone.setAttribute("tabindex", phone.closest("[data-problem-slide].is-active") ? "0" : "-1");
+    phone.setAttribute("aria-label", "Open highlighted Problem Solver preview");
+
+    function isHighlighted() {
+      var slide = phone.closest("[data-problem-slide]");
+      return !slide || slide.classList.contains("is-active");
+    }
+
+    phone.addEventListener("click", function () {
+      if (isHighlighted()) openModal(phone);
+    });
+
+    phone.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      if (!isHighlighted()) return;
+      event.preventDefault();
+      openModal(phone);
+    });
+  });
+
   Array.prototype.forEach.call(document.querySelectorAll(phoneSelector), function (trigger) {
     if (!zoomEnabled) return;
     if (trigger.classList.contains("phone-mock-trigger")) return;

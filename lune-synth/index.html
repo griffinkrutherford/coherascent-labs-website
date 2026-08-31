@@ -8,6 +8,19 @@
     name="description"
     content="Lune Synth&trade; turns handwritten reasoning into checkable work, rigorous grading, and targeted practice."
   />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lune Synth" />
+  <meta property="og:url" content="https://lunesynth.com/" />
+  <meta property="og:title" content="Lune Synth — The Anti-Slop Learning App" />
+  <meta property="og:description" content="Do the work. Scan it in. Get feedback that actually helps. From the Pre-K through the PhD level." />
+  <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Lune Synth — the anti-slop learning app, with the Lune Synth astronaut app icon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lune Synth — The Anti-Slop Learning App" />
+  <meta name="twitter:description" content="Do the work. Scan it in. Get feedback that actually helps. From the Pre-K through the PhD level." />
+  <meta name="twitter:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <link rel="canonical" href="https://lunesynth.com/" />
   <link rel="icon" type="image/png" href="../circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -486,9 +499,10 @@
       border-color: rgba(46, 106, 168, 0.18);
     }
 
-    /* Hamburger toggle (mobile only) */
+    /* The homepage has enough destinations that a single menu is clearer at
+       every viewport size than an expanding row of section pills. */
     .nav-toggle {
-      display: none;
+      display: inline-flex;
       position: relative;
       z-index: 100;
       width: 46px;
@@ -540,6 +554,75 @@
 
     .site-header.nav-open .nav-toggle__bars::after {
       transform: rotate(-45deg);
+    }
+
+    .nav-links {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 340px));
+      align-content: center;
+      justify-content: center;
+      align-items: stretch;
+      gap: 10px;
+      width: 100vw;
+      height: 100dvh;
+      margin: 0;
+      padding: max(96px, env(safe-area-inset-top)) 28px max(36px, env(safe-area-inset-bottom));
+      overflow-y: auto;
+      background:
+        radial-gradient(circle at 18% 14%, rgba(100, 168, 255, 0.14), transparent 34%),
+        radial-gradient(circle at 82% 84%, rgba(255, 93, 135, 0.11), transparent 36%),
+        rgba(4, 8, 18, 0.94);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.015);
+      transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
+    }
+
+    html[data-theme="light"] .nav-links {
+      background:
+        radial-gradient(circle at 18% 14%, rgba(79, 132, 214, 0.12), transparent 34%),
+        radial-gradient(circle at 82% 84%, rgba(217, 106, 140, 0.1), transparent 36%),
+        rgba(246, 249, 255, 0.96);
+    }
+
+    .site-header.nav-open .nav-links {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .nav-links .nav-link {
+      justify-content: flex-start;
+      min-height: 52px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      background: rgba(11, 20, 40, 0.62);
+    }
+
+    html[data-theme="light"] .nav-links .nav-link {
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        grid-template-columns: minmax(0, 1fr);
+        align-content: start;
+        gap: 8px;
+        padding-inline: 20px;
+      }
+
+      .nav-links .nav-link {
+        min-height: 46px;
+        justify-content: center;
+        padding: 10px 14px;
+      }
     }
 
     .hero,
@@ -840,6 +923,7 @@
     }
 
     .hero-waitlist-panel {
+      position: relative;
       display: grid;
       gap: 14px;
       width: min(calc(100% - 68px), 680px);
@@ -855,6 +939,20 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.08),
         0 18px 44px rgba(4, 10, 24, 0.22);
       backdrop-filter: blur(10px);
+    }
+
+    .waitlist-luna-emote {
+      position: absolute;
+      right: -58px;
+      top: -72px;
+      z-index: 2;
+      width: clamp(96px, 10vw, 132px);
+      height: auto;
+      pointer-events: none;
+      filter:
+        drop-shadow(0 18px 24px rgba(4, 10, 24, 0.42))
+        drop-shadow(0 0 22px rgba(164, 123, 255, 0.2));
+      transform: rotate(7deg);
     }
 
     html[data-theme="light"] .hero-waitlist-panel {
@@ -5899,8 +5997,8 @@
     }
 
     .luna-icon {
-      width: clamp(64px, 8vw, 92px);
-      aspect-ratio: 1;
+      width: clamp(92px, 11vw, 132px);
+      aspect-ratio: 341 / 384;
       object-fit: contain;
       margin-bottom: 16px;
       transform: rotate(4deg);
@@ -5914,6 +6012,36 @@
 
     html[data-theme="light"] .luna-icon {
       animation-name: luneIconGlowLight;
+    }
+
+    .card-corner-luna {
+      position: absolute;
+      z-index: 4;
+      top: clamp(10px, 1.6vw, 20px);
+      right: clamp(10px, 1.6vw, 20px);
+      width: clamp(86px, 9vw, 118px);
+      height: auto;
+      pointer-events: none;
+      filter:
+        drop-shadow(0 16px 22px rgba(4, 10, 24, 0.4))
+        drop-shadow(0 0 18px rgba(100, 168, 255, 0.16));
+    }
+
+    .card-corner-luna--thinking { transform: rotate(5deg); }
+    .card-corner-luna--proud { transform: rotate(-5deg); }
+
+    @media (max-width: 720px) {
+      .waitlist-luna-emote {
+        right: -16px;
+        top: -58px;
+        width: 88px;
+      }
+
+      .card-corner-luna {
+        top: 8px;
+        right: 8px;
+        width: 70px;
+      }
     }
 
     .luna-lead h3 {
@@ -10893,6 +11021,18 @@
   })();
 </script>
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Lune Synth",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "iOS, Android",
+  "url": "https://lunesynth.com/",
+  "publisher": { "@type": "Organization", "name": "Coherascent Labs", "url": "https://coherascentlabs.com/" },
+  "description": "Lune Synth turns handwritten reasoning into checkable work, rigorous grading, and targeted practice."
+}
+  </script>
 </head>
 <body>
   <main>
@@ -10927,16 +11067,20 @@
         </div>
       </div>
       <nav class="nav-links" id="primary-nav" aria-label="Primary">
+        <a class="nav-link" href="#applied-page-title">Overview</a>
+        <a class="nav-link" href="#waitlist">Beta Waitlist</a>
         <a class="nav-link" href="#lost-cosmos-title">The Crisis</a>
         <a class="nav-link" href="#platform-title">Handwriting</a>
         <a class="nav-link" href="#luna-title">Luna</a>
         <a class="nav-link" href="#processing-title">Grading</a>
         <a class="nav-link" href="#voice-title">Input Methods</a>
+        <a class="nav-link" href="#problem-solver-title">Problem Solver</a>
         <a class="nav-link" href="#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="#constellations-title">Constellations</a>
         <a class="nav-link" href="#medals-title">Medals</a>
         <a class="nav-link" href="#engine-title">Engine</a>
         <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
+        <a class="nav-link" href="#site-footer">All Landing Pages</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span>
@@ -10995,7 +11139,8 @@
       </div>
     </div>
 
-    <div class="hero-waitlist-panel" aria-labelledby="lune-beta-title">
+    <div class="hero-waitlist-panel" id="waitlist" aria-labelledby="lune-beta-title">
+      <img class="waitlist-luna-emote" src="images/luna-emotes/celebrate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <div class="hero-waitlist-copy">
         <h3 id="lune-beta-title">Join the beta waitlist</h3>
         <p class="waitlist-offer">Limited-time offer for the first 100 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.</p>
@@ -11017,7 +11162,7 @@
           loop
           muted
           playsinline
-          preload="auto"
+          preload="metadata"
           poster="screenshots/applied/lune-synth-highlight-reel-poster.jpg"
           aria-label="Lune Synth product highlight reel"
         >
@@ -11497,10 +11642,9 @@
           <div class="luna-lead">
             <img
               class="luna-icon"
-              src="../images/lune-synth-icon-512.png"
-              srcset="../images/lune-synth-icon-120.png 120w, ../images/lune-synth-icon-512.png 512w"
-              sizes="92px"
-              alt="Luna, the Lune Synth tutor"
+              src="images/luna-emotes/wave.webp"
+              sizes="132px"
+              alt="Luna waves hello"
               loading="lazy"
               decoding="async"
             />
@@ -11927,6 +12071,767 @@
       </div>
     </section>
 
+    <!-- ================= LISTENING / LIVE-CAPTURE SECTION ================= -->
+    <style>
+      .section--listen .listen-shell {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .section--listen .listen-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+        padding: 0.08em 0.5em 0.08em 0.42em;
+        border-radius: 999px;
+        background: rgba(100, 168, 255, 0.14);
+        box-shadow: inset 0 0 0 1px rgba(100, 168, 255, 0.28);
+        color: var(--blue);
+      }
+      .section--listen .listen-pill__wave {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        height: 0.9em;
+      }
+      .section--listen .listen-pill__wave span {
+        width: 2px;
+        border-radius: 2px;
+        background: currentColor;
+        animation: listen-bar 1.1s ease-in-out infinite;
+      }
+      .section--listen .listen-pill__wave span:nth-child(1) { height: 40%; animation-delay: -0.9s; }
+      .section--listen .listen-pill__wave span:nth-child(2) { height: 90%; animation-delay: -0.5s; }
+      .section--listen .listen-pill__wave span:nth-child(3) { height: 60%; animation-delay: -0.2s; }
+
+      .section--listen .listen-sub {
+        margin: 14px auto 0;
+        max-width: 540px;
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.55;
+      }
+
+      .section--listen .listen-card {
+        position: relative;
+        margin: 34px auto 0;
+        max-width: 640px;
+        padding: 30px 26px 22px;
+        border-radius: 26px;
+        background: rgba(12, 20, 42, 0.55);
+        box-shadow: inset 0 0 0 1px rgba(140, 178, 255, 0.16), var(--glow);
+        overflow: hidden;
+      }
+      html[data-theme="light"] .section--listen .listen-card {
+        background: rgba(255, 255, 255, 0.62);
+        box-shadow: inset 0 0 0 1px rgba(79, 132, 214, 0.18), var(--glow);
+      }
+
+      .section--listen .rec-timer {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 600;
+        font-size: 54px;
+        line-height: 1;
+        letter-spacing: 0.01em;
+        color: var(--text);
+      }
+      .section--listen .rec-timer__window {
+        display: inline-block;
+        height: 1em;
+        overflow: hidden;
+        vertical-align: bottom;
+      }
+      .section--listen .rec-timer__reel {
+        display: flex;
+        flex-direction: column;
+        animation: rec-count 10s steps(10) infinite;
+      }
+      .section--listen .rec-timer__reel span { height: 1em; line-height: 1; }
+
+      .section--listen .rec-status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+      }
+      .section--listen .rec-status__dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--red);
+        box-shadow: 0 0 12px rgba(255, 93, 135, 0.75);
+        animation: rec-pulse 1.4s ease-in-out infinite;
+      }
+
+      .section--listen .listen-wave {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        height: 92px;
+        margin: 22px 0 8px;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 52%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 52%, transparent 100%);
+      }
+      .section--listen .listen-wave span {
+        flex: 0 0 auto;
+        width: 4px;
+        border-radius: 4px;
+        height: var(--h, 40%);
+        background: linear-gradient(180deg, var(--blue), var(--purple));
+        transform-origin: center;
+        animation: listen-bar 1.15s ease-in-out infinite;
+        animation-delay: var(--d, 0s);
+      }
+
+      .section--listen .listen-transcript {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 8px;
+        min-height: 2.6em;
+        margin: 4px auto 0;
+        max-width: 480px;
+        color: var(--text);
+        font-size: 0.98rem;
+      }
+      .section--listen .listen-transcript span {
+        opacity: 0;
+        transform: translateY(4px);
+        animation: listen-word 6s ease-in-out infinite;
+      }
+      .section--listen .listen-transcript span:last-child { color: var(--muted); }
+
+      .section--listen .listen-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0 0;
+        padding: 12px 12px 12px 16px;
+        border-radius: 16px;
+        background: rgba(6, 12, 28, 0.5);
+        box-shadow: inset 0 0 0 1px rgba(140, 178, 255, 0.14);
+        text-align: left;
+      }
+      html[data-theme="light"] .section--listen .listen-bar {
+        background: rgba(240, 244, 252, 0.7);
+        box-shadow: inset 0 0 0 1px rgba(79, 132, 214, 0.16);
+      }
+      .section--listen .listen-bar__chip {
+        flex: 0 0 auto;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        color: var(--blue);
+        background: rgba(100, 168, 255, 0.12);
+        box-shadow: inset 0 0 0 1px rgba(100, 168, 255, 0.26);
+      }
+      .section--listen .listen-bar__field {
+        flex: 1 1 auto;
+        min-width: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .section--listen .listen-bar__grade {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(135deg, var(--blue), var(--purple));
+        box-shadow: 0 6px 18px rgba(100, 168, 255, 0.35);
+      }
+      .section--listen .listen-note {
+        margin: 18px auto 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      .section--listen .listen-note strong { color: var(--text); font-weight: 600; }
+
+      @keyframes listen-bar {
+        0%, 100% { transform: scaleY(0.55); opacity: 0.7; }
+        50% { transform: scaleY(1.25); opacity: 1; }
+      }
+      @keyframes rec-count {
+        from { transform: translateY(0); }
+        to { transform: translateY(-10em); }
+      }
+      @keyframes rec-pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.35; transform: scale(0.82); }
+      }
+      @keyframes listen-word {
+        0%, 4% { opacity: 0; transform: translateY(4px); }
+        12%, 82% { opacity: 1; transform: translateY(0); }
+        94%, 100% { opacity: 0; transform: translateY(-2px); }
+      }
+
+      @media (max-width: 600px) {
+        .section--listen .rec-timer { font-size: 42px; }
+        .section--listen .listen-wave { height: 72px; }
+        .section--listen .listen-bar__field { display: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .section--listen .listen-pill__wave span,
+        .section--listen .rec-timer__reel,
+        .section--listen .rec-status__dot,
+        .section--listen .listen-wave span,
+        .section--listen .listen-transcript span {
+          animation: none !important;
+        }
+        .section--listen .listen-transcript span { opacity: 1; transform: none; }
+      }
+    </style>
+    <!-- ================= PROBLEM SOLVER SECTION ================= -->
+    <style>
+      .section--problem-solver {
+        scroll-margin-top: var(--sticky-header-height, 106px);
+      }
+      .problem-solver {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(28px, 3.5vw, 48px);
+        border: 1px solid rgba(164, 190, 255, 0.22);
+        border-radius: 30px;
+        background:
+          radial-gradient(circle at 78% 20%, rgba(164, 123, 255, 0.16), transparent 31%),
+          radial-gradient(circle at 18% 68%, rgba(100, 168, 255, 0.14), transparent 35%),
+          rgba(8, 12, 28, 0.72);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), var(--glow);
+      }
+      html[data-theme="light"] .problem-solver {
+        background:
+          radial-gradient(circle at 78% 20%, rgba(142, 100, 232, 0.12), transparent 31%),
+          radial-gradient(circle at 18% 68%, rgba(79, 132, 214, 0.11), transparent 35%),
+          rgba(255, 255, 255, 0.72);
+      }
+      .problem-solver__intro {
+        max-width: 770px;
+        margin: 0 auto clamp(24px, 3vw, 38px);
+        text-align: center;
+      }
+      .problem-solver__eyebrow {
+        margin: 0 0 12px;
+        color: var(--blue);
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .problem-solver__headline {
+        margin: 0;
+        color: var(--text);
+        font-size: clamp(32px, 4.5vw, 62px);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        text-transform: none;
+      }
+      .problem-solver__lede {
+        margin: 14px auto 0;
+        max-width: 690px;
+        color: var(--muted);
+        font-family: var(--font-sans);
+        font-size: clamp(15px, 1.35vw, 18px);
+        line-height: 1.7;
+      }
+      .problem-solver__flow {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: min(100%, 880px);
+        margin-inline: auto;
+        margin-bottom: 42px;
+      }
+      .problem-solver__phone {
+        --quick-phone-scale: 1.55;
+        transform: none;
+      }
+      .problem-solver__device.is-active .problem-solver__phone {
+        --quick-phone-scale: 1.65;
+      }
+      .problem-solver__phone:hover {
+        transform: none;
+      }
+      .problem-solver__device {
+        grid-area: 1 / 1;
+        display: grid;
+        justify-items: center;
+        gap: 15px;
+        z-index: 1;
+        opacity: 0.34;
+        visibility: visible;
+        pointer-events: auto;
+        cursor: pointer;
+        filter: saturate(0.7) brightness(0.72);
+        transform: scale(0.74);
+        transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+      }
+      .problem-solver__device.is-previous { transform: translateX(-76%) scale(0.74); }
+      .problem-solver__device.is-next { transform: translateX(76%) scale(0.74); }
+      .problem-solver__device.is-active {
+        z-index: 3;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        cursor: default;
+        filter: none;
+        transform: translateX(0) scale(1);
+      }
+      .problem-solver__device-label {
+        color: var(--muted);
+        font-family: var(--font-sans);
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .problem-solver__carousel-button {
+        position: absolute;
+        z-index: 5;
+        top: 46%;
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        padding: 0;
+        border: 1px solid rgba(145, 190, 255, 0.3);
+        border-radius: 50%;
+        color: var(--text);
+        background: rgba(8, 15, 34, 0.82);
+        box-shadow: 0 10px 30px rgba(3, 8, 22, 0.34), inset 0 1px rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        cursor: pointer;
+        transform: translateY(-50%);
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      }
+      .problem-solver__carousel-button:hover {
+        border-color: rgba(164, 123, 255, 0.7);
+        background: rgba(100, 168, 255, 0.16);
+        transform: translateY(-50%) scale(1.06);
+      }
+      .problem-solver__carousel-button--previous { left: 0; }
+      .problem-solver__carousel-button--next { right: 0; }
+      html[data-theme="light"] .problem-solver__carousel-button { background: rgba(255, 255, 255, 0.86); }
+      .problem-solver__carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: -28px 0 clamp(24px, 3vw, 36px);
+      }
+      .problem-solver__carousel-dot {
+        min-height: 34px;
+        padding: 0 13px;
+        border: 1px solid rgba(145, 190, 255, 0.18);
+        border-radius: 999px;
+        color: var(--muted);
+        background: rgba(100, 168, 255, 0.06);
+        font-family: var(--font-sans);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .problem-solver__carousel-dot.is-active {
+        border-color: rgba(145, 190, 255, 0.48);
+        color: #fff;
+        background: linear-gradient(135deg, rgba(100, 168, 255, 0.72), rgba(164, 123, 255, 0.72));
+      }
+      .problem-solver__screen {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: calc(var(--workflow-phone-screen-radius) * var(--quick-phone-scale));
+        background: #061912;
+      }
+      .problem-solver__store-graphic {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .problem-solver__placeholder {
+        display: grid;
+        place-content: center;
+        gap: 12px;
+        width: 100%;
+        height: 100%;
+        padding: 28px;
+        color: rgba(232, 241, 255, 0.68);
+        background:
+          radial-gradient(circle at 70% 18%, rgba(164, 123, 255, 0.25), transparent 30%),
+          linear-gradient(180deg, #111a32, #060914);
+        font-family: var(--font-sans);
+        font-size: 12px;
+        line-height: 1.45;
+        text-align: center;
+      }
+      .problem-solver__placeholder::before {
+        content: "+";
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        margin: 0 auto;
+        border: 1px solid rgba(144, 194, 255, 0.34);
+        border-radius: 16px;
+        color: #9acaff;
+        background: rgba(100, 168, 255, 0.12);
+        font-size: 25px;
+      }
+      .problem-solver__steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .problem-solver__step {
+        padding: clamp(16px, 2vw, 22px);
+        border: 1px solid rgba(154, 188, 255, 0.16);
+        border-radius: 22px;
+        background: rgba(7, 13, 30, 0.48);
+      }
+      html[data-theme="light"] .problem-solver__step { background: rgba(246, 249, 255, 0.66); }
+      .problem-solver__step-number {
+        color: var(--blue);
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+      .problem-solver__step h3 {
+        margin: 7px 0 5px;
+        color: var(--text);
+        font-size: clamp(20px, 2vw, 27px);
+        letter-spacing: -0.02em;
+        text-transform: none;
+      }
+      .problem-solver__step-tagline {
+        margin: 0 0 10px;
+        color: var(--text);
+        font-family: var(--font-sans);
+        font-weight: 700;
+      }
+      .problem-solver__step-copy {
+        margin: 0;
+        color: var(--muted);
+        font-family: var(--font-sans);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+      .problem-solver__step-copy a {
+        color: var(--blue);
+        font-weight: 800;
+        text-decoration-color: rgba(100, 168, 255, 0.45);
+        text-underline-offset: 3px;
+      }
+      .problem-solver__step-copy a:hover {
+        color: var(--text);
+        text-decoration-color: var(--purple);
+      }
+      .problem-solver__callouts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .problem-solver__callouts li {
+        padding: 6px 9px;
+        border: 1px solid rgba(138, 186, 255, 0.2);
+        border-radius: 999px;
+        color: var(--muted);
+        background: rgba(100, 168, 255, 0.08);
+        font-family: var(--font-sans);
+        font-size: 10.5px;
+        font-weight: 700;
+      }
+      .problem-solver__close {
+        margin-top: clamp(22px, 3vw, 32px);
+        text-align: center;
+      }
+      .problem-solver__closing-line {
+        margin: 0;
+        color: var(--text);
+        font-size: clamp(22px, 2.5vw, 32px);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+      }
+      .problem-solver__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      .problem-solver__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 20px;
+        border: 1px solid rgba(136, 190, 255, 0.42);
+        border-radius: 999px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--blue), var(--purple));
+        box-shadow: 0 10px 28px rgba(100, 168, 255, 0.25);
+        font-family: var(--font-sans);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      .problem-solver__cta--secondary { background: rgba(100, 168, 255, 0.1); }
+      html[data-theme="light"] .problem-solver__cta--secondary { color: var(--text); }
+      .problem-solver__note {
+        max-width: 640px;
+        margin: 18px auto 0;
+        color: var(--muted);
+        font-family: var(--font-sans);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+      @media (max-width: 760px) {
+        .problem-solver {
+          padding: 24px 14px 30px;
+          border-radius: 22px;
+        }
+        .problem-solver__intro {
+          margin-bottom: 30px;
+          padding-inline: 18px;
+        }
+        .problem-solver__eyebrow {
+          max-width: 240px;
+          margin-inline: auto;
+          line-height: 1.6;
+        }
+        .problem-solver__headline {
+          font-size: clamp(29px, 9vw, 42px);
+          line-height: 1.06;
+        }
+        .problem-solver__lede {
+          margin-top: 15px;
+          font-size: 14px;
+          line-height: 1.6;
+        }
+        .problem-solver__flow {
+          width: 100%;
+          margin-bottom: 42px;
+        }
+        .problem-solver__device { opacity: 0.24; }
+        .problem-solver__device.is-previous { transform: translateX(-58%) scale(0.68); }
+        .problem-solver__device.is-next { transform: translateX(58%) scale(0.68); }
+        .problem-solver__phone,
+        .problem-solver__device.is-active .problem-solver__phone {
+          --quick-phone-scale: 1.25;
+          width: calc(var(--workflow-phone-width) * var(--quick-phone-scale));
+          height: calc(var(--workflow-phone-height) * var(--quick-phone-scale));
+          aspect-ratio: var(--workflow-phone-ratio);
+          padding: calc(var(--workflow-phone-shell-padding) * var(--quick-phone-scale));
+          border-radius: calc(var(--workflow-phone-shell-radius) * var(--quick-phone-scale));
+        }
+        .problem-solver__carousel-button { width: 40px; height: 40px; }
+        .problem-solver__carousel-button--previous { left: 0; }
+        .problem-solver__carousel-button--next { right: 0; }
+        .problem-solver__carousel-dots {
+          gap: 5px;
+          margin-top: -24px;
+        }
+        .problem-solver__carousel-dot {
+          flex: 1 1 0;
+          min-width: 0;
+          min-height: 34px;
+          padding-inline: 4px;
+          font-size: 7.5px;
+          letter-spacing: 0.04em;
+        }
+        .problem-solver__steps {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .problem-solver__step { padding: 20px; }
+        .problem-solver__close { margin-top: 32px; }
+        .problem-solver__closing-line { font-size: 23px; }
+        .problem-solver__actions { display: grid; }
+        .problem-solver__cta { width: 100%; }
+      }
+      @media (min-width: 1200px) {
+        .problem-solver__phone,
+        .problem-solver__device.is-active .problem-solver__phone { --quick-phone-scale: 1.78; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .problem-solver__device { transition: none; }
+      }
+    </style>
+    <section class="section section--problem-solver" id="problem-solver" aria-labelledby="problem-solver-title">
+      <h2 class="section-title" id="problem-solver-title">Problem Solver</h2>
+      <div class="problem-solver section-content">
+        <img class="card-corner-luna card-corner-luna--thinking" src="images/luna-emotes/thinking.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <div class="problem-solver__intro">
+          <p class="problem-solver__eyebrow">Add it &rarr; Solve it &rarr; Practice it</p>
+          <h3 class="problem-solver__headline">Homework help that builds understanding.</h3>
+          <p class="problem-solver__lede">Add a question or assignment. Lune Synth organizes the work and walks you through each step.</p>
+        </div>
+
+        <div class="problem-solver__flow" data-problem-carousel aria-label="Problem Solver app previews" aria-roledescription="carousel" tabindex="0">
+          <button class="problem-solver__carousel-button problem-solver__carousel-button--previous" type="button" data-problem-previous aria-label="Previous Problem Solver step">&#8592;</button>
+          <div class="problem-solver__device is-active" data-problem-slide="0" aria-hidden="false">
+            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver-bring" aria-label="Bring your material app preview">
+              <div class="problem-solver__screen phone-screenshot-host" data-problem-solver-screenshot="bring">
+                <img class="problem-solver__store-graphic" src="../docs/store-assets/play-source-screenshots/problem-solver-bring.png" alt="Problem Solver input screen for adding a question or assignment">
+              </div>
+            </div>
+            <span class="problem-solver__device-label">Bring it in</span>
+          </div>
+          <div class="problem-solver__device" data-problem-slide="1" aria-hidden="true">
+            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver" aria-label="Problem Solver app preview">
+              <div class="problem-solver__screen phone-screenshot-host">
+                <img class="problem-solver__store-graphic" src="../docs/store-assets/play-source-screenshots/problem-solver-reasoning.png" alt="Problem Solver showing each step of an implicit differentiation problem">
+              </div>
+            </div>
+            <span class="problem-solver__device-label">Work through it</span>
+          </div>
+          <div class="problem-solver__device" data-problem-slide="2" aria-hidden="true">
+            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver-practice" aria-label="Focused practice app preview">
+              <div class="problem-solver__screen phone-screenshot-host" data-problem-solver-screenshot="practice">
+                <img class="problem-solver__store-graphic" src="../docs/store-assets/play-source-screenshots/problem-solver-practice.png" alt="Problem Solver practice screen with a new focused exercise">
+              </div>
+            </div>
+            <span class="problem-solver__device-label">Practice it</span>
+          </div>
+          <button class="problem-solver__carousel-button problem-solver__carousel-button--next" type="button" data-problem-next aria-label="Next Problem Solver step">&#8594;</button>
+        </div>
+
+        <div class="problem-solver__carousel-dots" aria-label="Choose a Problem Solver step">
+          <button class="problem-solver__carousel-dot is-active" type="button" data-problem-dot="0" aria-label="Show Bring it in" aria-current="true">Bring it in</button>
+          <button class="problem-solver__carousel-dot" type="button" data-problem-dot="1" aria-label="Show Work through it">Work through it</button>
+          <button class="problem-solver__carousel-dot" type="button" data-problem-dot="2" aria-label="Show Practice it">Practice it</button>
+        </div>
+
+        <div class="problem-solver__steps">
+          <article class="problem-solver__step">
+            <span class="problem-solver__step-number">01</span>
+            <h3>Bring it in</h3>
+            <p class="problem-solver__step-copy">Type, photograph, or attach your work.</p>
+          </article>
+          <article class="problem-solver__step">
+            <span class="problem-solver__step-number">02</span>
+            <h3>Work through it</h3>
+            <p class="problem-solver__step-copy">See every step and find where you got stuck.</p>
+          </article>
+          <article class="problem-solver__step">
+            <span class="problem-solver__step-number">03</span>
+            <h3>Practice it</h3>
+            <p class="problem-solver__step-copy">Turn the output into a <a href="#quick-missions-title">Quick Mission</a> or <a href="#constellations-title">Constellation</a>.</p>
+          </article>
+        </div>
+
+        <div class="problem-solver__close">
+          <div class="problem-solver__actions">
+            <a class="problem-solver__cta" href="#waitlist">Try Problem Solver</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+    (function () {
+      var carousel = document.querySelector('[data-problem-carousel]');
+      if (!carousel) return;
+
+      var slides = Array.prototype.slice.call(carousel.querySelectorAll('[data-problem-slide]'));
+      var dots = Array.prototype.slice.call(document.querySelectorAll('[data-problem-dot]'));
+      var previous = carousel.querySelector('[data-problem-previous]');
+      var next = carousel.querySelector('[data-problem-next]');
+      var activeIndex = 0;
+      var touchStartX = null;
+      var suppressClick = false;
+
+      function showSlide(index) {
+        activeIndex = (index + slides.length) % slides.length;
+        slides.forEach(function (slide, slideIndex) {
+          var active = slideIndex === activeIndex;
+          var previousSlide = slideIndex === (activeIndex - 1 + slides.length) % slides.length;
+          var nextSlide = slideIndex === (activeIndex + 1) % slides.length;
+          slide.classList.toggle('is-active', active);
+          slide.classList.toggle('is-previous', previousSlide);
+          slide.classList.toggle('is-next', nextSlide);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          var phone = slide.querySelector('[data-phone-mock]');
+          if (phone) phone.setAttribute('tabindex', active ? '0' : '-1');
+        });
+        dots.forEach(function (dot, dotIndex) {
+          var active = dotIndex === activeIndex;
+          dot.classList.toggle('is-active', active);
+          if (active) dot.setAttribute('aria-current', 'true');
+          else dot.removeAttribute('aria-current');
+        });
+      }
+
+      previous.addEventListener('click', function () { showSlide(activeIndex - 1); });
+      next.addEventListener('click', function () { showSlide(activeIndex + 1); });
+      carousel.addEventListener('click', function (event) {
+        if (suppressClick) {
+          suppressClick = false;
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation();
+          return;
+        }
+        var slide = event.target.closest('[data-problem-slide]');
+        if (!slide || slide.classList.contains('is-active')) return;
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        showSlide(Number(slide.getAttribute('data-problem-slide')));
+      }, true);
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          showSlide(Number(dot.getAttribute('data-problem-dot')));
+        });
+      });
+      carousel.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          showSlide(activeIndex - 1);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          showSlide(activeIndex + 1);
+        }
+      });
+      carousel.addEventListener('touchstart', function (event) {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+      carousel.addEventListener('touchend', function (event) {
+        if (touchStartX === null) return;
+        var distance = event.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(distance) < 45) return;
+        suppressClick = true;
+        showSlide(activeIndex + (distance < 0 ? 1 : -1));
+      }, { passive: true });
+      showSlide(0);
+    })();
+    </script>
+
     <!-- ================= QUICK MISSIONS SECTION ================= -->
     <section class="section section--quick-missions" id="quick-missions" aria-labelledby="quick-missions-title">
       <h2 class="section-title" id="quick-missions-title">Take One Quick Mission</h2>
@@ -11958,7 +12863,7 @@
                 <div class="quick-missions__screen-view is-active" data-quick-screen="grid">
                   <video class="quick-missions__screen-video" data-quick-screen-video autoplay loop muted playsinline preload="metadata" poster="screenshots/applied/quick-mission-screen-poster.png" aria-label="Quick Missions app walkthrough">
                     <source src="screenshots/applied/quick-mission-screen.mp4" type="video/mp4">
-                    <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-screen-poster.png" alt="Quick Missions app preview">
+                    <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-screen-poster.png" alt="Quick Missions app preview" loading="lazy" decoding="async">
                   </video>
                 </div>
               </div>
@@ -12035,7 +12940,7 @@
               <div class="world-select-dropdown" id="worldSelectDropdown">
                 <button class="world-select-trigger" id="worldSelectTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Learning World">
                   <span class="world-select-trigger__current">
-                    <img class="world-option-icon" id="worldSelectActiveIcon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26">
+                    <img class="world-option-icon" id="worldSelectActiveIcon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
                     <span id="worldSelectActiveLabel">Earth</span>
                   </span>
                   <svg class="world-select-chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
@@ -12044,28 +12949,28 @@
                 </button>
                 <div class="world-select-popup" id="worldSelectPopup" role="listbox" aria-label="Learning Worlds">
                   <button class="world-select-item is-active" type="button" role="option" aria-selected="true" data-theme="earth" onclick="selectWorld('earth', this)">
-                    <img class="world-option-icon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
                     <span class="world-select-item__label">Earth</span>
                     <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
                       <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </button>
                   <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
-                    <img class="world-option-icon" src="/lune-synth/images/world-icons/jupiter.png" alt="" aria-hidden="true" width="26" height="26">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/jupiter.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
                     <span class="world-select-item__label">Jupiter</span>
                     <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
                       <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </button>
                   <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="retro" onclick="selectWorld('retro', this)">
-                    <img class="world-option-icon" src="/lune-synth/images/world-icons/retro-arcade.png" alt="" aria-hidden="true" width="26" height="26">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/retro-arcade.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
                     <span class="world-select-item__label">Retro Arcade</span>
                     <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
                       <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </button>
                   <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="math" onclick="selectWorld('math', this)">
-                    <img class="world-option-icon" src="/lune-synth/images/world-icons/math-space.png" alt="" aria-hidden="true" width="26" height="26">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/math-space.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
                     <span class="world-select-item__label">Math Space</span>
                     <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
                       <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -12091,7 +12996,7 @@
 
                   <!-- Step 2 Preview Screen: choose or create a Constellation -->
                   <div class="ipad-preview-layout" id="previewStep-2">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-thumb.jpg" data-video-thumbnail="step1Video" alt="" aria-hidden="true">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-thumb.jpg" data-video-thumbnail="step1Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
                     <video id="step1Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-1.webm" type="video/webm">
                       <source src="screenshots/applied/step-1.mp4" type="video/mp4">
@@ -12100,19 +13005,19 @@
 
                   <!-- Step 1 Preview Screen: navigate Worlds -->
                   <div class="ipad-preview-layout is-active" id="previewStep-1">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-earth-world-thumb.jpg" data-video-thumbnail="worldVideo-earth" alt="" aria-hidden="true">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-earth-world-thumb.jpg" data-video-thumbnail="worldVideo-earth" alt="" aria-hidden="true" loading="lazy" decoding="async">
                     <video id="worldVideo-earth" class="ipad-gif-target" loop muted playsinline preload="none">
                       <source src="screenshots/applied/step-1-earth-world.mp4" type="video/mp4">
                     </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-jupiter-world-thumb.jpg" data-video-thumbnail="worldVideo-jupiter" alt="" aria-hidden="true" style="display: none;">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-jupiter-world-thumb.jpg" data-video-thumbnail="worldVideo-jupiter" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
                     <video id="worldVideo-jupiter" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-1-jupiter-world.mp4" type="video/mp4">
                     </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-retro-arcade-world-thumb.jpg" data-video-thumbnail="worldVideo-retro" alt="" aria-hidden="true" style="display: none;">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-retro-arcade-world-thumb.jpg" data-video-thumbnail="worldVideo-retro" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
                     <video id="worldVideo-retro" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-1-retro-arcade-world.mp4" type="video/mp4">
                     </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-math-space-world-thumb.jpg" data-video-thumbnail="worldVideo-math" alt="" aria-hidden="true" style="display: none;">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-math-space-world-thumb.jpg" data-video-thumbnail="worldVideo-math" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
                     <video id="worldVideo-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-1-math-space-world.mp4" type="video/mp4">
                     </video>
@@ -12120,7 +13025,7 @@
 
                   <!-- Step 3 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-3">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-3-thumb.jpg" data-video-thumbnail="step3Video" alt="" aria-hidden="true">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-3-thumb.jpg" data-video-thumbnail="step3Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
                     <video id="step3Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-3.webm" type="video/webm">
                       <source src="screenshots/applied/step-3.mp4" type="video/mp4">
@@ -12129,7 +13034,7 @@
 
                   <!-- Step 4 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-4">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-4-thumb.jpg" data-video-thumbnail="step4Video" alt="" aria-hidden="true">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-4-thumb.jpg" data-video-thumbnail="step4Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
                     <video id="step4Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-4.webm" type="video/webm">
                       <source src="screenshots/applied/step-4.mp4" type="video/mp4">
@@ -12138,7 +13043,7 @@
 
                   <!-- Step 5 Preview Screen -->
                   <div class="ipad-preview-layout" id="previewStep-5">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-5-thumb.jpg" data-video-thumbnail="step5Video" alt="" aria-hidden="true">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-5-thumb.jpg" data-video-thumbnail="step5Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
                     <video id="step5Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-5.webm" type="video/webm">
                       <source src="screenshots/applied/step-5.mp4" type="video/mp4">
@@ -12162,6 +13067,7 @@
         
         <!-- Center Card Container -->
         <div class="medal-viewer-card" id="medalViewerCard" style="width: 100%; margin: 0 auto;">
+          <img class="card-corner-luna card-corner-luna--proud" src="images/luna-emotes/proud.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           
           <!-- Dropdown selector at the top -->
           <div class="medal-rank-selector-wrapper">
@@ -12195,7 +13101,7 @@
                 
                 <!-- Medal 0: Streak (Gold Tier Default) -->
                 <div class="carousel-3d-item is-active" onclick="rotateToMedal(0)">
-                  <img class="showcase-medal-image" id="medalImage-streak" src="/lune-synth/lune-synth-landing-medals/06-gold/streak.png" alt="Gold streak medal">
+                  <img class="showcase-medal-image" id="medalImage-streak" src="/lune-synth/lune-synth-landing-medals/06-gold/streak.png" alt="Gold streak medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-streak" cx="50%" cy="50%" r="55%">
@@ -12357,7 +13263,7 @@
                 
                 <!-- Medal 1: Polymath (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(1)">
-                  <img class="showcase-medal-image" id="medalImage-polymath" src="/lune-synth/lune-synth-landing-medals/06-gold/polymath.png" alt="Gold polymath medal">
+                  <img class="showcase-medal-image" id="medalImage-polymath" src="/lune-synth/lune-synth-landing-medals/06-gold/polymath.png" alt="Gold polymath medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-polymath" cx="50%" cy="50%" r="55%">
@@ -12523,7 +13429,7 @@
                 
                 <!-- Medal 2: Recovery (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(2)">
-                  <img class="showcase-medal-image" id="medalImage-recovery" src="/lune-synth/lune-synth-landing-medals/06-gold/recovery.png" alt="Gold recovery medal">
+                  <img class="showcase-medal-image" id="medalImage-recovery" src="/lune-synth/lune-synth-landing-medals/06-gold/recovery.png" alt="Gold recovery medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-recovery" cx="50%" cy="50%" r="55%">
@@ -12685,7 +13591,7 @@
                 
                 <!-- Medal 3: Marksman (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(3)">
-                  <img class="showcase-medal-image" id="medalImage-marksman" src="/lune-synth/lune-synth-landing-medals/06-gold/marksman.png" alt="Gold marksman medal">
+                  <img class="showcase-medal-image" id="medalImage-marksman" src="/lune-synth/lune-synth-landing-medals/06-gold/marksman.png" alt="Gold marksman medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-marksman" cx="50%" cy="50%" r="55%">
@@ -12851,7 +13757,7 @@
                 
                 <!-- Medal 4: Handwriting (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)">
-                  <img class="showcase-medal-image" id="medalImage-handwriting" src="/lune-synth/lune-synth-landing-medals/06-gold/handwriting.png" alt="Gold handwriting medal">
+                  <img class="showcase-medal-image" id="medalImage-handwriting" src="/lune-synth/lune-synth-landing-medals/06-gold/handwriting.png" alt="Gold handwriting medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-handwriting" cx="50%" cy="50%" r="55%">
@@ -13471,7 +14377,7 @@
     });
   })();
 
-  // Mobile hamburger: toggle the fullscreen nav overlay.
+  // Hamburger: toggle the fullscreen section directory at every viewport size.
   (function handleNavToggle() {
     var header = document.querySelector(".site-header");
     var toggle = document.querySelector("[data-nav-toggle]");
@@ -13508,9 +14414,6 @@
       if (e.key === "Escape") setOpen(false);
     });
 
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 640) setOpen(false);
-    });
   })();
 
   // Mobile brand dropdown (Coherascent Labs logo menu): make it a full screen popup like the hamburger nav.
