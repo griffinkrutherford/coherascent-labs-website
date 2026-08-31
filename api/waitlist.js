@@ -211,6 +211,46 @@ async function createContact(email, properties, apiKey) {
   return response;
 }
 
+/**
+ * Where a signup came from, derived entirely from the Referer header.
+ *
+ * A same-origin form post sends the full page URL, query string included, so
+ * the utm_* params a campaign link arrived with are still readable here. That
+ * keeps attribution server-side: no tracking cookie, no client-side script,
+ * and nothing stored beyond the campaign labels we put in the link ourselves.
+ * The privacy policy's "product analytics are first-party" claim depends on it
+ * staying that way -- do not route this through a third-party SDK.
+ *
+ * Limitation worth knowing: this records the page the form was submitted from,
+ * which is the entry page only when someone signs up without navigating first.
+ */
+function parseAttribution(req) {
+  const raw = req && req.headers && typeof req.headers.referer === 'string' ? req.headers.referer : '';
+  if (!raw) return {};
+
+  let url;
+  try {
+    url = new URL(raw);
+  } catch (error) {
+    return {};
+  }
+
+  // Cap every value: these land on a contact record and arrive from a header
+  // the client controls.
+  const clean = (value, max) => (typeof value === 'string' ? value.trim().slice(0, max) : '');
+
+  const attribution = {};
+  const path = clean(url.pathname, 120);
+  if (path) attribution.signup_page = path;
+
+  for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+    const value = clean(url.searchParams.get(key), 60).toLowerCase();
+    if (value) attribution[key] = value;
+  }
+
+  return attribution;
+}
+
 module.exports = async (req, res) => {
   // Add CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -261,6 +301,12 @@ module.exports = async (req, res) => {
     if (platform) properties.platform = platform;
     if (googleEmail) properties.google_account = googleEmail;
 
+    // Which page and campaign produced this signup. Only set on the first
+    // write for an address: the platform popup posts a second time from the
+    // same page, and letting that overwrite the original source would credit
+    // every signup to wherever the popup happened to be answered.
+    const attribution = parseAttribution(req);
+
     // Ask first: Resend answers 200 whether or not the contact already exists,
     // so only an explicit lookup can tell a new signup from a repeat.
     const existing = await lookupContact(trimmedEmail, RESEND_API_KEY);
@@ -298,7 +344,11 @@ module.exports = async (req, res) => {
       });
     }
 
-    const response = await createContact(trimmedEmail, properties, RESEND_API_KEY);
+    const response = await createContact(
+      trimmedEmail,
+      { ...properties, ...attribution },
+      RESEND_API_KEY
+    );
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
@@ -325,6 +375,8 @@ module.exports = async (req, res) => {
     // we expect -- Railway logs are currently the only durable record.
     console.log(
       `[waitlist] stored ${trimmedEmail} platform=${platform || 'unknown'} google=${googleEmail || 'none'}`
+      + ` page=${attribution.signup_page || 'unknown'}`
+      + ` campaign=${attribution.utm_campaign || attribution.utm_source || 'none'}`
     );
 
     if (platform) {
