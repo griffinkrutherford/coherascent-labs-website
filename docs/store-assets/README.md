@@ -20,6 +20,8 @@
   1024×500 feature graphic, and the reusable generated background masters.
 - `ios-graphics/` contains the same six-image story exported at 1290×2796 for
   App Store Connect's 6.9-inch iPhone slot.
+- `unused-opening-graphics/` archives the optional `00` brand cover exports;
+  they are not part of the active store screenshot sequence.
 - `play-icon-512.png` and `play-store-listing.md` contain the Play icon and
   listing copy.
 
@@ -28,12 +30,12 @@ to rebuild both screenshot sets and the Play feature graphic.
 
 ## Current screenshot order
 
-1. Your subjects, mapped
-2. Questions built from your material
-3. Practice across subjects
-4. Know what to fix
-5. See every step
-6. Progress in one place
+1. See every subject in one clear map
+2. Turn your material into practice questions
+3. Practice every subject in one place
+4. Know exactly what to fix next
+5. See the reasoning behind every step
+6. Track all your progress in one place
 
 The constellation map leads the sequence as the most visually distinctive
 screen. It is followed by the newest full-resolution statistics question-set

@@ -3,22 +3,29 @@ import AppKit
 let root = "/Users/griffinrutherford/Documents/github-repos/coherascent-labs-website"
 let playOutput = "\(root)/docs/store-assets/play-graphics"
 let iosOutput = "\(root)/docs/store-assets/ios-graphics"
+let openingOutput = "\(root)/docs/store-assets/unused-opening-graphics"
 
 struct Shot {
     let source: String
     let name: String
     let caption: String
+    let emphasis: String
+    let secondary: String
+    let baseFont: String
+    let emphasisFont: String
+    let secondaryFont: String
+    let accent: NSColor
     let rotation: CGFloat
 }
 
 let sourceRoot = "\(root)/docs/store-assets/play-source-screenshots"
 let shots = [
-    Shot(source: "\(sourceRoot)/constellations.png", name: "01-your-subjects-mapped", caption: "Your subjects, mapped", rotation: -4.4),
-    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/question-prompts/19-stats.png", name: "02-questions-from-your-material", caption: "Questions built from your material", rotation: -5.2),
-    Shot(source: "\(sourceRoot)/choice-set.png", name: "03-practice-across-subjects", caption: "Practice across subjects", rotation: 3.8),
-    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/results/90-percent.png", name: "04-know-what-to-fix", caption: "Know what to fix", rotation: -3.6),
-    Shot(source: "\(sourceRoot)/problem-solver-reasoning.png", name: "05-see-every-step", caption: "See every step", rotation: 5.0),
-    Shot(source: "\(sourceRoot)/leaderboard.png", name: "06-progress-in-one-place", caption: "Progress in one place", rotation: 3.2),
+    Shot(source: "\(sourceRoot)/constellations.png", name: "01-your-subjects-mapped", caption: "See every subject in\none clear map", emphasis: "one clear map", secondary: "See every subject", baseFont: "Avenir Next Demi Bold", emphasisFont: "Avenir Next Heavy Italic", secondaryFont: "Avenir Next Condensed Medium", accent: NSColor(calibratedRed: 0.39, green: 0.91, blue: 1.00, alpha: 1), rotation: 0),
+    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/question-prompts/19-stats.png", name: "02-questions-from-your-material", caption: "Turn your material into\npractice questions", emphasis: "your material", secondary: "practice questions", baseFont: "Avenir Next Bold", emphasisFont: "Avenir Next Heavy Italic", secondaryFont: "Avenir Next Condensed Bold", accent: NSColor(calibratedRed: 0.57, green: 0.84, blue: 0.72, alpha: 1), rotation: 0),
+    Shot(source: "\(sourceRoot)/choice-set.png", name: "03-practice-across-subjects", caption: "Practice every subject\nin one place", emphasis: "every subject", secondary: "in one place", baseFont: "Avenir Next Medium", emphasisFont: "Avenir Next Condensed Heavy", secondaryFont: "Avenir Next Demi Bold Italic", accent: NSColor(calibratedRed: 0.72, green: 0.62, blue: 1.00, alpha: 1), rotation: 0),
+    Shot(source: "\(root)/mobile-app-assets/screenshots/applied/results/90-percent.png", name: "04-know-what-to-fix", caption: "Know exactly what to\nfix next", emphasis: "exactly", secondary: "fix next", baseFont: "Avenir Next Condensed Bold", emphasisFont: "Avenir Next Heavy Italic", secondaryFont: "Avenir Next Heavy", accent: NSColor(calibratedRed: 0.24, green: 0.43, blue: 0.88, alpha: 1), rotation: 0),
+    Shot(source: "\(sourceRoot)/problem-solver-reasoning.png", name: "05-see-every-step", caption: "See the reasoning behind\nevery step", emphasis: "reasoning", secondary: "every step", baseFont: "Avenir Next Demi Bold", emphasisFont: "Avenir Next Condensed Heavy Italic", secondaryFont: "Avenir Next Heavy", accent: NSColor(calibratedRed: 0.47, green: 0.83, blue: 0.72, alpha: 1), rotation: 0),
+    Shot(source: "\(sourceRoot)/leaderboard.png", name: "06-progress-in-one-place", caption: "Track all your progress\nin one place", emphasis: "progress", secondary: "in one place", baseFont: "Avenir Next Condensed Medium", emphasisFont: "Avenir Next Heavy Italic", secondaryFont: "Avenir Next Bold", accent: NSColor(calibratedRed: 0.46, green: 0.84, blue: 0.74, alpha: 1), rotation: 0),
 ]
 
 func load(_ path: String) -> NSImage {
@@ -73,16 +80,316 @@ func drawCover(_ image: NSImage, in rect: NSRect) {
     image.draw(in: rect, from: source, operation: .copy, fraction: 1, respectFlipped: true, hints: [.interpolation: NSImageInterpolation.high])
 }
 
-func centeredText(_ text: String, y: CGFloat, width: CGFloat, size: CGFloat) {
+func drawScreenshotColorGrade(_ name: String, in rect: NSRect) {
+    let palette: (tint: NSColor, glow: NSColor, secondary: NSColor)
+    switch name {
+    case "01-your-subjects-mapped":
+        palette = (
+            NSColor(calibratedRed: 0.015, green: 0.10, blue: 0.20, alpha: 1),
+            NSColor(calibratedRed: 0.12, green: 0.58, blue: 0.92, alpha: 1),
+            NSColor(calibratedRed: 0.20, green: 0.78, blue: 0.88, alpha: 1)
+        )
+    case "02-questions-from-your-material":
+        palette = (
+            NSColor(calibratedRed: 0.015, green: 0.16, blue: 0.12, alpha: 1),
+            NSColor(calibratedRed: 0.47, green: 0.78, blue: 0.63, alpha: 1),
+            NSColor(calibratedRed: 0.68, green: 0.40, blue: 0.24, alpha: 1)
+        )
+    case "03-practice-across-subjects":
+        palette = (
+            NSColor(calibratedRed: 0.06, green: 0.07, blue: 0.20, alpha: 1),
+            NSColor(calibratedRed: 0.45, green: 0.38, blue: 0.86, alpha: 1),
+            NSColor(calibratedRed: 0.60, green: 0.28, blue: 0.18, alpha: 1)
+        )
+    case "04-know-what-to-fix":
+        palette = (
+            NSColor(calibratedRed: 0.025, green: 0.035, blue: 0.16, alpha: 1),
+            NSColor(calibratedRed: 0.12, green: 0.28, blue: 0.70, alpha: 1),
+            NSColor(calibratedRed: 0.37, green: 0.20, blue: 0.48, alpha: 1)
+        )
+    case "05-see-every-step":
+        palette = (
+            NSColor(calibratedRed: 0.015, green: 0.14, blue: 0.105, alpha: 1),
+            NSColor(calibratedRed: 0.35, green: 0.70, blue: 0.58, alpha: 1),
+            NSColor(calibratedRed: 0.50, green: 0.10, blue: 0.16, alpha: 1)
+        )
+    case "06-progress-in-one-place":
+        palette = (
+            NSColor(calibratedRed: 0.012, green: 0.14, blue: 0.105, alpha: 1),
+            NSColor(calibratedRed: 0.34, green: 0.74, blue: 0.64, alpha: 1),
+            NSColor(calibratedRed: 0.34, green: 0.10, blue: 0.48, alpha: 1)
+        )
+    default:
+        return
+    }
+
+    palette.tint.withAlphaComponent(0.64).setFill()
+    rect.fill(using: .sourceOver)
+    NSGradient(starting: palette.glow.withAlphaComponent(0.40), ending: palette.glow.withAlphaComponent(0))!
+        .draw(fromCenter: NSPoint(x: rect.minX + rect.width * 0.12, y: rect.maxY - rect.height * 0.18), radius: 0,
+              toCenter: NSPoint(x: rect.minX + rect.width * 0.12, y: rect.maxY - rect.height * 0.18), radius: rect.width * 0.76, options: [])
+    NSGradient(starting: palette.secondary.withAlphaComponent(0.34), ending: palette.secondary.withAlphaComponent(0))!
+        .draw(fromCenter: NSPoint(x: rect.maxX - rect.width * 0.10, y: rect.minY + rect.height * 0.22), radius: 0,
+              toCenter: NSPoint(x: rect.maxX - rect.width * 0.10, y: rect.minY + rect.height * 0.22), radius: rect.width * 0.78, options: [])
+}
+
+func displayFont(size: CGFloat, italic: Bool = false) -> NSFont {
+    let name = italic ? "Avenir Next Heavy Italic" : "Avenir Next Bold"
+    if let font = NSFont(name: name, size: size) { return font }
+    let base = NSFont.systemFont(ofSize: size, weight: .bold)
+    return italic ? NSFontManager.shared.convert(base, toHaveTrait: .italicFontMask) : base
+}
+
+func namedFont(_ name: String, size: CGFloat) -> NSFont {
+    NSFont(name: name, size: size) ?? displayFont(size: size, italic: name.contains("Italic"))
+}
+
+func centeredText(_ shot: Shot, y: CGFloat, width: CGFloat, size: CGFloat) {
     let style = NSMutableParagraphStyle()
     style.alignment = .center
+    style.lineSpacing = -size * 0.08
     let attrs: [NSAttributedString.Key: Any] = [
-        .font: NSFont(name: "Avenir Next Bold", size: size) ?? NSFont.systemFont(ofSize: size, weight: .bold),
-        .foregroundColor: NSColor(calibratedWhite: 0.985, alpha: 1),
+        .font: namedFont(shot.baseFont, size: size),
+        .foregroundColor: NSColor(calibratedWhite: 0.97, alpha: 1),
         .kern: 1.35,
         .paragraphStyle: style,
     ]
-    NSString(string: text).draw(in: NSRect(x: 42, y: y, width: width - 84, height: size * 1.55), withAttributes: attrs)
+    let caption = NSMutableAttributedString(string: shot.caption, attributes: attrs)
+    let emphasisRange = (shot.caption as NSString).range(of: shot.emphasis)
+    caption.addAttributes([
+        .font: namedFont(shot.emphasisFont, size: size * 1.08),
+        .foregroundColor: shot.accent,
+        .kern: 0.35,
+    ], range: emphasisRange)
+    let secondaryRange = (shot.caption as NSString).range(of: shot.secondary)
+    caption.addAttributes([
+        .font: namedFont(shot.secondaryFont, size: size * 0.96),
+        .foregroundColor: NSColor(calibratedWhite: 0.97, alpha: 1),
+        .kern: 0.7,
+    ], range: secondaryRange)
+    caption.draw(in: NSRect(x: 42, y: y, width: width - 84, height: size * 2.7))
+}
+
+func siteMono(size: CGFloat, bold: Bool = false) -> NSFont {
+    let names = bold
+        ? ["Roboto Mono Bold", "RobotoMono-Bold", "Menlo-Bold"]
+        : ["Roboto Mono", "RobotoMono-Regular", "Menlo-Regular"]
+    for name in names {
+        if let font = NSFont(name: name, size: size) { return font }
+    }
+    return NSFont.monospacedSystemFont(ofSize: size, weight: bold ? .bold : .regular)
+}
+
+func drawOpeningGraphicEditorial(width: CGFloat, height: CGFloat) {
+    let scale = width / 1080
+    let blue = NSColor(calibratedRed: 100 / 255, green: 168 / 255, blue: 1, alpha: 1)
+    let purple = NSColor(calibratedRed: 164 / 255, green: 123 / 255, blue: 1, alpha: 1)
+    let pink = NSColor(calibratedRed: 1, green: 93 / 255, blue: 135 / 255, alpha: 1)
+    let textColor = NSColor(calibratedRed: 237 / 255, green: 245 / 255, blue: 1, alpha: 1)
+    let muted = NSColor(calibratedRed: 166 / 255, green: 186 / 255, blue: 215 / 255, alpha: 1)
+    let fullFrame = NSBezierPath(rect: NSRect(x: 0, y: 0, width: width, height: height))
+
+    NSGraphicsContext.saveGraphicsState()
+    NSColor(calibratedRed: 6 / 255, green: 13 / 255, blue: 28 / 255, alpha: 0.74).setFill()
+    fullFrame.fill()
+    NSGraphicsContext.restoreGraphicsState()
+
+    NSGraphicsContext.saveGraphicsState()
+    fullFrame.addClip()
+    NSGradient(starting: blue.withAlphaComponent(0.28), ending: blue.withAlphaComponent(0))!
+        .draw(fromCenter: NSPoint(x: width * 0.04, y: height * 0.82), radius: 0,
+              toCenter: NSPoint(x: width * 0.04, y: height * 0.82), radius: width * 0.70, options: [])
+    NSGradient(starting: purple.withAlphaComponent(0.24), ending: purple.withAlphaComponent(0))!
+        .draw(fromCenter: NSPoint(x: width * 0.90, y: height * 0.58), radius: 0,
+              toCenter: NSPoint(x: width * 0.90, y: height * 0.58), radius: width * 0.68, options: [])
+    NSGradient(starting: pink.withAlphaComponent(0.18), ending: pink.withAlphaComponent(0))!
+        .draw(fromCenter: NSPoint(x: width * 0.70, y: height * 0.10), radius: 0,
+              toCenter: NSPoint(x: width * 0.70, y: height * 0.10), radius: width * 0.62, options: [])
+    NSGraphicsContext.restoreGraphicsState()
+
+    // Editorial rail and eyebrow replace the previous centered card treatment.
+    let rail = NSRect(x: 76 * scale, y: height * 0.52, width: 5 * scale, height: height * 0.37)
+    NSGradient(colors: [blue, purple, pink])!.draw(in: rail, angle: -90)
+    NSString(string: "INTRODUCING  /  LUNE SYNTH™").draw(at: NSPoint(x: 108 * scale, y: height * 0.86), withAttributes: [
+        .font: siteMono(size: 23 * scale, bold: true),
+        .foregroundColor: muted,
+        .kern: 2.6 * scale,
+    ])
+
+    let icon = load("\(root)/images/lune-synth-icon-512.png")
+    let iconSize = 315 * scale
+    let iconRect = NSRect(x: width - 405 * scale, y: height * 0.64, width: iconSize, height: iconSize)
+    let orbit = NSBezierPath(ovalIn: iconRect.insetBy(dx: -34 * scale, dy: -34 * scale))
+    orbit.lineWidth = 1.5 * scale
+    purple.withAlphaComponent(0.34).setStroke()
+    orbit.stroke()
+    NSGraphicsContext.saveGraphicsState()
+    let iconShadow = NSShadow()
+    iconShadow.shadowColor = blue.withAlphaComponent(0.56)
+    iconShadow.shadowBlurRadius = 82 * scale
+    iconShadow.shadowOffset = .zero
+    iconShadow.set()
+    icon.draw(in: iconRect, from: .zero, operation: .sourceOver, fraction: 1, respectFlipped: true, hints: [.interpolation: NSImageInterpolation.high])
+    NSGraphicsContext.restoreGraphicsState()
+
+    let left = NSMutableParagraphStyle()
+    left.alignment = .left
+    NSString(string: "Lune").draw(in: NSRect(x: 108 * scale, y: height * 0.695, width: 520 * scale, height: 150 * scale), withAttributes: [
+        .font: siteMono(size: 126 * scale, bold: true),
+        .foregroundColor: textColor,
+        .kern: -5 * scale,
+        .paragraphStyle: left,
+    ])
+    NSString(string: "Synth™").draw(in: NSRect(x: 108 * scale, y: height * 0.62, width: 610 * scale, height: 170 * scale), withAttributes: [
+        .font: siteMono(size: 126 * scale, bold: true),
+        .foregroundColor: purple,
+        .kern: -5 * scale,
+        .paragraphStyle: left,
+    ])
+
+    let statement = NSMutableAttributedString(string: "Learning that checks\nyour thinking.", attributes: [
+        .font: displayFont(size: 66 * scale),
+        .foregroundColor: textColor,
+        .kern: -1.2 * scale,
+        .paragraphStyle: left,
+    ])
+    statement.addAttributes([
+        .font: displayFont(size: 70 * scale, italic: true),
+        .foregroundColor: blue,
+    ], range: NSRange(location: 14, length: 6))
+    statement.draw(in: NSRect(x: 108 * scale, y: height * 0.39, width: width - 180 * scale, height: 190 * scale))
+
+    NSString(string: "The anti-slop learning app.").draw(in: NSRect(x: 110 * scale, y: height * 0.345, width: width - 200 * scale, height: 50 * scale), withAttributes: [
+        .font: siteMono(size: 29 * scale),
+        .foregroundColor: muted,
+        .kern: 0.4 * scale,
+        .paragraphStyle: left,
+    ])
+
+    let flowRect = NSRect(x: 76 * scale, y: height * 0.075, width: width - 152 * scale, height: 220 * scale)
+    let flowPath = NSBezierPath(roundedRect: flowRect, xRadius: 32 * scale, yRadius: 32 * scale)
+    NSColor(calibratedRed: 8 / 255, green: 17 / 255, blue: 34 / 255, alpha: 0.72).setFill()
+    flowPath.fill()
+    flowPath.lineWidth = 1.3 * scale
+    purple.withAlphaComponent(0.30).setStroke()
+    flowPath.stroke()
+
+    let flowItems = [("01", "DO THE WORK"), ("02", "GET FEEDBACK"), ("03", "PRACTICE AGAIN")]
+    let columnWidth = flowRect.width / 3
+    for (index, item) in flowItems.enumerated() {
+        let x = flowRect.minX + CGFloat(index) * columnWidth
+        if index > 0 {
+            NSColor.white.withAlphaComponent(0.10).setFill()
+            NSRect(x: x, y: flowRect.minY + 36 * scale, width: 1 * scale, height: flowRect.height - 72 * scale).fill()
+        }
+        NSString(string: item.0).draw(in: NSRect(x: x + 34 * scale, y: flowRect.maxY - 72 * scale, width: columnWidth - 68 * scale, height: 35 * scale), withAttributes: [
+            .font: siteMono(size: 20 * scale, bold: true),
+            .foregroundColor: index == 0 ? blue : (index == 1 ? purple : pink),
+        ])
+        NSString(string: item.1).draw(in: NSRect(x: x + 34 * scale, y: flowRect.minY + 62 * scale, width: columnWidth - 68 * scale, height: 66 * scale), withAttributes: [
+            .font: siteMono(size: 24 * scale, bold: true),
+            .foregroundColor: textColor,
+        ])
+    }
+}
+
+func drawOpeningGraphic(width: CGFloat, height: CGFloat) {
+    let scale = width / 1080
+    let blue = NSColor(calibratedRed: 100 / 255, green: 168 / 255, blue: 1, alpha: 1)
+    let purple = NSColor(calibratedRed: 164 / 255, green: 123 / 255, blue: 1, alpha: 1)
+    let pink = NSColor(calibratedRed: 1, green: 93 / 255, blue: 135 / 255, alpha: 1)
+    let textColor = NSColor(calibratedRed: 237 / 255, green: 245 / 255, blue: 1, alpha: 1)
+    let muted = NSColor(calibratedRed: 166 / 255, green: 186 / 255, blue: 215 / 255, alpha: 1)
+
+    // Portrait adaptation of the website hero: one broad, luminous glass card.
+    let card = NSRect(x: 30 * scale, y: 34 * scale, width: width - 60 * scale, height: height - 68 * scale)
+    let cardPath = NSBezierPath(roundedRect: card, xRadius: 34 * scale, yRadius: 34 * scale)
+    NSGraphicsContext.saveGraphicsState()
+    let shadow = NSShadow()
+    shadow.shadowColor = NSColor.black.withAlphaComponent(0.72)
+    shadow.shadowBlurRadius = 48 * scale
+    shadow.shadowOffset = NSSize(width: 0, height: -10 * scale)
+    shadow.set()
+    NSColor(calibratedRed: 4 / 255, green: 7 / 255, blue: 14 / 255, alpha: 0.90).setFill()
+    cardPath.fill()
+    NSGraphicsContext.restoreGraphicsState()
+
+    NSGraphicsContext.saveGraphicsState()
+    cardPath.addClip()
+    NSGradient(starting: blue.withAlphaComponent(0.24), ending: blue.withAlphaComponent(0))!
+        .draw(fromCenter: NSPoint(x: card.minX + card.width * 0.08, y: card.maxY - card.height * 0.08), radius: 0,
+              toCenter: NSPoint(x: card.minX + card.width * 0.08, y: card.maxY - card.height * 0.08), radius: card.width * 0.66, options: [])
+    NSGradient(starting: purple.withAlphaComponent(0.20), ending: purple.withAlphaComponent(0))!
+        .draw(fromCenter: NSPoint(x: card.maxX - card.width * 0.08, y: card.maxY - card.height * 0.18), radius: 0,
+              toCenter: NSPoint(x: card.maxX - card.width * 0.08, y: card.maxY - card.height * 0.18), radius: card.width * 0.62, options: [])
+    NSGradient(starting: pink.withAlphaComponent(0.16), ending: pink.withAlphaComponent(0))!
+        .draw(fromCenter: NSPoint(x: card.width * 0.62, y: card.minY + card.height * 0.12), radius: 0,
+              toCenter: NSPoint(x: card.width * 0.62, y: card.minY + card.height * 0.12), radius: card.width * 0.68, options: [])
+    NSGraphicsContext.restoreGraphicsState()
+    cardPath.lineWidth = 1.4 * scale
+    NSColor.white.withAlphaComponent(0.17).setStroke()
+    cardPath.stroke()
+
+    let left = NSMutableParagraphStyle()
+    left.alignment = .left
+    NSString(string: "Lune Synth™").draw(in: NSRect(x: 72 * scale, y: height * 0.715, width: 760 * scale, height: 160 * scale), withAttributes: [
+        .font: siteMono(size: 100 * scale, bold: true),
+        .foregroundColor: textColor,
+        .kern: -4 * scale,
+        .paragraphStyle: left,
+    ])
+
+    let tagline = NSMutableAttributedString(string: "The anti-slop learning app", attributes: [
+        .font: siteMono(size: 48 * scale),
+        .foregroundColor: muted,
+        .kern: -1.1 * scale,
+        .paragraphStyle: left,
+    ])
+    tagline.addAttributes([.foregroundColor: blue], range: NSRange(location: 4, length: 4))
+    tagline.addAttributes([.foregroundColor: purple], range: NSRange(location: 8, length: 2))
+    tagline.addAttributes([.foregroundColor: pink], range: NSRange(location: 10, length: 3))
+    tagline.draw(in: NSRect(x: 74 * scale, y: height * 0.635, width: width - 148 * scale, height: 80 * scale))
+
+    let icon = load("\(root)/images/lune-synth-icon-512.png")
+    let iconSize = 320 * scale
+    let iconRect = NSRect(x: width - 400 * scale, y: height * 0.785, width: iconSize, height: iconSize)
+    let center = NSPoint(x: iconRect.midX, y: iconRect.midY)
+    NSGraphicsContext.saveGraphicsState()
+    let transform = NSAffineTransform()
+    transform.translateX(by: center.x, yBy: center.y)
+    transform.rotate(byDegrees: 4)
+    transform.translateX(by: -center.x, yBy: -center.y)
+    transform.concat()
+    let iconShadow = NSShadow()
+    iconShadow.shadowColor = blue.withAlphaComponent(0.60)
+    iconShadow.shadowBlurRadius = 88 * scale
+    iconShadow.shadowOffset = .zero
+    iconShadow.set()
+    icon.draw(in: iconRect, from: .zero, operation: .sourceOver, fraction: 1, respectFlipped: true, hints: [.interpolation: NSImageInterpolation.high])
+    NSGraphicsContext.restoreGraphicsState()
+
+    let desk = load("\(root)/docs/store-assets/desk-study-foreground.png")
+    let deskHeight = 720 * scale
+    NSGraphicsContext.saveGraphicsState()
+    cardPath.addClip()
+    desk.draw(
+        in: NSRect(x: 0, y: 0, width: width, height: deskHeight),
+        from: .zero,
+        operation: .sourceOver,
+        fraction: 0.96,
+        respectFlipped: true,
+        hints: [.interpolation: NSImageInterpolation.high]
+    )
+    NSGraphicsContext.restoreGraphicsState()
+
+    let copy = NSString(string: "Do the work. Scan it in. Get feedback that actually helps.\nFrom the Pre-K through the PhD level.")
+    let copyStyle = NSMutableParagraphStyle()
+    copyStyle.lineSpacing = 12 * scale
+    copy.draw(in: NSRect(x: 76 * scale, y: deskHeight + 54 * scale, width: width - 152 * scale, height: 230 * scale), withAttributes: [
+        .font: siteMono(size: 32 * scale),
+        .foregroundColor: muted,
+        .paragraphStyle: copyStyle,
+    ])
 }
 
 func drawFlyerPhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat) {
@@ -314,19 +621,34 @@ func drawSitePhone(_ screenshot: NSImage, screenRect: NSRect, rotation: CGFloat)
 }
 
 let portraitBackground = load("\(playOutput)/phone-background-master.png")
+
+let playOpening = canvas(width: 1080, height: 1920) {
+    drawCover(portraitBackground, in: NSRect(x: 0, y: 0, width: 1080, height: 1920))
+    drawOpeningGraphic(width: 1080, height: 1920)
+}
+writeOpaquePNG(playOpening, to: "\(openingOutput)/play-00-introducing-lune-synth.png")
+
+let iosOpening = canvas(width: 1290, height: 2796) {
+    drawCover(portraitBackground, in: NSRect(x: 0, y: 0, width: 1290, height: 2796))
+    drawOpeningGraphic(width: 1290, height: 2796)
+}
+writeOpaquePNG(iosOpening, to: "\(openingOutput)/ios-00-introducing-lune-synth.png")
+
 for shot in shots {
     let source = load(shot.source)
 
     let play = canvas(width: 1080, height: 1920) {
         drawCover(portraitBackground, in: NSRect(x: 0, y: 0, width: 1080, height: 1920))
-        centeredText(shot.caption, y: 1778, width: 1080, size: 52)
+        drawScreenshotColorGrade(shot.name, in: NSRect(x: 0, y: 0, width: 1080, height: 1920))
+        centeredText(shot, y: 1728, width: 1080, size: 55)
         drawSitePhone(source, screenRect: NSRect(x: 195, y: 122, width: 690, height: 1500), rotation: shot.rotation)
     }
     writeOpaquePNG(play, to: "\(playOutput)/\(shot.name).png")
 
     let ios = canvas(width: 1290, height: 2796) {
         drawCover(portraitBackground, in: NSRect(x: 0, y: 0, width: 1290, height: 2796))
-        centeredText(shot.caption, y: 2602, width: 1290, size: 66)
+        drawScreenshotColorGrade(shot.name, in: NSRect(x: 0, y: 0, width: 1290, height: 2796))
+        centeredText(shot, y: 2532, width: 1290, size: 70)
         drawSitePhone(source, screenRect: NSRect(x: 125, y: 115, width: 1040, height: 2261), rotation: shot.rotation * 0.82)
     }
     writeOpaquePNG(ios, to: "\(iosOutput)/\(shot.name).png")
@@ -336,17 +658,28 @@ let featureBackground = load("\(playOutput)/feature-background-master.png")
 let featurePhone = load("\(root)/mobile-app-assets/screenshots/applied/question-prompts/19-stats.png")
 let feature = canvas(width: 1024, height: 500) {
     drawCover(featureBackground, in: NSRect(x: 0, y: 0, width: 1024, height: 500))
-    let titleAttrs: [NSAttributedString.Key: Any] = [
-        .font: NSFont(name: "Avenir Next Bold", size: 58) ?? NSFont.systemFont(ofSize: 58, weight: .bold),
-        .foregroundColor: NSColor.white,
+    drawScreenshotColorGrade("02-questions-from-your-material", in: NSRect(x: 0, y: 0, width: 1024, height: 500))
+    let title = NSMutableAttributedString(string: "Lune Synth", attributes: [
+        .font: displayFont(size: 58),
+        .foregroundColor: NSColor(calibratedWhite: 0.96, alpha: 1),
         .kern: 2.0,
-    ]
-    NSString(string: "Lune Synth").draw(at: NSPoint(x: 103, y: 302), withAttributes: titleAttrs)
-    let copyAttrs: [NSAttributedString.Key: Any] = [
+    ])
+    title.addAttributes([
+        .font: displayFont(size: 61, italic: true),
+        .foregroundColor: NSColor(calibratedRed: 0.39, green: 0.91, blue: 1.00, alpha: 1),
+        .kern: 0.5,
+    ], range: NSRange(location: 5, length: 5))
+    title.draw(at: NSPoint(x: 103, y: 302))
+
+    let copy = NSMutableAttributedString(string: "Study sets that\ngrade your work", attributes: [
         .font: NSFont(name: "Avenir Next Medium", size: 27) ?? NSFont.systemFont(ofSize: 27, weight: .medium),
         .foregroundColor: NSColor(calibratedRed: 0.86, green: 0.92, blue: 1, alpha: 1),
-    ]
-    NSString(string: "Study sets that\ngrade your work").draw(in: NSRect(x: 104, y: 210, width: 330, height: 82), withAttributes: copyAttrs)
-    drawSitePhone(featurePhone, screenRect: NSRect(x: 690, y: -32, width: 258, height: 561), rotation: -7)
+    ])
+    copy.addAttributes([
+        .font: displayFont(size: 29, italic: true),
+        .foregroundColor: NSColor(calibratedRed: 1.00, green: 0.56, blue: 0.80, alpha: 1),
+    ], range: NSRange(location: 22, length: 9))
+    copy.draw(in: NSRect(x: 104, y: 207, width: 360, height: 88))
+    drawSitePhone(featurePhone, screenRect: NSRect(x: 690, y: -32, width: 258, height: 561), rotation: 0)
 }
 writeOpaquePNG(feature, to: "\(playOutput)/feature-graphic-1024x500.png")
