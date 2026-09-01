@@ -557,8 +557,8 @@
     });
   });
 
-  // Problem Solver carousel phones use direct screenshots/placeholders rather
-  // than data-screenshot-src hosts. A side phone selects its slide (handled by
+  // Problem Solver carousel phones use direct screenshots rather than
+  // data-screenshot-src hosts. A side phone selects its slide (handled by
   // the carousel); only the centered phone opens in the lightbox.
   Array.prototype.forEach.call(document.querySelectorAll(".problem-solver__phone"), function (phone) {
     if (phone.classList.contains("phone-mock-trigger")) return;
