@@ -12488,14 +12488,19 @@
       }
       .problem-solver__steps {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
+        place-items: center;
       }
       .problem-solver__step {
+        display: none;
+        width: min(100%, 620px);
         padding: clamp(16px, 2vw, 22px);
         border: 1px solid rgba(154, 188, 255, 0.16);
         border-radius: 22px;
         background: rgba(7, 13, 30, 0.48);
+        text-align: center;
+      }
+      .problem-solver__step.is-active {
+        display: block;
       }
       html[data-theme="light"] .problem-solver__step { background: rgba(246, 249, 255, 0.66); }
       .problem-solver__step-number {
@@ -12676,7 +12681,6 @@
       <div class="problem-solver section-content">
         <img class="card-corner-luna card-corner-luna--thinking" src="/lune-synth/images/luna-emotes/thinking.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <div class="problem-solver__intro">
-          <p class="problem-solver__eyebrow">Add it &rarr; Solve it &rarr; Practice it</p>
           <h3 class="problem-solver__headline">Homework help that builds understanding.</h3>
           <p class="problem-solver__lede">Add a question or assignment. Lune Synth organizes the work and walks you through each step.</p>
         </div>
@@ -12716,18 +12720,18 @@
           <button class="problem-solver__carousel-dot" type="button" data-problem-dot="2" aria-label="Show Practice it">Practice it</button>
         </div>
 
-        <div class="problem-solver__steps">
-          <article class="problem-solver__step">
+        <div class="problem-solver__steps" aria-live="polite">
+          <article class="problem-solver__step is-active" data-problem-caption="0" aria-hidden="false">
             <span class="problem-solver__step-number">01</span>
             <h3>Bring it in</h3>
             <p class="problem-solver__step-copy">Type, photograph, or attach your work.</p>
           </article>
-          <article class="problem-solver__step">
+          <article class="problem-solver__step" data-problem-caption="1" aria-hidden="true">
             <span class="problem-solver__step-number">02</span>
             <h3>Work through it</h3>
             <p class="problem-solver__step-copy">See every step and find where you got stuck.</p>
           </article>
-          <article class="problem-solver__step">
+          <article class="problem-solver__step" data-problem-caption="2" aria-hidden="true">
             <span class="problem-solver__step-number">03</span>
             <h3>Practice it</h3>
             <p class="problem-solver__step-copy">Turn the output into a <a href="#quick-missions-title">Quick Mission</a> or <a href="#constellations-title">Constellation</a>.</p>
@@ -12749,6 +12753,7 @@
 
       var slides = Array.prototype.slice.call(carousel.querySelectorAll('[data-problem-slide]'));
       var dots = Array.prototype.slice.call(document.querySelectorAll('[data-problem-dot]'));
+      var captions = Array.prototype.slice.call(document.querySelectorAll('[data-problem-caption]'));
       var previous = carousel.querySelector('[data-problem-previous]');
       var next = carousel.querySelector('[data-problem-next]');
       var activeIndex = 0;
@@ -12773,6 +12778,11 @@
           dot.classList.toggle('is-active', active);
           if (active) dot.setAttribute('aria-current', 'true');
           else dot.removeAttribute('aria-current');
+        });
+        captions.forEach(function (caption, captionIndex) {
+          var active = captionIndex === activeIndex;
+          caption.classList.toggle('is-active', active);
+          caption.setAttribute('aria-hidden', active ? 'false' : 'true');
         });
       }
 
