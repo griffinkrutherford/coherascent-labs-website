@@ -9403,7 +9403,7 @@
           linear-gradient(180deg, rgba(4, 7, 18, 0.34), rgba(3, 6, 16, 0.95));
       }
 
-      .quick-missions__phone {
+      .quick-missions__phone:not(.problem-solver__phone) {
         --quick-phone-scale: 1.5;
       }
     }
@@ -10623,7 +10623,7 @@
       .feedback-scene__phone--center,
       .voice-scene__phone,
       .luna-phone--tab,
-      .quick-missions__phone {
+      .quick-missions__phone:not(.problem-solver__phone) {
         /* Size from the space actually available: the smaller of a share of
            the viewport and 340px, capped by the container via max-width below.
            Kept comfortably under container padding so it never overflows. */
@@ -12358,6 +12358,25 @@
         margin-bottom: 42px;
       }
       .problem-solver__phone {
+        /* Keep one chassis model at every breakpoint. Generic mobile device
+           rules redefine the shared workflow metrics, so this component owns
+           a fixed desktop-ratio metric set and changes only its scale. */
+        --problem-phone-base-height: 220px;
+        --workflow-phone-height: var(--problem-phone-base-height);
+        --workflow-phone-width: calc(var(--workflow-phone-height) * 9 / 19.5);
+        --workflow-phone-shell-padding: calc(var(--workflow-phone-height) * 0.013636);
+        --workflow-phone-shell-radius: calc(var(--workflow-phone-height) * 0.122727);
+        --workflow-phone-screen-radius: calc(var(--workflow-phone-height) * 0.104545);
+        --workflow-phone-overlay-inset: calc(var(--workflow-phone-shell-padding) * 0.333333);
+        --workflow-phone-island-top: calc(var(--workflow-phone-height) * 0.0275);
+        --workflow-phone-island-width: calc(var(--workflow-phone-width) * 0.433333);
+        --workflow-phone-island-height: calc(var(--workflow-phone-height) * 0.021875);
+        --workflow-phone-button-width: calc(var(--workflow-phone-height) * 0.0068);
+        --workflow-phone-volume-top: calc(var(--workflow-phone-height) * 0.245455);
+        --workflow-phone-volume-height: calc(var(--workflow-phone-height) * 0.081818);
+        --workflow-phone-volume-gap: calc(var(--workflow-phone-height) * 0.031818);
+        --workflow-phone-power-top: calc(var(--workflow-phone-height) * 0.345455);
+        --workflow-phone-power-height: calc(var(--workflow-phone-height) * 0.136364);
         --quick-phone-scale: 1.55;
         transform: none;
       }
