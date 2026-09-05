@@ -9774,6 +9774,12 @@
       cursor: pointer;
     }
 
+    .carousel-3d-item:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 4px;
+      border-radius: 12px;
+    }
+
     .carousel-3d-item.is-inactive {
       opacity: 0.35;
       filter: blur(2px) grayscale(30%);
@@ -12613,7 +12619,7 @@
               <div class="carousel-3d-track" id="carousel3dTrack">
                 
                 <!-- Medal 0: Streak (Gold Tier Default) -->
-                <div class="carousel-3d-item is-active" onclick="rotateToMedal(0)">
+                <div class="carousel-3d-item is-active" onclick="rotateToMedal(0)" role="button" tabindex="0" aria-label="Show gold streak medal">
                   <img class="showcase-medal-image" id="medalImage-streak" src="/lune-synth/lune-synth-landing-medals/06-gold/streak.png" alt="Gold streak medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
@@ -12775,7 +12781,7 @@
                 </div>
                 
                 <!-- Medal 1: Polymath (Gold Tier Default) -->
-                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(1)">
+                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(1)" role="button" tabindex="0" aria-label="Show gold polymath medal">
                   <img class="showcase-medal-image" id="medalImage-polymath" src="/lune-synth/lune-synth-landing-medals/06-gold/polymath.png" alt="Gold polymath medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
@@ -12941,7 +12947,7 @@
                 </div>
                 
                 <!-- Medal 2: Recovery (Gold Tier Default) -->
-                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(2)">
+                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(2)" role="button" tabindex="0" aria-label="Show gold recovery medal">
                   <img class="showcase-medal-image" id="medalImage-recovery" src="/lune-synth/lune-synth-landing-medals/06-gold/recovery.png" alt="Gold recovery medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
@@ -13103,7 +13109,7 @@
                 </div>
                 
                 <!-- Medal 3: Marksman (Gold Tier Default) -->
-                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(3)">
+                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(3)" role="button" tabindex="0" aria-label="Show gold marksman medal">
                   <img class="showcase-medal-image" id="medalImage-marksman" src="/lune-synth/lune-synth-landing-medals/06-gold/marksman.png" alt="Gold marksman medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
@@ -13269,7 +13275,7 @@
                 </div>
                 
                 <!-- Medal 4: Handwriting (Gold Tier Default) -->
-                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)">
+                <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)" role="button" tabindex="0" aria-label="Show gold handwriting medal">
                   <img class="showcase-medal-image" id="medalImage-handwriting" src="/lune-synth/lune-synth-landing-medals/06-gold/handwriting.png" alt="Gold handwriting medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
@@ -14979,6 +14985,16 @@
     updateCarousel(currentRotation);
     updateActiveMedalInfo(activeIndex);
   };
+
+  // Carousel items are divs with onclick, so Enter/Space need wiring by hand.
+  document.addEventListener('keydown', function(event) {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    const item = event.target.closest('.carousel-3d-item');
+    if (!item) return;
+    event.preventDefault();
+    const items = Array.from(document.querySelectorAll('.carousel-3d-item'));
+    window.rotateToMedal(items.indexOf(item));
+  });
 
   window.rotateToMedal = function(index) {
     let diff = index - activeIndex;
