@@ -10731,14 +10731,6 @@
     }
 
   </style>
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.166.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.166.0/examples/jsm/"
-    }
-  }
-  </script>
 <script>
   /* Enable the 3D device tilt-reveal before first paint (so devices render
      already tilted, no load-time wobble). Skipped for reduced-motion / no IO.
@@ -13821,7 +13813,8 @@
     <lune-site-footer id="site-footer"></lune-site-footer>
   </main>
   <script src="../liquid-glass-cards.js"></script>
-  <!-- DISABLED: <script type="module" src="./lune-engine/index.js"></script> -->
+  <!-- DISABLED: <script type="module" src="./lune-engine/index.js"></script>
+       Re-enabling this also needs the three/three-addons importmap restored in <head>. -->
   <script>
   (function () {
     var header = document.querySelector(".site-header");
