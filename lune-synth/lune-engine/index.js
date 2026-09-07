@@ -1,7 +1,7 @@
 import { createScene } from "./scene.js";
 import { computeSlices } from "./timeline.js";
 import { renderFallback } from "./fallback.js";
-import { prefersReducedMotion, hasWebGL2 } from "./hooks/reduced-motion.js";
+import { prefersReducedMotion, hasWebGL2 } from "../shared-hooks/reduced-motion.js";
 
 const DEFAULTS = {
   problemKey: "grade4",
