@@ -10805,6 +10805,7 @@
         <a class="nav-link" href="#lost-cosmos-title">The Crisis</a>
         <a class="nav-link" href="#platform-title">Handwriting</a>
         <a class="nav-link" href="#luna-title">Luna</a>
+        <a class="nav-link" href="#neuro-title">Circuit</a>
         <a class="nav-link" href="#processing-title">Grading</a>
         <a class="nav-link" href="#voice-title">Input Methods</a>
         <a class="nav-link" href="#problem-solver-title">Problem Solver</a>
@@ -11479,6 +11480,319 @@
         </div>
       </div>
     </section>
+
+    <!-- ================= BUILD THE CIRCUIT (3D neuron comparison) ================= -->
+    <style>
+      .neuro-shell {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        max-width: 940px;
+        margin: 0 auto;
+      }
+
+      .neuro-lede {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .neuro-lede strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .neuro-viz__stage {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(122, 184, 255, 0.14);
+        background:
+          radial-gradient(circle at 50% 45%, rgba(122, 184, 255, 0.07), transparent 62%),
+          linear-gradient(180deg, rgba(8, 14, 28, 0.55), rgba(4, 8, 18, 0.65));
+        box-shadow:
+          0 22px 48px rgba(4, 10, 24, 0.32),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      }
+
+      html[data-theme="light"] .neuro-viz__stage {
+        border-color: rgba(79, 132, 214, 0.18);
+        background:
+          radial-gradient(circle at 50% 45%, rgba(79, 132, 214, 0.09), transparent 62%),
+          linear-gradient(180deg, rgba(255, 253, 250, 0.92), rgba(245, 239, 247, 0.86));
+        box-shadow:
+          0 18px 36px rgba(138, 151, 181, 0.16),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+      }
+
+      .neuro-viz__canvas,
+      .neuro-viz__fallback {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Horizontal drag rotates; vertical drag must still scroll the page. */
+      .neuro-viz__canvas {
+        touch-action: pan-y;
+        cursor: grab;
+      }
+
+      .neuro-viz__canvas:active {
+        cursor: grabbing;
+      }
+
+      .neuro-viz__canvas:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: -4px;
+      }
+
+      .neuro-hint {
+        position: absolute;
+        right: 14px;
+        bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 11px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: rgba(8, 14, 28, 0.55);
+        border: 1px solid rgba(122, 184, 255, 0.16);
+        pointer-events: none;
+      }
+
+      html[data-theme="light"] .neuro-hint {
+        background: rgba(255, 255, 255, 0.72);
+        border-color: rgba(79, 132, 214, 0.18);
+      }
+
+      .neuro-legend {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .neuro-legend__item {
+        display: flex;
+        gap: 12px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(122, 184, 255, 0.12);
+        background: rgba(10, 18, 34, 0.4);
+      }
+
+      html[data-theme="light"] .neuro-legend__item {
+        border-color: rgba(79, 132, 214, 0.14);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .neuro-legend__swatch {
+        flex: 0 0 auto;
+        width: 10px;
+        border-radius: 999px;
+        margin-top: 3px;
+        height: 42px;
+      }
+
+      .neuro-legend__swatch--unbuilt {
+        background: linear-gradient(180deg, #8b97ad, #6b7791);
+      }
+
+      .neuro-legend__swatch--earned {
+        background: linear-gradient(180deg, var(--blue), var(--purple));
+      }
+
+      .neuro-legend__title {
+        margin: 0 0 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .neuro-legend__body {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .neuro-reps {
+        font-variant-numeric: tabular-nums;
+        color: var(--blue);
+        font-weight: 600;
+      }
+
+      .neuro-caption {
+        margin: 0;
+        text-align: center;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        color: var(--muted);
+        opacity: 0.85;
+      }
+
+      .neuro-caption a {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+
+      /* Static route for reduced motion and for browsers without WebGL2. */
+      .neuro-fb__axon-line {
+        stroke: #6b7791;
+        stroke-width: 3;
+      }
+
+      .neuro-fb__soma {
+        fill: #93a3bf;
+      }
+
+      .neuro-fb__sheath--unbuilt {
+        fill: #8b97ad;
+      }
+
+      .neuro-fb__sheath--earned {
+        fill: #64a8ff;
+      }
+
+      .neuro-fb__pulse--unbuilt {
+        fill: #7fb0e8;
+        opacity: 0.5;
+      }
+
+      .neuro-fb__pulse--earned {
+        fill: #dcefff;
+      }
+
+      .neuro-fb__label {
+        fill: rgba(232, 238, 252, 0.92);
+        font-family: var(--font-mono);
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .neuro-fb__sub {
+        fill: rgba(232, 238, 252, 0.6);
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      html[data-theme="light"] .neuro-fb__label {
+        fill: #101725;
+      }
+
+      html[data-theme="light"] .neuro-fb__sub {
+        fill: #5d677d;
+      }
+
+      html[data-theme="light"] .neuro-fb__axon-line {
+        stroke: #94a0b5;
+      }
+
+      html[data-theme="light"] .neuro-fb__soma {
+        fill: #7d8899;
+      }
+
+      @media (max-width: 720px) {
+        .neuro-legend {
+          grid-template-columns: 1fr;
+        }
+
+        .neuro-hint {
+          display: none;
+        }
+      }
+    </style>
+
+    <section class="section section--neuro" aria-labelledby="neuro-title">
+      <h2 class="section-title" id="neuro-title">Build the circuit</h2>
+      <div class="neuro-shell section-content">
+        <p class="neuro-lede">
+          Work a problem by hand, push through the part where it gets hard, and the circuit that
+          solves it fires. Circuits that fire repeatedly get insulated, so the signal moves faster.
+          <strong>That insulation is myelin, and building it is what turns effort into fluency.</strong>
+          Copy a generated answer and the work still gets done &mdash; the circuit just never fires.
+        </p>
+
+        <div class="neuro-viz__stage" data-neuro-viz>
+          <span class="neuro-hint" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <path d="M3 12a9 9 0 0 1 15-6.7M21 12a9 9 0 0 1-15 6.7" />
+              <path d="M18 3v3h-3M6 21v-3h3" />
+            </svg>
+            Drag to rotate
+          </span>
+        </div>
+
+        <div class="neuro-legend">
+          <div class="neuro-legend__item">
+            <span class="neuro-legend__swatch neuro-legend__swatch--unbuilt" aria-hidden="true"></span>
+            <div>
+              <h3 class="neuro-legend__title">The answer was handed over</h3>
+              <p class="neuro-legend__body">
+                The result arrives at the destination without ever travelling the axon. Nothing is
+                damaged &mdash; the sheath simply never gets built, so the signal stays slow.
+              </p>
+            </div>
+          </div>
+          <div class="neuro-legend__item">
+            <span class="neuro-legend__swatch neuro-legend__swatch--earned" aria-hidden="true"></span>
+            <div>
+              <h3 class="neuro-legend__title">
+                The work was done by hand &mdash; <span class="neuro-reps" data-neuro-reps>0</span> reps
+              </h3>
+              <p class="neuro-legend__body">
+                Each rep fires the circuit end to end. Insulation thickens one segment at a time
+                until the impulse leaps between the gaps instead of crawling.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p class="neuro-caption">
+          Conceptual illustration of activity-dependent myelination, not a visualisation of measured
+          user outcomes. Myelination accrues over repeated practice across days and weeks, not in a
+          single session. The effort-versus-outsourcing contrast is the point here &mdash; typing or
+          dictating your own reasoning is on the same side as handwriting it.
+        </p>
+      </div>
+    </section>
+
+    <script type="module">
+      // Lazily mounted: nothing about the 3D scene is fetched until the section
+      // is close to the viewport, so the initial page load is unaffected.
+      (function () {
+        var stage = document.querySelector("[data-neuro-viz]");
+        if (!stage || !("IntersectionObserver" in window)) return;
+        var started = false;
+        var io = new IntersectionObserver(
+          function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+              if (!entries[i].isIntersecting || started) continue;
+              started = true;
+              io.disconnect();
+              import("/lune-synth/neuro-viz/neuro-viz.bundle.js")
+                .then(function (m) {
+                  m.mountNeuroViz(stage);
+                })
+                .catch(function (e) {
+                  console.warn("[neuro-viz] failed to load", e);
+                });
+            }
+          },
+          { rootMargin: "200px" },
+        );
+        io.observe(stage);
+      })();
+    </script>
 
     <section class="section" aria-labelledby="processing-title">
       <h2 class="section-title" id="processing-title">How grading works</h2>
