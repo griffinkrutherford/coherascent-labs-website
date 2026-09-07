@@ -6,7 +6,8 @@
   "scripts": {
     "build:legal": "node scripts/build-legal-pages.js",
     "build:campaigns": "node scripts/generate-lune-campaign-pages.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:neuro-viz": "node scripts/build-neuro-viz.js"
   },
   "dependencies": {}
 }
