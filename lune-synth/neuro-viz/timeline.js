@@ -1,44 +1,23 @@
-// Normalized timeline for the "Build the circuit" scene.
-//
-// setup    both axons bare and identical
-// practice earned side accumulates reps and myelinates; outsourced side
-//          receives a copied answer that never travels the axon
-// result   both fire; the conduction-speed gap is the payoff
-
-export const ACTS = Object.freeze({
-  setup: [0.0, 0.14],
-  practice: [0.14, 0.78],
-  result: [0.78, 1.0],
-});
-
-export const TOTAL_REPS = 6;
-
-function remap(t, a, b) {
-  if (t <= a) return 0;
-  if (t >= b) return 1;
-  return (t - a) / (b - a);
+// Shared timing keeps the pulses and the visible transfer meters in sync.
+// Illustrative timing only; these are not measured conduction speeds.
+export function computeTransfer(resultT, myelinLevel = 1) {
+  const slowT = Math.max(0, Math.min(1, resultT / 0.88));
+  // Two hesitations reinforce the visible detours. The same progress drives
+  // both the signal and its meter, including these pauses.
+  const stops = [[0, 0], [0.22, 0.28], [0.32, 0.28], [0.55, 0.63], [0.65, 0.63], [1, 1]];
+  const next = stops.findIndex(([time]) => time >= slowT);
+  const [a, b] = next <= 0 ? [stops[0], stops[1]] : [stops[next - 1], stops[next]];
+  const unbuilt = a[1] + (b[1] - a[1]) * (slowT - a[0]) / (b[0] - a[0]);
+  return { earned: Math.max(0, Math.min(1, resultT / (0.88 - 0.66 * Math.max(0, Math.min(1, myelinLevel))))), unbuilt };
 }
 
-export function computeSlices(t) {
-  const practiceT = remap(t, ACTS.practice[0], ACTS.practice[1]);
-  const resultT = remap(t, ACTS.result[0], ACTS.result[1]);
+// The user chooses practice time; pulses keep looping at that selected level.
+export function computePracticeComparison(t, level) {
+  const myelinT = Math.max(0, Math.min(1, level));
+  return { myelinT, practiceT: myelinT, firing: true, resultT: t };
+}
 
-  // Myelination accrues one rep at a time, easing within each rep so the
-  // growth reads as discrete practice sessions rather than a smooth ramp.
-  const repFloat = practiceT * TOTAL_REPS;
-  const repIndex = Math.min(Math.floor(repFloat), TOTAL_REPS - 1);
-  const repProgress = repFloat - repIndex;
-  const myelinT = practiceT <= 0 ? 0 : Math.min(repFloat / TOTAL_REPS, 1);
-
-  return {
-    setupT: remap(t, ACTS.setup[0], ACTS.setup[1]),
-    practiceT,
-    resultT,
-    myelinT,
-    repCount: practiceT <= 0 ? 0 : Math.min(repIndex + 1, TOTAL_REPS),
-    repProgress,
-    // The copied-answer packet fires once per rep on the outsourced side.
-    copyT: repProgress,
-    firing: resultT > 0,
-  };
+// Three seven-second signal comparisons: grow for 18s, hold full for 3s.
+export function autoPracticeLevel(elapsedMs) {
+  return Math.min(1, (Math.max(0, elapsedMs) % 21000) / 18000);
 }

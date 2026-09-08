@@ -1,23 +1,27 @@
 import { createScene } from "./scene.js";
-import { computeSlices } from "./timeline.js";
+import { computePracticeComparison, computeTransfer, autoPracticeLevel } from "./timeline.js";
 import { renderFallback } from "./fallback.js";
 import { prefersReducedMotion, hasWebGL2 } from "../shared-hooks/reduced-motion.js";
 
-const DURATION_MS = 14000;
-const IDLE_SPIN_RAD_PER_MS = (2 * Math.PI) / 180 / 1000; // ~2 deg/s
+const DURATION_MS = 7000;
 const DRAG_CLAIM_PX = 8;
 const KEY_STEP_DEG = 15;
 
-function currentTheme() {
-  return document.documentElement.getAttribute("data-theme") === "light"
-    ? "light"
-    : "dark";
+// The neuron card retains a black surface in both page themes.
+function currentTheme() { return "dark"; }
+
+// Very low-power devices get the static route instead of a degraded 3D scene.
+// Deliberately conservative: only genuinely weak hardware on a small screen,
+// so ordinary phones still get the animation.
+function isLowPowerDevice() {
+  const cores = navigator.hardwareConcurrency || 8;
+  const mem = navigator.deviceMemory || 8;
+  return cores <= 4 && mem <= 4 && window.innerWidth <= 640;
 }
 
 export function mountNeuroViz(root) {
-  if (prefersReducedMotion() || !hasWebGL2()) {
-    renderFallback(root);
-    return { destroy() { root.innerHTML = ""; } };
+  if (prefersReducedMotion() || !hasWebGL2() || isLowPowerDevice()) {
+    return renderFallback(root);
   }
 
   let sceneAPI;
@@ -27,7 +31,7 @@ export function mountNeuroViz(root) {
   canvas.setAttribute("role", "img");
   canvas.setAttribute(
     "aria-label",
-    "Rotatable 3D comparison of two neurons. The upper axon, standing for a copied answer, keeps a thin patchy myelin sheath and conducts slowly. The lower axon, standing for repeated handwritten practice, builds a thick even sheath and conducts in fast jumps between nodes. Use the left and right arrow keys to rotate.",
+    "Rotatable 3D comparison of two networks, each with four foreground neurons and eighteen distant background neuron sprites. Above, an amber dashed route zigzags and doubles back between bare neurons; its signal travels slowly. Above represents using AI to cheat on assignments. Below represents step-by-step practice with Lune Synth. The practice-time slider controls the lower myelin thickness and signal speed. Route uncertainty illustrates recall, not literal nerve anatomy. Use arrow keys to rotate.",
   );
 
   try {
@@ -36,11 +40,12 @@ export function mountNeuroViz(root) {
   } catch (e) {
     console.warn("[neuro-viz] WebGL init failed, rendering fallback", e);
     root.innerHTML = "";
-    renderFallback(root);
-    return { destroy() { root.innerHTML = ""; } };
+    return renderFallback(root);
   }
 
-  const repEl = root.querySelector("[data-neuro-reps]");
+  const section = root.closest(".section--neuro") || root;
+  const practiceSlider = section.querySelector("[data-neuro-practice]");
+  const transferEls = [...section.querySelectorAll("[data-neuro-transfer]")];
   const debug = new URLSearchParams(location.search).has("neuroDebug");
 
   let rafId = 0;
@@ -51,17 +56,37 @@ export function mountNeuroViz(root) {
   let interacted = false;
   let idleSpin = 0;
   let lastFrame = 0;
-  let lastRepShown = -1;
+  let lastRenderedT = 0;
+  let practiceElapsed = 0;
+  let practiceChanged = false;
+  if (practiceSlider) practiceSlider.value = "0";
 
   function renderAt(t) {
-    const slices = computeSlices(t);
+    lastRenderedT = t;
+    const level = Number(practiceSlider?.value ?? 50) / 100;
+    const slices = computePracticeComparison(t, level);
+    const transfer = computeTransfer(t, level);
+    for (const el of transferEls) {
+      const earned = el.dataset.neuroTransfer === "earned";
+      const progress = transfer[el.dataset.neuroTransfer];
+      el.querySelector("[data-neuro-fill]").style.transform = `scaleX(${progress})`;
+      el.querySelector("[data-neuro-status]").textContent = progress < 1
+        ? earned ? (level < 0.34 ? "Slow." : level < 0.67 ? "Faster." : "Fast.") : "Still travelling."
+        : earned ? "Arrived." : "Arrived.";
+    }
     sceneAPI.update(t, slices);
     sceneAPI.render();
-    if (repEl && slices.repCount !== lastRepShown) {
-      lastRepShown = slices.repCount;
-      repEl.textContent = String(slices.repCount);
-    }
   }
+
+  function onPracticeInput() {
+    practiceChanged = true;
+    // Restart the comparison so both signals launch together at the new level.
+    startedAt = performance.now();
+    pausedAt = 0;
+    if (frozenT !== null) frozenT = 0;
+    renderAt(0);
+  }
+  practiceSlider?.addEventListener("input", onPracticeInput);
 
   function tick(now) {
     if (!running) return;
@@ -73,11 +98,15 @@ export function mountNeuroViz(root) {
       // would just pin against the limit and look frozen.
       idleSpin += dt;
       sceneAPI.setCamera(
-        24 + Math.sin(idleSpin / 2600) * 20,
-        9 + Math.sin(idleSpin / 3700) * 4,
+        18 + Math.sin(idleSpin / 3200) * 14,
+        4 + Math.sin(idleSpin / 3700) * 2,
       );
     }
 
+    if (!practiceChanged && practiceSlider) {
+      practiceElapsed += dt;
+      practiceSlider.value = String(Math.round(autoPracticeLevel(practiceElapsed) * 100));
+    }
     const elapsed = now - startedAt;
     renderAt((elapsed % DURATION_MS) / DURATION_MS);
     rafId = requestAnimationFrame(tick);
@@ -211,7 +240,7 @@ export function mountNeuroViz(root) {
       sceneAPI.rotateBy(0, 0.08);
       handled = true;
     } else if (e.key === "Home") {
-      sceneAPI.setCamera(24, 9);
+      sceneAPI.setCamera(18, 4);
       handled = true;
     }
     if (handled) {
@@ -237,12 +266,12 @@ export function mountNeuroViz(root) {
       setCamera(az, el) {
         interacted = true;
         sceneAPI.setCamera(az, el);
-        renderAt(frozenT === null ? 0 : frozenT);
+        renderAt(frozenT === null ? lastRenderedT : frozenT);
       },
       setTheme(name) {
         document.documentElement.setAttribute("data-theme", name);
-        sceneAPI.setTheme(name);
-        renderAt(frozenT === null ? 0 : frozenT);
+        sceneAPI.setTheme(currentTheme());
+        renderAt(frozenT === null ? lastRenderedT : frozenT);
       },
       getCamera: () => sceneAPI.getCamera(),
       getStats: () => sceneAPI.getStats(),
@@ -272,6 +301,7 @@ export function mountNeuroViz(root) {
 
   return {
     destroy() {
+      practiceSlider?.removeEventListener("input", onPracticeInput);
       io.disconnect();
       ro.disconnect();
       themeObserver.disconnect();

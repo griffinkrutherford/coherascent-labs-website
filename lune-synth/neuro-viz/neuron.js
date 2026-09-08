@@ -96,41 +96,128 @@ function glowTexture() {
   return GLOW_TEXTURE;
 }
 
-function tube(points, radius, radial = 6) {
-  return new THREE.TubeGeometry(
-    new THREE.CatmullRomCurve3(points.map((p) => new THREE.Vector3(...p))),
-    14,
-    radius,
-    radial,
-    false,
-  );
+// Tapered tube. TubeGeometry only does constant radius, which is what made
+// the dendrites read as straight rods rather than as biological processes:
+// real dendrites and axon collaterals narrow as they branch.
+function taperedTube(points, r0, r1, radial = 8, segments = 18) {
+  const curve = new THREE.CatmullRomCurve3(points.map((p) => new THREE.Vector3(...p)));
+  const frames = curve.computeFrenetFrames(segments, false);
+  const pos = [];
+  const nor = [];
+  const uv = [];
+  const P = new THREE.Vector3();
+  const V = new THREE.Vector3();
+
+  const ring = (i) => {
+    const t = i / segments;
+    curve.getPoint(t, P);
+    // Ease the taper so the branch thins toward the tip rather than linearly.
+    const r = r0 + (r1 - r0) * (t * t * (3 - 2 * t));
+    const N = frames.normals[i];
+    const B = frames.binormals[i];
+    const out = [];
+    for (let j = 0; j <= radial; j++) {
+      const a = (j / radial) * Math.PI * 2;
+      const sin = Math.sin(a);
+      const cos = Math.cos(a);
+      V.set(N.x * cos + B.x * sin, N.y * cos + B.y * sin, N.z * cos + B.z * sin);
+      out.push({
+        p: [P.x + V.x * r, P.y + V.y * r, P.z + V.z * r],
+        n: [V.x, V.y, V.z],
+        u: j / radial,
+        v: t,
+      });
+    }
+    return out;
+  };
+
+  let prev = ring(0);
+  for (let i = 1; i <= segments; i++) {
+    const cur = ring(i);
+    for (let j = 0; j < radial; j++) {
+      const a = prev[j];
+      const b = prev[j + 1];
+      const c = cur[j + 1];
+      const d = cur[j];
+      for (const q of [a, b, c, a, c, d]) {
+        pos.push(q.p[0], q.p[1], q.p[2]);
+        nor.push(q.n[0], q.n[1], q.n[2]);
+        uv.push(q.u, q.v);
+      }
+    }
+    prev = cur;
+  }
+
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pos), 3));
+  g.setAttribute("normal", new THREE.BufferAttribute(new Float32Array(nor), 3));
+  g.setAttribute("uv", new THREE.BufferAttribute(new Float32Array(uv), 2));
+  return g;
 }
 
-// A branching dendritic tree: three primaries off the soma, each splitting
-// into two secondaries. Branches start inside the soma so their end caps are
-// hidden rather than showing as slits on the cell body.
+// A three-level dendritic arbor. Each level is thinner and shorter than its
+// parent, and every branch curves rather than running straight, so the cell
+// reads as grown rather than assembled from struts.
 function dendriteGeometry() {
   const primaries = [
-    [-0.86, 0.6, 0.2],
+    [-0.86, 0.62, 0.2],
     [-0.98, -0.46, -0.32],
     [-0.72, 0.34, 0.52],
   ];
   const geoms = [];
+  const curl = (v, i, k) => v + Math.sin(i * 2.1 + k * 1.7) * 0.09;
+
   primaries.forEach((d, i) => {
-    const mid = [SOMA_X + d[0] * 0.5, d[1] * 0.44, d[2] * 0.4];
+    const j1 = [SOMA_X + d[0] * 0.78, d[1] * 0.72, d[2] * 0.64];
     geoms.push(
-      tube([[SOMA_X, 0, 0], mid, [SOMA_X + d[0] * 0.82, d[1] * 0.8, d[2] * 0.7]], 0.055),
+      taperedTube(
+        [
+          [SOMA_X, 0, 0],
+          [SOMA_X + d[0] * 0.34, d[1] * 0.3, d[2] * 0.28],
+          [SOMA_X + d[0] * 0.58, curl(d[1] * 0.54, i, 0), d[2] * 0.48],
+          j1,
+        ],
+        0.066,
+        0.038,
+        9,
+      ),
     );
+
     for (let s = 0; s < 2; s++) {
       const spread = s === 0 ? 1 : -1;
-      const tip = [
-        SOMA_X + d[0] * 1.24 + spread * 0.1,
-        d[1] * 1.08 + spread * 0.24,
-        d[2] * 1.06 + spread * 0.26 * (i === 2 ? -1 : 1),
+      const j2 = [
+        SOMA_X + d[0] * 1.12 + spread * 0.08,
+        d[1] * 0.98 + spread * 0.22,
+        d[2] * 0.94 + spread * 0.2 * (i === 2 ? -1 : 1),
       ];
       geoms.push(
-        tube([[SOMA_X + d[0] * 0.78, d[1] * 0.76, d[2] * 0.66], tip], 0.032, 5),
+        taperedTube(
+          [
+            j1,
+            [
+              (j1[0] + j2[0]) / 2,
+              curl((j1[1] + j2[1]) / 2, i, s + 1),
+              (j1[2] + j2[2]) / 2,
+            ],
+            j2,
+          ],
+          0.038,
+          0.022,
+          8,
+          12,
+        ),
       );
+
+      // Terminal twigs: the level that most sells "grown, not modelled".
+      for (let k = 0; k < 2; k++) {
+        const w = k === 0 ? 1 : -1;
+        const tip = [
+          j2[0] + d[0] * 0.3 + w * 0.06,
+          j2[1] + d[1] * 0.24 + w * 0.16,
+          j2[2] + d[2] * 0.2 + w * 0.14,
+        ];
+        geoms.push(taperedTube([j2, tip], 0.022, 0.009, 6, 8));
+      }
     }
   });
   return mergeGeoms(geoms);
@@ -146,13 +233,16 @@ function terminalGeometry() {
   const geoms = dirs.map((d) => {
     const tip = [AXON_END + d[0] * 0.58, d[1] * 0.56, d[2] * 0.46];
     tips.push(new THREE.Vector3(...tip));
-    return tube(
+    return taperedTube(
       [
         [AXON_END - 0.06, 0, 0],
         [AXON_END + d[0] * 0.28, d[1] * 0.26, d[2] * 0.22],
         tip,
       ],
-      0.042,
+      0.05,
+      0.026,
+      8,
+      14,
     );
   });
   return { geometry: mergeGeoms(geoms), tips };
@@ -194,6 +284,21 @@ export function createNeuron({ variant, theme = "dark" }) {
   axon.position.set((AXON_START + AXON_END) / 2 - 0.18, 0, 0);
   group.add(axon);
 
+  const hillockGeom = track(
+    taperedTube(
+      [
+        [SOMA_X + 0.1, 0, 0],
+        [SOMA_X + 0.26, 0, 0],
+        [AXON_START - 0.02, 0, 0],
+      ],
+      0.155,
+      0.056,
+      12,
+      14,
+    ),
+  );
+  group.add(new THREE.Mesh(hillockGeom, axonMat));
+
   // --- myelin internodes (instanced: one draw call) ---------------------
   const sheathGeom = track(new THREE.CylinderGeometry(1, 1, 1, 14, 1));
   sheathGeom.rotateZ(Math.PI / 2);
@@ -220,8 +325,8 @@ export function createNeuron({ variant, theme = "dark" }) {
   const NEUTRAL_BOUTON = new THREE.Color(colors.soma);
   const EARNED_BOUTON = new THREE.Color(colors.earned);
 
-  const BASE_R = 0.104;
-  const FULL_R = 0.2;
+  const BASE_R = 0.07;
+  const FULL_R = 0.3;
   const dummy = new THREE.Object3D();
 
   let myelinLevel = 0;
@@ -236,11 +341,11 @@ export function createNeuron({ variant, theme = "dark" }) {
       }
     }
     for (let i = 0; i < SEG_COUNT; i++) {
-      // Growth sweeps along the axon one internode at a time rather than
-      // fading everything up together, so accumulation reads as discrete reps.
-      const g = isEarned ? Math.max(0, Math.min(1, t * SEG_COUNT * 1.06 - i)) : 0;
-      const r = BASE_R + (FULL_R - BASE_R) * g;
-      const len = SEG_LEN * (0.34 + 0.66 * g);
+      // Thin internodes first establish coverage, then the same internodes
+      // visibly thicken with subsequent practice across the whole circuit.
+      const g = isEarned ? Math.max(0, Math.min(1, t * SEG_COUNT * 4 - i)) : 0;
+      const r = (BASE_R + (FULL_R - BASE_R) * t) * g;
+      const len = SEG_LEN * (0.72 + 0.28 * g);
       dummy.position.set(SEGMENT_CENTERS[i], 0, 0);
       const on = g > 0.02;
       dummy.scale.set(on ? len : 0, on ? r : 0, on ? r : 0);
@@ -281,6 +386,20 @@ export function createNeuron({ variant, theme = "dark" }) {
 
   setMyelin(0);
 
+  const shadowMat = track(
+    new THREE.SpriteMaterial({
+      map: glowTexture(),
+      color: 0x000000,
+      transparent: true,
+      opacity: theme === "light" ? 0.16 : 0.3,
+      depthWrite: false,
+    }),
+  );
+  const shadow = new THREE.Sprite(shadowMat);
+  shadow.position.set(-0.1, -0.72, -0.35);
+  shadow.scale.set(5.2, 0.52, 1);
+  group.add(shadow);
+
   // --- action potential ---------------------------------------------------
   const pulseGeom = track(new THREE.SphereGeometry(0.098, 14, 12));
   const pulseMat = track(
@@ -317,9 +436,9 @@ export function createNeuron({ variant, theme = "dark" }) {
     // The unbuilt impulse gets a stretched comet trail rather than a round
     // bloom. In a still frame a round dot on a bare axon reads as a blemish;
     // a trail reads as something moving slowly, which is the actual point.
-    haloMat.opacity = intensity * (isEarned ? 0.5 : 0.6);
+    haloMat.opacity = intensity * (isEarned ? 0.34 : 0.6);
     if (isEarned) {
-      halo.scale.set(0.9 + intensity * 0.4, 0.9 + intensity * 0.4, 1);
+      halo.scale.set(0.72 + intensity * 0.28, 0.72 + intensity * 0.28, 1);
     } else {
       halo.scale.set(1.5, 0.34, 1);
     }
@@ -329,6 +448,7 @@ export function createNeuron({ variant, theme = "dark" }) {
 
   function setTheme(name) {
     const c = PALETTE[name] || PALETTE.dark;
+    shadowMat.opacity = name === "light" ? 0.16 : 0.3;
     haloMat.blending =
       name === "light" ? THREE.NormalBlending : THREE.AdditiveBlending;
     haloMat.needsUpdate = true;

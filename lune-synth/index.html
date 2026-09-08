@@ -11483,11 +11483,14 @@
 
     <!-- ================= BUILD THE CIRCUIT (3D neuron comparison) ================= -->
     <style>
+      .section--neuro { content-visibility: visible; overflow: visible; }
       .neuro-shell {
+        width: 100%;
+        min-width: 0;
         display: flex;
         flex-direction: column;
         gap: 26px;
-        max-width: 940px;
+        max-width: 1280px;
         margin: 0 auto;
       }
 
@@ -11507,25 +11510,25 @@
         position: relative;
         width: 100%;
         aspect-ratio: 16 / 9;
-        border-radius: 18px;
-        overflow: hidden;
-        border: 1px solid rgba(122, 184, 255, 0.14);
-        background:
-          radial-gradient(circle at 50% 45%, rgba(122, 184, 255, 0.07), transparent 62%),
-          linear-gradient(180deg, rgba(8, 14, 28, 0.55), rgba(4, 8, 18, 0.65));
-        box-shadow:
-          0 22px 48px rgba(4, 10, 24, 0.32),
-          inset 0 0 0 1px rgba(255, 255, 255, 0.02);
       }
 
-      html[data-theme="light"] .neuro-viz__stage {
-        border-color: rgba(79, 132, 214, 0.18);
-        background:
-          radial-gradient(circle at 50% 45%, rgba(79, 132, 214, 0.09), transparent 62%),
-          linear-gradient(180deg, rgba(255, 253, 250, 0.92), rgba(245, 239, 247, 0.86));
-        box-shadow:
-          0 18px 36px rgba(138, 151, 181, 0.16),
-          inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+      .neuro-card {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        border-radius: 0;
+        overflow: hidden;
+        border: 0;
+        background: #000;
+        box-shadow: 0 0 36px rgba(100, 168, 255, 0.16), 0 24px 64px rgba(0, 0, 0, 0.4), inset 0 0 32px rgba(100, 168, 255, 0.04);
+        --text: #e8eefc;
+        --muted: #aebed8;
+        --blue: #72b9ff;
+      }
+
+      .neuro-card__title {
+        margin: 0; padding: 28px 20px 8px; text-align: center;
+        color: var(--text); font-size: clamp(1.4rem, 2.8vw, 2.25rem);
+        font-weight: 700;
       }
 
       .neuro-viz__canvas,
@@ -11571,9 +11574,79 @@
       }
 
       html[data-theme="light"] .neuro-hint {
-        background: rgba(255, 255, 255, 0.72);
-        border-color: rgba(79, 132, 214, 0.18);
+        background: rgba(8, 14, 28, 0.75);
+        border-color: rgba(122, 184, 255, 0.25);
       }
+
+      .neuro-route-label {
+        position: absolute; left: 20px; right: 20px; top: 20px; z-index: 2;
+        align-items: center; text-align: center;
+        display: flex; flex-direction: column; gap: 4px;
+        pointer-events: none; color: #ffb16b;
+      }
+      .neuro-route-label strong { font-size: clamp(1rem, 1.65vw, 1.5rem); letter-spacing: 0.08em; text-transform: uppercase; }
+      .neuro-route-label span { font-size: 0.72rem; color: var(--muted); }
+      .neuro-route-label--earned { top: 53%; color: #72b9ff; }
+      html[data-theme="light"] .neuro-route-label { color: #ffb16b; }
+      html[data-theme="light"] .neuro-route-label--earned { color: #72b9ff; }
+      .neuro-route-label { text-shadow: 0 0 16px currentColor; }
+      .neuro-card .neuro-fb__label { fill: #e8eefc; }
+      .neuro-card .neuro-fb__sub { fill: #aebed8; }
+      html[data-theme="light"] .neuro-card .neuro-fb__label { fill: #e8eefc; }
+      html[data-theme="light"] .neuro-card .neuro-fb__sub { fill: #aebed8; }
+      .neuro-card .neuro-fb__sheath--earned { filter: drop-shadow(0 0 4px #579de8); }
+      .neuro-viz__stage:has(.neuro-viz__fallback) .neuro-route-label { display: none; }
+      @media (max-width: 520px) {
+        .neuro-viz__stage { aspect-ratio: 4 / 3; }
+        .neuro-route-label { top: 12px; left: 12px; right: 12px; max-width: none; gap: 2px; }
+        .neuro-route-label--earned { top: 54%; }
+        .neuro-route-label strong { font-size: 0.95rem; line-height: 1.4; }
+        .neuro-route-label span { font-size: 0.65rem; }
+      }
+
+      .neuro-science {
+        border: 1px solid rgba(122, 184, 255, 0.24);
+        border-radius: 16px;
+        background: rgba(122, 184, 255, 0.035);
+        text-align: left;
+      }
+      .neuro-science summary {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 16px; padding: 20px 22px; cursor: pointer; list-style: none;
+        color: var(--text); font-weight: 600;
+      }
+      .neuro-science summary::-webkit-details-marker { display: none; }
+      .neuro-science summary::after { content: "+"; font-size: 1.4rem; color: var(--blue); }
+      .neuro-science[open] summary::after { content: "−"; }
+      .neuro-science summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 12px; }
+      .neuro-science__label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+      .neuro-science__label small { font-weight: 400; font-size: 0.8rem; color: var(--muted); }
+      .neuro-science__body { padding: 0 22px 24px; color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
+      .neuro-science__body h3 { margin: 24px 0 8px; color: var(--text); font-size: 1rem; }
+      .neuro-science__body h3:first-child { margin-top: 0; }
+      .neuro-science__body p { margin: 0 0 14px; }
+      .neuro-science__body p:last-child { margin-bottom: 0; }
+      .neuro-science__body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+      .neuro-science__body a:hover { color: var(--text); }
+
+      .neuro-practice-control {
+        display: grid; gap: 8px; padding: 18px 20px 20px;
+        border-top: 1px solid rgba(122, 184, 255, 0.16);
+      }
+      .neuro-practice-control label { color: var(--text); font-weight: 600; }
+      .neuro-practice-control input { width: 100%; height: 32px; margin: 0; accent-color: var(--blue); cursor: pointer; }
+      .neuro-practice-control input:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 6px; }
+      .neuro-practice-control__ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
+
+      .neuro-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .neuro-transfer { padding: 14px 16px; border: 1px solid rgba(122, 184, 255, 0.22); border-radius: 12px; }
+      .neuro-transfer strong { display: block; font-size: 0.9rem; }
+      .neuro-transfer p { margin: 8px 0 0; font-size: 0.8rem; color: var(--muted); }
+      .neuro-transfer__track { height: 6px; margin-top: 12px; border-radius: 6px; background: rgba(122, 184, 255, 0.15); overflow: hidden; }
+      .neuro-transfer__fill { display: block; height: 100%; background: #e99b65; transform-origin: left; }
+      [data-neuro-transfer="earned"] .neuro-transfer__fill { background: var(--blue); }
+      .neuro-phase { margin: 0; text-align: center; font-weight: 600; }
+      @media (max-width: 520px) { .neuro-comparison { grid-template-columns: 1fr; } }
 
       .neuro-legend {
         display: grid;
@@ -11604,7 +11677,7 @@
       }
 
       .neuro-legend__swatch--unbuilt {
-        background: linear-gradient(180deg, #8b97ad, #6b7791);
+        background: linear-gradient(180deg, #ffb16b, #bd712e);
       }
 
       .neuro-legend__swatch--earned {
@@ -11713,56 +11786,128 @@
     </style>
 
     <section class="section section--neuro" aria-labelledby="neuro-title">
-      <h2 class="section-title" id="neuro-title">Build the circuit</h2>
+      <h2 class="section-title" id="neuro-title">You can’t copy-paste learning.</h2>
       <div class="neuro-shell section-content">
         <p class="neuro-lede">
-          Work a problem by hand, push through the part where it gets hard, and the circuit that
-          solves it fires. Circuits that fire repeatedly get insulated, so the signal moves faster.
-          <strong>That insulation is myelin, and building it is what turns effort into fluency.</strong>
-          Copy a generated answer and the work still gets done &mdash; the circuit just never fires.
+          <strong>Do the hard parts with Lune Synth.</strong> Solve. Get feedback. Repeat.
         </p>
 
-        <div class="neuro-viz__stage" data-neuro-viz>
-          <span class="neuro-hint" aria-hidden="true">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-              <path d="M3 12a9 9 0 0 1 15-6.7M21 12a9 9 0 0 1-15 6.7" />
-              <path d="M18 3v3h-3M6 21v-3h3" />
-            </svg>
-            Drag to rotate
-          </span>
-        </div>
-
-        <div class="neuro-legend">
-          <div class="neuro-legend__item">
-            <span class="neuro-legend__swatch neuro-legend__swatch--unbuilt" aria-hidden="true"></span>
-            <div>
-              <h3 class="neuro-legend__title">The answer was handed over</h3>
-              <p class="neuro-legend__body">
-                The result arrives at the destination without ever travelling the axon. Nothing is
-                damaged &mdash; the sheath simply never gets built, so the signal stays slow.
-              </p>
-            </div>
+        <div class="neuro-card">
+          <h3 class="neuro-card__title">This is your brain</h3>
+          <div class="neuro-viz__stage" data-neuro-viz>
+            <div class="neuro-route-label" aria-hidden="true"><strong>Using AI to cheat on your assignments</strong></div>
+            <div class="neuro-route-label neuro-route-label--earned" aria-hidden="true"><strong>Step-by-step practice with Lune Synth</strong></div>
+            <span class="neuro-hint" aria-hidden="true">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <path d="M3 12a9 9 0 0 1 15-6.7M21 12a9 9 0 0 1-15 6.7" />
+                <path d="M18 3v3h-3M6 21v-3h3" />
+              </svg>
+              Drag to rotate
+            </span>
           </div>
-          <div class="neuro-legend__item">
-            <span class="neuro-legend__swatch neuro-legend__swatch--earned" aria-hidden="true"></span>
-            <div>
-              <h3 class="neuro-legend__title">
-                The work was done by hand &mdash; <span class="neuro-reps" data-neuro-reps>0</span> reps
-              </h3>
-              <p class="neuro-legend__body">
-                Each rep fires the circuit end to end. Insulation thickens one segment at a time
-                until the impulse leaps between the gaps instead of crawling.
-              </p>
-            </div>
+
+          <div class="neuro-practice-control">
+            <label for="neuro-practice-time">Time doing practice step by step with Lune Synth</label>
+            <input id="neuro-practice-time" data-neuro-practice type="range" min="0" max="100" step="1" value="50" />
+            <div class="neuro-practice-control__ends" aria-hidden="true"><span>Less time</span><span>More time</span></div>
           </div>
         </div>
 
-        <p class="neuro-caption">
-          Conceptual illustration of activity-dependent myelination, not a visualisation of measured
-          user outcomes. Myelination accrues over repeated practice across days and weeks, not in a
-          single session. The effort-versus-outsourcing contrast is the point here &mdash; typing or
-          dictating your own reasoning is on the same side as handwriting it.
-        </p>
+        <div class="neuro-comparison">
+          <div class="neuro-transfer" data-neuro-transfer="unbuilt">
+            <strong>Copied answers</strong>
+            <div class="neuro-transfer__track" aria-hidden="true"><span class="neuro-transfer__fill" data-neuro-fill></span></div>
+            <p data-neuro-status>Still travelling.</p>
+          </div>
+          <div class="neuro-transfer" data-neuro-transfer="earned">
+            <strong>Practised reasoning</strong>
+            <div class="neuro-transfer__track" aria-hidden="true"><span class="neuro-transfer__fill" data-neuro-fill></span></div>
+            <p data-neuro-status>Arrived.</p>
+          </div>
+        </div>
+
+        <p class="neuro-caption">Illustrative comparison.</p>
+
+        <details class="neuro-science">
+          <summary>
+            <span class="neuro-science__label">Nerd stuff</span>
+          </summary>
+          <div class="neuro-science__body">
+            <h3>Retrieval practice and lasting memory</h3>
+            <p>
+              Retrieving information from memory can improve later retention. In two experiments
+              using prose passages, students who practised recall retained more on tests two days
+              and one week later than students who repeatedly studied the material. Repeated study
+              performed better on the immediate test, illustrating why short-term familiarity and
+              durable learning should be distinguished.
+              <a href="https://pubmed.ncbi.nlm.nih.gov/16507066/">Roediger &amp; Karpicke (2006), <cite>Psychological Science</cite></a>.
+            </p>
+            <p>
+              This distinction matters when an answer feels obvious on the page. Recognising a
+              solution and producing one independently are different demands. Attempting the
+              reasoning before consulting an answer creates an opportunity to practise retrieval;
+              copying the result omits that opportunity. The experiment above examined recall
+              of text, rather than chatbot use or Lune Synth.
+            </p>
+
+            <h3>Activity-dependent myelination</h3>
+            <p>
+              Myelin insulates axons, and its formation is one component of neural plasticity.
+              In mice, optogenetic stimulation of premotor circuits increased oligodendrocyte
+              production and myelination, with associated improvements in motor function.
+              Oligodendrocytes are the cells that form myelin in the central nervous system.
+              <a href="https://pubmed.ncbi.nlm.nih.gov/24727982/">Gibson et al. (2014), <cite>Science</cite></a>.
+            </p>
+            <p>
+              In a separate mouse study, preventing the generation of new oligodendrocytes impaired
+              acquisition of a complex running-wheel skill while sparing performance of a previously
+              learned skill. This provides evidence for a contribution of new myelin-forming cells
+              to acquiring that motor skill, rather than simply to executing a familiar movement.
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6324726/">McKenzie et al. (2014), <cite>Science</cite></a>.
+            </p>
+
+            <h3>What productive friction means here</h3>
+            <p>
+              In this section, &ldquo;friction&rdquo; means the effort of attempting a problem,
+              explaining a step, noticing a mistake, and revising your reasoning. It is a description
+              of the practice process, not a biological measure. Difficulty or discomfort alone
+              does not establish that learning is occurring. The studies above do not show that
+              handwriting specifically, or each uncomfortable step, directly creates another
+              layer of myelin.
+            </p>
+
+            <h3>How this connects to Lune Synth</h3>
+            <p>
+              Lune Synth gives learners a way to attempt problems, inspect feedback, and practise
+              again. Attempting an answer from memory creates an opportunity for retrieval practice;
+              reviewing feedback helps you decide what to work on next. That is the design rationale
+              for the learning loop. The cited studies did not test Lune Synth or establish that
+              using it changes myelination or produces a particular improvement in exam performance.
+            </p>
+            <p>
+              Working by hand is one way to make each reasoning step explicit. The relevant
+              distinction is doing your own thinking: typing or speaking your reasoning can also
+              be active practice. The comparison concerns submitting copied answers in place of
+              practising, rather than every possible use of an AI tool.
+            </p>
+
+            <h3>How to read the animation</h3>
+            <p>
+              The animation combines learning and myelin research as a conceptual illustration.
+              Its signal speeds, route shapes, sheath thicknesses, and slider positions are not
+              biological measurements. The slider represents increasing practice, not a calibrated
+              number of hours, and the automatic loop compresses an illustrative progression into
+              seconds. Its reset does not represent a loss of learning or myelin.
+            </p>
+            <p>
+              A jagged route represents uncertainty in recall, not a damaged axon. A straight route
+              does not mean myelin alone determines answer accuracy. Reading a chatbot response
+              also involves neural activity; the upper circuit is not a claim that a reader&rsquo;s
+              brain stops firing. The central message is practical: use the opportunity to attempt,
+              get feedback, and practise again.
+            </p>
+          </div>
+        </details>
       </div>
     </section>
 
