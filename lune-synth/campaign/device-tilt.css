@@ -1,0 +1,27 @@
+/* Match the homepage's one-shot device rotation without replacing layout transforms. */
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .device-tilt-parent { perspective: 1600px; }
+  .device-tilt {
+    rotate: 2 5 0 -44deg;
+    transition: rotate 5.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s,
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    filter: none !important;
+    isolation: auto !important;
+  }
+  .device-tilt.feature-phone { rotate: 0 1 0 34deg; }
+  .device-tilt.feature-ipad { rotate: 2 5 0 -40deg; }
+  .device-tilt.is-device-revealed { rotate: 0deg; }
+  .device-tilt__slice {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    transform: translateZ(calc(var(--slice) / 16 * -12px));
+    background: color-mix(in srgb, #4b5468, #090c12 calc(var(--slice) / 16 * 100%));
+  }
+  .feature-ipad > .device-tilt__slice {
+    background: color-mix(in srgb, #9aa2b6, #171b24 calc(var(--slice) / 16 * 100%));
+  }
+}
