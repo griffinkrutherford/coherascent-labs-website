@@ -1,5 +1,5 @@
 import { createScene } from "./scene.js";
-import { computePracticeComparison, computeTransfer, autoPracticeLevel } from "./timeline.js";
+import { computePracticeComparison, autoPracticeLevel } from "./timeline.js";
 import { renderFallback } from "./fallback.js";
 import { prefersReducedMotion, hasWebGL2 } from "../shared-hooks/reduced-motion.js";
 
@@ -45,7 +45,6 @@ export function mountNeuroViz(root) {
 
   const section = root.closest(".section--neuro") || root;
   const practiceSlider = section.querySelector("[data-neuro-practice]");
-  const transferEls = [...section.querySelectorAll("[data-neuro-transfer]")];
   const debug = new URLSearchParams(location.search).has("neuroDebug");
 
   let rafId = 0;
@@ -65,15 +64,6 @@ export function mountNeuroViz(root) {
     lastRenderedT = t;
     const level = Number(practiceSlider?.value ?? 50) / 100;
     const slices = computePracticeComparison(t, level);
-    const transfer = computeTransfer(t, level);
-    for (const el of transferEls) {
-      const earned = el.dataset.neuroTransfer === "earned";
-      const progress = transfer[el.dataset.neuroTransfer];
-      el.querySelector("[data-neuro-fill]").style.transform = `scaleX(${progress})`;
-      el.querySelector("[data-neuro-status]").textContent = progress < 1
-        ? earned ? (level < 0.34 ? "Slow." : level < 0.67 ? "Faster." : "Fast.") : "Still travelling."
-        : earned ? "Arrived." : "Arrived.";
-    }
     sceneAPI.update(t, slices);
     sceneAPI.render();
   }

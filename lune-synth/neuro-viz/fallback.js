@@ -53,14 +53,7 @@ export function renderFallback(root) {
     const svg = root.firstElementChild;
     svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
     svg.classList.add("neuro-viz__fallback");
-    const transfer = computeTransfer(0.4, level);
-    for (const el of section.querySelectorAll("[data-neuro-transfer]")) {
-      const earned = el.dataset.neuroTransfer === "earned";
-      el.querySelector("[data-neuro-fill]").style.transform = `scaleX(${transfer[el.dataset.neuroTransfer]})`;
-      el.querySelector("[data-neuro-status]").textContent = earned
-        ? (transfer.earned >= 1 ? "Arrived." : "Still travelling.")
-        : "Still travelling.";
-    }
+
   }
   render();
   slider?.addEventListener("input", render);
