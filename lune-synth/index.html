@@ -1000,6 +1000,11 @@
       text-wrap: balance;
     }
 
+    .hero-waitlist-panel .waitlist-offer-note {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     .waitlist-offer .blue-glow {
       display: inline-block;
       font-weight: 800;
@@ -10876,7 +10881,8 @@
       <img class="waitlist-luna-emote" src="/lune-synth/images/luna-emotes/celebrate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <div class="hero-waitlist-copy">
         <h3 id="lune-beta-title">Join the beta waitlist</h3>
-        <p class="waitlist-offer">Limited-time offer for the first 40 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.</p>
+        <p class="waitlist-offer" aria-describedby="waitlist-offer-note">Limited-time offer for the first 40 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.<sup>*</sup></p>
+        <p class="waitlist-offer-note" id="waitlist-offer-note">*To qualify for this offer, beta users must provide quality feedback on their experience.</p>
       </div>
       <form class="hero-waitlist" data-waitlist-form novalidate>
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
@@ -12359,7 +12365,7 @@
         transform: none;
       }
       .problem-solver__device.is-active .problem-solver__phone {
-        --quick-phone-scale: 1.92;
+        --quick-phone-scale: 2.7;
       }
       .problem-solver__phone:hover {
         transform: none;
@@ -12613,6 +12619,9 @@
           padding: calc(var(--workflow-phone-shell-padding) * var(--quick-phone-scale));
           border-radius: calc(var(--workflow-phone-shell-radius) * var(--quick-phone-scale));
         }
+        .problem-solver__device.is-active .problem-solver__phone {
+          --quick-phone-scale: 1.85;
+        }
         .problem-solver__carousel-button { width: 40px; height: 40px; }
         .problem-solver__carousel-button--previous { left: 0; }
         .problem-solver__carousel-button--next { right: 0; }
@@ -12639,8 +12648,8 @@
         .problem-solver__cta { width: 100%; }
       }
       @media (min-width: 1200px) {
-        .problem-solver__phone,
-        .problem-solver__device.is-active .problem-solver__phone { --quick-phone-scale: 2.12; }
+        .problem-solver__phone { --quick-phone-scale: 2.12; }
+        .problem-solver__device.is-active .problem-solver__phone { --quick-phone-scale: 3; }
       }
       @media (prefers-reduced-motion: reduce) {
         .problem-solver__device { transition: none; }
