@@ -7,6 +7,7 @@
   var popup;
   var lastFocusedElement;
   var showTimer;
+  var viewportFrame;
 
   function readStored(key) {
     try { return window.localStorage.getItem(key) === "true"; }
@@ -51,9 +52,51 @@
     ].join("");
   }
 
+  // iOS resizes and pans the visual viewport when the keyboard opens,
+  // while the layout viewport (and vh) can remain full-height.
+  function updateViewport() {
+    viewportFrame = null;
+    if (!popup || popup.hidden) return;
+    var viewport = window.visualViewport;
+    popup.style.setProperty("--beta-viewport-height", (viewport ? viewport.height : window.innerHeight) + "px");
+    popup.style.setProperty("--beta-viewport-top", (viewport ? viewport.offsetTop : 0) + "px");
+
+    var focused = document.activeElement;
+    if (!focused || !popup.contains(focused)) return;
+    var panel = popup.querySelector(".beta-offer-popup__panel");
+    var bounds = panel.getBoundingClientRect();
+    var field = focused.getBoundingClientRect();
+    // Scroll only the panel, avoiding a second page pan from scrollIntoView.
+    if (field.bottom > bounds.bottom - 16) {
+      panel.scrollTop += field.bottom - bounds.bottom + 16;
+    } else if (field.top < bounds.top + 16) {
+      panel.scrollTop += field.top - bounds.top - 16;
+    }
+  }
+
+  function scheduleViewportUpdate() {
+    if (!viewportFrame) viewportFrame = window.requestAnimationFrame(updateViewport);
+  }
+
+  function trackViewport(enabled) {
+    var method = enabled ? "addEventListener" : "removeEventListener";
+    window[method]("resize", scheduleViewportUpdate);
+    if (window.visualViewport) {
+      window.visualViewport[method]("resize", scheduleViewportUpdate);
+      window.visualViewport[method]("scroll", scheduleViewportUpdate);
+    }
+    popup[method]("focusin", scheduleViewportUpdate);
+    if (!enabled) {
+      window.cancelAnimationFrame(viewportFrame);
+      viewportFrame = null;
+    }
+  }
+
   function closePopup() {
     if (!popup || popup.hidden) return;
     store(DISMISSED_KEY);
+    trackViewport(false);
+    if (popup.contains(document.activeElement)) document.activeElement.blur();
     popup.hidden = true;
     document.body.classList.remove("has-beta-offer-popup");
     if (lastFocusedElement && lastFocusedElement.focus) lastFocusedElement.focus();
@@ -69,8 +112,10 @@
     lastFocusedElement = document.activeElement;
     popup.hidden = false;
     document.body.classList.add("has-beta-offer-popup");
+    trackViewport(true);
+    updateViewport();
     var input = popup.querySelector('input[type="email"]');
-    if (input) input.focus();
+    if (input) input.focus({ preventScroll: true });
   }
 
   function markJoined() {

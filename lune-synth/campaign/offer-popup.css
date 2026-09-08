@@ -14,7 +14,9 @@
 
 .beta-offer-popup {
   position: fixed;
-  inset: 0;
+  inset: var(--beta-viewport-top, 0px) 0 auto;
+  height: var(--beta-viewport-height, 100dvh);
+  box-sizing: border-box;
   z-index: 160;
   display: grid;
   place-items: center;
@@ -25,7 +27,11 @@
 
 .beta-offer-popup__panel {
   width: min(100%, 520px);
-  max-height: min(760px, calc(100vh - 44px));
+  box-sizing: border-box;
+  min-height: 0;
+  max-height: min(760px, 100%);
+  overscroll-behavior: contain;
+  scroll-padding-block: 16px;
   overflow: auto;
   position: relative;
   padding: clamp(26px, 6vw, 42px);
@@ -118,7 +124,7 @@
   background: transparent;
   color: var(--text, #edf5ff);
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .beta-offer-popup__form button,
@@ -136,6 +142,9 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+
+/* Includes the Google-account field mounted after signup. */
+.beta-offer-popup .lune-wq__input { font-size: 16px; }
 
 .beta-offer-popup__form button:disabled { cursor: wait; opacity: 0.72; }
 
@@ -186,8 +195,10 @@ html[data-theme="light"] .beta-offer-popup__panel {
 html[data-theme="light"] .beta-offer-popup__form { background: rgba(255, 255, 255, 0.78); }
 
 @media (max-width: 560px) {
-  .beta-offer-popup { padding: 14px; }
-  .beta-offer-popup__panel { max-height: calc(100vh - 28px); padding: 26px 20px; border-radius: 22px; }
+  .beta-offer-popup {
+    padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+  }
+  .beta-offer-popup__panel { padding: 26px 20px; border-radius: 22px; }
   .beta-offer-popup__form { display: grid; border-radius: 20px; }
   .beta-offer-popup__form button { width: 100%; }
 }

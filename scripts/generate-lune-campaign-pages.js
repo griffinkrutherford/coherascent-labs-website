@@ -227,7 +227,7 @@ function render(page) {
   <link rel="stylesheet" href="/campaign/landing.css?v=6" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=3" />
-  <link rel="stylesheet" href="/campaign/offer-popup.css?v=1" />
+  <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
   <script src="/campaign/cta-config.js?v=2" defer></script>
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
   <script src="/campaign/cta.js?v=2" defer></script>
@@ -235,7 +235,7 @@ function render(page) {
   <script src="/campaign/landing.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/device-tilt.css?v=1" />
   <script src="/campaign/device-tilt.js?v=1" defer></script>
-  <script src="/campaign/offer-popup.js?v=1" defer></script>
+  <script src="/campaign/offer-popup.js?v=2" defer></script>
 </head>
 <body>
   <header class="campaign-header campaign-shell">
