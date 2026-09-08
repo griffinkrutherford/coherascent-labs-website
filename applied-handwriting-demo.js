@@ -48,6 +48,16 @@
         pauseAfter: glyphData[index + 1] && glyphData[index + 1].line === glyph.line ? 18 : (isNote ? 1100 : 260)
       };
     });
+
+    // Remove the artwork's internal left gutter so its first line shares
+    // the same content inset as the text-based handwriting slides.
+    var firstLine = glyphs.filter(function (glyph) { return glyph.line === "line-1"; });
+    if (firstLine.length) {
+      var left = Math.min.apply(null, firstLine.map(function (glyph) {
+        return glyph.node.getBBox().x;
+      }));
+      svg.setAttribute("viewBox", left + " 0 " + (360 - left) + " 250");
+    }
   }
 
   function resetBoard() {
