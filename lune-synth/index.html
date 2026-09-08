@@ -1000,10 +1000,12 @@
       text-wrap: balance;
     }
 
-    .hero-waitlist-panel .waitlist-offer-note {
-      font-size: 13px;
-      line-height: 1.5;
+    .waitlist-offer a {
+      color: inherit;
+      text-decoration: none;
     }
+
+    .waitlist-offer a:hover { text-decoration: underline; }
 
     .waitlist-offer .blue-glow {
       display: inline-block;
@@ -10883,8 +10885,7 @@
       <img class="waitlist-luna-emote" src="/lune-synth/images/luna-emotes/celebrate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <div class="hero-waitlist-copy">
         <h3 id="lune-beta-title">Join the beta waitlist</h3>
-        <p class="waitlist-offer" aria-describedby="waitlist-offer-note">Limited-time offer for the first 40 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.<sup>*</sup></p>
-        <p class="waitlist-offer-note" id="waitlist-offer-note">*To qualify for this offer, beta users must provide quality feedback on their experience.</p>
+        <p class="waitlist-offer"><a href="#waitlist-offer-note" aria-describedby="waitlist-offer-note">Limited-time offer for the first 40 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.<sup>*</sup></a></p>
       </div>
       <form class="hero-waitlist" data-waitlist-form novalidate>
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />

@@ -98,7 +98,7 @@
       this.innerHTML = [
         '<div class="lune-cta__copy">',
         '<h2 class="lune-cta__headline">' + settings.headline + "</h2>",
-        '<p class="lune-cta__offer">' + settings.offerHtml + "</p>",
+        '<p class="lune-cta__offer"><a href="#waitlist-offer-note" aria-describedby="waitlist-offer-note">' + settings.offerHtml + "<sup>*</sup></a></p>",
         clarifier ? '<p class="lune-cta__clarifier">' + clarifier + "</p>" : "",
         "</div>",
         showForm ? formMarkup(settings, id) : "",

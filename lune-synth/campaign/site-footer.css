@@ -195,3 +195,6 @@ html[data-theme="light"] .site-footer__note { border-top-color: rgba(127, 99, 21
 @media (max-width: 900px) {
   body > lune-site-footer .site-footer { margin-bottom: 96px; }
 }
+
+#waitlist-offer-note { scroll-margin-top: 120px; }
+#waitlist-offer-note:target { outline: 1px solid currentColor; outline-offset: 8px; }

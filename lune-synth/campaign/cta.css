@@ -211,3 +211,6 @@ body.has-modal { overflow: hidden; }
     transition-duration: 0.01ms !important;
   }
 }
+
+.lune-cta__offer a { color: inherit; text-decoration: none; }
+.lune-cta__offer a:hover { text-decoration: underline; }

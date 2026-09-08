@@ -103,6 +103,7 @@
         <p class="site-footer__powered-by">
           Powered by <strong>GPT-5.6-Luna</strong> &mdash; yes, really. We named the app Lune Synth, named the tutor Luna, and then the model showed up wearing the same name. Nobody planned it, so we're just calling it fate.
         </p>
+        <p class="site-footer__note" id="waitlist-offer-note" tabindex="-1">*To qualify for this offer, beta users must provide quality feedback on their experience.</p>
         ${notes.map(function (note) { return `<p class="site-footer__note">${note}</p>`; }).join("")}
       </footer>`;
   }
