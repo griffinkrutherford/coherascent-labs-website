@@ -158,3 +158,8 @@ html, body {
 .about-athletics__pause[hidden] { display: none; }
 .about-athletics__pause:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 @media (max-width: 520px) { .about-athletics__photos { height: 280px; } .about-athletics__photo { width: 45%; } }
+
+.about-athletics__photos { touch-action: pan-y pinch-zoom; cursor: grab; user-select: none; -webkit-user-select: none; }
+.about-athletics__photos.is-dragging { cursor: grabbing; }
+.about-athletics__photo { -webkit-user-drag: none; }
+.about-athletics__photos:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }

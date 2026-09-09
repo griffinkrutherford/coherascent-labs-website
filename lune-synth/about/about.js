@@ -38,6 +38,10 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   var pause = gallery.querySelector("[data-athletics-pause]");
   var paused = false, visible = false, frame = null, last = null, angle = 0;
+  var surface = gallery.querySelector(".about-athletics__photos");
+  var pointer = null, previousX = 0, previousTime = 0, velocity = 0;
+  var autoSpeed = Math.PI * 2 / 42000;
+  photos.forEach(function (photo) { photo.draggable = false; });
   function draw() {
     var radius = gallery.clientWidth * 0.30;
     photos.forEach(function (photo, i) {
@@ -49,18 +53,58 @@
     });
   }
   function tick(time) {
-    if (last !== null) angle += Math.min(time - last, 60) * Math.PI * 2 / 42000;
-    last = time; draw(); frame = requestAnimationFrame(tick);
+    var dt = last === null ? 0 : Math.min(time - last, 60);
+    var target = paused ? 0 : autoSpeed;
+    angle += velocity * dt;
+    // Time-based friction gives the same coast at different refresh rates.
+    velocity = target + (velocity - target) * Math.exp(-dt / 650);
+    last = time; draw();
+    if (!paused || Math.abs(velocity) > 0.00001) frame = requestAnimationFrame(tick);
+    else { velocity = 0; frame = null; }
   }
   function sync() {
-    cancelAnimationFrame(frame); last = null;
+    cancelAnimationFrame(frame); frame = null; last = null;
     pause.hidden = reduced.matches;
     pause.textContent = paused ? "▶" : "❚❚";
     pause.setAttribute("aria-label", paused ? "Play photo carousel" : "Pause photo carousel");
     draw();
-    if (visible && !document.hidden && !paused && !reduced.matches) frame = requestAnimationFrame(tick);
+    if (visible && !document.hidden && pointer === null && !reduced.matches && (!paused || Math.abs(velocity) > 0.00001)) frame = requestAnimationFrame(tick);
   }
-  pause.addEventListener("click", function () { paused = !paused; sync(); });
+  surface.addEventListener("pointerdown", function (event) {
+    if (!event.isPrimary || event.button !== 0 || pointer !== null) return;
+    pointer = event.pointerId;
+    previousX = event.clientX; previousTime = event.timeStamp; velocity = 0;
+    surface.setPointerCapture(pointer);
+    surface.classList.add("is-dragging");
+    sync();
+  });
+  surface.addEventListener("pointermove", function (event) {
+    if (event.pointerId !== pointer) return;
+    var delta = (event.clientX - previousX) * Math.PI * 2 / Math.max(surface.clientWidth, 1);
+    var dt = Math.max(event.timeStamp - previousTime, 1);
+    angle += delta;
+    velocity = Math.max(-0.012, Math.min(0.012, delta / dt));
+    previousX = event.clientX; previousTime = event.timeStamp;
+    draw();
+  });
+  function release(event) {
+    if (event.pointerId !== pointer) return;
+    var id = pointer; pointer = null;
+    if (event.type !== "pointerup" || event.timeStamp - previousTime > 120 || reduced.matches) velocity = 0;
+    surface.classList.remove("is-dragging");
+    if (surface.hasPointerCapture(id)) surface.releasePointerCapture(id);
+    sync();
+  }
+  surface.addEventListener("pointerup", release);
+  surface.addEventListener("pointercancel", release);
+  surface.addEventListener("lostpointercapture", release);
+  surface.addEventListener("keydown", function (event) {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    angle += (event.key === "ArrowRight" ? 1 : -1) * Math.PI * 2 / photos.length;
+    velocity = 0; paused = true; sync();
+  });
+  pause.addEventListener("click", function () { paused = !paused; velocity = paused ? 0 : autoSpeed; sync(); });
   if ("IntersectionObserver" in window) new IntersectionObserver(function (entries) {
     visible = entries[0].isIntersecting; sync();
   }).observe(gallery);
