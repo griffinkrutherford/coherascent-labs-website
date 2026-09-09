@@ -15,7 +15,7 @@ Guest sessions aren't tied to an email address, so there's no way to verify a
 deletion request for one. Two options:
 
 - Add an email and password in the app to turn your guest session into an
-  account — your missions, streak, and progress carry over — then delete the
+  account, your missions, streak, and progress carry over, then delete the
   account using the steps above.
 - Or simply uninstall the app. A guest session isn't recoverable without the
   device it was created on.

@@ -69,9 +69,9 @@ When you use the Service, we may collect:
   preferences, waitlist operation, fraud prevention, or analytics.
 
 Product analytics are first-party. The app emits a fixed, predefined set of
-product events — such as screen views, missions started, completed, or
+product events, such as screen views, missions started, completed, or
 abandoned, answers submitted, grading completed or failed, tutor sessions
-opened, and API failures — to our own API, where they are stored in our own
+opened, and API failures, to our own API, where they are stored in our own
 database. We do not use a third-party analytics, attribution, or advertising
 SDK, and we do not send these events to an ad network.
 

@@ -1,5 +1,5 @@
 /**
- * Beta access email — the follow-up the waitlist letter promises.
+ * Beta access email, the follow-up the waitlist letter promises.
  *
  * Sent once a build exists, only to contacts who answered the platform
  * question, and tailored per platform because the two stores work differently:
@@ -100,7 +100,7 @@ me directly.
 
 Thanks for being early. It genuinely helps.
 
-— Griffin
+Griffin
 Lune Synth
 
 ${postalAddress}

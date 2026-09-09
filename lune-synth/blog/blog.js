@@ -1,4 +1,4 @@
-// Header behavior — copied from the main lunesynth.com site so the blog header
+// Header behavior, copied from the main lunesynth.com site so the blog header
 // matches exactly (scroll-blur, sticky height, mobile hamburger + brand popup).
 
 (function () {

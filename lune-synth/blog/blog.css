@@ -1,4 +1,4 @@
-/* Lune Synth blog — matches the main lunesynth.com dark design system.
+/* Lune Synth blog, matches the main lunesynth.com dark design system.
    Header markup, CSS, and JS are copied from the main site for parity. */
 :root {
   --font-mono: "Roboto Mono", monospace;
@@ -53,7 +53,7 @@ body {
   line-height: 1.72;
 }
 
-/* Starfield — same as the main site. */
+/* Starfield, same as the main site. */
 body::before {
   content: "";
   position: fixed;
@@ -95,7 +95,7 @@ main {
 }
 
 /* ============================================================
-   HEADER — copied verbatim from the main lunesynth.com site.
+   HEADER, copied verbatim from the main lunesynth.com site.
    ============================================================ */
 .site-header {
   display: flex;
@@ -854,7 +854,7 @@ html[data-theme="light"] .nav-links .nav-link {
 }
 
 /* ============================================================
-   RESPONSIVE — header behavior copied from the main site.
+   RESPONSIVE, header behavior copied from the main site.
    ============================================================ */
 @media (max-width: 900px) {
   .site-header { margin-bottom: 28px; flex-wrap: nowrap; }

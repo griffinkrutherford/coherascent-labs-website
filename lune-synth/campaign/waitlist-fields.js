@@ -1,7 +1,7 @@
 /**
  * Post-signup platform question.
  *
- * Asked in the success popup, AFTER the email is already stored — so someone
+ * Asked in the success popup, AFTER the email is already stored, so someone
  * who closes the popup is still on the waitlist. An earlier version injected
  * these fields into the form itself, which both risked losing the signup and
  * broke the hero form's horizontal layout.
@@ -132,7 +132,7 @@
         presumed.textContent = value;
         setStatus("Saved.");
       }).catch(function () {
-        setStatus("Couldn’t save — reply to the confirmation email instead.", true);
+        setStatus("Couldn’t save, reply to the confirmation email instead.", true);
       });
     }
 
@@ -183,7 +183,7 @@
           finish("Done. Your invite goes to <strong>" + email + "</strong>.");
         }).catch(function () {
           // The signup itself already succeeded, so this is never fatal.
-          setStatus("Couldn’t save — reply to the confirmation email instead.", true);
+          setStatus("Couldn’t save, reply to the confirmation email instead.", true);
         });
       });
     });

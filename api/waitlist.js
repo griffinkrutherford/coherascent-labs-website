@@ -14,7 +14,7 @@ const COPY = {
   new: { title: 'You’re on the list!', message: 'A confirmation email is on its way.' },
   existing: { title: 'Already on the list', message: 'We haven’t sent a second confirmation.' },
   resubscribed: { title: 'Welcome back!', message: 'Your spot is restored.' },
-  answered: { title: 'Saved', message: 'Thanks — that’s everything we need.' },
+  answered: { title: 'Saved', message: 'Thanks, that’s everything we need.' },
 };
 
 /**

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lune Synth&trade; — The Anti-Slop Learning App</title>
+  <title>Lune Synth&trade;: The Anti-Slop Learning App</title>
   <meta
     name="description"
     content="Lune Synth&trade; turns handwritten reasoning into checkable work, rigorous grading, and targeted practice."
@@ -11,14 +11,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Lune Synth" />
   <meta property="og:url" content="https://lunesynth.com/" />
-  <meta property="og:title" content="Lune Synth — The Anti-Slop Learning App" />
+  <meta property="og:title" content="Lune Synth: The Anti-Slop Learning App" />
   <meta property="og:description" content="Do the work. Scan it in. Get feedback that actually helps. From the Pre-K through the PhD level." />
   <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Lune Synth — the anti-slop learning app, with the Lune Synth astronaut app icon" />
+  <meta property="og:image:alt" content="Lune Synth: the anti-slop learning app, with the Lune Synth astronaut app icon" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Lune Synth — The Anti-Slop Learning App" />
+  <meta name="twitter:title" content="Lune Synth: The Anti-Slop Learning App" />
   <meta name="twitter:description" content="Do the work. Scan it in. Get feedback that actually helps. From the Pre-K through the PhD level." />
   <meta name="twitter:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <link rel="canonical" href="https://lunesynth.com/" />
@@ -8321,7 +8321,7 @@
 
     /* Active Step Widescreen Description HUD */
     .active-step-info {
-      /* Ambilight vars — live-updated by the iPad screen sampler (see ipadAmbilight script).
+      /* Ambilight vars, live-updated by the iPad screen sampler (see ipadAmbilight script).
          --ambi-x / --ambi-y are the glow ORIGIN: the iPad's measured center within the
          card, so the light literally pours out of the device. Seeded with the brand blue
          and the iPad's resting position so the card looks right before the first frame. */
@@ -8356,7 +8356,7 @@
       min-height: 0;
     }
     
-    /* Soft, blurred halo bleeding out from behind the card — the "spill" of the glow. */
+    /* Soft, blurred halo bleeding out from behind the card, the "spill" of the glow. */
     .active-step-info::before {
       content: "";
       position: absolute;
@@ -10650,7 +10650,7 @@
                     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      /* Starting angles — varied so devices don't all pivot the same way. */
+      /* Starting angles, varied so devices don't all pivot the same way. */
       html[data-tilt-ready] .capture-scene__phone { rotate: 2 5 0 -44deg; }
       html[data-tilt-ready] .processing-scene__phone { rotate: 0 1 0 34deg; }
       html[data-tilt-ready] .feedback-scene__phone--far-left { rotate: 0 1 0 -48deg; }
@@ -10670,8 +10670,8 @@
       /* --- Real device thickness. Each device gets preserve-3d and five
          extruded faces (back + four side walls) injected as children by the
          tilt JS. The side walls are perpendicular to the screen, so they are
-         edge-on (zero-width, invisible) when the device faces the viewer —
-         the flat front view is pixel-identical — but reveal a solid slab as
+         edge-on (zero-width, invisible) when the device faces the viewer,
+         the flat front view is pixel-identical, but reveal a solid slab as
          the device turns. --dev-depth is tuned per device to its on-screen
          size. Rounded-corner seams are approximate (walls are straight). --- */
       html[data-tilt-ready] .capture-scene__phone,
@@ -10684,7 +10684,7 @@
       html[data-tilt-ready] .ipad-mockup {
         transform-style: preserve-3d;
         /* `filter` and `isolation: isolate` are both "grouping" properties
-           that compute transform-style to flat — which collapses the 3D depth
+           that compute transform-style to flat, which collapses the 3D depth
            and lets the opaque back face cover the screen (blank phones). The
            phones carry both (accent-glow filters incl. light-theme variants,
            and isolation on the shared shell rule), so neutralize them here
@@ -10698,8 +10698,8 @@
 
       /* Thickness is built from a stack of rounded-rectangle slices stepped
          along Z (injected by the tilt JS). Every slice inherits the device's
-         border-radius, so the extruded edge is rounded all the way around —
-         corners included — instead of the flat straight walls that left the
+         border-radius, so the extruded edge is rounded all the way around,
+         corners included, instead of the flat straight walls that left the
          rounded corners open. Each slice is opaque and the same silhouette as
          the front, so head-on the front face fully occludes them (the flat
          view is unchanged); tilted, they peek past the receding edge to form
@@ -10736,8 +10736,8 @@
       /* NOTE: the power/volume keys are intentionally left on the flat front
          face (their default styling) rather than folded onto the side rail.
          Folding them (rotateY/rotateX 90deg) made them edge-on and therefore
-         invisible whenever the device is viewed flat — the full-screen /
-         at-rest state — so the keys read as a solid visible detail in every
+         invisible whenever the device is viewed flat, the full-screen /
+         at-rest state, so the keys read as a solid visible detail in every
          view instead. The device body still carries real 3D thickness via the
          .dev-slice stack. */
     }
@@ -10748,7 +10748,7 @@
      already tilted, no load-time wobble). Skipped for reduced-motion / no IO.
      Also skipped on mobile (<=900px): the reveal popped in awkwardly there,
      so those devices stay in their original static (pre-3D) layout. The whole
-     3D system is gated on this attribute — CSS reveal, slice injection, and
+     3D system is gated on this attribute, CSS reveal, slice injection, and
      button folding all no-op without it. */
   (function () {
     try {
@@ -11408,7 +11408,7 @@
             <!-- Tab panels: copy left, phone mockup right (pattern from Constellations) -->
             <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
               <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step&mdash;then you finish it.</p>
+                <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step, then you finish it.</p>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
@@ -13958,7 +13958,7 @@
             <div class="engine-header-copy">
               <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
               <p class="engine-lead">
-                Lune Synth is engineered with anti-slop software design so you get feedback you can actually trust. In rubric benchmark evaluations, over 95% of multimodal responses deliver sound, defect-free evaluations down to every step&mdash;backed by explicit confidence thresholds and one-tap correction checks.
+                Lune Synth is engineered with anti-slop software design so you get feedback you can actually trust. In rubric benchmark evaluations, over 95% of multimodal responses deliver sound, defect-free evaluations down to every step, backed by explicit confidence thresholds and one-tap correction checks.
               </p>
             </div>
 
@@ -14059,7 +14059,7 @@
                   <br>
                   <strong>Conservative Prompt-Cluster View:</strong> At the distinct-prompt level, <strong>91.9%</strong> of prompts (68/74) were sound across every input mode tested (95% Wilson CI: [83.4%, 96.2%]).
                   <br>
-                  <strong>Honest Distribution:</strong> Across 242 grading trials, <strong>90.1%</strong> (218/242) were completely clean, <strong>6.2%</strong> (15/242) had minor non-material phrasing nuances, and <strong>3.7%</strong> (9/242) had flagged conceptual errors—all transparently audited below.
+                  <strong>Honest Distribution:</strong> Across 242 grading trials, <strong>90.1%</strong> (218/242) were completely clean, <strong>6.2%</strong> (15/242) had minor non-material phrasing nuances, and <strong>3.7%</strong> (9/242) had flagged conceptual errors, all transparently audited below.
                   <br>
                   <strong>Adjudication Caveat:</strong> Every soundness figure reflects single-reviewer, non-blind adjudication (the two evaluation halves judged by different reviewers), not double-scored consensus. These measure the soundness of the guidance, not the displayed numeric score.
                   <br>
@@ -14098,7 +14098,7 @@
                       <td><strong>Prompt-Cluster Safety</strong></td>
                       <td>74 distinct prompts (Pre-K&ndash;grad)</td>
                       <td>91.9% (68 / 74 sound)</td>
-                      <td>—</td>
+                      <td>N/A</td>
                       <td>8.1% (6 / 74)</td>
                       <td><span>[83.4%, 96.2%]</span></td>
                     </tr>
@@ -14114,7 +14114,7 @@
                       <td><strong>Complete 5-Item Set Soundness</strong> <span style="opacity:.7;">(graduate-only)</span></td>
                       <td>24 full practice sets</td>
                       <td>79.2% (19 / 24 pristine)</td>
-                      <td>—</td>
+                      <td>N/A</td>
                       <td>20.8% (5 / 24)</td>
                       <td><span>[59.5%, 90.8%]</span></td>
                     </tr>
@@ -14145,7 +14145,7 @@
                 </div>
                 <div class="engine-diligence-item">
                   <strong>Handwriting &amp; Scans (4 / 80 Material · 95.0% sound; 95% CI [87.8%, 98.0%]):</strong>
-                  <span>No modality effect is established: the Pre-K&ndash;high-school run recorded 0 material failures across 39 handwriting responses, and the combined handwriting interval overlaps both other modes. Caveat: 14 of those 39 trials ran as OCR-simulated text&mdash;fixtures quarantined by a 0.85 transcription-fidelity gate, including all five Pre-K cases&mdash;while 25 were genuine scanned images.</span>
+                  <span>No modality effect is established: the Pre-K&ndash;high-school run recorded 0 material failures across 39 handwriting responses, and the combined handwriting interval overlaps both other modes. Caveat: 14 of those 39 trials ran as OCR-simulated text, fixtures quarantined by a 0.85 transcription-fidelity gate, including all five Pre-K cases, while 25 were genuine scanned images.</span>
                 </div>
                 <div class="engine-diligence-item">
                   <strong>Distinct Prompt-Cluster Safety Rate (91.9%):</strong>
@@ -14168,7 +14168,7 @@
 
               <!-- Section 4: Evaluated Graduate Disciplines -->
               <div class="engine-diligence-section-heading">
-                <h4>04 · Evaluated Domains &mdash; Generation Contexts &amp; Grading Coverage</h4>
+                <h4>04 · Evaluated Domains, Generation Contexts &amp; Grading Coverage</h4>
               </div>
               <div class="engine-diligence-item" style="grid-column: 1 / -1;">
                 <strong>Question-Generation Contexts (12 graduate disciplines):</strong>
@@ -14187,7 +14187,7 @@
                   <span class="engine-diligence-tag">Historical Linguistics</span>
                   <span class="engine-diligence-tag">Applied Cryptography</span>
                 </div>
-                <span style="display:block; margin-top:12px;"><strong>Grading Coverage (Pre-K through graduate):</strong> The 74 graded prompts spanned a broader set&mdash;mathematics, natural science, social science, language arts, foreign language, computer science, philosophy, law, literary analysis, translation studies, and qualitative methods&mdash;not limited to the 12 generation disciplines above.</span>
+                <span style="display:block; margin-top:12px;"><strong>Grading Coverage (Pre-K through graduate):</strong> The 74 graded prompts spanned a broader set, mathematics, natural science, social science, language arts, foreign language, computer science, philosophy, law, literary analysis, translation studies, and qualitative methods, not limited to the 12 generation disciplines above.</span>
               </div>
 
               <!-- Section 5: Anti-Slop Architecture & Confidence Calibration Mechanics -->
@@ -14221,8 +14221,8 @@
                 <strong>Logged Failure Breakdown &amp; Root Cause Analysis:</strong>
                 <span>All 9 material grading errors (6 in the graduate tranche across 3 distinct prompts, plus 3 in the Pre-K&ndash;high-school run) and 5 question-generation defects were formally logged and cataloged:</span>
                 <ul style="margin: 8px 0 0; padding-left: 18px; line-height: 1.6; font-size: 12.5px;">
-                  <li><em>Grading failures &mdash; graduate tranche (6 responses across 3 distinct prompts):</em> Four responses came from a single graduate astrophysics prompt on stellar fusion, where feedback endorsed thermal kinetic energy as classically overcoming the Coulomb barrier and treated quantum tunneling as optional detail; the same misconception recurred across typed, voice, and handwriting renderings of that one prompt. One response, on a philosophy-of-science scan, missed a polished but false conclusion that sufficient evidence yields a logically unique theory. One response, on a translation-studies scan, praised an incorrect tense/aspect analysis of the French imperfective <em>retrouvais</em>.</li>
-                  <li><em>Grading failures &mdash; Pre-K&ndash;high-school run (3 responses):</em> Three material failures were logged in the 2026-08-19 evaluation and retained in the permanent corpus; per-case root-cause detail is tracked internally rather than on this page.</li>
+                  <li><em>Grading failures, graduate tranche (6 responses across 3 distinct prompts):</em> Four responses came from a single graduate astrophysics prompt on stellar fusion, where feedback endorsed thermal kinetic energy as classically overcoming the Coulomb barrier and treated quantum tunneling as optional detail; the same misconception recurred across typed, voice, and handwriting renderings of that one prompt. One response, on a philosophy-of-science scan, missed a polished but false conclusion that sufficient evidence yields a logically unique theory. One response, on a translation-studies scan, praised an incorrect tense/aspect analysis of the French imperfective <em>retrouvais</em>.</li>
+                  <li><em>Grading failures, Pre-K&ndash;high-school run (3 responses):</em> Three material failures were logged in the 2026-08-19 evaluation and retained in the permanent corpus; per-case root-cause detail is tracked internally rather than on this page.</li>
                   <li><em>Generation Defects (5 total):</em> Contradictory Item Response Theory distractor rationale; non-unique option in Narratology; false-premise prompt in non-Hausdorff topology; underidentified fiscal shock equation in DSGE macroeconomics; and 1 ambiguous prompt boundary in Administrative Law.</li>
                 </ul>
               </div>
@@ -15597,7 +15597,7 @@
   </script>
 
   <!-- ===================================================================
-       iPad Ambilight — the study-universe card's background reflects, in
+       iPad Ambilight, the study-universe card's background reflects, in
        real time, whatever is on the iPad screen at that moment, with glow.
 
        How it works:
@@ -15620,7 +15620,7 @@
       const screen = document.getElementById('ipadScreenCanvas');
       if (!card || !screen) return;
 
-      // Respect users who asked for less motion — keep the seeded static glow.
+      // Respect users who asked for less motion, keep the seeded static glow.
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       const ipad = card.querySelector('.ipad-mockup'); // the physical device = glow origin
@@ -15631,7 +15631,7 @@
       const ctx = cv.getContext('2d', { willReadFrequently: true });
 
       // Measure the iPad's center as a % within the card so the glow originates there.
-      // Recomputed each tick — cheap, and free-of-charge responsive/scroll tracking.
+      // Recomputed each tick, cheap, and free-of-charge responsive/scroll tracking.
       function updateOrigin() {
         if (!ipad) return;
         const r = ipad.getBoundingClientRect();
@@ -15718,7 +15718,7 @@
             }
             tBase = boostSat(r / n, g / n, b / n, 1.6);
             tAccent = [ar, ag, ab];
-          } catch (_) { /* tainted/decoding — keep fallback this frame */ }
+          } catch (_) { /* tainted/decoding, keep fallback this frame */ }
         }
 
         ease(base, tBase, 0.12);
@@ -16253,7 +16253,7 @@
   <script>
   /* 3D device tilt-reveal: rotate each phone/tablet flat as it scrolls in.
      The device scenes live inside content-visibility sections, where an
-     observer on the deep device element is unreliable — so we observe each
+     observer on the deep device element is unreliable, so we observe each
      device's `.section-content` wrapper (the same target the site's other
      scroll animations use) and reveal the devices inside it. One-shot. */
   (function () {

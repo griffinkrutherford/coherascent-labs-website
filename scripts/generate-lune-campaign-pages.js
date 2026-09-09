@@ -196,7 +196,7 @@ function render(page) {
   // portrait and get cropped to an unreadable sliver. Each page ships its own
   // 1200x630 og-card.jpg next to its index.html.
   const ogImage = `${canonical.replace(/\/$/, "")}/og-card.jpg`;
-  const ogImageAlt = `${page.metaTitle.replace(/\s*\|\s*Lune Synth™?\s*$/, "")} — Lune Synth, the anti-slop learning app`;
+  const ogImageAlt = `${page.metaTitle.replace(/\s*\|\s*Lune Synth™?\s*$/, "")} | Lune Synth, the anti-slop learning app`;
   const disclaimer = page.disclaimer
     ? `<p class="campaign-footer__disclaimer">${escapeHtml(page.disclaimer)}</p>`
     : "";

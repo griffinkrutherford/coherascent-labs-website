@@ -47,7 +47,7 @@ export function createScene(canvas, { theme = "dark" } = {}) {
   root.add(unbuilt.group, earned.group);
 
   // Rotation is clamped. Past roughly ±60° the camera looks down the axon's
-  // own axis and both neurons collapse to blobs — the entire comparison is
+  // own axis and both neurons collapse to blobs, the entire comparison is
   // lost. This is an explanatory diagram, not a model viewer, so the range is
   // limited to angles where the story always reads.
   const AZ_LIMIT = THREE.MathUtils.degToRad(42);

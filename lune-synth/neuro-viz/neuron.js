@@ -4,7 +4,7 @@ import * as THREE from "../vendor/three/three.module.js";
 // terminal boutons.
 //
 // Both neurons in the scene are built from this same function with identical
-// geometry. The only thing that differs is what practice built — sheath
+// geometry. The only thing that differs is what practice built, sheath
 // thickness, node regularity, and how the action potential propagates.
 // Nothing about the unbuilt neuron is damaged or degraded; it is simply
 // unbuilt.
@@ -22,7 +22,7 @@ export const SEGMENT_CENTERS = Array.from(
   (_, i) => AXON_START + SEG_LEN / 2 + i * (SEG_LEN + GAP),
 );
 
-// Nodes of Ranvier — the exposed gaps between internodes. These are the
+// Nodes of Ranvier, the exposed gaps between internodes. These are the
 // points a saltatory action potential jumps between.
 export const NODE_POSITIONS = [
   AXON_START,
@@ -320,7 +320,7 @@ export function createNeuron({ variant, theme = "dark" }) {
   //
   // The unbuilt axon keeps NO sheath rather than a patchy one. Three
   // independent reviewers read dashed patches as a perforated or lesioned
-  // cable — i.e. as damage — which is both wrong and the opposite of the
+  // cable, i.e. as damage, which is both wrong and the opposite of the
   // point. An unmyelinated axon is simply bare.
   const NEUTRAL_BOUTON = new THREE.Color(colors.soma);
   const EARNED_BOUTON = new THREE.Color(colors.earned);

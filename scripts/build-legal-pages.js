@@ -223,7 +223,7 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
   <meta property="og:image" content="${socialImage}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Lune Synth — the anti-slop learning app, with the Lune Synth astronaut app icon" />
+  <meta property="og:image:alt" content="Lune Synth: the anti-slop learning app, with the Lune Synth astronaut app icon" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${socialTitle}" />
   <meta name="twitter:description" content="${socialDescription}" />
@@ -332,5 +332,5 @@ pages.forEach(page => {
 
   fs.mkdirSync(path.dirname(page.output), { recursive: true });
   fs.writeFileSync(page.output, pageTemplate(page, content));
-  console.log(`Built ${path.relative(ROOT, page.output)}${tokens.length ? ` (draft — ${tokens.length} unresolved token${tokens.length === 1 ? '' : 's'})` : ''}`);
+  console.log(`Built ${path.relative(ROOT, page.output)}${tokens.length ? ` (draft, ${tokens.length} unresolved token${tokens.length === 1 ? '' : 's'})` : ''}`);
 });

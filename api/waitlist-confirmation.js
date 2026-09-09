@@ -1,7 +1,7 @@
 /**
  * Waitlist confirmation email.
  *
- * Sent after an address is stored, purely as a courtesy — the caller must never
+ * Sent after an address is stored, purely as a courtesy, the caller must never
  * fail a waitlist submission because this failed. See sendWaitlistConfirmation.
  *
  * The email asks the recruiting question (phone platform, and the Google account
@@ -29,7 +29,7 @@ const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const FROM = 'Griffin at Lune Synth <griffin@mail.lunesynth.com>';
 const REPLY_TO = 'griffin@lunesynth.com';
 
-const SUBJECT = "You're on the Lune Synth beta list — one quick question";
+const SUBJECT = "You're on the Lune Synth beta list, one quick question";
 // The backfill goes to people who signed up weeks ago and needs a reply,
 // not a brand impression. A short question reads as a person writing to
 // you; an announcement-shaped subject reads as a campaign and sorts that
@@ -92,7 +92,7 @@ function buildHtml(options = {}) {
     unknown: {
       eyebrow: 'Before we can invite you',
       title: 'Reply with one word: <span style="color:' + TEXT + ';">Android</span> or <span style="color:' + TEXT + ';">iPhone</span>.',
-      body: 'That&rsquo;s it &mdash; that&rsquo;s the whole ask.',
+      body: 'That&rsquo;s it. That&rsquo;s the whole ask.',
       note: '<strong style="color:' + MUTED + ';">Android only:</strong> your Play invite goes to the Google account on your phone. '
         + 'If that isn&rsquo;t <span style="color:' + TEXT + ';">' + escapeHtml(recipient) + '</span>, include the right address. Otherwise nothing else needed.',
       cta: 'Reply Android or iPhone',
@@ -100,7 +100,7 @@ function buildHtml(options = {}) {
     android_needs_email: {
       eyebrow: 'One thing still missing',
       title: 'Is your Play Store on <span style="color:' + TEXT + ';">' + escapeHtml(recipient) + '</span>?',
-      body: 'If so, you&rsquo;re done &mdash; no need to reply.',
+      body: 'If so, you&rsquo;re done, no need to reply.',
       note: 'If your phone uses a different Google account, reply with that address and we&rsquo;ll send the invite there instead.',
       cta: 'Mine is a different account',
     },
@@ -108,7 +108,7 @@ function buildHtml(options = {}) {
       eyebrow: 'Your invite is set',
       title: 'We&rsquo;ll send your Play invite here:',
       body: '<span style="font-family:' + MONO + ';color:' + TEXT + ';">' + escapeHtml(googleEmail) + '</span>',
-      note: 'That&rsquo;s the Google account your Play Store uses. If it&rsquo;s wrong, just reply and we&rsquo;ll fix it &mdash; otherwise the app never appears for you.',
+      note: 'That&rsquo;s the Google account your Play Store uses. If it&rsquo;s wrong, just reply and we&rsquo;ll fix it; otherwise the app never appears for you.',
       cta: 'That&rsquo;s not right',
     },
     ios_known: {
@@ -137,7 +137,7 @@ function buildHtml(options = {}) {
 
 <tr>
 <td style="padding:16px 34px 0 34px;font-family:${SANS};font-size:14px;line-height:1.65;color:${FAINT};">
-Or just hit reply &mdash; it reaches a person, not a robot.
+Or just hit reply, it reaches a person, not a robot.
 </td>
 </tr>`
     : '';
@@ -218,7 +218,7 @@ ${ctaRow}
 <td style="padding:28px 34px 30px 34px;">
 <div style="border-top:1px solid ${BORDER};padding-top:18px;font-family:${SANS};font-size:12px;line-height:1.6;color:${FAINT};">
 You received this because you joined the Lune Synth beta waitlist at lunesynth.com.<br />
-Lune Synth&trade; &mdash; the anti-slop learning app.${unsubscribeUrl
+Lune Synth&trade;: the anti-slop learning app.${unsubscribeUrl
   ? `<br /><a href="${unsubscribeUrl}" style="color:${FAINT};text-decoration:underline;">Unsubscribe</a>`
   : ''}
 </div>
@@ -262,7 +262,7 @@ function buildLetterHtml(options = {}) {
       const escaped = escapeHtml(block);
       // The sign-off is the one place hard line breaks are meaningful; every
       // other paragraph is wrapped for plain text and should reflow in HTML.
-      const isSignature = block.startsWith('\u2014');
+      const isSignature = block.startsWith(', ');
       const html = isSignature
         ? escaped.replace(/\n/g, '<br />')
         : escaped.replace(/\n/g, ' ');
@@ -437,7 +437,7 @@ grades your reasoning step by step instead of handing you an answer.
 
 Thanks for being early. It genuinely helps.
 
-— Griffin
+Griffin
 Lune Synth
 ${unsubscribeUrl ? `\nUnsubscribe: ${unsubscribeUrl}\n` : ''}`;
 }

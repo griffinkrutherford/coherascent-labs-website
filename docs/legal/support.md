@@ -19,7 +19,7 @@ screen, or email us.
 Tap "Forgot password?" on the sign-in screen. We'll email you an 8-digit code.
 Enter that code in the app, then choose a new password.
 
-Note: the email also contains a link, but the link opens our website — it won't
+Note: the email also contains a link, but the link opens our website, it won't
 reset your password on its own. Use the code in the app.
 
 **My code says it's wrong or expired.**
@@ -37,7 +37,7 @@ That's for photographing handwritten work so it can be graded. You can decline
 and type or dictate your answers instead.
 
 **The app is asking for microphone access.**
-That's for spoken answers. Audio is transcribed and immediately discarded —
+That's for spoken answers. Audio is transcribed and immediately discarded,
 recordings are never stored.
 
 **Grading is taking a while.**
@@ -61,8 +61,8 @@ Thanks for testing. The fastest way to report something is in the app, using
 Send Feedback in Settings. That attaches your app version automatically, which
 saves a round trip.
 
-For anything you can't report from inside the app — crashes on launch, sign-in
-problems — email [griffin@lunesynth.com](mailto:griffin@lunesynth.com).
+For anything you can't report from inside the app, crashes on launch, sign-in
+problems, email [griffin@lunesynth.com](mailto:griffin@lunesynth.com).
 
 ---
 
