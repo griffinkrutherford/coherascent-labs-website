@@ -102,3 +102,36 @@ html, body {
   .about-luna-preview { width: min(100%, 300px); margin-inline: auto; }
   .about-luna-phone { width: min(100% - 16px, 260px); }
 }
+
+.about-attention-layout { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 32px; align-items: start; }
+.about-athletics { position: sticky; top: 120px; margin: 0; min-width: 0; }
+.about-athletics__photos { display: grid; overflow: hidden; border-radius: 18px; border: 1px solid var(--line); background: #080609; }
+.about-athletics__photo { grid-area: 1 / 1; display: block; width: 100%; height: auto; opacity: 0; transition: opacity 850ms ease; }
+.about-athletics__photo.is-active { opacity: 1; }
+.about-athletics figcaption { padding-top: 14px; color: var(--muted); font: 12px/1.6 var(--font-mono); text-align: center; }
+.about-athletics__controls { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+.about-athletics__controls button { min-width: 44px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; color: #ffd1d5; background: #ff727c12; font: inherit; cursor: pointer; }
+.about-athletics__controls button:hover { background: #ff727c26; }
+.about-athletics__controls button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+@media (min-width: 1200px) {
+  .about-story #why { width: calc(100% + 240px); margin-left: -120px; box-sizing: border-box; }
+  .about-attention-layout { grid-template-columns: minmax(0, 1fr) 330px; gap: 42px; }
+}
+@media (max-width: 760px) {
+  .about-attention-layout { grid-template-columns: minmax(0, 1fr); }
+  .about-athletics { position: static; width: min(100%, 360px); margin-inline: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-athletics__photo { transition: none; }
+}
+
+.about-understanding-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 30px; align-items: center; }
+.about-handwritten { margin: 0; min-width: 0; }
+.about-handwritten img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 16px; }
+.about-handwritten figcaption { margin-top: 12px; color: var(--muted); font: 12px/1.6 var(--font-mono); text-align: center; }
+@media (max-width: 760px) {
+  .about-understanding-layout { grid-template-columns: minmax(0, 1fr); }
+  .about-handwritten { width: min(100%, 360px); margin-inline: auto; }
+}
+.about-page .about-home-link { color: inherit; text-decoration-color: rgba(255,114,124,.5); text-decoration-thickness: 1px; }
+.about-page .about-home-link:hover { color: #ffabb1; }
