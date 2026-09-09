@@ -18,7 +18,7 @@
       device.style.transition = "none";
       device.classList.add("device-tilt");
       device.parentElement.classList.add("device-tilt-parent");
-      for (var i = 1; i <= 16; i++) {
+      for (var i = 1; i <= 24; i++) {
         var slice = document.createElement("span");
         slice.className = "device-tilt__slice";
         slice.setAttribute("aria-hidden", "true");

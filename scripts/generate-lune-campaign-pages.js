@@ -233,8 +233,8 @@ function render(page) {
   <script src="/campaign/cta.js?v=2" defer></script>
   <script src="/campaign/features.js?v=3" defer></script>
   <script src="/campaign/landing.js?v=5" defer></script>
-  <link rel="stylesheet" href="/campaign/device-tilt.css?v=2" />
-  <script src="/campaign/device-tilt.js?v=2" defer></script>
+  <link rel="stylesheet" href="/campaign/device-tilt.css?v=3" />
+  <script src="/campaign/device-tilt.js?v=3" defer></script>
   <script src="/campaign/offer-popup.js?v=2" defer></script>
 </head>
 <body>

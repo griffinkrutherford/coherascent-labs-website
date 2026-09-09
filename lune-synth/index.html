@@ -10733,13 +10733,7 @@
       html[data-tilt-ready] .quick-missions__phone { --dev-depth: 18px; }
       html[data-tilt-ready] .luna-phone--tab { --dev-depth: 19px; }
 
-      /* NOTE: the power/volume keys are intentionally left on the flat front
-         face (their default styling) rather than folded onto the side rail.
-         Folding them (rotateY/rotateX 90deg) made them edge-on and therefore
-         invisible whenever the device is viewed flat, the full-screen /
-         at-rest state, so the keys read as a solid visible detail in every
-         view instead. The device body still carries real 3D thickness via the
-         .dev-slice stack. */
+      /* Volume-key side faces are defined in campaign/device-tilt.css. */
     }
 
   </style>
@@ -10759,8 +10753,8 @@
     } catch (e) {}
   })();
 </script>
-  <link rel="stylesheet" href="/campaign/device-tilt.css?v=1" />
-  <script src="/campaign/device-tilt.js?v=1" defer></script>
+  <link rel="stylesheet" href="/campaign/device-tilt.css?v=3" />
+  <script src="/campaign/device-tilt.js?v=3" defer></script>
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
   <script type="application/ld+json">
 {
@@ -11588,11 +11582,35 @@
         .neuro-route-label span { font-size: 0.65rem; }
       }
 
+      /* Matches the Statistical Audit drawer's fill so the two drawers read as
+         the same component. The backdrop blur is what makes the translucent
+         fill sit solid over the starfield. */
       .neuro-science {
-        border: 1px solid rgba(122, 184, 255, 0.24);
+        border: 1px solid rgba(122, 184, 255, 0.14);
         border-radius: 16px;
-        background: rgba(122, 184, 255, 0.035);
+        background: rgba(8, 16, 36, 0.45);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        overflow: hidden;
         text-align: left;
+        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .neuro-science[open] {
+        background: rgba(8, 16, 36, 0.72);
+        border-color: rgba(100, 168, 255, 0.32);
+        box-shadow: 0 16px 40px rgba(4, 10, 24, 0.35);
+      }
+
+      html[data-theme="light"] .neuro-science {
+        background: rgba(255, 255, 255, 0.65);
+        border-color: rgba(79, 132, 214, 0.18);
+      }
+
+      html[data-theme="light"] .neuro-science[open] {
+        background: rgba(255, 255, 255, 0.92);
+        border-color: rgba(79, 132, 214, 0.32);
+        box-shadow: 0 16px 36px rgba(151, 164, 192, 0.2);
       }
       .neuro-science summary {
         display: flex; align-items: center; justify-content: space-between;
@@ -11796,8 +11814,9 @@
           <strong>Cheating skips the practice.</strong>
           Repeated practice does more than make a task feel familiar: learning can help build new
           myelin, the fatty insulation around nerve fibers. In animal studies, repeated neural
-          activity can also thicken myelin sheaths. Working through the friction keeps you practicing
-          instead of skipping the attempt.
+          activity can also thicken myelin sheaths.
+          <strong>It's like lifting weights for your brain.</strong>
+          Working through the friction keeps you practicing instead of skipping the attempt.
           <strong>Lune Synth keeps you doing the work over time:</strong> solve, get feedback, repeat.
         </p>
 
