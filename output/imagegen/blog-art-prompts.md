@@ -1,0 +1,11 @@
+Generated with the built-in image generation tool. Final assets:
+- lune-synth/blog/images/close-the-notes-v3.webp
+- lune-synth/blog/images/choose-the-method-v3.webp
+
+## Close the notes
+
+Use case: illustration-story. Create a finished custom editorial blog cover for an article titled 'Close the notes. Find the gaps.' about retrieval practice: attempting to reconstruct an idea from memory reveals missing understanding. Landscape 1536x1024. Scene: close-up straight-on view of a deep forest-green classroom chalkboard, an elegant hand-drawn white chalk concept map of circles connected by lines with a few conspicuous missing nodes and unfinished connections; one adult hand holding chalk enters from bottom right, about to fill a gap. A single subtle ochre chalk accent marks the missing part. Realistic tactile chalk dust, natural side lighting, quiet studious atmosphere, photographic editorial realism. Strong readable composition at thumbnail size with main chalk map central and safe for 16:9 crop. No desk, books, notebooks, coffee, plants, screens, glowing brains, text, letters, logos or watermark. This is a standalone website image, not a page mockup.
+
+## Choosing the method
+
+Use case: illustration-story. Asset: custom editorial blog cover for 'The hardest step is choosing the method', an article about mixed practice requiring learners to decide which approach fits a problem. Generate landscape 1536x1024. Sophisticated tactile cut-paper editorial illustration: a tiny solitary learner seen from behind stands at a junction of three broad paths in an abstract terracotta landscape. Each path has a different geometric character: curved arcs, stepped angular shapes, straight segments, suggesting different ways to solve a problem. Strong sculptural layered paper textures and soft real shadows, cream and burnt orange dominant, restrained dark ink accents. Main junction centered, graphic clear silhouette, compelling magazine art that reads at thumbnail size and crops to 16:9. This is a metaphor for choosing a problem-solving approach. No text or lettering, no books, notebooks, desks, coffee, screens, glowing effects, robots, logos or watermarks. Finished standalone artwork, not a website mockup.
