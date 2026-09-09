@@ -3,7 +3,7 @@
 
   if (!document.querySelector('script[data-lune-site-footer]')) {
     var footerScript = document.createElement("script");
-    footerScript.src = "/campaign/site-footer.js?v=7";
+    footerScript.src = "/campaign/site-footer.js?v=8";
     footerScript.defer = true;
     footerScript.dataset.luneSiteFooter = "";
     document.head.appendChild(footerScript);
