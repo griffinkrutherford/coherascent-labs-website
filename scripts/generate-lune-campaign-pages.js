@@ -237,7 +237,7 @@ function render(page) {
   <script src="/campaign/device-tilt.js?v=3" defer></script>
   <script src="/campaign/offer-popup.js?v=2" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
-  <link rel="stylesheet" href="/campaign/site-header.css?v=1" />
+  <link rel="stylesheet" href="/campaign/site-header.css?v=2" />
 </head>
 <body>
   <header class="site-header">
@@ -259,9 +259,9 @@ function render(page) {
         <a class="nav-link" href="/#constellations-title">Constellations</a>
         <a class="nav-link" href="/#medals-title">Medals</a>
         <a class="nav-link" href="/#engine-title">Engine</a>
-        <a class="nav-link" href="/about/">Our Story</a>
-        <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
         <a class="nav-link" href="/#site-footer">All Landing Pages</a>
+        <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
+        <a class="nav-link nav-link--story" href="/about/">Our Story</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span>
