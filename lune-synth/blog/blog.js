@@ -66,9 +66,6 @@
     if (e.key === "Escape") setOpen(false);
   });
 
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 640) setOpen(false);
-  });
 })();
 
 // Mobile brand dropdown (Coherascent Labs logo menu): full screen popup like the hamburger nav.
@@ -200,13 +197,13 @@
   if (!document.querySelector('link[data-beta-offer-popup]')) {
     var stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
-    stylesheet.href = "/campaign/offer-popup.css?v=1";
+    stylesheet.href = "/campaign/offer-popup.css?v=2";
     stylesheet.dataset.betaOfferPopup = "";
     document.head.appendChild(stylesheet);
   }
   if (!document.querySelector('script[data-beta-offer-popup]')) {
     var script = document.createElement("script");
-    script.src = "/campaign/offer-popup.js?v=1";
+    script.src = "/campaign/offer-popup.js?v=2";
     script.dataset.betaOfferPopup = "";
     document.head.appendChild(script);
   }

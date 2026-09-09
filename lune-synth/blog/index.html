@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/blog/blog.css?v=12" />
+  <link rel="stylesheet" href="/blog/blog.css?v=13" />
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
 </head>
 <body>
@@ -56,9 +56,12 @@
         </div>
       </div>
       <nav class="nav-links" id="primary-nav" aria-label="Primary">
+        <a class="nav-link" href="/#applied-page-title">Overview</a>
+        <a class="nav-link" href="/#waitlist">Beta Waitlist</a>
         <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
         <a class="nav-link" href="/#platform-title">Handwriting</a>
         <a class="nav-link" href="/#luna-title">Luna</a>
+        <a class="nav-link" href="/#neuro-title">Circuit</a>
         <a class="nav-link" href="/#processing-title">Grading</a>
         <a class="nav-link" href="/#voice-title">Input Methods</a>
         <a class="nav-link" href="/#problem-solver-title">Problem Solver</a>
@@ -67,6 +70,7 @@
         <a class="nav-link" href="/#medals-title">Medals</a>
         <a class="nav-link" href="/#engine-title">Engine</a>
         <a class="nav-link nav-link--blog" href="/blog/" aria-current="page">Blog</a>
+        <a class="nav-link" href="/#site-footer">All Landing Pages</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span>
@@ -91,6 +95,33 @@
         Newest posts go at the top of this list.
       -->
       <ul class="post-list" data-post-list>
+        <li>
+          <a class="post-card" href="/blog/a-study-plan-needs-a-return-date/">
+            <span class="post-card__image"><img src="/blog/images/return-to-it.webp" alt="Notebook pages form stepping stones across a night landscape beneath changing moon phases" loading="lazy" decoding="async" /></span>
+            <div class="post-card__meta"><span class="post-card__tag">Learning Science</span><time datetime="2026-09-07">September 7, 2026</time><span class="post-card__author">Griffin Rutherford</span></div>
+            <h2>A study plan needs a return date</h2>
+            <p>Finishing a topic today does not tell you what will remain next week. Give important material a concrete appointment to come back.</p>
+            <span class="post-card__more">Read more &rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a class="post-card" href="/blog/close-the-notes-find-the-gaps/">
+            <span class="post-card__image"><img src="/blog/images/close-the-notes.webp" alt="A closed blue book beside an open notebook with an incomplete constellation of ideas" loading="lazy" decoding="async" /></span>
+            <div class="post-card__meta"><span class="post-card__tag">Learning Science</span><time datetime="2026-09-02">September 2, 2026</time><span class="post-card__author">Griffin Rutherford</span></div>
+            <h2>Close the notes. Find the gaps.</h2>
+            <p>A short attempt from memory can turn a vague feeling of familiarity into a specific list of what to study next.</p>
+            <span class="post-card__more">Read more &rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a class="post-card" href="/blog/the-hardest-step-is-choosing-the-method/">
+            <span class="post-card__image"><img src="/blog/images/choose-the-method.webp" alt="A pencil line branches into different paths across a notebook toward a glowing doorway" loading="lazy" decoding="async" /></span>
+            <div class="post-card__meta"><span class="post-card__tag">Learning Science</span><time datetime="2026-08-31">August 31, 2026</time><span class="post-card__author">Griffin Rutherford</span></div>
+            <h2>The hardest step is choosing the method</h2>
+            <p>A worksheet can tell you which formula to use before you read the problem. Mixed practice puts that decision back in your hands.</p>
+            <span class="post-card__more">Read more &rarr;</span>
+          </a>
+        </li>
         <li>
           <a class="post-card" href="/blog/friction-is-where-learning-starts/">
             <span class="post-card__image">
@@ -342,7 +373,8 @@
       <div class="hero-waitlist-panel" aria-labelledby="lune-beta-title">
         <div class="hero-waitlist-copy">
           <h3 id="lune-beta-title">Join the beta waitlist</h3>
-          <p class="waitlist-offer">Limited-time offer for the first 40 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.</p>
+          <p class="waitlist-offer">Limited-time offer for the first 40 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.<sup>*</sup></p>
+          <p class="waitlist-offer-note"><small>*To qualify for this offer, beta users must provide quality feedback on their experience.</small></p>
         </div>
         <form class="hero-waitlist" data-waitlist-form novalidate>
           <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
@@ -381,6 +413,6 @@
     </div>
   </main>
 
-  <script src="/blog/blog.js?v=4"></script>
+  <script src="/blog/blog.js?v=5"></script>
 </body>
 </html>
