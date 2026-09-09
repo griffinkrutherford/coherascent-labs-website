@@ -33,18 +33,37 @@
   <link rel="stylesheet" href="/campaign/device-tilt.css?v=3" />
   <script src="/campaign/device-tilt.js?v=3" defer></script>
   <script src="/campaign/offer-popup.js?v=2" defer></script>
+  <script src="/campaign/site-header.js?v=1" defer></script>
+  <link rel="stylesheet" href="/campaign/site-header.css?v=1" />
 </head>
 <body>
-  <header class="campaign-header campaign-shell">
-    <a class="campaign-brand" href="/" aria-label="Lune Synth home">
-      <img src="/images/lune-synth-icon-120.png" alt="" width="46" height="46" />
-      <span class="campaign-brand__copy">
-        <strong>Lune Synth&trade;</strong>
-        <span>The anti-slop learning app</span>
-      </span>
-    </a>
-    <a class="campaign-header__cta" href="#join-beta">Join the beta</a>
-  </header>
+  <header class="site-header">
+      <a class="brand" href="/" aria-label="Lune Synth home" style="text-decoration: none">
+        <img class="brand-logo" src="/images/lune-synth-icon-120.png" alt="" width="54" height="54" />
+        <h1>Lune Synth</h1>
+      </a>
+      <nav class="nav-links" id="primary-nav" aria-label="Primary">
+        <a class="nav-link" href="/#applied-page-title">Overview</a>
+        <a class="nav-link" href="/#waitlist">Beta Waitlist</a>
+        <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
+        <a class="nav-link" href="/#platform-title">Handwriting</a>
+        <a class="nav-link" href="/#luna-title">Luna</a>
+        <a class="nav-link" href="/#neuro-title">Circuit</a>
+        <a class="nav-link" href="/#processing-title">Grading</a>
+        <a class="nav-link" href="/#voice-title">Input Methods</a>
+        <a class="nav-link" href="/#problem-solver-title">Problem Solver</a>
+        <a class="nav-link" href="/#quick-missions-title">Quick Missions</a>
+        <a class="nav-link" href="/#constellations-title">Constellations</a>
+        <a class="nav-link" href="/#medals-title">Medals</a>
+        <a class="nav-link" href="/#engine-title">Engine</a>
+        <a class="nav-link" href="/about/">Our Story</a>
+        <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
+        <a class="nav-link" href="/#site-footer">All Landing Pages</a>
+      </nav>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+    </header>
 
   <main class="campaign-main">
     <section class="campaign-hero campaign-shell" aria-labelledby="campaign-title">

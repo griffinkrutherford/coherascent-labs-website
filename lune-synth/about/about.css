@@ -147,3 +147,14 @@ html, body {
   .about-luna-pair__art { aspect-ratio: auto; }
   .about-luna-pair__art img { width: 210px; max-width: 85%; }
 }
+
+/* A slow orbit of personal photos, centered beneath the attention story. */
+.about-attention-layout { display: block; }
+.about-story #why { width: auto; margin-left: 0; }
+.about-athletics { position: relative; top: auto; width: 100%; max-width: 720px; margin: 36px auto 0; }
+.about-athletics__photos { position: relative; display: grid; place-items: center; height: clamp(300px, 48vw, 470px); overflow: hidden; border: 0; background: transparent; border-radius: 0; }
+.about-athletics__photo { position: absolute; width: 40%; max-width: 270px; height: auto; opacity: 1; transition: none; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 14px 28px #0005; }
+.about-athletics__pause { display: block; margin: 10px auto 0; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: #ff727c12; color: #ffd1d5; cursor: pointer; }
+.about-athletics__pause[hidden] { display: none; }
+.about-athletics__pause:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+@media (max-width: 520px) { .about-athletics__photos { height: 280px; } .about-athletics__photo { width: 45%; } }

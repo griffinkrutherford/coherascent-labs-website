@@ -35,35 +35,36 @@
   var gallery = document.querySelector("[data-athletics]");
   if (!gallery) return;
   var photos = Array.from(gallery.querySelectorAll(".about-athletics__photo"));
-  var captions = ["Strength training", "Race day", "Out on the trail"];
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   var pause = gallery.querySelector("[data-athletics-pause]");
-  var index = 0, timer = null, visible = false, userPaused = reduced.matches;
-  function show(next) {
-    index = (next + photos.length) % photos.length;
+  var paused = false, visible = false, frame = null, last = null, angle = 0;
+  function draw() {
+    var radius = gallery.clientWidth * 0.30;
     photos.forEach(function (photo, i) {
-      photo.classList.toggle("is-active", i === index);
-      photo.setAttribute("aria-hidden", String(i !== index));
+      var phase = angle + i * Math.PI * 2 / photos.length;
+      photo.style.transform = "translateX(" + Math.sin(phase) * radius + "px) scale(" + (0.78 + 0.22 * Math.cos(phase)) + ")";
+      photo.style.opacity = 0.55 + 0.45 * ((Math.cos(phase) + 1) / 2);
+      photo.style.zIndex = Math.round((Math.cos(phase) + 1) * 100);
+      photo.setAttribute("aria-hidden", "false");
     });
-    gallery.querySelector("[data-athletics-caption]").textContent = captions[index];
+  }
+  function tick(time) {
+    if (last !== null) angle += Math.min(time - last, 60) * Math.PI * 2 / 42000;
+    last = time; draw(); frame = requestAnimationFrame(tick);
   }
   function sync() {
-    clearInterval(timer);
-    var paused = userPaused || reduced.matches;
-    pause.textContent = paused ? "Play" : "Pause";
-    pause.setAttribute("aria-label", paused ? "Play slideshow" : "Pause slideshow");
+    cancelAnimationFrame(frame); last = null;
     pause.hidden = reduced.matches;
-    if (visible && !document.hidden && !paused) timer = setInterval(function () { show(index + 1); }, 5500);
+    pause.textContent = paused ? "▶" : "❚❚";
+    pause.setAttribute("aria-label", paused ? "Play photo carousel" : "Pause photo carousel");
+    draw();
+    if (visible && !document.hidden && !paused && !reduced.matches) frame = requestAnimationFrame(tick);
   }
-  gallery.querySelector("[data-athletics-prev]").addEventListener("click", function () { userPaused = true; show(index - 1); sync(); });
-  gallery.querySelector("[data-athletics-next]").addEventListener("click", function () { userPaused = true; show(index + 1); sync(); });
-  pause.addEventListener("click", function () { userPaused = !userPaused; sync(); });
-  gallery.addEventListener("focusin", function (event) {
-    if (event.target !== pause) { userPaused = true; sync(); }
-  });
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; sync(); }, { threshold: 0.15 }).observe(gallery);
-  }
+  pause.addEventListener("click", function () { paused = !paused; sync(); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (entries) {
+    visible = entries[0].isIntersecting; sync();
+  }).observe(gallery);
+  window.addEventListener("resize", draw);
   document.addEventListener("visibilitychange", sync);
   reduced.addEventListener("change", sync);
   sync();
