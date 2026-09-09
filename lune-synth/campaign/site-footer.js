@@ -95,6 +95,7 @@
         <nav aria-label="Footer">
           <a href="/">Home</a>
           <a href="/blog/">Blog</a>
+          <a href="/about/">Our Story</a>
           <a href="/support/">Support</a>
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
