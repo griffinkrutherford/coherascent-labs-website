@@ -127,6 +127,7 @@
 
   document.querySelectorAll("footer.campaign-footer").forEach(function (legacyFooter) {
     var component = document.createElement("lune-site-footer");
+    component.id = "site-footer";
     legacyFooter.querySelectorAll(".campaign-footer__disclaimer").forEach(function (disclaimer) {
       var note = document.createElement("span");
       note.setAttribute("data-footer-note", "");

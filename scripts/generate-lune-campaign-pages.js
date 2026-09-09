@@ -238,6 +238,8 @@ function render(page) {
   <script src="/campaign/offer-popup.js?v=2" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/site-header.css?v=2" />
+  <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
+  <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -267,6 +269,7 @@ function render(page) {
         <span class="nav-toggle__bars" aria-hidden="true"></span>
       </button>
     </header>
+
 
   <main class="campaign-main">
     <section class="campaign-hero campaign-shell" aria-labelledby="campaign-title">

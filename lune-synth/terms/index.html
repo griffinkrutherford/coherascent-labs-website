@@ -25,10 +25,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/lune-synth/legal.css?v=5" />
   <link rel="stylesheet" href="/campaign/site-header.css?v=2" />
+  <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
+  <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
 </head>
 <body>
-  <main class="legal-shell">
-    <header class="site-header">
+  <header class="site-header">
       <a class="brand" href="/" aria-label="Lune Synth home" style="text-decoration: none">
         <img class="brand-logo" src="/images/lune-synth-icon-120.png" alt="" width="54" height="54" />
         <h1>Lune Synth</h1>
@@ -55,6 +56,8 @@
         <span class="nav-toggle__bars" aria-hidden="true"></span>
       </button>
     </header>
+  <main class="legal-shell">
+
     <article class="legal-document">
 <h1>Lune Synth Terms of Service</h1>
 <p><strong>Effective date:</strong> August 13, 2026</p>
@@ -183,24 +186,7 @@
 <p>Griffin Kwan Rutherford</p>
 <p>Coherascent Labs, a <a href="https://tano.holdings/">Tano Holdings</a> brand</p>
 <p><a href="mailto:griffin@lunesynth.com">griffin@lunesynth.com</a></p>
-    <footer class="site-footer" aria-label="Lune Synth footer">
-      <a class="site-footer__identity" href="/" aria-label="Lune Synth home">
-        <img class="site-footer__mark" src="/images/lune-synth-icon-120.png" alt="" width="36" height="36" />
-        <span class="site-footer__copy">
-          <strong>Lune Synth&trade;</strong>
-          <span>The anti-slop learning app</span>
-        </span>
-      </a>
-      <nav aria-label="Footer">
-          <a href="https://coherascentlabs.com/" style="display: inline-flex; align-items: center; gap: 8px"><img src="/coherascent-labs-logo-march-16-2026.webp" alt="" width="36" height="36" loading="lazy" decoding="async" style="object-fit: contain; border-radius: 8px" />Coherascent Labs</a>
-        <a href="/">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/support/">Support</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
-        <a href="mailto:griffin@lunesynth.com">Contact</a>
-      </nav>
-    </footer>
+    <lune-site-footer id="site-footer"></lune-site-footer>
     </article>
   </main>
   <script src="/blog/blog.js?v=5"></script>

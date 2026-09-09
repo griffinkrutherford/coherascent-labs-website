@@ -198,3 +198,6 @@ html[data-theme="light"] .site-footer__note { border-top-color: rgba(127, 99, 21
 
 #waitlist-offer-note { scroll-margin-top: 120px; }
 #waitlist-offer-note:target { outline: 1px solid currentColor; outline-offset: 8px; }
+
+/* Page palettes must not change the shared navigation identity. */
+.site-footer { --blue: #64a8ff; --purple: #a47bff; --line: rgba(164, 123, 255, 0.22); --muted: #a6bad7; --glow: 0 18px 50px rgba(74, 119, 255, 0.12); }

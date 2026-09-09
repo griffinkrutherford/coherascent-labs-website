@@ -30,9 +30,7 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="../liquid-glass-cards.css?v=1.0.6" />
-  <link rel="stylesheet" href="/campaign/site-footer.css?v=4" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
-  <script src="/campaign/site-footer.js?v=8" defer></script>
   <script src="/campaign/offer-popup.js?v=2" defer></script>
   <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp?v=2" as="image" fetchpriority="high" />
   <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-low.webp?v=2" as="image" fetchpriority="high" />
@@ -861,7 +859,7 @@
       color: var(--blue);
       transition: color 0.3s ease;
     }
-    
+
     html[data-theme="light"] .store-badge-btn .store-icon {
       color: var(--purple);
     }
@@ -869,7 +867,7 @@
     .store-badge-btn:hover .store-icon {
       color: var(--text);
     }
-    
+
     html[data-theme="light"] .store-badge-btn:hover .store-icon {
       color: #06111f;
     }
@@ -8275,12 +8273,12 @@
       align-items: center;
       gap: 6px;
     }
-    
+
     .slideshow-step-btn:hover {
       background: rgba(100, 168, 255, 0.05);
       border-color: rgba(100, 168, 255, 0.15);
     }
-    
+
     .slideshow-step-btn.is-active {
       border-color: transparent;
       background: transparent;
@@ -8355,7 +8353,7 @@
       flex: 1;
       min-height: 0;
     }
-    
+
     /* Soft, blurred halo bleeding out from behind the card, the "spill" of the glow. */
     .active-step-info::before {
       content: "";
@@ -8381,7 +8379,7 @@
         0 0 80px -10px color-mix(in srgb, var(--ambi-accent) 45%, transparent);
     }
     html[data-theme="light"] .active-step-info::before { opacity: 0.55; }
-    
+
     .active-step-text {
       display: flex;
       flex-direction: column;
@@ -8390,7 +8388,7 @@
       gap: 14px;
       box-sizing: border-box;
     }
-    
+
     .active-step-badge {
       font-size: 10px;
       font-weight: 800;
@@ -8404,7 +8402,7 @@
       margin-bottom: 0;
       border: 1px solid rgba(100, 168, 255, 0.2);
     }
-    
+
     .active-step-title {
       font-size: clamp(22px, 2.35vw, 32px);
       font-weight: 800;
@@ -8413,7 +8411,7 @@
       letter-spacing: -0.01em;
       line-height: 1.12;
     }
-    
+
     .active-step-desc {
       font-size: clamp(15px, 1.25vw, 18px);
       color: var(--muted);
@@ -8461,7 +8459,7 @@
       width: 100%;
       box-sizing: border-box;
     }
-    
+
     .ipad-mockup {
       position: relative;
       z-index: 2;
@@ -10769,10 +10767,11 @@
 }
   </script>
   <link rel="stylesheet" href="/campaign/site-header.css?v=2" />
+  <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
+  <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
 </head>
 <body>
-  <main>
-    <header class="site-header">
+  <header class="site-header">
       <a class="brand" href="/" aria-label="Lune Synth home" style="text-decoration: none">
         <img class="brand-logo" src="/images/lune-synth-icon-120.png" alt="" width="54" height="54" />
         <h1>Lune Synth</h1>
@@ -10799,6 +10798,8 @@
         <span class="nav-toggle__bars" aria-hidden="true"></span>
       </button>
     </header>
+  <main>
+
 
     <section class="hero" aria-labelledby="applied-page-title" data-liquid-glass>
       <div class="hero-brandline">
@@ -12913,7 +12914,7 @@
             <span class="active-step-badge" id="activeStepBadge">Step 01</span>
             <h3 class="active-step-title" id="activeStepTitle">Explore Your Learning Worlds</h3>
             <p class="active-step-desc" id="activeStepDesc">Start by navigating your personalized study universe. Choose from over <strong class="world-count">50</strong> visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.</p>
-            
+
             <!-- Dynamic World Selector Dropdown for Step 01 (hidden on other steps) -->
             <div class="world-theme-panel-container" id="worldThemePanel">
               <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select World</span>
@@ -13042,13 +13043,13 @@
     <!-- ================= METALS/ACHIEVEMENT MEDALS SECTION ================= -->
     <section class="section section--medals" id="medals-showcase" aria-labelledby="medals-title">
       <h2 class="section-title" id="medals-title">Earn 100+ Cosmic Medals</h2>
-      
+
       <div class="medals-layout section-content">
-        
+
         <!-- Center Card Container -->
         <div class="medal-viewer-card" id="medalViewerCard" style="width: 100%; margin: 0 auto;">
           <img class="card-corner-luna card-corner-luna--proud" src="/lune-synth/images/luna-emotes/proud.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-          
+
           <!-- Dropdown selector at the top -->
           <div class="medal-rank-selector-wrapper">
             <label for="medalRankDropdown" class="medal-rank-label">Explore Medal Progression</label>
@@ -13070,15 +13071,15 @@
           <div class="medal-canvas-container">
             <!-- Dynamic Glowing Ambient Underlay -->
             <div class="medal-glow-spill" id="medalGlowSpill"></div>
-            
+
             <div class="carousel-3d-stage">
               <!-- Navigation Buttons -->
               <button class="carousel-nav-btn prev-btn" onclick="rotateCarousel(1)" aria-label="Previous Medal">&#8592;</button>
               <button class="carousel-nav-btn next-btn" onclick="rotateCarousel(-1)" aria-label="Next Medal">&#8594;</button>
-              
+
               <!-- Carousel 3D Rotating Track -->
               <div class="carousel-3d-track" id="carousel3dTrack">
-                
+
                 <!-- Medal 0: Streak (Gold Tier Default) -->
                 <div class="carousel-3d-item is-active" onclick="rotateToMedal(0)" role="button" tabindex="0" aria-label="Show gold streak medal">
                   <img class="showcase-medal-image" id="medalImage-streak" src="/lune-synth/lune-synth-landing-medals/06-gold/streak.png" alt="Gold streak medal" loading="lazy" decoding="async">
@@ -13124,7 +13125,7 @@
                     </g>
                     <circle cx="50" cy="50" r="44" id="medalHalo-streak" fill="url(#haloGrad-streak)" />
                     <circle cx="50" cy="50" r="41" id="medalShadowRing-streak" fill="#3A2700" opacity="0.3" />
-                    
+
                     <!-- Metallic Shape Group -->
                     <g id="metalGroup-streak">
                       <circle cx="50" cy="50" r="40" fill="url(#rimGrad-streak)" />
@@ -13135,7 +13136,7 @@
                       <circle cx="50" cy="50" r="27" fill="none" stroke="#3A2700" stroke-width="0.6" opacity="0.55" id="medalInnerBorder-streak" />
                       <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-streak)" />
                     </g>
-                    
+
                     <!-- Paper Shape Group (Initially Hidden) -->
                     <g id="paperGroup-streak" style="display: none;">
                       <path d="M 27 25 H 62 L 75 38 V 82 H 27 Z" fill="#3A2700" opacity="0.18" transform="translate(2, 2)" />
@@ -13144,7 +13145,7 @@
                       <path d="M 35 32 V 75" stroke="#D35C5C" stroke-width="0.75" fill="none" opacity="0.62" stroke-linecap="round" />
                       <path d="M 31 37 H 67 M 31 43 H 70 M 31 49 H 70 M 31 55 H 70 M 31 61 H 66 M 31 67 H 58" stroke="#7EA0B8" stroke-width="0.72" fill="none" opacity="0.52" stroke-linecap="round" />
                     </g>
-                    
+
                     <!-- Ceramic Speckles (Initially Hidden) -->
                     <g id="ceramicSpeckles-streak" style="display: none;">
                       <circle cx="30" cy="36" r="0.75" fill="#3A2700" opacity="0.22" />
@@ -13240,7 +13241,7 @@
                     </g>
                   </svg>
                 </div>
-                
+
                 <!-- Medal 1: Polymath (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(1)" role="button" tabindex="0" aria-label="Show gold polymath medal">
                   <img class="showcase-medal-image" id="medalImage-polymath" src="/lune-synth/lune-synth-landing-medals/06-gold/polymath.png" alt="Gold polymath medal" loading="lazy" decoding="async">
@@ -13286,7 +13287,7 @@
                     </g>
                     <circle cx="50" cy="50" r="44" id="medalHalo-polymath" fill="url(#haloGrad-polymath)" />
                     <circle cx="50" cy="50" r="41" id="medalShadowRing-polymath" fill="#3A2B0A" opacity="0.3" />
-                    
+
                     <!-- Metallic Shape Group -->
                     <g id="metalGroup-polymath">
                       <circle cx="50" cy="50" r="40" fill="url(#rimGrad-polymath)" />
@@ -13297,7 +13298,7 @@
                       <circle cx="50" cy="50" r="27" fill="none" stroke="#3A2B0A" stroke-width="0.6" opacity="0.55" id="medalInnerBorder-polymath" />
                       <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-polymath)" />
                     </g>
-                    
+
                     <!-- Paper Shape Group (Initially Hidden) -->
                     <g id="paperGroup-polymath" style="display: none;">
                       <path d="M 27 25 H 62 L 75 38 V 82 H 27 Z" fill="#3A2B0A" opacity="0.18" transform="translate(2, 2)" />
@@ -13306,7 +13307,7 @@
                       <path d="M 35 32 V 75" stroke="#D35C5C" stroke-width="0.75" fill="none" opacity="0.62" stroke-linecap="round" />
                       <path d="M 31 37 H 67 M 31 43 H 70 M 31 49 H 70 M 31 55 H 70 M 31 61 H 66 M 31 67 H 58" stroke="#7EA0B8" stroke-width="0.72" fill="none" opacity="0.52" stroke-linecap="round" />
                     </g>
-                    
+
                     <!-- Ceramic Speckles (Initially Hidden) -->
                     <g id="ceramicSpeckles-polymath" style="display: none;">
                       <circle cx="30" cy="36" r="0.75" fill="#3A2B0A" opacity="0.22" />
@@ -13406,7 +13407,7 @@
                     </g>
                   </svg>
                 </div>
-                
+
                 <!-- Medal 2: Recovery (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(2)" role="button" tabindex="0" aria-label="Show gold recovery medal">
                   <img class="showcase-medal-image" id="medalImage-recovery" src="/lune-synth/lune-synth-landing-medals/06-gold/recovery.png" alt="Gold recovery medal" loading="lazy" decoding="async">
@@ -13452,7 +13453,7 @@
                     </g>
                     <circle cx="50" cy="50" r="44" id="medalHalo-recovery" fill="url(#haloGrad-recovery)" />
                     <circle cx="50" cy="50" r="41" id="medalShadowRing-recovery" fill="#020817" opacity="0.3" />
-                    
+
                     <!-- Metallic Shape Group -->
                     <g id="metalGroup-recovery">
                       <circle cx="50" cy="50" r="40" fill="url(#rimGrad-recovery)" />
@@ -13463,7 +13464,7 @@
                       <circle cx="50" cy="50" r="27" fill="none" stroke="#020817" stroke-width="0.6" opacity="0.55" id="medalInnerBorder-recovery" />
                       <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-recovery)" />
                     </g>
-                    
+
                     <!-- Paper Shape Group (Initially Hidden) -->
                     <g id="paperGroup-recovery" style="display: none;">
                       <path d="M 27 25 H 62 L 75 38 V 82 H 27 Z" fill="#020817" opacity="0.18" transform="translate(2, 2)" />
@@ -13472,7 +13473,7 @@
                       <path d="M 35 32 V 75" stroke="#D35C5C" stroke-width="0.75" fill="none" opacity="0.62" stroke-linecap="round" />
                       <path d="M 31 37 H 67 M 31 43 H 70 M 31 49 H 70 M 31 55 H 70 M 31 61 H 66 M 31 67 H 58" stroke="#7EA0B8" stroke-width="0.72" fill="none" opacity="0.52" stroke-linecap="round" />
                     </g>
-                    
+
                     <!-- Ceramic Speckles (Initially Hidden) -->
                     <g id="ceramicSpeckles-recovery" style="display: none;">
                       <circle cx="30" cy="36" r="0.75" fill="#020817" opacity="0.22" />
@@ -13568,7 +13569,7 @@
                     </g>
                   </svg>
                 </div>
-                
+
                 <!-- Medal 3: Marksman (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(3)" role="button" tabindex="0" aria-label="Show gold marksman medal">
                   <img class="showcase-medal-image" id="medalImage-marksman" src="/lune-synth/lune-synth-landing-medals/06-gold/marksman.png" alt="Gold marksman medal" loading="lazy" decoding="async">
@@ -13614,7 +13615,7 @@
                     </g>
                     <circle cx="50" cy="50" r="44" id="medalHalo-marksman" fill="url(#haloGrad-marksman)" />
                     <circle cx="50" cy="50" r="41" id="medalShadowRing-marksman" fill="#02140C" opacity="0.3" />
-                    
+
                     <!-- Metallic Shape Group -->
                     <g id="metalGroup-marksman">
                       <circle cx="50" cy="50" r="40" fill="url(#rimGrad-marksman)" />
@@ -13625,7 +13626,7 @@
                       <circle cx="50" cy="50" r="27" fill="none" stroke="#02140C" stroke-width="0.6" opacity="0.55" id="medalInnerBorder-marksman" />
                       <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-marksman)" />
                     </g>
-                    
+
                     <!-- Paper Shape Group (Initially Hidden) -->
                     <g id="paperGroup-marksman" style="display: none;">
                       <path d="M 27 25 H 62 L 75 38 V 82 H 27 Z" fill="#02140C" opacity="0.18" transform="translate(2, 2)" />
@@ -13634,7 +13635,7 @@
                       <path d="M 35 32 V 75" stroke="#D35C5C" stroke-width="0.75" fill="none" opacity="0.62" stroke-linecap="round" />
                       <path d="M 31 37 H 67 M 31 43 H 70 M 31 49 H 70 M 31 55 H 70 M 31 61 H 66 M 31 67 H 58" stroke="#7EA0B8" stroke-width="0.72" fill="none" opacity="0.52" stroke-linecap="round" />
                     </g>
-                    
+
                     <!-- Ceramic Speckles (Initially Hidden) -->
                     <g id="ceramicSpeckles-marksman" style="display: none;">
                       <circle cx="30" cy="36" r="0.75" fill="#02140C" opacity="0.22" />
@@ -13734,7 +13735,7 @@
                     </g>
                   </svg>
                 </div>
-                
+
                 <!-- Medal 4: Handwriting (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)" role="button" tabindex="0" aria-label="Show gold handwriting medal">
                   <img class="showcase-medal-image" id="medalImage-handwriting" src="/lune-synth/lune-synth-landing-medals/06-gold/handwriting.png" alt="Gold handwriting medal" loading="lazy" decoding="async">
@@ -13780,7 +13781,7 @@
                     </g>
                     <circle cx="50" cy="50" r="44" id="medalHalo-handwriting" fill="url(#haloGrad-handwriting)" style="display: none;" />
                     <circle cx="50" cy="50" r="41" id="medalShadowRing-handwriting" fill="#3B2218" opacity="0.3" />
-                    
+
                     <!-- Metallic Shape Group -->
                     <g id="metalGroup-handwriting">
                       <circle cx="50" cy="50" r="40" fill="url(#rimGrad-handwriting)" />
@@ -13791,7 +13792,7 @@
                       <circle cx="50" cy="50" r="27" fill="none" stroke="#3B2218" stroke-width="0.6" opacity="0.32" id="medalInnerBorder-handwriting" />
                       <ellipse cx="40" cy="34" rx="13" ry="5.5" fill="url(#sheenGrad-handwriting)" opacity="0.5" />
                     </g>
-                    
+
                     <!-- Paper Shape Group (Initially Hidden) -->
                     <g id="paperGroup-handwriting" style="display: none;">
                       <path d="M 27 25 H 62 L 75 38 V 82 H 27 Z" fill="#3B2218" opacity="0.18" transform="translate(2, 2)" />
@@ -13800,7 +13801,7 @@
                       <path d="M 35 32 V 75" stroke="#D35C5C" stroke-width="0.75" fill="none" opacity="0.62" stroke-linecap="round" />
                       <path d="M 31 37 H 67 M 31 43 H 70 M 31 49 H 70 M 31 55 H 70 M 31 61 H 66 M 31 67 H 58" stroke="#7EA0B8" stroke-width="0.72" fill="none" opacity="0.52" stroke-linecap="round" />
                     </g>
-                    
+
                     <!-- Ceramic Speckles (Active by default for Ceramic Handwriting) -->
                     <g id="ceramicSpeckles-handwriting" style="display: block;">
                       <circle cx="30" cy="36" r="0.75" fill="#3B2218" opacity="0.22" />
@@ -14042,7 +14043,7 @@
               </span>
             </summary>
             <div class="engine-diligence-body">
-              
+
               <!-- TL;DR Executive Summary -->
               <div class="engine-diligence-tldr">
                 <div class="engine-diligence-tldr__header">
@@ -14534,7 +14535,7 @@
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      
+
       var emailInput = form.querySelector('input[type="email"]');
       var submitButton = form.querySelector('button[type="submit"]');
       if (!emailInput || !submitButton) return;
@@ -14793,7 +14794,7 @@
     const badgeEl = document.getElementById('activeStepBadge');
     const titleEl = document.getElementById('activeStepTitle');
     const descEl = document.getElementById('activeStepDesc');
-    
+
     if (badgeEl && titleEl && descEl && stepData[stepNumber]) {
       badgeEl.textContent = stepData[stepNumber].badge;
       titleEl.innerHTML = stepData[stepNumber].title;
@@ -15284,16 +15285,16 @@
 
   window.changeMedalRank = function(rankValue) {
     selectedRank = parseInt(rankValue, 10);
-    
+
     const container = document.querySelector('.medal-canvas-container');
     const details = document.querySelector('.medal-viewer-info');
     const tease = document.getElementById('secretTeaseContainer');
-    
+
     if (selectedRank >= 11) {
       if (container) container.style.display = 'none';
       if (details) details.style.display = 'none';
       if (tease) tease.style.display = 'flex';
-      
+
       // Deep Space / Black Hole classified glow colors
       const card = document.getElementById('medalViewerCard');
       if (card) {
@@ -15304,7 +15305,7 @@
       if (container) container.style.display = 'flex';
       if (details) details.style.display = 'flex';
       if (tease) tease.style.display = 'none';
-      
+
       const info = tierInfo[selectedRank];
       if (info) {
         const card = document.getElementById('medalViewerCard');
@@ -15313,12 +15314,12 @@
           card.style.setProperty('--medal-accent', info.accentColor);
         }
       }
-      
+
       // Update the exported medal images and legacy SVG fallback state for all showcase categories
       medalKeys.forEach(key => {
         updateMedalVisuals(key, selectedRank);
       });
-      
+
       // Update active details
       updateActiveMedalInfo(activeIndex);
     }
@@ -15357,7 +15358,7 @@
     if (diamondGemstoneRing) diamondGemstoneRing.style.display = info.hasGemstones ? 'block' : 'none';
     if (medalSparkle) medalSparkle.style.display = info.hasSparkle ? 'block' : 'none';
     if (medalTicks) medalTicks.style.display = info.hasTicks ? 'block' : 'none';
-    
+
     if (dashedAccentRing) {
       dashedAccentRing.setAttribute('stroke', info.hasAccentRing ? 'rgba(255, 252, 220, 0.4)' : 'transparent');
     }
@@ -15369,7 +15370,7 @@
     if (!info.isPaper) {
       updateStopColors(`haloStop0-${key}`, info.haloColor);
       updateStopColors(`haloStop1-${key}`, 'transparent');
-      
+
       updateStopColors(`rimStop0-${key}`, info.rimStop0);
       updateStopColors(`rimStop1-${key}`, info.rimStop1);
       updateStopColors(`faceStop0-${key}`, info.faceStop0);
@@ -15389,7 +15390,7 @@
     if (svgElement) {
       const glyphMains = svgElement.querySelectorAll('.glyph-main');
       const glyphShadows = svgElement.querySelectorAll('.glyph-shadow');
-      
+
       glyphMains.forEach(el => {
         if (el.tagName.toLowerCase() === 'circle') {
           el.setAttribute('stroke', info.glyphMain);
@@ -15402,7 +15403,7 @@
           el.setAttribute('stroke', info.glyphMain);
         }
       });
-      
+
       glyphShadows.forEach(el => {
         if (el.tagName.toLowerCase() === 'circle') {
           el.setAttribute('stroke', info.glyphShadow);
@@ -15446,7 +15447,7 @@
     let diff = index - activeIndex;
     if (diff > totalItems / 2) diff -= totalItems;
     if (diff < -totalItems / 2) diff += totalItems;
-    
+
     currentRotation -= diff * 72;
     activeIndex = index;
     updateCarousel(currentRotation);
@@ -15467,19 +15468,19 @@
         r = parseInt(rVal, 10) || 140;
       }
     }
-    
+
     track.style.transform = `rotateY(${rotation}deg)`;
-    
+
     items.forEach((item, index) => {
       const itemAngle = index * 72;
       item.style.transform = `rotateY(${itemAngle}deg) translateZ(${r}px) rotateY(${-itemAngle - rotation}deg)`;
-      
+
       const normalizedRot = ((rotation % 360) + 360) % 360;
       const targetAngle = ((360 - itemAngle) % 360 + 360) % 360;
-      
+
       const diff = Math.abs(normalizedRot - targetAngle);
       const isFocused = diff < 15 || diff > 345;
-      
+
       if (isFocused) {
         item.classList.add('is-active');
         item.classList.remove('is-inactive');
@@ -15514,7 +15515,7 @@
       // Set dropdown to selected rank (default 6)
       const dropdown = document.getElementById('medalRankDropdown');
       if (dropdown) dropdown.value = selectedRank;
-      
+
       changeMedalRank(selectedRank);
       updateCarousel(0);
     });
