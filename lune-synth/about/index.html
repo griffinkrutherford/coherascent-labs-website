@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/blog/blog.css?v=13" />
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
-  <link rel="stylesheet" href="/about/about.css?v=1" />
+  <link rel="stylesheet" href="/about/about.css?v=2" />
 </head>
 <body>
   <main>
@@ -84,13 +84,13 @@
         <div class="about-hero__copy">
           <p class="eyebrow">The story behind Lune Synth</p>
           <h1 id="about-title">Learning worth<br>being present for.</h1>
-          <p class="about-intro">I’m Griffin Rutherford, founder of Lune Synth. I built it because I wanted technology to help me do the work that makes life feel meaningful.</p>
+          <p class="about-intro">I’m <a class="about-founder-link" href="https://griffinrutherford.com/">Griffin Rutherford</a>, founder of Lune Synth. I built it because I wanted technology to help me do the work that makes life feel meaningful.</p>
           <p>That means slowing down, facing a difficult idea, and staying with it until the pieces begin to fit.</p>
           <a class="about-link" href="#why">Why I built it <span aria-hidden="true">↓</span></a>
         </div>
         <figure class="about-portrait">
           <img src="/lune-synth/images/griffin-rutherford-and-luna.webp" alt="Griffin Rutherford, founder of Lune Synth, sitting on a couch with his poodle Luna" width="1408" height="1759" fetchpriority="high" decoding="async" />
-          <figcaption>Griffin Rutherford &amp; Luna. Founder &amp; very good companion.</figcaption>
+          <figcaption><a href="https://griffinrutherford.com/">Griffin Rutherford</a> &amp; Luna. Founder &amp; very good companion.</figcaption>
         </figure>
       </section>
       <div class="about-story">
@@ -108,7 +108,7 @@
           <p>Engineering school gave me plenty of encounters with ideas that sounded like complete gibberish at first. What changed that was working through the discomfort one component at a time, especially by hand. A definition started to make sense. A step became justified. Eventually, something that had seemed inaccessible became an idea I could actually use.</p>
           <p>That feeling of grasping a difficult concept is incredibly rewarding. I wanted to build a tool that makes room for it.</p>
         </section>
-        <blockquote>“The times I feel most fulfilled and proud of myself are when I am fully present facing one task.”<cite>Griffin Rutherford</cite></blockquote>
+        <blockquote>“The times I feel most fulfilled and proud of myself are when I am fully present facing one task.”<cite><a href="https://griffinrutherford.com/">Griffin Rutherford</a></cite></blockquote>
         <section>
           <h2>AI should help us stay with the work.</h2>
           <p>The easiest way to use AI on an assignment is often to copy the prompt into ChatGPT or Claude, take the answer, and submit it without evaluating the steps in between. The assignment gets finished. The opportunity to understand it can disappear.</p>
@@ -127,12 +127,32 @@
           <p>The ambition is a Duolingo-like practice habit for any subject: a test at school, a new language, writing Python, preparing for the MCAT, improving your grammar, and much more.</p>
           <p>The gamification should give you a reason to return. What you return to should be meaningful practice: your own steps, useful feedback, and another opportunity to understand. The goal is to leave you with something that lasts beyond the session.</p>
           <p>That is the kind of technology I want to spend my time building. And it is the kind of learning I hope Lune Synth helps you experience.</p>
-          <p class="about-signature">Griffin Rutherford<span>Founder, Lune Synth</span></p>
+          <p class="about-signature"><a href="https://griffinrutherford.com/">Griffin Rutherford</a><span>Founder, Lune Synth</span></p>
         </section>
-        <aside class="about-invitation" aria-label="Try Lune Synth">
-          <h2>Make the effort count.</h2>
-          <p>Help shape a study tool built around the work you actually do.</p>
-          <a class="about-button" href="/#waitlist">Join the beta waitlist</a>
+        <aside class="about-invitation" aria-label="Join the Lune Synth beta">
+    <div class="blog-newsletter">
+      <div class="hero-waitlist-panel" aria-labelledby="lune-beta-title">
+        <div class="hero-waitlist-copy">
+          <h3 id="lune-beta-title">Join the beta waitlist</h3>
+          <p class="waitlist-offer">Limited-time offer for the first 40 users: <span class="blue-glow">2 months free</span> &amp; a <span class="red-glow">lifetime 50% off</span> Lune Synth&trade; Pro.<sup>*</sup></p>
+          <p class="waitlist-offer-note"><small>*To qualify for this offer, beta users must provide quality feedback on their experience.</small></p>
+        </div>
+        <form class="hero-waitlist" data-waitlist-form novalidate>
+          <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
+          <button type="submit">Join Waitlist</button>
+        </form>
+      </div>
+
+      <div class="waitlist-popup" data-waitlist-popup role="dialog" aria-modal="true" aria-labelledby="waitlist-popup-title" hidden>
+        <div class="waitlist-popup__panel">
+          <button class="waitlist-popup__close" type="button" data-waitlist-close aria-label="Close waitlist message">&times;</button>
+          <h3 id="waitlist-popup-title">You're on the list!</h3>
+          <p data-waitlist-message>You&rsquo;re on the list.</p>
+          <button class="waitlist-popup__action" type="button" data-waitlist-close>Got it</button>
+        </div>
+      </div>
+    </div>
+
         </aside>
       </div>
     </article>
