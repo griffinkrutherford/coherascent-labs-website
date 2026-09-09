@@ -105,7 +105,7 @@
                   <span class="phone-shell-buttons" aria-hidden="true">
                     <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
                       <span class="phone-shell-button phone-shell-button--volume"></span>
-                      <span class="phone-shell-button phone-shell-button--volume-secondary"></span>
+                      <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
                     </span>
                     <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
                       <span class="phone-shell-button phone-shell-button--power"></span>

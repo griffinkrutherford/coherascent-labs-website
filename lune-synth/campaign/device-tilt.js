@@ -13,6 +13,18 @@
   }, { threshold: 0.12 });
 
   function sync() {
+    document.querySelectorAll(".ipad-button--volume, .voice-scene__ipad-button--volume, .feature-ipad__button--volume").forEach(function (button) {
+      if (button.classList.contains("tablet-volume-key")) return;
+      button.classList.add("tablet-volume-key");
+      // Capsule cross-sections extruded out from the tablet's side rail.
+      for (var j = 0; j <= 8; j++) {
+        var face = document.createElement("span");
+        face.className = "tablet-volume-key__slice";
+        face.setAttribute("aria-hidden", "true");
+        face.style.setProperty("--key-slice", j);
+        button.appendChild(face);
+      }
+    });
     document.querySelectorAll(selector).forEach(function (device) {
       if ((!isCampaign && !motion.matches) || device.classList.contains("device-tilt")) return;
       device.style.transition = "none";
