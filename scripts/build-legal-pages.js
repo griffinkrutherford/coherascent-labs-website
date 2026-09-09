@@ -232,7 +232,7 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/lune-synth/legal.css?v=4" />
+  <link rel="stylesheet" href="/lune-synth/legal.css?v=5" />
 </head>
 <body>
   <main class="legal-shell">
@@ -267,9 +267,12 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
         </div>
       </div>
       <nav class="nav-links" id="primary-nav" aria-label="Primary">
+        <a class="nav-link" href="/#applied-page-title">Overview</a>
+        <a class="nav-link" href="/#waitlist">Beta Waitlist</a>
         <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
         <a class="nav-link" href="/#platform-title">Handwriting</a>
         <a class="nav-link" href="/#luna-title">Luna</a>
+        <a class="nav-link" href="/#neuro-title">Circuit</a>
         <a class="nav-link" href="/#processing-title">Grading</a>
         <a class="nav-link" href="/#voice-title">Input Methods</a>
         <a class="nav-link" href="/#problem-solver-title">Problem Solver</a>
@@ -277,7 +280,9 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
         <a class="nav-link" href="/#constellations-title">Constellations</a>
         <a class="nav-link" href="/#medals-title">Medals</a>
         <a class="nav-link" href="/#engine-title">Engine</a>
+        <a class="nav-link" href="/about/">Our Story</a>
         <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
+        <a class="nav-link" href="/#site-footer">All Landing Pages</a>
       </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span>
@@ -307,7 +312,7 @@ ${content}
     </footer>
     </article>
   </main>
-  <script src="/blog/blog.js?v=2"></script>
+  <script src="/blog/blog.js?v=5"></script>
 </body>
 </html>
 `;

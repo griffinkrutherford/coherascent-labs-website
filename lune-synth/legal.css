@@ -180,11 +180,72 @@ a:focus-visible {
 }
 
 .nav-links {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 7px;
-  margin-left: auto;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 340px));
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+  width: 100vw;
+  height: 100dvh;
+  margin: 0;
+  padding: max(96px, env(safe-area-inset-top)) 28px max(36px, env(safe-area-inset-bottom));
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(100, 168, 255, 0.14), transparent 34%),
+    radial-gradient(circle at 82% 84%, rgba(255, 93, 135, 0.11), transparent 36%),
+    rgba(4, 8, 18, 0.94);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.015);
+  transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
+}
+
+html[data-theme="light"] .nav-links {
+  background:
+    radial-gradient(circle at 18% 14%, rgba(79, 132, 214, 0.12), transparent 34%),
+    radial-gradient(circle at 82% 84%, rgba(217, 106, 140, 0.1), transparent 36%),
+    rgba(246, 249, 255, 0.96);
+}
+
+.site-header.nav-open .nav-links {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.nav-links .nav-link {
+  justify-content: flex-start;
+  min-height: 52px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  background: rgba(11, 20, 40, 0.62);
+}
+
+html[data-theme="light"] .nav-links .nav-link {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 8px;
+    padding-inline: 20px;
+  }
+
+  .nav-links .nav-link {
+    min-height: 46px;
+    justify-content: center;
+    padding: 10px 14px;
+  }
 }
 
 .nav-link {
@@ -224,7 +285,8 @@ a:focus-visible {
 .nav-toggle {
   position: relative;
   z-index: 100;
-  display: none;
+  display: inline-flex;
+  margin-left: auto;
   width: 46px;
   height: 46px;
   align-items: center;
@@ -635,3 +697,9 @@ blockquote {
     width: 100%;
   }
 }
+
+.site-header.nav-open .nav-toggle__bars { background: transparent; }
+.site-header.nav-open .nav-toggle__bars::before { transform: rotate(45deg); }
+.site-header.nav-open .nav-toggle__bars::after { transform: rotate(-45deg); }
+
+.site-header .nav-link { font-family: var(--font-sans); }
