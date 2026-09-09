@@ -93,6 +93,7 @@
           </span>
         </a>
         <nav aria-label="Footer">
+          <a href="https://coherascentlabs.com/">Coherascent Labs</a>
           <a href="/">Home</a>
           <a href="/blog/">Blog</a>
           <a href="/about/">Our Story</a>
