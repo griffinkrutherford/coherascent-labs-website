@@ -2,6 +2,7 @@
   "use strict";
   var motion = window.matchMedia("(min-width: 901px) and (prefers-reduced-motion: no-preference)");
   if (!("IntersectionObserver" in window) || !CSS.supports("rotate", "0 1 0 34deg")) return;
+  var isCampaign = !!document.querySelector(".campaign-main");
   var selector = ".phone-mock__frame, .feature-phone, .feature-ipad, .response-carousel__question-phone";
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -13,7 +14,7 @@
 
   function sync() {
     document.querySelectorAll(selector).forEach(function (device) {
-      if (!motion.matches || device.classList.contains("device-tilt")) return;
+      if ((!isCampaign && !motion.matches) || device.classList.contains("device-tilt")) return;
       device.style.transition = "none";
       device.classList.add("device-tilt");
       device.parentElement.classList.add("device-tilt-parent");

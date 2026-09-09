@@ -25,3 +25,54 @@
     background: color-mix(in srgb, #9aa2b6, #171b24 calc(var(--slice) / 16 * 100%));
   }
 }
+
+/* Landing-page devices retain a visible edge after the entrance finishes. */
+.campaign-main .device-tilt-parent { perspective: 1600px; }
+.campaign-main .device-tilt {
+  --device-rest-angle: -24deg;
+  --device-depth: 22px;
+  rotate: 1 4 0 var(--device-rest-angle);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  filter: none !important;
+  isolation: auto !important;
+}
+.campaign-main .device-tilt.feature-phone {
+  --device-rest-angle: 24deg;
+  --device-depth: 14px;
+}
+.campaign-main .device-tilt.feature-ipad {
+  --device-rest-angle: -20deg;
+  --device-depth: 12px;
+}
+.campaign-main .device-tilt.is-device-revealed {
+  rotate: 1 4 0 var(--device-rest-angle);
+}
+.campaign-main .device-tilt__slice {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  transform: translateZ(calc(var(--slice) / 16 * var(--device-depth) * -1));
+  background: color-mix(in srgb, #7d879c, #10141e calc(var(--slice) / 16 * 100%));
+  border: 1px solid rgba(170, 187, 215, 0.12);
+}
+.campaign-main .feature-ipad > .device-tilt__slice {
+  background: color-mix(in srgb, #adb7ca, #303744 calc(var(--slice) / 16 * 100%));
+}
+.campaign-main .device-tilt::after {
+  /* A faint glass highlight follows the existing rounded front bezel. */
+  background: linear-gradient(115deg, rgba(222, 235, 255, 0.07), transparent 30%, transparent 75%, rgba(166, 189, 230, 0.03));
+}
+@media (max-width: 900px) {
+  .campaign-main .device-tilt { --device-rest-angle: -16deg; --device-depth: 16px; }
+  .campaign-main .device-tilt.feature-phone { --device-rest-angle: 18deg; }
+  .campaign-main .device-tilt.feature-ipad { --device-rest-angle: -14deg; }
+}
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .campaign-main .device-tilt:not(.is-device-revealed) { rotate: 2 5 0 -44deg; }
+  .campaign-main .device-tilt.feature-phone:not(.is-device-revealed) { rotate: 0 1 0 34deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .campaign-main .device-tilt { transition: none; }
+}
