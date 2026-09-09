@@ -101,17 +101,17 @@
                 </div>
               </div>
               <div class="feature-quick__device" data-reveal>
-                <div class="feature-phone" aria-label="${escapeHtml(config.mediaAlt)}">
-                  <span class="feature-phone__buttons" aria-hidden="true">
-                    <span class="feature-phone__rail feature-phone__rail--left">
-                      <span class="feature-phone__button feature-phone__button--volume"></span>
-                      <span class="feature-phone__button feature-phone__button--volume-secondary"></span>
+                <div class="phone-mock__frame feature-quick__phone" aria-label="${escapeHtml(config.mediaAlt)}">
+                  <span class="phone-shell-buttons" aria-hidden="true">
+                    <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                      <span class="phone-shell-button phone-shell-button--volume"></span>
+                      <span class="phone-shell-button phone-shell-button--volume-secondary"></span>
                     </span>
-                    <span class="feature-phone__rail feature-phone__rail--right">
-                      <span class="feature-phone__button feature-phone__button--power"></span>
+                    <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                      <span class="phone-shell-button phone-shell-button--power"></span>
                     </span>
                   </span>
-                  <div class="feature-phone__screen">
+                  <div class="phone-mock__screen">
                     <video loop muted playsinline preload="none" poster="/screenshots/applied/quick-mission-screen-poster.png">
                       <source src="/screenshots/applied/quick-mission-screen.mp4" type="video/mp4">
                     </video>
