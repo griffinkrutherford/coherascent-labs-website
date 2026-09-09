@@ -87,3 +87,18 @@ html, body {
 .about-invitation .waitlist-offer .red-glow { background-image: linear-gradient(120deg, #ffd1d5, #ff727c); }
 .nav-toggle, .nav-links .nav-link { border-color: var(--line); }
 .nav-links .nav-link[aria-current="page"] { color: #ffd1d5; background: rgba(232,91,114,.18); border-color: #e85b72; }
+
+.about-luna-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 32px; align-items: center; }
+.about-luna-preview { margin: 0; min-width: 0; perspective: 1400px; }
+.about-luna-phone { position: relative; width: 240px; max-width: 100%; aspect-ratio: 9 / 19.5; margin-inline: auto; padding: 7px; border: 1px solid #596274; border-radius: 48px; background: linear-gradient(180deg, #191d28, #020308 60%, #10141e); box-shadow: 2px 1px 0 #566073, 4px 2px 0 #303745, 6px 3px 0 #151923, 0 25px 40px #0008, 0 0 28px rgba(255,114,124,.12); transform: rotateY(-12deg) rotate(-2deg); }
+.about-luna-phone::before { content: ""; position: absolute; z-index: 2; top: 14px; left: 50%; transform: translateX(-50%); width: 42%; height: 21px; border-radius: 99px; background: radial-gradient(circle at 75% 50%, #233249 0 2px, #05060a 3px); pointer-events: none; }
+.about-luna-screen { width: 100%; height: 100%; overflow: hidden; border-radius: 40px; background: #050714; }
+.about-luna-screen video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.about-luna-buttons { position: absolute; top: 25%; left: -4px; width: 3px; height: 38px; border-radius: 2px; background: linear-gradient(90deg, #182030, #8a94a8); box-shadow: 0 53px 0 #596274; pointer-events: none; }
+.about-luna-phone::after { content: ""; position: absolute; right: -8px; top: 34%; width: 3px; height: 58px; border-radius: 2px; background: #596274; pointer-events: none; }
+.about-luna-preview figcaption { margin-top: 22px; color: var(--muted); text-align: center; font: 12px/1.6 var(--font-mono); }
+@media (max-width: 760px) {
+  .about-luna-layout { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .about-luna-preview { width: min(100%, 300px); margin-inline: auto; }
+  .about-luna-phone { width: min(100% - 16px, 260px); }
+}

@@ -22,9 +22,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/blog/blog.css?v=13" />
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
-  <link rel="stylesheet" href="/about/about.css?v=3" />
+  <link rel="stylesheet" href="/about/about.css?v=4" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=4" />
   <script src="/campaign/site-footer.js?v=6" defer></script>
+  <script src="/about/about.js?v=1" defer></script>
 </head>
 <body>
   <main>
@@ -114,10 +115,26 @@
         </section>
         <section>
           <h2>AI should help us stay with the work.</h2>
+          <div class="about-luna-layout">
+            <div class="about-luna-copy">
           <p>The easiest way to use AI on an assignment is often to copy the prompt into ChatGPT or Claude, take the answer, and submit it without evaluating the steps in between. The assignment gets finished. The opportunity to understand it can disappear.</p>
           <p>Then I imagine an AI grader assessing that AI-generated submission. There is something funny about the possibility, and something that fills me with existential dread. What is the education system accomplishing if the learner barely needs to participate?</p>
           <p>That question became part of why I started Lune Synth. I wanted to see whether AI could help me stay with a problem: make an attempt, find out where I went wrong, understand the correction, and try again.</p>
           <p>The friction has a purpose. It gives you decisions to make and reasoning to produce. The interface should help you find the next useful step, while the sense of accomplishment comes from slowly becoming capable of something you could not do before.</p>
+            </div>
+            <figure class="about-luna-preview">
+              <div class="about-luna-phone">
+                <div class="about-luna-screen">
+                  <video data-about-luna-video controls loop muted playsinline preload="none" poster="/lune-synth/about/luna-hints-poster.webp" aria-label="Luna giving a contextual hint on a learner’s work">
+                    <source src="/screenshots/applied/luna-hints.mp4" type="video/mp4" />
+                    <a href="/screenshots/applied/luna-hints.mp4">Watch Luna’s hint preview</a>
+                  </video>
+                </div>
+                <span class="about-luna-buttons" aria-hidden="true"></span>
+              </div>
+              <figcaption>Luna offers a hint. You take the next step.</figcaption>
+            </figure>
+          </div>
         </section>
         <section class="about-name">
           <p class="eyebrow">Luna + synthesis</p>
