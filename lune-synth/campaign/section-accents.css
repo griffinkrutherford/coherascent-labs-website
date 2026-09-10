@@ -33,3 +33,40 @@
 html[data-theme="light"] .section.section--red :is(.platform-showcase, .processing-flow, .engine-panel) { background: radial-gradient(ellipse at 15% 12%, #ff727c1f, transparent 50%), #fff6f8ed; }
 html[data-theme="light"] .section.section--red :is(.processing-card, .engine-stage, .engine-gauge-card) { background: #fffafb; }
 html[data-theme="light"] .section.section--red :is(.platform-showcase__title, .processing-card__title, .engine-header-copy h3, .platform-showcase__eyebrow, .processing-card__step, .engine-stage__step, .engine-metric-number, .engine-word-glow) { color: #a52e46; }
+
+@property --handwriting-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #a47bff;
+}
+.section.section--handwriting {
+  --blue: var(--handwriting-accent);
+  --purple: var(--handwriting-accent);
+  --line: color-mix(in srgb, var(--handwriting-accent) 30%, transparent);
+  transition: --handwriting-accent 650ms ease;
+}
+.section--handwriting .section-title::before {
+  background: var(--handwriting-accent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--handwriting-accent) 35%, transparent);
+}
+.section.section--handwriting .platform-showcase {
+  border-color: var(--line);
+  background: radial-gradient(ellipse at 15% 12%, color-mix(in srgb, var(--handwriting-accent) 20%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--handwriting-accent) 13%, #10101b), #090b14);
+  box-shadow: 0 18px 50px #0406104d, 0 0 32px color-mix(in srgb, var(--handwriting-accent) 14%, transparent);
+}
+.section.section--handwriting .platform-showcase::before {
+  background: radial-gradient(ellipse at 100% 100%, color-mix(in srgb, var(--handwriting-accent) 12%, transparent), transparent 60%);
+}
+.section.section--handwriting .platform-showcase__title {
+  color: color-mix(in srgb, var(--handwriting-accent) 35%, white);
+}
+html[data-theme="light"] .section.section--handwriting .platform-showcase {
+  background: radial-gradient(ellipse at 15% 12%, color-mix(in srgb, var(--handwriting-accent) 18%, transparent), transparent 60%), #fcfcff;
+}
+html[data-theme="light"] .section.section--handwriting .platform-showcase__title {
+  color: color-mix(in srgb, var(--handwriting-accent) 50%, #151526);
+}
+@media (prefers-reduced-motion: reduce) {
+  .section.section--handwriting { transition: none; }
+}
