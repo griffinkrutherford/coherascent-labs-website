@@ -10769,7 +10769,7 @@
   <link rel="stylesheet" href="/campaign/site-header.css?v=2" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
-  <link rel="stylesheet" href="/campaign/section-accents.css?v=5" />
+  <link rel="stylesheet" href="/campaign/section-accents.css?v=6" />
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
 </head>
 <body>
@@ -15655,6 +15655,8 @@
         ease(accent, tAccent, 0.12);
         card.style.setProperty('--ambi-base', `rgb(${base[0] | 0}, ${base[1] | 0}, ${base[2] | 0})`);
         card.style.setProperty('--ambi-accent', `rgb(${accent[0] | 0}, ${accent[1] | 0}, ${accent[2] | 0})`);
+        card.closest('#constellations').style.setProperty('--constellation-accent',
+          `rgb(${accent.map((value, i) => Math.round(value * 0.7 + base[i] * 0.3)).join(', ')})`);
         rafId = requestAnimationFrame(tick);
       }
 

@@ -128,3 +128,28 @@ html[data-theme="light"] #constellations :is(.slideshow-menu, .world-select-trig
 html[data-theme="light"] #constellations .slideshow-menu__selection {
   background: color-mix(in srgb, var(--constellation-accent) 24%, white);
 }
+
+#constellations {
+  --constellation-accent: #64a8ff;
+  --blue: var(--constellation-accent);
+  --purple: var(--constellation-accent);
+}
+#constellations > .section-title::before {
+  background: var(--constellation-accent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--constellation-accent) 40%, transparent);
+}
+#constellations :is(.active-step-badge, .step-number, .world-select-item.is-active) {
+  background: color-mix(in srgb, var(--constellation-accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--constellation-accent) 30%, transparent);
+}
+#constellations :is(.world-count, .world-select-chevron, .world-select-item__check, .world-select-item.is-active) {
+  color: color-mix(in srgb, var(--constellation-accent) 65%, white);
+}
+#constellations .world-count {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  animation: none;
+}
+html[data-theme="light"] #constellations :is(.world-count, .world-select-chevron, .world-select-item__check, .world-select-item.is-active) {
+  color: color-mix(in srgb, var(--constellation-accent) 45%, #151526);
+}
