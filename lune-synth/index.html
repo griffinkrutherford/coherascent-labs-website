@@ -10770,6 +10770,7 @@
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=3" />
+  <script src="/campaign/nav-scroll.js?v=1" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -14296,54 +14297,6 @@
     updateHeader();
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
-  })();
-
-  // Handle top nav links: prevent default jump so we can offset scroll by the
-  // current height of the sticky .site-header (computed at the moment of click,
-  // i.e. with respect to the current scroll position via getBoundingClientRect).
-  // This ensures the full section header (e.g. the .section-title) is visible
-  // below the nav after smooth scrolling. Mirrors the existing --sticky-header-height
-  // maintenance used elsewhere (voice section etc.).
-  (function handleNavScrollOffset() {
-    var links = document.querySelectorAll('.nav-link[href^="#"]');
-    if (!links.length) return;
-
-    var header = document.querySelector(".site-header");
-
-    links.forEach(function (link) {
-      link.addEventListener("click", function (e) {
-        var hash = link.getAttribute("href");
-        if (!hash || hash.length < 2) return;
-
-        var target = document.getElementById(hash.substring(1));
-        if (!target) return;
-
-        e.preventDefault();
-
-        var headerHeight = 0;
-        if (header) {
-          // Calculate live at click time / current scroll position (the header
-          // may have different effective height or the page scroll state affects
-          // layout calculations in responsive / scrolled views).
-          headerHeight = Math.ceil(header.getBoundingClientRect().height);
-        }
-
-        var targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        var scrollToPosition = targetPosition - headerHeight;
-
-        window.scrollTo({
-          top: Math.max(0, scrollToPosition),
-          behavior: "smooth"
-        });
-
-        // Update URL hash for shareability / history without triggering native jump
-        if (window.history && window.history.pushState) {
-          window.history.pushState(null, "", hash);
-        } else {
-          window.location.hash = hash;
-        }
-      });
-    });
   })();
 
   // Hamburger: toggle the fullscreen section directory at every viewport size.

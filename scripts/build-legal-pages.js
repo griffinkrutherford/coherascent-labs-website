@@ -236,6 +236,7 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
   <link rel="stylesheet" href="/campaign/site-header.css?v=2" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
+  <script src="/campaign/nav-scroll.js?v=1" defer></script>
 </head>
 <body>
   <header class="site-header">
