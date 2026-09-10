@@ -573,13 +573,18 @@
         radial-gradient(circle at 18% 14%, rgba(100, 168, 255, 0.14), transparent 34%),
         radial-gradient(circle at 82% 84%, rgba(255, 93, 135, 0.11), transparent 36%),
         rgba(4, 8, 18, 0.94);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
       opacity: 0;
       visibility: hidden;
       transform: scale(1.015);
       transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
     }
+    /* Blur only while the overlay is actually visible. Held open, this is a
+       full-viewport backdrop blur kept live behind every scroll. */
+    .site-header.nav-open .nav-links {
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+    }
+
 
     html[data-theme="light"] .nav-links {
       background:
@@ -6302,7 +6307,26 @@
       display: grid;
       grid-template-rows: auto 1fr auto;
       gap: 12px;
-      animation: engineStagePulse 5.6s ease-in-out infinite;
+    }
+
+    /* The pulse used to animate box-shadow and border-color directly, which
+       repaints this whole panel every frame -- the single biggest paint cost
+       on mobile. The bright half of the cycle now lives on an overlay whose
+       opacity is animated instead, which the compositor can run on the GPU
+       without repainting. */
+    .engine-stage::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 18px;
+      border: 1px solid rgba(164, 123, 255, 0.3);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 18px 40px rgba(4, 10, 24, 0.25),
+        0 0 22px rgba(100, 168, 255, 0.08);
+      opacity: 0;
+      pointer-events: none;
+      animation: engineStageGlow 5.6s ease-in-out infinite;
     }
 
     .engine-stage::before {
@@ -6428,10 +6452,12 @@
 
     .engine-meter__fill {
       display: block;
-      width: 74%;
+      width: 100%;
       height: 100%;
       border-radius: inherit;
       background: linear-gradient(90deg, var(--blue), var(--purple), var(--red));
+      transform: scaleX(0.74);
+      transform-origin: left center;
       animation: engineMeter 4.8s ease-in-out infinite;
     }
 
@@ -6499,9 +6525,9 @@
       opacity: 0.58;
     }
 
-    @keyframes engineStagePulse {
-      0%, 100% { border-color: rgba(100, 168, 255, 0.18); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 36px rgba(4, 10, 24, 0.22); }
-      50% { border-color: rgba(164, 123, 255, 0.3); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 40px rgba(4, 10, 24, 0.25), 0 0 22px rgba(100, 168, 255, 0.08); }
+    @keyframes engineStageGlow {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
     }
 
     @keyframes engineLineScan {
@@ -6510,8 +6536,8 @@
     }
 
     @keyframes engineMeter {
-      0%, 100% { width: 62%; }
-      50% { width: 82%; }
+      0%, 100% { transform: scaleX(0.62); }
+      50% { transform: scaleX(0.82); }
     }
 
     @keyframes engineTokenMove {
@@ -7342,14 +7368,19 @@
         gap: 8px;
         padding: max(72px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
         background: rgba(6, 8, 16, 0.92);
-        backdrop-filter: blur(28px);
-        -webkit-backdrop-filter: blur(28px);
         z-index: 90;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
         overflow-y: auto;
       }
+      /* Blur only while the overlay is actually visible. Held open, this is a
+         full-viewport backdrop blur kept live behind every scroll. */
+      .site-header.nav-open .nav-links {
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+      }
+
 
       html[data-theme="light"] .nav-links {
         background: rgba(246, 249, 255, 0.96);
@@ -7396,13 +7427,18 @@
         gap: 8px;
         padding: max(72px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
         background: rgba(6, 8, 16, 0.92);
-        backdrop-filter: blur(28px);
-        -webkit-backdrop-filter: blur(28px);
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.25s ease, visibility 0.25s ease;
         overflow-y: auto;
       }
+      /* Blur only while the overlay is actually visible. Held open, this is a
+         full-viewport backdrop blur kept live behind every scroll. */
+      .site-header.brand-open .brand-dropdown-content {
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+      }
+
 
       html[data-theme="light"] .brand-dropdown-content {
         background: rgba(246, 249, 255, 0.96);
@@ -8590,6 +8626,14 @@
     .ipad-video-thumbnail.is-hidden {
       opacity: 0;
       visibility: hidden;
+      /* Drop the blur once the fade has finished. Keeping filter live on a
+         hidden full-bleed image costs real raster work for something nobody
+         can see; the 320ms delay means it never pops while still visible. */
+      filter: none;
+      transition:
+        opacity 320ms ease,
+        visibility 320ms ease,
+        filter 0ms linear 320ms;
     }
 
     .ipad-gif-target {
@@ -8625,6 +8669,15 @@
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
+    }
+
+    /* The inactive preview panels are stacked on top of each other and each
+       holds a full-bleed blurred thumbnail. They were still being rastered
+       while invisible. Their box comes from the absolute positioning rather
+       than their contents, so skipping the subtree costs no layout and there
+       is no transition here that could pop. */
+    .ipad-preview-layout:not(.is-active) {
+      content-visibility: hidden;
     }
 
     .ipad-preview-layout.is-active {
@@ -8719,14 +8772,12 @@
       background: rgba(8, 16, 36, 0.94);
       border: 1px solid rgba(164, 123, 255, 0.28);
       box-shadow: 0 22px 50px rgba(2, 6, 18, 0.55), 0 0 26px rgba(100, 168, 255, 0.12);
-      backdrop-filter: blur(24px) saturate(1.4);
-      -webkit-backdrop-filter: blur(24px) saturate(1.4);
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       transform: translateY(-8px) scale(0.96);
       transform-origin: top left;
-      transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s ease;
+      transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s ease, backdrop-filter 0ms linear 0.22s;
       z-index: 50;
       display: flex;
       flex-direction: column;
@@ -8738,6 +8789,9 @@
       visibility: visible;
       pointer-events: auto;
       transform: translateY(0) scale(1);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      transition-delay: 0s;
     }
 
     html[data-theme="light"] .world-select-popup {

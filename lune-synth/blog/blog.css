@@ -226,13 +226,18 @@ main {
     radial-gradient(circle at 18% 14%, rgba(100, 168, 255, 0.14), transparent 34%),
     radial-gradient(circle at 82% 84%, rgba(255, 93, 135, 0.11), transparent 36%),
     rgba(4, 8, 18, 0.94);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
   opacity: 0;
   visibility: hidden;
   transform: scale(1.015);
   transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
 }
+/* Blur only while the overlay is actually visible. Held open, this is a
+   full-viewport backdrop blur kept live behind every scroll. */
+.site-header.nav-open .nav-links {
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
 
 html[data-theme="light"] .nav-links {
   background:
@@ -960,14 +965,19 @@ html[data-theme="light"] .nav-links .nav-link {
     gap: 8px;
     padding: max(72px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
     background: rgba(6, 8, 16, 0.92);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
     z-index: 90;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
     overflow-y: auto;
   }
+  /* Blur only while the overlay is actually visible. Held open, this is a
+     full-viewport backdrop blur kept live behind every scroll. */
+  .site-header.nav-open .nav-links {
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+  }
+
 
   .site-header.nav-open .nav-links { opacity: 1; visibility: visible; }
 
@@ -1000,13 +1010,18 @@ html[data-theme="light"] .nav-links .nav-link {
     gap: 8px;
     padding: max(72px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
     background: rgba(6, 8, 16, 0.92);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease, visibility 0.25s ease;
     overflow-y: auto;
   }
+  /* Blur only while the overlay is actually visible. Held open, this is a
+     full-viewport backdrop blur kept live behind every scroll. */
+  .site-header.brand-open .brand-dropdown-content {
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+  }
+
 
   .site-header.brand-open .brand-dropdown-content { opacity: 1; visibility: visible; }
 
