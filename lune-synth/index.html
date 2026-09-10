@@ -1355,7 +1355,18 @@
       display: grid;
       gap: 24px;
       content-visibility: auto;
-      contain-intrinsic-size: 900px;
+      /* Offscreen sections stand in at this height. The flat 900px guess was
+         wrong for 10 of the 12 sections on a phone (they run 780-2752px,
+         mean 1373), so every section that rendered resized the page under
+         the reader and shifted everything below it -- the jitter you feel
+         while scrolling, worst on the way back up.
+         The `auto` keyword makes the browser remember each section's real
+         rendered size and reuse that instead of the guess. The plain length
+         is kept first as a fallback: browsers that cannot parse `auto <len>`
+         would otherwise drop the declaration entirely and collapse offscreen
+         sections to zero height. */
+      contain-intrinsic-size: 1370px;
+      contain-intrinsic-size: auto 1370px;
     }
 
     .section.is-near-viewport,
