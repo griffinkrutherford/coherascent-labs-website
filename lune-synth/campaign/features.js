@@ -131,25 +131,25 @@
   var worldAssets = {
     earth: {
       label: "Earth",
-      icon: "/lune-synth/images/world-previews/earth.svg",
+      icon: "/lune-synth/images/world-previews/earth.svg?v=2",
       poster: "/screenshots/applied/step-1-earth-world-thumb.jpg",
       video: "/screenshots/applied/step-1-earth-world.mp4"
     },
     jupiter: {
       label: "Jupiter",
-      icon: "/lune-synth/images/world-previews/jupiter.svg",
+      icon: "/lune-synth/images/world-previews/jupiter.svg?v=2",
       poster: "/screenshots/applied/step-1-jupiter-world-thumb.jpg",
       video: "/screenshots/applied/step-1-jupiter-world.mp4"
     },
     retro: {
       label: "Retro Arcade",
-      icon: "/lune-synth/images/world-previews/retro-arcade.svg",
+      icon: "/lune-synth/images/world-previews/retro-arcade.svg?v=2",
       poster: "/screenshots/applied/step-1-retro-arcade-world-thumb.jpg",
       video: "/screenshots/applied/step-1-retro-arcade-world.mp4"
     },
     math: {
       label: "Math Space",
-      icon: "/lune-synth/images/world-previews/math-space.svg",
+      icon: "/lune-synth/images/world-previews/math-space.svg?v=2",
       poster: "/screenshots/applied/step-1-math-space-world-thumb.jpg",
       video: "/screenshots/applied/step-1-math-space-world.mp4"
     }
