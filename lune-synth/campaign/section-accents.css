@@ -153,3 +153,23 @@ html[data-theme="light"] #constellations .slideshow-menu__selection {
 html[data-theme="light"] #constellations :is(.world-count, .world-select-chevron, .world-select-item__check, .world-select-item.is-active) {
   color: color-mix(in srgb, var(--constellation-accent) 45%, #151526);
 }
+
+.constellation-overview-icon { display: none; }
+@media (max-width: 680px) {
+  #constellations .constellation-overview-icon {
+    display: block;
+    flex-shrink: 0;
+    color: var(--blue);
+  }
+}
+@media (max-width: 760px) {
+  #problem-solver .card-corner-luna {
+    position: relative;
+    display: block;
+    top: auto;
+    right: auto;
+    width: 70px;
+    margin: 0 auto 16px;
+    transform: none;
+  }
+}
