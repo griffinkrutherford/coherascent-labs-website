@@ -241,6 +241,8 @@ function render(page) {
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
+  <link rel="stylesheet" href="/campaign/device-rotation.css?v=1" />
+  <script src="/campaign/device-rotation.js?v=1" defer></script>
 </head>
 <body>
   <header class="site-header">

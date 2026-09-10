@@ -1,0 +1,39 @@
+.rotatable-device-scene { perspective: 1600px; }
+.rotatable-device {
+  transform-style: preserve-3d !important;
+  isolation: auto !important;
+  filter: none !important;
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.rotatable-device.is-device-dragging { cursor: grabbing; }
+.rotatable-device img { -webkit-user-drag: none; }
+.rotatable-device > :is(.rotation-depth-slice, .dev-slice, .device-tilt__slice) {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.rotatable-device > .rotation-depth-slice {
+  transform: translateZ(calc(var(--rotation-slice) / 20 * -14px));
+  background: color-mix(in srgb, #8793a7, #171d28 calc(var(--rotation-slice) / 20 * 100%));
+}
+/* Existing homepage slices also need depth when entrance animation is disabled. */
+.rotatable-device > .dev-slice {
+  transform: translateZ(calc(var(--i) / var(--n) * var(--dev-depth, 14px) * -1));
+  background: color-mix(in srgb, #8793a7, #171d28 calc(var(--i) / var(--n) * 100%));
+}
+.rotatable-device > .device-tilt__slice {
+  transform: translateZ(calc(var(--slice) / 24 * var(--device-depth, 14px) * -1));
+  background: color-mix(in srgb, #8793a7, #171d28 calc(var(--slice) / 24 * 100%));
+}
+.device-rotation-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
