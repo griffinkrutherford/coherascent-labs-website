@@ -173,3 +173,9 @@ html[data-theme="light"] #constellations :is(.world-count, .world-select-chevron
     transform: none;
   }
 }
+
+#constellations .world-count {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 1.1em;
+}
