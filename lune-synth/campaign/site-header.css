@@ -79,6 +79,32 @@ body > .site-header { width: calc(100% - 48px); max-width: 1352px; margin: 48px 
 
 .site-header .brand h1 { font-family: "Roboto Mono", monospace; }
 
+/* Same treatment for the blog accent. The plain .nav-link--blog rule is a
+   single class, so the .site-header .nav-links .nav-link base rule outranks it
+   and the chip ends up looking like every other link. */
+.site-header .nav-links .nav-link--blog {
+  color: #e4d8ff;
+  border-color: rgba(164, 123, 255, 0.5);
+  background: rgba(164, 123, 255, 0.14);
+}
+.site-header .nav-links .nav-link--blog:hover,
+.site-header .nav-links .nav-link--blog:focus-visible {
+  color: #f1e9ff;
+  border-color: #a47bff;
+  background: rgba(164, 123, 255, 0.24);
+  outline-color: #a47bff;
+}
+html[data-theme="light"] .site-header .nav-links .nav-link--blog {
+  color: #4a2f9e;
+  border-color: rgba(127, 99, 214, 0.45);
+  background: rgba(127, 99, 214, 0.12);
+}
+html[data-theme="light"] .site-header .nav-links .nav-link--blog:hover,
+html[data-theme="light"] .site-header .nav-links .nav-link--blog:focus-visible {
+  background: rgba(127, 99, 214, 0.2);
+  border-color: #7f63d6;
+}
+
 /* Keep the story accent visible in both menu themes and interaction states. */
 .site-header .nav-links .nav-link--story {
   color: #ffd0d4;
