@@ -91,3 +91,40 @@ html[data-theme="light"] .section.section--problem-solver .problem-solver {
 html[data-theme="light"] .section.section--problem-solver .problem-solver__headline {
   color: color-mix(in srgb, var(--problem-accent) 50%, #151526);
 }
+
+/* Extend the existing live preview colors across the whole Constellations card. */
+#constellations .active-step-info {
+  --constellation-accent: color-mix(in srgb, var(--ambi-accent) 70%, var(--ambi-base));
+  --blue: var(--constellation-accent);
+  --purple: var(--constellation-accent);
+  --line: color-mix(in srgb, var(--constellation-accent) 30%, transparent);
+  border-color: var(--line);
+  background: radial-gradient(ellipse at 15% 12%, color-mix(in srgb, var(--constellation-accent) 20%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--constellation-accent) 13%, #10101b), #090b14);
+}
+#constellations .active-step-title {
+  color: color-mix(in srgb, var(--constellation-accent) 35%, white);
+}
+#constellations :is(.active-step-badge, .step-number) {
+  color: color-mix(in srgb, var(--constellation-accent) 65%, white);
+}
+#constellations :is(.slideshow-menu, .world-select-trigger) {
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--constellation-accent) 9%, #10101b);
+}
+#constellations .slideshow-menu__selection {
+  background: color-mix(in srgb, var(--constellation-accent) 22%, #10101b);
+  border-color: color-mix(in srgb, var(--constellation-accent) 50%, transparent);
+}
+html[data-theme="light"] #constellations .active-step-info {
+  background: radial-gradient(ellipse at 15% 12%, color-mix(in srgb, var(--constellation-accent) 18%, transparent), transparent 60%), #fcfcff;
+}
+html[data-theme="light"] #constellations :is(.active-step-title, .active-step-badge, .step-number) {
+  color: color-mix(in srgb, var(--constellation-accent) 45%, #151526);
+}
+html[data-theme="light"] #constellations :is(.slideshow-menu, .world-select-trigger) {
+  background: color-mix(in srgb, var(--constellation-accent) 10%, white);
+}
+html[data-theme="light"] #constellations .slideshow-menu__selection {
+  background: color-mix(in srgb, var(--constellation-accent) 24%, white);
+}
