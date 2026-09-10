@@ -165,9 +165,9 @@
   function constellationSteps(config) {
     return [
       {
-        label: "Worlds",
+        label: "Overview",
         title: "Explore Your Learning Worlds",
-        body: "Choose a visual World that makes " + config.topic + " practice feel like a place worth returning to."
+        body: "See what your " + config.topic + " learning can become. Explore the visual Worlds, then choose or create a Constellation to begin your learning journey."
       },
       {
         label: "Choose / Create",
@@ -204,7 +204,7 @@
 
       var stepButtons = steps.map(function (step, index) {
         return `<button class="feature-step${index === 0 ? " is-active" : ""}" type="button" role="tab" id="${id}-tab-${index + 1}" aria-selected="${index === 0 ? "true" : "false"}" aria-controls="${id}-panel" data-step="${index + 1}">
-          <span class="feature-step__number">${String(index + 1).padStart(2, "0")}</span>
+          ${index === 0 ? "" : `<span class="feature-step__number">${String(index).padStart(2, "0")}</span>`}
           <span class="feature-step__label">${escapeHtml(step.label)}</span>
         </button>`;
       }).join("");
@@ -248,7 +248,7 @@
               <div class="feature-constellation__controls" data-reveal>
                 <div class="feature-steps" role="tablist" aria-label="Constellation stages">${stepButtons}</div>
                 <div class="feature-step-copy" id="${id}-panel" role="tabpanel" aria-live="polite" aria-labelledby="${id}-tab-1">
-                  <span class="feature-step-copy__badge">Step 01</span>
+                  <span class="feature-step-copy__badge">Overview</span>
                   <h4>${escapeHtml(steps[0].title)}</h4>
                   <p>${escapeHtml(steps[0].body)}</p>
                   ${worldDropdown}
@@ -334,7 +334,7 @@
             item.setAttribute("aria-selected", active ? "true" : "false");
           });
           panel.setAttribute("aria-labelledby", button.id);
-          panel.querySelector(".feature-step-copy__badge").textContent = "Step " + String(activeStep).padStart(2, "0");
+          panel.querySelector(".feature-step-copy__badge").textContent = activeStep === 1 ? "Overview" : "Step " + String(activeStep - 1).padStart(2, "0");
           panel.querySelector("h4").textContent = step.title;
           panel.querySelector("p").textContent = step.body;
           if (dropdown) dropdown.hidden = activeStep !== 1;
