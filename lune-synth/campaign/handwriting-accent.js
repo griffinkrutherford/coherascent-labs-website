@@ -1,6 +1,7 @@
 (function () {
   "use strict";
-  var section = document.querySelector('.section--handwriting');
+  function attach(config) {
+  var section = document.querySelector(config.section);
   if (!section) return;
   var canvas = document.createElement('canvas');
   canvas.width = canvas.height = 48;
@@ -21,7 +22,7 @@
       var progress = motion.matches ? 1 : Math.min(1, (now - start) / 650);
       var eased = 1 - Math.pow(1 - progress, 3);
       displayed = color.map(function (value, i) { return from[i] + (value - from[i]) * eased; });
-      section.style.setProperty('--handwriting-accent', 'rgb(' + displayed.map(Math.round).join(', ') + ')');
+      section.style.setProperty(config.property, 'rgb(' + displayed.map(Math.round).join(', ') + ')');
       if (progress < 1) frame = requestAnimationFrame(paint);
     }
     paint(start);
@@ -50,9 +51,9 @@
   }
 
   function update() {
-    var host = section.querySelector('.response-carousel__paper.is-active [data-screenshot-src]');
+    var host = section.querySelector(config.source);
     if (!host) return;
-    var src = host.dataset.screenshotSrc;
+    var src = host.dataset.screenshotSrc || host.currentSrc || host.src;
     if (src === lastSource) return;
     lastSource = src;
     var current = ++request;
@@ -71,10 +72,13 @@
   document.addEventListener('coherascent:response-slide-change', update);
   new MutationObserver(function (records) {
     if (records.some(function (record) {
-      return record.type === 'childList' || record.target.matches('.response-carousel__paper, [data-screenshot-src]');
+      return record.type === 'childList' || record.target.matches('.response-carousel__paper, [data-screenshot-src], [data-problem-slide], img');
     })) update();
-  }).observe(section.querySelector('[data-response-slideshow]'), {
-    subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'data-screenshot-src']
+  }).observe(section.querySelector(config.carousel), {
+    subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'data-screenshot-src', 'src', 'srcset']
   });
   update();
+  }
+  attach({ section: '.section--handwriting', property: '--handwriting-accent', source: '.response-carousel__paper.is-active [data-screenshot-src]', carousel: '[data-response-slideshow]' });
+  attach({ section: '.section--problem-solver', property: '--problem-accent', source: '[data-problem-slide].is-active .problem-solver__screen img', carousel: '[data-problem-carousel]' });
 })();

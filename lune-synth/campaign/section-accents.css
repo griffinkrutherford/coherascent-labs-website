@@ -65,3 +65,29 @@ html[data-theme="light"] .section.section--handwriting .platform-showcase__title
 @media (prefers-reduced-motion: reduce) {
   .section.section--handwriting { transition: none; }
 }
+
+.section.section--problem-solver {
+  --problem-accent: #a47bff;
+  --blue: var(--problem-accent);
+  --purple: var(--problem-accent);
+  --line: color-mix(in srgb, var(--problem-accent) 30%, transparent);
+}
+.section.section--problem-solver .problem-solver {
+  border-color: var(--line);
+  background: radial-gradient(ellipse at 15% 12%, color-mix(in srgb, var(--problem-accent) 20%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--problem-accent) 13%, #10101b), #090b14);
+  box-shadow: 0 18px 50px #0406104d, 0 0 32px color-mix(in srgb, var(--problem-accent) 14%, transparent);
+}
+.section.section--problem-solver .problem-solver__headline {
+  color: color-mix(in srgb, var(--problem-accent) 35%, white);
+}
+.section.section--problem-solver .section-title::before {
+  background: var(--problem-accent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--problem-accent) 35%, transparent);
+}
+html[data-theme="light"] .section.section--problem-solver .problem-solver {
+  background: radial-gradient(ellipse at 15% 12%, color-mix(in srgb, var(--problem-accent) 18%, transparent), transparent 60%), #fcfcff;
+}
+html[data-theme="light"] .section.section--problem-solver .problem-solver__headline {
+  color: color-mix(in srgb, var(--problem-accent) 50%, #151526);
+}

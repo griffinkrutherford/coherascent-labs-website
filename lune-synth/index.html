@@ -10769,7 +10769,7 @@
   <link rel="stylesheet" href="/campaign/site-header.css?v=2" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
-  <link rel="stylesheet" href="/campaign/section-accents.css?v=3" />
+  <link rel="stylesheet" href="/campaign/section-accents.css?v=4" />
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
 </head>
 <body>
@@ -11206,11 +11206,6 @@
           <button class="problem-solver__carousel-button problem-solver__carousel-button--next" type="button" data-problem-next aria-label="Next Problem Solver step">&#8594;</button>
         </div>
 
-        <div class="problem-solver__carousel-dots" aria-label="Choose a Problem Solver step">
-          <button class="problem-solver__carousel-dot is-active" type="button" data-problem-dot="0" aria-label="Show Bring it in" aria-current="true">Bring it in</button>
-          <button class="problem-solver__carousel-dot" type="button" data-problem-dot="1" aria-label="Show Work through it">Work through it</button>
-          <button class="problem-solver__carousel-dot" type="button" data-problem-dot="2" aria-label="Show Practice it">Practice it</button>
-        </div>
 
         <div class="problem-solver__steps" aria-live="polite">
           <article class="problem-solver__step is-active" data-problem-caption="0" aria-hidden="false">
@@ -11230,11 +11225,6 @@
           </article>
         </div>
 
-        <div class="problem-solver__close">
-          <div class="problem-solver__actions">
-            <a class="problem-solver__cta" href="#waitlist">Try Problem Solver</a>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -11244,7 +11234,6 @@
       if (!carousel) return;
 
       var slides = Array.prototype.slice.call(carousel.querySelectorAll('[data-problem-slide]'));
-      var dots = Array.prototype.slice.call(document.querySelectorAll('[data-problem-dot]'));
       var captions = Array.prototype.slice.call(document.querySelectorAll('[data-problem-caption]'));
       var previous = carousel.querySelector('[data-problem-previous]');
       var next = carousel.querySelector('[data-problem-next]');
@@ -11264,12 +11253,6 @@
           slide.setAttribute('aria-hidden', active ? 'false' : 'true');
           var phone = slide.querySelector('[data-phone-mock]');
           if (phone) phone.setAttribute('tabindex', active ? '0' : '-1');
-        });
-        dots.forEach(function (dot, dotIndex) {
-          var active = dotIndex === activeIndex;
-          dot.classList.toggle('is-active', active);
-          if (active) dot.setAttribute('aria-current', 'true');
-          else dot.removeAttribute('aria-current');
         });
         captions.forEach(function (caption, captionIndex) {
           var active = captionIndex === activeIndex;
@@ -11295,11 +11278,6 @@
         event.stopImmediatePropagation();
         showSlide(Number(slide.getAttribute('data-problem-slide')));
       }, true);
-      dots.forEach(function (dot) {
-        dot.addEventListener('click', function () {
-          showSlide(Number(dot.getAttribute('data-problem-dot')));
-        });
-      });
       carousel.addEventListener('keydown', function (event) {
         if (event.key === 'ArrowLeft') {
           event.preventDefault();
@@ -15487,7 +15465,7 @@
   });
   </script>
   <script src="../applied-response-slides.js?v=1"></script>
-  <script src="/campaign/handwriting-accent.js?v=2"></script>
+  <script src="/campaign/handwriting-accent.js?v=3"></script>
   <script>
   (function loadLuneEnhancements() {
     var loaded = {};
