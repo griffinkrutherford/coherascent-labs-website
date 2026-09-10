@@ -154,13 +154,10 @@ html[data-theme="light"] #constellations :is(.world-count, .world-select-chevron
   color: color-mix(in srgb, var(--constellation-accent) 45%, #151526);
 }
 
-.constellation-overview-icon { display: none; }
-@media (max-width: 680px) {
-  #constellations .constellation-overview-icon {
-    display: block;
-    flex-shrink: 0;
-    color: var(--blue);
-  }
+#constellations .constellation-overview-icon {
+  display: block;
+  flex-shrink: 0;
+  color: var(--blue);
 }
 @media (max-width: 760px) {
   #problem-solver .card-corner-luna {
