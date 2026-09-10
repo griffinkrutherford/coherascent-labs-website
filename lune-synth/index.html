@@ -10769,7 +10769,7 @@
   <link rel="stylesheet" href="/campaign/site-header.css?v=2" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
-  <link rel="stylesheet" href="/campaign/section-accents.css?v=2" />
+  <link rel="stylesheet" href="/campaign/section-accents.css?v=3" />
 </head>
 <body>
   <header class="site-header">
@@ -10943,6 +10943,385 @@
         </a>
       </div>
     </section>
+
+    <!-- ================= CONSTELLATIONS SLIDESHOW ================= -->
+    <section class="section section--constellations-slideshow" id="constellations" aria-labelledby="constellations-title">
+      <h2 class="section-title" id="constellations-title">Turn a Big Study Goal Into a Constellation</h2>
+
+      <div class="slideshow-layout section-content">
+
+        <!-- Middle: Dynamic Step Info Card -->
+        <div class="active-step-info">
+
+          <!-- Top: Interactive Pill Tabs Menu (now nested inside the blue card) -->
+          <div class="slideshow-menu" data-moving-selection>
+
+            <span class="moving-selection-pill slideshow-menu__selection" aria-hidden="true"></span>
+
+            <!-- Step 1 Button -->
+            <button class="slideshow-step-btn is-active" id="stepBtn-1" onclick="switchSlideshowStep(1)">
+              <div class="step-details">
+                <h4 class="step-title">Overview</h4>
+              </div>
+            </button>
+
+            <!-- Step 2 Button -->
+            <button class="slideshow-step-btn" id="stepBtn-2" onclick="switchSlideshowStep(2)">
+              <span class="step-number">01</span>
+              <div class="step-details">
+                <h4 class="step-title">Choose / Create</h4>
+              </div>
+            </button>
+
+            <!-- Step 3 Button -->
+            <button class="slideshow-step-btn" id="stepBtn-3" onclick="switchSlideshowStep(3)">
+              <span class="step-number">02</span>
+              <div class="step-details">
+                <h4 class="step-title">Skill Missions</h4>
+              </div>
+            </button>
+
+            <!-- Step 4 Button -->
+            <button class="slideshow-step-btn" id="stepBtn-4" onclick="switchSlideshowStep(4)">
+              <span class="step-number">03</span>
+              <div class="step-details">
+                <h4 class="step-title">Galaxy Tests</h4>
+              </div>
+            </button>
+
+            <!-- Step 5 Button -->
+            <button class="slideshow-step-btn" id="stepBtn-5" onclick="switchSlideshowStep(5)">
+              <span class="step-number">04</span>
+              <div class="step-details">
+                <h4 class="step-title">Supercluster</h4>
+              </div>
+            </button>
+
+          </div>
+
+          <div class="active-step-text">
+            <span class="active-step-badge" id="activeStepBadge">Overview</span>
+            <h3 class="active-step-title" id="activeStepTitle">Explore Your Learning Worlds</h3>
+            <p class="active-step-desc" id="activeStepDesc">See what your learning can become: a personalized study universe with over <strong class="world-count">50</strong> visual <strong>Worlds</strong>. Explore the preview, then choose or create a Constellation to begin your learning journey.</p>
+
+            <!-- Dynamic World Selector Dropdown for the Overview (hidden on other steps) -->
+            <div class="world-theme-panel-container" id="worldThemePanel">
+              <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select World</span>
+              <div class="world-select-dropdown" id="worldSelectDropdown">
+                <button class="world-select-trigger" id="worldSelectTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Learning World">
+                  <span class="world-select-trigger__current">
+                    <img class="world-option-icon" id="worldSelectActiveIcon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
+                    <span id="worldSelectActiveLabel">Earth</span>
+                  </span>
+                  <svg class="world-select-chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                    <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="world-select-popup" id="worldSelectPopup" role="listbox" aria-label="Learning Worlds">
+                  <button class="world-select-item is-active" type="button" role="option" aria-selected="true" data-theme="earth" onclick="selectWorld('earth', this)">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
+                    <span class="world-select-item__label">Earth</span>
+                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/jupiter.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
+                    <span class="world-select-item__label">Jupiter</span>
+                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="retro" onclick="selectWorld('retro', this)">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/retro-arcade.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
+                    <span class="world-select-item__label">Retro Arcade</span>
+                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="math" onclick="selectWorld('math', this)">
+                    <img class="world-option-icon" src="/lune-synth/images/world-icons/math-space.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
+                    <span class="world-select-item__label">Math Space</span>
+                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Empty iPad Mockup (GIF Canvas) -->
+          <div class="ipad-container">
+            <div class="ipad-mockup" aria-label="11-inch iPad Pro Progress mock">
+              <span class="ipad-button ipad-button--power"></span>
+              <span class="ipad-button ipad-button--volume ipad-button--volume-up"></span>
+              <span class="ipad-button ipad-button--volume ipad-button--volume-down"></span>
+              <div class="ipad-camera"></div>
+              <div class="ipad-screen-wrapper">
+                <div class="ipad-glare"></div>
+
+                <!-- Screen Content Frame -->
+                <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
+
+                  <!-- Step 2 Preview Screen: choose or create a Constellation -->
+                  <div class="ipad-preview-layout" id="previewStep-2">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-thumb.jpg" data-video-thumbnail="step1Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <video id="step1Video" loop muted playsinline preload="none" class="ipad-gif-target">
+                      <source src="screenshots/applied/step-1.webm" type="video/webm">
+                      <source src="screenshots/applied/step-1.mp4" type="video/mp4">
+                    </video>
+                  </div>
+
+                  <!-- Step 1 Preview Screen: navigate Worlds -->
+                  <div class="ipad-preview-layout is-active" id="previewStep-1">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-earth-world-thumb.jpg" data-video-thumbnail="worldVideo-earth" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <video id="worldVideo-earth" class="ipad-gif-target" loop muted playsinline preload="none">
+                      <source src="screenshots/applied/step-1-earth-world.mp4" type="video/mp4">
+                    </video>
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-jupiter-world-thumb.jpg" data-video-thumbnail="worldVideo-jupiter" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
+                    <video id="worldVideo-jupiter" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
+                      <source src="screenshots/applied/step-1-jupiter-world.mp4" type="video/mp4">
+                    </video>
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-retro-arcade-world-thumb.jpg" data-video-thumbnail="worldVideo-retro" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
+                    <video id="worldVideo-retro" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
+                      <source src="screenshots/applied/step-1-retro-arcade-world.mp4" type="video/mp4">
+                    </video>
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-math-space-world-thumb.jpg" data-video-thumbnail="worldVideo-math" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
+                    <video id="worldVideo-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
+                      <source src="screenshots/applied/step-1-math-space-world.mp4" type="video/mp4">
+                    </video>
+                  </div>
+
+                  <!-- Step 3 Preview Screen -->
+                  <div class="ipad-preview-layout" id="previewStep-3">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-3-thumb.jpg" data-video-thumbnail="step3Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <video id="step3Video" loop muted playsinline preload="none" class="ipad-gif-target">
+                      <source src="screenshots/applied/step-3.webm" type="video/webm">
+                      <source src="screenshots/applied/step-3.mp4" type="video/mp4">
+                    </video>
+                  </div>
+
+                  <!-- Step 4 Preview Screen -->
+                  <div class="ipad-preview-layout" id="previewStep-4">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-4-thumb.jpg" data-video-thumbnail="step4Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <video id="step4Video" loop muted playsinline preload="none" class="ipad-gif-target">
+                      <source src="screenshots/applied/step-4.webm" type="video/webm">
+                      <source src="screenshots/applied/step-4.mp4" type="video/mp4">
+                    </video>
+                  </div>
+
+                  <!-- Step 5 Preview Screen -->
+                  <div class="ipad-preview-layout" id="previewStep-5">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-5-thumb.jpg" data-video-thumbnail="step5Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <video id="step5Video" loop muted playsinline preload="none" class="ipad-gif-target">
+                      <source src="screenshots/applied/step-5.webm" type="video/webm">
+                      <source src="screenshots/applied/step-5.mp4" type="video/mp4">
+                    </video>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= QUICK MISSIONS SECTION ================= -->
+    <section class="section section--quick-missions" id="quick-missions" aria-labelledby="quick-missions-title">
+      <h2 class="section-title" id="quick-missions-title">Take One Quick Mission</h2>
+
+      <div class="quick-missions section-content" data-quick-missions>
+        <video class="quick-missions__video" data-quick-missions-video loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="screenshots/applied/quick-mission-video.mp4" type="video/mp4">
+        </video>
+        <div class="quick-missions__veil" aria-hidden="true"></div>
+
+        <div class="quick-missions__content">
+          <div class="quick-missions__intro">
+            <p class="quick-missions__eyebrow">Fast study mode</p>
+            <h3 class="quick-missions__headline">One clear goal. A few focused minutes.</h3>
+            <p class="quick-missions__lede">
+              Quick Missions are ideal when you have a bite-sized goal. They narrow the next few minutes to one
+              fact to recall, one method to practice, or one mistake to fix.
+            </p>
+            <div class="quick-missions__contrast" aria-label="Quick Mission characteristics">
+              <span>2–6 minutes</span>
+              <span>One skill at a time</span>
+              <span>Immediate next step</span>
+            </div>
+          </div>
+
+          <div class="quick-missions__device-column">
+            <div class="quick-missions__phone" data-phone-mock="quick-missions" aria-label="Quick Missions app preview">
+              <div class="quick-missions__phone-screen phone-screenshot-host">
+                <div class="quick-missions__screen-view is-active" data-quick-screen="grid">
+                  <video class="quick-missions__screen-video" data-quick-screen-video autoplay loop muted playsinline preload="metadata" poster="screenshots/applied/quick-mission-screen-poster.png" aria-label="Quick Missions app walkthrough">
+                    <source src="screenshots/applied/quick-mission-screen.mp4" type="video/mp4">
+                    <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-screen-poster.png" alt="Quick Missions app preview" loading="lazy" decoding="async">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--problem-solver" id="problem-solver" aria-labelledby="problem-solver-title">
+      <h2 class="section-title" id="problem-solver-title">Problem Solver</h2>
+      <div class="problem-solver section-content">
+        <img class="card-corner-luna card-corner-luna--thinking" src="/lune-synth/images/luna-emotes/thinking.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <div class="problem-solver__intro">
+          <h3 class="problem-solver__headline">Homework help that builds understanding.</h3>
+          <p class="problem-solver__lede">Add a question or assignment. Lune Synth organizes the work and walks you through each step.</p>
+        </div>
+
+        <div class="problem-solver__flow" data-problem-carousel aria-label="Problem Solver app previews" aria-roledescription="carousel" tabindex="0">
+          <button class="problem-solver__carousel-button problem-solver__carousel-button--previous" type="button" data-problem-previous aria-label="Previous Problem Solver step">&#8592;</button>
+          <div class="problem-solver__device is-active" data-problem-slide="0" aria-hidden="false">
+            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver-bring" aria-label="Bring your material app preview">
+              <div class="problem-solver__screen phone-screenshot-host" data-problem-solver-screenshot="bring">
+                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-bring.png" alt="Problem Solver input screen for adding a question or assignment">
+              </div>
+            </div>
+          </div>
+          <div class="problem-solver__device" data-problem-slide="1" aria-hidden="true">
+            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver" aria-label="Problem Solver app preview">
+              <div class="problem-solver__screen phone-screenshot-host">
+                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-reasoning.png" alt="Problem Solver showing each step of an implicit differentiation problem">
+              </div>
+            </div>
+          </div>
+          <div class="problem-solver__device" data-problem-slide="2" aria-hidden="true">
+            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver-practice" aria-label="Focused practice app preview">
+              <div class="problem-solver__screen phone-screenshot-host" data-problem-solver-screenshot="practice">
+                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-practice.png" alt="Problem Solver practice screen with a new focused exercise">
+              </div>
+            </div>
+          </div>
+          <button class="problem-solver__carousel-button problem-solver__carousel-button--next" type="button" data-problem-next aria-label="Next Problem Solver step">&#8594;</button>
+        </div>
+
+        <div class="problem-solver__carousel-dots" aria-label="Choose a Problem Solver step">
+          <button class="problem-solver__carousel-dot is-active" type="button" data-problem-dot="0" aria-label="Show Bring it in" aria-current="true">Bring it in</button>
+          <button class="problem-solver__carousel-dot" type="button" data-problem-dot="1" aria-label="Show Work through it">Work through it</button>
+          <button class="problem-solver__carousel-dot" type="button" data-problem-dot="2" aria-label="Show Practice it">Practice it</button>
+        </div>
+
+        <div class="problem-solver__steps" aria-live="polite">
+          <article class="problem-solver__step is-active" data-problem-caption="0" aria-hidden="false">
+            <span class="problem-solver__step-number">01</span>
+            <h3>Bring it in</h3>
+            <p class="problem-solver__step-copy">Type, photograph, or attach your work.</p>
+          </article>
+          <article class="problem-solver__step" data-problem-caption="1" aria-hidden="true">
+            <span class="problem-solver__step-number">02</span>
+            <h3>Work through it</h3>
+            <p class="problem-solver__step-copy">See every step and find where you got stuck.</p>
+          </article>
+          <article class="problem-solver__step" data-problem-caption="2" aria-hidden="true">
+            <span class="problem-solver__step-number">03</span>
+            <h3>Practice it</h3>
+            <p class="problem-solver__step-copy">Turn the output into a <a href="#quick-missions-title">Quick Mission</a> or <a href="#constellations-title">Constellation</a>.</p>
+          </article>
+        </div>
+
+        <div class="problem-solver__close">
+          <div class="problem-solver__actions">
+            <a class="problem-solver__cta" href="#waitlist">Try Problem Solver</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+    (function () {
+      var carousel = document.querySelector('[data-problem-carousel]');
+      if (!carousel) return;
+
+      var slides = Array.prototype.slice.call(carousel.querySelectorAll('[data-problem-slide]'));
+      var dots = Array.prototype.slice.call(document.querySelectorAll('[data-problem-dot]'));
+      var captions = Array.prototype.slice.call(document.querySelectorAll('[data-problem-caption]'));
+      var previous = carousel.querySelector('[data-problem-previous]');
+      var next = carousel.querySelector('[data-problem-next]');
+      var activeIndex = 0;
+      var touchStartX = null;
+      var suppressClick = false;
+
+      function showSlide(index) {
+        activeIndex = (index + slides.length) % slides.length;
+        slides.forEach(function (slide, slideIndex) {
+          var active = slideIndex === activeIndex;
+          var previousSlide = slideIndex === (activeIndex - 1 + slides.length) % slides.length;
+          var nextSlide = slideIndex === (activeIndex + 1) % slides.length;
+          slide.classList.toggle('is-active', active);
+          slide.classList.toggle('is-previous', previousSlide);
+          slide.classList.toggle('is-next', nextSlide);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          var phone = slide.querySelector('[data-phone-mock]');
+          if (phone) phone.setAttribute('tabindex', active ? '0' : '-1');
+        });
+        dots.forEach(function (dot, dotIndex) {
+          var active = dotIndex === activeIndex;
+          dot.classList.toggle('is-active', active);
+          if (active) dot.setAttribute('aria-current', 'true');
+          else dot.removeAttribute('aria-current');
+        });
+        captions.forEach(function (caption, captionIndex) {
+          var active = captionIndex === activeIndex;
+          caption.classList.toggle('is-active', active);
+          caption.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+      }
+
+      previous.addEventListener('click', function () { showSlide(activeIndex - 1); });
+      next.addEventListener('click', function () { showSlide(activeIndex + 1); });
+      carousel.addEventListener('click', function (event) {
+        if (suppressClick) {
+          suppressClick = false;
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation();
+          return;
+        }
+        var slide = event.target.closest('[data-problem-slide]');
+        if (!slide || slide.classList.contains('is-active')) return;
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        showSlide(Number(slide.getAttribute('data-problem-slide')));
+      }, true);
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          showSlide(Number(dot.getAttribute('data-problem-dot')));
+        });
+      });
+      carousel.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          showSlide(activeIndex - 1);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          showSlide(activeIndex + 1);
+        }
+      });
+      carousel.addEventListener('touchstart', function (event) {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+      carousel.addEventListener('touchend', function (event) {
+        if (touchStartX === null) return;
+        var distance = event.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(distance) < 45) return;
+        suppressClick = true;
+        showSlide(activeIndex + (distance < 0 ? 1 : -1));
+      }, { passive: true });
+      showSlide(0);
+    })();
+    </script>
 
     <section class="section section--handwriting" aria-labelledby="platform-title">
       <h2 class="section-title" id="platform-title">Platform Components</h2>
@@ -11340,783 +11719,6 @@
           <strong>Keep Momentum</strong>
           <p>Smart practice, streaks, and feedback loops turn corrections into progress.</p>
         </article>
-      </div>
-    </section>
-
-    <!-- ================= LUNA SECTION ================= -->
-    <section class="section section--luna" id="luna" aria-labelledby="luna-title">
-      <h2 class="section-title" id="luna-title">Luna</h2>
-
-      <div class="luna section-content" data-luna>
-        <video class="luna__video" data-luna-video loop muted playsinline preload="metadata" aria-hidden="true">
-          <source src="screenshots/applied/math-animation-luna-tutor-section.mp4" type="video/mp4">
-        </video>
-        <div class="luna__veil" aria-hidden="true"></div>
-
-        <div class="luna__content">
-          <div class="luna-lead">
-            <img
-              class="luna-icon"
-              src="/lune-synth/images/luna-emotes/wave.webp"
-              sizes="132px"
-              alt="Luna waves hello"
-              loading="lazy"
-              decoding="async"
-            />
-            <h3>A tutor that <span class="engine-gradient-word">won't</span> do it for you.</h3>
-            <p>Reads your exact work. Small nudges only. Never the answer.</p>
-          </div>
-
-          <div class="luna-card">
-            <!-- Top: Interactive Pill Tabs Menu (pattern from Constellations) -->
-            <div class="luna-menu" role="tablist" aria-label="Ways Luna helps you think" data-moving-selection>
-              <span class="moving-selection-pill luna-menu__selection" aria-hidden="true"></span>
-              <button class="luna-tab-btn is-active" id="lunaTab-hints" role="tab" aria-controls="lunaPanel-hints" aria-selected="true" onclick="switchLunaTab('hints')">Hints</button>
-              <button class="luna-tab-btn" id="lunaTab-infographics" role="tab" aria-controls="lunaPanel-infographics" aria-selected="false" onclick="switchLunaTab('infographics')">Infographics</button>
-              <button class="luna-tab-btn" id="lunaTab-keyterms" role="tab" aria-controls="lunaPanel-keyterms" aria-selected="false" onclick="switchLunaTab('keyterms')">Key Terms</button>
-              <button class="luna-tab-btn" id="lunaTab-chat" role="tab" aria-controls="lunaPanel-chat" aria-selected="false" onclick="switchLunaTab('chat')">Chat</button>
-            </div>
-
-            <!-- Tab panels: copy left, phone mockup right (pattern from Constellations) -->
-            <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
-              <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step, then you finish it.</p>
-              </div>
-              <div class="luna-tab-visual">
-                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
-                  <div class="luna-phone__screen phone-screenshot-host">
-                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" aria-label="Luna giving a contextual hint">
-                      <source src="screenshots/applied/luna-hints.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                </div>
-              </div>
-              <div class="luna-tab-copy__traits">
-                <span>One nudge at a time</span>
-                <span>No copyable solution</span>
-                <span>Built for your question</span>
-              </div>
-            </div>
-
-            <div class="luna-tab-panel" id="lunaPanel-infographics" role="tabpanel" aria-labelledby="lunaTab-infographics">
-              <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Words not enough? A quick diagram from your exact problem.</p>
-              </div>
-              <div class="luna-tab-visual">
-                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
-                  <div class="luna-phone__screen phone-screenshot-host">
-                    <video class="luna-phone__demo" data-luna-demo data-playback-rate="2" loop muted playsinline preload="metadata" aria-label="Luna creating a visual infographic">
-                      <source src="screenshots/applied/luna-infographics.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                </div>
-              </div>
-              <div class="luna-tab-copy__traits">
-                <span>Diagrams from the question</span>
-                <span>Visual next-step guidance</span>
-                <span>Still no final answer</span>
-              </div>
-            </div>
-
-            <div class="luna-tab-panel" id="lunaPanel-keyterms" role="tabpanel" aria-labelledby="lunaTab-keyterms">
-              <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Key terms surface in context exactly when they matter.</p>
-              </div>
-              <div class="luna-tab-visual">
-                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
-                  <div class="luna-phone__screen phone-screenshot-host">
-                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" aria-label="Luna surfacing key terms in context">
-                      <source src="screenshots/applied/luna-key-terms.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                </div>
-              </div>
-              <div class="luna-tab-copy__traits">
-                <span>Definitions in context</span>
-                <span>Subject vocabulary</span>
-                <span>Quick, no distraction</span>
-              </div>
-            </div>
-
-            <div class="luna-tab-panel" id="lunaPanel-chat" role="tabpanel" aria-labelledby="lunaTab-chat">
-              <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Ask while working. Prompts and checks that keep you thinking.</p>
-              </div>
-              <div class="luna-tab-visual">
-                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
-                  <div class="luna-phone__screen phone-screenshot-host">
-                    <video class="luna-phone__demo" data-luna-demo data-playback-rate="2" loop muted playsinline preload="metadata" aria-label="A guided conversation with Luna">
-                      <source src="screenshots/applied/luna-chat.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                </div>
-              </div>
-              <div class="luna-tab-copy__traits">
-                <span>Socratic guidance</span>
-                <span>Grounded in your attempt</span>
-                <span>Refuses direct answers</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= BUILD THE CIRCUIT (3D neuron comparison) ================= -->
-    <style>
-      .section--neuro { content-visibility: visible; overflow: visible; }
-      .neuro-shell {
-        width: 100%;
-        min-width: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 26px;
-        max-width: 1280px;
-        margin: 0 auto;
-      }
-
-      .neuro-lede {
-        max-width: 720px;
-        margin: 0 auto;
-        text-align: center;
-        color: var(--muted);
-      }
-
-      .neuro-lede strong {
-        color: var(--text);
-        font-weight: 600;
-      }
-
-      .neuro-viz__stage {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-      }
-
-      .neuro-card {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        border-radius: 0;
-        overflow: hidden;
-        border: 0;
-        background: #000;
-        box-shadow: 0 0 36px rgba(100, 168, 255, 0.16), 0 24px 64px rgba(0, 0, 0, 0.4), inset 0 0 32px rgba(100, 168, 255, 0.04);
-        --text: #e8eefc;
-        --muted: #aebed8;
-        --blue: #72b9ff;
-      }
-
-      .neuro-card__title {
-        margin: 0; padding: 28px 20px 8px; text-align: center;
-        color: var(--text); font-size: clamp(1.4rem, 2.8vw, 2.25rem);
-        font-weight: 700;
-      }
-
-      .neuro-viz__canvas,
-      .neuro-viz__fallback {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-
-      /* Horizontal drag rotates; vertical drag must still scroll the page. */
-      .neuro-viz__canvas {
-        touch-action: pan-y;
-        cursor: grab;
-      }
-
-      .neuro-viz__canvas:active {
-        cursor: grabbing;
-      }
-
-      .neuro-viz__canvas:focus-visible {
-        outline: 2px solid var(--blue);
-        outline-offset: -4px;
-      }
-
-      .neuro-hint {
-        position: absolute;
-        right: 14px;
-        bottom: 12px;
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 6px 11px;
-        border-radius: 999px;
-        font-size: 0.72rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--muted);
-        background: rgba(8, 14, 28, 0.55);
-        border: 1px solid rgba(122, 184, 255, 0.16);
-        pointer-events: none;
-      }
-
-      html[data-theme="light"] .neuro-hint {
-        background: rgba(8, 14, 28, 0.75);
-        border-color: rgba(122, 184, 255, 0.25);
-      }
-
-      .neuro-route-label {
-        position: absolute; left: 20px; right: 20px; top: 20px; z-index: 2;
-        align-items: center; text-align: center;
-        display: flex; flex-direction: column; gap: 4px;
-        pointer-events: none; color: #ffb16b;
-      }
-      .neuro-route-label strong { font-size: clamp(1rem, 1.65vw, 1.5rem); letter-spacing: 0.08em; text-transform: uppercase; }
-      .neuro-route-label span { font-size: 0.72rem; color: var(--muted); }
-      .neuro-route-label--earned { top: 53%; color: #72b9ff; }
-      html[data-theme="light"] .neuro-route-label { color: #ffb16b; }
-      html[data-theme="light"] .neuro-route-label--earned { color: #72b9ff; }
-      .neuro-route-label { text-shadow: 0 0 16px currentColor; }
-      .neuro-card .neuro-fb__label { fill: #e8eefc; }
-      .neuro-card .neuro-fb__sub { fill: #aebed8; }
-      html[data-theme="light"] .neuro-card .neuro-fb__label { fill: #e8eefc; }
-      html[data-theme="light"] .neuro-card .neuro-fb__sub { fill: #aebed8; }
-      .neuro-card .neuro-fb__sheath--earned { filter: drop-shadow(0 0 4px #579de8); }
-      .neuro-viz__stage:has(.neuro-viz__fallback) .neuro-route-label { display: none; }
-      @media (max-width: 520px) {
-        .neuro-viz__stage { aspect-ratio: 4 / 3; }
-        .neuro-route-label { top: 12px; left: 12px; right: 12px; max-width: none; gap: 2px; }
-        .neuro-route-label--earned { top: 54%; }
-        .neuro-route-label strong { font-size: 0.95rem; line-height: 1.4; }
-        .neuro-route-label span { font-size: 0.65rem; }
-      }
-
-      /* Matches the Statistical Audit drawer's fill so the two drawers read as
-         the same component. The backdrop blur is what makes the translucent
-         fill sit solid over the starfield. */
-      .neuro-science {
-        border: 1px solid rgba(122, 184, 255, 0.14);
-        border-radius: 16px;
-        background: rgba(8, 16, 36, 0.45);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        overflow: hidden;
-        text-align: left;
-        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-      }
-
-      .neuro-science[open] {
-        background: rgba(8, 16, 36, 0.72);
-        border-color: rgba(100, 168, 255, 0.32);
-        box-shadow: 0 16px 40px rgba(4, 10, 24, 0.35);
-      }
-
-      html[data-theme="light"] .neuro-science {
-        background: rgba(255, 255, 255, 0.65);
-        border-color: rgba(79, 132, 214, 0.18);
-      }
-
-      html[data-theme="light"] .neuro-science[open] {
-        background: rgba(255, 255, 255, 0.92);
-        border-color: rgba(79, 132, 214, 0.32);
-        box-shadow: 0 16px 36px rgba(151, 164, 192, 0.2);
-      }
-      .neuro-science summary {
-        display: flex; align-items: center; justify-content: space-between;
-        gap: 16px; padding: 20px 22px; cursor: pointer; list-style: none;
-        color: var(--text); font-weight: 600;
-      }
-      .neuro-science summary::-webkit-details-marker { display: none; }
-      .neuro-science summary::after { content: "+"; font-size: 1.4rem; color: var(--blue); }
-      .neuro-science[open] summary::after { content: "−"; }
-      .neuro-science summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 12px; }
-      .neuro-science__label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
-      .neuro-science__label small { font-weight: 400; font-size: 0.8rem; color: var(--muted); }
-      .neuro-science__body { padding: 0 22px 24px; color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
-      .neuro-science__body h3 { margin: 24px 0 8px; color: var(--text); font-size: 1rem; }
-      .neuro-science__body h3:first-child { margin-top: 0; }
-      .neuro-science__body p { margin: 0 0 14px; }
-      .neuro-science__body p:last-child { margin-bottom: 0; }
-      .neuro-science__body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
-      .neuro-science__body a:hover { color: var(--text); }
-
-      .neuro-practice-control {
-        display: grid; gap: 8px; padding: 18px 0 20px;
-        width: min(760px, calc(100% - 40px)); margin: 0 auto;
-        border-top: 1px solid rgba(122, 184, 255, 0.16);
-      }
-      .neuro-practice-control label { color: var(--text); font-weight: 600; }
-      .neuro-practice-control input { width: 100%; height: 32px; margin: 0; accent-color: var(--blue); cursor: pointer; }
-      .neuro-practice-control input:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 6px; }
-      .neuro-practice-control__ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
-
-      .neuro-takeaway { max-width: 760px; margin: 0 auto; text-align: center; color: var(--muted); }
-      .neuro-takeaway strong { color: var(--text); }
-      .neuro-takeaway a { color: var(--blue); text-underline-offset: 3px; }
-
-      .neuro-legend {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .neuro-legend__item {
-        display: flex;
-        gap: 12px;
-        padding: 16px 18px;
-        border-radius: 14px;
-        border: 1px solid rgba(122, 184, 255, 0.12);
-        background: rgba(10, 18, 34, 0.4);
-      }
-
-      html[data-theme="light"] .neuro-legend__item {
-        border-color: rgba(79, 132, 214, 0.14);
-        background: rgba(255, 255, 255, 0.6);
-      }
-
-      .neuro-legend__swatch {
-        flex: 0 0 auto;
-        width: 10px;
-        border-radius: 999px;
-        margin-top: 3px;
-        height: 42px;
-      }
-
-      .neuro-legend__swatch--unbuilt {
-        background: linear-gradient(180deg, #ffb16b, #bd712e);
-      }
-
-      .neuro-legend__swatch--earned {
-        background: linear-gradient(180deg, var(--blue), var(--purple));
-      }
-
-      .neuro-legend__title {
-        margin: 0 0 4px;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text);
-      }
-
-      .neuro-legend__body {
-        margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.55;
-        color: var(--muted);
-      }
-
-      .neuro-reps {
-        font-variant-numeric: tabular-nums;
-        color: var(--blue);
-        font-weight: 600;
-      }
-
-      .neuro-caption {
-        margin: 0;
-        text-align: center;
-        font-size: 0.82rem;
-        line-height: 1.6;
-        color: var(--muted);
-        opacity: 0.85;
-      }
-
-      .neuro-caption a {
-        color: inherit;
-        text-underline-offset: 3px;
-      }
-
-      /* Static route for reduced motion and for browsers without WebGL2. */
-      .neuro-fb__axon-line {
-        stroke: #6b7791;
-        stroke-width: 3;
-      }
-
-      .neuro-fb__soma {
-        fill: #93a3bf;
-      }
-
-      .neuro-fb__sheath--unbuilt {
-        fill: #8b97ad;
-      }
-
-      .neuro-fb__sheath--earned {
-        fill: #64a8ff;
-      }
-
-      .neuro-fb__pulse--unbuilt {
-        fill: #7fb0e8;
-        opacity: 0.5;
-      }
-
-      .neuro-fb__pulse--earned {
-        fill: #dcefff;
-      }
-
-      .neuro-fb__label {
-        fill: rgba(232, 238, 252, 0.92);
-        font-family: var(--font-mono);
-        font-size: 15px;
-        font-weight: 600;
-      }
-
-      .neuro-fb__sub {
-        fill: rgba(232, 238, 252, 0.6);
-        font-family: var(--font-mono);
-        font-size: 12px;
-      }
-
-      html[data-theme="light"] .neuro-fb__label {
-        fill: #101725;
-      }
-
-      html[data-theme="light"] .neuro-fb__sub {
-        fill: #5d677d;
-      }
-
-      html[data-theme="light"] .neuro-fb__axon-line {
-        stroke: #94a0b5;
-      }
-
-      html[data-theme="light"] .neuro-fb__soma {
-        fill: #7d8899;
-      }
-
-      @media (max-width: 720px) {
-        .neuro-legend {
-          grid-template-columns: 1fr;
-        }
-
-        .neuro-hint {
-          display: none;
-        }
-      }
-    </style>
-
-    <section class="section section--neuro" aria-labelledby="neuro-title">
-      <h2 class="section-title" id="neuro-title">You can’t copy-paste learning.</h2>
-      <div class="neuro-shell section-content">
-        <p class="neuro-lede">
-          <strong>Do the hard parts with Lune Synth.</strong> Solve. Get feedback. Repeat.
-        </p>
-
-        <div class="neuro-card">
-          <h3 class="neuro-card__title">This is your brain</h3>
-          <div class="neuro-viz__stage" data-neuro-viz>
-            <div class="neuro-route-label" aria-hidden="true"><strong>Using AI to cheat on your assignments</strong></div>
-            <div class="neuro-route-label neuro-route-label--earned" aria-hidden="true"><strong>Step-by-step practice with Lune Synth</strong></div>
-            <span class="neuro-hint" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-                <path d="M3 12a9 9 0 0 1 15-6.7M21 12a9 9 0 0 1-15 6.7" />
-                <path d="M18 3v3h-3M6 21v-3h3" />
-              </svg>
-              Drag to rotate
-            </span>
-          </div>
-
-          <div class="neuro-practice-control">
-            <label for="neuro-practice-time">Time doing practice step by step with Lune Synth</label>
-            <input id="neuro-practice-time" data-neuro-practice type="range" min="0" max="100" step="1" value="50" />
-            <div class="neuro-practice-control__ends" aria-hidden="true"><span>Less time</span><span>More time</span></div>
-          </div>
-        </div>
-
-        <p class="neuro-takeaway">
-          <strong>Cheating skips the practice.</strong>
-          Repeated practice does more than make a task feel familiar: learning can help build new
-          myelin, the fatty insulation around nerve fibers. In animal studies, repeated neural
-          activity can also thicken myelin sheaths.
-          <strong>It's like lifting weights for your brain.</strong>
-          Working through the friction keeps you practicing instead of skipping the attempt.
-          <strong>Lune Synth keeps you doing the work over time:</strong> solve, get feedback, repeat.
-        </p>
-
-        <p class="neuro-caption">Illustrative comparison.</p>
-
-        <details class="neuro-science">
-          <summary>
-            <span class="neuro-science__label">Nerd stuff</span>
-          </summary>
-          <div class="neuro-science__body">
-            <h3>Retrieval practice and lasting memory</h3>
-            <p>
-              Retrieving information from memory can improve later retention. In two experiments
-              using prose passages, students who practised recall retained more on tests two days
-              and one week later than students who repeatedly studied the material. Repeated study
-              performed better on the immediate test, illustrating why short-term familiarity and
-              durable learning should be distinguished.
-              <a href="https://pubmed.ncbi.nlm.nih.gov/16507066/">Roediger &amp; Karpicke (2006), <cite>Psychological Science</cite></a>.
-            </p>
-            <p>
-              This distinction matters when an answer feels obvious on the page. Recognising a
-              solution and producing one independently are different demands. Attempting the
-              reasoning before consulting an answer creates an opportunity to practise retrieval;
-              copying the result omits that opportunity. The experiment above examined recall
-              of text, rather than chatbot use or Lune Synth.
-            </p>
-
-            <h3>Activity-dependent myelination</h3>
-            <p>
-              Myelin is fatty insulation around axons, the fibres that carry signals from neurons
-              (<a href="https://www.nigms.nih.gov/image-gallery/3396">NIGMS: myelinated axons</a>).
-              Its formation is one component of neural plasticity.
-              In mice, optogenetic stimulation of premotor circuits increased oligodendrocyte
-              production and myelin sheath thickness, with associated improvements in motor function.
-              Motor-learning experiments in mice also show the addition of new myelin sheaths
-              (<a href="https://www.nature.com/articles/s41593-022-01169-4">Bacmeister et al. (2022), <cite>Nature Neuroscience</cite></a>).
-              Oligodendrocytes are the cells that form myelin in the central nervous system.
-              <a href="https://pubmed.ncbi.nlm.nih.gov/24727982/">Gibson et al. (2014), <cite>Science</cite></a>.
-            </p>
-            <p>
-              In a separate mouse study, preventing the generation of new oligodendrocytes impaired
-              acquisition of a complex running-wheel skill while sparing performance of a previously
-              learned skill. This provides evidence for a contribution of new myelin-forming cells
-              to acquiring that motor skill, rather than simply to executing a familiar movement.
-              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6324726/">McKenzie et al. (2014), <cite>Science</cite></a>.
-            </p>
-
-            <h3>What productive friction means here</h3>
-            <p>
-              In this section, &ldquo;friction&rdquo; means the effort of attempting a problem,
-              explaining a step, noticing a mistake, and revising your reasoning. It is a description
-              of the practice process, not a biological measure. Difficulty or discomfort alone
-              does not establish that learning is occurring. The studies above do not show that
-              handwriting specifically, or each uncomfortable step, directly creates another
-              layer of myelin.
-            </p>
-
-            <h3>How this connects to Lune Synth</h3>
-            <p>
-              Lune Synth gives learners a way to attempt problems, inspect feedback, and practise
-              again. Attempting an answer from memory creates an opportunity for retrieval practice;
-              reviewing feedback helps you decide what to work on next. That is the design rationale
-              for the learning loop. The cited studies did not test Lune Synth or establish that
-              using it changes myelination or produces a particular improvement in exam performance.
-            </p>
-            <p>
-              Working by hand is one way to make each reasoning step explicit. The relevant
-              distinction is doing your own thinking: typing or speaking your reasoning can also
-              be active practice. The comparison concerns submitting copied answers in place of
-              practising, rather than every possible use of an AI tool.
-            </p>
-
-            <h3>How to read the animation</h3>
-            <p>
-              The animation combines learning and myelin research as a conceptual illustration.
-              Its signal speeds, route shapes, sheath thicknesses, and slider positions are not
-              biological measurements. The slider represents increasing practice, not a calibrated
-              number of hours, and the automatic loop compresses an illustrative progression into
-              seconds. Its reset does not represent a loss of learning or myelin.
-            </p>
-            <p>
-              A jagged route represents uncertainty in recall, not a damaged axon. A straight route
-              does not mean myelin alone determines answer accuracy. Reading a chatbot response
-              also involves neural activity; the upper circuit is not a claim that a reader&rsquo;s
-              brain stops firing. The central message is practical: use the opportunity to attempt,
-              get feedback, and practise again.
-            </p>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <script type="module">
-      // Lazily mounted: nothing about the 3D scene is fetched until the section
-      // is close to the viewport, so the initial page load is unaffected.
-      (function () {
-        var stage = document.querySelector("[data-neuro-viz]");
-        if (!stage || !("IntersectionObserver" in window)) return;
-        var started = false;
-        var io = new IntersectionObserver(
-          function (entries) {
-            for (var i = 0; i < entries.length; i++) {
-              if (!entries[i].isIntersecting || started) continue;
-              started = true;
-              io.disconnect();
-              import("/lune-synth/neuro-viz/neuro-viz.bundle.js")
-                .then(function (m) {
-                  m.mountNeuroViz(stage);
-                })
-                .catch(function (e) {
-                  console.warn("[neuro-viz] failed to load", e);
-                });
-            }
-          },
-          { rootMargin: "200px" },
-        );
-        io.observe(stage);
-      })();
-    </script>
-
-    <section class="section section--red" aria-labelledby="processing-title">
-      <h2 class="section-title" id="processing-title">How grading works</h2>
-      <div class="processing-flow section-content">
-        <div class="processing-flow__grid">
-          <article class="processing-card">
-            <div class="processing-card__step">01 Capture</div>
-            <h3 class="processing-card__title">Scan the work</h3>
-            <div class="processing-card__visual capture-scene">
-              <div class="capture-scene__page">
-                <img class="capture-scene__page-image" src="../mobile-app-assets/screenshots/screenshot-workflow/1/handwritten-page.webp" alt="" loading="lazy" decoding="async">
-              </div>
-              <svg class="capture-scene__arrow" viewBox="0 0 96 64" role="presentation" aria-hidden="true">
-                <defs>
-                  <linearGradient id="capture-arrow-gradient" x1="10" y1="34" x2="84" y2="26" gradientUnits="userSpaceOnUse">
-                    <stop offset="0" stop-color="#64a8ff" />
-                    <stop offset="0.55" stop-color="#a47bff" />
-                    <stop offset="1" stop-color="#ff5d87" />
-                  </linearGradient>
-                </defs>
-                <path class="capture-scene__arrow-line" d="M10 39C28 23 50 20 75 28" />
-                <path class="capture-scene__arrow-head" d="M65 16L80 30L61 38" />
-              </svg>
-              <div class="capture-scene__phone" data-phone-mock="camera">
-                <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock.webp" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-low.webp">
-                  <span class="capture-scene__upload">Scan Work</span>
-                  <div class="capture-scene__preview">
-                    <div class="capture-scene__preview-sheet">
-                    </div>
-                    <div class="capture-scene__frame"></div>
-                  </div>
-                  <div class="capture-scene__footer">
-                    <div class="capture-scene__controls">
-                      <span class="capture-scene__shutter"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="capture-scene__flash"></div>
-            </div>
-            <p>
-              One photo sends handwritten thinking straight into the grading flow.
-            </p>
-          </article>
-          <article class="processing-card">
-            <div class="processing-card__step">02 Process</div>
-            <h3 class="processing-card__title">Turn work into steps</h3>
-            <div class="processing-card__visual processing-scene">
-              <div class="processing-scene__stage">
-                <div class="processing-scene__phone" data-phone-mock="processing">
-                  <div class="processing-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen.webp" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-low.webp">
-                    <div class="processing-scene__cosmos">
-                      <div class="processing-scene__nebula processing-scene__nebula--one"></div>
-                      <div class="processing-scene__nebula processing-scene__nebula--two"></div>
-                      <div class="processing-scene__spark processing-scene__spark--one"></div>
-                      <div class="processing-scene__spark processing-scene__spark--two"></div>
-                      <div class="processing-scene__spark processing-scene__spark--three"></div>
-                      <div class="processing-scene__constellation">
-                        <div class="processing-scene__planet"></div>
-                        <div class="processing-scene__ring processing-scene__ring--outer"></div>
-                        <div class="processing-scene__ring processing-scene__ring--mid"></div>
-                        <div class="processing-scene__ring processing-scene__ring--tilt"></div>
-                      </div>
-                      <span class="processing-scene__planet-label">Grading Work</span>
-                    </div>
-                    <div class="processing-scene__work">
-                      <div class="processing-scene__status">
-                        <span class="processing-scene__status-label">Grading Work</span>
-                        <span class="processing-scene__status-value">76%</span>
-                      </div>
-                      <div class="processing-scene__capture">
-                        <div class="processing-scene__page-thumb"></div>
-                        <div class="processing-scene__capture-text">
-                          <strong>Reading handwriting</strong>
-                          <span>Turning work into clear steps</span>
-                        </div>
-                      </div>
-                      <div class="processing-scene__steps">
-                        <div class="processing-scene__step-row">
-                          <span class="processing-scene__step-dot"></span>
-                          <span>Step 1 recognized</span>
-                        </div>
-                        <div class="processing-scene__step-row processing-scene__step-row--active">
-                          <span class="processing-scene__step-dot"></span>
-                          <span>Checking algebra</span>
-                        </div>
-                        <div class="processing-scene__step-row">
-                          <span class="processing-scene__step-dot"></span>
-                          <span>Scoring reasoning</span>
-                        </div>
-                      </div>
-                      <div class="processing-scene__progress"><span></span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="processing-scene__step-flow" aria-hidden="true">
-                  <span class="processing-scene__step-card">
-                    <span class="processing-scene__step-number"></span>
-                    <span class="processing-scene__step-line processing-scene__step-line--long"></span>
-                    <span class="processing-scene__step-line processing-scene__step-line--mid"></span>
-                  </span>
-                  <span class="processing-scene__step-card">
-                    <span class="processing-scene__step-number"></span>
-                    <span class="processing-scene__step-line processing-scene__step-line--mid"></span>
-                    <span class="processing-scene__step-line processing-scene__step-line--short"></span>
-                  </span>
-                  <span class="processing-scene__step-card">
-                    <span class="processing-scene__step-number"></span>
-                    <span class="processing-scene__step-line processing-scene__step-line--long"></span>
-                    <span class="processing-scene__step-line processing-scene__step-line--short"></span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <p>
-              Lune Synth&trade; reads the page, checks the reasoning, and shows progress while it grades.
-            </p>
-          </article>
-          <article class="processing-card">
-            <div class="processing-card__step">03 Feedback</div>
-            <h3 class="processing-card__title">Know what to fix</h3>
-            <div class="processing-card__visual feedback-scene">
-              <div class="feedback-scene__deck">
-                <div class="feedback-scene__phone feedback-scene__phone--far-left feedback-scene__phone--low" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/45-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/45-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/45-percent-low.webp">
-                    <div class="feedback-scene__hero">
-                      <span class="feedback-scene__label">Results Ready</span>
-                      <div class="feedback-scene__score-ring">
-                        <span class="feedback-scene__score">45%</span>
-                      </div>
-                      <span class="feedback-scene__summary">Review the missed step.</span>
-                      <span class="feedback-scene__button">Show Feedback</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="feedback-scene__phone feedback-scene__phone--left feedback-scene__phone--mid" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/80-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/80-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/80-percent-low.webp">
-                    <div class="feedback-scene__hero">
-                      <span class="feedback-scene__label">Results Ready</span>
-                      <div class="feedback-scene__score-ring">
-                        <span class="feedback-scene__score">80%</span>
-                      </div>
-                      <span class="feedback-scene__summary">One correction suggested.</span>
-                      <span class="feedback-scene__button">Show Feedback</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="feedback-scene__phone feedback-scene__phone--center feedback-scene__phone--mid" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/90-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/90-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/90-percent-low.webp">
-                    <div class="feedback-scene__hero">
-                      <span class="feedback-scene__label">Results Ready</span>
-                      <div class="feedback-scene__score-ring">
-                        <span class="feedback-scene__score">90%</span>
-                      </div>
-                      <span class="feedback-scene__summary">Strong work. Practice next.</span>
-                      <span class="feedback-scene__button">Show Feedback</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="feedback-scene__phone feedback-scene__phone--right feedback-scene__phone--high" data-phone-mock="feedback">
-                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/95-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/95-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/95-percent-low.webp">
-                    <div class="feedback-scene__hero">
-                      <span class="feedback-scene__label">Results Ready</span>
-                      <div class="feedback-scene__score-ring">
-                        <span class="feedback-scene__score">95%</span>
-                      </div>
-                      <span class="feedback-scene__summary">Strong solution. Practice next.</span>
-                      <span class="feedback-scene__button">Show Feedback</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p>
-              Scores come with the exact mistake and a clear next practice loop.
-            </p>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -12661,383 +12263,625 @@
         .problem-solver__device { transition: none; }
       }
     </style>
-    <section class="section section--problem-solver" id="problem-solver" aria-labelledby="problem-solver-title">
-      <h2 class="section-title" id="problem-solver-title">Problem Solver</h2>
-      <div class="problem-solver section-content">
-        <img class="card-corner-luna card-corner-luna--thinking" src="/lune-synth/images/luna-emotes/thinking.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-        <div class="problem-solver__intro">
-          <h3 class="problem-solver__headline">Homework help that builds understanding.</h3>
-          <p class="problem-solver__lede">Add a question or assignment. Lune Synth organizes the work and walks you through each step.</p>
-        </div>
+    <!-- ================= LUNA SECTION ================= -->
+    <section class="section section--luna" id="luna" aria-labelledby="luna-title">
+      <h2 class="section-title" id="luna-title">Luna</h2>
 
-        <div class="problem-solver__flow" data-problem-carousel aria-label="Problem Solver app previews" aria-roledescription="carousel" tabindex="0">
-          <button class="problem-solver__carousel-button problem-solver__carousel-button--previous" type="button" data-problem-previous aria-label="Previous Problem Solver step">&#8592;</button>
-          <div class="problem-solver__device is-active" data-problem-slide="0" aria-hidden="false">
-            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver-bring" aria-label="Bring your material app preview">
-              <div class="problem-solver__screen phone-screenshot-host" data-problem-solver-screenshot="bring">
-                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-bring.png" alt="Problem Solver input screen for adding a question or assignment">
+      <div class="luna section-content" data-luna>
+        <video class="luna__video" data-luna-video loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="screenshots/applied/math-animation-luna-tutor-section.mp4" type="video/mp4">
+        </video>
+        <div class="luna__veil" aria-hidden="true"></div>
+
+        <div class="luna__content">
+          <div class="luna-lead">
+            <img
+              class="luna-icon"
+              src="/lune-synth/images/luna-emotes/wave.webp"
+              sizes="132px"
+              alt="Luna waves hello"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3>A tutor that <span class="engine-gradient-word">won't</span> do it for you.</h3>
+            <p>Reads your exact work. Small nudges only. Never the answer.</p>
+          </div>
+
+          <div class="luna-card">
+            <!-- Top: Interactive Pill Tabs Menu (pattern from Constellations) -->
+            <div class="luna-menu" role="tablist" aria-label="Ways Luna helps you think" data-moving-selection>
+              <span class="moving-selection-pill luna-menu__selection" aria-hidden="true"></span>
+              <button class="luna-tab-btn is-active" id="lunaTab-hints" role="tab" aria-controls="lunaPanel-hints" aria-selected="true" onclick="switchLunaTab('hints')">Hints</button>
+              <button class="luna-tab-btn" id="lunaTab-infographics" role="tab" aria-controls="lunaPanel-infographics" aria-selected="false" onclick="switchLunaTab('infographics')">Infographics</button>
+              <button class="luna-tab-btn" id="lunaTab-keyterms" role="tab" aria-controls="lunaPanel-keyterms" aria-selected="false" onclick="switchLunaTab('keyterms')">Key Terms</button>
+              <button class="luna-tab-btn" id="lunaTab-chat" role="tab" aria-controls="lunaPanel-chat" aria-selected="false" onclick="switchLunaTab('chat')">Chat</button>
+            </div>
+
+            <!-- Tab panels: copy left, phone mockup right (pattern from Constellations) -->
+            <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step, then you finish it.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" aria-label="Luna giving a contextual hint">
+                      <source src="screenshots/applied/luna-hints.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>One nudge at a time</span>
+                <span>No copyable solution</span>
+                <span>Built for your question</span>
               </div>
             </div>
-          </div>
-          <div class="problem-solver__device" data-problem-slide="1" aria-hidden="true">
-            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver" aria-label="Problem Solver app preview">
-              <div class="problem-solver__screen phone-screenshot-host">
-                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-reasoning.png" alt="Problem Solver showing each step of an implicit differentiation problem">
+
+            <div class="luna-tab-panel" id="lunaPanel-infographics" role="tabpanel" aria-labelledby="lunaTab-infographics">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Words not enough? A quick diagram from your exact problem.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-luna-demo data-playback-rate="2" loop muted playsinline preload="metadata" aria-label="Luna creating a visual infographic">
+                      <source src="screenshots/applied/luna-infographics.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Diagrams from the question</span>
+                <span>Visual next-step guidance</span>
+                <span>Still no final answer</span>
               </div>
             </div>
-          </div>
-          <div class="problem-solver__device" data-problem-slide="2" aria-hidden="true">
-            <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver-practice" aria-label="Focused practice app preview">
-              <div class="problem-solver__screen phone-screenshot-host" data-problem-solver-screenshot="practice">
-                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-practice.png" alt="Problem Solver practice screen with a new focused exercise">
+
+            <div class="luna-tab-panel" id="lunaPanel-keyterms" role="tabpanel" aria-labelledby="lunaTab-keyterms">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Key terms surface in context exactly when they matter.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" aria-label="Luna surfacing key terms in context">
+                      <source src="screenshots/applied/luna-key-terms.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Definitions in context</span>
+                <span>Subject vocabulary</span>
+                <span>Quick, no distraction</span>
               </div>
             </div>
-          </div>
-          <button class="problem-solver__carousel-button problem-solver__carousel-button--next" type="button" data-problem-next aria-label="Next Problem Solver step">&#8594;</button>
-        </div>
 
-        <div class="problem-solver__carousel-dots" aria-label="Choose a Problem Solver step">
-          <button class="problem-solver__carousel-dot is-active" type="button" data-problem-dot="0" aria-label="Show Bring it in" aria-current="true">Bring it in</button>
-          <button class="problem-solver__carousel-dot" type="button" data-problem-dot="1" aria-label="Show Work through it">Work through it</button>
-          <button class="problem-solver__carousel-dot" type="button" data-problem-dot="2" aria-label="Show Practice it">Practice it</button>
-        </div>
-
-        <div class="problem-solver__steps" aria-live="polite">
-          <article class="problem-solver__step is-active" data-problem-caption="0" aria-hidden="false">
-            <span class="problem-solver__step-number">01</span>
-            <h3>Bring it in</h3>
-            <p class="problem-solver__step-copy">Type, photograph, or attach your work.</p>
-          </article>
-          <article class="problem-solver__step" data-problem-caption="1" aria-hidden="true">
-            <span class="problem-solver__step-number">02</span>
-            <h3>Work through it</h3>
-            <p class="problem-solver__step-copy">See every step and find where you got stuck.</p>
-          </article>
-          <article class="problem-solver__step" data-problem-caption="2" aria-hidden="true">
-            <span class="problem-solver__step-number">03</span>
-            <h3>Practice it</h3>
-            <p class="problem-solver__step-copy">Turn the output into a <a href="#quick-missions-title">Quick Mission</a> or <a href="#constellations-title">Constellation</a>.</p>
-          </article>
-        </div>
-
-        <div class="problem-solver__close">
-          <div class="problem-solver__actions">
-            <a class="problem-solver__cta" href="#waitlist">Try Problem Solver</a>
+            <div class="luna-tab-panel" id="lunaPanel-chat" role="tabpanel" aria-labelledby="lunaTab-chat">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Ask while working. Prompts and checks that keep you thinking.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-luna-demo data-playback-rate="2" loop muted playsinline preload="metadata" aria-label="A guided conversation with Luna">
+                      <source src="screenshots/applied/luna-chat.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Socratic guidance</span>
+                <span>Grounded in your attempt</span>
+                <span>Refuses direct answers</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <script>
-    (function () {
-      var carousel = document.querySelector('[data-problem-carousel]');
-      if (!carousel) return;
-
-      var slides = Array.prototype.slice.call(carousel.querySelectorAll('[data-problem-slide]'));
-      var dots = Array.prototype.slice.call(document.querySelectorAll('[data-problem-dot]'));
-      var captions = Array.prototype.slice.call(document.querySelectorAll('[data-problem-caption]'));
-      var previous = carousel.querySelector('[data-problem-previous]');
-      var next = carousel.querySelector('[data-problem-next]');
-      var activeIndex = 0;
-      var touchStartX = null;
-      var suppressClick = false;
-
-      function showSlide(index) {
-        activeIndex = (index + slides.length) % slides.length;
-        slides.forEach(function (slide, slideIndex) {
-          var active = slideIndex === activeIndex;
-          var previousSlide = slideIndex === (activeIndex - 1 + slides.length) % slides.length;
-          var nextSlide = slideIndex === (activeIndex + 1) % slides.length;
-          slide.classList.toggle('is-active', active);
-          slide.classList.toggle('is-previous', previousSlide);
-          slide.classList.toggle('is-next', nextSlide);
-          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
-          var phone = slide.querySelector('[data-phone-mock]');
-          if (phone) phone.setAttribute('tabindex', active ? '0' : '-1');
-        });
-        dots.forEach(function (dot, dotIndex) {
-          var active = dotIndex === activeIndex;
-          dot.classList.toggle('is-active', active);
-          if (active) dot.setAttribute('aria-current', 'true');
-          else dot.removeAttribute('aria-current');
-        });
-        captions.forEach(function (caption, captionIndex) {
-          var active = captionIndex === activeIndex;
-          caption.classList.toggle('is-active', active);
-          caption.setAttribute('aria-hidden', active ? 'false' : 'true');
-        });
+    <!-- ================= BUILD THE CIRCUIT (3D neuron comparison) ================= -->
+    <style>
+      .section--neuro { content-visibility: visible; overflow: visible; }
+      .neuro-shell {
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        max-width: 1280px;
+        margin: 0 auto;
       }
 
-      previous.addEventListener('click', function () { showSlide(activeIndex - 1); });
-      next.addEventListener('click', function () { showSlide(activeIndex + 1); });
-      carousel.addEventListener('click', function (event) {
-        if (suppressClick) {
-          suppressClick = false;
-          event.preventDefault();
-          event.stopPropagation();
-          event.stopImmediatePropagation();
-          return;
+      .neuro-lede {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .neuro-lede strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .neuro-viz__stage {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+
+      .neuro-card {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        border-radius: 0;
+        overflow: hidden;
+        border: 0;
+        background: #000;
+        box-shadow: 0 0 36px rgba(100, 168, 255, 0.16), 0 24px 64px rgba(0, 0, 0, 0.4), inset 0 0 32px rgba(100, 168, 255, 0.04);
+        --text: #e8eefc;
+        --muted: #aebed8;
+        --blue: #72b9ff;
+      }
+
+      .neuro-card__title {
+        margin: 0; padding: 28px 20px 8px; text-align: center;
+        color: var(--text); font-size: clamp(1.4rem, 2.8vw, 2.25rem);
+        font-weight: 700;
+      }
+
+      .neuro-viz__canvas,
+      .neuro-viz__fallback {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Horizontal drag rotates; vertical drag must still scroll the page. */
+      .neuro-viz__canvas {
+        touch-action: pan-y;
+        cursor: grab;
+      }
+
+      .neuro-viz__canvas:active {
+        cursor: grabbing;
+      }
+
+      .neuro-viz__canvas:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: -4px;
+      }
+
+      .neuro-hint {
+        position: absolute;
+        right: 14px;
+        bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 11px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: rgba(8, 14, 28, 0.55);
+        border: 1px solid rgba(122, 184, 255, 0.16);
+        pointer-events: none;
+      }
+
+      html[data-theme="light"] .neuro-hint {
+        background: rgba(8, 14, 28, 0.75);
+        border-color: rgba(122, 184, 255, 0.25);
+      }
+
+      .neuro-route-label {
+        position: absolute; left: 20px; right: 20px; top: 20px; z-index: 2;
+        align-items: center; text-align: center;
+        display: flex; flex-direction: column; gap: 4px;
+        pointer-events: none; color: #ffb16b;
+      }
+      .neuro-route-label strong { font-size: clamp(1rem, 1.65vw, 1.5rem); letter-spacing: 0.08em; text-transform: uppercase; }
+      .neuro-route-label span { font-size: 0.72rem; color: var(--muted); }
+      .neuro-route-label--earned { top: 53%; color: #72b9ff; }
+      html[data-theme="light"] .neuro-route-label { color: #ffb16b; }
+      html[data-theme="light"] .neuro-route-label--earned { color: #72b9ff; }
+      .neuro-route-label { text-shadow: 0 0 16px currentColor; }
+      .neuro-card .neuro-fb__label { fill: #e8eefc; }
+      .neuro-card .neuro-fb__sub { fill: #aebed8; }
+      html[data-theme="light"] .neuro-card .neuro-fb__label { fill: #e8eefc; }
+      html[data-theme="light"] .neuro-card .neuro-fb__sub { fill: #aebed8; }
+      .neuro-card .neuro-fb__sheath--earned { filter: drop-shadow(0 0 4px #579de8); }
+      .neuro-viz__stage:has(.neuro-viz__fallback) .neuro-route-label { display: none; }
+      @media (max-width: 520px) {
+        .neuro-viz__stage { aspect-ratio: 4 / 3; }
+        .neuro-route-label { top: 12px; left: 12px; right: 12px; max-width: none; gap: 2px; }
+        .neuro-route-label--earned { top: 54%; }
+        .neuro-route-label strong { font-size: 0.95rem; line-height: 1.4; }
+        .neuro-route-label span { font-size: 0.65rem; }
+      }
+
+      /* Matches the Statistical Audit drawer's fill so the two drawers read as
+         the same component. The backdrop blur is what makes the translucent
+         fill sit solid over the starfield. */
+      .neuro-science {
+        border: 1px solid rgba(122, 184, 255, 0.14);
+        border-radius: 16px;
+        background: rgba(8, 16, 36, 0.45);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        overflow: hidden;
+        text-align: left;
+        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .neuro-science[open] {
+        background: rgba(8, 16, 36, 0.72);
+        border-color: rgba(100, 168, 255, 0.32);
+        box-shadow: 0 16px 40px rgba(4, 10, 24, 0.35);
+      }
+
+      html[data-theme="light"] .neuro-science {
+        background: rgba(255, 255, 255, 0.65);
+        border-color: rgba(79, 132, 214, 0.18);
+      }
+
+      html[data-theme="light"] .neuro-science[open] {
+        background: rgba(255, 255, 255, 0.92);
+        border-color: rgba(79, 132, 214, 0.32);
+        box-shadow: 0 16px 36px rgba(151, 164, 192, 0.2);
+      }
+      .neuro-science summary {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 16px; padding: 20px 22px; cursor: pointer; list-style: none;
+        color: var(--text); font-weight: 600;
+      }
+      .neuro-science summary::-webkit-details-marker { display: none; }
+      .neuro-science summary::after { content: "+"; font-size: 1.4rem; color: var(--blue); }
+      .neuro-science[open] summary::after { content: "−"; }
+      .neuro-science summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 12px; }
+      .neuro-science__label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+      .neuro-science__label small { font-weight: 400; font-size: 0.8rem; color: var(--muted); }
+      .neuro-science__body { padding: 0 22px 24px; color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
+      .neuro-science__body h3 { margin: 24px 0 8px; color: var(--text); font-size: 1rem; }
+      .neuro-science__body h3:first-child { margin-top: 0; }
+      .neuro-science__body p { margin: 0 0 14px; }
+      .neuro-science__body p:last-child { margin-bottom: 0; }
+      .neuro-science__body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+      .neuro-science__body a:hover { color: var(--text); }
+
+      .neuro-practice-control {
+        display: grid; gap: 8px; padding: 18px 0 20px;
+        width: min(760px, calc(100% - 40px)); margin: 0 auto;
+        border-top: 1px solid rgba(122, 184, 255, 0.16);
+      }
+      .neuro-practice-control label { color: var(--text); font-weight: 600; }
+      .neuro-practice-control input { width: 100%; height: 32px; margin: 0; accent-color: var(--blue); cursor: pointer; }
+      .neuro-practice-control input:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 6px; }
+      .neuro-practice-control__ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
+
+      .neuro-takeaway { max-width: 760px; margin: 0 auto; text-align: center; color: var(--muted); }
+      .neuro-takeaway strong { color: var(--text); }
+      .neuro-takeaway a { color: var(--blue); text-underline-offset: 3px; }
+
+      .neuro-legend {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .neuro-legend__item {
+        display: flex;
+        gap: 12px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(122, 184, 255, 0.12);
+        background: rgba(10, 18, 34, 0.4);
+      }
+
+      html[data-theme="light"] .neuro-legend__item {
+        border-color: rgba(79, 132, 214, 0.14);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .neuro-legend__swatch {
+        flex: 0 0 auto;
+        width: 10px;
+        border-radius: 999px;
+        margin-top: 3px;
+        height: 42px;
+      }
+
+      .neuro-legend__swatch--unbuilt {
+        background: linear-gradient(180deg, #ffb16b, #bd712e);
+      }
+
+      .neuro-legend__swatch--earned {
+        background: linear-gradient(180deg, var(--blue), var(--purple));
+      }
+
+      .neuro-legend__title {
+        margin: 0 0 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .neuro-legend__body {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .neuro-reps {
+        font-variant-numeric: tabular-nums;
+        color: var(--blue);
+        font-weight: 600;
+      }
+
+      .neuro-caption {
+        margin: 0;
+        text-align: center;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        color: var(--muted);
+        opacity: 0.85;
+      }
+
+      .neuro-caption a {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+
+      /* Static route for reduced motion and for browsers without WebGL2. */
+      .neuro-fb__axon-line {
+        stroke: #6b7791;
+        stroke-width: 3;
+      }
+
+      .neuro-fb__soma {
+        fill: #93a3bf;
+      }
+
+      .neuro-fb__sheath--unbuilt {
+        fill: #8b97ad;
+      }
+
+      .neuro-fb__sheath--earned {
+        fill: #64a8ff;
+      }
+
+      .neuro-fb__pulse--unbuilt {
+        fill: #7fb0e8;
+        opacity: 0.5;
+      }
+
+      .neuro-fb__pulse--earned {
+        fill: #dcefff;
+      }
+
+      .neuro-fb__label {
+        fill: rgba(232, 238, 252, 0.92);
+        font-family: var(--font-mono);
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .neuro-fb__sub {
+        fill: rgba(232, 238, 252, 0.6);
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      html[data-theme="light"] .neuro-fb__label {
+        fill: #101725;
+      }
+
+      html[data-theme="light"] .neuro-fb__sub {
+        fill: #5d677d;
+      }
+
+      html[data-theme="light"] .neuro-fb__axon-line {
+        stroke: #94a0b5;
+      }
+
+      html[data-theme="light"] .neuro-fb__soma {
+        fill: #7d8899;
+      }
+
+      @media (max-width: 720px) {
+        .neuro-legend {
+          grid-template-columns: 1fr;
         }
-        var slide = event.target.closest('[data-problem-slide]');
-        if (!slide || slide.classList.contains('is-active')) return;
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        showSlide(Number(slide.getAttribute('data-problem-slide')));
-      }, true);
-      dots.forEach(function (dot) {
-        dot.addEventListener('click', function () {
-          showSlide(Number(dot.getAttribute('data-problem-dot')));
-        });
-      });
-      carousel.addEventListener('keydown', function (event) {
-        if (event.key === 'ArrowLeft') {
-          event.preventDefault();
-          showSlide(activeIndex - 1);
-        } else if (event.key === 'ArrowRight') {
-          event.preventDefault();
-          showSlide(activeIndex + 1);
+
+        .neuro-hint {
+          display: none;
         }
-      });
-      carousel.addEventListener('touchstart', function (event) {
-        touchStartX = event.changedTouches[0].clientX;
-      }, { passive: true });
-      carousel.addEventListener('touchend', function (event) {
-        if (touchStartX === null) return;
-        var distance = event.changedTouches[0].clientX - touchStartX;
-        touchStartX = null;
-        if (Math.abs(distance) < 45) return;
-        suppressClick = true;
-        showSlide(activeIndex + (distance < 0 ? 1 : -1));
-      }, { passive: true });
-      showSlide(0);
-    })();
-    </script>
+      }
+    </style>
 
-    <!-- ================= QUICK MISSIONS SECTION ================= -->
-    <section class="section section--quick-missions" id="quick-missions" aria-labelledby="quick-missions-title">
-      <h2 class="section-title" id="quick-missions-title">Take One Quick Mission</h2>
-
-      <div class="quick-missions section-content" data-quick-missions>
-        <video class="quick-missions__video" data-quick-missions-video loop muted playsinline preload="metadata" aria-hidden="true">
-          <source src="screenshots/applied/quick-mission-video.mp4" type="video/mp4">
-        </video>
-        <div class="quick-missions__veil" aria-hidden="true"></div>
-
-        <div class="quick-missions__content">
-          <div class="quick-missions__intro">
-            <p class="quick-missions__eyebrow">Fast study mode</p>
-            <h3 class="quick-missions__headline">One clear goal. A few focused minutes.</h3>
-            <p class="quick-missions__lede">
-              Quick Missions are ideal when you have a bite-sized goal. They narrow the next few minutes to one
-              fact to recall, one method to practice, or one mistake to fix.
+    <section class="section section--red" aria-labelledby="processing-title">
+      <h2 class="section-title" id="processing-title">How grading works</h2>
+      <div class="processing-flow section-content">
+        <div class="processing-flow__grid">
+          <article class="processing-card">
+            <div class="processing-card__step">01 Capture</div>
+            <h3 class="processing-card__title">Scan the work</h3>
+            <div class="processing-card__visual capture-scene">
+              <div class="capture-scene__page">
+                <img class="capture-scene__page-image" src="../mobile-app-assets/screenshots/screenshot-workflow/1/handwritten-page.webp" alt="" loading="lazy" decoding="async">
+              </div>
+              <svg class="capture-scene__arrow" viewBox="0 0 96 64" role="presentation" aria-hidden="true">
+                <defs>
+                  <linearGradient id="capture-arrow-gradient" x1="10" y1="34" x2="84" y2="26" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#64a8ff" />
+                    <stop offset="0.55" stop-color="#a47bff" />
+                    <stop offset="1" stop-color="#ff5d87" />
+                  </linearGradient>
+                </defs>
+                <path class="capture-scene__arrow-line" d="M10 39C28 23 50 20 75 28" />
+                <path class="capture-scene__arrow-head" d="M65 16L80 30L61 38" />
+              </svg>
+              <div class="capture-scene__phone" data-phone-mock="camera">
+                <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock.webp" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/1/phone-mock-low.webp">
+                  <span class="capture-scene__upload">Scan Work</span>
+                  <div class="capture-scene__preview">
+                    <div class="capture-scene__preview-sheet">
+                    </div>
+                    <div class="capture-scene__frame"></div>
+                  </div>
+                  <div class="capture-scene__footer">
+                    <div class="capture-scene__controls">
+                      <span class="capture-scene__shutter"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="capture-scene__flash"></div>
+            </div>
+            <p>
+              One photo sends handwritten thinking straight into the grading flow.
             </p>
-            <div class="quick-missions__contrast" aria-label="Quick Mission characteristics">
-              <span>2–6 minutes</span>
-              <span>One skill at a time</span>
-              <span>Immediate next step</span>
-            </div>
-          </div>
-
-          <div class="quick-missions__device-column">
-            <div class="quick-missions__phone" data-phone-mock="quick-missions" aria-label="Quick Missions app preview">
-              <div class="quick-missions__phone-screen phone-screenshot-host">
-                <div class="quick-missions__screen-view is-active" data-quick-screen="grid">
-                  <video class="quick-missions__screen-video" data-quick-screen-video autoplay loop muted playsinline preload="metadata" poster="screenshots/applied/quick-mission-screen-poster.png" aria-label="Quick Missions app walkthrough">
-                    <source src="screenshots/applied/quick-mission-screen.mp4" type="video/mp4">
-                    <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-screen-poster.png" alt="Quick Missions app preview" loading="lazy" decoding="async">
-                  </video>
+          </article>
+          <article class="processing-card">
+            <div class="processing-card__step">02 Process</div>
+            <h3 class="processing-card__title">Turn work into steps</h3>
+            <div class="processing-card__visual processing-scene">
+              <div class="processing-scene__stage">
+                <div class="processing-scene__phone" data-phone-mock="processing">
+                  <div class="processing-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen.webp" data-screenshot-low="../mobile-app-assets/screenshots/screenshot-workflow/2/loading-screen-low.webp">
+                    <div class="processing-scene__cosmos">
+                      <div class="processing-scene__nebula processing-scene__nebula--one"></div>
+                      <div class="processing-scene__nebula processing-scene__nebula--two"></div>
+                      <div class="processing-scene__spark processing-scene__spark--one"></div>
+                      <div class="processing-scene__spark processing-scene__spark--two"></div>
+                      <div class="processing-scene__spark processing-scene__spark--three"></div>
+                      <div class="processing-scene__constellation">
+                        <div class="processing-scene__planet"></div>
+                        <div class="processing-scene__ring processing-scene__ring--outer"></div>
+                        <div class="processing-scene__ring processing-scene__ring--mid"></div>
+                        <div class="processing-scene__ring processing-scene__ring--tilt"></div>
+                      </div>
+                      <span class="processing-scene__planet-label">Grading Work</span>
+                    </div>
+                    <div class="processing-scene__work">
+                      <div class="processing-scene__status">
+                        <span class="processing-scene__status-label">Grading Work</span>
+                        <span class="processing-scene__status-value">76%</span>
+                      </div>
+                      <div class="processing-scene__capture">
+                        <div class="processing-scene__page-thumb"></div>
+                        <div class="processing-scene__capture-text">
+                          <strong>Reading handwriting</strong>
+                          <span>Turning work into clear steps</span>
+                        </div>
+                      </div>
+                      <div class="processing-scene__steps">
+                        <div class="processing-scene__step-row">
+                          <span class="processing-scene__step-dot"></span>
+                          <span>Step 1 recognized</span>
+                        </div>
+                        <div class="processing-scene__step-row processing-scene__step-row--active">
+                          <span class="processing-scene__step-dot"></span>
+                          <span>Checking algebra</span>
+                        </div>
+                        <div class="processing-scene__step-row">
+                          <span class="processing-scene__step-dot"></span>
+                          <span>Scoring reasoning</span>
+                        </div>
+                      </div>
+                      <div class="processing-scene__progress"><span></span></div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CONSTELLATIONS SLIDESHOW ================= -->
-    <section class="section section--constellations-slideshow" id="constellations" aria-labelledby="constellations-title">
-      <h2 class="section-title" id="constellations-title">Turn a Big Study Goal Into a Constellation</h2>
-
-      <div class="slideshow-layout section-content">
-
-        <!-- Middle: Dynamic Step Info Card -->
-        <div class="active-step-info">
-
-          <!-- Top: Interactive Pill Tabs Menu (now nested inside the blue card) -->
-          <div class="slideshow-menu" data-moving-selection>
-
-            <span class="moving-selection-pill slideshow-menu__selection" aria-hidden="true"></span>
-
-            <!-- Step 1 Button -->
-            <button class="slideshow-step-btn is-active" id="stepBtn-1" onclick="switchSlideshowStep(1)">
-              <span class="step-number">01</span>
-              <div class="step-details">
-                <h4 class="step-title">Worlds</h4>
-              </div>
-            </button>
-
-            <!-- Step 2 Button -->
-            <button class="slideshow-step-btn" id="stepBtn-2" onclick="switchSlideshowStep(2)">
-              <span class="step-number">02</span>
-              <div class="step-details">
-                <h4 class="step-title">Choose / Create</h4>
-              </div>
-            </button>
-
-            <!-- Step 3 Button -->
-            <button class="slideshow-step-btn" id="stepBtn-3" onclick="switchSlideshowStep(3)">
-              <span class="step-number">03</span>
-              <div class="step-details">
-                <h4 class="step-title">Skill Missions</h4>
-              </div>
-            </button>
-
-            <!-- Step 4 Button -->
-            <button class="slideshow-step-btn" id="stepBtn-4" onclick="switchSlideshowStep(4)">
-              <span class="step-number">04</span>
-              <div class="step-details">
-                <h4 class="step-title">Galaxy Tests</h4>
-              </div>
-            </button>
-
-            <!-- Step 5 Button -->
-            <button class="slideshow-step-btn" id="stepBtn-5" onclick="switchSlideshowStep(5)">
-              <span class="step-number">05</span>
-              <div class="step-details">
-                <h4 class="step-title">Supercluster</h4>
-              </div>
-            </button>
-
-          </div>
-
-          <div class="active-step-text">
-            <span class="active-step-badge" id="activeStepBadge">Step 01</span>
-            <h3 class="active-step-title" id="activeStepTitle">Explore Your Learning Worlds</h3>
-            <p class="active-step-desc" id="activeStepDesc">Start by navigating your personalized study universe. Choose from over <strong class="world-count">50</strong> visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.</p>
-
-            <!-- Dynamic World Selector Dropdown for Step 01 (hidden on other steps) -->
-            <div class="world-theme-panel-container" id="worldThemePanel">
-              <span class="active-step-badge" style="margin-top: 12px; margin-bottom: 8px;">Select World</span>
-              <div class="world-select-dropdown" id="worldSelectDropdown">
-                <button class="world-select-trigger" id="worldSelectTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Learning World">
-                  <span class="world-select-trigger__current">
-                    <img class="world-option-icon" id="worldSelectActiveIcon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
-                    <span id="worldSelectActiveLabel">Earth</span>
+                <div class="processing-scene__step-flow" aria-hidden="true">
+                  <span class="processing-scene__step-card">
+                    <span class="processing-scene__step-number"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--long"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--mid"></span>
                   </span>
-                  <svg class="world-select-chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                    <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
-                <div class="world-select-popup" id="worldSelectPopup" role="listbox" aria-label="Learning Worlds">
-                  <button class="world-select-item is-active" type="button" role="option" aria-selected="true" data-theme="earth" onclick="selectWorld('earth', this)">
-                    <img class="world-option-icon" src="/lune-synth/images/world-icons/earth.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
-                    <span class="world-select-item__label">Earth</span>
-                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
-                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
-                    <img class="world-option-icon" src="/lune-synth/images/world-icons/jupiter.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
-                    <span class="world-select-item__label">Jupiter</span>
-                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
-                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="retro" onclick="selectWorld('retro', this)">
-                    <img class="world-option-icon" src="/lune-synth/images/world-icons/retro-arcade.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
-                    <span class="world-select-item__label">Retro Arcade</span>
-                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
-                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="math" onclick="selectWorld('math', this)">
-                    <img class="world-option-icon" src="/lune-synth/images/world-icons/math-space.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
-                    <span class="world-select-item__label">Math Space</span>
-                    <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                      <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
+                  <span class="processing-scene__step-card">
+                    <span class="processing-scene__step-number"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--mid"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--short"></span>
+                  </span>
+                  <span class="processing-scene__step-card">
+                    <span class="processing-scene__step-number"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--long"></span>
+                    <span class="processing-scene__step-line processing-scene__step-line--short"></span>
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- Bottom: Empty iPad Mockup (GIF Canvas) -->
-          <div class="ipad-container">
-            <div class="ipad-mockup" aria-label="11-inch iPad Pro Progress mock">
-              <span class="ipad-button ipad-button--power"></span>
-              <span class="ipad-button ipad-button--volume ipad-button--volume-up"></span>
-              <span class="ipad-button ipad-button--volume ipad-button--volume-down"></span>
-              <div class="ipad-camera"></div>
-              <div class="ipad-screen-wrapper">
-                <div class="ipad-glare"></div>
-
-                <!-- Screen Content Frame -->
-                <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
-
-                  <!-- Step 2 Preview Screen: choose or create a Constellation -->
-                  <div class="ipad-preview-layout" id="previewStep-2">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-thumb.jpg" data-video-thumbnail="step1Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
-                    <video id="step1Video" loop muted playsinline preload="none" class="ipad-gif-target">
-                      <source src="screenshots/applied/step-1.webm" type="video/webm">
-                      <source src="screenshots/applied/step-1.mp4" type="video/mp4">
-                    </video>
+            <p>
+              Lune Synth&trade; reads the page, checks the reasoning, and shows progress while it grades.
+            </p>
+          </article>
+          <article class="processing-card">
+            <div class="processing-card__step">03 Feedback</div>
+            <h3 class="processing-card__title">Know what to fix</h3>
+            <div class="processing-card__visual feedback-scene">
+              <div class="feedback-scene__deck">
+                <div class="feedback-scene__phone feedback-scene__phone--far-left feedback-scene__phone--low" data-phone-mock="feedback">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/45-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/45-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/45-percent-low.webp">
+                    <div class="feedback-scene__hero">
+                      <span class="feedback-scene__label">Results Ready</span>
+                      <div class="feedback-scene__score-ring">
+                        <span class="feedback-scene__score">45%</span>
+                      </div>
+                      <span class="feedback-scene__summary">Review the missed step.</span>
+                      <span class="feedback-scene__button">Show Feedback</span>
+                    </div>
                   </div>
-
-                  <!-- Step 1 Preview Screen: navigate Worlds -->
-                  <div class="ipad-preview-layout is-active" id="previewStep-1">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-earth-world-thumb.jpg" data-video-thumbnail="worldVideo-earth" alt="" aria-hidden="true" loading="lazy" decoding="async">
-                    <video id="worldVideo-earth" class="ipad-gif-target" loop muted playsinline preload="none">
-                      <source src="screenshots/applied/step-1-earth-world.mp4" type="video/mp4">
-                    </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-jupiter-world-thumb.jpg" data-video-thumbnail="worldVideo-jupiter" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
-                    <video id="worldVideo-jupiter" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
-                      <source src="screenshots/applied/step-1-jupiter-world.mp4" type="video/mp4">
-                    </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-retro-arcade-world-thumb.jpg" data-video-thumbnail="worldVideo-retro" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
-                    <video id="worldVideo-retro" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
-                      <source src="screenshots/applied/step-1-retro-arcade-world.mp4" type="video/mp4">
-                    </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-math-space-world-thumb.jpg" data-video-thumbnail="worldVideo-math" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
-                    <video id="worldVideo-math" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
-                      <source src="screenshots/applied/step-1-math-space-world.mp4" type="video/mp4">
-                    </video>
+                </div>
+                <div class="feedback-scene__phone feedback-scene__phone--left feedback-scene__phone--mid" data-phone-mock="feedback">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/80-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/80-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/80-percent-low.webp">
+                    <div class="feedback-scene__hero">
+                      <span class="feedback-scene__label">Results Ready</span>
+                      <div class="feedback-scene__score-ring">
+                        <span class="feedback-scene__score">80%</span>
+                      </div>
+                      <span class="feedback-scene__summary">One correction suggested.</span>
+                      <span class="feedback-scene__button">Show Feedback</span>
+                    </div>
                   </div>
-
-                  <!-- Step 3 Preview Screen -->
-                  <div class="ipad-preview-layout" id="previewStep-3">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-3-thumb.jpg" data-video-thumbnail="step3Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
-                    <video id="step3Video" loop muted playsinline preload="none" class="ipad-gif-target">
-                      <source src="screenshots/applied/step-3.webm" type="video/webm">
-                      <source src="screenshots/applied/step-3.mp4" type="video/mp4">
-                    </video>
+                </div>
+                <div class="feedback-scene__phone feedback-scene__phone--center feedback-scene__phone--mid" data-phone-mock="feedback">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/90-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/90-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/90-percent-low.webp">
+                    <div class="feedback-scene__hero">
+                      <span class="feedback-scene__label">Results Ready</span>
+                      <div class="feedback-scene__score-ring">
+                        <span class="feedback-scene__score">90%</span>
+                      </div>
+                      <span class="feedback-scene__summary">Strong work. Practice next.</span>
+                      <span class="feedback-scene__button">Show Feedback</span>
+                    </div>
                   </div>
-
-                  <!-- Step 4 Preview Screen -->
-                  <div class="ipad-preview-layout" id="previewStep-4">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-4-thumb.jpg" data-video-thumbnail="step4Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
-                    <video id="step4Video" loop muted playsinline preload="none" class="ipad-gif-target">
-                      <source src="screenshots/applied/step-4.webm" type="video/webm">
-                      <source src="screenshots/applied/step-4.mp4" type="video/mp4">
-                    </video>
+                </div>
+                <div class="feedback-scene__phone feedback-scene__phone--right feedback-scene__phone--high" data-phone-mock="feedback">
+                  <div class="feedback-scene__screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/results/95-percent-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/applied/results/95-percent.webp" data-screenshot-low="../mobile-app-assets/screenshots/applied/results/95-percent-low.webp">
+                    <div class="feedback-scene__hero">
+                      <span class="feedback-scene__label">Results Ready</span>
+                      <div class="feedback-scene__score-ring">
+                        <span class="feedback-scene__score">95%</span>
+                      </div>
+                      <span class="feedback-scene__summary">Strong solution. Practice next.</span>
+                      <span class="feedback-scene__button">Show Feedback</span>
+                    </div>
                   </div>
-
-                  <!-- Step 5 Preview Screen -->
-                  <div class="ipad-preview-layout" id="previewStep-5">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-5-thumb.jpg" data-video-thumbnail="step5Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
-                    <video id="step5Video" loop muted playsinline preload="none" class="ipad-gif-target">
-                      <source src="screenshots/applied/step-5.webm" type="video/webm">
-                      <source src="screenshots/applied/step-5.mp4" type="video/mp4">
-                    </video>
-                  </div>
-
                 </div>
               </div>
             </div>
-          </div>
+            <p>
+              Scores come with the exact mistake and a clear next practice loop.
+            </p>
+          </article>
         </div>
-
       </div>
     </section>
 
@@ -13934,6 +13778,163 @@
       </div>
     </section>
 
+
+
+    <section class="section section--neuro" aria-labelledby="neuro-title">
+      <h2 class="section-title" id="neuro-title">You can’t copy-paste learning.</h2>
+      <div class="neuro-shell section-content">
+        <p class="neuro-lede">
+          <strong>Do the hard parts with Lune Synth.</strong> Solve. Get feedback. Repeat.
+        </p>
+
+        <div class="neuro-card">
+          <h3 class="neuro-card__title">This is your brain</h3>
+          <div class="neuro-viz__stage" data-neuro-viz>
+            <div class="neuro-route-label" aria-hidden="true"><strong>Using AI to cheat on your assignments</strong></div>
+            <div class="neuro-route-label neuro-route-label--earned" aria-hidden="true"><strong>Step-by-step practice with Lune Synth</strong></div>
+            <span class="neuro-hint" aria-hidden="true">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <path d="M3 12a9 9 0 0 1 15-6.7M21 12a9 9 0 0 1-15 6.7" />
+                <path d="M18 3v3h-3M6 21v-3h3" />
+              </svg>
+              Drag to rotate
+            </span>
+          </div>
+
+          <div class="neuro-practice-control">
+            <label for="neuro-practice-time">Time doing practice step by step with Lune Synth</label>
+            <input id="neuro-practice-time" data-neuro-practice type="range" min="0" max="100" step="1" value="50" />
+            <div class="neuro-practice-control__ends" aria-hidden="true"><span>Less time</span><span>More time</span></div>
+          </div>
+        </div>
+
+        <p class="neuro-takeaway">
+          <strong>Cheating skips the practice.</strong>
+          Repeated practice does more than make a task feel familiar: learning can help build new
+          myelin, the fatty insulation around nerve fibers. In animal studies, repeated neural
+          activity can also thicken myelin sheaths.
+          <strong>It's like lifting weights for your brain.</strong>
+          Working through the friction keeps you practicing instead of skipping the attempt.
+          <strong>Lune Synth keeps you doing the work over time:</strong> solve, get feedback, repeat.
+        </p>
+
+        <p class="neuro-caption">Illustrative comparison.</p>
+
+        <details class="neuro-science">
+          <summary>
+            <span class="neuro-science__label">Nerd stuff</span>
+          </summary>
+          <div class="neuro-science__body">
+            <h3>Retrieval practice and lasting memory</h3>
+            <p>
+              Retrieving information from memory can improve later retention. In two experiments
+              using prose passages, students who practised recall retained more on tests two days
+              and one week later than students who repeatedly studied the material. Repeated study
+              performed better on the immediate test, illustrating why short-term familiarity and
+              durable learning should be distinguished.
+              <a href="https://pubmed.ncbi.nlm.nih.gov/16507066/">Roediger &amp; Karpicke (2006), <cite>Psychological Science</cite></a>.
+            </p>
+            <p>
+              This distinction matters when an answer feels obvious on the page. Recognising a
+              solution and producing one independently are different demands. Attempting the
+              reasoning before consulting an answer creates an opportunity to practise retrieval;
+              copying the result omits that opportunity. The experiment above examined recall
+              of text, rather than chatbot use or Lune Synth.
+            </p>
+
+            <h3>Activity-dependent myelination</h3>
+            <p>
+              Myelin is fatty insulation around axons, the fibres that carry signals from neurons
+              (<a href="https://www.nigms.nih.gov/image-gallery/3396">NIGMS: myelinated axons</a>).
+              Its formation is one component of neural plasticity.
+              In mice, optogenetic stimulation of premotor circuits increased oligodendrocyte
+              production and myelin sheath thickness, with associated improvements in motor function.
+              Motor-learning experiments in mice also show the addition of new myelin sheaths
+              (<a href="https://www.nature.com/articles/s41593-022-01169-4">Bacmeister et al. (2022), <cite>Nature Neuroscience</cite></a>).
+              Oligodendrocytes are the cells that form myelin in the central nervous system.
+              <a href="https://pubmed.ncbi.nlm.nih.gov/24727982/">Gibson et al. (2014), <cite>Science</cite></a>.
+            </p>
+            <p>
+              In a separate mouse study, preventing the generation of new oligodendrocytes impaired
+              acquisition of a complex running-wheel skill while sparing performance of a previously
+              learned skill. This provides evidence for a contribution of new myelin-forming cells
+              to acquiring that motor skill, rather than simply to executing a familiar movement.
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6324726/">McKenzie et al. (2014), <cite>Science</cite></a>.
+            </p>
+
+            <h3>What productive friction means here</h3>
+            <p>
+              In this section, &ldquo;friction&rdquo; means the effort of attempting a problem,
+              explaining a step, noticing a mistake, and revising your reasoning. It is a description
+              of the practice process, not a biological measure. Difficulty or discomfort alone
+              does not establish that learning is occurring. The studies above do not show that
+              handwriting specifically, or each uncomfortable step, directly creates another
+              layer of myelin.
+            </p>
+
+            <h3>How this connects to Lune Synth</h3>
+            <p>
+              Lune Synth gives learners a way to attempt problems, inspect feedback, and practise
+              again. Attempting an answer from memory creates an opportunity for retrieval practice;
+              reviewing feedback helps you decide what to work on next. That is the design rationale
+              for the learning loop. The cited studies did not test Lune Synth or establish that
+              using it changes myelination or produces a particular improvement in exam performance.
+            </p>
+            <p>
+              Working by hand is one way to make each reasoning step explicit. The relevant
+              distinction is doing your own thinking: typing or speaking your reasoning can also
+              be active practice. The comparison concerns submitting copied answers in place of
+              practising, rather than every possible use of an AI tool.
+            </p>
+
+            <h3>How to read the animation</h3>
+            <p>
+              The animation combines learning and myelin research as a conceptual illustration.
+              Its signal speeds, route shapes, sheath thicknesses, and slider positions are not
+              biological measurements. The slider represents increasing practice, not a calibrated
+              number of hours, and the automatic loop compresses an illustrative progression into
+              seconds. Its reset does not represent a loss of learning or myelin.
+            </p>
+            <p>
+              A jagged route represents uncertainty in recall, not a damaged axon. A straight route
+              does not mean myelin alone determines answer accuracy. Reading a chatbot response
+              also involves neural activity; the upper circuit is not a claim that a reader&rsquo;s
+              brain stops firing. The central message is practical: use the opportunity to attempt,
+              get feedback, and practise again.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <script type="module">
+      // Lazily mounted: nothing about the 3D scene is fetched until the section
+      // is close to the viewport, so the initial page load is unaffected.
+      (function () {
+        var stage = document.querySelector("[data-neuro-viz]");
+        if (!stage || !("IntersectionObserver" in window)) return;
+        var started = false;
+        var io = new IntersectionObserver(
+          function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+              if (!entries[i].isIntersecting || started) continue;
+              started = true;
+              io.disconnect();
+              import("/lune-synth/neuro-viz/neuro-viz.bundle.js")
+                .then(function (m) {
+                  m.mountNeuroViz(stage);
+                })
+                .catch(function (e) {
+                  console.warn("[neuro-viz] failed to load", e);
+                });
+            }
+          },
+          { rootMargin: "200px" },
+        );
+        io.observe(stage);
+      })();
+    </script>
+
     <section class="section section--engine section--red" aria-labelledby="engine-title">
       <h2 class="section-title" id="engine-title">Engine</h2>
       <div class="engine-system section-content">
@@ -14679,27 +14680,27 @@
   /* --- Constellations Slideshow Interactive Handlers --- */
   const stepData = {
     1: {
-      badge: "Step 01",
+      badge: "Overview",
       title: "Explore Your Learning Worlds",
-      desc: 'Start by navigating your personalized study universe. Choose from over <strong class="world-count">50</strong> visual <strong>Worlds</strong>, then decide which existing Constellation to continue or whether to create a new one.'
+      desc: 'See what your learning can become: a personalized study universe with over <strong class="world-count">50</strong> visual <strong>Worlds</strong>. Explore the preview, then choose or create a Constellation to begin your learning journey.'
     },
     2: {
-      badge: "Step 02",
+      badge: "Step 01",
       title: "Choose or Create a Constellation",
       desc: 'Open an existing Constellation or start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Add your syllabus, notes, homework, or study guides, and <strong>Luna</strong> turns the goal into 10 to 15 connected skills to master.'
     },
     3: {
-      badge: "Step 03",
+      badge: "Step 02",
       title: "Progress From Asteroids to Stars",
       desc: "Work through <strong>Asteroid, Planet, and Star missions</strong> across the roadmap. Each mission type requires more synthesis of the constellation’s skills, moving from focused practice toward problems that connect ideas across the larger study goal."
     },
     4: {
-      badge: "Step 04",
+      badge: "Step 03",
       title: "Test Skill Groups in Galaxies",
       desc: "<strong>Galaxy missions</strong> work like quizzes or tests. Each one assesses three to four related skills together, checking whether you can combine them and demonstrate mastery before the final cumulative challenge."
     },
     5: {
-      badge: "Step 05",
+      badge: "Step 04",
       title: "Complete the Supercluster Final",
       desc: "The <strong>Supercluster</strong> is the constellation’s final exam, requiring synthesis across all 10 to 15 skills. Score <strong>above 80%</strong> on the Supercluster to complete the entire Constellation and finish the broader study goal."
     }
@@ -15533,7 +15534,7 @@
   });
   </script>
   <script src="../applied-response-slides.js?v=1"></script>
-  <script src="/campaign/handwriting-accent.js?v=1"></script>
+  <script src="/campaign/handwriting-accent.js?v=2"></script>
   <script>
   (function loadLuneEnhancements() {
     var loaded = {};

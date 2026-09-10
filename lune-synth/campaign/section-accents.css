@@ -34,16 +34,11 @@ html[data-theme="light"] .section.section--red :is(.platform-showcase, .processi
 html[data-theme="light"] .section.section--red :is(.processing-card, .engine-stage, .engine-gauge-card) { background: #fffafb; }
 html[data-theme="light"] .section.section--red :is(.platform-showcase__title, .processing-card__title, .engine-header-copy h3, .platform-showcase__eyebrow, .processing-card__step, .engine-stage__step, .engine-metric-number, .engine-word-glow) { color: #a52e46; }
 
-@property --handwriting-accent {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: #a47bff;
-}
 .section.section--handwriting {
+  --handwriting-accent: #a47bff;
   --blue: var(--handwriting-accent);
   --purple: var(--handwriting-accent);
   --line: color-mix(in srgb, var(--handwriting-accent) 30%, transparent);
-  transition: --handwriting-accent 650ms ease;
 }
 .section--handwriting .section-title::before {
   background: var(--handwriting-accent);
