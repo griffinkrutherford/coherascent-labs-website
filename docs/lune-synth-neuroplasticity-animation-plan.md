@@ -7,6 +7,10 @@ new module directory `lune-synth/neuro-viz/`, and a vendored copy of three.js.
 Line numbers are against the working tree at `ef860d0`; anchor on quoted
 strings, not numbers._
 
+## Update Log
+
+- 2026-09-14: Restyled the comparison at the owner's request: the upper network is labeled “Brain rotted,” with worn gray cells and four distinct cobweb silhouettes (off-center orb, corner fan, drooping diamond, and torn sheet); the lower network glows with a slowly shifting red/blue gradient. Reduced-motion/no-WebGL fallback preserves the contrast without animation. These are artistic metaphors, not a depiction of brain damage. Supersedes the original neutral upper-neuron visual direction below.
+
 ## Purpose
 
 A rotatable 3D animation contrasting two learning paths on the same axon:

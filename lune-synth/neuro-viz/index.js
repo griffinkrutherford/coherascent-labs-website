@@ -31,7 +31,7 @@ export function mountNeuroViz(root) {
   canvas.setAttribute("role", "img");
   canvas.setAttribute(
     "aria-label",
-    "Rotatable 3D comparison of two networks, each with four foreground neurons and eighteen distant background neuron sprites. Above, an amber dashed route zigzags and doubles back between bare neurons; its signal travels slowly. Above represents using AI to cheat on assignments. Below represents step-by-step practice with Lune Synth. The practice-time slider controls the lower myelin thickness and signal speed. Route uncertainty illustrates recall, not literal nerve anatomy. Use arrow keys to rotate.",
+    "Rotatable 3D comparison of two networks, each with four foreground neurons and eighteen distant background neuron sprites. Above, brain rotted neurons look worn and cobwebbed along a dim, winding route. Above represents using AI to cheat on assignments. Below, vibrant neurons glow in a shifting red-to-blue gradient during step-by-step practice with Lune Synth. The practice-time slider controls the lower myelin thickness and signal speed. Route uncertainty illustrates recall, not literal nerve anatomy. Use arrow keys to rotate.",
   );
 
   try {

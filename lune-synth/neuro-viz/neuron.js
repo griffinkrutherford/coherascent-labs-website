@@ -3,11 +3,8 @@ import * as THREE from "../vendor/three/three.module.js";
 // One neuron: soma, a branching dendritic tree, a myelinated axon, and
 // terminal boutons.
 //
-// Both neurons in the scene are built from this same function with identical
-// geometry. The only thing that differs is what practice built, sheath
-// thickness, node regularity, and how the action potential propagates.
-// Nothing about the unbuilt neuron is damaged or degraded; it is simply
-// unbuilt.
+// Stylized contrast: the upper cells look worn; practice cells carry vivid light.
+// This visual metaphor is not a depiction of measured brain damage.
 
 export const AXON_START = -2.0;
 export const AXON_END = 2.0;
@@ -260,6 +257,15 @@ export function createNeuron({ variant, theme = "dark" }) {
 
   // --- soma -----------------------------------------------------------
   const somaGeom = track(new THREE.SphereGeometry(0.4, 40, 28));
+  if (!isEarned) {
+    const vertices = somaGeom.attributes.position;
+    for (let i = 0; i < vertices.count; i++) {
+      const x = vertices.getX(i), y = vertices.getY(i), z = vertices.getZ(i);
+      const wear = 0.76 + 0.12 * Math.sin(x * 31 + z * 17) * Math.cos(y * 27);
+      vertices.setXYZ(i, x * wear, y * wear * 0.78, z * wear);
+    }
+    somaGeom.computeVertexNormals();
+  }
   const somaMat = track(
     new THREE.MeshStandardMaterial({ color: colors.soma, roughness: 0.62, metalness: 0.06 }),
   );
@@ -315,8 +321,8 @@ export function createNeuron({ variant, theme = "dark" }) {
   sheath.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
   group.add(sheath);
 
-  // Both axons start completely bare, so the setup act shows two identical
-  // neurons and every difference that follows is visibly earned.
+  // Both axons start bare; the practice slider builds the lower insulation.
+  // Surface styling separately supplies the requested visual contrast.
   //
   // The unbuilt axon keeps NO sheath rather than a patchy one. Three
   // independent reviewers read dashed patches as a perforated or lesioned
@@ -470,6 +476,17 @@ export function createNeuron({ variant, theme = "dark" }) {
     haloMat.color.setHex(isEarned ? c.pulseEarned : c.pulseUnbuilt);
   }
 
+  function setVitality(color) {
+    const living = isEarned;
+    for (const material of [somaMat, dendriteMat, terminalMat, axonMat, sheathMat, boutonMat]) {
+      material.color.set(living ? color : 0x777168);
+      material.emissive.set(living ? color : 0x18140f);
+      material.emissiveIntensity = living ? 0.7 : 0.035;
+      material.roughness = living ? 0.32 : 1;
+      material.metalness = living ? 0.12 : 0;
+    }
+  }
+
   function setBoutonGlow(v) {
     boutonMat.emissiveIntensity = 0.35 + v * 1.5;
   }
@@ -480,6 +497,7 @@ export function createNeuron({ variant, theme = "dark" }) {
     setPulse,
     setTheme,
     setBoutonGlow,
+    setVitality,
     dispose() {
       for (const d of disposables) d.dispose();
       group.clear();

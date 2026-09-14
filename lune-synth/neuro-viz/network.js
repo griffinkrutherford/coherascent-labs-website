@@ -1,8 +1,9 @@
 import * as THREE from "../vendor/three/three.module.js";
 import { createNeuron } from "./neuron.js";
+import { cobwebSegments } from "./cobweb.js";
 
 // Route shapes are a learning metaphor, not anatomical axon geometry.
-// Keep the biological models intact and draw the route as a separate overlay.
+// The worn cells and cobwebs are a stylized metaphor, not anatomical damage.
 export function createNetwork({ variant, theme }) {
   const earned = variant === "earned";
   const group = new THREE.Group();
@@ -51,6 +52,24 @@ export function createNetwork({ variant, theme }) {
       cell.scale.set(width, width / 2, 1);
       group.add(cell);
     }
+  }
+
+  // A single line mesh per network: sagging spokes and scalloped rings drape
+  // across the upper cells without textures or a per-frame geometry rebuild.
+  let webMaterial;
+  if (!earned) {
+    const webPoints = [];
+    const line = (a, b) => webPoints.push(a, b);
+    positions.forEach((position, cellIndex) => {
+      const center = position.clone().add(new THREE.Vector3(0.38, 0.12, 0.22));
+      const point = ([x, y]) => center.clone().add(new THREE.Vector3(
+        x * 0.85, y, Math.sin(x * 2 + cellIndex) * 0.06,
+      ));
+      for (const [a, b] of cobwebSegments(cellIndex)) line(point(a), point(b));
+    });
+    webMaterial = track(new THREE.LineBasicMaterial({ color: 0xb3aea0,
+      transparent: true, opacity: 0.48, depthWrite: false }));
+    group.add(new THREE.LineSegments(track(new THREE.BufferGeometry().setFromPoints(webPoints)), webMaterial));
   }
 
   const end = new THREE.Vector3(4.4, positions[3].y, 0);
@@ -133,25 +152,51 @@ export function createNetwork({ variant, theme }) {
   const signalGlow = makeGlow();
   signalGlow.scale.set(0.8, 0.8, 1);
 
+  const red = new THREE.Color(0xff254f);
+  const blue = new THREE.Color(0x258cff);
+  const animatedColor = new THREE.Color();
+  const somaGlows = earned ? positions.map(position => {
+    const glow = makeGlow();
+    glow.position.copy(position).setZ(0.12);
+    glow.scale.set(1.05, 1.05, 1);
+    return glow;
+  }) : [];
+
   function setTheme(name) {
-    cells.forEach(cell => cell.setTheme(name));
+    cells.forEach(cell => { cell.setTheme(name); cell.setVitality(blue); });
+    if (webMaterial) webMaterial.opacity = name === "light" ? 0.6 : 0.48;
     for (const { material, layer } of backgroundMaterials) {
-      material.color.setHex(name === "light" ? 0x687a96 : 0x94a8c8);
+      material.color.setHex(earned ? 0x827bdb : 0x716b60);
       material.opacity = (name === "light" ? 0.16 : 0.18) - layer * 0.035;
     }
-    const color = earned ? (name === "light" ? 0x245fc5 : 0x72b9ff) : (name === "light" ? 0xa85316 : 0xffb16b);
+    const color = earned ? (name === "light" ? 0x245fc5 : 0x72b9ff) : 0x8b8171;
     [routeMat, trailMat, targetMat, ...glowMaterials, ...beads.map(b => b.material)].forEach(m => m.color.setHex(color));
   }
   setTheme(theme);
 
-  function update(s, progress) {
+  function update(s, progress, time = 0) {
     const active = s.firing || (earned && s.practiceT > 0);
     const p = s.firing ? progress : s.practicePulse;
     cells.forEach((cell, i) => {
       cell.setMyelin(earned ? s.myelinT : 0);
+      animatedColor.copy(red).lerp(blue, (Math.sin(time * Math.PI * 2 + i * 1.15) + 1) / 2);
+      cell.setVitality(animatedColor);
+      if (earned) {
+        somaGlows[i].material.color.copy(animatedColor);
+        somaGlows[i].material.opacity = 0.62;
+        routeGlows[i].material.color.copy(animatedColor);
+      }
       cell.setPulse(0, 0); // Network packet replaces each neuron's local pulse.
       cell.setBoutonGlow(active && p >= i / 4 ? (earned ? 0.8 : 0.25) : 0);
     });
+    if (earned) {
+      animatedColor.copy(red).lerp(blue, (Math.sin(time * Math.PI * 2) + 1) / 2);
+      [routeMat, trailMat, targetMat, signalGlow.material, ...beads.map(b => b.material)]
+        .forEach(material => material.color.copy(animatedColor));
+      backgroundMaterials.forEach(({ material }, i) => {
+        material.color.copy(red).lerp(blue, (Math.sin(time * Math.PI * 2 + i * 0.7) + 1) / 2);
+      });
+    }
     routeMat.opacity = s.firing ? 0.75 : earned ? 0.2 + s.myelinT * 0.45 : 0.22;
     trail.visible = active;
     trailGeom.setDrawRange(0, Math.max(0, Math.floor(p * 160) + 1));
@@ -161,8 +206,8 @@ export function createNetwork({ variant, theme }) {
     });
     signalGlow.visible = active;
     signalGlow.position.copy(beads[0].position);
-    signalGlow.material.opacity = earned ? 0.85 : 0.65;
-    routeGlows.forEach(glow => { glow.material.opacity = earned ? s.myelinT * 0.5 : 0.1; });
+    signalGlow.material.opacity = earned ? 0.95 : 0.22;
+    routeGlows.forEach(glow => { glow.material.opacity = earned ? 0.35 + s.myelinT * 0.35 : 0.025; });
     target.scale.setScalar(active && p >= 1 ? 1.35 : 1);
     targetMat.opacity = active && p >= 1 ? 1 : 0.35;
   }

@@ -79,8 +79,8 @@ export function createScene(canvas, { theme = "dark" } = {}) {
 
   function update(t, s) {
     const transfer = computeTransfer(s.resultT, s.myelinT);
-    earned.update(s, transfer.earned);
-    unbuilt.update(s, transfer.unbuilt);
+    earned.update(s, transfer.earned, t);
+    unbuilt.update(s, transfer.unbuilt, t);
   }
 
   return {
