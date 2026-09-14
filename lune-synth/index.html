@@ -10849,6 +10849,7 @@
         <a class="nav-link" href="#applied-page-title">Overview</a>
         <a class="nav-link" href="#waitlist">Beta Waitlist</a>
         <a class="nav-link" href="#lost-cosmos-title">The Crisis</a>
+        <a class="nav-link" href="#neuro-title">Circuit</a>
         <a class="nav-link" href="#constellations-title">Constellations</a>
         <a class="nav-link" href="#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="#problem-solver-title">Problem Solver</a>
@@ -10857,7 +10858,6 @@
         <a class="nav-link" href="#luna-title">Luna</a>
         <a class="nav-link" href="#processing-title">Grading</a>
         <a class="nav-link" href="#medals-title">Medals</a>
-        <a class="nav-link" href="#neuro-title">Circuit</a>
         <a class="nav-link" href="#engine-title">Engine</a>
         <a class="nav-link" href="#site-footer">All Landing Pages</a>
         <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
@@ -11011,6 +11011,484 @@
         </a>
       </div>
     </section>
+
+    <!-- ================= BUILD THE CIRCUIT (3D neuron comparison) ================= -->
+    <style>
+      .section--neuro { content-visibility: visible; overflow: visible; }
+      .neuro-shell {
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .neuro-lede {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .neuro-lede strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .neuro-viz__stage {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+
+      .neuro-card {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        border-radius: 0;
+        overflow: hidden;
+        border: 0;
+        background: #000;
+        box-shadow: 0 0 36px rgba(100, 168, 255, 0.16), 0 24px 64px rgba(0, 0, 0, 0.4), inset 0 0 32px rgba(100, 168, 255, 0.04);
+        --text: #e8eefc;
+        --muted: #aebed8;
+        --blue: #72b9ff;
+      }
+
+      .neuro-card__title {
+        margin: 0; padding: 28px 20px 8px; text-align: center;
+        color: var(--text); font-size: clamp(1.4rem, 2.8vw, 2.25rem);
+        font-weight: 700;
+      }
+
+      .neuro-viz__canvas,
+      .neuro-viz__fallback {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Horizontal drag rotates; vertical drag must still scroll the page. */
+      .neuro-viz__canvas {
+        touch-action: pan-y;
+        cursor: grab;
+      }
+
+      .neuro-viz__canvas:active {
+        cursor: grabbing;
+      }
+
+      .neuro-viz__canvas:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: -4px;
+      }
+
+      .neuro-hint {
+        position: absolute;
+        right: 14px;
+        bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 11px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: rgba(8, 14, 28, 0.55);
+        border: 1px solid rgba(122, 184, 255, 0.16);
+        pointer-events: none;
+      }
+
+      html[data-theme="light"] .neuro-hint {
+        background: rgba(8, 14, 28, 0.75);
+        border-color: rgba(122, 184, 255, 0.25);
+      }
+
+      .neuro-route-label {
+        position: absolute; left: 20px; right: 20px; top: 20px; z-index: 2;
+        align-items: center; text-align: center;
+        display: flex; flex-direction: column; gap: 4px;
+        pointer-events: none; color: #ffb16b;
+      }
+      .neuro-route-label strong { font-size: clamp(1rem, 1.65vw, 1.5rem); letter-spacing: 0.08em; text-transform: uppercase; }
+      .neuro-route-label span { font-size: 0.72rem; color: var(--muted); }
+      .neuro-route-label--earned { top: 53%; color: #72b9ff; }
+      html[data-theme="light"] .neuro-route-label { color: #ffb16b; }
+      html[data-theme="light"] .neuro-route-label--earned { color: #72b9ff; }
+      .neuro-route-label { text-shadow: 0 0 16px currentColor; }
+      .neuro-card .neuro-fb__label { fill: #e8eefc; }
+      .neuro-card .neuro-fb__sub { fill: #aebed8; }
+      html[data-theme="light"] .neuro-card .neuro-fb__label { fill: #e8eefc; }
+      html[data-theme="light"] .neuro-card .neuro-fb__sub { fill: #aebed8; }
+      .neuro-card .neuro-fb__sheath--earned { filter: drop-shadow(0 0 4px #579de8); }
+      .neuro-viz__stage:has(.neuro-viz__fallback) .neuro-route-label { display: none; }
+      @media (max-width: 520px) {
+        .neuro-viz__stage { aspect-ratio: 4 / 3; }
+        .neuro-route-label { top: 12px; left: 12px; right: 12px; max-width: none; gap: 2px; }
+        .neuro-route-label--earned { top: 54%; }
+        .neuro-route-label strong { font-size: 0.95rem; line-height: 1.4; }
+        .neuro-route-label span { font-size: 0.65rem; }
+      }
+
+      /* Matches the Statistical Audit drawer's fill so the two drawers read as
+         the same component. The backdrop blur is what makes the translucent
+         fill sit solid over the starfield. */
+      .neuro-science {
+        border: 1px solid rgba(122, 184, 255, 0.14);
+        border-radius: 16px;
+        background: rgba(8, 16, 36, 0.45);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        overflow: hidden;
+        text-align: left;
+        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .neuro-science[open] {
+        background: rgba(8, 16, 36, 0.72);
+        border-color: rgba(100, 168, 255, 0.32);
+        box-shadow: 0 16px 40px rgba(4, 10, 24, 0.35);
+      }
+
+      html[data-theme="light"] .neuro-science {
+        background: rgba(255, 255, 255, 0.65);
+        border-color: rgba(79, 132, 214, 0.18);
+      }
+
+      html[data-theme="light"] .neuro-science[open] {
+        background: rgba(255, 255, 255, 0.92);
+        border-color: rgba(79, 132, 214, 0.32);
+        box-shadow: 0 16px 36px rgba(151, 164, 192, 0.2);
+      }
+      .neuro-science summary {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 16px; padding: 20px 22px; cursor: pointer; list-style: none;
+        color: var(--text); font-weight: 600;
+      }
+      .neuro-science summary::-webkit-details-marker { display: none; }
+      .neuro-science summary::after { content: "+"; font-size: 1.4rem; color: var(--blue); }
+      .neuro-science[open] summary::after { content: "−"; }
+      .neuro-science summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 12px; }
+      .neuro-science__label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+      .neuro-science__label small { font-weight: 400; font-size: 0.8rem; color: var(--muted); }
+      .neuro-science__body { padding: 0 22px 24px; color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
+      .neuro-science__body h3 { margin: 24px 0 8px; color: var(--text); font-size: 1rem; }
+      .neuro-science__body h3:first-child { margin-top: 0; }
+      .neuro-science__body p { margin: 0 0 14px; }
+      .neuro-science__body p:last-child { margin-bottom: 0; }
+      .neuro-science__body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+      .neuro-science__body a:hover { color: var(--text); }
+
+      .neuro-practice-control {
+        display: grid; gap: 8px; padding: 18px 0 20px;
+        width: min(760px, calc(100% - 40px)); margin: 0 auto;
+        border-top: 1px solid rgba(122, 184, 255, 0.16);
+      }
+      .neuro-practice-control label { color: var(--text); font-weight: 600; }
+      .neuro-practice-control input { width: 100%; height: 32px; margin: 0; accent-color: var(--blue); cursor: pointer; }
+      .neuro-practice-control input:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 6px; }
+      .neuro-practice-control__ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
+
+      .neuro-takeaway { max-width: 760px; margin: 0 auto; text-align: center; color: var(--muted); }
+      .neuro-takeaway strong { color: var(--text); }
+      .neuro-takeaway a { color: var(--blue); text-underline-offset: 3px; }
+
+      .neuro-legend {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .neuro-legend__item {
+        display: flex;
+        gap: 12px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(122, 184, 255, 0.12);
+        background: rgba(10, 18, 34, 0.4);
+      }
+
+      html[data-theme="light"] .neuro-legend__item {
+        border-color: rgba(79, 132, 214, 0.14);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .neuro-legend__swatch {
+        flex: 0 0 auto;
+        width: 10px;
+        border-radius: 999px;
+        margin-top: 3px;
+        height: 42px;
+      }
+
+      .neuro-legend__swatch--unbuilt {
+        background: linear-gradient(180deg, #ffb16b, #bd712e);
+      }
+
+      .neuro-legend__swatch--earned {
+        background: linear-gradient(180deg, var(--blue), var(--purple));
+      }
+
+      .neuro-legend__title {
+        margin: 0 0 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .neuro-legend__body {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .neuro-reps {
+        font-variant-numeric: tabular-nums;
+        color: var(--blue);
+        font-weight: 600;
+      }
+
+      .neuro-caption {
+        margin: 0;
+        text-align: center;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        color: var(--muted);
+        opacity: 0.85;
+      }
+
+      .neuro-caption a {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+
+      /* Static route for reduced motion and for browsers without WebGL2. */
+      .neuro-fb__axon-line {
+        stroke: #6b7791;
+        stroke-width: 3;
+      }
+
+      .neuro-fb__soma {
+        fill: #93a3bf;
+      }
+
+      .neuro-fb__sheath--unbuilt {
+        fill: #8b97ad;
+      }
+
+      .neuro-fb__sheath--earned {
+        fill: #64a8ff;
+      }
+
+      .neuro-fb__pulse--unbuilt {
+        fill: #7fb0e8;
+        opacity: 0.5;
+      }
+
+      .neuro-fb__pulse--earned {
+        fill: #dcefff;
+      }
+
+      .neuro-fb__label {
+        fill: rgba(232, 238, 252, 0.92);
+        font-family: var(--font-mono);
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .neuro-fb__sub {
+        fill: rgba(232, 238, 252, 0.6);
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      html[data-theme="light"] .neuro-fb__label {
+        fill: #101725;
+      }
+
+      html[data-theme="light"] .neuro-fb__sub {
+        fill: #5d677d;
+      }
+
+      html[data-theme="light"] .neuro-fb__axon-line {
+        stroke: #94a0b5;
+      }
+
+      html[data-theme="light"] .neuro-fb__soma {
+        fill: #7d8899;
+      }
+
+      @media (max-width: 720px) {
+        .neuro-legend {
+          grid-template-columns: 1fr;
+        }
+
+        .neuro-hint {
+          display: none;
+        }
+      }
+    </style>
+
+    <section class="section section--neuro" aria-labelledby="neuro-title">
+      <h2 class="section-title" id="neuro-title">You can’t copy-paste learning.</h2>
+      <div class="neuro-shell section-content">
+        <p class="neuro-lede">
+          <strong>Do the hard parts with Lune Synth.</strong> Solve. Get feedback. Repeat.
+        </p>
+
+        <div class="neuro-card">
+          <h3 class="neuro-card__title">This is your brain</h3>
+          <div class="neuro-viz__stage" data-neuro-viz>
+            <div class="neuro-route-label" aria-hidden="true"><strong>Brain rotted</strong><span>Using AI to cheat on your assignments</span></div>
+            <div class="neuro-route-label neuro-route-label--earned" aria-hidden="true"><strong>Step-by-step practice with Lune Synth</strong></div>
+            <span class="neuro-hint" aria-hidden="true">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <path d="M3 12a9 9 0 0 1 15-6.7M21 12a9 9 0 0 1-15 6.7" />
+                <path d="M18 3v3h-3M6 21v-3h3" />
+              </svg>
+              Drag to rotate
+            </span>
+          </div>
+
+          <div class="neuro-practice-control">
+            <label for="neuro-practice-time">Time doing practice step by step with Lune Synth</label>
+            <input id="neuro-practice-time" data-neuro-practice type="range" min="0" max="100" step="1" value="50" />
+            <div class="neuro-practice-control__ends" aria-hidden="true"><span>Less time</span><span>More time</span></div>
+          </div>
+        </div>
+
+        <p class="neuro-takeaway">
+          <strong>Cheating skips the practice.</strong>
+          Repeated practice does more than make a task feel familiar: learning can help build new
+          myelin, the fatty insulation around nerve fibers. In animal studies, repeated neural
+          activity can also thicken myelin sheaths.
+          <strong>It's like lifting weights for your brain.</strong>
+          Working through the friction keeps you practicing instead of skipping the attempt.
+          <strong>Lune Synth keeps you doing the work over time:</strong> solve, get feedback, repeat.
+        </p>
+
+        <p class="neuro-caption">Visual metaphor for skipped practice versus active learning.</p>
+
+        <details class="neuro-science">
+          <summary>
+            <span class="neuro-science__label">Nerd stuff</span>
+          </summary>
+          <div class="neuro-science__body">
+            <h3>Retrieval practice and lasting memory</h3>
+            <p>
+              Retrieving information from memory can improve later retention. In two experiments
+              using prose passages, students who practised recall retained more on tests two days
+              and one week later than students who repeatedly studied the material. Repeated study
+              performed better on the immediate test, illustrating why short-term familiarity and
+              durable learning should be distinguished.
+              <a href="https://pubmed.ncbi.nlm.nih.gov/16507066/">Roediger &amp; Karpicke (2006), <cite>Psychological Science</cite></a>.
+            </p>
+            <p>
+              This distinction matters when an answer feels obvious on the page. Recognising a
+              solution and producing one independently are different demands. Attempting the
+              reasoning before consulting an answer creates an opportunity to practise retrieval;
+              copying the result omits that opportunity. The experiment above examined recall
+              of text, rather than chatbot use or Lune Synth.
+            </p>
+
+            <h3>Activity-dependent myelination</h3>
+            <p>
+              Myelin is fatty insulation around axons, the fibres that carry signals from neurons
+              (<a href="https://www.nigms.nih.gov/image-gallery/3396">NIGMS: myelinated axons</a>).
+              Its formation is one component of neural plasticity.
+              In mice, optogenetic stimulation of premotor circuits increased oligodendrocyte
+              production and myelin sheath thickness, with associated improvements in motor function.
+              Motor-learning experiments in mice also show the addition of new myelin sheaths
+              (<a href="https://www.nature.com/articles/s41593-022-01169-4">Bacmeister et al. (2022), <cite>Nature Neuroscience</cite></a>).
+              Oligodendrocytes are the cells that form myelin in the central nervous system.
+              <a href="https://pubmed.ncbi.nlm.nih.gov/24727982/">Gibson et al. (2014), <cite>Science</cite></a>.
+            </p>
+            <p>
+              In a separate mouse study, preventing the generation of new oligodendrocytes impaired
+              acquisition of a complex running-wheel skill while sparing performance of a previously
+              learned skill. This provides evidence for a contribution of new myelin-forming cells
+              to acquiring that motor skill, rather than simply to executing a familiar movement.
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6324726/">McKenzie et al. (2014), <cite>Science</cite></a>.
+            </p>
+
+            <h3>What productive friction means here</h3>
+            <p>
+              In this section, &ldquo;friction&rdquo; means the effort of attempting a problem,
+              explaining a step, noticing a mistake, and revising your reasoning. It is a description
+              of the practice process, not a biological measure. Difficulty or discomfort alone
+              does not establish that learning is occurring. The studies above do not show that
+              handwriting specifically, or each uncomfortable step, directly creates another
+              layer of myelin.
+            </p>
+
+            <h3>How this connects to Lune Synth</h3>
+            <p>
+              Lune Synth gives learners a way to attempt problems, inspect feedback, and practise
+              again. Attempting an answer from memory creates an opportunity for retrieval practice;
+              reviewing feedback helps you decide what to work on next. That is the design rationale
+              for the learning loop. The cited studies did not test Lune Synth or establish that
+              using it changes myelination or produces a particular improvement in exam performance.
+            </p>
+            <p>
+              Working by hand is one way to make each reasoning step explicit. The relevant
+              distinction is doing your own thinking: typing or speaking your reasoning can also
+              be active practice. The comparison concerns submitting copied answers in place of
+              practising, rather than every possible use of an AI tool.
+            </p>
+
+            <h3>How to read the animation</h3>
+            <p>
+              The animation combines learning and myelin research as a conceptual illustration.
+              Its signal speeds, route shapes, sheath thicknesses, and slider positions are not
+              biological measurements. The slider represents increasing practice, not a calibrated
+              number of hours, and the automatic loop compresses an illustrative progression into
+              seconds. Its reset does not represent a loss of learning or myelin.
+            </p>
+            <p>
+              A jagged route represents uncertainty in recall, not a damaged axon. A straight route
+              does not mean myelin alone determines answer accuracy. Reading a chatbot response
+              also involves neural activity; the upper circuit is not a claim that a reader&rsquo;s
+              brain stops firing. The central message is practical: use the opportunity to attempt,
+              get feedback, and practise again.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <script type="module">
+      // Lazily mounted: nothing about the 3D scene is fetched until the section
+      // is close to the viewport, so the initial page load is unaffected.
+      (function () {
+        var stage = document.querySelector("[data-neuro-viz]");
+        if (!stage || !("IntersectionObserver" in window)) return;
+        var started = false;
+        var io = new IntersectionObserver(
+          function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+              if (!entries[i].isIntersecting || started) continue;
+              started = true;
+              io.disconnect();
+              import("/lune-synth/neuro-viz/neuro-viz.bundle.js")
+                .then(function (m) {
+                  m.mountNeuroViz(stage);
+                })
+                .catch(function (e) {
+                  console.warn("[neuro-viz] failed to load", e);
+                });
+            }
+          },
+          { rootMargin: "200px" },
+        );
+        io.observe(stage);
+      })();
+    </script>
 
     <!-- ================= CONSTELLATIONS SLIDESHOW ================= -->
     <section class="section section--constellations-slideshow" id="constellations" aria-labelledby="constellations-title">
@@ -12433,328 +12911,6 @@
       </div>
     </section>
 
-    <!-- ================= BUILD THE CIRCUIT (3D neuron comparison) ================= -->
-    <style>
-      .section--neuro { content-visibility: visible; overflow: visible; }
-      .neuro-shell {
-        width: 100%;
-        min-width: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 26px;
-        max-width: 1280px;
-        margin: 0 auto;
-      }
-
-      .neuro-lede {
-        max-width: 720px;
-        margin: 0 auto;
-        text-align: center;
-        color: var(--muted);
-      }
-
-      .neuro-lede strong {
-        color: var(--text);
-        font-weight: 600;
-      }
-
-      .neuro-viz__stage {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-      }
-
-      .neuro-card {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        border-radius: 0;
-        overflow: hidden;
-        border: 0;
-        background: #000;
-        box-shadow: 0 0 36px rgba(100, 168, 255, 0.16), 0 24px 64px rgba(0, 0, 0, 0.4), inset 0 0 32px rgba(100, 168, 255, 0.04);
-        --text: #e8eefc;
-        --muted: #aebed8;
-        --blue: #72b9ff;
-      }
-
-      .neuro-card__title {
-        margin: 0; padding: 28px 20px 8px; text-align: center;
-        color: var(--text); font-size: clamp(1.4rem, 2.8vw, 2.25rem);
-        font-weight: 700;
-      }
-
-      .neuro-viz__canvas,
-      .neuro-viz__fallback {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-
-      /* Horizontal drag rotates; vertical drag must still scroll the page. */
-      .neuro-viz__canvas {
-        touch-action: pan-y;
-        cursor: grab;
-      }
-
-      .neuro-viz__canvas:active {
-        cursor: grabbing;
-      }
-
-      .neuro-viz__canvas:focus-visible {
-        outline: 2px solid var(--blue);
-        outline-offset: -4px;
-      }
-
-      .neuro-hint {
-        position: absolute;
-        right: 14px;
-        bottom: 12px;
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 6px 11px;
-        border-radius: 999px;
-        font-size: 0.72rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--muted);
-        background: rgba(8, 14, 28, 0.55);
-        border: 1px solid rgba(122, 184, 255, 0.16);
-        pointer-events: none;
-      }
-
-      html[data-theme="light"] .neuro-hint {
-        background: rgba(8, 14, 28, 0.75);
-        border-color: rgba(122, 184, 255, 0.25);
-      }
-
-      .neuro-route-label {
-        position: absolute; left: 20px; right: 20px; top: 20px; z-index: 2;
-        align-items: center; text-align: center;
-        display: flex; flex-direction: column; gap: 4px;
-        pointer-events: none; color: #ffb16b;
-      }
-      .neuro-route-label strong { font-size: clamp(1rem, 1.65vw, 1.5rem); letter-spacing: 0.08em; text-transform: uppercase; }
-      .neuro-route-label span { font-size: 0.72rem; color: var(--muted); }
-      .neuro-route-label--earned { top: 53%; color: #72b9ff; }
-      html[data-theme="light"] .neuro-route-label { color: #ffb16b; }
-      html[data-theme="light"] .neuro-route-label--earned { color: #72b9ff; }
-      .neuro-route-label { text-shadow: 0 0 16px currentColor; }
-      .neuro-card .neuro-fb__label { fill: #e8eefc; }
-      .neuro-card .neuro-fb__sub { fill: #aebed8; }
-      html[data-theme="light"] .neuro-card .neuro-fb__label { fill: #e8eefc; }
-      html[data-theme="light"] .neuro-card .neuro-fb__sub { fill: #aebed8; }
-      .neuro-card .neuro-fb__sheath--earned { filter: drop-shadow(0 0 4px #579de8); }
-      .neuro-viz__stage:has(.neuro-viz__fallback) .neuro-route-label { display: none; }
-      @media (max-width: 520px) {
-        .neuro-viz__stage { aspect-ratio: 4 / 3; }
-        .neuro-route-label { top: 12px; left: 12px; right: 12px; max-width: none; gap: 2px; }
-        .neuro-route-label--earned { top: 54%; }
-        .neuro-route-label strong { font-size: 0.95rem; line-height: 1.4; }
-        .neuro-route-label span { font-size: 0.65rem; }
-      }
-
-      /* Matches the Statistical Audit drawer's fill so the two drawers read as
-         the same component. The backdrop blur is what makes the translucent
-         fill sit solid over the starfield. */
-      .neuro-science {
-        border: 1px solid rgba(122, 184, 255, 0.14);
-        border-radius: 16px;
-        background: rgba(8, 16, 36, 0.45);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        overflow: hidden;
-        text-align: left;
-        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-      }
-
-      .neuro-science[open] {
-        background: rgba(8, 16, 36, 0.72);
-        border-color: rgba(100, 168, 255, 0.32);
-        box-shadow: 0 16px 40px rgba(4, 10, 24, 0.35);
-      }
-
-      html[data-theme="light"] .neuro-science {
-        background: rgba(255, 255, 255, 0.65);
-        border-color: rgba(79, 132, 214, 0.18);
-      }
-
-      html[data-theme="light"] .neuro-science[open] {
-        background: rgba(255, 255, 255, 0.92);
-        border-color: rgba(79, 132, 214, 0.32);
-        box-shadow: 0 16px 36px rgba(151, 164, 192, 0.2);
-      }
-      .neuro-science summary {
-        display: flex; align-items: center; justify-content: space-between;
-        gap: 16px; padding: 20px 22px; cursor: pointer; list-style: none;
-        color: var(--text); font-weight: 600;
-      }
-      .neuro-science summary::-webkit-details-marker { display: none; }
-      .neuro-science summary::after { content: "+"; font-size: 1.4rem; color: var(--blue); }
-      .neuro-science[open] summary::after { content: "−"; }
-      .neuro-science summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 12px; }
-      .neuro-science__label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
-      .neuro-science__label small { font-weight: 400; font-size: 0.8rem; color: var(--muted); }
-      .neuro-science__body { padding: 0 22px 24px; color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
-      .neuro-science__body h3 { margin: 24px 0 8px; color: var(--text); font-size: 1rem; }
-      .neuro-science__body h3:first-child { margin-top: 0; }
-      .neuro-science__body p { margin: 0 0 14px; }
-      .neuro-science__body p:last-child { margin-bottom: 0; }
-      .neuro-science__body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
-      .neuro-science__body a:hover { color: var(--text); }
-
-      .neuro-practice-control {
-        display: grid; gap: 8px; padding: 18px 0 20px;
-        width: min(760px, calc(100% - 40px)); margin: 0 auto;
-        border-top: 1px solid rgba(122, 184, 255, 0.16);
-      }
-      .neuro-practice-control label { color: var(--text); font-weight: 600; }
-      .neuro-practice-control input { width: 100%; height: 32px; margin: 0; accent-color: var(--blue); cursor: pointer; }
-      .neuro-practice-control input:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 6px; }
-      .neuro-practice-control__ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
-
-      .neuro-takeaway { max-width: 760px; margin: 0 auto; text-align: center; color: var(--muted); }
-      .neuro-takeaway strong { color: var(--text); }
-      .neuro-takeaway a { color: var(--blue); text-underline-offset: 3px; }
-
-      .neuro-legend {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .neuro-legend__item {
-        display: flex;
-        gap: 12px;
-        padding: 16px 18px;
-        border-radius: 14px;
-        border: 1px solid rgba(122, 184, 255, 0.12);
-        background: rgba(10, 18, 34, 0.4);
-      }
-
-      html[data-theme="light"] .neuro-legend__item {
-        border-color: rgba(79, 132, 214, 0.14);
-        background: rgba(255, 255, 255, 0.6);
-      }
-
-      .neuro-legend__swatch {
-        flex: 0 0 auto;
-        width: 10px;
-        border-radius: 999px;
-        margin-top: 3px;
-        height: 42px;
-      }
-
-      .neuro-legend__swatch--unbuilt {
-        background: linear-gradient(180deg, #ffb16b, #bd712e);
-      }
-
-      .neuro-legend__swatch--earned {
-        background: linear-gradient(180deg, var(--blue), var(--purple));
-      }
-
-      .neuro-legend__title {
-        margin: 0 0 4px;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text);
-      }
-
-      .neuro-legend__body {
-        margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.55;
-        color: var(--muted);
-      }
-
-      .neuro-reps {
-        font-variant-numeric: tabular-nums;
-        color: var(--blue);
-        font-weight: 600;
-      }
-
-      .neuro-caption {
-        margin: 0;
-        text-align: center;
-        font-size: 0.82rem;
-        line-height: 1.6;
-        color: var(--muted);
-        opacity: 0.85;
-      }
-
-      .neuro-caption a {
-        color: inherit;
-        text-underline-offset: 3px;
-      }
-
-      /* Static route for reduced motion and for browsers without WebGL2. */
-      .neuro-fb__axon-line {
-        stroke: #6b7791;
-        stroke-width: 3;
-      }
-
-      .neuro-fb__soma {
-        fill: #93a3bf;
-      }
-
-      .neuro-fb__sheath--unbuilt {
-        fill: #8b97ad;
-      }
-
-      .neuro-fb__sheath--earned {
-        fill: #64a8ff;
-      }
-
-      .neuro-fb__pulse--unbuilt {
-        fill: #7fb0e8;
-        opacity: 0.5;
-      }
-
-      .neuro-fb__pulse--earned {
-        fill: #dcefff;
-      }
-
-      .neuro-fb__label {
-        fill: rgba(232, 238, 252, 0.92);
-        font-family: var(--font-mono);
-        font-size: 15px;
-        font-weight: 600;
-      }
-
-      .neuro-fb__sub {
-        fill: rgba(232, 238, 252, 0.6);
-        font-family: var(--font-mono);
-        font-size: 12px;
-      }
-
-      html[data-theme="light"] .neuro-fb__label {
-        fill: #101725;
-      }
-
-      html[data-theme="light"] .neuro-fb__sub {
-        fill: #5d677d;
-      }
-
-      html[data-theme="light"] .neuro-fb__axon-line {
-        stroke: #94a0b5;
-      }
-
-      html[data-theme="light"] .neuro-fb__soma {
-        fill: #7d8899;
-      }
-
-      @media (max-width: 720px) {
-        .neuro-legend {
-          grid-template-columns: 1fr;
-        }
-
-        .neuro-hint {
-          display: none;
-        }
-      }
-    </style>
 
     <section class="section section--red" aria-labelledby="processing-title">
       <h2 class="section-title" id="processing-title">How grading works</h2>
@@ -13830,161 +13986,6 @@
     </section>
 
 
-
-    <section class="section section--neuro" aria-labelledby="neuro-title">
-      <h2 class="section-title" id="neuro-title">You can’t copy-paste learning.</h2>
-      <div class="neuro-shell section-content">
-        <p class="neuro-lede">
-          <strong>Do the hard parts with Lune Synth.</strong> Solve. Get feedback. Repeat.
-        </p>
-
-        <div class="neuro-card">
-          <h3 class="neuro-card__title">This is your brain</h3>
-          <div class="neuro-viz__stage" data-neuro-viz>
-            <div class="neuro-route-label" aria-hidden="true"><strong>Brain rotted</strong><span>Using AI to cheat on your assignments</span></div>
-            <div class="neuro-route-label neuro-route-label--earned" aria-hidden="true"><strong>Step-by-step practice with Lune Synth</strong></div>
-            <span class="neuro-hint" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-                <path d="M3 12a9 9 0 0 1 15-6.7M21 12a9 9 0 0 1-15 6.7" />
-                <path d="M18 3v3h-3M6 21v-3h3" />
-              </svg>
-              Drag to rotate
-            </span>
-          </div>
-
-          <div class="neuro-practice-control">
-            <label for="neuro-practice-time">Time doing practice step by step with Lune Synth</label>
-            <input id="neuro-practice-time" data-neuro-practice type="range" min="0" max="100" step="1" value="50" />
-            <div class="neuro-practice-control__ends" aria-hidden="true"><span>Less time</span><span>More time</span></div>
-          </div>
-        </div>
-
-        <p class="neuro-takeaway">
-          <strong>Cheating skips the practice.</strong>
-          Repeated practice does more than make a task feel familiar: learning can help build new
-          myelin, the fatty insulation around nerve fibers. In animal studies, repeated neural
-          activity can also thicken myelin sheaths.
-          <strong>It's like lifting weights for your brain.</strong>
-          Working through the friction keeps you practicing instead of skipping the attempt.
-          <strong>Lune Synth keeps you doing the work over time:</strong> solve, get feedback, repeat.
-        </p>
-
-        <p class="neuro-caption">Visual metaphor for skipped practice versus active learning.</p>
-
-        <details class="neuro-science">
-          <summary>
-            <span class="neuro-science__label">Nerd stuff</span>
-          </summary>
-          <div class="neuro-science__body">
-            <h3>Retrieval practice and lasting memory</h3>
-            <p>
-              Retrieving information from memory can improve later retention. In two experiments
-              using prose passages, students who practised recall retained more on tests two days
-              and one week later than students who repeatedly studied the material. Repeated study
-              performed better on the immediate test, illustrating why short-term familiarity and
-              durable learning should be distinguished.
-              <a href="https://pubmed.ncbi.nlm.nih.gov/16507066/">Roediger &amp; Karpicke (2006), <cite>Psychological Science</cite></a>.
-            </p>
-            <p>
-              This distinction matters when an answer feels obvious on the page. Recognising a
-              solution and producing one independently are different demands. Attempting the
-              reasoning before consulting an answer creates an opportunity to practise retrieval;
-              copying the result omits that opportunity. The experiment above examined recall
-              of text, rather than chatbot use or Lune Synth.
-            </p>
-
-            <h3>Activity-dependent myelination</h3>
-            <p>
-              Myelin is fatty insulation around axons, the fibres that carry signals from neurons
-              (<a href="https://www.nigms.nih.gov/image-gallery/3396">NIGMS: myelinated axons</a>).
-              Its formation is one component of neural plasticity.
-              In mice, optogenetic stimulation of premotor circuits increased oligodendrocyte
-              production and myelin sheath thickness, with associated improvements in motor function.
-              Motor-learning experiments in mice also show the addition of new myelin sheaths
-              (<a href="https://www.nature.com/articles/s41593-022-01169-4">Bacmeister et al. (2022), <cite>Nature Neuroscience</cite></a>).
-              Oligodendrocytes are the cells that form myelin in the central nervous system.
-              <a href="https://pubmed.ncbi.nlm.nih.gov/24727982/">Gibson et al. (2014), <cite>Science</cite></a>.
-            </p>
-            <p>
-              In a separate mouse study, preventing the generation of new oligodendrocytes impaired
-              acquisition of a complex running-wheel skill while sparing performance of a previously
-              learned skill. This provides evidence for a contribution of new myelin-forming cells
-              to acquiring that motor skill, rather than simply to executing a familiar movement.
-              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6324726/">McKenzie et al. (2014), <cite>Science</cite></a>.
-            </p>
-
-            <h3>What productive friction means here</h3>
-            <p>
-              In this section, &ldquo;friction&rdquo; means the effort of attempting a problem,
-              explaining a step, noticing a mistake, and revising your reasoning. It is a description
-              of the practice process, not a biological measure. Difficulty or discomfort alone
-              does not establish that learning is occurring. The studies above do not show that
-              handwriting specifically, or each uncomfortable step, directly creates another
-              layer of myelin.
-            </p>
-
-            <h3>How this connects to Lune Synth</h3>
-            <p>
-              Lune Synth gives learners a way to attempt problems, inspect feedback, and practise
-              again. Attempting an answer from memory creates an opportunity for retrieval practice;
-              reviewing feedback helps you decide what to work on next. That is the design rationale
-              for the learning loop. The cited studies did not test Lune Synth or establish that
-              using it changes myelination or produces a particular improvement in exam performance.
-            </p>
-            <p>
-              Working by hand is one way to make each reasoning step explicit. The relevant
-              distinction is doing your own thinking: typing or speaking your reasoning can also
-              be active practice. The comparison concerns submitting copied answers in place of
-              practising, rather than every possible use of an AI tool.
-            </p>
-
-            <h3>How to read the animation</h3>
-            <p>
-              The animation combines learning and myelin research as a conceptual illustration.
-              Its signal speeds, route shapes, sheath thicknesses, and slider positions are not
-              biological measurements. The slider represents increasing practice, not a calibrated
-              number of hours, and the automatic loop compresses an illustrative progression into
-              seconds. Its reset does not represent a loss of learning or myelin.
-            </p>
-            <p>
-              A jagged route represents uncertainty in recall, not a damaged axon. A straight route
-              does not mean myelin alone determines answer accuracy. Reading a chatbot response
-              also involves neural activity; the upper circuit is not a claim that a reader&rsquo;s
-              brain stops firing. The central message is practical: use the opportunity to attempt,
-              get feedback, and practise again.
-            </p>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <script type="module">
-      // Lazily mounted: nothing about the 3D scene is fetched until the section
-      // is close to the viewport, so the initial page load is unaffected.
-      (function () {
-        var stage = document.querySelector("[data-neuro-viz]");
-        if (!stage || !("IntersectionObserver" in window)) return;
-        var started = false;
-        var io = new IntersectionObserver(
-          function (entries) {
-            for (var i = 0; i < entries.length; i++) {
-              if (!entries[i].isIntersecting || started) continue;
-              started = true;
-              io.disconnect();
-              import("/lune-synth/neuro-viz/neuro-viz.bundle.js")
-                .then(function (m) {
-                  m.mountNeuroViz(stage);
-                })
-                .catch(function (e) {
-                  console.warn("[neuro-viz] failed to load", e);
-                });
-            }
-          },
-          { rootMargin: "200px" },
-        );
-        io.observe(stage);
-      })();
-    </script>
 
     <section class="section section--engine section--red" aria-labelledby="engine-title">
       <h2 class="section-title" id="engine-title">Engine</h2>

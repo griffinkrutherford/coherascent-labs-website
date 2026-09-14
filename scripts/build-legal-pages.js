@@ -250,6 +250,7 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
         <a class="nav-link" href="/#applied-page-title">Overview</a>
         <a class="nav-link" href="/#waitlist">Beta Waitlist</a>
         <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
+        <a class="nav-link" href="/#neuro-title">Circuit</a>
         <a class="nav-link" href="/#constellations-title">Constellations</a>
         <a class="nav-link" href="/#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="/#problem-solver-title">Problem Solver</a>
@@ -258,7 +259,6 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
         <a class="nav-link" href="/#luna-title">Luna</a>
         <a class="nav-link" href="/#processing-title">Grading</a>
         <a class="nav-link" href="/#medals-title">Medals</a>
-        <a class="nav-link" href="/#neuro-title">Circuit</a>
         <a class="nav-link" href="/#engine-title">Engine</a>
         <a class="nav-link" href="/#site-footer">All Landing Pages</a>
         <a class="nav-link nav-link--blog" href="/blog/">Blog</a>

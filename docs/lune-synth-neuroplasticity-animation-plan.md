@@ -9,6 +9,8 @@ strings, not numbers._
 
 ## Update Log
 
+- 2026-09-14: Moved the neuron comparison (including its styles and lazy initializer) directly before Constellations. All Lune Synth header links and page-generator templates now place Circuit immediately before Constellations.
+
 - 2026-09-14: Restyled the comparison at the owner's request: the upper network is labeled “Brain rotted,” with worn gray cells and four distinct cobweb silhouettes (off-center orb, corner fan, drooping diamond, and torn sheet); the lower network glows with a slowly shifting red/blue gradient. Reduced-motion/no-WebGL fallback preserves the contrast without animation. These are artistic metaphors, not a depiction of brain damage. Supersedes the original neutral upper-neuron visual direction below.
 
 ## Purpose
