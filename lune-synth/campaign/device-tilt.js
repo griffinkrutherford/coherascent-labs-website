@@ -3,6 +3,7 @@
   var motion = window.matchMedia("(min-width: 901px) and (prefers-reduced-motion: no-preference)");
   if (!("IntersectionObserver" in window) || !CSS.supports("rotate", "0 1 0 34deg")) return;
   var isCampaign = !!document.querySelector(".campaign-main");
+  var buttonSelector = ".phone-shell-button, .feature-phone__button, .ipad-button, .voice-scene__ipad-button, .feature-ipad__button";
   var selector = ".phone-mock__frame, .feature-phone, .feature-ipad, .response-carousel__question-phone";
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -13,17 +14,16 @@
   }, { threshold: 0.12 });
 
   function sync() {
-    document.querySelectorAll(".ipad-button--volume, .voice-scene__ipad-button--volume, .feature-ipad__button--volume").forEach(function (button) {
-      if (button.classList.contains("tablet-volume-key")) return;
-      button.classList.add("tablet-volume-key");
-      // Capsule cross-sections extruded out from the tablet's side rail.
-      for (var j = 0; j <= 8; j++) {
+    document.querySelectorAll(buttonSelector).forEach(function (button) {
+      if (button.classList.contains("device-key")) return;
+      button.classList.add("device-key");
+      button.setAttribute("aria-hidden", "true");
+      // Closed geometry, including end caps: keys remain solid at oblique angles.
+      ["front", "back", "left", "right", "top", "bottom"].forEach(function (side) {
         var face = document.createElement("span");
-        face.className = "tablet-volume-key__slice";
-        face.setAttribute("aria-hidden", "true");
-        face.style.setProperty("--key-slice", j);
+        face.className = "device-key__face device-key__face--" + side;
         button.appendChild(face);
-      }
+      });
     });
     document.querySelectorAll(selector).forEach(function (device) {
       if ((!isCampaign && !motion.matches) || device.classList.contains("device-tilt")) return;
@@ -49,7 +49,7 @@
   new MutationObserver(function (records) {
     if (records.some(function (record) {
       return Array.from(record.addedNodes).some(function (node) {
-        return node.nodeType === 1 && (node.matches(selector) || node.querySelector(selector));
+        return node.nodeType === 1 && (node.matches(selector + ", " + buttonSelector) || node.querySelector(selector + ", " + buttonSelector));
       });
     })) sync();
   }).observe(document.body, { childList: true, subtree: true });

@@ -8,6 +8,10 @@ which includes the uncommitted Listen / Problem Solver sections — they will
 shift if that work lands or is dropped first. Anchor on the quoted strings,
 not the numbers._
 
+## Update Log
+
+- 2026-09-14: Unified phone and tablet hardware keys as six-face 3D solids (front, back, sides, and end caps). Preserved depth through phone rail wrappers, covered dynamically inserted controls and reduced-motion layouts, and advanced shared asset URLs in every campaign page and its generator to avoid stale immutable caches. Browser checks covered 141 homepage and 9 campaign controls.
+
 ## Baseline (measured, not estimated)
 
 | Metric | Value |
