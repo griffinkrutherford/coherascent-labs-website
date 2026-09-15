@@ -52,7 +52,7 @@ function svgMarkup(level) {
   ${backgroundCells(213)}
   ${cells(true, level)}
   <path d="M54 213 H484" fill="none" stroke="url(#neuro-vitality)" stroke-width="3" filter="url(#neuro-vitality-glow)"/>
-  <circle cx="${54 + 430 * transfer.earned}" cy="213" r="5" fill="#579de8"/>
+  <circle cx="${54 + 430 * transfer.earned}" cy="213" r="5" fill="#ffffff"/>
   <text class="neuro-fb__sub" x="26" y="270">${transfer.earned >= 1 ? "Arrived." : "Still travelling."}</text>
 </svg>`;
 }

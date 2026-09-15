@@ -9,6 +9,8 @@ strings, not numbers._
 
 ## Update Log
 
+- 2026-09-14: Made the lower network’s moving thought-signal dots and their halo white, independent of the neurons’ animated red/blue colors. The reduced-motion signal marker is white too.
+
 - 2026-09-14: Verified the live homepage contains the reordered sections. Added a content-hashed query version to the neuron bundle import, generated automatically during its build, so the immutable one-year JavaScript cache cannot retain a previous scene after deployment.
 
 - 2026-09-14: Moved the neuron comparison (including its styles and lazy initializer) directly before Constellations. All Lune Synth header links and page-generator templates now place Circuit immediately before Constellations.

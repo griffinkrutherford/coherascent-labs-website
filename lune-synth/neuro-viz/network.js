@@ -171,6 +171,11 @@ export function createNetwork({ variant, theme }) {
     }
     const color = earned ? (name === "light" ? 0x245fc5 : 0x72b9ff) : 0x8b8171;
     [routeMat, trailMat, targetMat, ...glowMaterials, ...beads.map(b => b.material)].forEach(m => m.color.setHex(color));
+    if (earned) {
+      // The traveling thought stays white against the changing neuron colors.
+      beads.forEach(bead => bead.material.color.setHex(0xffffff));
+      signalGlow.material.color.setHex(0xffffff);
+    }
   }
   setTheme(theme);
 
@@ -191,7 +196,7 @@ export function createNetwork({ variant, theme }) {
     });
     if (earned) {
       animatedColor.copy(red).lerp(blue, (Math.sin(time * Math.PI * 2) + 1) / 2);
-      [routeMat, trailMat, targetMat, signalGlow.material, ...beads.map(b => b.material)]
+      [routeMat, trailMat, targetMat]
         .forEach(material => material.color.copy(animatedColor));
       backgroundMaterials.forEach(({ material }, i) => {
         material.color.copy(red).lerp(blue, (Math.sin(time * Math.PI * 2 + i * 0.7) + 1) / 2);
