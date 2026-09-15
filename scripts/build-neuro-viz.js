@@ -15,9 +15,10 @@
 // deliberately not a repo dependency — this project has no node_modules).
 
 const { execFileSync } = require("node:child_process");
-const { statSync, readFileSync } = require("node:fs");
+const { statSync, readFileSync, writeFileSync } = require("node:fs");
 const { gzipSync, brotliCompressSync } = require("node:zlib");
 const path = require("node:path");
+const { createHash } = require("node:crypto");
 
 const ROOT = path.resolve(__dirname, "..");
 const ENTRY = path.join(ROOT, "lune-synth/neuro-viz/index.js");
@@ -59,3 +60,16 @@ if (gz > GZIP_BUDGET) {
   process.exit(1);
 }
 console.log(`  within the ${kb(GZIP_BUDGET)} gzip budget`);
+
+// Static JS is served immutable for a year. Change the module URL whenever
+// its bytes change, so a returning visitor does not keep an older scene.
+const homepage = path.join(ROOT, "lune-synth/index.html");
+const html = readFileSync(homepage, "utf8");
+const moduleImport = /import\("\/lune-synth\/neuro-viz\/neuro-viz\.bundle\.js(?:\?v=[a-f0-9]+)?"\)/g;
+if ([...html.matchAll(moduleImport)].length !== 1) {
+  throw new Error("Expected one neuron bundle import in the homepage");
+}
+const version = createHash("sha256").update(raw).digest("hex").slice(0, 16);
+writeFileSync(homepage, html.replace(moduleImport,
+  `import("/lune-synth/neuro-viz/neuro-viz.bundle.js?v=${version}")`));
+console.log(`  module version ${version}`);
