@@ -11,6 +11,8 @@
 html, body {
   background: radial-gradient(1200px 700px at 15% 0%, rgba(255, 90, 110, 0.10), transparent 55%), radial-gradient(900px 600px at 85% 70%, rgba(192, 58, 79, 0.08), transparent 60%), #030204;
 }
+/* Clip horizontal overflow without creating a scroll container around the sticky header. */
+body { overflow-x: clip; }
 .about-page { max-width: 1180px; margin: 50px auto 0; }
 .about-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
 .about-hero h1 { margin: 20px 0 26px; font-family: var(--font-sans); font-size: clamp(42px, 5.2vw, 72px); line-height: 1.04; letter-spacing: -0.055em; color: #ffabb1; }
