@@ -10829,7 +10829,7 @@
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=9" />
-  <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=1" />
+  <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=2" />
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=1" />
   <script src="/campaign/device-rotation.js?v=2" defer></script>
@@ -15632,6 +15632,11 @@
       const ACCENT_POOL = 8;
       const ACCENT_BOOST = 1.5;
       const mobileRendering = window.matchMedia('(max-width: 900px)');
+      let lastScroll = -Infinity;
+      window.addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
+      function writeStyle(element, property, value) {
+        if (element.style.getPropertyValue(property) !== value) element.style.setProperty(property, value);
+      }
       const EASE = 0.07; // desktop smoothing remains unchanged
       const cv = document.createElement('canvas');
       cv.width = SW; cv.height = SH;
@@ -15640,14 +15645,14 @@
       // Measure the iPad's center as a % within the card so the glow originates there.
       // Recomputed each tick, cheap, and free-of-charge responsive/scroll tracking.
       function updateOrigin() {
-        if (!ipad) return;
+        if (!ipad || mobileRendering.matches) return;
         const r = ipad.getBoundingClientRect();
         const c = card.getBoundingClientRect();
         if (!c.width || !c.height) return;
         const x = ((r.left + r.width / 2) - c.left) / c.width * 100;
         const y = ((r.top + r.height / 2) - c.top) / c.height * 100;
-        card.style.setProperty('--ambi-x', x.toFixed(1) + '%');
-        card.style.setProperty('--ambi-y', y.toFixed(1) + '%');
+        writeStyle(card, '--ambi-x', x.toFixed(1) + '%');
+        writeStyle(card, '--ambi-y', y.toFixed(1) + '%');
       }
 
       // Brand-blue fallback target, matching the CSS seed.
@@ -15702,7 +15707,9 @@
           return;
         }
 
-        if (ts - last < (mobileRendering.matches ? 250 : 90)) {
+        // Avoid invalidating the card's paint layers while touch scrolling.
+        if ((mobileRendering.matches && ts - lastScroll < 200) ||
+            ts - last < (mobileRendering.matches ? 250 : 90)) {
           rafId = requestAnimationFrame(tick);
           return;
         } // ~4fps on mobile; preserve ~11fps on desktop
@@ -15749,9 +15756,9 @@
 
         ease(base, tBase, mobileRendering.matches ? 0.12 : EASE);
         ease(accent, tAccent, mobileRendering.matches ? 0.12 : EASE);
-        card.style.setProperty('--ambi-base', `rgb(${base[0] | 0}, ${base[1] | 0}, ${base[2] | 0})`);
-        card.style.setProperty('--ambi-accent', `rgb(${accent[0] | 0}, ${accent[1] | 0}, ${accent[2] | 0})`);
-        card.closest('#constellations').style.setProperty('--constellation-accent',
+        writeStyle(card, '--ambi-base', `rgb(${base[0] | 0}, ${base[1] | 0}, ${base[2] | 0})`);
+        writeStyle(card, '--ambi-accent', `rgb(${accent[0] | 0}, ${accent[1] | 0}, ${accent[2] | 0})`);
+        writeStyle(card.closest('#constellations'), '--constellation-accent',
           `rgb(${accent.map((value, i) => Math.round(value * 0.7 + base[i] * 0.3)).join(', ')})`);
         rafId = requestAnimationFrame(tick);
       }
@@ -15777,7 +15784,10 @@
         threshold: 0.05
       });
 
-      observer.observe(card);
+      // On phones, a sliver of the tall card should not keep the video glow
+      // repainting after its actual screen has left the viewport.
+      const observedTarget = mobileRendering.matches ? screen : card;
+      observer.observe(observedTarget);
 
       document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'hidden') {
@@ -15785,7 +15795,7 @@
           return;
         }
 
-        const rect = card.getBoundingClientRect();
+        const rect = observedTarget.getBoundingClientRect();
         const margin = mobileRendering.matches ? 0 : 700;
         setRunning(rect.top < window.innerHeight + margin && rect.bottom > -margin);
       });

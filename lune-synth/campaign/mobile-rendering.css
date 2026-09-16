@@ -45,4 +45,27 @@
   html[data-theme="light"] [data-liquid-glass] > .liquid-glass-filter {
     background: rgba(245, 248, 255, 0.94);
   }
+
+  /* These cards have their own backdrop filters outside the liquid-glass
+     component. Avoid recapturing a tall card around composited video/3D layers. */
+  #constellations .active-step-info,
+  .platform-showcase,
+  .problem-solver,
+  .processing-flow,
+  .engine-panel {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* The 48px filtered halo and two 100px shadows extend beyond the card's
+     bottom edge. Keep the existing colored fill/border, with a small shadow
+     that does not change with every video frame. */
+  #constellations .active-step-info,
+  html[data-theme="light"] #constellations .active-step-info {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  }
+
+  #constellations .active-step-info::before {
+    display: none;
+  }
 }
