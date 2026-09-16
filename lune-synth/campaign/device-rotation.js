@@ -90,6 +90,16 @@
     // A fullscreen clone may inherit a rotation; start it from its own layout.
     el.classList.remove('is-device-dragging');
     el.classList.add('rotatable-device');
+    if (el.matches('.phone-mock__frame, .quick-missions__phone')) {
+      el.classList.add('device-stable-phone');
+      // Cloned fullscreen previews may already contain their front shell.
+      if (!el.querySelector(':scope > .device-front-shell')) {
+        var front = document.createElement('span');
+        front.className = 'device-front-shell';
+        front.setAttribute('aria-hidden', 'true');
+        el.appendChild(front);
+      }
+    }
     el.parentElement.classList.add('rotatable-device-scene');
     if (!el.hasAttribute('tabindex')) el.tabIndex = 0;
     var described = el.getAttribute('aria-describedby') || '';
