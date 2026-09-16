@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-mobile-rendering="stable">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -1555,12 +1555,6 @@
       .section-title.is-pop-complete,
       .section-content.is-pop-complete {
         will-change: auto;
-      }
-
-      .section-content.is-visible:not(.is-pop-complete) *,
-      .section-content.is-visible:not(.is-pop-complete) *::before,
-      .section-content.is-visible:not(.is-pop-complete) *::after {
-        animation-play-state: paused !important;
       }
     }
 
@@ -10835,9 +10829,10 @@
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=9" />
+  <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=1" />
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=1" />
-  <script src="/campaign/device-rotation.js?v=1" defer></script>
+  <script src="/campaign/device-rotation.js?v=2" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -14319,7 +14314,7 @@
 
     <lune-site-footer id="site-footer"></lune-site-footer>
   </main>
-  <script src="../liquid-glass-cards.js"></script>
+  <script src="../liquid-glass-cards.js?v=2"></script>
   <!-- DISABLED: <script type="module" src="./lune-engine/index.js"></script>
        Re-enabling this also needs the three/three-addons importmap restored in <head>. -->
   <script>
@@ -15636,7 +15631,8 @@
       // jitter at 0.920 mean saturation vs 0.936 for the single-pixel version.
       const ACCENT_POOL = 8;
       const ACCENT_BOOST = 1.5;
-      const EASE = 0.07; // temporal smoothing; lower drifts more, strobes less
+      const mobileRendering = window.matchMedia('(max-width: 900px)');
+      const EASE = 0.07; // desktop smoothing remains unchanged
       const cv = document.createElement('canvas');
       cv.width = SW; cv.height = SH;
       const ctx = cv.getContext('2d', { willReadFrequently: true });
@@ -15706,10 +15702,10 @@
           return;
         }
 
-        if (ts - last < 90) {
+        if (ts - last < (mobileRendering.matches ? 250 : 90)) {
           rafId = requestAnimationFrame(tick);
           return;
-        } // throttle to ~11fps
+        } // ~4fps on mobile; preserve ~11fps on desktop
         last = ts;
 
         updateOrigin(); // read geometry first, before we write any styles below
@@ -15751,8 +15747,8 @@
           } catch (_) { /* tainted/decoding, keep fallback this frame */ }
         }
 
-        ease(base, tBase, EASE);
-        ease(accent, tAccent, EASE);
+        ease(base, tBase, mobileRendering.matches ? 0.12 : EASE);
+        ease(accent, tAccent, mobileRendering.matches ? 0.12 : EASE);
         card.style.setProperty('--ambi-base', `rgb(${base[0] | 0}, ${base[1] | 0}, ${base[2] | 0})`);
         card.style.setProperty('--ambi-accent', `rgb(${accent[0] | 0}, ${accent[1] | 0}, ${accent[2] | 0})`);
         card.closest('#constellations').style.setProperty('--constellation-accent',
@@ -15777,7 +15773,7 @@
       const observer = new IntersectionObserver(entries => {
         setRunning(entries.some(entry => entry.isIntersecting) && document.visibilityState !== 'hidden');
       }, {
-        rootMargin: '700px 0px',
+        rootMargin: mobileRendering.matches ? '0px' : '700px 0px',
         threshold: 0.05
       });
 
@@ -15790,7 +15786,8 @@
         }
 
         const rect = card.getBoundingClientRect();
-        setRunning(rect.top < window.innerHeight + 700 && rect.bottom > -700);
+        const margin = mobileRendering.matches ? 0 : 700;
+        setRunning(rect.top < window.innerHeight + margin && rect.bottom > -margin);
       });
     };
 
@@ -16244,25 +16241,11 @@
       });
     }
 
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (window.matchMedia && window.matchMedia('(max-width: 900px), (prefers-reduced-motion: reduce)').matches) {
       document.querySelectorAll('.section-title, .section-content').forEach(function(el) {
         el.classList.add('is-visible', 'is-pop-complete');
       });
       return;
-    }
-
-    var mobilePopIn = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
-    if (mobilePopIn) {
-      document.querySelectorAll('.section-title, .section-content').forEach(function(el) {
-        var finishPopIn = function(event) {
-          if (event.target !== el || event.animationName.indexOf('section-') !== 0) return;
-          el.classList.add('is-pop-complete');
-          el.removeEventListener('animationend', finishPopIn);
-          el.removeEventListener('animationcancel', finishPopIn);
-        };
-        el.addEventListener('animationend', finishPopIn);
-        el.addEventListener('animationcancel', finishPopIn);
-      });
     }
 
     var observer = new IntersectionObserver(function(entries) {

@@ -152,7 +152,16 @@
     if (performance.now() < suppressUntil && e.target.closest(selector)) { e.preventDefault(); e.stopImmediatePropagation(); }
   }, true);
   window.addEventListener('blur', finish);
-  window.addEventListener('resize', function () { finish(); rotated.forEach(reset); });
+  var layoutWidth = document.documentElement.clientWidth;
+  window.addEventListener('resize', function () {
+    var nextWidth = document.documentElement.clientWidth;
+    // Touch browser bars and keyboards resize height during normal scrolling.
+    // Only reset a phone's pose when its responsive layout width changes.
+    if (window.matchMedia('(pointer: coarse)').matches && nextWidth === layoutWidth) return;
+    layoutWidth = nextWidth;
+    finish();
+    rotated.forEach(reset);
+  });
   function scan(root) {
     if (root.matches && root.matches(selector)) attach(root);
     if (root.querySelectorAll) root.querySelectorAll(selector).forEach(attach);

@@ -7,6 +7,10 @@
   var defsNode;
   var resizeTimer;
   var activeCards = [];
+  var mobileRendering = window.matchMedia('(max-width: 900px)');
+  function useStaticGlass() {
+    return document.documentElement.hasAttribute('data-mobile-rendering') && mobileRendering.matches;
+  }
 
   if (!defsHost) {
     defsHost = document.createElementNS(SVG_NS, "svg");
@@ -223,12 +227,12 @@
   }
 
   function ensureLayers(card, filterId) {
-    var backdropFilterValue = "url(#" + filterId + ")";
+    var backdropFilterValue = useStaticGlass() ? "none" : "url(#" + filterId + ")";
     var existingFilterLayer;
     var glassVariant = card.getAttribute("data-liquid-glass-variant") || card.getAttribute("data-liquid-glass");
 
     if (card.hasAttribute("data-liquid-glass-frosted") || glassVariant === "frosted") {
-      backdropFilterValue += " blur(8px) saturate(1.35)";
+      if (!useStaticGlass()) backdropFilterValue += " blur(8px) saturate(1.35)";
       card.classList.add("liquid-glass-card--frosted");
     }
 
@@ -262,6 +266,12 @@
   }
 
   function rebuildCard(card, index) {
+    // Phone scrolling resizes the viewport as browser chrome moves. Keep the
+    // tint/edge layers, without regenerating full-card SVG displacement maps.
+    if (useStaticGlass()) {
+      ensureLayers(card, "coherascent-liquid-glass-filter-" + index);
+      return;
+    }
     var width = Math.round(card.offsetWidth);
     var height = Math.round(card.offsetHeight);
     var radius = Math.round(getCardRadius(card));
