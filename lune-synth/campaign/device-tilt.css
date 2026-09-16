@@ -95,7 +95,7 @@
   }
 }
 
-/* Hardware keys are closed six-face solids, not flat strips on the screen.
+/* Hardware keys use rounded capsule shells with front and rear faces.
    Keep every wrapper in the same 3D context as its chassis. */
 .phone-shell-buttons,
 .phone-shell-buttons__rail,
@@ -106,6 +106,7 @@
 }
 .device-key.device-key {
   --key-depth: 7px;
+  --key-radius: calc(var(--key-depth) / 2);
   transform-style: preserve-3d;
   translate: 0 0 -2px;
   overflow: visible;
@@ -127,32 +128,39 @@
 }
 .device-key__face--front,
 .device-key__face--back {
-  inset: 0;
-  border-radius: inherit;
+  inset: var(--key-radius) 0;
+  border-radius: 999px;
   box-shadow: inset 0 0 0 0.5px rgba(224, 233, 246, 0.45);
 }
 .device-key__face--back {
   transform: translateZ(calc(-1 * var(--key-depth)));
   background: #485366;
 }
-.device-key__face--left,
-.device-key__face--right {
+/* Closely spaced rounded cross-sections retain the capsule silhouette from
+   oblique angles without the square corners of perpendicular rectangular walls. */
+.device-key__shell {
+  position: absolute;
+  display: block;
   top: 0;
+  left: calc(var(--key-layer) * 100%);
   width: var(--key-depth);
   height: 100%;
+  border-radius: 999px;
   transform-origin: left center;
   transform: rotateY(90deg);
   background: linear-gradient(90deg, #bdc8d7, #768499 28%, #4b586c 82%, #323e50);
+  pointer-events: none;
+  backface-visibility: visible;
 }
-.device-key__face--left { left: 0; }
-.device-key__face--right { left: 100%; }
-.device-key__face--top,
-.device-key__face--bottom {
+.device-key--horizontal > .device-key__shell {
+  top: calc(var(--key-layer) * 100%);
   left: 0;
   width: 100%;
   height: var(--key-depth);
   transform-origin: center top;
   transform: rotateX(-90deg);
+  background: linear-gradient(#cbd5e2, #8290a5 28%, #4b586c 82%, #323e50);
 }
-.device-key__face--top { top: 0; background: linear-gradient(#e1e7ef, #6e7b90); }
-.device-key__face--bottom { top: 100%; background: linear-gradient(#68778c, #303b4d); }
+.device-key--horizontal > .device-key__face {
+  inset: 0 var(--key-radius);
+}

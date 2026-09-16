@@ -18,8 +18,18 @@
       if (button.classList.contains("device-key")) return;
       button.classList.add("device-key");
       button.setAttribute("aria-hidden", "true");
-      // Closed geometry, including end caps: keys remain solid at oblique angles.
-      ["front", "back", "left", "right", "top", "bottom"].forEach(function (side) {
+      // Capsule cross-sections round the exposed edge through its full depth.
+      // Tablet power keys run horizontally; phone keys and volume keys vertically.
+      button.classList.toggle("device-key--horizontal", button.matches(
+        ".ipad-button--power, .voice-scene__ipad-button--power, .feature-ipad__button--power"
+      ));
+      for (var layer = 0; layer < 12; layer++) {
+        var shell = document.createElement("span");
+        shell.className = "device-key__shell";
+        shell.style.setProperty("--key-layer", layer / 11);
+        button.appendChild(shell);
+      }
+      ["front", "back"].forEach(function (side) {
         var face = document.createElement("span");
         face.className = "device-key__face device-key__face--" + side;
         button.appendChild(face);
