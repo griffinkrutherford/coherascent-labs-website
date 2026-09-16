@@ -54,6 +54,7 @@ export function mountNeuroViz(root) {
   let frozenT = null;
   let interacted = false;
   let idleSpin = 0;
+  const mobileRendering = window.matchMedia('(max-width: 900px)');
   let lastFrame = 0;
   let lastRenderedT = 0;
   let practiceElapsed = 0;
@@ -80,6 +81,10 @@ export function mountNeuroViz(root) {
 
   function tick(now) {
     if (!running) return;
+    if (mobileRendering.matches && lastFrame && now - lastFrame < 1000 / 30) {
+      rafId = requestAnimationFrame(tick);
+      return;
+    }
     const dt = lastFrame ? now - lastFrame : 16;
     lastFrame = now;
 

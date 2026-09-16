@@ -1,5 +1,34 @@
 /* Mobile-only rendering: leave desktop animation and glass unchanged. */
 @media (max-width: 900px) {
+  /* The mobile html/body background already paints stars. Do not composite
+     the separate desktop fixed star sheet over every card while scrolling. */
+  body::before { display: none; }
+
+  /* Keep the app walkthroughs, but use the card's existing gradients instead
+     of decoding another full-card decorative movie behind each phone. */
+  .quick-missions__video,
+  .luna__video { display: none; }
+
+  /* Nested small glass surfaces still sample scrolling video and 3D layers,
+     even after the outer card's blur is removed. Preserve their existing
+     tinted backgrounds and borders without any backdrop sampling. */
+  main *,
+  main *::before,
+  main *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Decorative light pulses needlessly repaint the device silhouette. */
+  .voice-scene__ipad::before {
+    display: none;
+  }
+  .processing-scene__nebula,
+  .feedback-scene__nebula {
+    filter: none;
+    animation: none;
+  }
+
   /* The sticky bar crosses every moving scene during a swipe. A near-opaque
      surface avoids backdrop recapture and keeps the navigation readable. */
   .site-header::before {

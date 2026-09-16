@@ -3,7 +3,9 @@ import { createNetwork } from "./network.js";
 import { computeTransfer } from "./timeline.js";
 
 export function createScene(canvas, { theme = "dark" } = {}) {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  // Leave headroom for touch scrolling and the surrounding video layers.
+  const mobile = window.matchMedia('(max-width: 900px)').matches;
+  const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: dpr < 1.5,

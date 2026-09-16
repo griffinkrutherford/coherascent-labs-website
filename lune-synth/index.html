@@ -10829,7 +10829,7 @@
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=9" />
-  <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=2" />
+  <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=3" />
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=1" />
   <script src="/campaign/device-rotation.js?v=2" defer></script>
@@ -11470,7 +11470,7 @@
               if (!entries[i].isIntersecting || started) continue;
               started = true;
               io.disconnect();
-              import("/lune-synth/neuro-viz/neuro-viz.bundle.js?v=bf9abf84ab6c9cd6")
+              import("/lune-synth/neuro-viz/neuro-viz.bundle.js?v=f1fd15c91ca415e7")
                 .then(function (m) {
                   m.mountNeuroViz(stage);
                 })
@@ -14770,11 +14770,11 @@
       isStudyUniverseInView = entries.some(entry => entry.isIntersecting);
       syncIpadVideos();
     }, {
-      rootMargin: '700px 0px',
+      rootMargin: window.matchMedia('(max-width: 900px)').matches ? '0px' : '700px 0px',
       threshold: 0.05
     });
 
-    observer.observe(section);
+    observer.observe(window.matchMedia('(max-width: 900px)').matches ? document.getElementById('ipadScreenCanvas') : section);
   })();
 
   function switchSlideshowStep(stepNumber) {
@@ -16097,10 +16097,12 @@
 
       var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var videoIsNear = false;
+      var mobileVideos = window.matchMedia('(max-width: 900px)').matches;
+      var visibleVideos = new Set();
 
       function syncVideoPlayback() {
         videos.forEach(function (video) {
-          if (reducedMotion || document.hidden || !videoIsNear) {
+          if (reducedMotion || document.hidden || !(mobileVideos ? visibleVideos.has(video) : videoIsNear)) {
             video.pause();
             return;
           }
@@ -16114,10 +16116,13 @@
         var videoObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             videoIsNear = entry.isIntersecting;
+            if (entry.isIntersecting) visibleVideos.add(entry.target);
+            else visibleVideos.delete(entry.target);
             syncVideoPlayback();
           });
-        }, { threshold: 0.08, rootMargin: '300px 0px' });
-        videoObserver.observe(root);
+        }, { threshold: 0.08, rootMargin: window.matchMedia('(max-width: 900px)').matches ? '0px' : '300px 0px' });
+        if (mobileVideos) videos.forEach(function (video) { videoObserver.observe(video); });
+        else videoObserver.observe(root);
 
         document.addEventListener('visibilitychange', syncVideoPlayback);
       } else {
@@ -16160,8 +16165,8 @@
             videoIsNear = entry.isIntersecting;
             syncVideoPlayback();
           });
-        }, { threshold: 0.08, rootMargin: '300px 0px' });
-        videoObserver.observe(root);
+        }, { threshold: 0.08, rootMargin: window.matchMedia('(max-width: 900px)').matches ? '0px' : '300px 0px' });
+        videoObserver.observe(window.matchMedia('(max-width: 900px)').matches ? video : root);
 
         document.addEventListener('visibilitychange', syncVideoPlayback);
       } else {
@@ -16202,8 +16207,8 @@
             videoIsNear = entry.isIntersecting;
             syncVideoPlayback();
           });
-        }, { threshold: 0.08, rootMargin: '300px 0px' });
-        videoObserver.observe(root);
+        }, { threshold: 0.08, rootMargin: window.matchMedia('(max-width: 900px)').matches ? '0px' : '300px 0px' });
+        videoObserver.observe(window.matchMedia('(max-width: 900px)').matches ? video : root);
 
         document.addEventListener('visibilitychange', syncVideoPlayback);
       } else {
