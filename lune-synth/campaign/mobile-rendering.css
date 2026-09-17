@@ -97,4 +97,37 @@
   #constellations .active-step-info::before {
     display: none;
   }
+
+  /* Move a fixed-size chassis instead of resizing every screen, radius and
+     depth layer on selection. Do not fade/filter the ancestor of a 3D phone:
+     those grouping effects flatten its layers during the transition. */
+  #problem-solver .problem-solver__phone {
+    --quick-phone-scale: 2.7;
+  }
+  #problem-solver .problem-solver__device {
+    opacity: 1;
+    filter: none;
+    transform-style: preserve-3d;
+    transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #problem-solver .problem-solver__device.is-previous { transform: translateX(-76%) scale(0.499); }
+  #problem-solver .problem-solver__device.is-next { transform: translateX(76%) scale(0.499); }
+  #problem-solver .problem-solver__screen {
+    transform: translateZ(1px);
+    transform-style: flat;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  #problem-solver .problem-solver__screen img { opacity: 0.45; }
+  #problem-solver .is-active .problem-solver__screen img { opacity: 1; }
+}
+
+@media (max-width: 760px) {
+  #problem-solver .problem-solver__phone { --quick-phone-scale: 1.85; }
+  #problem-solver .problem-solver__device.is-previous { transform: translateX(-58%) scale(0.4595); }
+  #problem-solver .problem-solver__device.is-next { transform: translateX(58%) scale(0.4595); }
+}
+
+@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+  #problem-solver .problem-solver__device { transition: none; }
 }

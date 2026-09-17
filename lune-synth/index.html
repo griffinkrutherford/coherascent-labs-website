@@ -10829,7 +10829,7 @@
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=9" />
-  <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=3" />
+  <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=4" />
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=2" />
   <script src="/campaign/device-rotation.js?v=3" defer></script>
@@ -11783,8 +11783,8 @@
       var previous = carousel.querySelector('[data-problem-previous]');
       var next = carousel.querySelector('[data-problem-next]');
       var activeIndex = 0;
-      var touchStartX = null;
-      var suppressClick = false;
+      var touchStart = null;
+      var suppressClickUntil = 0;
 
       function showSlide(index) {
         activeIndex = (index + slides.length) % slides.length;
@@ -11809,8 +11809,8 @@
       previous.addEventListener('click', function () { showSlide(activeIndex - 1); });
       next.addEventListener('click', function () { showSlide(activeIndex + 1); });
       carousel.addEventListener('click', function (event) {
-        if (suppressClick) {
-          suppressClick = false;
+        if (performance.now() < suppressClickUntil) {
+          suppressClickUntil = 0;
           event.preventDefault();
           event.stopPropagation();
           event.stopImmediatePropagation();
@@ -11824,6 +11824,7 @@
         showSlide(Number(slide.getAttribute('data-problem-slide')));
       }, true);
       carousel.addEventListener('keydown', function (event) {
+        if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
         if (event.key === 'ArrowLeft') {
           event.preventDefault();
           showSlide(activeIndex - 1);
@@ -11833,15 +11834,33 @@
         }
       });
       carousel.addEventListener('touchstart', function (event) {
-        touchStartX = event.changedTouches[0].clientX;
+        suppressClickUntil = 0;
+        if (event.touches.length !== 1) { touchStart = null; return; }
+        var touch = event.touches[0];
+        touchStart = { x: touch.clientX, y: touch.clientY, id: touch.identifier };
       }, { passive: true });
+      carousel.addEventListener('touchmove', function (event) {
+        if (event.touches.length !== 1) touchStart = null;
+        if (!touchStart) return;
+        var touch = event.touches[0];
+        var dx = Math.abs(touch.clientX - touchStart.x);
+        var dy = Math.abs(touch.clientY - touchStart.y);
+        // Once a gesture becomes vertical, leave it to page scrolling.
+        if (dy > 12 && dy >= dx) touchStart = null;
+      }, { passive: true });
+      carousel.addEventListener('touchcancel', function () { touchStart = null; }, { passive: true });
       carousel.addEventListener('touchend', function (event) {
-        if (touchStartX === null) return;
-        var distance = event.changedTouches[0].clientX - touchStartX;
-        touchStartX = null;
-        if (Math.abs(distance) < 45) return;
-        suppressClick = true;
-        showSlide(activeIndex + (distance < 0 ? 1 : -1));
+        if (!touchStart) return;
+        var start = touchStart;
+        touchStart = null;
+        if (event.touches.length) return;
+        var touch = Array.from(event.changedTouches).find(function (item) { return item.identifier === start.id; });
+        if (!touch) return;
+        var dx = touch.clientX - start.x;
+        var dy = touch.clientY - start.y;
+        if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+        suppressClickUntil = performance.now() + 450;
+        showSlide(activeIndex + (dx < 0 ? 1 : -1));
       }, { passive: true });
       showSlide(0);
     })();
