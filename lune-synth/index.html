@@ -11786,15 +11786,38 @@
       var touchStart = null;
       var suppressClickUntil = 0;
 
+      // Below 900px the carousel keeps every phone fully opaque and
+      // unfiltered so the chassis stays legible. That also means the one
+      // slide that swaps sides on each rotation is plainly visible: with
+      // three slides, whichever slide was `is-previous` becomes `is-next`,
+      // so animating it sends a phone travelling the entire width of the
+      // carousel straight across the other two. On desktop the inactive
+      // slides are dimmed and desaturated, so that traverse reads as depth;
+      // on a phone it reads as the carousel glitching. Move that slide
+      // instantly instead, and leave desktop exactly as it is.
+      var compactCarousel = window.matchMedia
+        ? window.matchMedia('(max-width: 900px)')
+        : null;
+
       function showSlide(index) {
         activeIndex = (index + slides.length) % slides.length;
+        var snapSideSwaps = compactCarousel ? compactCarousel.matches : false;
         slides.forEach(function (slide, slideIndex) {
           var active = slideIndex === activeIndex;
           var previousSlide = slideIndex === (activeIndex - 1 + slides.length) % slides.length;
           var nextSlide = slideIndex === (activeIndex + 1) % slides.length;
+          var swapsSides = snapSideSwaps && (
+            (slide.classList.contains('is-previous') && nextSlide) ||
+            (slide.classList.contains('is-next') && previousSlide)
+          );
+          if (swapsSides) slide.style.transition = 'none';
           slide.classList.toggle('is-active', active);
           slide.classList.toggle('is-previous', previousSlide);
           slide.classList.toggle('is-next', nextSlide);
+          if (swapsSides) {
+            void slide.offsetWidth; // commit the jump before transitions resume
+            slide.style.transition = '';
+          }
           slide.setAttribute('aria-hidden', active ? 'false' : 'true');
           var phone = slide.querySelector('[data-phone-mock]');
           if (phone) phone.setAttribute('tabindex', active ? '0' : '-1');
