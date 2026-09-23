@@ -1,8 +1,7 @@
 (function () {
   "use strict";
-  var motion = window.matchMedia("(min-width: 901px) and (prefers-reduced-motion: no-preference)");
+  var motion = window.matchMedia("(min-width: 901px) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
   if (!("IntersectionObserver" in window) || !CSS.supports("rotate", "0 1 0 34deg")) return;
-  var isCampaign = !!document.querySelector(".campaign-main");
   var buttonSelector = ".phone-shell-button, .feature-phone__button, .ipad-button, .voice-scene__ipad-button, .feature-ipad__button";
   var selector = ".phone-mock__frame, .feature-phone, .feature-ipad, .response-carousel__question-phone";
   var observer = new IntersectionObserver(function (entries) {
@@ -14,6 +13,21 @@
   }, { threshold: 0.12 });
 
   function sync() {
+    if (!motion.matches) {
+      // Mobile scrolls through many device previews. Keep their original flat
+      // shells and keys instead of compositing dozens of 3D layers per phone.
+      document.querySelectorAll('.device-tilt').forEach(function (device) {
+        observer.unobserve(device);
+        device.classList.remove('device-tilt', 'is-device-revealed');
+        device.querySelectorAll(':scope > .device-tilt__slice').forEach(function (slice) { slice.remove(); });
+        device.parentElement.classList.remove('device-tilt-parent');
+      });
+      document.querySelectorAll('.device-key').forEach(function (button) {
+        button.classList.remove('device-key', 'device-key--horizontal');
+        button.querySelectorAll(':scope > .device-key__shell, :scope > .device-key__face').forEach(function (part) { part.remove(); });
+      });
+      return;
+    }
     document.querySelectorAll(buttonSelector).forEach(function (button) {
       if (button.classList.contains("device-key")) return;
       button.classList.add("device-key");
@@ -36,7 +50,7 @@
       });
     });
     document.querySelectorAll(selector).forEach(function (device) {
-      if ((!isCampaign && !motion.matches) || device.classList.contains("device-tilt")) return;
+      if (device.classList.contains("device-tilt")) return;
       device.style.transition = "none";
       device.classList.add("device-tilt");
       device.parentElement.classList.add("device-tilt-parent");

@@ -9,41 +9,18 @@
 }
 .rotatable-device.is-device-dragging { cursor: grabbing; }
 .rotatable-device img { -webkit-user-drag: none; }
-.device-front-shell { display: none; }
-@media (max-width: 900px) {
-  /* Keep the front shell, clipped video and glass overlay on distinct planes.
-     The chassis background alone can be culled around a video in mobile 3D
-     compositing; a separate opaque front surface keeps the bezel continuous. */
-  .rotatable-device.device-stable-phone {
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
+@media (max-width: 900px), (pointer: coarse) {
+  /* A viewport narrowed after desktop initialization must also return to a
+     single flat bezel. Fresh mobile loads skip the 3D DOM in the scripts. */
+  .rotatable-device-scene { perspective: none; }
+  .rotatable-device {
+    cursor: auto;
+    rotate: none !important;
+    transition: none !important;
+    transform-style: flat !important;
   }
-  .device-stable-phone > .device-front-shell {
-    display: block;
-    position: absolute;
-    inset: 0;
-    box-sizing: border-box;
-    border: inherit;
-    border-radius: inherit;
-    background: inherit;
-    transform: translateZ(0.5px);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    pointer-events: none;
-  }
-  .device-stable-phone > :is(.phone-mock__screen, .quick-missions__phone-screen) {
-    transform: translateZ(1px);
-    transform-style: flat;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  .device-stable-phone::after { translate: 0 0 2px; }
-  .device-stable-phone::before { translate: 0 0 3px; }
-
-  /* The volume is still solid, but only the front owns the fine outline. */
-  .device-stable-phone > :is(.rotation-depth-slice, .dev-slice, .device-tilt__slice) {
-    border: 0;
-    box-shadow: none;
+  .rotatable-device > :is(.rotation-depth-slice, .dev-slice, .device-tilt__slice) {
+    display: none;
   }
 }
 .rotatable-device > :is(.rotation-depth-slice, .dev-slice, .device-tilt__slice) {

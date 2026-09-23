@@ -10808,7 +10808,7 @@
 <script>
   /* Enable the 3D device tilt-reveal before first paint (so devices render
      already tilted, no load-time wobble). Skipped for reduced-motion / no IO.
-     Also skipped on mobile (<=900px): the reveal popped in awkwardly there,
+     Also skipped on narrow or touch-first screens: the reveal popped in awkwardly there,
      so those devices stay in their original static (pre-3D) layout. The whole
      3D system is gated on this attribute, CSS reveal, slice injection, and
      button folding all no-op without it. */
@@ -10816,13 +10816,14 @@
     try {
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (window.matchMedia && window.matchMedia('(max-width: 900px)').matches) return;
+      if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
       if (!('IntersectionObserver' in window)) return;
       document.documentElement.setAttribute('data-tilt-ready', '');
     } catch (e) {}
   })();
 </script>
   <link rel="stylesheet" href="/campaign/device-tilt.css?v=7" />
-  <script src="/campaign/device-tilt.js?v=7" defer></script>
+  <script src="/campaign/device-tilt.js?v=8" defer></script>
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
   <script type="application/ld+json">
 {
@@ -10842,8 +10843,8 @@
   <link rel="stylesheet" href="/campaign/section-accents.css?v=9" />
   <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=4" />
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
-  <link rel="stylesheet" href="/campaign/device-rotation.css?v=2" />
-  <script src="/campaign/device-rotation.js?v=3" defer></script>
+  <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
+  <script src="/campaign/device-rotation.js?v=4" defer></script>
 </head>
 <body>
   <header class="site-header">

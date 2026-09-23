@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   var selector = '[data-phone-mock], .phone-mock__frame, .feature-phone, .feature-ipad, .ipad-mockup, .voice-scene__ipad, .about-luna-phone, .hero-highlight-reel__phone, .capture-scene__phone, .processing-scene__phone, .feedback-scene__phone, .voice-scene__phone, .luna-phone--tab, .quick-missions__phone, .response-carousel__question-phone';
+  var desktop = window.matchMedia('(min-width: 901px) and (pointer: fine)');
   var states = new WeakMap();
   var active = null;
   var rotatingTouch = false;
@@ -85,21 +86,11 @@
     return video && y > video.getBoundingClientRect().bottom - 60;
   }
   function attach(el) {
-    if (states.has(el) || el.parentElement.closest(selector)) return;
+    if (!desktop.matches || states.has(el) || el.parentElement.closest(selector)) return;
     states.set(el, { x: 0, y: 0, base: null });
     // A fullscreen clone may inherit a rotation; start it from its own layout.
     el.classList.remove('is-device-dragging');
     el.classList.add('rotatable-device');
-    if (el.matches('.phone-mock__frame, .quick-missions__phone')) {
-      el.classList.add('device-stable-phone');
-      // Cloned fullscreen previews may already contain their front shell.
-      if (!el.querySelector(':scope > .device-front-shell')) {
-        var front = document.createElement('span');
-        front.className = 'device-front-shell';
-        front.setAttribute('aria-hidden', 'true');
-        el.appendChild(front);
-      }
-    }
     el.parentElement.classList.add('rotatable-device-scene');
     if (!el.hasAttribute('tabindex')) el.tabIndex = 0;
     var described = el.getAttribute('aria-describedby') || '';
@@ -116,17 +107,18 @@
     }
     el.addEventListener('dragstart', function (e) { e.preventDefault(); });
     el.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'touch' || e.button !== 0 || control(e.target, e.clientY)) return;
+      if (!desktop.matches || e.pointerType === 'touch' || e.button !== 0 || control(e.target, e.clientY)) return;
       begin(el, e.clientX, e.clientY, 'pointer', e.pointerId);
     });
     el.addEventListener('touchstart', function (e) {
-      if (e.touches.length !== 2 || !Array.from(e.touches).every(function (t) { return el.contains(t.target); })) return;
+      if (!desktop.matches || e.touches.length !== 2 || !Array.from(e.touches).every(function (t) { return el.contains(t.target); })) return;
       var p = point(e.touches);
       begin(el, p.x, p.y, 'touch');
       rotatingTouch = true;
       e.preventDefault(); e.stopPropagation();
     }, { passive: false });
     el.addEventListener('keydown', function (e) {
+      if (!desktop.matches) return;
       if (e.key === 'Escape') { reset(el); return; }
       if (!e.altKey || !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
       e.preventDefault(); e.stopPropagation();
@@ -162,6 +154,11 @@
     if (performance.now() < suppressUntil && e.target.closest(selector)) { e.preventDefault(); e.stopImmediatePropagation(); }
   }, true);
   window.addEventListener('blur', finish);
+  desktop.addEventListener('change', function () {
+    finish();
+    rotated.forEach(reset);
+    if (desktop.matches) scan(document);
+  });
   var layoutWidth = document.documentElement.clientWidth;
   window.addEventListener('resize', function () {
     var nextWidth = document.documentElement.clientWidth;
