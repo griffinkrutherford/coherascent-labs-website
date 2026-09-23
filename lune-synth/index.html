@@ -10682,9 +10682,9 @@
     }
 
     /* ============================================================
-       3D SCROLL-REVEAL for device mocks (desktop + mobile).
-       Each phone / tablet starts tilted in 3D and rotates flat to
-       face the viewer as it scrolls into view. Uses the individual
+       3D SCROLL-REVEAL for device mocks on desktop.
+       Each phone / tablet starts tilted in 3D and rotates toward
+       the viewer as it scrolls into view. Uses the individual
        `rotate` property so it composes with each device's existing
        transform (resting tilt, float, translate) without disturbing
        it. Enabled only once JS confirms support (html[data-tilt-ready])
@@ -10731,8 +10731,8 @@
       html[data-tilt-ready] .quick-missions__phone { rotate: 0 1 0 34deg; }
       html[data-tilt-ready] .ipad-mockup { rotate: 2 5 0 -40deg; }
 
-      /* Revealed: rotate to face the viewer. Existing transform is untouched,
-         so each device lands in the exact position it holds today. */
+      /* Base revealed pose. The homepage angle stylesheet gives the device
+         its final slight turn without changing its layout transform. */
       html[data-tilt-ready] .is-tilt-revealed { rotate: 0deg !important; }
 
       /* --- Real device thickness. Each device gets preserve-3d and five
@@ -10845,6 +10845,7 @@
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
+  <link rel="stylesheet" href="/campaign/home-device-angles.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -16335,7 +16336,7 @@
   })();
   </script>
   <script>
-  /* 3D device tilt-reveal: rotate each phone/tablet flat as it scrolls in.
+  /* 3D device tilt-reveal: turn each phone/tablet toward the viewer on entry.
      The device scenes live inside content-visibility sections, where an
      observer on the deep device element is unreliable, so we observe each
      device's `.section-content` wrapper (the same target the site's other

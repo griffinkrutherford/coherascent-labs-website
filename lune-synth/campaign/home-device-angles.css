@@ -1,0 +1,86 @@
+/* Homepage device poses inspired by the About page's gently turned phone. */
+main .hero-highlight-reel__phone,
+main .capture-scene__phone,
+main .voice-scene__phone {
+  --home-desktop-angle: 0 1 0 -12deg;
+  --home-mobile-angle: -1.5deg;
+}
+
+main .processing-scene__phone,
+main .quick-missions__phone:not(.problem-solver__phone),
+main .luna-phone--tab {
+  --home-desktop-angle: 0 1 0 10deg;
+  --home-mobile-angle: 1.5deg;
+}
+
+main .feedback-scene__phone--center,
+main .problem-solver__phone {
+  --home-desktop-angle: 0 1 0 -9deg;
+  --home-mobile-angle: -1deg;
+}
+
+main .feedback-scene__phone--far-left,
+main .feedback-scene__phone--left {
+  --home-desktop-angle: 0 1 0 -15deg;
+  --home-mobile-angle: -2deg;
+}
+
+main .feedback-scene__phone--right,
+main .problem-solver__device.is-next .problem-solver__phone {
+  --home-desktop-angle: 0 1 0 15deg;
+  --home-mobile-angle: 2deg;
+}
+
+main .ipad-mockup,
+main .voice-scene__ipad {
+  --home-desktop-angle: 0 1 0 -9deg;
+  --home-mobile-angle: -1.5deg;
+}
+
+main .response-carousel__question-phone {
+  --home-desktop-angle: 0 1 0 9deg;
+  --home-mobile-angle: 1.5deg;
+}
+
+@media (min-width: 901px) and (pointer: fine) {
+  main .ipad-mockup {
+    transform: rotateY(-3deg) rotateX(1deg) rotate(-2deg);
+  }
+
+  /* The scroll reveal still begins at its existing angle and now settles at
+     a readable three-quarter pose instead of facing perfectly forward. */
+  main :is(.hero-highlight-reel__phone, .capture-scene__phone,
+           .processing-scene__phone, .feedback-scene__phone,
+           .voice-scene__phone, .voice-scene__ipad, .luna-phone--tab,
+           .quick-missions__phone, .ipad-mockup) {
+    rotate: var(--home-desktop-angle);
+  }
+
+  html[data-tilt-ready] main .is-tilt-revealed:is(
+    .capture-scene__phone, .processing-scene__phone,
+    .feedback-scene__phone, .voice-scene__phone, .voice-scene__ipad,
+    .luna-phone--tab, .quick-missions__phone, .ipad-mockup
+  ) {
+    rotate: var(--home-desktop-angle) !important;
+  }
+
+  main .response-carousel__question-phone:not(.device-tilt),
+  main .response-carousel__question-phone.device-tilt.is-device-revealed {
+    rotate: var(--home-desktop-angle);
+  }
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  /* Flat, static rotation keeps the mobile chassis and video in one plane. */
+  html body main :is(.hero-highlight-reel__phone, .capture-scene__phone,
+                     .processing-scene__phone, .feedback-scene__phone,
+                     .voice-scene__phone, .voice-scene__ipad, .luna-phone--tab,
+                     .quick-missions__phone, .ipad-mockup,
+                     .response-carousel__question-phone) {
+    rotate: var(--home-mobile-angle) !important;
+  }
+
+  html[data-tilt-ready] body main .is-tilt-revealed {
+    rotate: var(--home-mobile-angle) !important;
+  }
+}
