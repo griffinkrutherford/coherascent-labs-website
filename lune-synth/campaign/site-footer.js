@@ -5,6 +5,7 @@
     return `
       <footer class="site-footer" aria-label="Lune Synth footer">
         <div class="site-footer__directory">
+        <h2 class="site-footer__directory-title">All landing pages</h2>
         <section class="site-footer__section" aria-labelledby="site-subject-links-title">
           <h2 id="site-subject-links-title">Study by subject</h2>
           <div class="site-footer__link-groups site-footer__link-groups--subjects">
