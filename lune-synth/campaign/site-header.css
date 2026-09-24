@@ -150,6 +150,43 @@ html[data-theme="light"] .site-header .nav-links .nav-link--story:focus-visible 
   border-color: #b93449;
 }
 
+/* Calligraphic artwork from the app's questionSetTagIcons pack. The mask
+   follows each link's text color in dark, light, hover, and accent states. */
+.site-header .nav-links .nav-link {
+  gap: 12px;
+}
+.site-header .nav-links .nav-link::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  background-color: currentColor;
+  -webkit-mask: var(--nav-icon) center / contain no-repeat;
+  mask: var(--nav-icon) center / contain no-repeat;
+}
+.site-header .nav-link[href$="#applied-page-title"] { --nav-icon: url("/campaign/nav-icons/eye.webp"); }
+.site-header .nav-link[href$="#waitlist"] { --nav-icon: url("/campaign/nav-icons/envelope.webp"); }
+.site-header .nav-link[href$="#lost-cosmos-title"] { --nav-icon: url("/campaign/nav-icons/lightningCloud.webp"); }
+.site-header .nav-link[href$="#neuro-title"] { --nav-icon: url("/campaign/nav-icons/circuit.webp"); }
+.site-header .nav-link[href$="#constellations-title"] { --nav-icon: url("/campaign/nav-icons/stars.webp"); }
+.site-header .nav-link[href$="#quick-missions-title"] { --nav-icon: url("/campaign/nav-icons/target.webp"); }
+.site-header .nav-link[href$="#problem-solver-title"] { --nav-icon: url("/campaign/nav-icons/puzzle.webp"); }
+.site-header .nav-link[href$="#platform-title"] { --nav-icon: url("/campaign/nav-icons/fountainPen.webp"); }
+.site-header .nav-link[href$="#voice-title"] { --nav-icon: url("/campaign/nav-icons/microphone.webp"); }
+.site-header .nav-link[href$="#luna-title"] { --nav-icon: url("/campaign/nav-icons/pawPrint.webp"); }
+.site-header .nav-link[href$="#processing-title"] { --nav-icon: url("/campaign/nav-icons/checklist.webp"); }
+.site-header .nav-link[href$="#medals-title"] { --nav-icon: url("/campaign/nav-icons/medal.webp"); }
+.site-header .nav-link[href$="#engine-title"] { --nav-icon: url("/campaign/nav-icons/gear.webp"); }
+.site-header .nav-link[href$="#site-footer"] { --nav-icon: url("/campaign/nav-icons/map.webp"); }
+.site-header .nav-link[href="/blog/"] { --nav-icon: url("/campaign/nav-icons/book.webp"); }
+.site-header .nav-link[href="/about/"] { --nav-icon: url("/campaign/nav-icons/empathy.webp"); }
+.site-header .nav-link[href$="#waitlist"]::before,
+.site-header .nav-link[href$="#processing-title"]::before {
+  -webkit-mask-size: 145%;
+  mask-size: 145%;
+}
+
 /* Keep the page viewport as the sticky scroll container on every route. */
 html, body { overflow-x: clip; }
 body > .site-header { position: sticky; top: 0; z-index: 100; }
