@@ -42,6 +42,34 @@ main .response-carousel__question-phone {
   --home-mobile-angle: -1 4 0.2 7deg;
 }
 
+/* Feature-size devices get stronger pitch, yaw, and roll. The small
+   handwriting phones above retain their gentler angles. */
+main .hero-highlight-reel__phone,
+main .voice-scene__phone {
+  --home-desktop-angle: 1.4 3 1.1 -23deg;
+  --home-mobile-angle: 1.3 3 0.9 -14deg;
+}
+
+main .quick-missions__phone:not(.problem-solver__phone) {
+  --home-desktop-angle: -1.4 3 -0.8 22deg;
+  --home-mobile-angle: -1.2 3 -0.65 14deg;
+}
+
+main .luna-phone--tab {
+  --home-desktop-angle: -1.3 3 -0.75 20deg;
+  --home-mobile-angle: -1.1 3 -0.6 12deg;
+}
+
+main .ipad-mockup {
+  --home-desktop-angle: 1.6 4 1 -22deg;
+  --home-mobile-angle: 1.3 4 0.8 -15deg;
+}
+
+main .voice-scene__ipad {
+  --home-desktop-angle: -1.2 3 -0.8 20deg;
+  --home-mobile-angle: -1 3 -0.65 12deg;
+}
+
 @media (min-width: 901px) and (pointer: fine) {
   main .ipad-mockup {
     transform: rotateY(-3deg) rotateX(1deg) rotate(-2deg);
