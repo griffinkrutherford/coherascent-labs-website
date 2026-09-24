@@ -44,10 +44,15 @@ main .response-carousel__question-phone {
 
 /* Feature-size devices favor pitch and yaw with only a slight roll. The small
    handwriting phones above retain their gentler angles. */
-main .hero-highlight-reel__phone,
 main .voice-scene__phone {
   --home-desktop-angle: 2 3.5 0.2 -28deg;
   --home-mobile-angle: 1.8 3.5 0.15 -18deg;
+}
+
+/* Keep the lead video easier to see while retaining some 3D depth. */
+main .hero-highlight-reel__phone {
+  --home-desktop-angle: 2 3.5 0.2 -20deg;
+  --home-mobile-angle: 1.8 3.5 0.15 -12deg;
 }
 
 main .quick-missions__phone:not(.problem-solver__phone) {
