@@ -1,0 +1,85 @@
+/* Tiny composited accents; the document-sized starfield stays static. */
+.lune-sky-meteor,
+.lune-sky-pulse {
+  position: fixed;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  contain: paint;
+  will-change: transform, opacity;
+}
+
+.lune-sky-meteor {
+  width: clamp(84px, 10vw, 142px);
+  height: 4px;
+  border-radius: 999px;
+  opacity: 0;
+  background-image: linear-gradient(90deg, transparent, rgba(100, 168, 255, 0.24) 54%, rgba(237, 245, 255, 0.72));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  animation: lune-sky-shoot var(--sky-period) linear infinite;
+  animation-delay: var(--sky-delay);
+}
+
+.lune-sky-meteor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #edf5ff;
+}
+
+.lune-sky-meteor--one { top: 17vh; left: 4vw; --sky-period: 23s; --sky-delay: -7s; --sky-travel-x: 26vw; --sky-travel-y: 14vw; }
+.lune-sky-meteor--two { top: 53vh; left: 48vw; --sky-period: 29s; --sky-delay: -19s; --sky-travel-x: 25vw; --sky-travel-y: 13vw; }
+.lune-sky-meteor--three { top: 31vh; left: 68vw; --sky-period: 37s; --sky-delay: -31s; --sky-travel-x: 19vw; --sky-travel-y: 10vw; }
+
+@keyframes lune-sky-shoot {
+  0%, 82%, 100% { opacity: 0; transform: translate3d(0, 0, 0) rotate(27deg); }
+  84% { opacity: 0.46; }
+  90% { opacity: 0.46; }
+  92% { opacity: 0; transform: translate3d(var(--sky-travel-x), var(--sky-travel-y), 0) rotate(27deg); }
+}
+
+.lune-sky-pulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(237, 245, 255, 0.88) 0 11%, rgba(100, 168, 255, 0.3) 27%, transparent 70%);
+  animation: lune-sky-breathe var(--pulse-period) ease-in-out infinite;
+  animation-delay: var(--pulse-delay);
+}
+
+.lune-sky-pulse--one { top: 28vh; left: 5vw; --pulse-period: 8.5s; --pulse-delay: -2s; }
+.lune-sky-pulse--two { top: 70vh; left: 91vw; --pulse-period: 10s; --pulse-delay: -6s; }
+.lune-sky-pulse--three { top: 42vh; left: 74vw; --pulse-period: 12s; --pulse-delay: -9s; }
+
+@keyframes lune-sky-breathe {
+  0%, 100% { opacity: 0.16; transform: scale(0.75); }
+  50% { opacity: 0.54; transform: scale(1.25); }
+}
+
+html[data-theme="light"] .lune-sky-meteor {
+  background-image: linear-gradient(90deg, transparent, rgba(79, 132, 214, 0.2) 54%, rgba(74, 96, 151, 0.46));
+}
+html[data-theme="light"] .lune-sky-meteor::after { background: #758ab9; }
+html[data-theme="light"] .lune-sky-pulse {
+  background: radial-gradient(circle, rgba(74, 96, 151, 0.55) 0 11%, rgba(127, 99, 214, 0.2) 27%, transparent 70%);
+}
+
+@media (max-width: 900px) {
+  .lune-sky-meteor { width: 88px; }
+  .lune-sky-meteor--three,
+  .lune-sky-pulse--three { display: none; }
+  .lune-sky-pulse--one { left: 1vw; }
+  .lune-sky-pulse--two { left: calc(100vw - 13px); }
+}
+
+@media (prefers-reduced-motion: reduce), (update: slow) {
+  .lune-sky-meteor,
+  .lune-sky-pulse { display: none; animation: none; will-change: auto; }
+}
