@@ -1,5 +1,4 @@
 /* Reuse the app's calligraphic navigation artwork beside its destination content. */
-main #applied-page-title::before,
 main #lune-beta-title::before,
 main .blog-hero h1::before,
 main #about-title::before,
@@ -9,13 +8,6 @@ main #about-title::before,
   background: currentColor;
   -webkit-mask: var(--section-icon) center / contain no-repeat;
   mask: var(--section-icon) center / contain no-repeat;
-}
-
-main #applied-page-title { --section-icon: url("/campaign/nav-icons/eye.webp"); }
-main #applied-page-title::before {
-  width: clamp(38px, 4vw, 50px);
-  height: clamp(38px, 4vw, 50px);
-  margin-bottom: 12px;
 }
 
 main #lune-beta-title { --section-icon: url("/campaign/nav-icons/envelope.webp"); }
@@ -38,11 +30,13 @@ main #luna-title { --section-icon: url("/campaign/nav-icons/pawPrint.webp"); }
 main #processing-title { --section-icon: url("/campaign/nav-icons/checklist.webp"); }
 main #medals-title { --section-icon: url("/campaign/nav-icons/medal.webp"); }
 main #engine-title { --section-icon: url("/campaign/nav-icons/gear.webp"); }
+main #blog-title { --section-icon: url("/campaign/nav-icons/book.webp"); }
+main .section--handwriting > .section-title:not([id]) { --section-icon: url("/campaign/nav-icons/fountainPen.webp"); }
 
 main :is(#lost-cosmos-title, #neuro-title, #constellations-title,
          #quick-missions-title, #problem-solver-title, #platform-title,
          #voice-title, #luna-title, #processing-title, #medals-title,
-         #engine-title)::before {
+         #engine-title, #blog-title, .section--handwriting > .section-title:not([id]))::before {
   content: "";
   width: 36px;
   height: 36px;
@@ -66,6 +60,28 @@ main #about-title::before {
 }
 main #about-title { --section-icon: url("/campaign/nav-icons/empathy.webp"); }
 
+/* Replace the short heading strokes in feature panels with the matching artwork. */
+main .lost-cosmos__eyebrow::before,
+main .campaign-feature__eyebrow::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border-radius: 0;
+  background: currentColor;
+  box-shadow: none;
+  -webkit-mask: var(--section-icon) center / contain no-repeat;
+  mask: var(--section-icon) center / contain no-repeat;
+}
+main .lost-cosmos__eyebrow { --section-icon: url("/campaign/nav-icons/lightningCloud.webp"); }
+main .campaign-feature[data-feature="quick-missions"] .campaign-feature__eyebrow {
+  --section-icon: url("/campaign/nav-icons/target.webp");
+}
+main .campaign-feature[data-feature="constellations"] .campaign-feature__eyebrow {
+  --section-icon: url("/campaign/nav-icons/stars.webp");
+}
+
 .site-footer__directory-title {
   display: flex;
   align-items: center;
@@ -82,15 +98,14 @@ main #about-title { --section-icon: url("/campaign/nav-icons/empathy.webp"); }
 }
 
 @media (max-width: 640px) {
-  main #applied-page-title::before { margin-inline: auto; }
   main :is(#lost-cosmos-title, #neuro-title, #constellations-title,
            #quick-missions-title, #problem-solver-title, #platform-title,
            #voice-title, #luna-title, #processing-title, #medals-title,
-           #engine-title) { align-items: flex-start; }
+           #engine-title, #blog-title, .section--handwriting > .section-title:not([id])) { align-items: flex-start; }
   main :is(#lost-cosmos-title, #neuro-title, #constellations-title,
            #quick-missions-title, #problem-solver-title, #platform-title,
            #voice-title, #luna-title, #processing-title, #medals-title,
-           #engine-title)::before {
+           #engine-title, #blog-title, .section--handwriting > .section-title:not([id]))::before {
     width: 32px;
     height: 32px;
     flex-basis: 32px;
