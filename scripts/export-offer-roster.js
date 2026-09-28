@@ -9,6 +9,8 @@
  *   RESEND_API_KEY=re_xxx node scripts/export-offer-roster.js --tier=founding-40
  *   RESEND_API_KEY=re_xxx node scripts/export-offer-roster.js --format=json
  *   RESEND_API_KEY=re_xxx node scripts/export-offer-roster.js --out=roster.csv
+ *   # "does this one person have an active offer?" -- the common support question
+ *   RESEND_API_KEY=re_xxx node scripts/export-offer-roster.js --email=person@example.com
  *
  * Never writes to Resend. Contact properties (platform) are fetched only to
  * enrich the roster; nothing here can grant or revoke an offer -- that is
@@ -33,6 +35,7 @@ const arg = (name, fallback = '') => {
 const TIER_FILTER = arg('tier', 'all');
 const FORMAT = arg('format', 'csv');
 const OUT_PATH = arg('out', '');
+const EMAIL_FILTER = arg('email', '').trim().toLowerCase();
 
 if (!['all', 'founding-40', 'first-light', 'none'].includes(TIER_FILTER)) {
   console.error(`Unknown --tier value "${TIER_FILTER}". Use founding-40, first-light, none, or all.`);
@@ -40,6 +43,10 @@ if (!['all', 'founding-40', 'first-light', 'none'].includes(TIER_FILTER)) {
 }
 if (!['csv', 'json'].includes(FORMAT)) {
   console.error(`Unknown --format value "${FORMAT}". Use csv or json.`);
+  process.exit(1);
+}
+if (EMAIL_FILTER && !EMAIL_FILTER.includes('@')) {
+  console.error(`--email value "${EMAIL_FILTER}" doesn't look like an email address.`);
   process.exit(1);
 }
 
@@ -76,8 +83,18 @@ function rowsToJson(rows) {
   return JSON.stringify(rows, null, 2) + '\n';
 }
 
-function filterRows(rows, tierFilter) {
-  return tierFilter === 'all' ? rows : rows.filter((row) => row.tier === tierFilter);
+/**
+ * @param {object[]} rows
+ * @param {string} tierFilter - 'all', 'founding-40', 'first-light', or 'none'.
+ * @param {string} [emailFilter] - exact match, case-insensitive; '' matches everything.
+ */
+function filterRows(rows, tierFilter, emailFilter) {
+  const email = (emailFilter || '').trim().toLowerCase();
+  return rows.filter((row) => {
+    if (tierFilter !== 'all' && row.tier !== tierFilter) return false;
+    if (email && row.email.toLowerCase() !== email) return false;
+    return true;
+  });
 }
 
 // --- Network glue below; nothing above touches the network. -----------
@@ -137,7 +154,7 @@ async function main() {
     rows.push(buildRosterRow(contact, properties));
   }
 
-  const filtered = filterRows(rows, TIER_FILTER);
+  const filtered = filterRows(rows, TIER_FILTER, EMAIL_FILTER);
   const counts = rows.reduce((acc, row) => {
     acc[row.tier] = (acc[row.tier] || 0) + 1;
     return acc;
@@ -147,6 +164,7 @@ async function main() {
     + `first-light: ${counts['first-light'] || 0}, none: ${counts.none || 0}`
   );
   if (TIER_FILTER !== 'all') console.error(`[roster] filtered to tier=${TIER_FILTER}: ${filtered.length} row(s)`);
+  if (EMAIL_FILTER) console.error(`[roster] filtered to email=${EMAIL_FILTER}: ${filtered.length} row(s)`);
 
   const output = FORMAT === 'json' ? rowsToJson(filtered) : rowsToCsv(filtered);
   if (OUT_PATH) {

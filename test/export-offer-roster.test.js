@@ -78,3 +78,31 @@ test('filterRows narrows to the requested tier', () => {
   ];
   assert.deepEqual(filterRows(rows, 'first-light'), [{ email: 'b', tier: 'first-light' }]);
 });
+
+test('filterRows narrows to a single email, case-insensitively', () => {
+  const rows = [
+    { email: 'Person@Example.com', tier: 'founding-40' },
+    { email: 'other@example.com', tier: 'none' },
+  ];
+  assert.deepEqual(
+    filterRows(rows, 'all', 'person@example.com'),
+    [{ email: 'Person@Example.com', tier: 'founding-40' }]
+  );
+});
+
+test('filterRows combines a tier filter and an email filter (both must match)', () => {
+  const rows = [
+    { email: 'a@example.com', tier: 'founding-40' },
+    { email: 'a@example.com', tier: 'none' }, // hypothetical duplicate, still exercises the AND
+    { email: 'b@example.com', tier: 'founding-40' },
+  ];
+  assert.deepEqual(
+    filterRows(rows, 'founding-40', 'a@example.com'),
+    [{ email: 'a@example.com', tier: 'founding-40' }]
+  );
+});
+
+test('an empty email filter matches everything, same as omitting it', () => {
+  const rows = [{ email: 'a@example.com', tier: 'none' }];
+  assert.deepEqual(filterRows(rows, 'all', ''), rows);
+});

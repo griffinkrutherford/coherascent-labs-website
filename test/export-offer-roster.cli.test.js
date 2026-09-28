@@ -44,6 +44,12 @@ test('exits 1 on an unknown --format value without ever needing an API key', () 
   assert.match(stderr, /Unknown --format value "xml"/);
 });
 
+test('exits 1 on an --email value that is not an email address, without needing an API key', () => {
+  const { status, stderr } = run(['--email=not-an-email'], { RESEND_API_KEY: '' });
+  assert.equal(status, 1);
+  assert.match(stderr, /doesn't look like an email address/);
+});
+
 test('validates flags before checking for an API key, so a typo never triggers a network call', () => {
   // If flag validation happened after the API-key check, a good key with a
   // bad --tier would still make the (potentially large) contacts/properties
