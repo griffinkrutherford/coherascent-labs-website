@@ -362,6 +362,11 @@ function serveLuneHost(req, res, pathname) {
     return;
   }
 
+  if (pathname === '/pro' || pathname === '/pro/') {
+    serveStatic(req, res, '/lune-synth/pro/index.html');
+    return;
+  }
+
   if (pathname === '/about' || pathname.startsWith('/about/')) {
     serveStatic(req, res, `/lune-synth${pathname}`);
     return;
