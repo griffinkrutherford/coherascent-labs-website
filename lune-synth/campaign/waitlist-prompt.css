@@ -1,0 +1,127 @@
+.lune-waitlist-prompt {
+  box-sizing: border-box;
+  position: fixed;
+  inset: auto;
+  top: var(--waitlist-prompt-center, 50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  max-width: calc(100% - 32px);
+  max-height: calc(var(--waitlist-prompt-height, 100dvh) - 32px);
+  margin: 0;
+  padding: 30px 26px 24px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid rgba(164, 123, 255, .35);
+  border-radius: 26px;
+  background: radial-gradient(ellipse at 15% 0%, #64a8ff20, transparent 55%),
+    radial-gradient(ellipse at 95% 20%, #ff5d871a, transparent 55%), #0b1224;
+  box-shadow: 0 24px 80px #0008;
+  color: var(--text, #edf5ff);
+  font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  text-align: center;
+}
+.lune-waitlist-prompt[hidden] { display: none; }
+.lune-waitlist-prompt::backdrop { background: rgba(2, 5, 13, .8); }
+.lune-waitlist-prompt__panel { position: relative; }
+.lune-waitlist-prompt__close {
+  position: absolute;
+  top: -16px;
+  right: -12px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #a47bff33;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted, #a6bad7);
+  font-size: 25px;
+  cursor: pointer;
+}
+.lune-waitlist-prompt__icon {
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 16px;
+  background: linear-gradient(120deg, #64a8ff, #a47bff, #ff5d87);
+  -webkit-mask: url("/campaign/nav-icons/envelope.webp") center / 145% no-repeat;
+  mask: url("/campaign/nav-icons/envelope.webp") center / 145% no-repeat;
+}
+.lune-waitlist-prompt h2 {
+  margin: 0;
+  font-size: clamp(24px, 6vw, 28px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
+.lune-waitlist-prompt #waitlist-prompt-description {
+  margin: 12px 0 22px;
+  color: var(--muted, #a6bad7);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.lune-waitlist-prompt__form { text-align: left; }
+.lune-waitlist-prompt__form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.lune-waitlist-prompt__form input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #a47bff4d;
+  border-radius: 12px;
+  background: #02071280;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+}
+.lune-waitlist-prompt__form input::placeholder { color: var(--muted, #a6bad7); }
+.lune-waitlist-prompt__form input[aria-invalid="true"] { border-color: #ff5d87; }
+.lune-waitlist-prompt__status {
+  min-height: 18px;
+  margin: 6px 0 12px;
+  color: #ff9bb3;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.lune-waitlist-prompt__submit {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #64a8ff, #a47bff, #ff5d87);
+  color: #06111f;
+  font: 800 12px var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.lune-waitlist-prompt__later {
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 8px 16px;
+  border: 0;
+  background: transparent;
+  color: var(--muted, #a6bad7);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.lune-waitlist-prompt :is(button, input):focus-visible {
+  outline: 2px solid #64a8ff;
+  outline-offset: 3px;
+}
+html[data-theme="light"] .lune-waitlist-prompt {
+  background: radial-gradient(ellipse at 15% 0%, #64a8ff18, transparent 55%), #fcfaff;
+  box-shadow: 0 24px 80px #28365f40;
+}
+html[data-theme="light"] .lune-waitlist-prompt__form input { background: #fff; }
+html[data-theme="light"] .lune-waitlist-prompt__status { color: #b93449; }
