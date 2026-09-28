@@ -74,6 +74,12 @@ test('the shared footer script links to /pro/', async () => {
   assert.match(body, /href="\/pro\/">Pro<\/a>/);
 });
 
+test('the homepage hero links to /pro/ next to the store badges', async () => {
+  const { status, body } = await get('/', 'lunesynth.com');
+  assert.equal(status, 200);
+  assert.match(body, /href="\/pro\/">See what Lune Synth Pro will include/);
+});
+
 test("the Pro page's legal.css contains the new benefit/price/badge styling", async () => {
   const { status, body } = await get('/lune-synth/legal.css', 'lunesynth.com');
   assert.equal(status, 200);
