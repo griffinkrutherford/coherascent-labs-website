@@ -97,7 +97,9 @@ main .campaign-feature[data-feature="constellations"] .campaign-feature__eyebrow
   flex: 0 0 30px;
 }
 
-/* A static pen flourish points at the waitlist action without intercepting taps. */
+/* A pen flourish points at the waitlist action without intercepting taps.
+   Its tiny SVG owns the gradient and halo, including on mobile where CSS
+   filters are disabled. Reduced motion keeps its gradient still. */
 main .hero-waitlist,
 .lune-cta__form {
   position: relative;
@@ -116,9 +118,7 @@ main .hero-waitlist button[type="submit"]::after,
   left: calc(100% + 8px);
   width: 64px;
   height: 60px;
-  background: var(--purple, #a47bff);
-  -webkit-mask: url("/campaign/waitlist-arrow.svg") center / contain no-repeat;
-  mask: url("/campaign/waitlist-arrow.svg") center / contain no-repeat;
+  background: url("/campaign/waitlist-arrow.svg?v=2") center / contain no-repeat;
   pointer-events: none;
 }
 

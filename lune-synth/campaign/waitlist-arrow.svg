@@ -1,6 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 96" fill="none">
+  <style>
+    .blue { animation: blue-to-red 8s ease-in-out infinite alternate; }
+    .red { animation: red-to-blue 8s ease-in-out infinite alternate; }
+    @keyframes blue-to-red { from { stop-color: #64a8ff; } to { stop-color: #ff5d87; } }
+    @keyframes red-to-blue { from { stop-color: #ff5d87; } to { stop-color: #64a8ff; } }
+    @media (prefers-reduced-motion: reduce) { .blue, .red { animation: none; } }
+  </style>
+  <defs>
+    <linearGradient id="ink" x1="8" y1="18" x2="95" y2="87" gradientUnits="userSpaceOnUse">
+      <stop class="blue" stop-color="#64a8ff"/>
+      <stop offset=".5" stop-color="#a47bff"/>
+      <stop class="red" offset="1" stop-color="#ff5d87"/>
+    </linearGradient>
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2.2"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".65"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
   <!-- A loose pen stroke: tapered tail, one loop, and a softly hooked arrowhead. -->
-  <path d="M95 87C93 73 82 60 65 55" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
-  <path d="M65 55C51 50 37 53 39 63C41 73 58 72 59 59C61 35 34 12 12 18" stroke="white" stroke-width="3.8" stroke-linecap="round"/>
-  <path d="M18 5C15 10 10 15 8 19C6 23 14 27 25 27" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g stroke="url(#ink)" stroke-linecap="round" filter="url(#glow)">
+    <path d="M95 87C93 73 82 60 65 55" stroke-width="2.6"/>
+    <path d="M65 55C51 50 37 53 39 63C41 73 58 72 59 59C61 35 34 12 12 18" stroke-width="3.8"/>
+    <path d="M18 5C15 10 10 15 8 19C6 23 14 27 25 27" stroke-width="3.5" stroke-linejoin="round"/>
+  </g>
 </svg>
