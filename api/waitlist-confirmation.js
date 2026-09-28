@@ -384,18 +384,20 @@ function buildPlainLetter(options = {}) {
   const googleEmail = options.googleEmail || '';
   const unsubscribeUrl = options.unsubscribeUrl || '';
 
-  // Deliberately references their position in the cohort, not the discount
-  // itself. Naming a specific offer makes this a commercial message under
-  // CAN-SPAM, which requires a physical postal address we do not yet have.
-  // Status is a fact about their place in line, not an advertisement.
+  // Deliberately references their position in the cohort, not any specific
+  // discount. Naming a discount here would make this commercial mail under
+  // CAN-SPAM, which requires a physical postal address we do not yet have --
+  // and, since the Founding 40 offer sold out 2026-09-21 (Terms §6.1), it
+  // would also be false for most people reading this. Only the access email
+  // (sent later, once we know exactly when this contact signed up) names a
+  // specific offer -- see api/access-email.js.
   const opening = options.reminder
     ? `Hi, thank you for joining the Lune Synth beta waitlist. Your spot is
-still reserved, and you're in the first group we're inviting, which is
-where the founding-member perks apply. We're putting that first cohort
-together now.`
+still reserved. We're assembling the first cohort now, and I'll spell out
+exactly what's included in your invite when it goes out.`
     : `Hi, thank you for joining the Lune Synth beta waitlist. Your spot is
-reserved. Invites go out in small cohorts, and yours is in the first
-group, which is where the founding-member perks apply.`;
+reserved. Invites go out in small cohorts, and I'll spell out exactly
+what's included when yours goes out.`;
 
   const asks = {
     unknown: `One thing before I can send your invite: is your phone Android or iPhone?
