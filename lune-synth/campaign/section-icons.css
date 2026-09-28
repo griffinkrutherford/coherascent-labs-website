@@ -103,8 +103,7 @@ main .campaign-feature[data-feature="constellations"] .campaign-feature__eyebrow
 main .hero-waitlist,
 .lune-cta__form {
   position: relative;
-  width: min(calc(100% - 72px), 560px);
-  left: -24px;
+  width: min(100%, 560px);
 }
 main .hero-waitlist button[type="submit"],
 .lune-cta__form button[type="submit"] {
@@ -123,10 +122,12 @@ main .hero-waitlist button[type="submit"]::after,
 }
 
 @media (max-width: 640px) {
-  main .hero-waitlist { width: 100%; left: 0; }
+  /* Equal side margins center the form and leave room for the outside arrow. */
+  main .hero-waitlist { width: calc(100% - 36px); }
+  main .hero-waitlist input { text-align: center; }
   main .hero-waitlist button[type="submit"] {
-    width: calc(100% - 56px);
-    align-self: flex-start;
+    width: 100%;
+    align-self: center;
     padding-inline: 12px;
     white-space: nowrap;
   }
@@ -139,10 +140,10 @@ main .hero-waitlist button[type="submit"]::after,
 }
 
 @media (max-width: 600px) {
-  .lune-cta__form { width: 100%; left: 0; }
+  .lune-cta__form { width: calc(100% - 36px); }
   .lune-cta__form button[type="submit"] {
-    width: min(calc(100% - 56px), 220px);
-    align-self: flex-start;
+    width: 100%;
+    align-self: center;
     padding-inline: 12px;
     white-space: nowrap;
   }
