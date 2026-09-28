@@ -4,7 +4,7 @@
   var FALLBACK_CONFIG = {
     mode: "waitlist",
     headline: "Join the beta waitlist",
-    offerHtml: "Limited-time offer for the first 40 users: <strong>2 months free</strong> &amp; a <strong>lifetime 50% off</strong> Lune Synth&trade; Pro.",
+    offerHtml: "<strong>Founding 40:</strong> all 40 spots claimed. Join for early beta access.",
     emailPlaceholder: "Email address",
     submitLabel: "Join Waitlist",
     loadingLabel: "Joining…",
@@ -98,7 +98,7 @@
       this.innerHTML = [
         '<div class="lune-cta__copy">',
         '<h2 class="lune-cta__headline">' + settings.headline + "</h2>",
-        '<p class="lune-cta__offer"><a href="#waitlist-offer-note" aria-describedby="waitlist-offer-note">' + settings.offerHtml + "<sup>*</sup></a></p>",
+        '<p class="lune-cta__offer"><a href="#waitlist-offer-note" aria-describedby="waitlist-offer-note">' + (window.LuneOffer ? window.LuneOffer.offerHtml() : settings.offerHtml) + "<sup>*</sup></a></p>",
         clarifier ? '<p class="lune-cta__clarifier">' + clarifier + "</p>" : "",
         "</div>",
         showForm ? formMarkup(settings, id) : "",

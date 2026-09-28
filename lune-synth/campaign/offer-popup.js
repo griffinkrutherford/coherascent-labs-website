@@ -1,7 +1,9 @@
 (function () {
   "use strict";
 
-  var DISMISSED_KEY = "luneSynth.betaOfferPopup.dismissed.v1";
+  // v2: First Light replaces the closed Founding 40 popup, so an earlier
+  // dismissal of the old offer does not hide the new one.
+  var DISMISSED_KEY = "luneSynth.betaOfferPopup.dismissed.v2";
   var JOINED_KEY = "luneSynth.waitlistJoined.v1";
   var SHOW_DELAY_MS = 6500;
   var popup;
@@ -19,26 +21,33 @@
     catch (error) { /* Storage can be unavailable in privacy modes. */ }
   }
 
+  // The popup exists only to announce an open First Light window. With no
+  // window set, or after it closes, it never appears.
+  function offerIsOpen() {
+    return Boolean(window.LuneOffer && window.LuneOffer.phase() === "first-light-open");
+  }
+
   function shouldSuppress() {
-    return readStored(DISMISSED_KEY) || readStored(JOINED_KEY);
+    return !offerIsOpen() || readStored(DISMISSED_KEY) || readStored(JOINED_KEY);
   }
 
   function markup() {
     return [
       '<div class="beta-offer-popup" data-beta-offer-popup role="dialog" aria-modal="true" aria-labelledby="beta-offer-title" hidden>',
       '  <div class="beta-offer-popup__panel">',
-      '    <button class="beta-offer-popup__close" type="button" data-beta-offer-dismiss aria-label="Dismiss limited-time beta offer">&times;</button>',
+      '    <button class="beta-offer-popup__close" type="button" data-beta-offer-dismiss aria-label="Dismiss First Light offer">&times;</button>',
       '    <div data-beta-offer-content>',
-      '      <p class="beta-offer-popup__eyebrow">First 40 users only</p>',
-      '      <h2 id="beta-offer-title">Get in early. Keep the savings.</h2>',
-      '      <p class="beta-offer-popup__lede">The first 40 users get <strong>2 months free</strong> and a <strong>lifetime 50% off</strong> Lune Synth&trade; Pro.</p>',
+      '      <p class="beta-offer-popup__eyebrow">First Light &middot; 48 hours only</p>',
+      '      <h2 id="beta-offer-title">Get in early. Save on Pro.</h2>',
+      '      <p class="beta-offer-popup__lede">Join by <strong>' + (window.LuneOffer ? window.LuneOffer.endLabel() : "") + '</strong> for priority beta access and <strong>50% off your first 3 months</strong> of Lune Synth&trade; Pro.</p>',
+      '      <div data-beta-offer-countdown></div>',
       '      <form class="beta-offer-popup__form" data-beta-offer-form novalidate>',
       '        <label class="sr-only" for="beta-offer-email">Email address</label>',
       '        <input id="beta-offer-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Email address" aria-label="Email address" required>',
       '        <button type="submit">Join Waitlist</button>',
       '      </form>',
       '      <p class="beta-offer-popup__status" data-beta-offer-status aria-live="polite"></p>',
-      '      <p class="beta-offer-popup__terms">Waitlist signup does not guarantee the offer. Beta invitation, activation, and <a href="/terms/">terms</a> apply.</p>',
+      '      <p class="beta-offer-popup__terms">Free to join. The discount applies once you are invited, activate the app, and Pro launches. Founding 40: all spots claimed. <a href="/terms/">Terms</a> apply.</p>',
       '      <button class="beta-offer-popup__decline" type="button" data-beta-offer-dismiss>Not now</button>',
       '    </div>',
       '    <div class="beta-offer-popup__success" data-beta-offer-success hidden>',
@@ -151,7 +160,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email,
-          cta_placement: "limited_offer_popup",
+          cta_placement: "first_light_popup",
           landing_path: window.location.pathname
         })
       })
@@ -211,6 +220,7 @@
       }
     });
     bindForm();
+    if (window.LuneOffer) window.LuneOffer.attachCountdown(popup.querySelector("[data-beta-offer-countdown]"));
     showTimer = window.setTimeout(openPopup, SHOW_DELAY_MS);
   }
 

@@ -203,7 +203,7 @@
   }
   if (!document.querySelector('script[data-beta-offer-popup]')) {
     var script = document.createElement("script");
-    script.src = "/campaign/offer-popup.js?v=2";
+    script.src = "/campaign/offer-popup.js?v=3";
     script.dataset.betaOfferPopup = "";
     document.head.appendChild(script);
   }
