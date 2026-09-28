@@ -1,6 +1,6 @@
 # Lune Synth Terms of Service
 
-**Effective date:** August 13, 2026
+**Effective date:** September 28, 2026
 
 ## 1. Agreement To These Terms
 
@@ -117,11 +117,15 @@ users' information or disclose nonpublic security details in a way that creates
 risk. Report suspected vulnerabilities privately to
 [griffin@lunesynth.com](mailto:griffin@lunesynth.com).
 
-## 6. Beta Promotional Offer
+## 6. Beta Promotional Offers
 
-The landing page advertises two months free and a lifetime 50% discount on
-Lune Synth Pro as a limited-time offer for the first 40 eligible beta users.
-Unless the offer page states otherwise:
+### 6.1 Founding 40
+
+The landing page advertised two months free and a lifetime 50% discount on
+Lune Synth Pro as a limited-time offer for the first 40 eligible beta users
+(the "Founding 40"). All 40 places have been claimed, and the Founding 40 offer
+is not available to anyone else. For those 40 users, unless the offer page
+stated otherwise:
 
 - waitlist signup alone does not earn the offer;
 - the offer is limited to invited beta users who activate by any disclosed
@@ -135,6 +139,32 @@ Unless the offer page states otherwise:
   institutional plans, or materially different future products; and
 - any price, renewal term, eligibility condition, and cancellation method will
   be shown before a paid subscription begins.
+
+### 6.2 First Light
+
+"First Light" is a limited-time offer for people who join the waitlist during
+the window stated on the offer page. It gives priority access to the beta and
+50% off the first three months of a Lune Synth Pro subscription. Eligibility is
+determined by the time our servers record the waitlist signup, not by any
+clock shown on a device. Unless the offer page states otherwise:
+
+- joining the waitlist is free and does not charge you or create a
+  subscription;
+- the discount applies only after you are invited to the beta, activate the
+  app, and Lune Synth Pro becomes available, and only to your first three
+  months of a paid Pro subscription; afterwards Pro renews at the price shown
+  to you before you subscribe;
+- priority access means earlier invitation than the general waitlist, not a
+  guaranteed invitation date or launch date;
+- it is limited to one person and one account, is nontransferable, has no cash
+  value, and cannot be combined with the Founding 40 offer or another discount
+  unless we say otherwise;
+- the discount may exclude taxes, app-store charges, add-ons, usage overages,
+  institutional plans, or materially different future products; and
+- any price, renewal term, eligibility condition, and cancellation method will
+  be shown before a paid subscription begins.
+
+### 6.3 Both offers
 
 We may deny or revoke an offer obtained through fraud, duplicate accounts, or
 abuse. We will not retroactively remove an earned discount merely because the
