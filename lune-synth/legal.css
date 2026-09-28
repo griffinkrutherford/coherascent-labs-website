@@ -717,4 +717,55 @@ blockquote {
 .site-header.nav-open .nav-toggle__bars::before { transform: rotate(45deg); }
 .site-header.nav-open .nav-toggle__bars::after { transform: rotate(-45deg); }
 
+/* Lune Synth Pro page: honest "coming soon" status, benefits list, price. */
+.pro-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 211, 106, 0.35);
+  background: rgba(255, 211, 106, 0.1);
+  color: var(--warning);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pro-benefits {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 18px 0;
+}
+
+.pro-benefits li {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.pro-benefits li + li {
+  margin-top: 0;
+}
+
+.pro-price {
+  font-family: var(--font-sans);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 8px 0 4px;
+}
+
+.pro-price span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted);
+  font-family: "Roboto Mono", monospace;
+}
+
 .site-header .nav-link { font-family: var(--font-sans); }
