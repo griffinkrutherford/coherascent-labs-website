@@ -97,20 +97,34 @@ async function getProperties(email, apiKey) {
   }
 
   if (argv.includes('--help-preview')) {
-    console.log('=== ANDROID ===\n');
+    // Shown for a Founding 40 recipient and a post-cutoff recipient (which
+    // reads identically whether First Light is open or still dormant, since
+    // that offer is named only when the window is actually open) -- these
+    // are the two letters that currently go out.
+    console.log('=== ANDROID, Founding 40 ===\n');
     console.log(buildAccessLetter({
       platform: 'android',
       googleAccount: 'tester@gmail.com',
       playUrl: PLAY_URL || 'https://play.google.com/apps/testing/…',
       postalAddress: POSTAL_ADDRESS || '[[MAILING ADDRESS]]',
       unsubscribeUrl: 'https://lunesynth.com/unsubscribe?e=…&t=…',
+      createdAt: '2026-09-01T00:00:00Z',
     }));
-    console.log('\n\n=== iOS ===\n');
+    console.log('\n\n=== iOS, Founding 40 ===\n');
     console.log(buildAccessLetter({
       platform: 'ios',
       testflightUrl: TESTFLIGHT_URL || 'https://testflight.apple.com/join/…',
       postalAddress: POSTAL_ADDRESS || '[[MAILING ADDRESS]]',
       unsubscribeUrl: 'https://lunesynth.com/unsubscribe?e=…&t=…',
+      createdAt: '2026-09-01T00:00:00Z',
+    }));
+    console.log('\n\n=== iOS, no active offer (after the Founding 40 cutoff) ===\n');
+    console.log(buildAccessLetter({
+      platform: 'ios',
+      testflightUrl: TESTFLIGHT_URL || 'https://testflight.apple.com/join/…',
+      postalAddress: POSTAL_ADDRESS || '[[MAILING ADDRESS]]',
+      unsubscribeUrl: 'https://lunesynth.com/unsubscribe?e=…&t=…',
+      createdAt: new Date().toISOString(),
     }));
     return;
   }
@@ -141,6 +155,9 @@ async function getProperties(email, apiKey) {
       email: contact.email,
       platform: properties.platform,
       googleAccount: properties.google_account || contact.email,
+      // Offer eligibility (Founding 40 vs First Light vs neither) is decided
+      // by this, never by send order -- see offer-eligibility.js.
+      createdAt: contact.created_at,
     });
   }
 
@@ -175,6 +192,7 @@ async function getProperties(email, apiKey) {
       testflightUrl: TESTFLIGHT_URL,
       playUrl: PLAY_URL,
       postalAddress: POSTAL_ADDRESS,
+      createdAt: target.createdAt,
     });
 
     if (result.sent) {
