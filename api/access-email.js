@@ -15,6 +15,7 @@
  */
 
 const { buildUrl } = require('./unsubscribe-token.js');
+const { classifyOfferTier } = require('../lune-synth/campaign/offer-eligibility.js');
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const FROM = 'Griffin at Lune Synth <griffin@mail.lunesynth.com>';
@@ -25,10 +26,15 @@ const TIMEOUT_MS = 5000;
 const MAX_ATTEMPTS = 2;
 
 /**
- * The offer, stated once. Must stay consistent with Terms §6 and the landing
- * page; changing it here without changing those is how a promise drifts.
+ * The two offers, each stated once. Must stay consistent with Terms §6 and
+ * the landing page; changing the wording here without changing those is how
+ * a promise drifts. Which one (if either) applies to a given recipient is
+ * decided by classifyOfferTier(), never assumed -- see buildAccessLetter.
  */
-const OFFER = 'two months free, then 50% off Lune Synth Pro for as long as you keep the account';
+const OFFER_FOUNDING_40 = 'two months free, then 50% off Lune Synth Pro for as long as you keep the account';
+const OFFER_FIRST_LIGHT = '50% off your first three months of Lune Synth Pro once it launches';
+// Kept for any external caller still importing the old name.
+const OFFER = OFFER_FOUNDING_40;
 
 /**
  * Wraps a paragraph to `width`. Used where a constant is interpolated into
@@ -48,6 +54,21 @@ function wrap(text, width = 76) {
   return lines.join('\n');
 }
 
+/**
+ * The offer paragraph for a given tier, or '' for 'none' -- pulled out as its
+ * own function so tests can cover all three branches directly, without
+ * needing a real First Light window open to exercise that copy.
+ */
+function offerParagraphForTier(tier) {
+  if (tier === 'founding-40') {
+    return wrap(`As a Founding 40 member, you get ${OFFER_FOUNDING_40}. Nothing is charged during the beta, and I'll tell you plainly before that ever changes.`);
+  }
+  if (tier === 'first-light') {
+    return wrap(`As a First Light signup, you get ${OFFER_FIRST_LIGHT}. Nothing is charged during the beta, and I'll tell you plainly before that ever changes.`);
+  }
+  return '';
+}
+
 function buildAccessLetter(options = {}) {
   const {
     platform,
@@ -56,7 +77,14 @@ function buildAccessLetter(options = {}) {
     playUrl = '',
     postalAddress = '',
     unsubscribeUrl = '',
+    createdAt,
   } = options;
+
+  // Decided by the signup's actual recorded time, never by guessing at the
+  // audience -- see offer-eligibility.js. A caller that omits createdAt gets
+  // 'none': the safe default is to promise nothing rather than over-promise.
+  const tier = classifyOfferTier(createdAt);
+  const offerParagraph = offerParagraphForTier(tier);
 
   const access = platform === 'android'
     ? `Here's your access link:
@@ -83,9 +111,7 @@ Thank you for waiting, and for answering the platform question. That's what
 made it possible to send this to the right place.
 
 ${access}
-
-${wrap(`As one of the first hundred, you get ${OFFER}. Nothing is charged during the beta, and I'll tell you plainly before that ever changes.`)}
-
+${offerParagraph ? `\n${offerParagraph}\n` : ''}
 Getting started takes about five minutes:
 
   1. Photograph a page of your own handwritten work, any subject.
@@ -174,4 +200,12 @@ async function sendAccessEmail(email, apiKey, options = {}) {
   return { sent: false, reason: lastReason };
 }
 
-module.exports = { buildAccessLetter, sendAccessEmail, OFFER, SUBJECT };
+module.exports = {
+  buildAccessLetter,
+  sendAccessEmail,
+  offerParagraphForTier,
+  OFFER,
+  OFFER_FOUNDING_40,
+  OFFER_FIRST_LIGHT,
+  SUBJECT,
+};
