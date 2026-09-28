@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 96" fill="none">
+  <!-- A loose pen stroke: tapered tail, one loop, and a softly hooked arrowhead. -->
+  <path d="M95 87C93 73 82 60 65 55" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M65 55C51 50 37 53 39 63C41 73 58 72 59 59C61 35 34 12 12 18" stroke="white" stroke-width="3.8" stroke-linecap="round"/>
+  <path d="M18 5C15 10 10 15 8 19C6 23 14 27 25 27" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

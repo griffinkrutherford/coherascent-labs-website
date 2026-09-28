@@ -97,6 +97,63 @@ main .campaign-feature[data-feature="constellations"] .campaign-feature__eyebrow
   flex: 0 0 30px;
 }
 
+/* A static pen flourish points at the waitlist action without intercepting taps. */
+main .hero-waitlist,
+.lune-cta__form {
+  position: relative;
+  width: min(calc(100% - 72px), 560px);
+  left: -24px;
+}
+main .hero-waitlist button[type="submit"],
+.lune-cta__form button[type="submit"] {
+  position: relative;
+}
+main .hero-waitlist button[type="submit"]::after,
+.lune-cta__form button[type="submit"]::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: calc(100% + 8px);
+  width: 64px;
+  height: 60px;
+  background: var(--purple, #a47bff);
+  -webkit-mask: url("/campaign/waitlist-arrow.svg") center / contain no-repeat;
+  mask: url("/campaign/waitlist-arrow.svg") center / contain no-repeat;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  main .hero-waitlist { width: 100%; left: 0; }
+  main .hero-waitlist button[type="submit"] {
+    width: calc(100% - 56px);
+    align-self: flex-start;
+    padding-inline: 12px;
+    white-space: nowrap;
+  }
+  main .hero-waitlist button[type="submit"]::after {
+    width: 48px;
+    height: 45px;
+    left: calc(100% + 7px);
+    top: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .lune-cta__form { width: 100%; left: 0; }
+  .lune-cta__form button[type="submit"] {
+    width: min(calc(100% - 56px), 220px);
+    align-self: flex-start;
+    padding-inline: 12px;
+    white-space: nowrap;
+  }
+  .lune-cta__form button[type="submit"]::after {
+    width: 48px;
+    height: 45px;
+    left: calc(100% + 7px);
+    top: 4px;
+  }
+}
+
 @media (max-width: 640px) {
   main :is(#lost-cosmos-title, #neuro-title, #constellations-title,
            #quick-missions-title, #problem-solver-title, #platform-title,
