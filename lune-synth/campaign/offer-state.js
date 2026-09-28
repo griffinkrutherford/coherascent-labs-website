@@ -25,6 +25,17 @@
   var CLOSE_ZONE = "America/Denver";
   var CLOSE_ZONE_LABEL = "MT";
 
+  // Server-side code (api/access-email.js, scripts/*) needs this same value to
+  // decide who gets First Light wording -- it must never be redeclared
+  // elsewhere, or the two copies will drift. When this file is require()'d
+  // from Node (module exists there, never in a browser <script> tag) we hand
+  // back the constant and stop before anything below, which all assumes a
+  // DOM that Node does not have.
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { FIRST_LIGHT_ENDS_AT: FIRST_LIGHT_ENDS_AT };
+    return;
+  }
+
   var endMs = Date.parse(FIRST_LIGHT_ENDS_AT);
   var hasWindow = FIRST_LIGHT_ENDS_AT !== "" && Number.isFinite(endMs);
 
