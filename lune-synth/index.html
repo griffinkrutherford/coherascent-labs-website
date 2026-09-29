@@ -755,6 +755,10 @@
     .hero-app-icon {
       flex: 0 0 auto;
       width: clamp(132px, 18vw, 232px);
+      /* The width/height attributes only reserve space before load; without
+         this the height="512" attribute wins over aspect-ratio and stretches
+         the hero card to ~600px tall. */
+      height: auto;
       aspect-ratio: 1;
       object-fit: contain;
       transform: rotate(4deg);
