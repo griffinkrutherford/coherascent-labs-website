@@ -25,18 +25,23 @@
   <link rel="icon" type="image/png" href="../circle_favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Only the weights this page actually uses. No italic and no 300 are
+       referenced anywhere in the CSS; requesting them cost ~100 KB of webfont. -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Roboto+Mono:wght@300;400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="../liquid-glass-cards.css?v=1.0.6" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
   <script src="/campaign/offer-state.js?v=1" defer></script>
   <script src="/campaign/offer-popup.js?v=3" defer></script>
-  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp?v=2" as="image" fetchpriority="high" />
-  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-low.webp?v=2" as="image" fetchpriority="high" />
-  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp?v=2" as="image" />
-  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/3-mid.webp?v=2" as="image" />
+  <!-- The hero app icon is the LCP element, so it gets the only high-priority
+       preload. The response-carousel frames below are ~1000 lines down the
+       document; they stay preloaded to keep the carousel warm, but at default
+       priority so they cannot outrank the hero. -->
+  <link rel="preload" href="../images/lune-synth-icon-512.webp" as="image" imagesrcset="../images/lune-synth-icon-120.webp 120w, ../images/lune-synth-icon-256.webp 256w, ../images/lune-synth-icon-512.webp 512w, ../images/lune-synth-icon.webp 910w" imagesizes="(max-width: 600px) 136px, (max-width: 900px) 160px, 232px" fetchpriority="high" />
+  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp?v=2" as="image" />
+  <link rel="preload" href="../mobile-app-assets/screenshots/applied/question-prompts/1-low.webp?v=2" as="image" />
   <noscript>
     <style>
       .section-title,
@@ -10892,9 +10897,11 @@
         </div>
         <img
           class="hero-app-icon"
-          src="../images/lune-synth-icon-512.png"
-          srcset="../images/lune-synth-icon-120.png 120w, ../images/lune-synth-icon-512.png 512w, ../images/lune-synth-icon.png 910w"
+          src="../images/lune-synth-icon-512.webp"
+          srcset="../images/lune-synth-icon-120.webp 120w, ../images/lune-synth-icon-256.webp 256w, ../images/lune-synth-icon-512.webp 512w, ../images/lune-synth-icon.webp 910w"
           sizes="(max-width: 600px) 136px, (max-width: 900px) 160px, 232px"
+          width="512"
+          height="512"
           alt="Lune Synth app icon"
           loading="eager"
           decoding="async"
@@ -11209,7 +11216,7 @@
       .neuro-practice-control input:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 6px; }
       .neuro-practice-control__ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
 
-      .neuro-takeaway { max-width: 760px; margin: 0 auto; text-align: center; color: var(--muted); }
+      .neuro-takeaway { max-width: 760px; margin: 0 auto; text-align: center; color: var(--muted); font-size: clamp(1.1rem, 1.55vw, 1.3rem); line-height: 1.6; }
       .neuro-takeaway strong { color: var(--text); }
       .neuro-takeaway a { color: var(--blue); text-underline-offset: 3px; }
 
@@ -11380,12 +11387,10 @@
 
         <p class="neuro-takeaway">
           <strong>Cheating skips the practice.</strong>
-          Repeated practice does more than make a task feel familiar: learning can help build new
-          myelin, the fatty insulation around nerve fibers. In animal studies, repeated neural
-          activity can also thicken myelin sheaths.
+          Learning can help build myelin, the fatty insulation around nerve fibers, and in animal
+          studies repeated neural activity thickens those sheaths.
           <strong>It's like lifting weights for your brain.</strong>
-          Working through the friction keeps you practicing instead of skipping the attempt.
-          <strong>Lune Synth keeps you doing the work over time:</strong> solve, get feedback, repeat.
+          <strong>Lune Synth keeps you doing the work:</strong> solve, get feedback, repeat.
         </p>
 
         <p class="neuro-caption">Visual metaphor for skipped practice versus active learning.</p>
@@ -11634,8 +11639,11 @@
                   <div class="ipad-preview-layout" id="previewStep-2">
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-thumb.jpg" data-video-thumbnail="step1Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
                     <video id="step1Video" loop muted playsinline preload="none" class="ipad-gif-target">
-                      <source src="screenshots/applied/step-1.webm" type="video/webm">
+                      <!-- mp4 first here on purpose: this clip's webm encode is
+                           608 KB LARGER than its mp4, so preferring webm cost
+                           bandwidth instead of saving it. -->
                       <source src="screenshots/applied/step-1.mp4" type="video/mp4">
+                      <source src="screenshots/applied/step-1.webm" type="video/webm">
                     </video>
                   </div>
 
@@ -11724,9 +11732,9 @@
             <div class="quick-missions__phone" data-phone-mock="quick-missions" aria-label="Quick Missions app preview">
               <div class="quick-missions__phone-screen phone-screenshot-host">
                 <div class="quick-missions__screen-view is-active" data-quick-screen="grid">
-                  <video class="quick-missions__screen-video" data-quick-screen-video autoplay loop muted playsinline preload="metadata" poster="screenshots/applied/quick-mission-screen-poster.png" aria-label="Quick Missions app walkthrough">
+                  <video class="quick-missions__screen-video" data-quick-screen-video autoplay loop muted playsinline preload="metadata" poster="screenshots/applied/quick-mission-screen-poster.webp" aria-label="Quick Missions app walkthrough">
                     <source src="screenshots/applied/quick-mission-screen.mp4" type="video/mp4">
-                    <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-screen-poster.png" alt="Quick Missions app preview" loading="lazy" decoding="async">
+                    <img class="quick-missions__screen-image" src="screenshots/applied/quick-mission-screen-poster.webp" alt="Quick Missions app preview" loading="lazy" decoding="async">
                   </video>
                 </div>
               </div>
@@ -11750,21 +11758,21 @@
           <div class="problem-solver__device is-active" data-problem-slide="0" aria-hidden="false">
             <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver-bring" aria-label="Bring your material app preview">
               <div class="problem-solver__screen phone-screenshot-host" data-problem-solver-screenshot="bring">
-                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-bring.png" srcset="screenshots/applied/problem-solver-bring-384.png 384w, screenshots/applied/problem-solver-bring-576.png 576w, screenshots/applied/problem-solver-bring-768.png 768w, screenshots/applied/problem-solver-bring.png 1206w" sizes="(max-width: 600px) 190px, (max-width: 900px) 256px, 300px" alt="Problem Solver input screen for adding a question or assignment">
+                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-bring.webp" srcset="screenshots/applied/problem-solver-bring-384.webp 384w, screenshots/applied/problem-solver-bring-576.webp 576w, screenshots/applied/problem-solver-bring-768.webp 768w, screenshots/applied/problem-solver-bring.webp 1206w" sizes="(max-width: 600px) 190px, (max-width: 900px) 256px, 300px" width="1206" height="2622" loading="lazy" decoding="async" alt="Problem Solver input screen for adding a question or assignment">
               </div>
             </div>
           </div>
           <div class="problem-solver__device" data-problem-slide="1" aria-hidden="true">
             <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver" aria-label="Problem Solver app preview">
               <div class="problem-solver__screen phone-screenshot-host">
-                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-reasoning.png" srcset="screenshots/applied/problem-solver-reasoning-384.png 384w, screenshots/applied/problem-solver-reasoning-576.png 576w, screenshots/applied/problem-solver-reasoning-768.png 768w, screenshots/applied/problem-solver-reasoning.png 1206w" sizes="(max-width: 600px) 190px, (max-width: 900px) 256px, 300px" alt="Problem Solver showing each step of an implicit differentiation problem">
+                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-reasoning.webp" srcset="screenshots/applied/problem-solver-reasoning-384.webp 384w, screenshots/applied/problem-solver-reasoning-576.webp 576w, screenshots/applied/problem-solver-reasoning-768.webp 768w, screenshots/applied/problem-solver-reasoning.webp 1206w" sizes="(max-width: 600px) 190px, (max-width: 900px) 256px, 300px" width="1206" height="2622" loading="lazy" decoding="async" alt="Problem Solver showing each step of an implicit differentiation problem">
               </div>
             </div>
           </div>
           <div class="problem-solver__device" data-problem-slide="2" aria-hidden="true">
             <div class="quick-missions__phone problem-solver__phone" data-phone-mock="problem-solver-practice" aria-label="Focused practice app preview">
               <div class="problem-solver__screen phone-screenshot-host" data-problem-solver-screenshot="practice">
-                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-practice.png" srcset="screenshots/applied/problem-solver-practice-384.png 384w, screenshots/applied/problem-solver-practice-576.png 576w, screenshots/applied/problem-solver-practice-768.png 768w, screenshots/applied/problem-solver-practice.png 1206w" sizes="(max-width: 600px) 190px, (max-width: 900px) 256px, 300px" alt="Problem Solver practice screen with a new focused exercise">
+                <img class="problem-solver__store-graphic" src="screenshots/applied/problem-solver-practice.webp" srcset="screenshots/applied/problem-solver-practice-384.webp 384w, screenshots/applied/problem-solver-practice-576.webp 576w, screenshots/applied/problem-solver-practice-768.webp 768w, screenshots/applied/problem-solver-practice.webp 1206w" sizes="(max-width: 600px) 190px, (max-width: 900px) 256px, 300px" width="1206" height="2622" loading="lazy" decoding="async" alt="Problem Solver practice screen with a new focused exercise">
               </div>
             </div>
           </div>
@@ -13191,7 +13199,7 @@
 
                 <!-- Medal 0: Streak (Gold Tier Default) -->
                 <div class="carousel-3d-item is-active" onclick="rotateToMedal(0)" role="button" tabindex="0" aria-label="Show gold streak medal">
-                  <img class="showcase-medal-image" id="medalImage-streak" src="/lune-synth/lune-synth-landing-medals/06-gold/streak.png" alt="Gold streak medal" loading="lazy" decoding="async">
+                  <img class="showcase-medal-image" id="medalImage-streak" src="/lune-synth/lune-synth-landing-medals/06-gold/streak.webp" alt="Gold streak medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-streak" cx="50%" cy="50%" r="55%">
@@ -13353,7 +13361,7 @@
 
                 <!-- Medal 1: Polymath (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(1)" role="button" tabindex="0" aria-label="Show gold polymath medal">
-                  <img class="showcase-medal-image" id="medalImage-polymath" src="/lune-synth/lune-synth-landing-medals/06-gold/polymath.png" alt="Gold polymath medal" loading="lazy" decoding="async">
+                  <img class="showcase-medal-image" id="medalImage-polymath" src="/lune-synth/lune-synth-landing-medals/06-gold/polymath.webp" alt="Gold polymath medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-polymath" cx="50%" cy="50%" r="55%">
@@ -13519,7 +13527,7 @@
 
                 <!-- Medal 2: Recovery (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(2)" role="button" tabindex="0" aria-label="Show gold recovery medal">
-                  <img class="showcase-medal-image" id="medalImage-recovery" src="/lune-synth/lune-synth-landing-medals/06-gold/recovery.png" alt="Gold recovery medal" loading="lazy" decoding="async">
+                  <img class="showcase-medal-image" id="medalImage-recovery" src="/lune-synth/lune-synth-landing-medals/06-gold/recovery.webp" alt="Gold recovery medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-recovery" cx="50%" cy="50%" r="55%">
@@ -13681,7 +13689,7 @@
 
                 <!-- Medal 3: Marksman (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(3)" role="button" tabindex="0" aria-label="Show gold marksman medal">
-                  <img class="showcase-medal-image" id="medalImage-marksman" src="/lune-synth/lune-synth-landing-medals/06-gold/marksman.png" alt="Gold marksman medal" loading="lazy" decoding="async">
+                  <img class="showcase-medal-image" id="medalImage-marksman" src="/lune-synth/lune-synth-landing-medals/06-gold/marksman.webp" alt="Gold marksman medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-marksman" cx="50%" cy="50%" r="55%">
@@ -13847,7 +13855,7 @@
 
                 <!-- Medal 4: Handwriting (Gold Tier Default) -->
                 <div class="carousel-3d-item is-inactive" onclick="rotateToMedal(4)" role="button" tabindex="0" aria-label="Show gold handwriting medal">
-                  <img class="showcase-medal-image" id="medalImage-handwriting" src="/lune-synth/lune-synth-landing-medals/06-gold/handwriting.png" alt="Gold handwriting medal" loading="lazy" decoding="async">
+                  <img class="showcase-medal-image" id="medalImage-handwriting" src="/lune-synth/lune-synth-landing-medals/06-gold/handwriting.webp" alt="Gold handwriting medal" loading="lazy" decoding="async">
                   <svg class="showcase-medal-svg" viewBox="0 0 100 100">
                     <defs>
                       <radialGradient id="haloGrad-handwriting" cx="50%" cy="50%" r="55%">
@@ -14385,13 +14393,22 @@
     if (!header) return;
 
     var ticking = false;
+    var lastHeight = -1;
 
+    // --sticky-header-height is inherited from <html>, so writing it invalidates
+    // style for the whole document. Only write it when the value actually
+    // changes, and never measure from the scroll handler.
     function updateHeaderHeight() {
-      document.documentElement.style.setProperty("--sticky-header-height", Math.ceil(header.getBoundingClientRect().height) + "px");
+      var height = Math.ceil(header.getBoundingClientRect().height);
+      if (height === lastHeight) return;
+      lastHeight = height;
+      document.documentElement.style.setProperty("--sticky-header-height", height + "px");
     }
 
+    // Scrolling only ever needs the class toggle. classList.toggle with an
+    // explicit boolean is a no-op when the state is unchanged, so this reads no
+    // layout and writes nothing on the vast majority of frames.
     function updateHeader() {
-      updateHeaderHeight();
       header.classList.toggle("is-scrolled", window.scrollY > 8);
       ticking = false;
     }
@@ -14402,9 +14419,18 @@
       window.requestAnimationFrame(updateHeader);
     }
 
+    updateHeaderHeight();
     updateHeader();
     window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
+
+    // The header's height changes on resize, on webfont swap, and when
+    // .is-scrolled or .nav-open restyle it. A ResizeObserver catches all of
+    // those without polling the scroll position.
+    if (typeof ResizeObserver === "function") {
+      new ResizeObserver(updateHeaderHeight).observe(header);
+    } else {
+      window.addEventListener("resize", updateHeaderHeight, { passive: true });
+    }
   })();
 
   // Hamburger: toggle the fullscreen section directory at every viewport size.
@@ -15401,7 +15427,7 @@
 
     const medalImage = document.getElementById(`medalImage-${key}`);
     if (medalImage) {
-      medalImage.src = `/lune-synth/lune-synth-landing-medals/${medalTierSlugs[rank]}/${key}.png`;
+      medalImage.src = `/lune-synth/lune-synth-landing-medals/${medalTierSlugs[rank]}/${key}.webp`;
       medalImage.alt = `${info.name} ${key} medal`;
     }
 

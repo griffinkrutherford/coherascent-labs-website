@@ -80,6 +80,16 @@
     return slide.classList.contains("is-active") && !slide.hidden;
   }
 
+  // The glyph chain re-arms itself forever, so without these gates it keeps
+  // repainting SVG geometry in a background tab or while scrolled well past
+  // the board. Assume in-view until the observer says otherwise, so the
+  // initial start below behaves exactly as it used to.
+  var inView = true;
+
+  function canAnimate() {
+    return !document.hidden && inView;
+  }
+
   function stopAnimation() {
     clearMotion();
     resetBoard();
@@ -97,7 +107,7 @@
       return;
     }
 
-    if (!isSlideActive()) {
+    if (!isSlideActive() || !canAnimate()) {
       resetBoard();
       return;
     }
@@ -170,6 +180,27 @@
       resetBoard();
     }
   });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      clearMotion();
+      return;
+    }
+    startAnimation();
+  });
+
+  if (typeof IntersectionObserver === "function") {
+    new IntersectionObserver(
+      function (entries) {
+        var next = entries[entries.length - 1].isIntersecting;
+        if (next === inView) return;
+        inView = next;
+        if (inView) startAnimation();
+        else clearMotion();
+      },
+      { rootMargin: "200px" }
+    ).observe(slide);
+  }
 
   window.addEventListener("beforeunload", clearMotion);
 })();

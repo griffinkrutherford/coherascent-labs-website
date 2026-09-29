@@ -1,4 +1,7 @@
-@import url("/campaign/site-footer.css?v=4");
+/* site-footer.css is linked directly in every page that loads this file, so the
+   @import that used to sit here only added a render-blocking round trip -- the
+   browser had to fetch and parse landing.css before it could even discover it,
+   and it pinned a stale ?v=4 alongside the ?v=5 the pages actually link. */
 
 :root {
   --bg: #00030a;

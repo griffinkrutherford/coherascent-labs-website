@@ -112,7 +112,7 @@
                     </span>
                   </span>
                   <div class="phone-mock__screen">
-                    <video loop muted playsinline preload="none" poster="/screenshots/applied/quick-mission-screen-poster.png">
+                    <video loop muted playsinline preload="none" poster="/screenshots/applied/quick-mission-screen-poster.webp">
                       <source src="/screenshots/applied/quick-mission-screen.mp4" type="video/mp4">
                     </video>
                   </div>

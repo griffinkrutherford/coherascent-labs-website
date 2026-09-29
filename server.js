@@ -127,31 +127,63 @@ function makeWeakEtag(stats) {
   return `W/"${stats.size.toString(16)}-${Math.floor(stats.mtimeMs).toString(16)}"`;
 }
 
-function getCompression(req, filePath, size) {
+// Text assets are compressed once and held in memory, keyed by path+encoding
+// and invalidated by the file's ETag. Because the cost is paid once rather than
+// per request, we can afford maximum-quality Brotli: the Lune Synth homepage
+// goes from 97 KB at quality 5 to 79 KB at quality 11. HTML is served
+// `no-cache`, so every visit pays that difference.
+const MAX_CACHE_ENTRIES = 128;
+const MAX_COMPRESSIBLE_BYTES = 4 * 1024 * 1024;
+const compressedCache = new Map();
+
+function pickEncoding(req, filePath, size) {
   if (!isCompressible(filePath) || size < 1024 || req.headers.range) {
     return null;
   }
 
   const accepted = req.headers['accept-encoding'] || '';
-  if (accepted.includes('br') && zlib.createBrotliCompress) {
-    return {
-      encoding: 'br',
-      stream: zlib.createBrotliCompress({
-        params: {
-          [zlib.constants.BROTLI_PARAM_QUALITY]: 5,
-        },
-      }),
-    };
-  }
-
-  if (accepted.includes('gzip')) {
-    return {
-      encoding: 'gzip',
-      stream: zlib.createGzip({ level: 6 }),
-    };
-  }
-
+  if (accepted.includes('br') && zlib.brotliCompressSync) return 'br';
+  if (accepted.includes('gzip')) return 'gzip';
   return null;
+}
+
+function compress(buffer, encoding) {
+  if (encoding === 'br') {
+    return zlib.brotliCompressSync(buffer, {
+      params: {
+        [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
+        [zlib.constants.BROTLI_PARAM_SIZE_HINT]: buffer.length,
+      },
+    });
+  }
+  return zlib.gzipSync(buffer, { level: zlib.constants.Z_BEST_COMPRESSION });
+}
+
+// Returns the compressed body, or null if it should be streamed uncompressed.
+function getCompressed(filePath, encoding, etag, size) {
+  if (size > MAX_COMPRESSIBLE_BYTES) return null;
+
+  const key = `${filePath}|${encoding}`;
+  const hit = compressedCache.get(key);
+  if (hit && hit.etag === etag) {
+    // Refresh recency so the cap evicts the least recently used entry.
+    compressedCache.delete(key);
+    compressedCache.set(key, hit);
+    return hit.body;
+  }
+
+  let body;
+  try {
+    body = compress(fs.readFileSync(filePath), encoding);
+  } catch (error) {
+    return null;
+  }
+
+  compressedCache.set(key, { etag, body });
+  if (compressedCache.size > MAX_CACHE_ENTRIES) {
+    compressedCache.delete(compressedCache.keys().next().value);
+  }
+  return body;
 }
 
 function parseRange(rangeHeader, size) {
@@ -237,20 +269,25 @@ function serveFile(req, res, filePath, stats) {
     return;
   }
 
-  const compression = getCompression(req, filePath, stats.size);
-  if (compression) {
-    res.writeHead(200, {
-      ...baseHeaders,
-      'Content-Encoding': compression.encoding,
-    });
+  const encoding = pickEncoding(req, filePath, stats.size);
+  if (encoding) {
+    const body = getCompressed(filePath, encoding, etag, stats.size);
 
-    if (req.method === 'HEAD') {
-      res.end();
+    if (body) {
+      res.writeHead(200, {
+        ...baseHeaders,
+        'Content-Encoding': encoding,
+        'Content-Length': body.length,
+      });
+
+      if (req.method === 'HEAD') {
+        res.end();
+        return;
+      }
+
+      res.end(body);
       return;
     }
-
-    fs.createReadStream(filePath).pipe(compression.stream).pipe(res);
-    return;
   }
 
   res.writeHead(200, {

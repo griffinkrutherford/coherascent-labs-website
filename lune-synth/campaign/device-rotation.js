@@ -115,6 +115,7 @@
       var p = point(e.touches);
       begin(el, p.x, p.y, 'touch');
       rotatingTouch = true;
+      bindTouchGesture();
       e.preventDefault(); e.stopPropagation();
     }, { passive: false });
     el.addEventListener('keydown', function (e) {
@@ -137,25 +138,50 @@
   }, { passive: false });
   document.addEventListener('pointerup', function (e) { if (active && active.kind === 'pointer' && active.id === e.pointerId) finish(); });
   document.addEventListener('pointercancel', function () { if (active && active.kind === 'pointer') finish(); });
-  document.addEventListener('touchmove', function (e) {
+  function onTouchMove(e) {
     if (!rotatingTouch) return;
     if (active && e.touches.length === 2) { var p = point(e.touches); move(p.x, p.y); }
     e.preventDefault(); e.stopImmediatePropagation();
-  }, { passive: false, capture: true });
+  }
   function endTouch(e) {
     if (!rotatingTouch) return;
     e.preventDefault(); e.stopImmediatePropagation();
     if (e.touches.length < 2) { suppressUntil = performance.now() + 450; finish(); }
-    if (e.touches.length === 0 || e.type === 'touchcancel') rotatingTouch = false;
+    if (e.touches.length === 0 || e.type === 'touchcancel') { rotatingTouch = false; unbindTouchGesture(); }
   }
-  document.addEventListener('touchend', endTouch, { passive: false, capture: true });
-  document.addEventListener('touchcancel', endTouch, { passive: false, capture: true });
+  // These are non-passive capture-phase listeners on document: while they are
+  // attached the compositor cannot start a touch scroll until JS has run. The
+  // two-finger rotate gesture is desktop-only, so binding them permanently
+  // added input latency to every touch scroll on phones for a feature those
+  // devices never get. Bind only for the duration of an actual gesture.
+  var touchGestureBound = false;
+  function bindTouchGesture() {
+    if (touchGestureBound) return;
+    touchGestureBound = true;
+    document.addEventListener('touchmove', onTouchMove, { passive: false, capture: true });
+    document.addEventListener('touchend', endTouch, { passive: false, capture: true });
+    document.addEventListener('touchcancel', endTouch, { passive: false, capture: true });
+  }
+  function unbindTouchGesture() {
+    if (!touchGestureBound) return;
+    touchGestureBound = false;
+    document.removeEventListener('touchmove', onTouchMove, { passive: false, capture: true });
+    document.removeEventListener('touchend', endTouch, { passive: false, capture: true });
+    document.removeEventListener('touchcancel', endTouch, { passive: false, capture: true });
+  }
   document.addEventListener('click', function (e) {
     if (performance.now() < suppressUntil && e.target.closest(selector)) { e.preventDefault(); e.stopImmediatePropagation(); }
   }, true);
-  window.addEventListener('blur', finish);
-  desktop.addEventListener('change', function () {
+  // A gesture interrupted by a blur or a breakpoint change never sees touchend,
+  // so drop the gesture listeners explicitly.
+  function abortGesture() {
+    rotatingTouch = false;
+    unbindTouchGesture();
     finish();
+  }
+  window.addEventListener('blur', abortGesture);
+  desktop.addEventListener('change', function () {
+    abortGesture();
     rotated.forEach(reset);
     if (desktop.matches) scan(document);
   });
