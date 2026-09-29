@@ -47,7 +47,7 @@
       '        <button type="submit">Join Waitlist</button>',
       '      </form>',
       '      <p class="beta-offer-popup__status" data-beta-offer-status aria-live="polite"></p>',
-      '      <p class="beta-offer-popup__terms">Free to join. The discount applies once you are invited, activate the app, and Pro launches. Founding 40: all spots claimed. <a href="/terms/">Terms</a> apply.</p>',
+      '      <p class="beta-offer-popup__terms">Free to join. The discount applies once you are invited, activate the app, and Pro launches. <a href="/terms/">Terms</a> apply.</p>',
       '      <button class="beta-offer-popup__decline" type="button" data-beta-offer-dismiss>Not now</button>',
       '    </div>',
       '    <div class="beta-offer-popup__success" data-beta-offer-success hidden>',

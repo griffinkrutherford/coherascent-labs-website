@@ -31,7 +31,7 @@ function buildReport(firstLightEndsAt, now) {
 
   if (!firstLightEndsAt) {
     lines.push('First Light: DORMANT (FIRST_LIGHT_ENDS_AT is "" in offer-state.js).');
-    lines.push('Everyone sees "Founding 40: all 40 spots claimed." No countdown renders.');
+    lines.push('Everyone sees the standing "Get in early" waitlist line. No countdown renders.');
     return { ok: true, lines };
   }
 
@@ -39,7 +39,7 @@ function buildReport(firstLightEndsAt, now) {
   if (!Number.isFinite(endMs)) {
     lines.push(`First Light: MISCONFIGURED. "${firstLightEndsAt}" does not parse as a date.`);
     lines.push('offer-state.js treats this the same as dormant (hasWindow is false), so the');
-    lines.push('site will silently keep showing "Founding 40: all 40 spots claimed" -- nobody');
+    lines.push('site will silently keep showing the standing "Get in early" line -- nobody');
     lines.push('will see First Light, and nothing will error. Fix the string before deploying.');
     return { ok: false, lines };
   }

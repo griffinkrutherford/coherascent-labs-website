@@ -63,27 +63,25 @@
     return localZone === CLOSE_ZONE ? mountain : mountain + " (" + local + " your time)";
   }
 
-  var FOUNDING_CLAIMED = "<strong>Founding 40:</strong> all 40 spots claimed. Join for early beta access.";
+  var DEFAULT_OFFER = "<strong>Get in early:</strong> join free for priority beta invites, and hear about Lune Synth&trade; Pro launch offers before anyone else.";
 
   function offerHtml(now) {
     var current = phase(now);
     if (current === "first-light-open") {
       return "<strong class=\"cta-accent cta-accent--blue\">First Light: 48 hours only.</strong> " +
         "Join by " + endLabel() + " for priority beta access &amp; " +
-        "<strong class=\"cta-accent cta-accent--red\">50% off your first 3 months</strong> of Lune Synth&trade; Pro. " +
-        "Founding 40: all spots claimed.";
+        "<strong class=\"cta-accent cta-accent--red\">50% off your first 3 months</strong> of Lune Synth&trade; Pro.";
     }
-    if (current === "first-light-closed") {
-      return "Founding 40 and First Light are closed. Join for beta updates.";
-    }
-    return FOUNDING_CLAIMED;
+    // Before First Light opens and after it closes: the standing waitlist
+    // offer. The Founding 40 are mentioned only in the footnote.
+    return DEFAULT_OFFER;
   }
 
   function footnoteText(now) {
     if (phase(now) === "first-light-open") {
-      return "*First Light discount applies once you are invited to the beta, activate the app, and Lune Synth Pro launches. Signing up is free and charges nothing. Founding members keep their original offer. See Terms §6.";
+      return "*First Light discount applies once you are invited to the beta, activate the app, and Lune Synth Pro launches. Signing up is free and charges nothing. Founding 40 members keep their original offer. See Terms §6.";
     }
-    return "*Founding 40 members keep their original offer under Terms §6. Joining the waitlist is free.";
+    return "*Joining the waitlist is free and charges nothing. Founding 40 members keep their original offer under Terms §6.";
   }
 
   // Countdown ------------------------------------------------------------

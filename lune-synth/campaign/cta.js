@@ -4,7 +4,7 @@
   var FALLBACK_CONFIG = {
     mode: "waitlist",
     headline: "Join the beta waitlist",
-    offerHtml: "<strong>Founding 40:</strong> all 40 spots claimed. Join for early beta access.",
+    offerHtml: "<strong>Get in early:</strong> join free for priority beta invites, and hear about Lune Synth&trade; Pro launch offers before anyone else.",
     emailPlaceholder: "Email address",
     submitLabel: "Join Waitlist",
     loadingLabel: "Joining…",
