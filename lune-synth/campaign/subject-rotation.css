@@ -132,8 +132,10 @@
 
 @media (max-width: 480px) {
   .lost-cosmos__comparison .subject-rotation__line {
-    /* Reserve a second line for long fields, even while backspacing. */
-    min-height: 2.76em;
+    /* Fit the longest subject on one line without reserving blank space below it. */
+    min-height: 1.38em;
+    font-size: clamp(18px, 6vw, 24px);
+    white-space: nowrap;
   }
 }
 
