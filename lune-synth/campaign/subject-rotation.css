@@ -1,0 +1,147 @@
+@property --subject-a {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #85c2ff;
+}
+
+@property --subject-b {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #b39bff;
+}
+
+@property --subject-c {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ed8ce5;
+}
+
+.lost-cosmos__comparison[data-subject-card] {
+  --subject-a: #85c2ff;
+  --subject-b: #b39bff;
+  --subject-c: #ed8ce5;
+  --subject-angle: 110deg;
+  --subject-speed: 6s;
+  --subject-gradient: linear-gradient(var(--subject-angle), var(--subject-a), var(--subject-b), var(--subject-c), var(--subject-a));
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: min(760px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding-block: clamp(24px, 3vw, 36px);
+  border-color: color-mix(in srgb, var(--subject-a) 45%, transparent);
+  background: linear-gradient(135deg, rgba(15, 23, 48, 0.94), rgba(22, 14, 43, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 48px rgba(2, 4, 16, 0.3),
+    -18px 0 60px color-mix(in srgb, var(--subject-a) 20%, transparent),
+    18px 0 60px color-mix(in srgb, var(--subject-c) 20%, transparent);
+  transition: --subject-a 700ms ease, --subject-b 700ms ease, --subject-c 700ms ease;
+  text-wrap: initial;
+}
+
+/* One palette flows through the lettering, inner wash, and outer halo. */
+[data-subject-card]::before,
+[data-subject-card]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--subject-gradient);
+  background-size: 300% 300%;
+  animation: subject-gradient-flow var(--subject-speed) ease-in-out infinite alternate;
+  animation-play-state: paused;
+  pointer-events: none;
+}
+
+[data-subject-card]::before {
+  inset: -10px;
+  filter: blur(28px);
+  opacity: 0.3;
+}
+
+[data-subject-card]::after {
+  opacity: 0.1;
+}
+
+.lost-cosmos__comparison .subject-rotation__lead strong {
+  color: #e8eaff;
+}
+
+.lost-cosmos__comparison .subject-rotation__line {
+  display: block;
+  width: 100%;
+  min-height: 1.38em;
+  color: var(--subject-a);
+  font-size: clamp(24px, 3.2vw, 38px);
+  line-height: 1.38;
+}
+
+[data-subject-text] {
+  background: var(--subject-gradient);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: subject-gradient-flow var(--subject-speed) ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+.subject-rotation__cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.95em;
+  margin-left: 0.12em;
+  background: var(--subject-b);
+  box-shadow: 0 0 12px var(--subject-b);
+  vertical-align: -0.09em;
+  animation: subject-cursor-blink 1s step-end infinite;
+  animation-play-state: paused;
+}
+
+[data-subject-card].is-subject-animating::before,
+[data-subject-card].is-subject-animating::after,
+.is-subject-animating [data-subject-text],
+.is-subject-animating .subject-rotation__cursor {
+  animation-play-state: running;
+}
+
+.subject-rotation__accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes subject-gradient-flow {
+  from { background-position: 0% 30%; }
+  to { background-position: 100% 70%; }
+}
+
+@keyframes subject-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .lost-cosmos__comparison .subject-rotation__line {
+    /* Reserve a second line for long fields, even while backspacing. */
+    min-height: 2.76em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lost-cosmos__comparison[data-subject-card] { transition: none; }
+  [data-subject-card]::before,
+  [data-subject-card]::after,
+  [data-subject-text],
+  .subject-rotation__cursor { animation: none; }
+  .subject-rotation__cursor { display: none; }
+}

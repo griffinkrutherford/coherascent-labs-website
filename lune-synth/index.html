@@ -10861,6 +10861,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/home-device-angles.css?v=5" />
+  <link rel="stylesheet" href="/campaign/subject-rotation.css?v=1" />
+  <script src="/campaign/subject-rotation.js?v=1" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -11028,8 +11030,10 @@
         <p class="lost-cosmos__transition">
           <strong>Lune Synth fixes all three.</strong>
         </p>
-        <p class="lost-cosmos__comparison">
-          Think <strong>Duolingo but for any subject</strong>
+        <p class="lost-cosmos__comparison" data-subject-card>
+          <span class="subject-rotation__accessible">Think Duolingo but for any subject</span>
+          <span class="subject-rotation__lead" aria-hidden="true">Think <strong>Duolingo but</strong></span>
+          <strong class="subject-rotation__line" aria-hidden="true"><span data-subject-text>for any subject</span><span class="subject-rotation__cursor"></span></strong>
         </p>
         <a class="lost-cosmos__scroll" href="#platform-title">
           Scroll down to see how
