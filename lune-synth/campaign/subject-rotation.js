@@ -67,7 +67,7 @@
         schedule(280);
       }
     } else {
-      var phrase = "for " + subjects[index][0];
+      var phrase = subjects[index][0];
       text.textContent = phrase.slice(0, text.textContent.length + 1);
       if (text.textContent === phrase) {
         phase = "hold";
@@ -85,7 +85,7 @@
       index = 0;
       phase = "hold";
       nextDelay = 2400;
-      text.textContent = "for any subject";
+      text.textContent = "any subject";
       setPalette(0);
     }
     card.classList.toggle("is-subject-animating", isActive());
