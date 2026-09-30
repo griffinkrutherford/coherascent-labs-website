@@ -1,25 +1,25 @@
 @property --subject-a {
   syntax: "<color>";
   inherits: true;
-  initial-value: #85c2ff;
+  initial-value: hsl(195 100% 68%);
 }
 
 @property --subject-b {
   syntax: "<color>";
   inherits: true;
-  initial-value: #b39bff;
+  initial-value: hsl(213 100% 77%);
 }
 
 @property --subject-c {
   syntax: "<color>";
   inherits: true;
-  initial-value: #ed8ce5;
+  initial-value: hsl(177 96% 62%);
 }
 
 .lost-cosmos__comparison[data-subject-card] {
-  --subject-a: #85c2ff;
-  --subject-b: #b39bff;
-  --subject-c: #ed8ce5;
+  --subject-a: hsl(195 100% 68%);
+  --subject-b: hsl(213 100% 77%);
+  --subject-c: hsl(177 96% 62%);
   --subject-angle: 110deg;
   --subject-speed: 6s;
   --subject-gradient: linear-gradient(var(--subject-angle), var(--subject-a), var(--subject-b), var(--subject-c), var(--subject-a));
@@ -32,7 +32,7 @@
   gap: 8px;
   padding-block: clamp(24px, 3vw, 36px);
   border-color: color-mix(in srgb, var(--subject-a) 45%, transparent);
-  background: linear-gradient(135deg, rgba(15, 23, 48, 0.94), rgba(22, 14, 43, 0.94));
+  background: linear-gradient(135deg, rgba(10, 13, 22, 0.96), rgba(7, 10, 18, 0.96));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 18px 48px rgba(2, 4, 16, 0.3),
@@ -60,7 +60,7 @@
 [data-subject-card]::before {
   inset: -10px;
   filter: blur(28px);
-  opacity: 0.3;
+  opacity: 0.36;
 }
 
 [data-subject-card]::after {

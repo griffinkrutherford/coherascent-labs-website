@@ -7,22 +7,23 @@
   if (!text) return;
 
   // Interleave subjects, practical skills, and exams so every pass shows the range.
-  // Each entry gets its own hue, gradient direction, and animation tempo.
+  // Large hue jumps contrast consecutive subjects, including the end of the loop.
+  // Keep each gradient within one color family so subjects have distinct identities.
   var subjects = [
-    ["any subject", 210], ["algebra", 150], ["the SAT", 28],
-    ["biology", 125], ["Python", 198], ["the ACT", 340],
-    ["calculus", 268], ["chemistry", 180], ["the MCAT", 5],
-    ["world history", 38], ["computer science", 225], ["the GRE", 285],
-    ["physics", 48], ["psychology", 325], ["the LSAT", 248],
-    ["economics", 170], ["Spanish", 15], ["the GMAT", 195],
-    ["statistics", 305], ["anatomy & physiology", 135], ["AP exams", 355],
-    ["engineering", 215], ["creative writing", 275], ["the GED", 58],
-    ["nursing", 165], ["organic chemistry", 90], ["the PSAT", 315],
-    ["finance", 45], ["French", 235], ["the USMLE", 350],
-    ["geometry", 185], ["accounting", 110], ["IB exams", 295],
-    ["philosophy", 255], ["data science", 155], ["state assessments", 20],
-    ["music theory", 330], ["JavaScript", 65], ["PhD qualifying exams", 205],
-    ["whatever comes next", 280]
+    ["any subject", 195], ["algebra", 332], ["the SAT", 109],
+    ["biology", 246], ["Python", 23], ["the ACT", 160],
+    ["calculus", 297], ["chemistry", 74], ["the MCAT", 211],
+    ["world history", 348], ["computer science", 125], ["the GRE", 262],
+    ["physics", 39], ["psychology", 176], ["the LSAT", 313],
+    ["economics", 90], ["Spanish", 227], ["the GMAT", 4],
+    ["statistics", 141], ["anatomy & physiology", 278], ["AP exams", 55],
+    ["engineering", 192], ["creative writing", 329], ["the GED", 106],
+    ["nursing", 243], ["organic chemistry", 20], ["the PSAT", 157],
+    ["finance", 294], ["French", 71], ["the USMLE", 208],
+    ["geometry", 345], ["accounting", 122], ["IB exams", 259],
+    ["philosophy", 36], ["data science", 173], ["state assessments", 310],
+    ["music theory", 87], ["JavaScript", 224], ["PhD qualifying exams", 80],
+    ["whatever comes next", 309]
   ];
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var visible = !("IntersectionObserver" in window);
@@ -33,9 +34,9 @@
 
   function setPalette(subjectIndex) {
     var hue = subjects[subjectIndex][1];
-    card.style.setProperty("--subject-a", "hsl(" + hue + " 95% 76%)");
-    card.style.setProperty("--subject-b", "hsl(" + ((hue + 48) % 360) + " 95% 80%)");
-    card.style.setProperty("--subject-c", "hsl(" + ((hue + 100) % 360) + " 90% 74%)");
+    card.style.setProperty("--subject-a", "hsl(" + hue + " 100% 68%)");
+    card.style.setProperty("--subject-b", "hsl(" + ((hue + 18) % 360) + " 100% 77%)");
+    card.style.setProperty("--subject-c", "hsl(" + ((hue + 342) % 360) + " 96% 62%)");
     card.style.setProperty("--subject-angle", (110 + subjectIndex * 29) % 360 + "deg");
     card.style.setProperty("--subject-speed", (4.5 + subjectIndex % 7 * 0.45) + "s");
   }
