@@ -1,6 +1,6 @@
 /* Landing-page pricing: Free, Pro monthly, Pro yearly.
    Rides the page's existing reveal (`.section-content.is-visible`) and adds a
-   staggered card entrance, a warm gold border on the featured plan and a
+   staggered card entrance, a red border on the featured plan and a
    pointer-following glow. Everything decorative stops under reduced motion. */
 
 main #pricing-title { --section-icon: url("/campaign/nav-icons/stars.webp"); }
@@ -16,7 +16,7 @@ main #pricing-title::before {
 
 .pricing {
   --text: #f1eddf;
-  --muted: #b6bdac;
+  --muted: #bcc2ce;
   --line: rgba(201, 197, 167, .24);
   --card: #16241e;
   --glow: 0 18px 50px rgba(0, 0, 0, .22);
@@ -47,6 +47,10 @@ main #pricing-title::before {
 /* ---------- Card ---------- */
 
 .pricing-card {
+  --accent: #a6c8f1;
+  --accent-rgb: 166, 200, 241;
+  --card: #122039;
+  --line: rgba(var(--accent-rgb), .32);
   --mx: 50%;
   --my: 0%;
   position: relative;
@@ -69,7 +73,7 @@ main #pricing-title::before {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(199, 187, 145, 0.12), transparent 60%);
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(var(--accent-rgb), 0.12), transparent 60%);
   opacity: 0;
   transition: opacity 0.35s ease;
   pointer-events: none;
@@ -77,8 +81,8 @@ main #pricing-title::before {
 
 .pricing-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(190, 183, 140, 0.5);
-  box-shadow: var(--glow), 0 24px 60px rgba(143, 167, 132, 0.12);
+  border-color: rgba(var(--accent-rgb), 0.6);
+  box-shadow: var(--glow), 0 24px 60px rgba(var(--accent-rgb), 0.12);
 }
 
 .pricing-card:hover::before {
@@ -130,17 +134,26 @@ main #pricing-title::before {
 
 /* ---------- Featured (yearly) ---------- */
 
-/* A single warm metal accent; the motion comes from the card and Luna. */
+.pricing-card--pro {
+  --accent: #c5abe6;
+  --accent-rgb: 197, 171, 230;
+  --card: #241a36;
+}
+
+/* One color per plan; the motion comes from the card and Luna. */
 .pricing-card--featured {
-  background: linear-gradient(145deg, #303020, #17271f);
-  border: 1.5px solid #bba06b;
-  box-shadow: var(--glow), 0 0 40px rgba(203, 179, 121, .1);
+  --accent: #eca29a;
+  --accent-rgb: 236, 162, 154;
+  --card: #351b24;
+  background: linear-gradient(145deg, #3d2029, #2b1720);
+  border: 1.5px solid #b87570;
+  box-shadow: var(--glow), 0 0 40px rgba(var(--accent-rgb), .1);
 }
 .pricing.is-visible .pricing-card--featured {
   animation: pricing-card-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 440ms both;
 }
 .pricing.is-pop-complete .pricing-card--featured { animation: none; }
-.pricing-card--featured:hover { border-color: #e2c38b; box-shadow: var(--glow), 0 0 42px rgba(203, 179, 121, .16); }
+.pricing-card--featured:hover { border-color: var(--accent); box-shadow: var(--glow), 0 0 42px rgba(var(--accent-rgb), .16); }
 
 .pricing-card__luna {
   position: absolute;
@@ -151,7 +164,7 @@ main #pricing-title::before {
   pointer-events: none;
   filter:
     drop-shadow(0 14px 20px rgba(4, 10, 24, 0.45))
-    drop-shadow(0 0 16px rgba(203, 179, 121, 0.18));
+    drop-shadow(0 0 16px rgba(236, 162, 154, 0.18));
   transform: rotate(8deg);
   animation: pricing-luna-float 5.5s ease-in-out infinite;
 }
@@ -197,11 +210,11 @@ main #pricing-title::before {
   line-height: 1;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
-  color: var(--text);
+  color: var(--accent);
 }
 
-.pricing-card--featured .pricing-card__amount { color: #e5c68e; }
-.pricing-card--pro .pricing-card__amount { color: #d7a48b; }
+.pricing-card--featured .pricing-card__amount { color: var(--accent); }
+.pricing-card--pro .pricing-card__amount { color: var(--accent); }
 
 .pricing-card__period {
   color: var(--muted);
@@ -234,8 +247,8 @@ main #pricing-title::before {
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #09111e;
-  background: #e3c58d;
-  box-shadow: 0 0 18px rgba(203, 179, 121, 0.12);
+  background: var(--accent);
+  box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.12);
 }
 
 /* A slow sheen across the savings badge. */
@@ -255,8 +268,8 @@ main #pricing-title::before {
 
 .pricing-badge--soft {
   color: var(--text);
-  background: rgba(199, 187, 145, 0.12);
-  border: 1px solid rgba(179, 198, 159, 0.35);
+  background: rgba(var(--accent-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
   box-shadow: none;
 }
 
@@ -290,13 +303,13 @@ main #pricing-title::before {
   border-radius: 50%;
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l2.9 2.9 6-6.3' fill='none' stroke='%2309111e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat,
-    #b6c7a2;
+    var(--accent);
 }
 
 .pricing-card--featured .pricing-card__features li::before {
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l2.9 2.9 6-6.3' fill='none' stroke='%2309111e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat,
-    #dfc28b;
+    var(--accent);
 }
 
 .pricing-card__features li span {
@@ -312,35 +325,35 @@ main #pricing-title::before {
   min-height: 48px;
   padding: 12px 20px;
   border-radius: 999px;
-  border: 1px solid rgba(179, 198, 159, 0.4);
+  border: 1px solid rgba(var(--accent-rgb), 0.4);
   color: var(--text);
   font-weight: 700;
   text-decoration: none;
-  background: rgba(179, 198, 159, 0.08);
+  background: rgba(var(--accent-rgb), 0.08);
   transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .pricing-card__cta:hover,
 .pricing-card__cta:focus-visible {
-  background: rgba(179, 198, 159, 0.18);
+  background: rgba(var(--accent-rgb), 0.18);
   transform: translateY(-1px);
-  box-shadow: 0 0 22px rgba(179, 198, 159, 0.2);
+  box-shadow: 0 0 22px rgba(var(--accent-rgb), 0.2);
 }
 
 .pricing-card__cta:focus-visible {
-  outline: 2px solid #cbb07d;
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
 .pricing-card--featured .pricing-card__cta {
   border: 0;
   color: #09111e;
-  background: #e3c58d;
+  background: var(--accent);
 }
 
 .pricing-card--featured .pricing-card__cta:hover,
 .pricing-card--featured .pricing-card__cta:focus-visible {
-  box-shadow: 0 0 30px rgba(203, 179, 121, 0.22);
+  box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.22);
 }
 
 .pricing__fineprint {
@@ -378,14 +391,13 @@ main #pricing-title::before {
 
 /* ---------- Light theme ---------- */
 
-html[data-theme="light"] .pricing-card {
-  background: rgba(255, 255, 255, 0.82);
-}
-
-html[data-theme="light"] .pricing { --text: #26372e; --muted: #526357; --line: #c3cbbb; }
-html[data-theme="light"] .pricing-card--featured { background: linear-gradient(145deg, #f7ecd4, #f2f5ea); border-color: #a8874d; }
-html[data-theme="light"] .pricing-card--featured .pricing-card__amount { color: #7d602b; }
-html[data-theme="light"] .pricing-card--pro .pricing-card__amount { color: #91593c; }
+html[data-theme="light"] .pricing { --text: #273044; --muted: #596174; }
+html[data-theme="light"] .pricing-card { --accent: #97bde8; --accent-rgb: 151, 189, 232; background: #eef4fc; }
+html[data-theme="light"] .pricing-card--pro { --accent: #ba9bdf; --accent-rgb: 186, 155, 223; background: #f2edfa; }
+html[data-theme="light"] .pricing-card--featured { --accent: #e59b92; --accent-rgb: 229, 155, 146; background: linear-gradient(145deg, #fbeeea, #f6e5e7); border-color: #b46b65; }
+html[data-theme="light"] .pricing-card__amount { color: #305f94; }
+html[data-theme="light"] .pricing-card--pro .pricing-card__amount { color: #69499a; }
+html[data-theme="light"] .pricing-card--featured .pricing-card__amount { color: #98413e; }
 html[data-theme="light"] .pricing__fineprint a { color: #76602e; }
 
 /* ---------- Reduced motion ---------- */

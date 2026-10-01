@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-01: Updated pricing cards on the homepage and Pro page to the requested blue Free, purple monthly, and red annual color scheme, including matching price, border, button, badge, and hover accents. Preserved animations and reduced-motion support; refreshed stylesheet cache versions.
+
 - 2026-10-01: Redesigned the Lune Synth Pro page with animated learning, benefits, pricing, and launch-offer cards in an ink/parchment/gold/sage/clay palette. Annual launch pricing is $59.99; monthly stays $12.99. Homepage pricing matches. Paid checkout remains unavailable until billing launches.
 
 ## Live Structure
