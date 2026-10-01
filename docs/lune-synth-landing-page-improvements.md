@@ -10,6 +10,8 @@ not the numbers._
 
 ## Update Log
 
+- 2026-10-01: Renamed the annual plan to Lune Synth Pro Special Offer on the homepage and Pro page. Its headline is $4.99/month, billed annually at $59.88/year (exactly twelve monthly equivalents); annual renewal disclosures, metadata, and visible/structured FAQs match. Monthly remains $12.99, the seven-day annual trial remains eligibility-based, and the red annual styling and existing launch offers are preserved. Website only; configure the matching Stripe annual Price before enabling purchases.
+
 - 2026-10-01: Pricing cards now use blue for Free, purple for Pro Monthly, and red for Pro Yearly on the homepage and `/pro/`. Card backgrounds, prices, borders, badges, checks, and button accents follow each plan's color, including homepage light-theme variants. Prices, launch offers, and motion behavior are unchanged; stylesheet URLs were versioned for deployment.
 
 - 2026-10-01: Approved annual Pro pricing is now $59.99 (about $5/month, rounded 62% savings versus $12.99 monthly) across homepage and Pro page. Rebuilt `/pro/` with an animated Luna learning scene, moving subject chips, staggered benefit and plan cards, early-offer cards, and accessible FAQ disclosures. Pricing uses ink, parchment, muted gold, sage, and clay instead of blue/purple/pink gradients. Motion respects system preferences and pauses when hidden; prices and core content remain available without JavaScript. Pro remains coming soon; existing Founding 40 and First Light promises are preserved.
