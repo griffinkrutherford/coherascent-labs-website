@@ -8,6 +8,10 @@ The site presents Coherascent as a dual-pillar organization:
 - `Research`: neuro-symbolic, deterministic, and truth-aligned AI work
 - `Lune Synth`: educational product concepts for handwritten reasoning, grading, and adaptive learning
 
+## Update Log
+
+- 2026-10-01: Redesigned the Lune Synth Pro page with animated learning, benefits, pricing, and launch-offer cards in an ink/parchment/gold/sage/clay palette. Annual launch pricing is $59.99; monthly stays $12.99. Homepage pricing matches. Paid checkout remains unavailable until billing launches.
+
 ## Live Structure
 
 The production site is served from one Railway deployment with host-based routing:
