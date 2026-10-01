@@ -10852,6 +10852,7 @@
   <link rel="stylesheet" href="/campaign/site-header.css?v=3" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <link rel="stylesheet" href="/campaign/section-icons.css?v=5" />
+  <link rel="stylesheet" href="/campaign/pricing.css?v=1" />
   <link rel="stylesheet" href="/campaign/sky-motion.css?v=1" />
   <script src="/campaign/sky-motion.js?v=1" defer></script>
   <script src="/campaign/site-footer.js?v=11" data-lune-site-footer defer></script>
@@ -14356,6 +14357,85 @@
       </div>
     </section>
 
+    <section class="section section--pricing" id="pricing" aria-labelledby="pricing-title">
+      <h2 class="section-title" id="pricing-title">Simple, Honest Pricing</h2>
+
+      <div class="pricing section-content" data-pricing>
+        <p class="pricing__intro">
+          <strong>Start free.</strong> Upgrade only if you want more room to practice.
+          Pro buys capacity and unlimited Luna help, never a better grader.
+        </p>
+
+        <div class="pricing__grid">
+          <article class="pricing-card" aria-labelledby="pricing-free-name">
+            <p class="pricing-card__eyebrow">Free</p>
+            <h3 class="pricing-card__name" id="pricing-free-name">Lune Synth</h3>
+            <p class="pricing-card__price">
+              <span class="pricing-card__amount">$0</span>
+              <span class="pricing-card__period">forever</span>
+            </p>
+            <p class="pricing-card__note">No card needed.</p>
+            <div class="pricing-card__badges"><span class="pricing-badge pricing-badge--soft">Free during the beta</span></div>
+            <ul class="pricing-card__features">
+              <li>Photograph or type your work and get <strong>step-by-step graded feedback</strong></li>
+              <li>Quick Missions, constellations and medals</li>
+              <li>Luna hints when you&rsquo;re stuck</li>
+              <li>5,000 AI actions a day <span>(generation, grading and tutoring)</span></li>
+              <li>Up to 10 handwritten pages per set</li>
+            </ul>
+            <a class="pricing-card__cta" href="#waitlist">Join the beta</a>
+          </article>
+
+          <article class="pricing-card pricing-card--pro" aria-labelledby="pricing-monthly-name">
+            <p class="pricing-card__eyebrow">Pro &middot; Monthly</p>
+            <h3 class="pricing-card__name" id="pricing-monthly-name">Lune Synth Pro</h3>
+            <p class="pricing-card__price">
+              <span class="pricing-card__amount" data-pricing-amount="12.99">$12.99</span>
+              <span class="pricing-card__period">/ month</span>
+            </p>
+            <p class="pricing-card__note">Billed monthly. Cancel anytime.</p>
+            <div class="pricing-card__badges"></div>
+            <ul class="pricing-card__features">
+              <li>Everything in Free</li>
+              <li><strong>Unlimited Luna tutor help</strong></li>
+              <li>10,000 AI actions a day <span>(twice the free plan)</span></li>
+              <li>Up to 50 handwritten pages per set</li>
+              <li>The same grader as Free, with more room to use it</li>
+            </ul>
+            <a class="pricing-card__cta" href="/pro/">See what Pro includes</a>
+          </article>
+
+          <article class="pricing-card pricing-card--featured" aria-labelledby="pricing-yearly-name">
+            <img class="pricing-card__luna" src="/lune-synth/images/luna-emotes/celebrate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <p class="pricing-card__eyebrow">Pro &middot; Yearly</p>
+            <h3 class="pricing-card__name" id="pricing-yearly-name">Lune Synth Pro</h3>
+            <p class="pricing-card__price">
+              <span class="pricing-card__amount" data-pricing-amount="83.99">$83.99</span>
+              <span class="pricing-card__period">/ year</span>
+            </p>
+            <p class="pricing-card__note">About $7.00 a month, billed yearly.</p>
+            <div class="pricing-card__badges">
+              <span class="pricing-badge">Save 46%</span>
+              <span class="pricing-badge pricing-badge--soft">7-day free trial</span>
+            </div>
+            <ul class="pricing-card__features">
+              <li>Everything in Pro Monthly</li>
+              <li><strong>7 days free</strong>, then $83.99 a year</li>
+              <li>Cancel before the trial ends and you won&rsquo;t be charged</li>
+              <li>One price for the whole school year</li>
+            </ul>
+            <a class="pricing-card__cta" href="/pro/">See what Pro includes</a>
+          </article>
+        </div>
+
+        <p class="pricing__fineprint">
+          Pro is coming soon and isn&rsquo;t available to buy yet. These are the prices we plan to launch at, and they may change.
+          The free trial is one per account. The exact price, renewal terms and how to cancel are always shown in the app before you&rsquo;re charged.
+          Founding 40 and First Light offers apply as described in our <a href="/terms/">Terms of Service</a>.
+        </p>
+      </div>
+    </section>
+
     <section class="section section--blog" aria-labelledby="blog-title">
       <h2 class="section-title" id="blog-title">From the blog</h2>
       <div class="blog-preview section-content">
@@ -14393,6 +14473,7 @@
     <lune-site-footer id="site-footer"></lune-site-footer>
   </main>
   <script src="../liquid-glass-cards.js?v=2"></script>
+  <script src="/campaign/pricing.js?v=1" defer></script>
   <!-- DISABLED: <script type="module" src="./lune-engine/index.js"></script>
        Re-enabling this also needs the three/three-addons importmap restored in <head>. -->
   <script>
