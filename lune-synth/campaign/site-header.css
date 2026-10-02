@@ -181,6 +181,7 @@ html[data-theme="light"] .site-header .nav-links .nav-link--story:focus-visible 
 .site-header .nav-link[href$="#site-footer"] { --nav-icon: url("/campaign/nav-icons/map.webp"); }
 .site-header .nav-link[href="/blog/"] { --nav-icon: url("/campaign/nav-icons/book.webp"); }
 .site-header .nav-link[href="/about/"] { --nav-icon: url("/campaign/nav-icons/empathy.webp"); }
+.site-header .nav-link[href="/pro/"] { --nav-icon: url("/campaign/nav-icons/price-tag.svg"); }
 .site-header .nav-link[href$="#waitlist"]::before,
 .site-header .nav-link[href$="#processing-title"]::before {
   -webkit-mask-size: 145%;
