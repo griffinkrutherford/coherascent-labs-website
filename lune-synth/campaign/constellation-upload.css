@@ -40,35 +40,6 @@
 .constellation-upload__source--guide { --source-color: #b8eb6d; }
 .constellation-upload__source--photo { --source-color: #69b5ff; }
 .constellation-upload__source--notes { --source-color: #fa8bce; }
-.constellation-upload__trails {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  z-index: 0;
-}
-.constellation-upload__trails path {
-  fill: none;
-  stroke: var(--source-color);
-  stroke-width: 1.2;
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  opacity: 0;
-}
-.constellation-upload__spark {
-  position: absolute;
-  left: 50%;
-  top: 56%;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--source-color);
-  box-shadow: 0 0 7px var(--source-color), 0 0 16px var(--source-color);
-  opacity: 0;
-  z-index: 1;
-}
 .constellation-upload__toggle {
   margin: 0;
   padding: 5px 0;

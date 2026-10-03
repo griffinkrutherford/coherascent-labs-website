@@ -239,7 +239,7 @@ function render(page) {
   <script src="/campaign/device-tilt.js?v=8" defer></script>
   <script src="/campaign/offer-popup.js?v=2" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
-  <link rel="stylesheet" href="/campaign/site-header.css?v=4" />
+  <link rel="stylesheet" href="/campaign/site-header.css?v=5" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
@@ -255,7 +255,7 @@ function render(page) {
       <nav class="nav-links" id="primary-nav" aria-label="Primary">
         <a class="nav-link" href="/#applied-page-title">Overview</a>
         <a class="nav-link" href="/#waitlist">Beta Waitlist</a>
-        <a class="nav-link" href="/pro/">Pricing</a>
+        <a class="nav-link" href="/#pricing">Pricing</a>
         <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
         <a class="nav-link" href="/#neuro-title">Circuit</a>
         <a class="nav-link" href="/#constellations-title">Constellations</a>

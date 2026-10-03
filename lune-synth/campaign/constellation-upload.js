@@ -6,7 +6,6 @@
   const toggle = document.querySelector('[data-upload-toggle]');
   const group = demo.querySelector('.constellation-upload__sources');
   const cards = Array.from(group.querySelectorAll('.constellation-upload__source'));
-  const trails = group.querySelector('.constellation-upload__trails');
   const previews = [document.getElementById('previewStep-1'), document.getElementById('previewStep-2')];
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const patterns = ['swoop', 'orbit', 'lift'];
@@ -21,8 +20,6 @@
     generation++;
     animations.forEach(animation => animation.cancel());
     animations = [];
-    trails.replaceChildren();
-    group.querySelectorAll('.constellation-upload__spark').forEach(spark => spark.remove());
   }
 
   function animate(element, frames, options) {
@@ -54,7 +51,6 @@
     // Advancing by three rotates through all seven sources and changes the grouping.
     const batch = Array.from({ length: cycle % 2 ? 4 : 3 }, (_, index) => cards[(cycle * 3 + index) % cards.length]);
     const flip = cycle % 2 ? -1 : 1;
-    trails.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
     group.dataset.uploadPattern = pattern;
 
     batch.forEach(function (card, index) {
@@ -79,7 +75,6 @@
       const duration = 4400 + ((cycle + index) % 3) * 320;
       const delay = index * (pattern === 'lift' ? 760 : 1000);
       const timing = { duration: duration, delay: delay, fill: 'none', easing: 'linear' };
-      const color = getComputedStyle(card).getPropertyValue('--source-color').trim();
       animate(card, [
         frame(x, y + 16, rotation * 2, .8, 0, 0),
         frame(x, y, rotation, 1, 1, .12),
@@ -91,32 +86,6 @@
         frame(0, 0, 0, .08, 0, 1)
       ], timing);
 
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      const cx = width / 2, cy = height * .56;
-      path.setAttribute('d', 'M' + (cx + x) + ' ' + (cy + y) + ' Q' + (cx + bend.x) + ' ' + (cy + bend.y) + ' ' + cx + ' ' + cy);
-      path.setAttribute('pathLength', '1');
-      path.style.setProperty('--source-color', color);
-      trails.appendChild(path);
-      animate(path, [
-        { strokeDashoffset: 1, opacity: 0, offset: 0 },
-        { strokeDashoffset: 1, opacity: 0, offset: .44 },
-        { strokeDashoffset: .6, opacity: .55, offset: .6 },
-        { strokeDashoffset: 0, opacity: .4, offset: .9 },
-        { strokeDashoffset: 0, opacity: 0, offset: 1 }
-      ], timing);
-
-      const spark = document.createElement('span');
-      spark.className = 'constellation-upload__spark';
-      spark.style.setProperty('--source-color', color);
-      group.appendChild(spark);
-      animate(spark, [
-        frame(x, y, 0, 1, 0, 0),
-        frame(x, y, 0, 1, 0, .46),
-        frame(first.x, first.y, 0, 1, 1, .6),
-        frame(second.x, second.y, 0, 1, 1, .76),
-        frame(third.x, third.y, 0, .7, .8, .9),
-        frame(0, 0, 0, .1, 0, 1)
-      ], timing);
     });
 
     // This idle interval leaves the app recording fully visible between batches.
