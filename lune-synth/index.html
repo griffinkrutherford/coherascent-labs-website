@@ -10862,6 +10862,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/home-device-angles.css?v=5" />
+  <link rel="stylesheet" href="/campaign/constellation-upload.css?v=1" />
+  <script src="/campaign/constellation-upload.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/subject-rotation.css?v=3" />
   <script src="/campaign/subject-rotation.js?v=3" defer></script>
 </head>
@@ -11582,8 +11584,9 @@
 
           <div class="active-step-text">
             <span class="active-step-badge" id="activeStepBadge">Overview</span>
-            <h3 class="active-step-title" id="activeStepTitle">Explore Your Learning Worlds</h3>
-            <p class="active-step-desc" id="activeStepDesc">See what your learning can become: a personalized study universe with <strong class="world-count">80+ visual Worlds</strong>. Explore the preview, then choose or create a Constellation to begin your learning journey.</p>
+            <h3 class="active-step-title" id="activeStepTitle">Your Materials Become a Constellation</h3>
+            <p class="active-step-desc" id="activeStepDesc">Bring a <strong>YouTube video link, lecture-note PDF, homework, or study guide</strong>. Luna turns your materials into a Constellation of connected skills to master. Make it your own with <strong class="world-count">80+ visual Worlds</strong>.</p>
+            <button class="constellation-upload__toggle" type="button" data-upload-toggle aria-pressed="false" hidden>Pause animation</button>
 
             <!-- Dynamic World Selector Dropdown for the Overview (hidden on other steps) -->
             <div class="world-theme-panel-container" id="worldThemePanel">
@@ -11632,9 +11635,23 @@
             </div>
           </div>
 
-          <!-- Bottom: Empty iPad Mockup (GIF Canvas) -->
-          <div class="ipad-container">
-            <div class="ipad-mockup" aria-label="11-inch iPad Pro Progress mock">
+          <!-- Materials flow into the current app preview and become connected skills. -->
+          <div class="ipad-container" data-constellation-upload data-upload-active="true" data-upload-playing="false">
+            <div class="constellation-upload__sources" aria-hidden="true">
+              <div class="constellation-upload__source constellation-upload__source--video">
+                <svg viewBox="0 0 32 32" fill="none"><rect x="2" y="6" width="28" height="20" rx="6" fill="currentColor"/><path d="m13 11 9 5-9 5Z" fill="#fff"/></svg>
+                <span>YouTube<small>Video link</small></span>
+              </div>
+              <div class="constellation-upload__source constellation-upload__source--pdf">
+                <svg viewBox="0 0 32 36" fill="none"><path d="M7 2h12l7 7v23a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width="1.5"/><path d="M19 2v8h7M10 15h11M10 19h8" stroke="currentColor" stroke-width="1.5"/><text x="16" y="29" text-anchor="middle" fill="currentColor" font-size="8" font-weight="800">PDF</text></svg>
+                <span>Lecture notes<small>PDF document</small></span>
+              </div>
+              <div class="constellation-upload__source constellation-upload__source--homework">
+                <svg viewBox="0 0 32 36" fill="none"><rect x="5" y="2" width="22" height="32" rx="3" fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width="1.5"/><path d="m10 11 2 2 4-4M18 11h5M10 19h13M10 24h9M10 29h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Homework<small>Practice &amp; problems</small></span>
+              </div>
+            </div>
+            <div class="ipad-mockup" aria-label="Study materials become a Constellation of connected skills on an iPad">
               <span class="ipad-button ipad-button--power"></span>
               <span class="ipad-button ipad-button--volume ipad-button--volume-up"></span>
               <span class="ipad-button ipad-button--volume ipad-button--volume-down"></span>
@@ -11644,6 +11661,44 @@
 
                 <!-- Screen Content Frame -->
                 <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
+
+                  <div class="constellation-upload__screen" aria-hidden="true">
+                    <div class="constellation-upload__heading">
+                      <small>Built from your materials</small>
+                      <strong>Your study material.<br>Your Constellation.</strong>
+                      <span>Calculus II · example learning goal</span>
+                    </div>
+                    <svg class="constellation-upload__network" viewBox="0 0 220 250" fill="none">
+                      <defs>
+                        <linearGradient id="upload-network-gradient" x1="20" y1="20" x2="200" y2="240" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#ff759c"/><stop offset=".45" stop-color="#be9bff"/><stop offset="1" stop-color="#56ece4"/>
+                        </linearGradient>
+                      </defs>
+                      <g class="constellation-upload__links">
+                        <path pathLength="1" d="M110 124 56 78 95 34 164 61 110 124 180 133 158 195 110 124 76 209 28 159 56 78M95 34 110 124 28 159M164 61 180 133M76 209 158 195M110 124 113 237"/>
+                      </g>
+                      <g class="constellation-upload__nodes">
+                        <circle cx="110" cy="124" r="17" fill="#a6adff" fill-opacity=".15" stroke="#bdc6ff"/>
+                        <path d="m110 114 2.8 7.2 7.2 2.8-7.2 2.8-2.8 7.2-2.8-7.2-7.2-2.8 7.2-2.8Z" fill="#eff3ff"/>
+                        <circle cx="95" cy="34" r="6" fill="#ff82aa"/><circle cx="56" cy="78" r="7" fill="#ffa878"/>
+                        <circle cx="164" cy="61" r="7" fill="#d29aff"/><circle cx="180" cy="133" r="5" fill="#ba9cff"/>
+                        <circle cx="28" cy="159" r="5" fill="#80bcff"/><circle cx="76" cy="209" r="7" fill="#58e7e5"/>
+                        <circle cx="158" cy="195" r="7" fill="#86ecc4"/><circle cx="113" cy="237" r="4" fill="#ffe78f"/>
+                        <text x="95" y="19" text-anchor="middle">Integrals</text>
+                        <text x="56" y="63" text-anchor="middle">Methods</text>
+                        <text x="164" y="45" text-anchor="middle">Series</text>
+                        <text x="76" y="229" text-anchor="middle">Practice</text>
+                        <text x="158" y="215" text-anchor="middle">Applications</text>
+                      </g>
+                    </svg>
+                    <div class="constellation-upload__hub">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m-5 5 5-5 5 5M5 15v5h14v-5"/></svg>
+                    </div>
+                    <div class="constellation-upload__status">
+                      <span class="constellation-upload__status-upload">Adding your learning materials…</span>
+                      <span class="constellation-upload__status-ready">✦ Your Constellation is ready.</span>
+                    </div>
+                  </div>
 
                   <!-- Step 2 Preview Screen: choose or create a Constellation -->
                   <div class="ipad-preview-layout" id="previewStep-2">
@@ -14858,13 +14913,13 @@
   const stepData = {
     1: {
       badge: "Overview",
-      title: "Explore Your Learning Worlds",
-      desc: 'See what your learning can become: a personalized study universe with <strong class="world-count">80+ visual Worlds</strong>. Explore the preview, then choose or create a Constellation to begin your learning journey.'
+      title: "Your Materials Become a Constellation",
+      desc: 'Bring a <strong>YouTube video link, lecture-note PDF, homework, or study guide</strong>. Luna turns your materials into a Constellation of connected skills to master. Make it your own with <strong class="world-count">80+ visual Worlds</strong>.'
     },
     2: {
       badge: "Step 01",
       title: "Choose or Create a Constellation",
-      desc: 'Open an existing Constellation or start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Add your syllabus, notes, homework, or study guides, and <strong>Luna</strong> turns the goal into 10 to 15 connected skills to master.'
+      desc: 'Open an existing Constellation or start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Paste a <strong>YouTube link</strong> or upload <strong>lecture PDFs, homework, a syllabus, or study guides</strong>. Luna builds a Constellation of 10 to 15 connected skills around your materials and goal.'
     },
     3: {
       badge: "Step 02",
