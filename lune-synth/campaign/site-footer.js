@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  function footerMarkup(notes) {
+  function footerMarkup(notes, compactCopy) {
     return `
       <footer class="site-footer" aria-label="Lune Synth footer">
         <div class="site-footer__directory">
@@ -105,7 +105,9 @@
           <a href="mailto:griffin@lunesynth.com">Contact</a>
         </nav>
         <p class="site-footer__powered-by">
-          Powered by <strong>GPT-6-Luna</strong>, yes, really. We named the app Lune Synth, named the tutor Luna, and then the model showed up wearing the same name. Nobody planned it, so we're just calling it fate.
+          ${compactCopy
+            ? 'Powered by <strong>GPT-6-Luna</strong>. The name was a coincidence.'
+            : "Powered by <strong>GPT-6-Luna</strong>, yes, really. We named the app Lune Synth, named the tutor Luna, and then the model showed up wearing the same name. Nobody planned it, so we're just calling it fate."}
         </p>
         <p class="site-footer__note" id="waitlist-offer-note" tabindex="-1">*Joining the waitlist is free and charges nothing. Founding 40 members keep their original offer under Terms §6.</p>
         ${notes.map(function (note) { return `<p class="site-footer__note">${note}</p>`; }).join("")}
@@ -119,7 +121,7 @@
         return note.innerHTML;
       });
       this.dataset.rendered = "true";
-      this.innerHTML = footerMarkup(notes);
+      this.innerHTML = footerMarkup(notes, this.hasAttribute("data-compact-copy"));
     }
   }
 

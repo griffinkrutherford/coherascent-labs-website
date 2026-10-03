@@ -10431,6 +10431,28 @@
       background: rgba(127, 99, 214, 0.12);
     }
 
+    .engine-benchmark-note {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+      max-width: 64ch;
+    }
+    .pricing__terms {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .pricing__terms summary {
+      width: fit-content;
+      cursor: pointer;
+      padding: 8px 0;
+      color: var(--text);
+    }
+    .pricing__terms summary:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
     /* ============================================================
        MOBILE DEVICE RENDERS (phones + portrait tablets, <= 900px)
        Big, upright, near-full-width device mockups with the copy
@@ -10855,14 +10877,14 @@
   <link rel="stylesheet" href="/campaign/pricing.css?v=3" />
   <link rel="stylesheet" href="/campaign/sky-motion.css?v=1" />
   <script src="/campaign/sky-motion.js?v=1" defer></script>
-  <script src="/campaign/site-footer.js?v=11" data-lune-site-footer defer></script>
+  <script src="/campaign/site-footer.js?v=12" data-lune-site-footer defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=9" />
   <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=4" />
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/home-device-angles.css?v=5" />
-  <link rel="stylesheet" href="/campaign/constellation-upload.css?v=1" />
+  <link rel="stylesheet" href="/campaign/constellation-upload.css?v=2" />
   <script src="/campaign/constellation-upload.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/subject-rotation.css?v=3" />
   <script src="/campaign/subject-rotation.js?v=3" defer></script>
@@ -10958,7 +10980,7 @@
       <img class="waitlist-luna-emote" src="/lune-synth/images/luna-emotes/celebrate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <div class="hero-waitlist-copy">
         <h3 id="lune-beta-title">Join the beta waitlist</h3>
-        <p class="waitlist-offer"><a href="#waitlist-offer-note" aria-describedby="waitlist-offer-note"><strong>Get in early:</strong> join free for priority beta invites, and hear about Lune Synth&trade; Pro launch offers before anyone else.<sup>*</sup></a></p>
+        <p class="waitlist-offer"><a href="#waitlist-offer-note" aria-describedby="waitlist-offer-note"><strong>Free to join.</strong> First in line for beta invites and Pro launch offers.<sup>*</sup></a></p>
       </div>
       <form class="hero-waitlist" data-waitlist-form novalidate>
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
@@ -11018,9 +11040,7 @@
         <div class="lost-cosmos__content">
           <div class="lost-cosmos__intro">
             <h3 class="lost-cosmos__headline">Learning is broken.</h3>
-            <p class="lost-cosmos__lede">
-              Focus scatters. Learning apps dazzle, then fail. AI does the thinking instead of the student.
-            </p>
+            <p class="lost-cosmos__lede">Scattered focus, flashy apps, and AI that thinks for you.</p>
             <div class="lost-cosmos__contrast" aria-label="Common struggles">
               <span>1. Scattered focus</span>
               <span>2. Flash over function</span>
@@ -11372,9 +11392,7 @@
     <section class="section section--neuro" aria-labelledby="neuro-title">
       <h2 class="section-title" id="neuro-title">You can’t copy-paste learning.</h2>
       <div class="neuro-shell section-content">
-        <p class="neuro-lede">
-          <strong>Do the hard parts with Lune Synth.</strong> Solve. Get feedback. Repeat.
-        </p>
+        <p class="neuro-lede"><strong>Solve it yourself, then get feedback.</strong></p>
 
         <div class="neuro-card">
           <h3 class="neuro-card__title">This is your brain</h3>
@@ -11397,15 +11415,9 @@
           </div>
         </div>
 
-        <p class="neuro-takeaway">
-          <strong>Cheating skips the practice.</strong>
-          Learning can help build myelin, the fatty insulation around nerve fibers, and in animal
-          studies repeated neural activity thickens those sheaths.
-          <strong>It's like lifting weights for your brain.</strong>
-          <strong>Lune Synth keeps you doing the work:</strong> solve, get feedback, repeat.
-        </p>
+        <p class="neuro-takeaway"><strong>Every attempt is practice your brain can use.</strong></p>
 
-        <p class="neuro-caption">Visual metaphor for skipped practice versus active learning.</p>
+        <p class="neuro-caption">A visual metaphor for active learning</p>
 
         <details class="neuro-science">
           <summary>
@@ -11524,7 +11536,7 @@
 
     <!-- ================= CONSTELLATIONS SLIDESHOW ================= -->
     <section class="section section--constellations-slideshow" id="constellations" aria-labelledby="constellations-title">
-      <h2 class="section-title" id="constellations-title">Turn a Big Study Goal Into a Constellation</h2>
+      <h2 class="section-title" id="constellations-title">Build Your Constellation</h2>
 
       <div class="slideshow-layout section-content">
 
@@ -11584,8 +11596,8 @@
 
           <div class="active-step-text">
             <span class="active-step-badge" id="activeStepBadge">Overview</span>
-            <h3 class="active-step-title" id="activeStepTitle">Your Materials Become a Constellation</h3>
-            <p class="active-step-desc" id="activeStepDesc">Bring a <strong>YouTube video link, lecture-note PDF, homework, or study guide</strong>. Luna turns your materials into a Constellation of connected skills to master. Make it your own with <strong class="world-count">80+ visual Worlds</strong>.</p>
+            <h3 class="active-step-title" id="activeStepTitle">Your Materials, Your Skill Map</h3>
+            <p class="active-step-desc" id="activeStepDesc">Bring <strong>YouTube links, lecture PDFs, or homework</strong>. Build a skill map in one of <strong class="world-count">80+ Worlds</strong>.</p>
             <button class="constellation-upload__toggle" type="button" data-upload-toggle aria-pressed="false" hidden>Pause animation</button>
 
             <!-- Dynamic World Selector Dropdown for the Overview (hidden on other steps) -->
@@ -11651,7 +11663,7 @@
                 <span>Homework<small>Practice &amp; problems</small></span>
               </div>
             </div>
-            <div class="ipad-mockup" aria-label="Study materials become a Constellation of connected skills on an iPad">
+            <div class="ipad-mockup" aria-label="11-inch iPad Pro Progress mock">
               <span class="ipad-button ipad-button--power"></span>
               <span class="ipad-button ipad-button--volume ipad-button--volume-up"></span>
               <span class="ipad-button ipad-button--volume ipad-button--volume-down"></span>
@@ -11661,44 +11673,6 @@
 
                 <!-- Screen Content Frame -->
                 <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
-
-                  <div class="constellation-upload__screen" aria-hidden="true">
-                    <div class="constellation-upload__heading">
-                      <small>Built from your materials</small>
-                      <strong>Your study material.<br>Your Constellation.</strong>
-                      <span>Calculus II · example learning goal</span>
-                    </div>
-                    <svg class="constellation-upload__network" viewBox="0 0 220 250" fill="none">
-                      <defs>
-                        <linearGradient id="upload-network-gradient" x1="20" y1="20" x2="200" y2="240" gradientUnits="userSpaceOnUse">
-                          <stop stop-color="#ff759c"/><stop offset=".45" stop-color="#be9bff"/><stop offset="1" stop-color="#56ece4"/>
-                        </linearGradient>
-                      </defs>
-                      <g class="constellation-upload__links">
-                        <path pathLength="1" d="M110 124 56 78 95 34 164 61 110 124 180 133 158 195 110 124 76 209 28 159 56 78M95 34 110 124 28 159M164 61 180 133M76 209 158 195M110 124 113 237"/>
-                      </g>
-                      <g class="constellation-upload__nodes">
-                        <circle cx="110" cy="124" r="17" fill="#a6adff" fill-opacity=".15" stroke="#bdc6ff"/>
-                        <path d="m110 114 2.8 7.2 7.2 2.8-7.2 2.8-2.8 7.2-2.8-7.2-7.2-2.8 7.2-2.8Z" fill="#eff3ff"/>
-                        <circle cx="95" cy="34" r="6" fill="#ff82aa"/><circle cx="56" cy="78" r="7" fill="#ffa878"/>
-                        <circle cx="164" cy="61" r="7" fill="#d29aff"/><circle cx="180" cy="133" r="5" fill="#ba9cff"/>
-                        <circle cx="28" cy="159" r="5" fill="#80bcff"/><circle cx="76" cy="209" r="7" fill="#58e7e5"/>
-                        <circle cx="158" cy="195" r="7" fill="#86ecc4"/><circle cx="113" cy="237" r="4" fill="#ffe78f"/>
-                        <text x="95" y="19" text-anchor="middle">Integrals</text>
-                        <text x="56" y="63" text-anchor="middle">Methods</text>
-                        <text x="164" y="45" text-anchor="middle">Series</text>
-                        <text x="76" y="229" text-anchor="middle">Practice</text>
-                        <text x="158" y="215" text-anchor="middle">Applications</text>
-                      </g>
-                    </svg>
-                    <div class="constellation-upload__hub">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m-5 5 5-5 5 5M5 15v5h14v-5"/></svg>
-                    </div>
-                    <div class="constellation-upload__status">
-                      <span class="constellation-upload__status-upload">Adding your learning materials…</span>
-                      <span class="constellation-upload__status-ready">✦ Your Constellation is ready.</span>
-                    </div>
-                  </div>
 
                   <!-- Step 2 Preview Screen: choose or create a Constellation -->
                   <div class="ipad-preview-layout" id="previewStep-2">
@@ -11781,11 +11755,8 @@
         <div class="quick-missions__content">
           <div class="quick-missions__intro">
             <p class="quick-missions__eyebrow">Fast study mode</p>
-            <h3 class="quick-missions__headline">One clear goal. A few focused minutes.</h3>
-            <p class="quick-missions__lede">
-              Quick Missions are ideal when you have a bite-sized goal. They narrow the next few minutes to one
-              fact to recall, one method to practice, or one mistake to fix.
-            </p>
+            <h3 class="quick-missions__headline">One skill in a few minutes.</h3>
+            <p class="quick-missions__lede">Fix one weak spot in <strong>2–6 minutes</strong>.</p>
             <div class="quick-missions__contrast" aria-label="Quick Mission characteristics">
               <span>2–6 minutes</span>
               <span>One skill at a time</span>
@@ -11815,7 +11786,7 @@
         <img class="card-corner-luna card-corner-luna--thinking" src="/lune-synth/images/luna-emotes/thinking.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <div class="problem-solver__intro">
           <h3 class="problem-solver__headline">Homework help that builds understanding.</h3>
-          <p class="problem-solver__lede">Add a question or assignment. Lune Synth organizes the work and walks you through each step.</p>
+          <p class="problem-solver__lede">Bring a problem; work through it step by step.</p>
         </div>
 
         <div class="problem-solver__flow" data-problem-carousel aria-label="Problem Solver app previews" aria-roledescription="carousel" tabindex="0">
@@ -11854,12 +11825,12 @@
           <article class="problem-solver__step" data-problem-caption="1" aria-hidden="true">
             <span class="problem-solver__step-number">02</span>
             <h3>Work through it</h3>
-            <p class="problem-solver__step-copy">See every step and find where you got stuck.</p>
+            <p class="problem-solver__step-copy">Find the step that tripped you up.</p>
           </article>
           <article class="problem-solver__step" data-problem-caption="2" aria-hidden="true">
             <span class="problem-solver__step-number">03</span>
             <h3>Practice it</h3>
-            <p class="problem-solver__step-copy">Turn the output into a <a href="#quick-missions-title">Quick Mission</a> or <a href="#constellations-title">Constellation</a>.</p>
+            <p class="problem-solver__step-copy">Keep practicing in a <a href="#quick-missions-title">Quick Mission</a> or <a href="#constellations-title">Constellation</a>.</p>
           </article>
         </div>
 
@@ -11983,7 +11954,7 @@
     </script>
 
     <section class="section section--handwriting" aria-labelledby="platform-title">
-      <h2 class="section-title" id="platform-title">Platform Components</h2>
+      <h2 class="section-title" id="platform-title">Your Work, Made Clear</h2>
       <article class="platform-showcase section-content" aria-label="Handwritten response slideshow">
         <div class="platform-showcase__sheet">
           <div class="platform-showcase__date" id="handwritten-date" data-placeholder="April 28th, 2026"></div>
@@ -12355,10 +12326,9 @@
           </div>
         </div>
         <div class="platform-showcase__copy">
-          <h3 class="platform-showcase__title">Handwrite. Get clear feedback.</h3>
+          <h3 class="platform-showcase__title">Your handwriting, understood.</h3>
           <p>
-            Learners solve on paper, scan their work, and get step-level guidance across a growing range of subjects.
-            Handwriting is one of the best ways to build the neural pathways that support deeper learning and recall.
+            Scan your work to find the mistake and fix the next step.
           </p>
         </div>
       </article>
@@ -12366,17 +12336,17 @@
       <div class="details section-content">
         <article class="detail-card detail-card--planet-a" data-liquid-glass>
           <strong>Write First</strong>
-          <p>Keep learners thinking on paper, not wrestling with a prompt box.</p>
+          <p>Your reasoning, on paper</p>
         </article>
         <article class="detail-card detail-card--planet-b" data-liquid-glass>
           <span class="planet-ring" aria-hidden="true"></span>
           <strong>See Every Step</strong>
-          <p>Lune Synth&trade; reads the work, finds the break, and shows what to fix next.</p>
+          <p>The mistake and the next move</p>
         </article>
         <article class="detail-card detail-card--planet-c" data-liquid-glass>
           <span class="planet-moon" aria-hidden="true"></span>
           <strong>Keep Momentum</strong>
-          <p>Smart practice, streaks, and feedback loops turn corrections into progress.</p>
+          <p>Practice that keeps you moving</p>
         </article>
       </div>
     </section>
@@ -12396,7 +12366,7 @@
               <span class="voice-flow__eyebrow">Voice Upload</span>
               <h3>If you can speak it, you know it.</h3>
               <p>
-                Learners explain their work out loud, clean up the live transcript, and let the app grade the final answer.
+                Speak your reasoning, edit the transcript, and submit.
               </p>
               <ul class="voice-flow__signals" aria-label="Voice upload features">
                 <li>Speak</li>
@@ -12459,7 +12429,7 @@
               <span class="voice-flow__eyebrow">Text Input</span>
               <h3>Clacking away.</h3>
               <p>
-                Learners can enter a typed answer, revise it in place, and send the final response to Lune Synth&trade; for grading.
+                Type your reasoning and send it for feedback.
               </p>
               <ul class="voice-flow__signals" aria-label="Text input features">
                 <li>Type</li>
@@ -12505,7 +12475,7 @@
               <span class="voice-flow__eyebrow">Choice Sets</span>
               <h3>Choose, commit, and check why.</h3>
               <p>
-                Learners can answer a choice question, commit to one option, and review the reasoning alongside the result.
+                Pick an answer and check your reasoning.
               </p>
               <ul class="voice-flow__signals" aria-label="Choice set features">
                 <li>Choose</li>
@@ -12943,7 +12913,7 @@
               decoding="async"
             />
             <h3>A tutor that <span class="engine-gradient-word">won't</span> do it for you.</h3>
-            <p>Reads your exact work. Small nudges only. Never the answer.</p>
+            <p>Your work, one nudge at a time.</p>
           </div>
 
           <div class="luna-card">
@@ -12959,7 +12929,7 @@
             <!-- Tab panels: copy left, phone mockup right (pattern from Constellations) -->
             <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
               <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Stuck? One precise hint for your exact step, then you finish it.</p>
+                <p class="luna-tab-copy__lede">Get one hint, then finish the step.</p>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Hints preview (phone mockup)">
@@ -12979,7 +12949,7 @@
 
             <div class="luna-tab-panel" id="lunaPanel-infographics" role="tabpanel" aria-labelledby="lunaTab-infographics">
               <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Words not enough? A quick diagram from your exact problem.</p>
+                <p class="luna-tab-copy__lede">A diagram built for your exact problem.</p>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Infographics preview (phone mockup)">
@@ -12999,7 +12969,7 @@
 
             <div class="luna-tab-panel" id="lunaPanel-keyterms" role="tabpanel" aria-labelledby="lunaTab-keyterms">
               <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Key terms surface in context exactly when they matter.</p>
+                <p class="luna-tab-copy__lede">The right term, right when you need it.</p>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Key Terms preview (phone mockup)">
@@ -13019,7 +12989,7 @@
 
             <div class="luna-tab-panel" id="lunaPanel-chat" role="tabpanel" aria-labelledby="lunaTab-chat">
               <div class="luna-tab-copy">
-                <p class="luna-tab-copy__lede">Ask while working. Prompts and checks that keep you thinking.</p>
+                <p class="luna-tab-copy__lede">Ask a question and keep doing the thinking.</p>
               </div>
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Chat preview (phone mockup)">
@@ -13082,7 +13052,7 @@
               <div class="capture-scene__flash"></div>
             </div>
             <p>
-              One photo sends handwritten thinking straight into the grading flow.
+              One photo, every step.
             </p>
           </article>
           <article class="processing-card">
@@ -13156,7 +13126,7 @@
               </div>
             </div>
             <p>
-              Lune Synth&trade; reads the page, checks the reasoning, and shows progress while it grades.
+              Your page becomes checkable reasoning.
             </p>
           </article>
           <article class="processing-card">
@@ -13215,7 +13185,7 @@
               </div>
             </div>
             <p>
-              Scores come with the exact mistake and a clear next practice loop.
+              Spot the mistake and practice the fix.
             </p>
           </article>
         </div>
@@ -14089,7 +14059,7 @@
           <!-- Medal details -->
           <div class="medal-viewer-info" style="margin-bottom: 20px;">
             <h3 class="medal-showcase-title" id="medalShowcaseTitle">Two Weeks</h3>
-            <p class="medal-showcase-desc" id="medalShowcaseDesc">Build a daily learning habit to keep your study streak active.</p>
+            <p class="medal-showcase-desc" id="medalShowcaseDesc">Keep showing up.</p>
             <div class="medal-requirement-box">
               <span class="medal-req-label">Unlock Milestone</span>
               <span class="medal-req-value" id="medalShowcaseReq">Practice on 10 consecutive days</span>
@@ -14107,7 +14077,7 @@
             <div class="secret-info" style="text-align: center;">
               <h4 style="font-size: 16px; font-weight: 700; color: var(--text); margin: 0 0 8px 0;">Rank 11+: Classified Cosmic Ranks</h4>
               <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 400px; margin: 0 auto;">
-                Ranks 11+ are part of the full system. Unlock them in the app to see the complete progression!
+                Unlock ranks 11+ in the app.
               </p>
             </div>
           </div>
@@ -14137,9 +14107,7 @@
           <div class="engine-header-row">
             <div class="engine-header-copy">
               <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
-              <p class="engine-lead">
-                Lune Synth uses structured rubrics, confidence checks, and one-tap corrections to make feedback easier to inspect. In a historical benchmark, 96.3% of reviewed responses avoided materially incorrect guidance; 90.1% were completely clean. These figures measure feedback soundness, not exact numeric scores or the current model's performance.
-              </p>
+              <p class="engine-lead">Grounded in rubrics. Checked for consistency.</p>
             </div>
 
             <div class="engine-gauges-row">
@@ -14153,7 +14121,7 @@
                 </div>
                 <div class="engine-gauge-info">
                   <strong><span class="engine-word-glow engine-word-glow--blue">Historical</span> Feedback Soundness</strong>
-                  <span>233 of 242 reviewed responses avoided materially incorrect guidance.</span>
+                  <span>233/242 responses without material errors</span>
                 </div>
               </div>
 
@@ -14167,11 +14135,13 @@
                 </div>
                 <div class="engine-gauge-info">
                   <strong><span class="engine-word-glow engine-word-glow--purple">Historical</span> Question Quality</strong>
-                  <span>115 of 120 individual questions had no material defect; 19 of 24 complete sets were pristine.</span>
+                  <span>115/120 questions without material defects</span>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="engine-benchmark-note">Historical feedback and question-quality benchmarks, not current-model or score-accuracy claims</div>
 
           <div class="engine-infographic" aria-label="Grading pipeline flow" aria-hidden="true">
             <article class="engine-stage">
@@ -14417,10 +14387,7 @@
       <h2 class="section-title" id="pricing-title">Simple, Honest Pricing</h2>
 
       <div class="pricing section-content" data-pricing>
-        <p class="pricing__intro">
-          <strong>Start free.</strong> Upgrade only if you want more room to practice.
-          Pro gives you more capacity to practice, with the same grader as Free.
-        </p>
+        <p class="pricing__intro"><strong>Start free.</strong> Pro doubles your daily AI capacity with the same grader.</p>
 
         <div class="pricing__grid">
           <article class="pricing-card" aria-labelledby="pricing-free-name">
@@ -14433,11 +14400,11 @@
             <p class="pricing-card__note">No card needed.</p>
             <div class="pricing-card__badges"><span class="pricing-badge pricing-badge--soft">Free during the beta</span></div>
             <ul class="pricing-card__features">
-              <li>Photograph or type your work and get <strong>step-by-step graded feedback</strong></li>
-              <li>Quick Missions, constellations and medals</li>
-              <li>Luna hints when you&rsquo;re stuck</li>
-              <li>5,000 AI actions a day <span>(generation, grading and tutoring)</span></li>
-              <li>Up to 10 handwritten pages per set</li>
+              <li><strong>Step-by-step feedback</strong> on your work</li>
+              <li>Quick Missions, Constellations &amp; medals</li>
+              <li>Luna hints</li>
+              <li>5,000 AI actions / day</li>
+              <li>10 handwritten pages / set</li>
             </ul>
             <a class="pricing-card__cta" href="#waitlist">Join the beta</a>
           </article>
@@ -14453,10 +14420,8 @@
             <div class="pricing-card__badges"></div>
             <ul class="pricing-card__features">
               <li>Everything in Free</li>
-              <li><strong>Luna tutor help, with more daily capacity</strong></li>
-              <li>10,000 AI actions a day <span>(twice the free plan)</span></li>
-              <li>Unlimited handwritten-page allowance <span>(50-page technical limit per upload)</span></li>
-              <li>The same grader as Free, with more room to use it</li>
+              <li><strong>10,000 AI actions / day</strong></li>
+              <li>Unlimited handwritten pages <span>(50 per upload)</span></li>
             </ul>
             <a class="pricing-card__cta" href="/pro/">See what Pro includes</a>
           </article>
@@ -14477,18 +14442,21 @@
             <ul class="pricing-card__features">
               <li>Everything in Pro Monthly</li>
               <li><strong>7 days free</strong>, then $59.88 a year</li>
-              <li>Cancel before the trial ends and you won&rsquo;t be charged</li>
-              <li>One price for the whole school year</li>
+              <li>Cancel during the trial to avoid charges</li>
             </ul>
             <a class="pricing-card__cta" href="/pro/">See what Pro includes</a>
           </article>
         </div>
 
-        <p class="pricing__fineprint">
-          Pro is coming soon and isn&rsquo;t available to buy yet. These are our approved launch prices in USD; any applicable tax is shown before checkout.
-          The free trial is one per account. The exact price, renewal terms and how to cancel are always shown in the app before you&rsquo;re charged.
-          Founding 40 and First Light offers apply as described in our <a href="/terms/">Terms of Service</a>.
-        </p>
+        <p class="pricing__fineprint">Pro is coming soon.</p>
+        <details class="pricing__terms">
+          <summary>Pricing details &amp; offer terms</summary>
+          <p class="pricing__fineprint">
+            Pro is coming soon and isn&rsquo;t available to buy yet. These are our approved launch prices in USD; any applicable tax is shown before checkout.
+            The free trial is one per account. The exact price, renewal terms and how to cancel are always shown in the app before you&rsquo;re charged.
+            Founding 40 and First Light offers apply as described in our <a href="/terms/">Terms of Service</a>.
+          </p>
+        </details>
       </div>
     </section>
 
@@ -14500,7 +14468,6 @@
           <div class="blog-preview__body">
             <span class="blog-preview__meta"><span class="blog-preview__tag">Learning Science</span><time datetime="2026-09-07">September 7, 2026</time></span>
             <h3 class="blog-preview__title">A study plan needs a return date</h3>
-            <span class="blog-preview__excerpt">Finishing a topic today does not tell you what will remain next week. Give important material a concrete appointment to come back.</span>
             <span class="blog-preview__more">Read more &rarr;</span>
           </div>
         </a>
@@ -14509,7 +14476,6 @@
           <div class="blog-preview__body">
             <span class="blog-preview__meta"><span class="blog-preview__tag">Learning Science</span><time datetime="2026-09-02">September 2, 2026</time></span>
             <h3 class="blog-preview__title">Close the notes. Find the gaps.</h3>
-            <span class="blog-preview__excerpt">A short attempt from memory can turn a vague feeling of familiarity into a specific list of what to study next.</span>
             <span class="blog-preview__more">Read more &rarr;</span>
           </div>
         </a>
@@ -14518,7 +14484,6 @@
           <div class="blog-preview__body">
             <span class="blog-preview__meta"><span class="blog-preview__tag">Learning Science</span><time datetime="2026-08-31">August 31, 2026</time></span>
             <h3 class="blog-preview__title">The hardest step is choosing the method</h3>
-            <span class="blog-preview__excerpt">A worksheet can tell you which formula to use before you read the problem. Mixed practice puts that decision back in your hands.</span>
             <span class="blog-preview__more">Read more &rarr;</span>
           </div>
         </a>
@@ -14526,7 +14491,7 @@
       <a class="blog-preview__all" href="/blog/">Visit the blog &rarr;</a>
     </section>
 
-    <lune-site-footer id="site-footer"></lune-site-footer>
+    <lune-site-footer id="site-footer" data-compact-copy></lune-site-footer>
   </main>
   <script src="../liquid-glass-cards.js?v=2"></script>
   <script src="/campaign/pricing.js?v=1" defer></script>
@@ -14913,28 +14878,28 @@
   const stepData = {
     1: {
       badge: "Overview",
-      title: "Your Materials Become a Constellation",
-      desc: 'Bring a <strong>YouTube video link, lecture-note PDF, homework, or study guide</strong>. Luna turns your materials into a Constellation of connected skills to master. Make it your own with <strong class="world-count">80+ visual Worlds</strong>.'
+      title: "Your Materials, Your Skill Map",
+      desc: 'Bring <strong>YouTube links, lecture PDFs, or homework</strong>. Build a skill map in one of <strong class="world-count">80+ Worlds</strong>.'
     },
     2: {
       badge: "Step 01",
-      title: "Choose or Create a Constellation",
-      desc: 'Open an existing Constellation or start with a broad objective, such as preparing for a <strong>Calculus II final exam</strong>. Paste a <strong>YouTube link</strong> or upload <strong>lecture PDFs, homework, a syllabus, or study guides</strong>. Luna builds a Constellation of 10 to 15 connected skills around your materials and goal.'
+      title: "Choose a Path or Build Your Own",
+      desc: 'Bring a goal and your materials; Luna builds <strong>10–15 connected skills</strong> to master.'
     },
     3: {
       badge: "Step 02",
-      title: "Progress From Asteroids to Stars",
-      desc: "Work through <strong>Asteroid, Planet, and Star missions</strong> across the roadmap. Each mission type requires more synthesis of the constellation’s skills, moving from focused practice toward problems that connect ideas across the larger study goal."
+      title: "From Asteroids to Stars",
+      desc: "Master one skill, then connect the dots through <strong>Asteroid, Planet, and Star missions</strong>."
     },
     4: {
       badge: "Step 03",
-      title: "Test Skill Groups in Galaxies",
-      desc: "<strong>Galaxy missions</strong> work like quizzes or tests. Each one assesses three to four related skills together, checking whether you can combine them and demonstrate mastery before the final cumulative challenge."
+      title: "Test the Connections",
+      desc: "Put <strong>3–4 skills</strong> to the test in one <strong>Galaxy mission</strong>."
     },
     5: {
       badge: "Step 04",
-      title: "Complete the Supercluster Final",
-      desc: "The <strong>Supercluster</strong> is the constellation’s final exam, requiring synthesis across all 10 to 15 skills. Score <strong>above 80%</strong> on the Supercluster to complete the entire Constellation and finish the broader study goal."
+      title: "Beat the Final",
+      desc: "Score <strong>above 80%</strong> on your <strong>Supercluster final</strong> to complete the Constellation."
     }
   };
 
@@ -15364,7 +15329,7 @@
 
   const categoryDetails = {
     streak: {
-      desc: "Build a daily learning habit to keep your study streak active.",
+      desc: "Keep showing up.",
       names: {
         1: "First Line", 2: "Day One", 3: "Daily Habit", 4: "Week Builder", 5: "Sustained",
         6: "Two Weeks", 7: "Three Weeks", 8: "One Month", 9: "Six Weeks", 10: "Two Months",
@@ -15382,7 +15347,7 @@
       }
     },
     polymath: {
-      desc: "Master diverse subjects and expand your learning paths.",
+      desc: "Master more subjects.",
       names: {
         1: "Blank Page", 2: "New Solver", 3: "Topic Tour", 4: "Field Walker", 5: "Cross-Pollinator",
         6: "Renaissance", 7: "Polymath", 8: "Polyglot Mind", 9: "Generalist", 10: "Library Walker",
@@ -15413,7 +15378,7 @@
       }
     },
     recovery: {
-      desc: "Practice and improve your scores on weak or troubled concepts (Black Holes).",
+      desc: "Turn weak spots into strengths.",
       names: {
         1: "First Black Hole", 2: "Event Horizon", 3: "Gravity Well", 4: "Deep Focus", 5: "Singularity Step",
         6: "Black-Hole Runner", 7: "Pressure Solver", 8: "Dark Core", 9: "Orbit Breaker", 10: "Horizon Master",
@@ -15444,7 +15409,7 @@
       }
     },
     marksman: {
-      desc: "Achieve high scores (85%+) on quizzes and exams.",
+      desc: "Score 85%+ on quizzes and exams.",
       names: {
         1: "Pencil Mark", 2: "First Shot", 3: "Steady Aim", 4: "Clean Shot", 5: "Bullseye",
         6: "Sharpshooter", 7: "Marksman", 8: "Sniper", 9: "Precision Score", 10: "Diamond Eye",
@@ -15475,7 +15440,7 @@
       }
     },
     handwriting: {
-      desc: "Scan handwritten answers to practice paper-and-pencil reasoning.",
+      desc: "Put your reasoning on paper.",
       names: {
         1: "First Scan", 2: "Pen Down", 3: "Ink Builder", 4: "Steady Hand", 5: "Page Worker",
         6: "Page Runner", 7: "Notebook Builder", 8: "Margin Master", 9: "Handwriting Pro", 10: "Notebook Master",
