@@ -2,8 +2,6 @@
 [data-constellation-upload] {
   position: relative;
   isolation: isolate;
-  --upload-duration: 12s;
-  --upload-offset: clamp(52px, 8vw, 106px);
 }
 .constellation-upload__sources { display: none; }
 [data-upload-active="true"] .constellation-upload__sources { display: block; }
@@ -17,7 +15,7 @@
   position: absolute;
   left: 50%;
   top: 56%;
-  width: 112px;
+  width: 120px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -28,29 +26,48 @@
   background: linear-gradient(135deg, color-mix(in srgb, var(--source-color) 32%, #141b32), #111728);
   box-shadow: 0 8px 25px #02061755, 0 0 22px color-mix(in srgb, var(--source-color) 25%, transparent);
   box-sizing: border-box;
-  transform: translate(calc(-50% + var(--source-x)), calc(-50% + var(--source-y)));
   opacity: 0;
-  animation: upload-source-video var(--upload-duration) infinite both;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 .constellation-upload__source svg { width: 27px; height: 30px; flex: none; color: var(--source-color); }
-.constellation-upload__source span { font-size: 10px; font-weight: 750; line-height: 1.4; }
+.constellation-upload__source span { font-size: 10.5px; font-weight: 750; line-height: 1.4; }
 .constellation-upload__source small { display: block; font-size: 8px; color: #c8d5ea; font-weight: 500; }
-.constellation-upload__source--video {
-  --source-color: #ff647e;
-  --source-x: calc(-1 * var(--upload-offset));
-  --source-y: -94px;
+.constellation-upload__source--video { --source-color: #ff647e; }
+.constellation-upload__source--pdf { --source-color: #ffca68; }
+.constellation-upload__source--homework { --source-color: #5ce4e0; }
+.constellation-upload__source--syllabus { --source-color: #ba95ff; }
+.constellation-upload__source--guide { --source-color: #b8eb6d; }
+.constellation-upload__source--photo { --source-color: #69b5ff; }
+.constellation-upload__source--notes { --source-color: #fa8bce; }
+.constellation-upload__trails {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 0;
 }
-.constellation-upload__source--pdf {
-  --source-color: #ffca68;
-  --source-x: var(--upload-offset);
-  --source-y: -22px;
-  animation-name: upload-source-pdf;
+.constellation-upload__trails path {
+  fill: none;
+  stroke: var(--source-color);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
 }
-.constellation-upload__source--homework {
-  --source-color: #5ce4e0;
-  --source-x: calc(-1 * var(--upload-offset));
-  --source-y: 54px;
-  animation-name: upload-source-homework;
+.constellation-upload__spark {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--source-color);
+  box-shadow: 0 0 7px var(--source-color), 0 0 16px var(--source-color);
+  opacity: 0;
+  z-index: 1;
 }
 .constellation-upload__toggle {
   margin: 0;
@@ -66,28 +83,10 @@
 }
 .constellation-upload__toggle:hover { color: var(--text); }
 .constellation-upload__toggle:focus-visible { outline: 2px solid var(--blue); outline-offset: 5px; border-radius: 3px; }
-[data-constellation-upload] .constellation-upload__source { animation-play-state: paused; }
-[data-upload-playing="true"] .constellation-upload__source { animation-play-state: running; }
-@keyframes upload-source-video {
-  0%, 4% { opacity: 0; transform: translate(calc(-50% + var(--source-x)), calc(-50% + var(--source-y) + 10px)) scale(.92); }
-  8%, 17% { opacity: 1; transform: translate(calc(-50% + var(--source-x)), calc(-50% + var(--source-y))) scale(1); }
-  28%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(.15); }
-}
-@keyframes upload-source-pdf {
-  0%, 11% { opacity: 0; transform: translate(calc(-50% + var(--source-x)), calc(-50% + var(--source-y) + 10px)) scale(.92); }
-  15%, 24% { opacity: 1; transform: translate(calc(-50% + var(--source-x)), calc(-50% + var(--source-y))) scale(1); }
-  35%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(.15); }
-}
-@keyframes upload-source-homework {
-  0%, 18% { opacity: 0; transform: translate(calc(-50% + var(--source-x)), calc(-50% + var(--source-y) + 10px)) scale(.92); }
-  22%, 31% { opacity: 1; transform: translate(calc(-50% + var(--source-x)), calc(-50% + var(--source-y))) scale(1); }
-  42%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(.15); }
-}
 @media (max-width: 900px) {
-  [data-constellation-upload] { --upload-offset: clamp(52px, 17vw, 85px); }
-  .constellation-upload__source { width: 104px; }
+  .constellation-upload__source { width: 108px; padding: 8px; }
+  .constellation-upload__source span { font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .constellation-upload__source { animation: none; }
   .constellation-upload__sources { display: none !important; }
 }
