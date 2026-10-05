@@ -395,11 +395,20 @@
       display: none;
     }
 
+    .hero__etymology,
     .hero__mission {
       margin: 0;
       font-size: clamp(17px, 1.8vw, 19px);
       line-height: 1.8;
       color: var(--muted);
+    }
+
+    .hero__etymology {
+      margin-bottom: 24px;
+    }
+
+    .hero__etymology strong {
+      color: var(--text);
     }
 
     .meta {
@@ -1480,6 +1489,7 @@
         font-size: clamp(30px, 10vw, 60px);
       }
 
+      .hero__etymology,
       .hero__mission {
         font-size: 15px;
         line-height: 1.72;
@@ -1660,6 +1670,12 @@
         <p class="hero__subheadline">Seeking truth and integrity in the age of generative AI.</p>
       </div>
       <div class="hero-copy--details">
+        <p class="hero__etymology">
+          Coherascent is a portmanteau of <strong>coherent ascension</strong>. The name nods to gradient
+          ascent algorithms in optimization and machine learning, and expresses our approach to
+          generative AI and software development: progress grounded in truth, integrity, and coherence.
+          <strong>We can ascend together.</strong>
+        </p>
         <p class="hero__mission">
           Coherascent Labs operates as a dual-mandate firm: advancing neuro-symbolic and deterministic
           AI research to reduce hallucination at the architectural level, while building educational
