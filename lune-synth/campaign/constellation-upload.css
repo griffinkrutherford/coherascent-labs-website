@@ -30,16 +30,25 @@
   transform: translate(-50%, -50%);
   z-index: 2;
 }
-.constellation-upload__source svg { width: 27px; height: 30px; flex: none; color: var(--source-color); }
+/* Match the header artwork: bespoke ink silhouettes tinted through an alpha mask. */
+.constellation-upload__source .constellation-upload__icon {
+  display: block;
+  width: 30px;
+  height: 32px;
+  flex: 0 0 30px;
+  background-color: var(--source-color);
+  -webkit-mask: var(--source-icon) center / contain no-repeat;
+  mask: var(--source-icon) center / contain no-repeat;
+}
 .constellation-upload__source span { font-size: 10.5px; font-weight: 750; line-height: 1.4; }
 .constellation-upload__source small { display: block; font-size: 8px; color: #c8d5ea; font-weight: 500; }
-.constellation-upload__source--video { --source-color: #ff647e; }
-.constellation-upload__source--pdf { --source-color: #ffca68; }
-.constellation-upload__source--homework { --source-color: #5ce4e0; }
-.constellation-upload__source--syllabus { --source-color: #ba95ff; }
-.constellation-upload__source--guide { --source-color: #b8eb6d; }
-.constellation-upload__source--photo { --source-color: #69b5ff; }
-.constellation-upload__source--notes { --source-color: #fa8bce; }
+.constellation-upload__source--video { --source-color: #ff647e; --source-icon: url("/campaign/upload-icons/youtube.svg"); }
+.constellation-upload__source--pdf { --source-color: #ffca68; --source-icon: url("/campaign/upload-icons/lecture-notes.svg"); }
+.constellation-upload__source--homework { --source-color: #5ce4e0; --source-icon: url("/campaign/upload-icons/homework.svg"); }
+.constellation-upload__source--syllabus { --source-color: #ba95ff; --source-icon: url("/campaign/upload-icons/syllabus.svg"); }
+.constellation-upload__source--guide { --source-color: #b8eb6d; --source-icon: url("/campaign/upload-icons/study-guide.svg"); }
+.constellation-upload__source--photo { --source-color: #69b5ff; --source-icon: url("/campaign/upload-icons/photo.svg"); }
+.constellation-upload__source--notes { --source-color: #fa8bce; --source-icon: url("/campaign/upload-icons/written-notes.svg"); }
 .constellation-upload__toggle {
   margin: 0;
   padding: 5px 0;
