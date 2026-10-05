@@ -219,7 +219,8 @@ function render(page) {
   <meta property="og:image:alt" content="${escapeHtml(ogImageAlt)}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${ogImage}" />
-  <link rel="icon" type="image/png" href="/circle_favicon.png" />
+  <link rel="icon" type="image/png" sizes="120x120" href="/lune-synth/favicon-luna.png" />
+  <link rel="apple-touch-icon" href="/images/lune-synth-icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />

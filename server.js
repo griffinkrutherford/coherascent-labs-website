@@ -367,6 +367,11 @@ function handleWaitlist(req, res) {
 }
 
 function serveLuneHost(req, res, pathname) {
+  if (pathname === '/favicon.ico') {
+    serveStatic(req, res, '/lune-synth/favicon-luna.ico');
+    return;
+  }
+
   if ((pathname === '/beta-offer' || pathname === '/beta-offer/') && isGetLike(req)) {
     redirect(res, `https://${LUNE_HOST}/${getRequestSuffix(req)}`, 302);
     return;

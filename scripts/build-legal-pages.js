@@ -228,7 +228,8 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
   <meta name="twitter:title" content="${socialTitle}" />
   <meta name="twitter:description" content="${socialDescription}" />
   <meta name="twitter:image" content="${socialImage}" />
-  <link rel="icon" type="image/png" href="/circle_favicon.png" />
+  <link rel="icon" type="image/png" sizes="120x120" href="/lune-synth/favicon-luna.png" />
+  <link rel="apple-touch-icon" href="/images/lune-synth-icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
