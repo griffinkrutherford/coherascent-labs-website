@@ -48,7 +48,7 @@
 .constellation-upload__source--syllabus { --source-color: #ba95ff; --source-icon: url("/campaign/upload-icons/syllabus.svg"); }
 .constellation-upload__source--guide { --source-color: #b8eb6d; --source-icon: url("/campaign/upload-icons/study-guide.svg"); }
 .constellation-upload__source--photo { --source-color: #69b5ff; --source-icon: url("/campaign/upload-icons/photo.svg"); }
-.constellation-upload__source--notes { --source-color: #fa8bce; --source-icon: url("/campaign/upload-icons/written-notes.svg"); }
+.constellation-upload__source--notes { --source-color: #fa8bce; --source-icon: url("/campaign/upload-icons/written-notes.svg?v=2"); }
 .constellation-upload__toggle {
   margin: 0;
   padding: 5px 0;
