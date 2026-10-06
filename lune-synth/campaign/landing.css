@@ -727,3 +727,68 @@ img { max-width: 100%; }
   html { scroll-behavior: auto; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
+
+/* AP subject discovery stays compact, with course links behind native disclosures. */
+.ap-directory,
+.ap-related { margin-top: clamp(38px, 6vw, 76px); }
+.ap-directory > h2,
+.ap-related > h2 {
+  margin: 0 0 24px;
+  font: 800 clamp(26px, 3.5vw, 42px)/1.15 var(--font-sans);
+  letter-spacing: -.035em;
+}
+.ap-directory__groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+.ap-directory__group {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+}
+.ap-directory__group > summary {
+  padding: 20px;
+  cursor: pointer;
+  color: var(--text);
+  font: 750 16px/1.5 var(--font-sans);
+}
+.ap-directory__group > summary::marker { color: var(--blue); }
+.ap-directory__group > summary > span {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.ap-directory__links { display: grid; gap: 8px; }
+.ap-directory__group .ap-directory__links { padding: 0 14px 14px; }
+.ap-directory__links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid rgba(100, 168, 255, .14);
+  border-radius: 12px;
+  background: rgba(4, 10, 26, .6);
+  color: var(--text);
+  font: 650 14px/1.5 var(--font-sans);
+  text-decoration: none;
+}
+.ap-directory__links a > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.ap-directory__links a > span:last-child { color: var(--blue); flex: none; }
+.ap-directory__links a:hover { border-color: var(--blue); background: rgba(100, 168, 255, .1); }
+.ap-directory__links a:focus-visible,
+.ap-directory__group > summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.ap-directory__catalog { display: inline-block; margin-top: 20px; font-size: 12px; }
+.ap-breadcrumb { margin-bottom: 20px; font-size: 12px; }
+.ap-related > .ap-directory__links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 700px) {
+  .ap-directory__groups,
+  .ap-related > .ap-directory__links { grid-template-columns: 1fr; }
+  .ap-directory__group > summary { padding: 16px; font-size: 15px; }
+}

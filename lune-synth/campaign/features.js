@@ -163,6 +163,7 @@
   };
 
   function constellationSteps(config) {
+    if (Array.isArray(config.steps) && config.steps.length === 5) return config.steps;
     return [
       {
         label: "Overview",

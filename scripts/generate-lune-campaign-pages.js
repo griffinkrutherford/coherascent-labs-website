@@ -120,6 +120,7 @@ function jsonForHtml(value) {
 }
 
 function defaultWorldFor(page) {
+  if (["earth", "jupiter", "math", "retro"].includes(page.defaultWorld)) return page.defaultWorld;
   if (mathWorldVariants.has(page.variant)) return "math";
   if (jupiterWorldVariants.has(page.variant)) return "jupiter";
   if (retroWorldVariants.has(page.variant)) return "retro";
@@ -127,7 +128,7 @@ function defaultWorldFor(page) {
 }
 
 function featureConfig(page) {
-  const topic = featureTopics[page.variant] || page.eyebrow || "your study goal";
+  const topic = page.featureTopic || featureTopics[page.variant] || page.eyebrow || "your study goal";
   const isParent = page.family === "parent" || page.family === "family";
   const quickHeadline = isParent
     ? `Turn today's ${topic} struggle into one manageable mission.`
@@ -190,13 +191,44 @@ function benefitMarkup(benefits) {
           </article>`).join("");
 }
 
+function apSubjectLinks(subjectPages) {
+  return subjectPages.map((subject) => `<a href="${escapeHtml(subject.route)}"><span>${escapeHtml(subject.apSubject.name)}</span><span aria-hidden="true">→</span></a>`).join("\n");
+}
+
+function apDirectoryMarkup(page) {
+  if (page.variant !== "ap-exams") return "";
+  const subjects = pages.filter((subject) => subject.apSubject);
+  const groups = [...new Set(subjects.map((subject) => subject.apSubject.group))];
+  return `<section class="ap-directory campaign-shell" id="ap-subjects" aria-labelledby="ap-subjects-title">
+      <h2 id="ap-subjects-title">Choose your AP subject</h2>
+      <div class="ap-directory__groups">${groups.map((group) => {
+        const members = subjects.filter((subject) => subject.apSubject.group === group);
+        return `<details class="ap-directory__group">
+          <summary>${escapeHtml(group)} <span>${members.length} courses</span></summary>
+          <nav class="ap-directory__links" aria-label="${escapeHtml(group)} AP subjects">${apSubjectLinks(members)}</nav>
+        </details>`;
+      }).join("\n")}</div>
+      <a class="ap-directory__catalog" href="https://apcentral.collegeboard.org/courses" target="_blank" rel="noopener noreferrer">Official AP course catalog ↗</a>
+    </section>`;
+}
+
+function apRelatedMarkup(page) {
+  if (!page.apSubject) return "";
+  const related = pages.filter((subject) => subject.apSubject && subject.apSubject.group === page.apSubject.group && subject.variant !== page.variant).slice(0, 4);
+  return `<section class="ap-related campaign-shell" aria-labelledby="ap-related-title">
+      <h2 id="ap-related-title">More AP practice</h2>
+      <nav class="ap-directory__links" aria-label="Related AP subjects">${apSubjectLinks(related)}</nav>
+      <a class="ap-directory__catalog" href="/test-prep/ap-exams/#ap-subjects">All AP subjects →</a>
+    </section>`;
+}
+
 function render(page) {
   const canonical = `https://lunesynth.com${page.route}`;
   // Social scrapers want a 1.91:1 landscape card; the phone screenshots are
-  // portrait and get cropped to an unreadable sliver. Each page ships its own
-  // 1200x630 og-card.jpg next to its index.html.
-  const ogImage = `${canonical.replace(/\/$/, "")}/og-card.jpg`;
-  const ogImageAlt = `${page.metaTitle.replace(/\s*\|\s*Lune Synth™?\s*$/, "")} | Lune Synth, the anti-slop learning app`;
+  // portrait and get cropped to an unreadable sliver. Campaigns can use their
+  // local 1200x630 card or explicitly reuse the shared Lune Synth brand card.
+  const ogImage = page.ogImage || `${canonical.replace(/\/$/, "")}/og-card.jpg`;
+  const ogImageAlt = page.ogImageAlt || `${page.metaTitle.replace(/\s*\|\s*Lune Synth™?\s*$/, "")} | Lune Synth, the anti-slop learning app`;
   const disclaimer = page.disclaimer
     ? `<p class="campaign-footer__disclaimer">${escapeHtml(page.disclaimer)}</p>`
     : "";
@@ -206,6 +238,7 @@ function render(page) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+${page.scoreExample ? `  <script type="application/json" data-score-example>${jsonForHtml(page.scoreExample)}</script>\n` : ""}
   <title>${escapeHtml(page.metaTitle)}</title>
   <meta name="description" content="${escapeHtml(page.metaDescription)}" />
   <link rel="canonical" href="${canonical}" />
@@ -225,7 +258,7 @@ function render(page) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="preload" href="${escapeHtml(page.phoneImage)}" as="image" />
-  <link rel="stylesheet" href="/campaign/landing.css?v=8" />
+  <link rel="stylesheet" href="/campaign/landing.css?v=9" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
@@ -234,15 +267,15 @@ function render(page) {
   <link rel="stylesheet" href="/campaign/waitlist-prompt.css?v=1" />
   <script src="/campaign/waitlist-prompt.js?v=1" defer></script>
   <script src="/campaign/cta.js?v=2" defer></script>
-  <script src="/campaign/features.js?v=8" defer></script>
-  <script src="/campaign/landing.js?v=7" defer></script>
+  <script src="/campaign/features.js?v=9" defer></script>
+  <script src="/campaign/landing.js?v=8" defer></script>
   <link rel="stylesheet" href="/campaign/device-tilt.css?v=7" />
   <script src="/campaign/device-tilt.js?v=8" defer></script>
   <script src="/campaign/offer-popup.js?v=2" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/site-header.css?v=5" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
-  <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
+  <script src="/campaign/site-footer.js?v=${page.apSubject || page.variant === "ap-exams" ? 12 : 9}" data-lune-site-footer defer></script>
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
@@ -281,6 +314,7 @@ function render(page) {
   <main class="campaign-main">
     <section class="campaign-hero campaign-shell" aria-labelledby="campaign-title">
       <div class="campaign-hero__copy" data-reveal>
+${page.apSubject ? `        <nav class="ap-breadcrumb" aria-label="AP navigation"><a href="/test-prep/ap-exams/#ap-subjects">← All AP subjects</a></nav>\n` : ""}
         <p class="campaign-eyebrow">${escapeHtml(page.eyebrow)}</p>
         <h1 id="campaign-title">${escapeHtml(page.headline)}</h1>
         <p class="campaign-hero__body">${escapeHtml(page.heroBody)}</p>
@@ -315,6 +349,8 @@ function render(page) {
       </div>
     </section>
 
+${apDirectoryMarkup(page)}
+
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
         <p class="section-kicker">${escapeHtml(page.problemKicker)}</p>
@@ -331,7 +367,7 @@ function render(page) {
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
       <div class="campaign-section__heading" data-reveal>
         <p class="section-kicker">The Lune Synth loop</p>
-        <h2 id="process-title">The student thinks first. The technology helps second.</h2>
+        <h2 id="process-title">${escapeHtml(page.processHeadline || "The student thinks first. The technology helps second.")}</h2>
       </div>
       <div class="benefit-grid">${benefitMarkup(page.benefits)}
       </div>
@@ -366,6 +402,8 @@ function render(page) {
 
 ${featureMarkup(page)}
 
+${apRelatedMarkup(page)}
+
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
         <h2 id="final-title">${escapeHtml(page.closingHeadline)}</h2>
@@ -377,14 +415,22 @@ ${featureMarkup(page)}
     </section>
   </main>
 
-  <lune-site-footer id="site-footer">
+  <lune-site-footer id="site-footer"${page.apSubject || page.variant === "ap-exams" ? " data-compact-copy" : ""}>
 ${disclaimer ? `    <span data-footer-note>${disclaimer.replace(/^<p class="campaign-footer__disclaimer">|<\/p>$/g, "")}</span>\n` : ""}  </lune-site-footer>
 </body>
 </html>
 `;
 }
 
-for (const sourcePage of pages) {
+const requested = process.argv.slice(2);
+for (const selector of requested) {
+  if (!pages.some((page) => page.variant === selector || page.route === selector)) {
+    throw new Error(`Unknown campaign selector: ${selector}`);
+  }
+}
+const selectedPages = requested.length ? pages.filter((page) => requested.includes(page.variant) || requested.includes(page.route)) : pages;
+
+for (const sourcePage of selectedPages) {
   const page = normalizePage(sourcePage);
   const outputPath = path.join(root, page.output);
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });

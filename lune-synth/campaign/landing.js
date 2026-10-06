@@ -16,7 +16,7 @@
       sat: { title: "SAT score improvement", from: 1180, to: 1400, gain: "+220 points", scope: "SAT total · 400–1600 scale", source: "https://satsuite.collegeboard.org/scores/what-scores-mean", color: "#64a8ff" },
       act: { title: "ACT score improvement", from: 22, to: 28, gain: "+6 points", scope: "ACT composite · 1–36 scale", source: "https://www.act.org/content/act/en/products-and-services/the-act/scores/understanding-your-scores.html", color: "#b89aff" },
       psat: { title: "PSAT/NMSQT score improvement", from: 1020, to: 1260, gain: "+240 points", scope: "PSAT/NMSQT total · 320–1520 scale", source: "https://satsuite.collegeboard.org/scores/what-scores-mean", color: "#6de1ef" },
-      "ap-exams": { title: "AP Calculus AB score improvement", from: 2, to: 4, gain: "+2 score levels", scope: "AP Calculus AB · 1–5 scale", source: "https://apstudents.collegeboard.org/about-ap-scores", color: "#ffd27d" },
+      "ap-exams": { title: "AP score improvement", from: 2, to: 4, gain: "+2 score levels", scope: "AP Calculus AB · 1–5 scale", source: "https://apstudents.collegeboard.org/about-ap-scores", color: "#ffd27d" },
       ged: { title: "GED Math score improvement", from: 148, to: 165, gain: "+17 points", scope: "GED Math · 100–200 scale", source: "https://api.ged.com/score_scale/", color: "#7ee4b6" },
       gre: { title: "GRE Quant score improvement", from: 145, to: 160, gain: "+15 points", scope: "GRE Quantitative · 130–170 scale", source: "https://www.ets.org/content/ets-org/ca/en/gre/test-takers/general-test/scores/get-scores.html", color: "#bf9dff" },
       lsat: { title: "LSAT score improvement", from: 151, to: 163, gain: "+12 points", scope: "LSAT score · 120–180 scale", source: "https://www.lsac.org/lsat/lsat-scoring", color: "#f1ce8e" },
@@ -29,6 +29,15 @@
     };
     var scoreVariant = document.documentElement.dataset.campaignVariant || "test";
     var example = scoreExamples[scoreVariant];
+    var scoreData = document.querySelector("script[data-score-example]");
+    if (scoreData) {
+      try {
+        var customExample = JSON.parse(scoreData.textContent);
+        if (customExample && typeof customExample.title === "string" && Number.isFinite(customExample.from) && Number.isFinite(customExample.to)) {
+          example = customExample;
+        }
+      } catch (_) { /* Keep the standard example if page data is invalid. */ }
+    }
     if (example) {
       var scoreSection = document.createElement("section");
       scoreSection.className = "campaign-score campaign-shell";
