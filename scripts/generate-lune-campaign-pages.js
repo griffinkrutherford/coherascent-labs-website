@@ -227,7 +227,7 @@ function render(page) {
   <link rel="preload" href="${escapeHtml(page.phoneImage)}" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=6" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
-  <link rel="stylesheet" href="/campaign/features.css?v=3" />
+  <link rel="stylesheet" href="/campaign/features.css?v=4" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
   <script src="/campaign/cta-config.js?v=2" defer></script>
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
