@@ -552,55 +552,27 @@ img { max-width: 100%; }
 .feedback-step p { margin: 0; color: var(--text); font-size: 15.5px; line-height: 1.65; }
 
 .campaign-score {
-  margin-top: clamp(70px, 10vw, 120px);
-  padding: clamp(30px, 5vw, 54px);
-  border: 1px solid rgba(100, 168, 255, 0.24);
+  margin-top: clamp(20px, 3vw, 40px);
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid color-mix(in srgb, var(--score-accent) 32%, transparent);
   border-radius: 30px;
-  background:
-    radial-gradient(circle at 8% 18%, rgba(100, 168, 255, 0.17), transparent 34%),
-    radial-gradient(circle at 92% 82%, rgba(164, 123, 255, 0.17), transparent 34%),
-    rgba(8, 16, 34, 0.82);
+  background: radial-gradient(ellipse at 85% 30%, color-mix(in srgb, var(--score-accent) 14%, transparent), transparent 65%), rgba(8, 16, 34, 0.82);
   box-shadow: 0 24px 70px rgba(2, 8, 24, 0.34);
 }
-
-.campaign-score__copy { max-width: 850px; }
-
-.campaign-score__copy h2 {
+.campaign-score__title {
   margin: 0;
-  font-family: var(--font-sans);
-  font-size: clamp(31px, 4.8vw, 54px);
-  letter-spacing: -0.035em;
-  line-height: 1.08;
+  color: var(--text);
+  font: 800 clamp(24px, 3.4vw, 42px)/1.12 var(--font-sans);
+  letter-spacing: -.035em;
   text-wrap: balance;
 }
-
-.campaign-score__copy > p:last-child {
-  max-width: 780px;
-  margin: 20px 0 0;
-  color: var(--muted);
-  font-size: clamp(16px, 1.7vw, 19px);
-  line-height: 1.68;
-}
-
-.campaign-score__example {
-  margin-top: 28px;
-  padding: clamp(16px, 3vw, 30px);
-  border: 1px solid color-mix(in srgb, var(--score-accent) 35%, transparent);
-  border-radius: 22px;
-  background: radial-gradient(ellipse at 85% 30%, color-mix(in srgb, var(--score-accent) 14%, transparent), transparent 65%), rgba(3, 9, 23, 0.62);
-}
-.campaign-score__example-kicker {
-  margin: 0 0 20px;
-  color: var(--score-accent);
-  font: 800 11px/1.4 var(--font-sans);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
+.campaign-score__title sup { color: var(--muted); font-size: 12px; margin-left: 3px; }
 .campaign-score__jump {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   gap: clamp(8px, 3vw, 34px);
   align-items: start;
+  margin-top: 26px;
 }
 .campaign-score__endpoint { min-width: 0; }
 .campaign-score__label {
@@ -612,7 +584,7 @@ img { max-width: 100%; }
 .campaign-score__value {
   display: block;
   color: #b5c6df;
-  font: 800 clamp(28px, 7vw, 84px)/1.05 var(--font-sans);
+  font: 800 clamp(32px, 7vw, 84px)/1.05 var(--font-sans);
   font-variant-numeric: tabular-nums;
   letter-spacing: -.045em;
 }
@@ -621,7 +593,7 @@ img { max-width: 100%; }
   text-shadow: 0 0 34px color-mix(in srgb, var(--score-accent) 25%, transparent);
 }
 .campaign-score__arrow {
-  margin-top: clamp(24px, 3.2vw, 48px);
+  margin-top: clamp(26px, 3.2vw, 48px);
   color: var(--score-accent);
   font: 500 clamp(20px, 4vw, 44px)/1 var(--font-sans);
 }
@@ -634,54 +606,11 @@ img { max-width: 100%; }
   color: var(--score-accent);
   font: 750 clamp(10px, 1.1vw, 12px)/1.4 var(--font-sans);
 }
-.campaign-score__example-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 18px;
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid color-mix(in srgb, var(--score-accent) 18%, transparent);
-  color: var(--muted);
-  font-size: 11px;
-}
-.campaign-score__example-meta a { color: var(--score-accent); }
-.campaign-score__example-note {
-  margin: 10px 0 0;
+.campaign-score__note {
+  margin: 20px 0 0;
   color: var(--muted);
   font-size: 11px;
   line-height: 1.5;
-}
-
-.campaign-score__path {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 34px;
-}
-
-.campaign-score__path > div {
-  display: grid;
-  align-content: start;
-  gap: 8px;
-  min-height: 154px;
-  padding: 22px;
-  border: 1px solid rgba(164, 123, 255, 0.18);
-  border-radius: 18px;
-  background: rgba(5, 12, 28, 0.7);
-}
-
-.campaign-score__path strong {
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: 17px;
-}
-
-.campaign-score__path span {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
 }
 
 .campaign-final { padding: 72px 0 24px; }
@@ -763,8 +692,6 @@ img { max-width: 100%; }
 
   .campaign-hero__body { margin-right: auto; margin-left: auto; }
   .campaign-hero__visual { margin-top: 16px; }
-  .campaign-score__path { grid-template-columns: 1fr; }
-  .campaign-score__path > div { min-height: 0; }
   /* Upright once the hero stacks: a lone centred phone reads as skewed rather
      than dynamic, and .feature-phone / .feature-ipad already zero out here. */
   .phone-mock { width: min(74vw, 286px); transform: none; }
