@@ -582,6 +582,78 @@ img { max-width: 100%; }
   line-height: 1.68;
 }
 
+.campaign-score__example {
+  margin-top: 28px;
+  padding: clamp(16px, 3vw, 30px);
+  border: 1px solid color-mix(in srgb, var(--score-accent) 35%, transparent);
+  border-radius: 22px;
+  background: radial-gradient(ellipse at 85% 30%, color-mix(in srgb, var(--score-accent) 14%, transparent), transparent 65%), rgba(3, 9, 23, 0.62);
+}
+.campaign-score__example-kicker {
+  margin: 0 0 20px;
+  color: var(--score-accent);
+  font: 800 11px/1.4 var(--font-sans);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.campaign-score__jump {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(8px, 3vw, 34px);
+  align-items: start;
+}
+.campaign-score__endpoint { min-width: 0; }
+.campaign-score__label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font: 700 clamp(10px, 1.1vw, 13px)/1.4 var(--font-sans);
+}
+.campaign-score__value {
+  display: block;
+  color: #b5c6df;
+  font: 800 clamp(28px, 7vw, 84px)/1.05 var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.045em;
+}
+.campaign-score__endpoint--goal .campaign-score__value {
+  color: var(--score-accent);
+  text-shadow: 0 0 34px color-mix(in srgb, var(--score-accent) 25%, transparent);
+}
+.campaign-score__arrow {
+  margin-top: clamp(24px, 3.2vw, 48px);
+  color: var(--score-accent);
+  font: 500 clamp(20px, 4vw, 44px)/1 var(--font-sans);
+}
+.campaign-score__gain {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--score-accent) 12%, transparent);
+  color: var(--score-accent);
+  font: 750 clamp(10px, 1.1vw, 12px)/1.4 var(--font-sans);
+}
+.campaign-score__example-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 18px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid color-mix(in srgb, var(--score-accent) 18%, transparent);
+  color: var(--muted);
+  font-size: 11px;
+}
+.campaign-score__example-meta a { color: var(--score-accent); }
+.campaign-score__example-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
 .campaign-score__path {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
