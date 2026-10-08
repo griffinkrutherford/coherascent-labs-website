@@ -241,6 +241,7 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
+  <link rel="stylesheet" href="/campaign/typography.css?v=1" />
 </head>
 <body>
   <header class="site-header">
