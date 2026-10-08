@@ -1,3 +1,13 @@
+/* Fraunces by Undercase Type, SIL Open Font License; see /lune-synth/fonts/Fraunces-LICENSE.txt.
+   The local subset contains only the Lune Synth wordmark and its trademark. */
+@font-face {
+  font-family: "Fraunces Wordmark";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/lune-synth/fonts/lune-wordmark-fraunces.woff2") format("woff2");
+}
+
 /* Shared homepage navigation styles. */
  .nav-link, .brand-dropdown-content a {font-family: var(--font-sans);}
 .site-header {display: flex; justify-content: space-between; align-items: center; gap: 24px; position: sticky; top: 0px; z-index: 30; isolation: isolate; --header-padding-y: 24px; margin-bottom: 36px; padding: var(--header-padding-y) 0;}
@@ -193,3 +203,36 @@ html, body { overflow-x: clip; }
 body > .site-header { position: sticky; top: 0; z-index: 100; }
 body > .site-header + main { padding-top: 0; }
 .site-header { --blue: #64a8ff; --purple: #a47bff; --line: rgba(164, 123, 255, 0.22); }
+
+/* A sculpted serif wordmark at display and navigation sizes. */
+.site-header .brand h1,
+.hero .hero-app-title {
+  font-family: "Fraunces Wordmark", Georgia, serif;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  letter-spacing: -.035em;
+}
+.site-header .brand h1 {
+  font-size: 24px;
+  line-height: 1.15;
+  text-transform: none;
+}
+@media (max-width: 900px) {
+  .site-header .brand h1 { font-size: clamp(19px, 5.2vw, 23px); }
+}
+
+.hero-app-title__trademark {
+  display: inline-block;
+  margin-left: .14em;
+  font-size: .28em;
+  line-height: 1;
+  letter-spacing: 0;
+  vertical-align: super;
+}
+@media (max-width: 600px) {
+  .hero .hero-app-title {
+    font-size: clamp(36px, 11.7vw, 64px);
+    white-space: nowrap;
+  }
+}

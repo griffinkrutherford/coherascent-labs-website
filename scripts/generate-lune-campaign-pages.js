@@ -273,7 +273,8 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <script src="/campaign/device-tilt.js?v=8" defer></script>
   <script src="/campaign/offer-popup.js?v=2" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
-  <link rel="stylesheet" href="/campaign/site-header.css?v=5" />
+  <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/campaign/site-header.css?v=6" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=${page.apSubject || page.variant === "ap-exams" ? 12 : 9}" data-lune-site-footer defer></script>
   <script src="/campaign/nav-scroll.js?v=1" defer></script>

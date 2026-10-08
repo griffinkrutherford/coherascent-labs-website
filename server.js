@@ -94,6 +94,7 @@ function getContentType(filePath) {
     case '.json': return 'application/json; charset=utf-8';
     case '.avif': return 'image/avif';
     case '.webp': return 'image/webp';
+    case '.woff2': return 'font/woff2';
     case '.mp4': return 'video/mp4';
     case '.webm': return 'video/webm';
     case '.pdf': return 'application/pdf';
@@ -116,7 +117,7 @@ function getCacheControl(filePath) {
     return 'no-cache';
   }
 
-  if (['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.json', '.avif', '.webp', '.mp4', '.webm', '.pdf'].includes(extname)) {
+  if (['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.json', '.avif', '.webp', '.woff2', '.mp4', '.webm', '.pdf'].includes(extname)) {
     return 'public, max-age=31536000, immutable';
   }
 
