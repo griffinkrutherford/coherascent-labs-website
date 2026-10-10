@@ -86,12 +86,14 @@
     }
   ];
 
-  // Carousel order (2026-10-10): Calculus first, then humanities and STEM
+  // Carousel order (2026-10-10): Calculus first (image 1-sin: x^3 sin x, the
+  // problem the slide's hand-drawn solution works; image 1, x^3 ln x, stays
+  // for the study pages), then humanities and STEM
   // roughly alternating, with the state-machine slide right after Grade 4.
   // Slides are named by their screenshot id, so no image file is renumbered
   // (the study / test-prep pages reference those files by name).
   var ORDER = [
-    "1", "2", "4", "es-preterite", "5", "5b-toc", "23", "6", "lit-frost", "3",
+    "1-sin", "2", "4", "es-preterite", "5", "5b-toc", "23", "6", "lit-frost", "3",
     "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19-stats",
     "20", "21", "22", "24", "25", "26"
   ];
