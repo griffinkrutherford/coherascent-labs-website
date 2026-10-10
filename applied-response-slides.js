@@ -68,7 +68,32 @@
       image: "26", label: "Nursing · Dosage prioritization", subject: "Nursing",
       question: "A patient is prescribed 500 mg of a medication. Tablets contain 250 mg each. How many tablets should the nurse administer?",
       lines: ["Ordered dose / dose per tablet", "= 500 mg / 250 mg per tablet", "= 2 tablets", "Check: 2 × 250 mg = 500 mg."]
+    },
+    {
+      image: "5b-toc", label: "Computer science · State machines", subject: "Computer Science",
+      question: "Trace the input 1010 through the DFA (start s0, accepting s1). Is it accepted at the end of the input?",
+      lines: ["Start in s0.", "1: s0 → s1", "0: s1 → s0", "1: s0 → s1", "0: s1 → s0", "Ends in s0, not accepting → rejected (A)."]
+    },
+    {
+      image: "es-preterite", label: "Spanish · Preterite vs. imperfect", subject: "Spanish",
+      question: "Complete with the preterite or the imperfect of comer, and explain each choice: Ayer María (1) en casa, pero de niña siempre (2) con sus abuelos.",
+      lines: ["(1) Ayer María comió en casa.", "Pretérito: one finished action (ayer).", "(2) De niña siempre comía con sus abuelos.", "Imperfecto: a repeated past habit (siempre)."]
+    },
+    {
+      image: "lit-frost", label: "English literature · Close reading", subject: "Literature",
+      question: "Robert Frost, “Nothing Gold Can Stay”: what paradox opens the poem, and what does it suggest about beauty?",
+      lines: ["Paradox: “Nature’s first green is gold.”", "The first spring buds look golden, not green,", "and gold also means precious.", "“Hardest hue to hold”: that color fades fast.", "Beauty is most precious because it can’t last."]
     }
+  ];
+
+  // Carousel order (2026-10-10): Calculus first, then humanities and STEM
+  // roughly alternating, with the state-machine slide right after Grade 4.
+  // Slides are named by their screenshot id, so no image file is renumbered
+  // (the study / test-prep pages reference those files by name).
+  var ORDER = [
+    "1", "2", "4", "es-preterite", "5", "5b-toc", "23", "6", "lit-frost", "3",
+    "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19-stats",
+    "20", "21", "22", "24", "25", "26"
   ];
 
   var controls = deck.querySelector(".response-carousel__controls");
@@ -81,8 +106,9 @@
     });
   }
 
+  var staticCount = deck.querySelectorAll(".response-carousel__paper").length;
   slides.forEach(function (slide, offset) {
-    var index = 13 + offset;
+    var index = staticCount + offset;
     var lineClass = slide.lines.some(function (line) { return line.length > 52; }) ? " response-carousel__line--small" : "";
     var lines = slide.lines.map(function (line) {
       return '<p class="response-carousel__line' + lineClass + '">' + escapeHtml(line) + "</p>";
@@ -97,7 +123,7 @@
       '<div class="response-carousel__meta"><span class="response-carousel__status">' + escapeHtml(slide.label) + "</span></div>" +
       '<div class="response-carousel__body">' + lines + "</div>" +
       '<div class="response-carousel__question-phone" data-phone-mock="question">' +
-        '<div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="' + base + '-mid.webp?v=5" data-screenshot-high="' + base + '.webp?v=5" data-screenshot-low="' + base + '-low.webp?v=5">' +
+        '<div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="' + base + '-mid.webp?v=6" data-screenshot-high="' + base + '.webp?v=6" data-screenshot-low="' + base + '-low.webp?v=6">' +
           '<span class="response-carousel__question-label">Question</span>' +
           '<span class="response-carousel__question-type">' + escapeHtml(slide.subject) + "</span>" +
           '<span class="response-carousel__question-text">' + escapeHtml(slide.question) + "</span>" +
@@ -112,5 +138,31 @@
     dot.dataset.responseTarget = String(index);
     dot.setAttribute("aria-label", "Show " + slide.label + " response");
     dots.appendChild(dot);
+  });
+
+  // Reorder slides and their dots by ORDER, then renumber both so the
+  // slideshow (which walks slides and dots in DOM order) follows it.
+  var papers = Array.prototype.slice.call(deck.querySelectorAll(".response-carousel__paper"));
+  var dotList = Array.prototype.slice.call(dots.querySelectorAll(".response-carousel__dot"));
+  if (papers.length !== dotList.length) return;
+  function imageOf(paper) {
+    var host = paper.querySelector("[data-screenshot-src]");
+    var match = host && /question-prompts\/(.+?)-mid\.webp/.exec(host.getAttribute("data-screenshot-src") || "");
+    return match ? match[1] : "";
+  }
+  var pairs = papers.map(function (paper, i) { return { paper: paper, dot: dotList[i], image: imageOf(paper) }; });
+  var rank = function (pair) {
+    var at = ORDER.indexOf(pair.image);
+    return at === -1 ? ORDER.length + pairs.indexOf(pair) : at;
+  };
+  pairs.sort(function (a, b) { return rank(a) - rank(b); });
+  pairs.forEach(function (pair, i) {
+    deck.insertBefore(pair.paper, controls);
+    dots.appendChild(pair.dot);
+    pair.paper.dataset.responseSlide = String(i);
+    pair.dot.dataset.responseTarget = String(i);
+    pair.paper.classList.toggle("is-active", i === 0);
+    pair.paper.hidden = i !== 0;
+    pair.dot.classList.toggle("is-active", i === 0);
   });
 })();
