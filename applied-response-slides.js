@@ -97,7 +97,7 @@
       '<div class="response-carousel__meta"><span class="response-carousel__status">' + escapeHtml(slide.label) + "</span></div>" +
       '<div class="response-carousel__body">' + lines + "</div>" +
       '<div class="response-carousel__question-phone" data-phone-mock="question">' +
-        '<div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="' + base + '-mid.webp?v=2" data-screenshot-high="' + base + '.webp?v=2" data-screenshot-low="' + base + '-low.webp?v=2">' +
+        '<div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="' + base + '-mid.webp?v=4" data-screenshot-high="' + base + '.webp?v=4" data-screenshot-low="' + base + '-low.webp?v=4">' +
           '<span class="response-carousel__question-label">Question</span>' +
           '<span class="response-carousel__question-type">' + escapeHtml(slide.subject) + "</span>" +
           '<span class="response-carousel__question-text">' + escapeHtml(slide.question) + "</span>" +
