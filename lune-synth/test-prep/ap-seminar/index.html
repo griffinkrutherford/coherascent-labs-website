@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="application/json" data-score-example>{"title":"AP Seminar score improvement","from":2,"to":4,"gain":"+2 score levels","color":"#a5b0ff"}</script>
 
   <title>AP Seminar Prep | Lune Synth</title>
-  <meta name="description" content="Practice source evaluation, perspectives, and argument for AP Seminar with your own attempts, focused feedback, and targeted next steps." />
+  <meta name="description" content="AP Seminar practice for evaluating a line of reasoning and connecting evidence to a claim, with feedback on your written argument." />
   <link rel="canonical" href="https://lunesynth.com/test-prep/ap-seminar/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AP Seminar Prep | Lune Synth" />
-  <meta property="og:description" content="Practice source evaluation, perspectives, and argument for AP Seminar with your own attempts, focused feedback, and targeted next steps." />
+  <meta property="og:description" content="AP Seminar practice for evaluating a line of reasoning and connecting evidence to a claim, with feedback on your written argument." />
   <meta property="og:url" content="https://lunesynth.com/test-prep/ap-seminar/" />
   <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/hum/apseminar-cer-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=9" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -47,6 +46,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +86,8 @@
         <nav class="ap-breadcrumb" aria-label="AP navigation"><a href="/test-prep/ap-exams/#ap-subjects">← All AP subjects</a></nav>
 
         <p class="campaign-eyebrow">AP Seminar with Lune Synth</p>
-        <h1 id="campaign-title">Make the sources talk to each other.</h1>
-        <p class="campaign-hero__body">Practice source evaluation, perspectives, and argument with feedback on your own work.</p>
+        <h1 id="campaign-title">Connect the evidence to the claim, explicitly.</h1>
+        <p class="campaign-hero__body">AP Seminar&#39;s end-of-course exam and team project both score how well you connect evidence to a claim with stated reasoning, not just whether the evidence is relevant. Practice that connective step with feedback on your argument.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early AP Seminar practice access.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +100,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/23.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp" alt="Lune Synth displaying a writing question about argument structure" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/hum/apseminar-cer.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/hum/apseminar-cer-mid.webp" alt="Lune Synth question with a claim-evidence-reasoning map about later school start times, the reasoning left blank between the evidence and the claim." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +114,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">A Lune Synth practice preview</figcaption>
+          <figcaption class="phone-mock__label">AP Seminar · claim, evidence, reasoning</figcaption>
         </figure>
       </div>
     </section>
@@ -122,15 +123,30 @@
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Make the reasoning visible</p>
-        <h2 id="problem-title">A right answer needs a reason.</h2>
-        <p class="campaign-section__body">Show your thinking in AP Seminar; find the missing step before your next attempt.</p>
+        <p class="section-kicker">Where Seminar points go missing</p>
+        <h2 id="problem-title">Relevant evidence with no reasoning is half an argument.</h2>
+        <p class="campaign-section__body">The course and its exam reward explicitly stating why evidence supports a claim, which source qualifies as a perspective, and where an argument&#39;s reasoning is weak, not just gathering good sources.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Recognize someone else’s answer</div>
+        <div class="contrast__item">Cite evidence that&#39;s relevant</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Build and check your own response</div>
+        <div class="contrast__item contrast__item--better">State why it supports the claim</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">AP Seminar</p>
+        <h2 id="exam-title">Three performance tasks, then a written end-of-course exam.</h2>
+        <p class="campaign-section__body">Most of the AP Seminar score comes from an individual research report, an individual presentation, and a team project, not a single sit-down test.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Individual research report</dt><dd>A written argument using multiple sources, about 35% of the score.</dd></div>
+          <div class="ap-exam__fact"><dt>Individual multimedia presentation</dt><dd>A spoken argument with questioning, about 20% of the score.</dd></div>
+          <div class="ap-exam__fact"><dt>Team project and presentation</dt><dd>A collaborative argument and presentation, about 20% of the score.</dd></div>
+          <div class="ap-exam__fact"><dt>End-of-course exam</dt><dd>A 2-hour written exam: short-answer analysis of a source set, then an essay building and supporting an argument. About 25% of the score.</dd></div>
+      </dl>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board&#39;s course and exam descriptions; check AP Central for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -141,44 +157,44 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Make an attempt</h3>
-            <p>Work through source evaluation, perspectives, and argument yourself.</p>
+            <h3>Write the real reasoning</h3>
+            <p>Connect evidence to a claim, or evaluate someone else&#39;s argument, yourself, by hand or typed.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Find one gap</h3>
-            <p>Get feedback tied to the work you actually produced.</p>
+            <h3>Find the missing link</h3>
+            <p>Feedback flags evidence left unconnected to the claim it&#39;s meant to support.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice the fix</h3>
-            <p>Write a synthesis that explains one point of disagreement.</p>
+            <h3>Practice the pattern</h3>
+            <p>A short follow-up set with new claims and evidence to connect.</p>
           </article>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="feedback-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">AP Seminar practice</p>
-        <h2 id="feedback-title">One attempt. One useful correction.</h2>
+        <p class="section-kicker">A reasoning habit</p>
+        <h2 id="feedback-title">Say what the evidence implies for the claim.</h2>
       </div>
       <div class="feedback-panel">
         <article class="attempt-card" data-reveal>
           <span class="attempt-card__label">Your practice attempt</span>
-          <p>Two sources are cited, but their disagreement is ignored.</p>
+          <p>The survey shows students are tired, so start times should change.</p>
         </article>
         <div class="feedback-flow" data-reveal>
           <div class="feedback-step">
             <span>What grading notices</span>
-            <p>Compare the perspectives instead of counting citations.</p>
+            <p>The survey is cited. The reasoning step is missing: the response needs to say why less sleep is a health problem a later start time would fix.</p>
           </div>
           <div class="feedback-step">
             <span>Luna's hint</span>
-            <p>Where do the claims diverge?</p>
+            <p>What does the survey&#39;s finding about sleep imply about student health?</p>
           </div>
           <div class="feedback-step">
             <span>Targeted next practice</span>
-            <p>Write a synthesis that explains one point of disagreement.</p>
+            <p>Three claim-evidence-reasoning maps asking you to supply the missing reasoning that links them.</p>
           </div>
         </div>
       </div>
@@ -186,11 +202,11 @@
 
 
     <lune-quick-missions>
-      <script type="application/json">{"featureName":"quick-missions","variant":"ap-seminar","sectionTitle":"Practice One AP Skill","eyebrow":"AP Seminar quick practice","headline":"One weak spot. One mission.","body":"Practice source evaluation, perspectives, and argument in focused steps.","skillChip":"One AP Seminar skill","mediaAlt":"A focused Quick Mission for AP Seminar in Lune Synth"}</script>
+      <script type="application/json">{"featureName":"quick-missions","variant":"ap-seminar","sectionTitle":"Practice One AP Skill","eyebrow":"AP Seminar quick practice","headline":"One weak spot. One mission.","body":"Three claim-evidence-reasoning maps asking you to supply the missing reasoning that links them.","skillChip":"One AP Seminar skill","mediaAlt":"A focused Quick Mission for AP Seminar in Lune Synth"}</script>
     </lune-quick-missions>
 
     <lune-constellations>
-      <script type="application/json">{"featureName":"constellations","variant":"ap-seminar","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Seminar roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Seminar","goal":"Keep building your AP Seminar skills.","defaultWorld":"earth","mediaAlt":"A AP Seminar learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
+      <script type="application/json">{"featureName":"constellations","variant":"ap-seminar","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Seminar roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Seminar","goal":"Make the reasoning link explicit, every time.","defaultWorld":"earth","mediaAlt":"A AP Seminar learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
     </lune-constellations>
 
 <section class="ap-related campaign-shell" aria-labelledby="ap-related-title">
@@ -201,8 +217,8 @@
 
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
-        <h2 id="final-title">Keep building your AP Seminar skills.</h2>
-        <p>Join the beta and turn your next attempt into focused practice.</p>
+        <h2 id="final-title">Make the reasoning link explicit, every time.</h2>
+        <p>Join the beta for Seminar practice built around connecting evidence to a claim with stated reasoning.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early AP Seminar practice access.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>

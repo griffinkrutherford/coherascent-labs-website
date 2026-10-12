@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/24-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/hum/ged-gym-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -99,8 +101,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/24.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/24-mid.webp" alt="Lune Synth displaying a GED percent-discount question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/hum/ged-gym.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/hum/ged-gym-mid.webp" alt="Lune Synth question with a line through (0, 30) and (4, 90) showing a gym's sign-up plus monthly fee, asking the cost after 10 months." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +115,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">GED percent reasoning in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">GED Mathematical Reasoning · a linear model</figcaption>
         </figure>
       </div>
     </section>
@@ -129,6 +131,42 @@
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
         <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The GED</p>
+        <h2 id="exam-title">Four separate subject tests, taken on your own schedule.</h2>
+        <p class="campaign-section__body">The GED is four independent, computer-based subject tests. You can take them one at a time, at your own pace, and retake just the subject you need.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Reasoning Through Language Arts</dt><dd>150 minutes: reading comprehension, grammar, and an extended response.</dd></div>
+          <div class="ap-exam__fact"><dt>Mathematical Reasoning</dt><dd>115 minutes: basic math, geometry, and algebra, with an on-screen calculator for most of it.</dd></div>
+          <div class="ap-exam__fact"><dt>Science and Social Studies</dt><dd>90 and 70 minutes: reading graphs, passages, and short written responses.</dd></div>
+          <div class="ap-exam__fact"><dt>Scoring</dt><dd>Each subject is scored 100-200; 145 or higher passes that subject.</dd></div>
+      </dl>
+      <div class="ap-exam__shots">
+          <figure class="ap-shot" data-reveal>
+            <div class="phone-mock-fluid">
+              <div class="phone-mock__frame">
+                <div class="phone-mock__screen">
+                  <img src="/mobile-app-assets/screenshots/applied/hum/ged-first-amendment-mid.webp" srcset="/mobile-app-assets/screenshots/applied/hum/ged-first-amendment-mid.webp 480w, /mobile-app-assets/screenshots/applied/hum/ged-first-amendment.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth Social Studies question quoting the First Amendment, asking which clause protects a peaceful park protest." width="480" height="1043" loading="lazy" decoding="async" />
+                </div>
+                <div class="phone-shell-buttons" aria-hidden="true">
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                    <span class="phone-shell-button phone-shell-button--volume"></span>
+                    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                  </span>
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                    <span class="phone-shell-button phone-shell-button--power"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <figcaption><strong>Social Studies: the First Amendment</strong> The full clause list is given; matching the gathering itself to the right phrase is the question.</figcaption>
+          </figure>
+      </div>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official GED items. Exam format is summarised from GED Testing Service's published structure; check ged.com for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">

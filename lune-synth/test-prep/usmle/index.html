@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/13-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/hum/usmle-pedigree-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -99,8 +101,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/13.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/13-mid.webp" alt="Lune Synth displaying an advanced USMLE Step 2 clinical question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/hum/usmle-pedigree.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/hum/usmle-pedigree-mid.webp" alt="Lune Synth question with a three-generation pedigree for a boy with muscle weakness, asking the most likely mode of inheritance." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +115,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">USMLE Step 2 in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">USMLE Step 1 · a genetics pedigree</figcaption>
         </figure>
       </div>
     </section>
@@ -129,6 +131,21 @@
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
         <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">USMLE Step 1</p>
+        <h2 id="exam-title">Pass/fail, but the reasoning still has to be right.</h2>
+        <p class="campaign-section__body">Step 1 has been scored pass/fail since 2022, which removes the three-digit number but not the standard: every vignette still has to be worked through to a single best answer.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Format</dt><dd>Up to 280 multiple-choice questions across 7 blocks, computer-based at a testing center.</dd></div>
+          <div class="ap-exam__fact"><dt>Length</dt><dd>About 8 hours total, including an optional break between blocks.</dd></div>
+          <div class="ap-exam__fact"><dt>Scoring</dt><dd>Pass/fail only; no three-digit score is reported.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Pedigrees and lab-value questions solved by pattern-matching instead of tracing the inheritance or mechanism explicitly.</dd></div>
+      </dl>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official USMLE items. Exam format is summarised from the USMLE program's published Step 1 structure; check usmle.org for current details. Lune Synth does not provide medical advice.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">

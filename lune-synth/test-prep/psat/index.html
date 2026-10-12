@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/4-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/hum/psat-ratio-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -99,8 +101,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/4.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/4-mid.webp" alt="Lune Synth displaying a high school algebra test-prep question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/hum/psat-ratio.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/hum/psat-ratio-mid.webp" alt="Lune Synth question: a club has 40 members with juniors to seniors in a 3:5 ratio, asking how many are juniors." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +115,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">High school algebra in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">PSAT Math · a ratio problem</figcaption>
         </figure>
       </div>
     </section>
@@ -129,6 +131,20 @@
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
         <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The digital PSAT/NMSQT</p>
+        <h2 id="exam-title">The same two-module format as the SAT, scaled for where you are now.</h2>
+        <p class="campaign-section__body">The redesigned PSAT/NMSQT uses the SAT's adaptive, two-section structure (Reading and Writing, then Math) on a shorter timeline, and its top scorers are considered for National Merit recognition.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Reading and Writing</dt><dd>54 questions in 64 minutes, short passages with one question each.</dd></div>
+          <div class="ap-exam__fact"><dt>Math</dt><dd>44 questions in 70 minutes, with a built-in graphing calculator available throughout.</dd></div>
+          <div class="ap-exam__fact"><dt>Format</dt><dd>Adaptive by module, taken on a computer, like the digital SAT.</dd></div>
+      </dl>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official PSAT/NMSQT items. Exam format is summarised from the College Board's published PSAT/NMSQT structure; check the College Board's site for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">

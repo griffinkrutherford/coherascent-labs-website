@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="application/json" data-score-example>{"title":"AP Music Theory score improvement","from":2,"to":4,"gain":"+2 score levels","color":"#bf9dff"}</script>
 
   <title>AP Music Theory Prep | Lune Synth</title>
-  <meta name="description" content="Practice notation, harmony, and musical explanations for AP Music Theory with your own attempts, focused feedback, and targeted next steps." />
+  <meta name="description" content="AP Music Theory practice for Roman-numeral analysis, part-writing, and aural skills, with feedback on your harmonic reasoning." />
   <link rel="canonical" href="https://lunesynth.com/test-prep/ap-music-theory/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AP Music Theory Prep | Lune Synth" />
-  <meta property="og:description" content="Practice notation, harmony, and musical explanations for AP Music Theory with your own attempts, focused feedback, and targeted next steps." />
+  <meta property="og:description" content="AP Music Theory practice for Roman-numeral analysis, part-writing, and aural skills, with feedback on your harmonic reasoning." />
   <meta property="og:url" content="https://lunesynth.com/test-prep/ap-music-theory/" />
   <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/hum/apmusic-ii-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=9" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -47,6 +46,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +86,8 @@
         <nav class="ap-breadcrumb" aria-label="AP navigation"><a href="/test-prep/ap-exams/#ap-subjects">← All AP subjects</a></nav>
 
         <p class="campaign-eyebrow">AP Music Theory with Lune Synth</p>
-        <h1 id="campaign-title">Hear the pattern and explain the structure.</h1>
-        <p class="campaign-hero__body">Practice notation, harmony, and musical explanations with feedback on your own work.</p>
+        <h1 id="campaign-title">Find the chord from its notes, every time.</h1>
+        <p class="campaign-hero__body">AP Music Theory free response needs fast, accurate Roman-numeral analysis and part-writing, not just an ear for how a piece sounds. Practice reading notes off the staff and get feedback on your harmonic analysis.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early AP Music Theory practice access.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +100,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/23.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp" alt="Lune Synth displaying a writing question about argument structure" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/hum/apmusic-ii.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/hum/apmusic-ii-mid.webp" alt="Lune Synth question with two measures of a B-flat major bass line, asking for the Roman numeral of the second, marked chord." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +114,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">A Lune Synth practice preview</figcaption>
+          <figcaption class="phone-mock__label">AP Music Theory · a Roman-numeral chord</figcaption>
         </figure>
       </div>
     </section>
@@ -122,15 +123,30 @@
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Make the reasoning visible</p>
-        <h2 id="problem-title">A right answer needs a reason.</h2>
-        <p class="campaign-section__body">Show your thinking in AP Music Theory; find the missing step before your next attempt.</p>
+        <p class="section-kicker">Where Music Theory points go missing</p>
+        <h2 id="problem-title">Hearing that a chord resolves is not the same as naming it.</h2>
+        <p class="campaign-section__body">Part-writing and analysis questions score the specific Roman numeral and its inversion, built from the actual notes on the staff, not a general sense of the harmony.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Recognize someone else’s answer</div>
+        <div class="contrast__item">Sense how the chord feels</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Build and check your own response</div>
+        <div class="contrast__item contrast__item--better">Build the numeral from the notes</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The AP Music Theory exam</p>
+        <h2 id="exam-title">Written theory, aural skills, and sight-singing together.</h2>
+        <p class="campaign-section__body">The exam mixes multiple choice (including listening) with written free response covering dictation, part-writing, and analysis, plus a sight-singing component.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Multiple choice</dt><dd>About 1 hour 20 minutes, including questions answered from recorded musical excerpts.</dd></div>
+          <div class="ap-exam__fact"><dt>Free response</dt><dd>About 50 minutes: melodic and harmonic dictation, part-writing a bass line or soprano line, and harmonic analysis.</dd></div>
+          <div class="ap-exam__fact"><dt>Sight-singing</dt><dd>A separately timed section where you sing two notated melodies on your own.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Counting scale degrees from the wrong key signature, and inversions mislabeled from the bass note.</dd></div>
+      </dl>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board&#39;s course and exam descriptions; check AP Central for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -141,44 +157,44 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Make an attempt</h3>
-            <p>Work through notation, harmony, and musical explanations yourself.</p>
+            <h3>Work the actual notes</h3>
+            <p>Identify a chord&#39;s root and quality from the staff yourself, by hand or typed.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Find one gap</h3>
-            <p>Get feedback tied to the work you actually produced.</p>
+            <h3>Find the missing step</h3>
+            <p>Feedback flags whether the root, the quality, or the scale-degree count was the slip.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice the fix</h3>
-            <p>Identify and explain the quality of two triads.</p>
+            <h3>Practice the pattern</h3>
+            <p>A short follow-up set in new keys with new chords to identify.</p>
           </article>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="feedback-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">AP Music Theory practice</p>
-        <h2 id="feedback-title">One attempt. One useful correction.</h2>
+        <p class="section-kicker">A Roman-numeral habit</p>
+        <h2 id="feedback-title">Count scale degrees from the key, not from habit.</h2>
       </div>
       <div class="feedback-panel">
         <article class="attempt-card" data-reveal>
           <span class="attempt-card__label">Your practice attempt</span>
-          <p>A major triad is labeled minor without checking its third.</p>
+          <p>The marked chord is IV.</p>
         </article>
         <div class="feedback-flow" data-reveal>
           <div class="feedback-step">
             <span>What grading notices</span>
-            <p>Measure the interval above the root.</p>
+            <p>C-Eb-G isn&#39;t built from B-flat major&#39;s fourth scale degree. Counting up from B-flat, C is the second scale degree, which makes the chord ii.</p>
           </div>
           <div class="feedback-step">
             <span>Luna's hint</span>
-            <p>How many semitones separate the root and third?</p>
+            <p>In B-flat major, which scale degree is C?</p>
           </div>
           <div class="feedback-step">
             <span>Targeted next practice</span>
-            <p>Identify and explain the quality of two triads.</p>
+            <p>Three chord-identification questions in new keys, each asking for the Roman numeral from the given notes.</p>
           </div>
         </div>
       </div>
@@ -186,11 +202,11 @@
 
 
     <lune-quick-missions>
-      <script type="application/json">{"featureName":"quick-missions","variant":"ap-music-theory","sectionTitle":"Practice One AP Skill","eyebrow":"AP Music Theory quick practice","headline":"One weak spot. One mission.","body":"Practice notation, harmony, and musical explanations in focused steps.","skillChip":"One AP Music Theory skill","mediaAlt":"A focused Quick Mission for AP Music Theory in Lune Synth"}</script>
+      <script type="application/json">{"featureName":"quick-missions","variant":"ap-music-theory","sectionTitle":"Practice One AP Skill","eyebrow":"AP Music Theory quick practice","headline":"One weak spot. One mission.","body":"Three chord-identification questions in new keys, each asking for the Roman numeral from the given notes.","skillChip":"One AP Music Theory skill","mediaAlt":"A focused Quick Mission for AP Music Theory in Lune Synth"}</script>
     </lune-quick-missions>
 
     <lune-constellations>
-      <script type="application/json">{"featureName":"constellations","variant":"ap-music-theory","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Music Theory roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Music Theory","goal":"Keep building your AP Music Theory skills.","defaultWorld":"earth","mediaAlt":"A AP Music Theory learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
+      <script type="application/json">{"featureName":"constellations","variant":"ap-music-theory","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Music Theory roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Music Theory","goal":"Make the analysis as solid as the ear.","defaultWorld":"earth","mediaAlt":"A AP Music Theory learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
     </lune-constellations>
 
 <section class="ap-related campaign-shell" aria-labelledby="ap-related-title">
@@ -204,8 +220,8 @@
 
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
-        <h2 id="final-title">Keep building your AP Music Theory skills.</h2>
-        <p>Join the beta and turn your next attempt into focused practice.</p>
+        <h2 id="final-title">Make the analysis as solid as the ear.</h2>
+        <p>Join the beta for Music Theory practice built around reading the notes and naming the harmony correctly.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early AP Music Theory practice access.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>

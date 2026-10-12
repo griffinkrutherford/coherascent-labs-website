@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/7-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/hum/gre-qc-triangle-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -99,8 +101,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/7.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/7-mid.webp" alt="Lune Synth displaying an advanced GRE mathematical proof prompt" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/hum/gre-qc-triangle.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/hum/gre-qc-triangle-mid.webp" alt="Lune Synth Quantitative Comparison question: right triangle with legs 6 and 8, comparing the hypotenuse to 11." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +115,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">Advanced GRE reasoning in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">GRE Quant · a quantitative comparison</figcaption>
         </figure>
       </div>
     </section>
@@ -129,6 +131,42 @@
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
         <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The GRE General Test</p>
+        <h2 id="exam-title">Shorter than it used to be, with no unscored section left to guess about.</h2>
+        <p class="campaign-section__body">ETS shortened the GRE to under two hours: one timed essay, two Verbal sections, and two Quant sections, with a basic on-screen calculator throughout Quant.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Analytical Writing</dt><dd>One essay, analyzing an argument, in 30 minutes.</dd></div>
+          <div class="ap-exam__fact"><dt>Verbal Reasoning</dt><dd>Two sections, 27 questions total, reading comprehension and text completion.</dd></div>
+          <div class="ap-exam__fact"><dt>Quantitative Reasoning</dt><dd>Two sections, 27 questions total, including Quantitative Comparison items.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Quantitative Comparison answered by computing both quantities instead of checking whether the relationship could flip.</dd></div>
+      </dl>
+      <div class="ap-exam__shots">
+          <figure class="ap-shot" data-reveal>
+            <div class="phone-mock-fluid">
+              <div class="phone-mock__frame">
+                <div class="phone-mock__screen">
+                  <img src="/mobile-app-assets/screenshots/applied/hum/gre-qc-parabola-mid.webp" srcset="/mobile-app-assets/screenshots/applied/hum/gre-qc-parabola-mid.webp 480w, /mobile-app-assets/screenshots/applied/hum/gre-qc-parabola.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth Quantitative Comparison question: the graph of y = x^2 - 4x + 3 crosses the x-axis twice, comparing the sum of the intercepts to 4." width="480" height="1043" loading="lazy" decoding="async" />
+                </div>
+                <div class="phone-shell-buttons" aria-hidden="true">
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                    <span class="phone-shell-button phone-shell-button--volume"></span>
+                    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                  </span>
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                    <span class="phone-shell-button phone-shell-button--power"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <figcaption><strong>A second quantitative comparison</strong> Factoring or reading the graph both work; the comparison still has to hold for every case, not just the one you compute.</figcaption>
+          </figure>
+      </div>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official GRE items. Exam format is summarised from ETS's published GRE structure; check ETS's site for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">

@@ -2266,62 +2266,55 @@
     "featureTopic": "AP English Language",
     "defaultWorld": "earth",
     "metaTitle": "AP English Language and Composition Prep | Lune Synth",
-    "metaDescription": "Practice rhetorical analysis, evidence, and argument for AP English Language and Composition with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP English Language practice for rhetorical analysis and argument, with feedback on how precisely you name a writer's choices and effects.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP English Language and Composition with Lune Synth",
-    "headline": "Make every piece of evidence earn its place.",
-    "heroBody": "Practice rhetorical analysis, evidence, and argument with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP English Language; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Name the choice, then say what it does.",
+    "heroBody": "AP Lang free response is graded on how precisely you connect a rhetorical choice to its effect, not on quoting the passage back. Practice rhetorical analysis and argument writing with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/aplang-douglass-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/aplang-douglass.webp",
+    "phoneAlt": "Lune Synth question quoting Frederick Douglass's 1852 Fourth of July address, asking what rhetorical choice his second sentence makes.",
+    "phoneLabel": "AP English Language · Douglass, 1852",
+    "problemKicker": "Where AP Lang points go missing",
+    "problemHeadline": "\"Antithesis\" without the effect is a vocabulary word, not an analysis.",
+    "problemBody": "Students can often spot a device but stop before explaining what it does to the audience. The synthesis, rhetorical-analysis, and argument essays all reward the second step: the so-what.",
+    "contrastBefore": "Identify the device by name",
+    "contrastAfter": "Explain the effect the device creates",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through rhetorical analysis, evidence, and argument yourself."
+        "title": "Write the real analysis",
+        "body": "Analyze a passage or draft an argument paragraph, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing so-what",
+        "body": "Feedback flags a device named without its effect, or a claim without a line of reasoning."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain the effect of two rhetorical choices."
+        "title": "Practice the connection",
+        "body": "A short follow-up set on the same move with new passages."
       }
     ],
-    "exampleKicker": "AP English Language practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A rhetorical-analysis habit",
+    "exampleHeadline": "Say what the device does, not just its name.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A rhetorical device is named without explaining its effect.",
-    "observation": "Connect the choice to the audience and purpose.",
-    "hint": "What does this choice make the reader notice?",
-    "nextPractice": "Explain the effect of two rhetorical choices.",
-    "closingHeadline": "Keep building your AP English Language skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Douglass uses antithesis in the second sentence.",
+    "observation": "The device is named correctly. The response doesn't yet say what setting \"yours\" against \"mine\" does for his mostly white audience.",
+    "hint": "What gap does putting rejoice against mourn make the audience feel?",
+    "nextPractice": "Three passages asking you to name a rhetorical choice and explain its effect on that audience.",
+    "closingHeadline": "Make your next analysis complete.",
+    "closingBody": "Join the beta for AP Lang practice built around naming a choice and explaining what it does.",
     "clarifier": "Join for early AP English Language practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP English Language score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#ff99bd"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice rhetorical analysis, evidence, and argument in focused steps."
+        "body": "Three passages asking you to name a rhetorical choice and explain its effect on that audience."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -2355,6 +2348,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP English Language exam",
+      "headline": "One hour of multiple choice, then three essays in two hours fifteen minutes.",
+      "body": "The free-response section always has the same three essays: synthesize sources into an argument, analyze a passage's rhetoric, and argue a position of your own.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "45 questions in 1 hour, reading passages for rhetorical and argumentative choices. 45% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "3 essays in 2 hours 15 minutes (15-minute reading period): synthesis, rhetorical analysis, argument. 55% of the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "A defensible thesis, evidence and commentary that explains an effect, and sophistication of thought."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Naming a device with no stated effect, summary instead of analysis, and a thesis that only restates the prompt."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/hum/aplang-toulmin-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/hum/aplang-toulmin.webp",
+          "alt": "Lune Synth question with a Toulmin argument map for a bike-lane proposal, the warrant left blank between the grounds and the claim.",
+          "title": "Filling in a Toulmin warrant",
+          "caption": ""
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -2372,62 +2398,55 @@
     "featureTopic": "AP English Literature",
     "defaultWorld": "earth",
     "metaTitle": "AP English Literature and Composition Prep | Lune Synth",
-    "metaDescription": "Practice close reading, interpretation, and literary argument for AP English Literature and Composition with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP English Literature practice for close reading of poetry and prose, with feedback on how your argument uses literary technique as evidence.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP English Literature and Composition with Lune Synth",
-    "headline": "Move from plot summary to a real reading.",
-    "heroBody": "Practice close reading, interpretation, and literary argument with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP English Literature; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Let the technique prove the interpretation.",
+    "heroBody": "AP Lit free response rewards an interpretation supported by specific literary technique, not a plot summary with a theme attached. Practice close reading poems and prose and writing the argument, with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/aplit-hour-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/aplit-hour.webp",
+    "phoneAlt": "Lune Synth question with a plot diagram of Kate Chopin's The Story of an Hour, asking what kind of irony the final event creates.",
+    "phoneLabel": "AP English Literature · The Story of an Hour",
+    "problemKicker": "Where AP Lit points go missing",
+    "problemHeadline": "Retelling the plot is not the same as arguing a meaning.",
+    "problemBody": "All three essays ask for a defensible interpretation built from technique, imagery, structure, or form. Students who summarize what happens instead of analyzing how it's written lose the sophistication points even when their reading is reasonable.",
+    "contrastBefore": "Summarize what happens",
+    "contrastAfter": "Argue what the technique means",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through close reading, interpretation, and literary argument yourself."
+        "title": "Write the real argument",
+        "body": "Scan a line, trace an irony, or draft a thesis about technique, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing link",
+        "body": "Feedback flags summary standing in for analysis, or a claim with no textual evidence."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Build one claim around two textual details."
+        "title": "Practice close reading",
+        "body": "A short follow-up set on the same technique with new poems or passages."
       }
     ],
-    "exampleKicker": "AP English Literature practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A close-reading habit",
+    "exampleHeadline": "Connect the technique to the meaning it creates.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The paragraph retells the plot instead of analyzing the passage.",
-    "observation": "Move from summary to interpretation.",
-    "hint": "Which detail supports your reading of the text?",
-    "nextPractice": "Build one claim around two textual details.",
-    "closingHeadline": "Keep building your AP English Literature skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The ending of The Story of an Hour is ironic because the doctors are wrong.",
+    "observation": "The irony is identified. The response doesn't yet say what the reader knows that the doctors don't, which is the whole point of the irony.",
+    "hint": "What did Louise actually feel in her room, versus what the doctors assume she felt?",
+    "nextPractice": "Three short-fiction excerpts asking you to name the irony and explain the gap it depends on.",
+    "closingHeadline": "Make your next close reading count.",
+    "closingBody": "Join the beta for AP Lit practice built around technique, evidence, and a defensible argument.",
     "clarifier": "Join for early AP English Literature practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP English Literature score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#ff99bd"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice close reading, interpretation, and literary argument in focused steps."
+        "body": "Three short-fiction excerpts asking you to name the irony and explain the gap it depends on."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -2461,6 +2480,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP English Literature exam",
+      "headline": "One hour of multiple choice, then three essays in two hours.",
+      "body": "The free-response section always asks for a poetry analysis, a prose-fiction analysis, and a literary argument using a work you choose.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "55 questions in 1 hour, on poetry and prose passages. 45% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "3 essays in 2 hours: poetry analysis, prose analysis, literary argument. 55% of the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "A defensible interpretation, evidence from technique or structure, and sophistication of thought."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Plot summary standing in for analysis, a thesis that only restates the prompt, and the literary-argument essay choosing a work too thin to support it."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/hum/aplit-ulysses-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/hum/aplit-ulysses.webp",
+          "alt": "Lune Synth question with the closing couplet of Tennyson's Ulysses, asking which syllables are stressed in the final line and how the rhythm supports Ulysses' resolve.",
+          "title": "Scanning Ulysses' close",
+          "caption": "The first line is scanned for you; the second is left unmarked so the stresses are yours to find."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -2478,62 +2530,55 @@
     "featureTopic": "AP African American Studies",
     "defaultWorld": "earth",
     "metaTitle": "AP African American Studies Prep | Lune Synth",
-    "metaDescription": "Practice source analysis, historical context, and connected perspectives for AP African American Studies with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP African American Studies practice for close reading of primary sources and the course's written source-based response, with feedback on your reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP African American Studies with Lune Synth",
-    "headline": "Connect the sources to the story.",
-    "heroBody": "Practice source analysis, historical context, and connected perspectives with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/2.webp",
-    "phoneAlt": "Lune Synth displaying a high school history explanation prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP African American Studies; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Read the primary source on its own terms.",
+    "heroBody": "AP African American Studies asks you to read a primary source closely and explain the strategy or argument it makes, in its own historical moment. Practice that close reading with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apaas-atlanta-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apaas-atlanta.webp",
+    "phoneAlt": "Lune Synth question quoting Booker T. Washington's 1895 Atlanta Exposition Address, asking which strategy for Black advancement it expresses.",
+    "phoneLabel": "AP African American Studies · Washington, Atlanta 1895",
+    "problemKicker": "Where the reasoning gets thin",
+    "problemHeadline": "Summarizing a passage is not the same as naming its strategy.",
+    "problemBody": "Source-based questions reward identifying the specific strategy, argument, or stance a figure takes, and why, not a restatement of what they said.",
+    "contrastBefore": "Restate what the passage says",
+    "contrastAfter": "Name the strategy it argues for",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through source analysis, historical context, and connected perspectives yourself."
+        "title": "Write the real response",
+        "body": "Read a primary source and name its strategy or argument yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing distinction",
+        "body": "Feedback flags a summary standing in for an identified strategy or argument."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare two sources in a concise explanation."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new primary sources and figures."
       }
     ],
-    "exampleKicker": "AP African American Studies practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A source-reading habit",
+    "exampleHeadline": "Name what the author is choosing, not just what they said.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Two sources are treated as identical viewpoints.",
-    "observation": "Compare what each author experienced and emphasized.",
-    "hint": "Which detail makes their perspectives different?",
-    "nextPractice": "Compare two sources in a concise explanation.",
-    "closingHeadline": "Keep building your AP African American Studies skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Washington's speech accepts segregation.",
+    "observation": "That's part of what the passage says. The stronger answer names the strategy: accepting social segregation for now while prioritizing economic progress and vocational education.",
+    "hint": "What does Washington put first, ahead of immediate social equality?",
+    "nextPractice": "Three primary-source questions asking you to name the strategy a figure argues for.",
+    "closingHeadline": "Make your source reading precise.",
+    "closingBody": "Join the beta and turn primary-source reading into a strategy you can name and defend.",
     "clarifier": "Join for early AP African American Studies practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP African American Studies score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice source analysis, historical context, and connected perspectives in focused steps."
+        "body": "Three primary-source questions asking you to name the strategy a figure argues for."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -2567,6 +2612,14 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "AP African American Studies",
+      "headline": "A newer course: check the current exam format as it is published.",
+      "body": "AP African American Studies launched broadly in 2024-25 as part of the College Board's rollout. Use AP Central for the current exam structure; use Lune Synth to practice close reading of the course's primary sources.",
+      "facts": [],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -2584,62 +2637,55 @@
     "featureTopic": "AP Comparative Government",
     "defaultWorld": "earth",
     "metaTitle": "AP Comparative Government and Politics Prep | Lune Synth",
-    "metaDescription": "Practice political institutions, comparison, and evidence for AP Comparative Government and Politics with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Comparative Government practice for applying concepts across the six course countries, with feedback on your written comparisons.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Comparative Government and Politics with Lune Synth",
-    "headline": "Compare the systems, not just the names.",
-    "heroBody": "Practice political institutions, comparison, and evidence with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/2.webp",
-    "phoneAlt": "Lune Synth displaying a high school history explanation prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Comparative Government; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Compare the countries, not just define the term.",
+    "heroBody": "AP Comp Gov free response asks you to apply a concept across the six course countries and defend a comparison, not recite a definition. Practice that comparison with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apcompgov-regimes-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apcompgov-regimes.webp",
+    "phoneAlt": "Lune Synth question with a spectrum from liberal democracy to authoritarian regime, a middle regime type left blank.",
+    "phoneLabel": "AP Comparative Government · regime types",
+    "problemKicker": "Where Comp Gov points go missing",
+    "problemHeadline": "A regime type's definition is not a comparison between two countries.",
+    "problemBody": "The FRQs reward concept application, data analysis, and comparative argument across Britain, China, Iran, Mexico, Nigeria, and Russia. Students who know a concept well still lose points when they describe one country instead of comparing two.",
+    "contrastBefore": "Define the regime type",
+    "contrastAfter": "Compare how two countries fit it",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through political institutions, comparison, and evidence yourself."
+        "title": "Compare two countries",
+        "body": "Apply a concept across two of the six course countries yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing half",
+        "body": "Feedback flags when an answer only addresses one country a comparison question required."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare one institution across two political systems."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set applying the same concept to new country pairs."
       }
     ],
-    "exampleKicker": "AP Comparative Government practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A regime-classification habit",
+    "exampleHeadline": "Name the type, then say what distinguishes it.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The argument compares leaders but not the institutions limiting them.",
-    "observation": "Compare institutional checks, not just individuals.",
-    "hint": "What rule or institution shapes each leader’s choices?",
-    "nextPractice": "Compare one institution across two political systems.",
-    "closingHeadline": "Keep building your AP Comparative Government skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "A regime that holds elections but limits press freedom is a hybrid regime.",
+    "observation": "The classification is right. The stronger answer also says what separates a hybrid regime from a full liberal democracy: elections exist, but civil liberties and judicial independence are constrained.",
+    "hint": "What does a liberal democracy guarantee that a hybrid regime limits?",
+    "nextPractice": "Three spectrum questions asking you to classify a regime and justify the placement.",
+    "closingHeadline": "Make the comparison, not just the definition.",
+    "closingBody": "Join the beta for Comp Gov practice built around comparing countries, not reciting terms.",
     "clarifier": "Join for early AP Comparative Government practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Comparative Government score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice political institutions, comparison, and evidence in focused steps."
+        "body": "Three spectrum questions asking you to classify a regime and justify the placement."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -2673,6 +2719,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Comparative Government exam",
+      "headline": "Concept application and comparison across six countries.",
+      "body": "The free-response section always asks you to apply concepts, read data, and compare across the course's six countries.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "55 questions in 1 hour 5 minutes. 50% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "4 questions in 1 hour 30 minutes: concept application, quantitative analysis, comparative analysis, argument essay. 50% of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Describing one country where a comparison is required, and a regime classification with no stated reason."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -2690,62 +2757,55 @@
     "featureTopic": "AP European History",
     "defaultWorld": "earth",
     "metaTitle": "AP European History Prep | Lune Synth",
-    "metaDescription": "Practice historical argument, comparison, and source context for AP European History with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP European History practice for sourcing, contextualization, and arguments about change over time in Europe, with feedback on your written reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP European History with Lune Synth",
-    "headline": "Turn the timeline into an argument.",
-    "heroBody": "Practice historical argument, comparison, and source context with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/2.webp",
-    "phoneAlt": "Lune Synth displaying a high school history explanation prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP European History; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Trace the change, don't just date it.",
+    "heroBody": "AP European History free response grades how well you explain change and continuity, not whether you remember the year. Practice reading timelines and primary sources and writing the explanation, with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apeuro-reformation-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apeuro-reformation.webp",
+    "phoneAlt": "Lune Synth question with a Reformation timeline from Luther's Ninety-five Theses to the Peace of Augsburg, naming the principle that let each prince choose his territory's religion.",
+    "phoneLabel": "AP European History · the Reformation, 1517-1598",
+    "problemKicker": "Where Euro History points go missing",
+    "problemHeadline": "A correct year is not a historical argument.",
+    "problemBody": "The DBQ and LEQ reward sourcing, contextualization, and a defensible claim about continuity or change. Students who can place events on a timeline still lose points for never explaining why the change happened.",
+    "contrastBefore": "Put the event on the timeline",
+    "contrastAfter": "Explain why the change happened",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through historical argument, comparison, and source context yourself."
+        "title": "Write the real argument",
+        "body": "Contextualize a source or draft a continuity-and-change thesis, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing reasoning",
+        "body": "Feedback flags a date recited without the causal link the question asked for."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Write a comparison supported by specific evidence."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set on the same reasoning skill with new sources and periods."
       }
     ],
-    "exampleKicker": "AP European History practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A continuity-and-change habit",
+    "exampleHeadline": "Name the principle, then say what it changed.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Two periods are described separately without a comparison.",
-    "observation": "Name a similarity or difference and support it.",
-    "hint": "Which change distinguishes the two periods?",
-    "nextPractice": "Write a comparison supported by specific evidence.",
-    "closingHeadline": "Keep building your AP European History skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The Peace of Augsburg let princes choose their territory's religion.",
+    "observation": "The principle is named correctly (cuius regio, eius religio). The response stops before saying what that changed about religious authority in the Empire.",
+    "hint": "Before 1555, who decided a territory's religion, and who decided after?",
+    "nextPractice": "Three timeline questions asking you to name a historical principle and explain the authority it shifted.",
+    "closingHeadline": "Make your next argument about change stick.",
+    "closingBody": "Join the beta for European history practice built around sourcing, causation, and arguments that explain change.",
     "clarifier": "Join for early AP European History practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP European History score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice historical argument, comparison, and source context in focused steps."
+        "body": "Three timeline questions asking you to name a historical principle and explain the authority it shifted."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -2779,6 +2839,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP European History exam",
+      "headline": "The same four-part format, focused on Europe since 1450.",
+      "body": "European History's DBQ and LEQ ask for a defensible claim about change, continuity, causation, or comparison within European history.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "55 questions in 55 minutes, in sets tied to a stimulus. 40% of the score."
+        },
+        {
+          "label": "Short answer",
+          "text": "3 questions in 40 minutes, each needing specific historical evidence. 20% of the score."
+        },
+        {
+          "label": "DBQ",
+          "text": "1 question in 60 minutes (15 reading) using at least 6 of 7 documents. 25% of the score."
+        },
+        {
+          "label": "LEQ",
+          "text": "1 question in 40 minutes with no documents provided. 15% of the score."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/hum/apeuro-rights-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/hum/apeuro-rights.webp",
+          "alt": "Lune Synth question quoting Article 1 and Article 3 of the 1789 Declaration of the Rights of Man, asking which Enlightenment idea Article 3 reflects.",
+          "title": "The Rights of Man, 1789",
+          "caption": ""
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -2796,62 +2889,55 @@
     "featureTopic": "AP Human Geography",
     "defaultWorld": "earth",
     "metaTitle": "AP Human Geography Prep | Lune Synth",
-    "metaDescription": "Practice spatial patterns, human systems, and geographic evidence for AP Human Geography with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Human Geography practice for applying push-pull migration models, diffusion, and spatial patterns to real cases, with feedback on your reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Human Geography with Lune Synth",
-    "headline": "Explain the pattern on the map.",
-    "heroBody": "Practice spatial patterns, human systems, and geographic evidence with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/2.webp",
-    "phoneAlt": "Lune Synth displaying a high school history explanation prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Human Geography; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Apply the model to the case, not just name it.",
+    "heroBody": "AP Human Geography free response asks you to apply a model, such as push-pull migration or the demographic transition, to a specific case and defend the fit. Practice that application with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/aphug-migration-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/aphug-migration.webp",
+    "phoneAlt": "Lune Synth question with a cause-and-effect diagram of rural-to-urban migration, one pull factor left blank among the causes.",
+    "phoneLabel": "AP Human Geography · rural-to-urban migration",
+    "problemKicker": "Where Human Geo points go missing",
+    "problemHeadline": "Naming push and pull factors is not the same as weighing them.",
+    "problemBody": "FRQs reward identifying the right factor for a specific case and explaining the geographic process behind it. Students who know the vocabulary of migration, diffusion, or urbanization still lose points when the model isn't applied to the case given.",
+    "contrastBefore": "Name the type of factor",
+    "contrastAfter": "Explain why it pulls in this case",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through spatial patterns, human systems, and geographic evidence yourself."
+        "title": "Apply the model",
+        "body": "Fill in a missing push or pull factor, or classify a spatial pattern, yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing reasoning",
+        "body": "Feedback flags a correctly named factor with no explanation of why it applies here."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain one spatial pattern using supporting evidence."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set applying the same model to new regions and cases."
       }
     ],
-    "exampleKicker": "AP Human Geography practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A push-pull habit",
+    "exampleHeadline": "Say why the factor pulls, specifically here.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A location pattern is described, but its proposed cause has no evidence.",
-    "observation": "Connect the explanation to the geographic pattern.",
-    "hint": "What evidence could support the proposed cause?",
-    "nextPractice": "Explain one spatial pattern using supporting evidence.",
-    "closingHeadline": "Keep building your AP Human Geography skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Factory jobs in the cities are a pull factor.",
+    "observation": "The factor type is right. The stronger answer also connects it to this case: mechanized farming already cut rural jobs, so city jobs pull people who have nowhere else to work.",
+    "hint": "What does the case's push factor (lost farm jobs) make the pull factor more effective at doing?",
+    "nextPractice": "Three migration-model questions asking you to identify the missing factor and justify the fit to that case.",
+    "closingHeadline": "Make the model fit the case.",
+    "closingBody": "Join the beta for Human Geography practice built around applying models to real cases.",
     "clarifier": "Join for early AP Human Geography practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Human Geography score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice spatial patterns, human systems, and geographic evidence in focused steps."
+        "body": "Three migration-model questions asking you to identify the missing factor and justify the fit to that case."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -2885,6 +2971,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Human Geography exam",
+      "headline": "Half multiple choice, half applied free response.",
+      "body": "The free-response section asks you to apply the course's models (migration, diffusion, land use, political geography) to specific, often unfamiliar, cases.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "60 questions in 60 minutes, often with a stimulus (map, graph, or image). 50% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "3 questions in 1 hour 15 minutes, each applying course models to a scenario. 50% of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Naming a factor or pattern without applying it to the specific case, and confusing push with pull factors."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3142,62 +3249,55 @@
     "featureTopic": "AP Psychology",
     "defaultWorld": "earth",
     "metaTitle": "AP Psychology Prep | Lune Synth",
-    "metaDescription": "Practice research methods, behavior, and applying concepts for AP Psychology with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Psychology practice for applying concepts to novel scenarios and evaluating research design, with feedback on your written reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Psychology with Lune Synth",
-    "headline": "Apply the concept instead of reciting it.",
-    "heroBody": "Practice research methods, behavior, and applying concepts with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/voice/voice-mode.webp",
-    "phoneAlt": "Lune Synth voice mode for submitting a spoken explanation",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Psychology; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Apply the concept, don't just define it.",
+    "heroBody": "AP Psych free response grades whether you can apply a concept to a scenario you haven't seen and design or critique a study, not recite a definition. Practice that application with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/appsych-normal-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/appsych-normal.webp",
+    "phoneAlt": "Lune Synth question with a normal curve of IQ scores, mean 100 and standard deviation 15, the region from 85 to 115 shaded.",
+    "phoneLabel": "AP Psychology · the normal curve",
+    "problemKicker": "Where AP Psych points go missing",
+    "problemHeadline": "Knowing the term is the easy half of the question.",
+    "problemBody": "Both FRQs hand you a scenario and ask you to apply multiple concepts to it, or to design and evaluate a study. Students who can define reinforcement, memory, or a research method still lose points when the concept isn't tied to the specific scenario given.",
+    "contrastBefore": "Define the concept",
+    "contrastAfter": "Apply it to the scenario given",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through research methods, behavior, and applying concepts yourself."
+        "title": "Work the scenario",
+        "body": "Apply a concept to a case, or critique a study design, yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing application",
+        "body": "Feedback flags a correct definition that never gets connected to the scenario's specific details."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare a correlational study with an experiment."
+        "title": "Practice transfer",
+        "body": "A short follow-up set applying the same concept to new scenarios."
       }
     ],
-    "exampleKicker": "AP Psychology practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A concept-application habit",
+    "exampleHeadline": "Tie the concept to the scenario's numbers.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A correlation is described as proof of causation.",
-    "observation": "Check whether the study supports a causal claim.",
-    "hint": "How were the variables assigned or observed?",
-    "nextPractice": "Compare a correlational study with an experiment.",
-    "closingHeadline": "Keep building your AP Psychology skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "About 68% of scores fall within one standard deviation of the mean.",
+    "observation": "The percentage is right for one standard deviation. The stronger answer also states that 85 and 115 are each exactly one standard deviation from the mean of 100, which is why that rule applies here.",
+    "hint": "How far is 85, and 115, from the mean of 100, in standard deviations?",
+    "nextPractice": "Three normal-curve questions asking you to apply the 68-95-99.7 rule to new means and standard deviations.",
+    "closingHeadline": "Make the application stick.",
+    "closingBody": "Join the beta for AP Psych practice built around applying concepts to real scenarios.",
     "clarifier": "Join for early AP Psychology practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Psychology score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice research methods, behavior, and applying concepts in focused steps."
+        "body": "Three normal-curve questions asking you to apply the 68-95-99.7 rule to new means and standard deviations."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -3231,6 +3331,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Psychology exam",
+      "headline": "Mostly multiple choice, with two applied free responses.",
+      "body": "The free-response section always has two questions: applying several concepts to one scenario, and a research-design or research-methods question.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "100 questions in 1 hour 10 minutes. About two-thirds of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "2 questions in 50 minutes: concept application, research design. About one-third of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Defining a term without applying it to the scenario, and confusing correlation with causation in research-design questions."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3248,62 +3369,55 @@
     "featureTopic": "AP U.S. Government",
     "defaultWorld": "earth",
     "metaTitle": "AP United States Government and Politics Prep | Lune Synth",
-    "metaDescription": "Practice constitutional principles, institutions, and political reasoning for AP United States Government and Politics with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP U.S. Government and Politics practice for applying concepts to new scenarios, reading data, and comparing Supreme Court cases, with feedback on your written reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP United States Government and Politics with Lune Synth",
-    "headline": "Explain how the institution works.",
-    "heroBody": "Practice constitutional principles, institutions, and political reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/2.webp",
-    "phoneAlt": "Lune Synth displaying a high school history explanation prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP U.S. Government; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Apply the concept to a case you haven't seen.",
+    "heroBody": "AP Gov free response asks you to apply a concept to an unfamiliar scenario or compare a required case to a new one, not just define a term. Practice that transfer with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apgov-courts-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apgov-courts.webp",
+    "phoneAlt": "Lune Synth question with a hierarchy diagram of the federal court system, district courts and the Supreme Court given, one appellate level left blank.",
+    "phoneLabel": "AP U.S. Government · the federal courts",
+    "problemKicker": "Where AP Gov points go missing",
+    "problemHeadline": "Defining federalism is not the same as applying it.",
+    "problemBody": "Three of the four FRQs hand you a scenario, a chart, or a new case and ask what follows. Students who know the vocabulary still lose points when the application step, not the definition, is what's being scored.",
+    "contrastBefore": "Define the term correctly",
+    "contrastAfter": "Apply it to the scenario given",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through constitutional principles, institutions, and political reasoning yourself."
+        "title": "Work the scenario",
+        "body": "Apply a concept, read a data set, or compare two court cases yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing step",
+        "body": "Feedback flags a correct definition that never gets applied to the specific facts given."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain one institutional power using a concrete example."
+        "title": "Practice the transfer",
+        "body": "A short follow-up set applying the same concept to new scenarios."
       }
     ],
-    "exampleKicker": "AP U.S. Government practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A case-comparison habit",
+    "exampleHeadline": "Connect the required case to the new one's facts.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Judicial review is named without explaining what the court evaluates.",
-    "observation": "Connect the term to constitutional review.",
-    "hint": "What is the court being asked to evaluate?",
-    "nextPractice": "Explain one institutional power using a concrete example.",
-    "closingHeadline": "Keep building your AP U.S. Government skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The U.S. Courts of Appeals sit between the district courts and the Supreme Court.",
+    "observation": "The level is placed correctly. The stronger answer also says what that level does: hearing appeals within its circuit before a case can reach the Supreme Court.",
+    "hint": "What does an appellate court decide that a trial court doesn't?",
+    "nextPractice": "Three structure questions asking you to place a level correctly and explain its function.",
+    "closingHeadline": "Make the application stick, not just the definition.",
+    "closingBody": "Join the beta for AP Gov practice built around applying concepts to real scenarios.",
     "clarifier": "Join for early AP U.S. Government practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP U.S. Government score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice constitutional principles, institutions, and political reasoning in focused steps."
+        "body": "Three structure questions asking you to place a level correctly and explain its function."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -3337,6 +3451,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP U.S. Government exam",
+      "headline": "Four free-response types, each asking you to apply, not just recall.",
+      "body": "The free-response section always has the same four tasks: concept application, quantitative analysis, SCOTUS comparison, and an argumentative essay.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "55 questions in 1 hour, often with a stimulus (text, data, or cartoon). 50% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "4 questions in 1 hour 40 minutes: concept application, quantitative analysis, SCOTUS comparison, argument essay. 50% of the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Applying a concept to a scenario, reading data accurately, and connecting a required case's reasoning to a new fact pattern."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Stopping at a definition, misreading a chart's axis or trend, and comparing two cases' facts without comparing their reasoning."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3354,62 +3493,55 @@
     "featureTopic": "AP U.S. History",
     "defaultWorld": "earth",
     "metaTitle": "AP United States History Prep | Lune Synth",
-    "metaDescription": "Practice historical context, sourcing, and evidence-based argument for AP United States History with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP U.S. History practice for sourcing, contextualization, and the DBQ and LEQ arguments, with feedback on your written reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP United States History with Lune Synth",
-    "headline": "Build the argument from the evidence.",
-    "heroBody": "Practice historical context, sourcing, and evidence-based argument with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/2.webp",
-    "phoneAlt": "Lune Synth displaying a high school history explanation prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP U.S. History; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "An argument the DBQ rubric would actually credit.",
+    "heroBody": "AP U.S. History free response grades sourcing, contextualization, and an argument built from evidence, not just the right date. Practice reading primary sources and writing the explanation, with feedback on where the reasoning breaks.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apush-sentiments-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apush-sentiments.webp",
+    "phoneAlt": "Lune Synth question quoting the 1848 Declaration of Sentiments and asking which earlier document it deliberately echoes.",
+    "phoneLabel": "AP U.S. History · the Declaration of Sentiments, 1848",
+    "problemKicker": "Where US History points go missing",
+    "problemHeadline": "Naming the right event is not the same as explaining it.",
+    "problemBody": "SAQs and the DBQ reward contextualization, sourcing (why this author, audience, or purpose matters), and a complex argument. Students who know the facts still lose points for summarizing a document instead of using it as evidence for a claim.",
+    "contrastBefore": "Recall the date and the name",
+    "contrastAfter": "Use the source as evidence for a claim",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through historical context, sourcing, and evidence-based argument yourself."
+        "title": "Write the real response",
+        "body": "Contextualize a source, source a document, or draft a thesis, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing move",
+        "body": "Feedback names whether it's sourcing, contextualization, or evidence that's missing, not just \"explain more.\""
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Contextualize two sources in a few sentences."
+        "title": "Drill the skill",
+        "body": "A short follow-up set on the same skill with new sources and periods."
       }
     ],
-    "exampleKicker": "AP U.S. History practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A DBQ sourcing habit",
+    "exampleHeadline": "Say why the source is being used, not just what it says.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A source’s date is listed, but its historical context is missing.",
-    "observation": "Connect the source to a surrounding event or trend.",
-    "hint": "What was changing when the source was written?",
-    "nextPractice": "Contextualize two sources in a few sentences.",
-    "closingHeadline": "Keep building your AP U.S. History skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The Declaration of Sentiments borrows language from the Declaration of Independence.",
+    "observation": "The echo is identified correctly. The response doesn't yet say why borrowing that authority mattered to the argument.",
+    "hint": "What did claiming the nation's own founding language do for the Seneca Falls argument?",
+    "nextPractice": "Three primary sources asking you to identify what a document echoes and why that choice strengthens the argument.",
+    "closingHeadline": "Make your next DBQ argument complete.",
+    "closingBody": "Join the beta for history practice built around sourcing, contextualization, and arguments a reader would credit.",
     "clarifier": "Join for early AP U.S. History practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP U.S. History score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice historical context, sourcing, and evidence-based argument in focused steps."
+        "body": "Three primary sources asking you to identify what a document echoes and why that choice strengthens the argument."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -3443,6 +3575,46 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP U.S. History exam",
+      "headline": "Four question types, one habit: evidence first.",
+      "body": "Multiple choice and short answer are followed by the DBQ, which supplies seven documents, and the LEQ, which supplies none.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "55 questions in 55 minutes, in sets tied to a stimulus. 40% of the score."
+        },
+        {
+          "label": "Short answer",
+          "text": "3 questions in 40 minutes, each needing specific historical evidence. 20% of the score."
+        },
+        {
+          "label": "DBQ",
+          "text": "1 question in 60 minutes (15 reading) using at least 6 of 7 documents. 25% of the score."
+        },
+        {
+          "label": "LEQ",
+          "text": "1 question in 40 minutes with no documents provided. 15% of the score."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/hum/apush-reconstruction-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/hum/apush-reconstruction.webp",
+          "alt": "Lune Synth question with a Reconstruction timeline from the 13th Amendment to the Compromise of 1877, asking what the withdrawal of federal troops led to.",
+          "title": "Reading a Reconstruction timeline",
+          "caption": ""
+        },
+        {
+          "src": "/mobile-app-assets/screenshots/applied/hum/apush-migration-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/hum/apush-migration.webp",
+          "alt": "Lune Synth question with a cause-and-effect diagram of the Great Migration, one pull factor left blank among the causes.",
+          "title": "Causes of the Great Migration",
+          "caption": ""
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3460,62 +3632,55 @@
     "featureTopic": "AP World History: Modern",
     "defaultWorld": "earth",
     "metaTitle": "AP World History: Modern Prep | Lune Synth",
-    "metaDescription": "Practice historical comparison, causation, and source analysis for AP World History: Modern with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP World History: Modern practice for sourcing, contextualization, and comparing developments across regions, with feedback on your written arguments.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP World History: Modern with Lune Synth",
-    "headline": "Connect events across the bigger picture.",
-    "heroBody": "Practice historical comparison, causation, and source analysis with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/2.webp",
-    "phoneAlt": "Lune Synth displaying a high school history explanation prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP World History: Modern; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Connect regions, not just list them.",
+    "heroBody": "AP World History free response rewards comparisons and causation across civilizations, not a list of facts about one place. Practice reading timelines and maps across regions and writing the explanation, with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apwh-voyages-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apwh-voyages.webp",
+    "phoneAlt": "Lune Synth question with a timeline of Zheng He's voyages, the fall of Constantinople, and Columbus and da Gama's landings, asking why Ming funding stopped.",
+    "phoneLabel": "AP World History · Zheng He's voyages and 1453",
+    "problemKicker": "Where World History points go missing",
+    "problemHeadline": "One region's facts, correctly stated, is not a comparison.",
+    "problemBody": "The DBQ and LEQ ask for a historically defensible argument connecting developments across regions and periods. Students who know a region's history well still lose points for never crossing into the second region the question asks about.",
+    "contrastBefore": "Describe what happened in one place",
+    "contrastAfter": "Explain why it differed across regions",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through historical comparison, causation, and source analysis yourself."
+        "title": "Argue across regions",
+        "body": "Write a thesis or SAQ response that compares two places or periods, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing half",
+        "body": "Feedback flags when an answer only addresses one side of a required comparison."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Support a causal claim with two pieces of evidence."
+        "title": "Repeat the pattern",
+        "body": "A short follow-up set on the same comparison skill with new regions and periods."
       }
     ],
-    "exampleKicker": "AP World History: Modern practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A comparison habit",
+    "exampleHeadline": "State the reason for the difference, not just the difference.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "One event is blamed on a single cause despite broader evidence.",
-    "observation": "Separate immediate causes from longer-term conditions.",
-    "hint": "What is one relevant longer-term condition?",
-    "nextPractice": "Support a causal claim with two pieces of evidence.",
-    "closingHeadline": "Keep building your AP World History: Modern skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The Ming court stopped funding Zheng He's voyages because of cost.",
+    "observation": "Cost is part of it. The stronger reason is where the court redirected its resources, to the northern frontier, which the timeline points to.",
+    "hint": "What was competing for the Ming treasury's attention after 1433?",
+    "nextPractice": "Three timeline questions asking you to weigh competing causes and justify which mattered most.",
+    "closingHeadline": "Make the cross-region argument stick.",
+    "closingBody": "Join the beta for world-history practice built around comparison, causation, and arguments that cross regions.",
     "clarifier": "Join for early AP World History: Modern practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP World History: Modern score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice historical comparison, causation, and source analysis in focused steps."
+        "body": "Three timeline questions asking you to weigh competing causes and justify which mattered most."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -3549,6 +3714,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP World History: Modern exam",
+      "headline": "The same four-part format as the other history APs.",
+      "body": "World History's DBQ and LEQ ask for comparison or causation claims that span at least two of the course's six regions.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "55 questions in 55 minutes, in sets tied to a stimulus. 40% of the score."
+        },
+        {
+          "label": "Short answer",
+          "text": "3 questions in 40 minutes, each needing specific historical evidence. 20% of the score."
+        },
+        {
+          "label": "DBQ",
+          "text": "1 question in 60 minutes (15 reading) using at least 6 of 7 documents. 25% of the score."
+        },
+        {
+          "label": "LEQ",
+          "text": "1 question in 40 minutes, choosing comparison, causation, or continuity and change. 15% of the score."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/hum/apwh-constantinople-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/hum/apwh-constantinople.webp",
+          "alt": "Lune Synth question with a map of present-day Europe marking Constantinople, asking how its location strengthened the Ottoman state.",
+          "title": "Constantinople on the map",
+          "caption": "The straits and the two continents are drawn in; connecting the geography to Ottoman power is the explanation asked for."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3566,62 +3764,55 @@
     "featureTopic": "AP Art History",
     "defaultWorld": "earth",
     "metaTitle": "AP Art History Prep | Lune Synth",
-    "metaDescription": "Practice visual analysis, context, and interpretation for AP Art History with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Art History practice for comparing works across cultures and periods using specific visual evidence, with feedback on your written analysis.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Art History with Lune Synth",
-    "headline": "See the work, then make the argument.",
-    "heroBody": "Practice visual analysis, context, and interpretation with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/2-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/2.webp",
-    "phoneAlt": "Lune Synth displaying a high school history explanation prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Art History; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Point to the feature, then explain what it does.",
+    "heroBody": "AP Art History free response rewards specific visual evidence tied to a claim, such as naming a structural feature and explaining what it allowed, not a general impression of a work. Practice that with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/aparthist-domes-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/aparthist-domes.webp",
+    "phoneAlt": "Lune Synth question comparing the Pantheon's oculus and concrete dome with Hagia Sophia's ring of windows, one shared structural feature left blank.",
+    "phoneLabel": "AP Art History · the Pantheon and Hagia Sophia",
+    "problemKicker": "Where Art History points go missing",
+    "problemHeadline": "\"It's impressive\" is not visual evidence.",
+    "problemBody": "Comparison essays reward naming a specific feature (a material, a form, a structural choice) in each work and explaining what it enabled or signified, not a general reaction to the image.",
+    "contrastBefore": "React to how the work looks",
+    "contrastAfter": "Name the feature and its function",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through visual analysis, context, and interpretation yourself."
+        "title": "Compare two works",
+        "body": "Name a shared or contrasting feature in two works yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing function",
+        "body": "Feedback flags a named feature with no explanation of what it did structurally or symbolically."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain one interpretation using two visual details."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set comparing new works across periods and cultures."
       }
     ],
-    "exampleKicker": "AP Art History practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A visual-comparison habit",
+    "exampleHeadline": "Say what the feature made possible.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The subject is named, but the work’s visual form is not analyzed.",
-    "observation": "Support the interpretation with visible features.",
-    "hint": "What does composition or material add to the meaning?",
-    "nextPractice": "Explain one interpretation using two visual details.",
-    "closingHeadline": "Keep building your AP Art History skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Hagia Sophia uses pendentives like the Pantheon uses its dome.",
+    "observation": "Pendentives is the right term. The stronger answer explains what they do: let a round dome rest on a square base, which the Pantheon's drum-supported dome never needed to solve.",
+    "hint": "The Pantheon's dome sits on a round drum; what shape is Hagia Sophia's base?",
+    "nextPractice": "Three comparison questions asking you to name a structural feature and explain what it enabled.",
+    "closingHeadline": "Make your visual evidence specific.",
+    "closingBody": "Join the beta for Art History practice built around naming features and explaining their function.",
     "clarifier": "Join for early AP Art History practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Art History score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#bf9dff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice visual analysis, context, and interpretation in focused steps."
+        "body": "Three comparison questions asking you to name a structural feature and explain what it enabled."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -3655,6 +3846,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Art History exam",
+      "headline": "Image-based multiple choice, then six free-response essays.",
+      "body": "The free-response section includes essays on works you must identify from memory as well as unknown works, so specific visual evidence is what separates scores.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "80 questions in 1 hour, mostly image-based. 50% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "6 essays in 2 hours: one 30-minute comparison and five shorter essays, two using unidentified works. 50% of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "General impressions instead of named visual evidence, and comparisons that describe each work separately instead of connecting them."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3672,62 +3884,55 @@
     "featureTopic": "AP Music Theory",
     "defaultWorld": "earth",
     "metaTitle": "AP Music Theory Prep | Lune Synth",
-    "metaDescription": "Practice notation, harmony, and musical explanations for AP Music Theory with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Music Theory practice for Roman-numeral analysis, part-writing, and aural skills, with feedback on your harmonic reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Music Theory with Lune Synth",
-    "headline": "Hear the pattern and explain the structure.",
-    "heroBody": "Practice notation, harmony, and musical explanations with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Music Theory; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Find the chord from its notes, every time.",
+    "heroBody": "AP Music Theory free response needs fast, accurate Roman-numeral analysis and part-writing, not just an ear for how a piece sounds. Practice reading notes off the staff and get feedback on your harmonic analysis.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apmusic-ii-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apmusic-ii.webp",
+    "phoneAlt": "Lune Synth question with two measures of a B-flat major bass line, asking for the Roman numeral of the second, marked chord.",
+    "phoneLabel": "AP Music Theory · a Roman-numeral chord",
+    "problemKicker": "Where Music Theory points go missing",
+    "problemHeadline": "Hearing that a chord resolves is not the same as naming it.",
+    "problemBody": "Part-writing and analysis questions score the specific Roman numeral and its inversion, built from the actual notes on the staff, not a general sense of the harmony.",
+    "contrastBefore": "Sense how the chord feels",
+    "contrastAfter": "Build the numeral from the notes",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through notation, harmony, and musical explanations yourself."
+        "title": "Work the actual notes",
+        "body": "Identify a chord's root and quality from the staff yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing step",
+        "body": "Feedback flags whether the root, the quality, or the scale-degree count was the slip."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Identify and explain the quality of two triads."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set in new keys with new chords to identify."
       }
     ],
-    "exampleKicker": "AP Music Theory practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A Roman-numeral habit",
+    "exampleHeadline": "Count scale degrees from the key, not from habit.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A major triad is labeled minor without checking its third.",
-    "observation": "Measure the interval above the root.",
-    "hint": "How many semitones separate the root and third?",
-    "nextPractice": "Identify and explain the quality of two triads.",
-    "closingHeadline": "Keep building your AP Music Theory skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The marked chord is IV.",
+    "observation": "C-Eb-G isn't built from B-flat major's fourth scale degree. Counting up from B-flat, C is the second scale degree, which makes the chord ii.",
+    "hint": "In B-flat major, which scale degree is C?",
+    "nextPractice": "Three chord-identification questions in new keys, each asking for the Roman numeral from the given notes.",
+    "closingHeadline": "Make the analysis as solid as the ear.",
+    "closingBody": "Join the beta for Music Theory practice built around reading the notes and naming the harmony correctly.",
     "clarifier": "Join for early AP Music Theory practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Music Theory score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#bf9dff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice notation, harmony, and musical explanations in focused steps."
+        "body": "Three chord-identification questions in new keys, each asking for the Roman numeral from the given notes."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -3761,6 +3966,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Music Theory exam",
+      "headline": "Written theory, aural skills, and sight-singing together.",
+      "body": "The exam mixes multiple choice (including listening) with written free response covering dictation, part-writing, and analysis, plus a sight-singing component.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "About 1 hour 20 minutes, including questions answered from recorded musical excerpts."
+        },
+        {
+          "label": "Free response",
+          "text": "About 50 minutes: melodic and harmonic dictation, part-writing a bass line or soprano line, and harmonic analysis."
+        },
+        {
+          "label": "Sight-singing",
+          "text": "A separately timed section where you sing two notated melodies on your own."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Counting scale degrees from the wrong key signature, and inversions mislabeled from the bass note."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3778,62 +4008,55 @@
     "featureTopic": "AP 2-D Art and Design",
     "defaultWorld": "earth",
     "metaTitle": "AP 2-D Art and Design Portfolio Practice | Lune Synth",
-    "metaDescription": "Practice composition, design choices, and written reflection for AP 2-D Art and Design with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP 2-D Art and Design portfolio practice for color theory and design decisions, with feedback on how you explain your choices.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP 2-D Art and Design with Lune Synth",
-    "headline": "Make the composition explain the inquiry.",
-    "heroBody": "Practice composition, design choices, and written reflection with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP 2-D Art and Design; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Explain the color decision, not just make it.",
+    "heroBody": "AP 2-D Art and Design's portfolio rewards design decisions you can explain, such as which color scheme a piece uses and why, alongside the work itself. Practice naming your color and composition choices with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/ap2d-split-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/ap2d-split.webp",
+    "phoneAlt": "Lune Synth question with a painter's color wheel marking blue, yellow-orange and red-orange, asking which color scheme the three hues form.",
+    "phoneLabel": "AP 2-D Art and Design · a split-complementary scheme",
+    "problemKicker": "Where portfolio reasoning gets thin",
+    "problemHeadline": "Choosing colors by eye is fine; naming the scheme is the skill that transfers.",
+    "problemBody": "The Sustained Investigation and Selected Works sections ask you to articulate your process and materials. Being able to name a color scheme, a complement, or a value structure makes that written reflection specific instead of vague.",
+    "contrastBefore": "Pick colors that look right",
+    "contrastAfter": "Name the scheme and why it works",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through composition, design choices, and written reflection yourself."
+        "title": "Work the color wheel",
+        "body": "Identify a color scheme or a complement from marked hues yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing term",
+        "body": "Feedback names the scheme (split-complementary, triadic, analogous) your answer was reaching for."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain one composition choice using contrast."
+        "title": "Practice the vocabulary",
+        "body": "A short follow-up set with new hue combinations to classify."
       }
     ],
-    "exampleKicker": "AP 2-D Art and Design practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A color-vocabulary habit",
+    "exampleHeadline": "Name the scheme precisely, not approximately.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The reflection lists colors without explaining how contrast directs attention.",
-    "observation": "Connect the visual choice to the focus of your own work.",
-    "hint": "What should the viewer notice first?",
-    "nextPractice": "Explain one composition choice using contrast.",
-    "closingHeadline": "Keep building your AP 2-D Art and Design skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Blue, yellow-orange, and red-orange look balanced together.",
+    "observation": "They do work together, and there's a name for why: blue's complement is orange, and yellow-orange and red-orange sit on either side of it, which makes this a split-complementary scheme.",
+    "hint": "What color is directly opposite blue on the wheel?",
+    "nextPractice": "Three color-wheel questions asking you to name the scheme a set of marked hues forms.",
+    "closingHeadline": "Make your color choices legible to a reader.",
+    "closingBody": "Join the beta and turn color and design instincts into vocabulary a portfolio reader can score.",
     "clarifier": "Join for early AP 2-D Art and Design practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP 2-D Art and Design score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#bf9dff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice composition, design choices, and written reflection in focused steps."
+        "body": "Three color-wheel questions asking you to name the scheme a set of marked hues forms."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -3867,6 +4090,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "AP 2-D Art and Design",
+      "headline": "A portfolio, not a sit-down exam.",
+      "body": "AP 2-D Art and Design is scored entirely on a submitted digital portfolio: no multiple choice and no timed free response.",
+      "facts": [
+        {
+          "label": "Sustained Investigation",
+          "text": "15 images documenting an inquiry-driven process, with written questions about materials and process. About 50% of the score."
+        },
+        {
+          "label": "Selected Works",
+          "text": "5 of your strongest works, each with a materials and process statement. About 50% of the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Range of approaches, mastery of materials and elements like color, and the depth of investigation across the portfolio."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3884,62 +4128,55 @@
     "featureTopic": "AP 3-D Art and Design",
     "defaultWorld": "earth",
     "metaTitle": "AP 3-D Art and Design Portfolio Practice | Lune Synth",
-    "metaDescription": "Practice spatial relationships, materials, and written reflection for AP 3-D Art and Design with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP 3-D Art and Design portfolio practice for color and material decisions in three dimensions, with feedback on how you explain your choices.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP 3-D Art and Design with Lune Synth",
-    "headline": "Show what form and space are doing.",
-    "heroBody": "Practice spatial relationships, materials, and written reflection with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP 3-D Art and Design; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Explain the glaze decision, not just the piece.",
+    "heroBody": "AP 3-D Art and Design's portfolio rewards material and design decisions you can articulate, such as why a glaze color was chosen, alongside the work itself. Practice naming those decisions with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/ap3d-complement-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/ap3d-complement.webp",
+    "phoneAlt": "Lune Synth question with a painter's color wheel marking orange, asking which hue is its complement for a glaze accent.",
+    "phoneLabel": "AP 3-D Art and Design · a complement for orange",
+    "problemKicker": "Where portfolio reasoning gets thin",
+    "problemHeadline": "A glaze that looks good is not yet a stated design decision.",
+    "problemBody": "The Sustained Investigation and Selected Works sections ask for written process statements. Naming a color relationship, like a complement chosen for contrast, makes that statement specific instead of a general description of the piece.",
+    "contrastBefore": "Choose a color that looks good",
+    "contrastAfter": "Name why it contrasts, specifically",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through spatial relationships, materials, and written reflection yourself."
+        "title": "Work the color wheel in 3-D",
+        "body": "Identify a complement or contrast relationship for a material or glaze yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing term",
+        "body": "Feedback names the color relationship your written process statement was reaching for."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain one intentional spatial relationship in your own work."
+        "title": "Practice the vocabulary",
+        "body": "A short follow-up set with new base colors to find complements and contrasts for."
       }
     ],
-    "exampleKicker": "AP 3-D Art and Design practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A material-decision habit",
+    "exampleHeadline": "Name the relationship, not just the result.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Materials are listed without explaining the relationship between form and surrounding space.",
-    "observation": "Connect the construction choice to its spatial effect.",
-    "hint": "How does the space around the form affect the viewer’s experience?",
-    "nextPractice": "Explain one intentional spatial relationship in your own work.",
-    "closingHeadline": "Keep building your AP 3-D Art and Design skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Blue glaze would look nice against the orange body.",
+    "observation": "It would. The reason is that blue sits directly opposite orange on the color wheel, which makes it orange's complement and gives the strongest contrast for an accent glaze.",
+    "hint": "What is directly across the wheel from orange?",
+    "nextPractice": "Three material-color questions asking you to find a complement for contrast or an analogous hue for harmony.",
+    "closingHeadline": "Make your material choices legible to a reader.",
+    "closingBody": "Join the beta and turn color and material instincts into a process statement a reader can score.",
     "clarifier": "Join for early AP 3-D Art and Design practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP 3-D Art and Design score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#bf9dff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice spatial relationships, materials, and written reflection in focused steps."
+        "body": "Three material-color questions asking you to find a complement for contrast or an analogous hue for harmony."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -3973,6 +4210,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "AP 3-D Art and Design",
+      "headline": "A portfolio, not a sit-down exam.",
+      "body": "AP 3-D Art and Design is scored entirely on a submitted digital portfolio documenting work in the round: no multiple choice and no timed free response.",
+      "facts": [
+        {
+          "label": "Sustained Investigation",
+          "text": "15 images documenting an inquiry-driven process in three dimensions, with written process statements. About 50% of the score."
+        },
+        {
+          "label": "Selected Works",
+          "text": "5 of your strongest works, each with a materials and process statement. About 50% of the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Range of approaches, mastery of materials, and depth of investigation across the portfolio."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -3990,62 +4248,55 @@
     "featureTopic": "AP Drawing",
     "defaultWorld": "earth",
     "metaTitle": "AP Drawing Portfolio Practice | Lune Synth",
-    "metaDescription": "Practice mark-making, composition, and written reflection for AP Drawing with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Drawing portfolio practice for value, mark-making, and design decisions, with feedback on how you explain your choices.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Drawing with Lune Synth",
-    "headline": "Make the marks explain the idea.",
-    "heroBody": "Practice mark-making, composition, and written reflection with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Drawing; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Explain the value decision, not just the drawing.",
+    "heroBody": "AP Drawing's portfolio rewards design decisions you can articulate, such as how a value scale is built, alongside the drawing itself. Practice naming your value, line, and material choices with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apdrawing-value-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apdrawing-value.webp",
+    "phoneAlt": "Lune Synth question with a nine-step red-violet value scale, the fifth step left blank, asking what makes the lighter steps.",
+    "phoneLabel": "AP Drawing · a value scale",
+    "problemKicker": "Where portfolio reasoning gets thin",
+    "problemHeadline": "A convincing value range is not yet a stated design decision.",
+    "problemBody": "The Sustained Investigation and Selected Works sections ask for written process statements. Being able to name how a tint, tone, or shade was built makes that statement specific instead of a general description of the drawing.",
+    "contrastBefore": "Build a value range by eye",
+    "contrastAfter": "Name how each step was mixed",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through mark-making, composition, and written reflection yourself."
+        "title": "Work the value scale",
+        "body": "Identify what makes a tint, tone, or shade from a marked scale yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing term",
+        "body": "Feedback names the mixing method (tint, tone, shade) your written process statement was reaching for."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain one intentional mark-making choice."
+        "title": "Practice the vocabulary",
+        "body": "A short follow-up set with new hues and value scales to describe."
       }
     ],
-    "exampleKicker": "AP Drawing practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A value-vocabulary habit",
+    "exampleHeadline": "Name what was added, not just that it got lighter.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The reflection names the pencil but never explains the use of varied marks.",
-    "observation": "Connect the mark-making choice to form, light, or your inquiry.",
-    "hint": "Why did you vary the weight or density of the marks?",
-    "nextPractice": "Explain one intentional mark-making choice.",
-    "closingHeadline": "Keep building your AP Drawing skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The lighter steps just use less pigment.",
+    "observation": "Less pigment would make it more transparent, not lighter in value the way a tint scale works. The lighter steps add white to the base color.",
+    "hint": "What do you mix with a color to lighten its value without changing its hue?",
+    "nextPractice": "Three value-scale questions asking you to name what produces a tint, a tone, or a shade.",
+    "closingHeadline": "Make your value choices legible to a reader.",
+    "closingBody": "Join the beta and turn value and mark-making instincts into a process statement a reader can score.",
     "clarifier": "Join for early AP Drawing practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Drawing score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#bf9dff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice mark-making, composition, and written reflection in focused steps."
+        "body": "Three value-scale questions asking you to name what produces a tint, a tone, or a shade."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4079,6 +4330,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "AP Drawing",
+      "headline": "A portfolio, not a sit-down exam.",
+      "body": "AP Drawing is scored entirely on a submitted digital portfolio: no multiple choice and no timed free response.",
+      "facts": [
+        {
+          "label": "Sustained Investigation",
+          "text": "15 images documenting an inquiry-driven process, with written process statements. About 50% of the score."
+        },
+        {
+          "label": "Selected Works",
+          "text": "5 of your strongest works, each with a materials and process statement. About 50% of the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Range of approaches, mastery of materials like value and line, and depth of investigation across the portfolio."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4096,62 +4368,55 @@
     "featureTopic": "AP Chinese Language",
     "defaultWorld": "earth",
     "metaTitle": "AP Chinese Language and Culture Prep | Lune Synth",
-    "metaDescription": "Practice Chinese communication, reading, and cultural comparison for AP Chinese Language and Culture with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Chinese Language and Culture practice for tone accuracy, which changes word meaning, with feedback on your spoken and written Chinese.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Chinese Language and Culture with Lune Synth",
-    "headline": "Make your Chinese response your own.",
-    "heroBody": "Practice Chinese communication, reading, and cultural comparison with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/voice/voice-mode.webp",
-    "phoneAlt": "Lune Synth voice mode for submitting a spoken explanation",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Chinese Language; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "The tone is part of the word, not an accent on top of it.",
+    "heroBody": "AP Chinese scores tone as part of correct pronunciation, since the wrong tone can turn one word into a different one entirely, such as 买 (to buy) into 卖 (to sell). Practice tone pairs with feedback on your Chinese.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apchinese-tones-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apchinese-tones.webp",
+    "phoneAlt": "Lune Synth question comparing the syllables 买 and 卖, which differ only in tone, asking which tone 买 carries.",
+    "phoneLabel": "AP Chinese · 买 versus 卖",
+    "problemKicker": "Where Chinese points go missing",
+    "problemHeadline": "Right syllable, wrong tone, different word.",
+    "problemBody": "Speaking and listening tasks lose points when a tone shift changes the meaning of what you said, not just how it sounds, because Mandarin tones are part of a word's identity.",
+    "contrastBefore": "Get the syllable right",
+    "contrastAfter": "Get the tone right too",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through Chinese communication, reading, and cultural comparison yourself."
+        "title": "Work actual tone pairs",
+        "body": "Identify the tone of a word from a pair that differs only in tone yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the exact tone",
+        "body": "Feedback names which of the four tones the correct word carries."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Draft a short cultural comparison with supporting details."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new tone-pair words to distinguish."
       }
     ],
-    "exampleKicker": "AP Chinese Language practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A tone habit",
+    "exampleHeadline": "Trace the tone's shape, not just its pitch.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The Chinese response describes a tradition without making the requested cultural comparison.",
-    "observation": "Include a supported comparison, not only a description.",
-    "hint": "What similarity or difference can you explain?",
-    "nextPractice": "Draft a short cultural comparison with supporting details.",
-    "closingHeadline": "Keep building your AP Chinese Language skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "买 sounds like it goes up, so it's 2nd tone.",
+    "observation": "买 (mǎi) is 3rd tone: it dips down and then rises, which is different from 2nd tone's single rise from low to high.",
+    "hint": "Does the tone mark dip down before it rises, or rise the whole way?",
+    "nextPractice": "Three tone-pair questions with new words that differ only in tone.",
+    "closingHeadline": "Make the tone match the word, every time.",
+    "closingBody": "Join the beta for Chinese practice built around tone pairs and the meaning they carry.",
     "clarifier": "Join for early AP Chinese Language practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Chinese Language score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a7e5a1"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice Chinese communication, reading, and cultural comparison in focused steps."
+        "body": "Three tone-pair questions with new words that differ only in tone."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4185,6 +4450,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Chinese Language and Culture exam",
+      "headline": "A computer-based exam covering reading, listening, writing, and speaking.",
+      "body": "The AP Chinese exam is administered on computer and includes typed or handwritten responses as well as recorded speaking tasks, all in Mandarin.",
+      "facts": [
+        {
+          "label": "Interpretive",
+          "text": "Multiple choice from reading and audio sources. About half the score."
+        },
+        {
+          "label": "Presentational writing",
+          "text": "A message reply and a story narration based on picture prompts."
+        },
+        {
+          "label": "Interpersonal and presentational speaking",
+          "text": "A simulated conversation and a cultural presentation."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Tone shifts that change a word's meaning, and character writing that drops a required radical."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4202,62 +4492,55 @@
     "featureTopic": "AP French Language",
     "defaultWorld": "earth",
     "metaTitle": "AP French Language and Culture Prep | Lune Synth",
-    "metaDescription": "Practice French communication, reading, and cultural comparison for AP French Language and Culture with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP French Language and Culture practice for grammar in context, such as the subjunctive, with feedback on your written and spoken French.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP French Language and Culture with Lune Synth",
-    "headline": "Make your French response your own.",
-    "heroBody": "Practice French communication, reading, and cultural comparison with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/voice/voice-mode.webp",
-    "phoneAlt": "Lune Synth voice mode for submitting a spoken explanation",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP French Language; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Get the mood right, not just the verb.",
+    "heroBody": "AP French free response scores whether you choose the correct mood and form for the context, such as the subjunctive after il faut que, not just whether you know the verb. Practice that in context with feedback on your French.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apfrench-subjonctif-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apfrench-subjonctif.webp",
+    "phoneAlt": "Lune Synth question with a conjugation table for parler, the nous present-subjunctive form left blank, asked for after il faut que.",
+    "phoneLabel": "AP French · le subjonctif",
+    "problemKicker": "Where French points go missing",
+    "problemHeadline": "Knowing a verb's conjugations is not the same as choosing the right mood.",
+    "problemBody": "Email replies and essays lose points when a form is correctly spelled but in the wrong mood for its trigger phrase, such as using the indicative after an expression that requires the subjunctive.",
+    "contrastBefore": "Conjugate the verb correctly",
+    "contrastAfter": "Choose the mood the phrase requires",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through French communication, reading, and cultural comparison yourself."
+        "title": "Work the actual sentence",
+        "body": "Complete a sentence with the correct mood and form yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing trigger",
+        "body": "Feedback names the phrase that required the subjunctive, conditional, or another mood."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Write a concise reply that addresses every request."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new verbs and trigger phrases."
       }
     ],
-    "exampleKicker": "AP French Language practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "Une habitude de grammaire",
+    "exampleHeadline": "Reconnaître ce que la phrase déclenche.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The formal French reply is polite but leaves one requested detail unanswered.",
-    "observation": "Check the response against each part of the prompt.",
-    "hint": "Which requested information is still missing?",
-    "nextPractice": "Write a concise reply that addresses every request.",
-    "closingHeadline": "Keep building your AP French Language skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Il faut que nous parlons au professeur.",
+    "observation": "Parlons is the present indicative. Il faut que always triggers the subjunctive, so the nous form needs parlions.",
+    "hint": "Quel mode est-ce que \"il faut que\" déclenche toujours?",
+    "nextPractice": "Three sentence-completion questions with new subjunctive triggers and verbs.",
+    "closingHeadline": "Make the mood match the trigger, every time.",
+    "closingBody": "Join the beta for French practice built around choosing the right mood in context.",
     "clarifier": "Join for early AP French Language practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP French Language score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a7e5a1"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice French communication, reading, and cultural comparison in focused steps."
+        "body": "Three sentence-completion questions with new subjunctive triggers and verbs."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4291,6 +4574,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP French Language and Culture exam",
+      "headline": "Reading, listening, writing, and speaking, together.",
+      "body": "The exam combines interpretive multiple choice with presentational writing (email reply, persuasive essay) and speaking (a simulated conversation and a cultural comparison), all in French.",
+      "facts": [
+        {
+          "label": "Interpretive",
+          "text": "Multiple choice from reading and audio sources. About half the score."
+        },
+        {
+          "label": "Presentational writing",
+          "text": "An email reply and a persuasive essay using multiple sources."
+        },
+        {
+          "label": "Interpersonal and presentational speaking",
+          "text": "A simulated conversation and a 2-minute cultural comparison."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Correct conjugations in the wrong mood, and register that doesn't match the conversation's context."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4308,62 +4616,55 @@
     "featureTopic": "AP German Language",
     "defaultWorld": "earth",
     "metaTitle": "AP German Language and Culture Prep | Lune Synth",
-    "metaDescription": "Practice German communication, reading, and cultural comparison for AP German Language and Culture with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP German Language and Culture practice for verb conjugation and word order in everyday contexts, with feedback on your written and spoken German.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP German Language and Culture with Lune Synth",
-    "headline": "Make your German response your own.",
-    "heroBody": "Practice German communication, reading, and cultural comparison with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/voice/voice-mode.webp",
-    "phoneAlt": "Lune Synth voice mode for submitting a spoken explanation",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP German Language; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Get the conjugation right in the actual sentence.",
+    "heroBody": "AP German free response scores whether a verb form fits its subject and position in a real exchange, such as asking \"wo kaufe ich,\" not just whether you can recite a conjugation table. Practice that in context with feedback on your German.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apgerman-bahnhof-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apgerman-bahnhof.webp",
+    "phoneAlt": "Lune Synth question with a German train-station dialogue, the verb for buying a ticket left blank after wo ___ ich.",
+    "phoneLabel": "AP German · am Bahnhof",
+    "problemKicker": "Where German points go missing",
+    "problemHeadline": "Knowing the verb table is not the same as using it mid-sentence.",
+    "problemBody": "Conversational replies and emails lose points when a verb's ending doesn't match its subject, a slip that's easy to make when switching from reciting a table to building a live sentence.",
+    "contrastBefore": "Recite the conjugation table",
+    "contrastAfter": "Match the ending to this subject",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through German communication, reading, and cultural comparison yourself."
+        "title": "Work the actual sentence",
+        "body": "Complete a real exchange with the correct verb form yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing match",
+        "body": "Feedback names the subject the verb ending needs to agree with."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Support one opinion with a concrete example."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new subjects and verbs in context."
       }
     ],
-    "exampleKicker": "AP German Language practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "Eine Grammatikgewohnheit",
+    "exampleHeadline": "Das Subjekt zuerst finden, dann die Endung.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The German argument gives a clear opinion but no supporting example.",
-    "observation": "Connect the claim to specific support.",
-    "hint": "What example makes your position more convincing?",
-    "nextPractice": "Support one opinion with a concrete example.",
-    "closingHeadline": "Keep building your AP German Language skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Wo kauft ich eine Fahrkarte?",
+    "observation": "Kauft is the er/sie/es form. The subject here is ich, so the verb needs the ich-ending: kaufe.",
+    "hint": "Welches Subjekt steht direkt vor der Lücke?",
+    "nextPractice": "Three dialogue-completion questions with new subjects and everyday verbs.",
+    "closingHeadline": "Make the verb match the subject, every time.",
+    "closingBody": "Join the beta for German practice built around real exchanges, not just conjugation tables.",
     "clarifier": "Join for early AP German Language practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP German Language score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a7e5a1"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice German communication, reading, and cultural comparison in focused steps."
+        "body": "Three dialogue-completion questions with new subjects and everyday verbs."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4397,6 +4698,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP German Language and Culture exam",
+      "headline": "Reading, listening, writing, and speaking, together.",
+      "body": "The exam combines interpretive multiple choice with presentational writing (email reply, persuasive essay) and speaking (a simulated conversation and a cultural comparison), all in German.",
+      "facts": [
+        {
+          "label": "Interpretive",
+          "text": "Multiple choice from reading and audio sources. About half the score."
+        },
+        {
+          "label": "Presentational writing",
+          "text": "An email reply and a persuasive essay using multiple sources."
+        },
+        {
+          "label": "Interpersonal and presentational speaking",
+          "text": "A simulated conversation and a 2-minute cultural comparison."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Verb endings that don't match the actual subject in a live sentence, and word-order slips in subordinate clauses."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4414,62 +4740,55 @@
     "featureTopic": "AP Italian Language",
     "defaultWorld": "earth",
     "metaTitle": "AP Italian Language and Culture Prep | Lune Synth",
-    "metaDescription": "Practice Italian communication, reading, and cultural comparison for AP Italian Language and Culture with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Italian Language and Culture practice for choosing the right verb mood, such as the conditional, with feedback on your written and spoken Italian.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Italian Language and Culture with Lune Synth",
-    "headline": "Make your Italian response your own.",
-    "heroBody": "Practice Italian communication, reading, and cultural comparison with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/voice/voice-mode.webp",
-    "phoneAlt": "Lune Synth voice mode for submitting a spoken explanation",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Italian Language; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Get the mood right for a hypothetical.",
+    "heroBody": "AP Italian free response scores whether you choose the conditional for a hypothetical like \"se avessi tempo,\" not just whether the verb is spelled correctly. Practice that in context with feedback on your Italian.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apitalian-condizionale-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apitalian-condizionale.webp",
+    "phoneAlt": "Lune Synth question with a future and conditional table for parlare, the io conditional form left blank after se avessi tempo.",
+    "phoneLabel": "AP Italian · il condizionale",
+    "problemKicker": "Where Italian points go missing",
+    "problemHeadline": "A correctly spelled verb in the wrong mood is still wrong.",
+    "problemBody": "Email replies and essays lose points when a hypothetical clause (se avessi...) is answered in the future tense instead of the conditional the structure requires.",
+    "contrastBefore": "Spell the verb correctly",
+    "contrastAfter": "Choose the mood the clause needs",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through Italian communication, reading, and cultural comparison yourself."
+        "title": "Work the actual sentence",
+        "body": "Complete a hypothetical or everyday sentence with the correct mood yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing trigger",
+        "body": "Feedback names the clause structure that required the conditional, not the future."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "State and support one original response to a prompt."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new verbs and hypothetical clauses."
       }
     ],
-    "exampleKicker": "AP Italian Language practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "Un'abitudine grammaticale",
+    "exampleHeadline": "Riconoscere cosa richiede il condizionale.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The Italian response repeats the prompt without adding the speaker’s own position.",
-    "observation": "Make your response contribute a clear idea.",
-    "hint": "What do you want the listener to understand?",
-    "nextPractice": "State and support one original response to a prompt.",
-    "closingHeadline": "Keep building your AP Italian Language skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Se avessi tempo, parlerò con lui.",
+    "observation": "Parlerò is the future. Se avessi (the imperfect subjunctive) sets up a hypothetical, which needs the conditional: parlerei.",
+    "hint": "Che tempo usa \"se avessi\", e che tempo richiede nella frase principale?",
+    "nextPractice": "Three sentence-completion questions with new hypothetical clauses and verbs.",
+    "closingHeadline": "Make the mood match the hypothetical, every time.",
+    "closingBody": "Join the beta for Italian practice built around choosing the right mood in context.",
     "clarifier": "Join for early AP Italian Language practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Italian Language score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a7e5a1"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice Italian communication, reading, and cultural comparison in focused steps."
+        "body": "Three sentence-completion questions with new hypothetical clauses and verbs."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4503,6 +4822,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Italian Language and Culture exam",
+      "headline": "Reading, listening, writing, and speaking, together.",
+      "body": "The exam combines interpretive multiple choice with presentational writing (email reply, persuasive essay) and speaking (a simulated conversation and a cultural comparison), all in Italian.",
+      "facts": [
+        {
+          "label": "Interpretive",
+          "text": "Multiple choice from reading and audio sources. About half the score."
+        },
+        {
+          "label": "Presentational writing",
+          "text": "An email reply and a persuasive essay using multiple sources."
+        },
+        {
+          "label": "Interpersonal and presentational speaking",
+          "text": "A simulated conversation and a 2-minute cultural comparison."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Future tense used where a hypothetical needs the conditional, and register that doesn't match the context."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4520,62 +4864,55 @@
     "featureTopic": "AP Japanese Language",
     "defaultWorld": "earth",
     "metaTitle": "AP Japanese Language and Culture Prep | Lune Synth",
-    "metaDescription": "Practice Japanese communication, reading, and cultural comparison for AP Japanese Language and Culture with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Japanese Language and Culture practice for replying naturally in a real exchange, with feedback on your written and spoken Japanese.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Japanese Language and Culture with Lune Synth",
-    "headline": "Make your Japanese response your own.",
-    "heroBody": "Practice Japanese communication, reading, and cultural comparison with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/voice/voice-mode.webp",
-    "phoneAlt": "Lune Synth voice mode for submitting a spoken explanation",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Japanese Language; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Reply to what was actually asked.",
+    "heroBody": "AP Japanese free response scores whether your reply fits the question and invites the natural next turn, not just whether the grammar is correct. Practice conversational exchanges with feedback on your Japanese.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apjapanese-weekend-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apjapanese-weekend.webp",
+    "phoneAlt": "Lune Synth question with a Japanese dialogue about the weekend, Yui's reply left blank before Kenji asks what kind of movie it was.",
+    "phoneLabel": "AP Japanese · 週末の話",
+    "problemKicker": "Where Japanese points go missing",
+    "problemHeadline": "A grammatically fine sentence that answers the wrong question still loses points.",
+    "problemBody": "Conversational replies lose points when they don't address the specific question asked, such as answering a past-tense question about the weekend with a future-tense plan.",
+    "contrastBefore": "Check the grammar is correct",
+    "contrastAfter": "Check the reply fits the question",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through Japanese communication, reading, and cultural comparison yourself."
+        "title": "Respond in context",
+        "body": "Complete a real conversational turn yourself, by hand, typed, or spoken."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the mismatch",
+        "body": "Feedback flags a grammatically fine reply that answers a different question than the one asked."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare two responses for different audiences."
+        "title": "Practice the exchange",
+        "body": "A short follow-up set with new conversational contexts."
       }
     ],
-    "exampleKicker": "AP Japanese Language practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A conversational habit",
+    "exampleHeadline": "Match the tense and topic of the question.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The Japanese response uses the same register for a friend and an unfamiliar recipient.",
-    "observation": "Match the language choices to the audience.",
-    "hint": "What changes when the recipient is unfamiliar?",
-    "nextPractice": "Compare two responses for different audiences.",
-    "closingHeadline": "Keep building your AP Japanese Language skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "あした映画を見ます。(I will watch a movie tomorrow.)",
+    "observation": "Kenji asked what you did on the weekend, in the past tense. A future-tense plan doesn't answer that, and it leaves his follow-up question about \"what kind of movie\" with nothing to refer to.",
+    "hint": "Kenji's question uses しました (did); what tense does your reply need?",
+    "nextPractice": "Three conversation turns asking you to match a reply's tense and topic to the question asked.",
+    "closingHeadline": "Make your reply match the question asked.",
+    "closingBody": "Join the beta for Japanese practice built around responding to what's actually asked.",
     "clarifier": "Join for early AP Japanese Language practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Japanese Language score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a7e5a1"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice Japanese communication, reading, and cultural comparison in focused steps."
+        "body": "Three conversation turns asking you to match a reply's tense and topic to the question asked."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4609,6 +4946,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Japanese Language and Culture exam",
+      "headline": "Reading, listening, writing, and speaking, together.",
+      "body": "The exam combines interpretive multiple choice with presentational writing and speaking (a simulated conversation and a cultural comparison), all in Japanese.",
+      "facts": [
+        {
+          "label": "Interpretive",
+          "text": "Multiple choice from reading and audio sources. About half the score."
+        },
+        {
+          "label": "Presentational writing",
+          "text": "An email or message reply and a cultural-comparison essay."
+        },
+        {
+          "label": "Interpersonal and presentational speaking",
+          "text": "A simulated conversation and a 2-minute cultural comparison."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Replies that mismatch the question's tense or topic, and register that doesn't match the relationship between speakers."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4626,62 +4988,55 @@
     "featureTopic": "AP Spanish Language",
     "defaultWorld": "earth",
     "metaTitle": "AP Spanish Language and Culture Prep | Lune Synth",
-    "metaDescription": "Practice Spanish communication, reading, and cultural comparison for AP Spanish Language and Culture with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Spanish Language and Culture practice for conversation, email response, and presentational writing, with feedback on your written and spoken Spanish.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Spanish Language and Culture with Lune Synth",
-    "headline": "Make your Spanish response your own.",
-    "heroBody": "Practice Spanish communication, reading, and cultural comparison with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/voice/voice-mode-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/voice/voice-mode.webp",
-    "phoneAlt": "Lune Synth voice mode for submitting a spoken explanation",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Spanish Language; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Respond in context, not just correctly.",
+    "heroBody": "AP Spanish Language free response scores whether your reply fits the register and purpose of the conversation, not just whether the grammar is correct. Practice conversational and written responses with feedback on both.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apspanish-interview-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apspanish-interview.webp",
+    "phoneAlt": "Lune Synth question with a Spanish job-interview dialogue, Daniel's first reply left blank after being asked why he wants the position.",
+    "phoneLabel": "AP Spanish Language · una entrevista de trabajo",
+    "problemKicker": "Where Spanish Language points go missing",
+    "problemHeadline": "A grammatically correct reply that answers the wrong question still loses points.",
+    "problemBody": "The simulated conversation and email reply score whether your response addresses what was actually asked, in an appropriate register, not just verb conjugation.",
+    "contrastBefore": "Check the grammar is correct",
+    "contrastAfter": "Check the reply fits what was asked",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through Spanish communication, reading, and cultural comparison yourself."
+        "title": "Respond in context",
+        "body": "Complete a conversation turn or email reply yourself, by hand, typed, or spoken."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the mismatch",
+        "body": "Feedback flags a grammatically fine reply that answers the wrong part of the question."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain one cultural comparison with supporting details."
+        "title": "Practice the register",
+        "body": "A short follow-up set with new conversational contexts and registers."
       }
     ],
-    "exampleKicker": "AP Spanish Language practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A conversational-register habit",
+    "exampleHeadline": "Answer the question actually asked.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The Spanish comparison lists differences without explaining their significance.",
-    "observation": "Connect the details to a meaningful comparison.",
-    "hint": "Why does one of these differences matter?",
-    "nextPractice": "Explain one cultural comparison with supporting details.",
-    "closingHeadline": "Keep building your AP Spanish Language skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Me llamo Daniel, mucho gusto.",
+    "observation": "That answers a different question than the one asked. The interviewer asked why he wants the job, which needs a reason, not an introduction.",
+    "hint": "¿Qué pregunta hizo la entrevistadora, y qué tipo de respuesta espera?",
+    "nextPractice": "Three conversation turns asking you to match a reply to the question actually asked.",
+    "closingHeadline": "Make your reply match the question.",
+    "closingBody": "Join the beta for Spanish Language practice built around responding to what's actually asked.",
     "clarifier": "Join for early AP Spanish Language practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Spanish Language score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a7e5a1"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice Spanish communication, reading, and cultural comparison in focused steps."
+        "body": "Three conversation turns asking you to match a reply to the question actually asked."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4715,6 +5070,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Spanish Language and Culture exam",
+      "headline": "Reading, listening, writing, and speaking, together.",
+      "body": "The exam combines interpretive multiple choice with presentational writing (email reply, persuasive essay) and presentational and interpersonal speaking (a simulated conversation and a cultural comparison).",
+      "facts": [
+        {
+          "label": "Interpretive",
+          "text": "Multiple choice from reading and audio sources. About half the score."
+        },
+        {
+          "label": "Presentational writing",
+          "text": "An email reply and a persuasive essay using multiple sources."
+        },
+        {
+          "label": "Interpersonal and presentational speaking",
+          "text": "A simulated conversation (recorded turns) and a 2-minute cultural comparison."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Replies that are grammatically fine but miss the question asked, and register that doesn't match the context."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4732,62 +5112,55 @@
     "featureTopic": "AP Latin",
     "defaultWorld": "earth",
     "metaTitle": "AP Latin Prep | Lune Synth",
-    "metaDescription": "Practice Latin reading, grammatical roles, and translation reasoning for AP Latin with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Latin practice for declension endings and translation of Vergil and Caesar, with feedback on your grammatical reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Latin with Lune Synth",
-    "headline": "Make the grammar support the reading.",
-    "heroBody": "Practice Latin reading, grammatical roles, and translation reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Latin; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Get the case ending right, then the translation follows.",
+    "heroBody": "AP Latin free response rewards translating Vergil and Caesar accurately, which depends on recognizing a noun's case from its ending, not guessing from word order. Practice declensions and translation with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/aplatin-rex-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/aplatin-rex.webp",
+    "phoneAlt": "Lune Synth question with the declension table for rēx, rēgis, the ablative singular left blank.",
+    "phoneLabel": "AP Latin · declining rēx",
+    "problemKicker": "Where Latin points go missing",
+    "problemHeadline": "A good guess at meaning is not the same as reading the case.",
+    "problemBody": "Translation and analytical essays lose points when a case ending is misread, which changes a word's grammatical role (and the sentence's meaning) even if the vocabulary is known.",
+    "contrastBefore": "Guess the meaning from word order",
+    "contrastAfter": "Read the case from the ending",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through Latin reading, grammatical roles, and translation reasoning yourself."
+        "title": "Work the actual declension",
+        "body": "Complete a case table or identify a case from an ending yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing ending",
+        "body": "Feedback names the exact case and number a blank ending needed."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain the grammatical roles in two short sentences."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new third-declension nouns."
       }
     ],
-    "exampleKicker": "AP Latin practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A declension habit",
+    "exampleHeadline": "Match the ending to the case, not the meaning.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Word order is used to identify the subject without checking the endings.",
-    "observation": "Check grammatical endings before assigning roles.",
-    "hint": "Which ending can help identify the subject?",
-    "nextPractice": "Explain the grammatical roles in two short sentences.",
-    "closingHeadline": "Keep building your AP Latin skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The ablative singular should be rēgis, like the genitive.",
+    "observation": "Rēgis is the genitive singular. Third-declension ablative singulars usually end in -e, which gives rēge here.",
+    "hint": "What ending do most third-declension nouns use for the ablative singular?",
+    "nextPractice": "Three declension tables for new third-declension nouns, each with one case ending left blank.",
+    "closingHeadline": "Make the case ending the first thing you check.",
+    "closingBody": "Join the beta for Latin practice built around reading endings accurately before translating.",
     "clarifier": "Join for early AP Latin practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Latin score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a7e5a1"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice Latin reading, grammatical roles, and translation reasoning in focused steps."
+        "body": "Three declension tables for new third-declension nouns, each with one case ending left blank."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4821,6 +5194,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Latin exam",
+      "headline": "Translation and analysis of the required Vergil and Caesar readings.",
+      "body": "The exam tests close reading of the specific Vergil and Caesar passages on the required reading list, combining multiple choice with translation and analytical essays.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "Reading comprehension and grammatical analysis of Latin passages, about 50% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "A sight translation, a translation of a studied passage, and analytical essays, about 50% of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Misreading a case ending and guessing a word's role from its position instead, and analytical essays with no cited Latin as evidence."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4838,62 +5232,55 @@
     "featureTopic": "AP Spanish Literature",
     "defaultWorld": "earth",
     "metaTitle": "AP Spanish Literature and Culture Prep | Lune Synth",
-    "metaDescription": "Practice Spanish close reading, literary form, and cultural context for AP Spanish Literature and Culture with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Spanish Literature practice for identifying literary devices (recursos literarios) in poetry and prose, with feedback on your written analysis.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Spanish Literature and Culture with Lune Synth",
-    "headline": "Build the reading in your own words.",
-    "heroBody": "Practice Spanish close reading, literary form, and cultural context with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Spanish Literature; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Nombra el recurso, luego explica su efecto.",
+    "heroBody": "AP Spanish Literature free response scores whether you can name a specific literary device and explain its effect in the text, not just discuss the poem generally. Practice that close reading with feedback on your analysis.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apspanishlit-becquer-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apspanishlit-becquer.webp",
+    "phoneAlt": "Lune Synth question quoting the opening lines of Bécquer's Rima LIII, asking which literary device appears in the word order of the second line.",
+    "phoneLabel": "AP Spanish Literature · Bécquer, Rima LIII",
+    "problemKicker": "Where Spanish Literature points go missing",
+    "problemHeadline": "Describing a verse is not the same as naming its recurso.",
+    "problemBody": "Analysis questions reward identifying the specific device, such as hipérbaton or anáfora, and explaining what it does to meaning or rhythm, not a paraphrase of the verse.",
+    "contrastBefore": "Paraphrase the verse",
+    "contrastAfter": "Name the recurso and its effect",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through Spanish close reading, literary form, and cultural context yourself."
+        "title": "Work the actual verse",
+        "body": "Identify a literary device in a specific line yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing term",
+        "body": "Feedback names the device (hipérbaton, anáfora, símil) your analysis was reaching for."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Support one literary interpretation with textual details."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new verses from different authors."
       }
     ],
-    "exampleKicker": "AP Spanish Literature practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "Un hábito de lectura cercana",
+    "exampleHeadline": "Compara el orden normal con el orden del verso.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The passage is summarized without analyzing its narrative voice.",
-    "observation": "Move from plot to form and perspective.",
-    "hint": "Which phrase reveals the narrator’s perspective?",
-    "nextPractice": "Support one literary interpretation with textual details.",
-    "closingHeadline": "Keep building your AP Spanish Literature skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "El verso suena poético por las imágenes.",
+    "observation": "Las imágenes ayudan, pero el recurso específico es el hipérbatón: el orden normal sería \"colgar sus nidos en tu balcón\", y Bécquer invierte ese orden.",
+    "hint": "¿Cuál sería el orden normal de las palabras, sujeto-verbo-objeto?",
+    "nextPractice": "Three Spanish-poetry excerpts asking you to name the specific literary device in a marked line.",
+    "closingHeadline": "Haz que tu análisis use el término exacto.",
+    "closingBody": "Join the beta for Spanish Literature practice built around naming literary devices and their effect.",
     "clarifier": "Join for early AP Spanish Literature practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Spanish Literature score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a7e5a1"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice Spanish close reading, literary form, and cultural context in focused steps."
+        "body": "Three Spanish-poetry excerpts asking you to name the specific literary device in a marked line."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4927,6 +5314,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Spanish Literature and Culture exam",
+      "headline": "Close reading of a required list of texts, in Spanish.",
+      "body": "The exam is entirely in Spanish and draws on a required reading list spanning medieval to contemporary texts, combining multiple choice with textual analysis essays.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "Reading comprehension and analysis of the required texts, about 45% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "Essays analyzing a single text and comparing two texts, about 55% of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Paraphrasing a verse instead of naming its device, and essays that describe a text without textual evidence."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4944,62 +5352,55 @@
     "featureTopic": "AP Research",
     "defaultWorld": "earth",
     "metaTitle": "AP Research Research Practice | Lune Synth",
-    "metaDescription": "Practice research questions, methods, and evidence for AP Research with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Research practice for the academic conventions behind an independent research paper, such as citation and claim-evidence structure, with feedback on your writing.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Research with Lune Synth",
-    "headline": "Make your research reasoning hold together.",
-    "heroBody": "Practice research questions, methods, and evidence with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Research; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Get the scholarly conventions right, not just the idea.",
+    "heroBody": "AP Research is graded on a year-long academic paper and presentation, where small conventions (a citation format, a claim properly supported) matter as much as the idea itself. Practice those conventions with feedback on your writing.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apresearch-apa-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apresearch-apa.webp",
+    "phoneAlt": "Lune Synth question showing an APA 7 journal-article reference with one formatting error to find.",
+    "phoneLabel": "AP Research · an APA 7 reference",
+    "problemKicker": "Where Research points go missing",
+    "problemHeadline": "A strong idea with a broken citation still loses points.",
+    "problemBody": "The Academic Paper is scored partly on scholarly conventions: correct citation format, a clear claim-evidence structure, and consistent terminology, on top of the research itself.",
+    "contrastBefore": "Get the idea across",
+    "contrastAfter": "Get the convention exactly right",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through research questions, methods, and evidence yourself."
+        "title": "Check the convention",
+        "body": "Spot an APA or MLA formatting error, or tighten a claim-evidence paragraph, yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the exact slip",
+        "body": "Feedback names the specific rule a citation or claim broke, not just \"check your formatting.\""
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Revise one conclusion to acknowledge its limits."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new references and paragraphs to check."
       }
     ],
-    "exampleKicker": "AP Research practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A citation habit",
+    "exampleHeadline": "Know the rule, not just that something looks off.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The conclusion makes a broader claim than the study’s sample supports.",
-    "observation": "Match the scope of the claim to the evidence.",
-    "hint": "What can this sample actually support?",
-    "nextPractice": "Revise one conclusion to acknowledge its limits.",
-    "closingHeadline": "Keep building your AP Research skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The reference looks fine to me.",
+    "observation": "APA 7 puts article titles in sentence case, not title case: \"Sleep Timing and Attention in Adolescents\" should only capitalize the first word and proper nouns.",
+    "hint": "Compare the capitalization of the article title to the journal title in the same reference.",
+    "nextPractice": "Three APA reference checks, each with one formatting error to find and name.",
+    "closingHeadline": "Make the conventions as solid as the idea.",
+    "closingBody": "Join the beta for Research practice built around the scholarly conventions a paper is actually graded on.",
     "clarifier": "Join for early AP Research practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Research score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a5b0ff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice research questions, methods, and evidence in focused steps."
+        "body": "Three APA reference checks, each with one formatting error to find and name."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -5033,6 +5434,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "AP Research",
+      "headline": "A year-long paper and defense, not a timed exam.",
+      "body": "AP Research has no multiple-choice or free-response exam. The score comes from an Academic Paper and a Presentation and Oral Defense of your own research question.",
+      "facts": [
+        {
+          "label": "Academic Paper",
+          "text": "An independent research paper of about 4,000-5,000 words. About 75% of the score."
+        },
+        {
+          "label": "Presentation and oral defense",
+          "text": "A presentation of your research followed by questions from your teacher. About 25% of the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "A defensible research question, a clear method, scholarly conventions (citation, claim-evidence structure), and reflection on limitations."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -5050,62 +5472,55 @@
     "featureTopic": "AP Seminar",
     "defaultWorld": "earth",
     "metaTitle": "AP Seminar Prep | Lune Synth",
-    "metaDescription": "Practice source evaluation, perspectives, and argument for AP Seminar with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Seminar practice for evaluating a line of reasoning and connecting evidence to a claim, with feedback on your written argument.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Seminar with Lune Synth",
-    "headline": "Make the sources talk to each other.",
-    "heroBody": "Practice source evaluation, perspectives, and argument with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/23-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/23.webp",
-    "phoneAlt": "Lune Synth displaying a writing question about argument structure",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Seminar; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Connect the evidence to the claim, explicitly.",
+    "heroBody": "AP Seminar's end-of-course exam and team project both score how well you connect evidence to a claim with stated reasoning, not just whether the evidence is relevant. Practice that connective step with feedback on your argument.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/hum/apseminar-cer-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/hum/apseminar-cer.webp",
+    "phoneAlt": "Lune Synth question with a claim-evidence-reasoning map about later school start times, the reasoning left blank between the evidence and the claim.",
+    "phoneLabel": "AP Seminar · claim, evidence, reasoning",
+    "problemKicker": "Where Seminar points go missing",
+    "problemHeadline": "Relevant evidence with no reasoning is half an argument.",
+    "problemBody": "The course and its exam reward explicitly stating why evidence supports a claim, which source qualifies as a perspective, and where an argument's reasoning is weak, not just gathering good sources.",
+    "contrastBefore": "Cite evidence that's relevant",
+    "contrastAfter": "State why it supports the claim",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through source evaluation, perspectives, and argument yourself."
+        "title": "Write the real reasoning",
+        "body": "Connect evidence to a claim, or evaluate someone else's argument, yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing link",
+        "body": "Feedback flags evidence left unconnected to the claim it's meant to support."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Write a synthesis that explains one point of disagreement."
+        "title": "Practice the pattern",
+        "body": "A short follow-up set with new claims and evidence to connect."
       }
     ],
-    "exampleKicker": "AP Seminar practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A reasoning habit",
+    "exampleHeadline": "Say what the evidence implies for the claim.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Two sources are cited, but their disagreement is ignored.",
-    "observation": "Compare the perspectives instead of counting citations.",
-    "hint": "Where do the claims diverge?",
-    "nextPractice": "Write a synthesis that explains one point of disagreement.",
-    "closingHeadline": "Keep building your AP Seminar skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The survey shows students are tired, so start times should change.",
+    "observation": "The survey is cited. The reasoning step is missing: the response needs to say why less sleep is a health problem a later start time would fix.",
+    "hint": "What does the survey's finding about sleep imply about student health?",
+    "nextPractice": "Three claim-evidence-reasoning maps asking you to supply the missing reasoning that links them.",
+    "closingHeadline": "Make the reasoning link explicit, every time.",
+    "closingBody": "Join the beta for Seminar practice built around connecting evidence to a claim with stated reasoning.",
     "clarifier": "Join for early AP Seminar practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Seminar score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#a5b0ff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice source evaluation, perspectives, and argument in focused steps."
+        "body": "Three claim-evidence-reasoning maps asking you to supply the missing reasoning that links them."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -5139,6 +5554,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "AP Seminar",
+      "headline": "Three performance tasks, then a written end-of-course exam.",
+      "body": "Most of the AP Seminar score comes from an individual research report, an individual presentation, and a team project, not a single sit-down test.",
+      "facts": [
+        {
+          "label": "Individual research report",
+          "text": "A written argument using multiple sources, about 35% of the score."
+        },
+        {
+          "label": "Individual multimedia presentation",
+          "text": "A spoken argument with questioning, about 20% of the score."
+        },
+        {
+          "label": "Team project and presentation",
+          "text": "A collaborative argument and presentation, about 20% of the score."
+        },
+        {
+          "label": "End-of-course exam",
+          "text": "A 2-hour written exam: short-answer analysis of a source set, then an essay building and supporting an argument. About 25% of the score."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {

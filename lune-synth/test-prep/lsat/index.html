@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/3-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/hum/lsat-assumption-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -99,8 +101,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/3.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/3-mid.webp" alt="Lune Synth displaying an advanced LSAT logic question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/hum/lsat-assumption.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/hum/lsat-assumption-mid.webp" alt="Lune Synth Logical Reasoning question: a new library opened and circulation at the old branch dropped by half, asking for the argument's required assumption." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +115,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">LSAT logic in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">LSAT Logical Reasoning · necessary assumption</figcaption>
         </figure>
       </div>
     </section>
@@ -129,6 +131,42 @@
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
         <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The digital LSAT</p>
+        <h2 id="exam-title">Logical Reasoning carries most of the score now.</h2>
+        <p class="campaign-section__body">The Analytical Reasoning ("logic games") section was retired in 2024, so the LSAT is now built from Logical Reasoning and Reading Comprehension, taken on a tablet, with LSAT Writing completed separately online.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Logical Reasoning</dt><dd>Two scored sections, about 35 minutes each: short arguments and a single question about each.</dd></div>
+          <div class="ap-exam__fact"><dt>Reading Comprehension</dt><dd>One scored section, about 35 minutes: longer passages with several questions each.</dd></div>
+          <div class="ap-exam__fact"><dt>Format</dt><dd>One additional unscored variable section; LSAT Writing is a separate timed essay done on your own schedule.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Picking an answer that strengthens the argument when the question asks for a necessary assumption, and main-point questions answered with a supporting detail.</dd></div>
+      </dl>
+      <div class="ap-exam__shots">
+          <figure class="ap-shot" data-reveal>
+            <div class="phone-mock-fluid">
+              <div class="phone-mock__frame">
+                <div class="phone-mock__screen">
+                  <img src="/mobile-app-assets/screenshots/applied/hum/lsat-rc-mid.webp" srcset="/mobile-app-assets/screenshots/applied/hum/lsat-rc-mid.webp 480w, /mobile-app-assets/screenshots/applied/hum/lsat-rc.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth Reading Comprehension question about plain-text statutory interpretation, asking for the passage's main point." width="480" height="1043" loading="lazy" decoding="async" />
+                </div>
+                <div class="phone-shell-buttons" aria-hidden="true">
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                    <span class="phone-shell-button phone-shell-button--volume"></span>
+                    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                  </span>
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                    <span class="phone-shell-button phone-shell-button--power"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <figcaption><strong>Reading Comprehension: the main point</strong> The passage argues through an example; the main point is the claim the example supports, not the example itself.</figcaption>
+          </figure>
+      </div>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official LSAT items. Exam format is summarised from the Law School Admission Council's published LSAT structure; check LSAC's site for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">

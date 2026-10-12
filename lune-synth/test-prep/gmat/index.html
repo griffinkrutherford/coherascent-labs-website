@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/25-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/hum/gmat-ratio-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -99,8 +101,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/25.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/25-mid.webp" alt="Lune Synth displaying a GMAT data-sufficiency question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/hum/gmat-ratio.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/hum/gmat-ratio-mid.webp" alt="Lune Synth question: a store's shirt and hat revenue is in a 7:3 ratio, shirt revenue $2,400 more than hat revenue, asking for total revenue." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +115,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">GMAT data sufficiency in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">GMAT Quant · a ratio problem</figcaption>
         </figure>
       </div>
     </section>
@@ -129,6 +131,21 @@
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
         <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The GMAT Focus Edition</p>
+        <h2 id="exam-title">Three sections, an on-screen calculator, and no separate essay.</h2>
+        <p class="campaign-section__body">The current GMAT Focus Edition folds the old Integrated Reasoning and essay into one Data Insights section, and allows an on-screen calculator on Quant, so setup and interpretation matter more than arithmetic speed.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Quantitative Reasoning</dt><dd>21 questions in 45 minutes, with an on-screen calculator.</dd></div>
+          <div class="ap-exam__fact"><dt>Verbal Reasoning</dt><dd>23 questions in 45 minutes: reading comprehension and critical reasoning.</dd></div>
+          <div class="ap-exam__fact"><dt>Data Insights</dt><dd>20 questions in 45 minutes: data sufficiency, table and graphics analysis, and multi-source reasoning.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Setting up a ratio or rate with the wrong reference quantity, and data-sufficiency questions answered by solving instead of checking sufficiency.</dd></div>
+      </dl>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official GMAT items. Exam format is summarised from the Graduate Management Admission Council's published GMAT Focus Edition structure; check mba.com for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
