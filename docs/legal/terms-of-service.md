@@ -1,6 +1,6 @@
 # Lune Synth Terms of Service
 
-**Effective date:** September 28, 2026
+**Effective date:** October 11, 2026
 
 ## 1. Agreement To These Terms
 
@@ -250,6 +250,39 @@ You may not:
 
 We may investigate suspected violations and cooperate with lawful requests.
 
+### 10.1 No Copying Or Cloning The Service
+
+Lune Synth is built from original software, question and grading systems,
+prompts and model instructions, diagram and visual systems, characters
+(including Luna and Tock), game systems (including constellations, medals, Moon
+Rocks, and the focus timer), interface designs, and written content ("Lune Synth
+Materials"). You may not, and may not help or allow anyone else to:
+
+- copy, reproduce, translate, or adapt Lune Synth Materials, in whole or in
+  substantial part, to create or offer a product or service that is the same as
+  or substantially similar to the Service;
+- record, log, capture, or systematically monitor the Service's inputs, outputs,
+  screens, network traffic, or behavior, including with AI tools, scripts, or
+  other automated means, in order to reproduce its functionality, prompts,
+  grading, or output;
+- extract or attempt to extract the Service's source code, prompts, model
+  instructions, or grading rubrics; or
+- use the Service, its output, or Lune Synth Materials to train, fine-tune, or
+  evaluate an AI model or system that replicates the Service.
+
+This Section does not restrict ideas, general concepts, or teaching methods that
+are not specific to Lune Synth; products you develop independently without using
+the Service or Lune Synth Materials; or any use the law expressly permits
+regardless of a contract.
+
+Because a breach of this Section can cause harm that money alone cannot repair,
+Coherascent may seek injunctive or other equitable relief to stop it, in
+addition to damages and any other remedy available by law, and, where permitted
+by law, recover its reasonable attorneys' fees and costs of enforcement. Section
+20's informal resolution period does not apply to such requests. Section 17
+limits Coherascent's liability only; it does not limit yours under this Section.
+This Section survives termination of your account or these Terms.
+
 ## 11. Coherascent Content And Trademarks
 
 The Service, software, interfaces, grading structures, visual systems,
@@ -320,7 +353,7 @@ discontinuation of the Service. When practical, we will provide notice and an
 opportunity to export or retrieve eligible data.
 
 Sections that by their nature survive termination, including ownership,
-disclaimers, liability limits, disputes, and accrued payment obligations, will
+the restrictions in Section 10.1, disclaimers, liability limits, disputes, and accrued payment obligations, will
 survive.
 
 ## 16. Disclaimers
