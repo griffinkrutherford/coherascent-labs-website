@@ -38,6 +38,20 @@
               <a href="/study/psychology/">Psychology</a>
               <a href="/study/writing/">Writing</a>
             </nav>
+            <nav aria-label="Language subjects">
+              <h3>Languages</h3>
+              <a href="/study/spanish/">Spanish</a>
+              <a href="/study/french/">French</a>
+              <a href="/study/german/">German</a>
+              <a href="/study/italian/">Italian</a>
+              <a href="/study/portuguese/">Portuguese</a>
+              <a href="/study/japanese/">Japanese</a>
+              <a href="/study/chinese/">Chinese (Mandarin)</a>
+              <a href="/study/korean/">Korean</a>
+              <a href="/study/latin/">Latin</a>
+              <a href="/study/esl/">English (ESL)</a>
+              <a href="/study/languages/">All languages</a>
+            </nav>
           </div>
         </section>
         <section class="site-footer__section" aria-labelledby="site-test-prep-links-title">
