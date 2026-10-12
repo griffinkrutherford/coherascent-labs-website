@@ -257,17 +257,44 @@
     "disclaimer": "PSAT/NMSQT is a registered trademark of the College Board and National Merit Scholarship Corporation, neither of which is affiliated with or endorsing Lune Synth."
   },
   {
-    "route": "/test-prep/ap-exams/", "output": "lune-synth/test-prep/ap-exams/index.html", "variant": "ap-exams", "family": "test-prep", "audience": "ap-students-and-families",
-    "metaTitle": "AP Exam Prep by Subject | Lune Synth", "metaDescription": "Find your AP subject and practice the reasoning, explanations, and skills that matter with Lune Synth.",
+    "route": "/test-prep/ap-exams/",
+    "output": "lune-synth/test-prep/ap-exams/index.html",
+    "variant": "ap-exams",
+    "family": "test-prep",
+    "audience": "ap-students-and-families",
+    "metaTitle": "AP Exam Prep by Subject | Lune Synth",
+    "metaDescription": "Find your AP subject and practice the reasoning, explanations, and skills that matter with Lune Synth.",
     "processHeadline": "Your reasoning comes first.",
-    "eyebrow": "AP exam prep with Lune Synth", "headline": "Your AP subject. Your next score.",
+    "eyebrow": "AP exam prep with Lune Synth",
+    "headline": "Your AP subject. Your next score.",
     "heroBody": "Choose your course and practice the reasoning that earns points.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/11-mid.webp", "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/11.webp", "phoneAlt": "Lune Synth displaying an AP Biology written-response question", "phoneLabel": "AP Biology in Lune Synth",
-    "problemKicker": "Free response requires production", "problemHeadline": "Multiple-choice review cannot prepare every skill an AP exam asks you to show.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/11-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/11.webp",
+    "phoneAlt": "Lune Synth displaying an AP Biology written-response question",
+    "phoneLabel": "AP Biology in Lune Synth",
+    "problemKicker": "Free response requires production",
+    "problemHeadline": "Multiple-choice review cannot prepare every skill an AP exam asks you to show.",
     "problemBody": "AP exams often require explanation, setup, evidence, diagrams, and written justification. Those skills improve through attempts that can be inspected and repaired, not only through recognizing the right option.",
-    "attempt": "The biological prediction is correct, but the explanation names osmosis without connecting it to water-potential differences.", "observation": "The response reaches the right outcome. The mechanism needs one explicit causal link.", "hint": "Why does water move across the membrane in this environment?", "nextPractice": "Next mission: write two concise mechanism explanations under a response timer.",
-    "closingHeadline": "Prepare to show what you know.", "closingBody": "Join the beta for AP practice built around written reasoning, precise feedback, and focused repetition.", "clarifier": "Join for early AP-prep access.",
-    "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth."
+    "attempt": "The biological prediction is correct, but the explanation names osmosis without connecting it to water-potential differences.",
+    "observation": "The response reaches the right outcome. The mechanism needs one explicit causal link.",
+    "hint": "Why does water move across the membrane in this environment?",
+    "nextPractice": "Next mission: write two concise mechanism explanations under a response timer.",
+    "closingHeadline": "Prepare to show what you know.",
+    "closingBody": "Join the beta for AP practice built around written reasoning, precise feedback, and focused repetition.",
+    "clarifier": "Join for early AP-prep access.",
+    "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
+    "apGroupBlurbs": {
+      "Math & Computer Science": {
+        "text": "Calculus justifications from graphs of f and f′, statistics write-ups with distribution curves, and Java traces and methods for CSA.",
+        "image": "/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation-mid.webp",
+        "alt": "Lune Synth AP Calculus AB question with a piecewise graph of f"
+      },
+      "Sciences": {
+        "text": "Pedigrees and gels for Biology, molecules and phase diagrams for Chemistry, free-body diagrams and P-V cycles for Physics, feedback loops for Environmental Science.",
+        "image": "/mobile-app-assets/screenshots/applied/ap/ap-bio-pedigree-mid.webp",
+        "alt": "Lune Synth AP Biology question with a pedigree"
+      }
+    }
   },
   {
     "route": "/test-prep/ged/", "output": "lune-synth/test-prep/ged/index.html", "variant": "ged", "family": "test-prep", "audience": "ged-learners",
@@ -576,62 +603,55 @@
     "featureTopic": "AP Calculus AB",
     "defaultWorld": "math",
     "metaTitle": "AP Calculus AB Prep | Lune Synth",
-    "metaDescription": "Practice derivatives, integrals, and written justification for AP Calculus AB with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Calculus AB practice built around the free-response section: justify extrema from graphs of f and f′, accumulate signed area, and get feedback on your written reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Calculus AB with Lune Synth",
-    "headline": "Make every calculus step count.",
-    "heroBody": "Practice derivatives, integrals, and written justification with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/1.webp",
-    "phoneAlt": "Lune Synth displaying an advanced calculus derivative problem",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Calculus AB; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Earn the justification points, not just the answer.",
+    "heroBody": "AP Calculus AB free response rewards the sentence after the number: why f has a minimum, what the integral of a rate means. Practice those steps from real graphs, in your own handwriting, and get feedback on the reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation.webp",
+    "phoneAlt": "Lune Synth question: the graph of f on [0, 6] is two line segments through (0, 2), (4, −2) and (6, 0); find g(4) for g(x) = ∫ from 0 to x of f(t) dt and where g has its absolute maximum.",
+    "phoneLabel": "AP Calculus AB · accumulation from a graph of f",
+    "problemKicker": "Where AB points go missing",
+    "problemHeadline": "The right x-value with no sign-change reason scores less than you think.",
+    "problemBody": "Most AB free-response questions ask you to justify: f′ changes sign, the Mean Value Theorem applies, the accumulated change is this integral. Students who can compute still drop points on units, on reading f from a graph of f′, and on answers with no reason attached.",
+    "contrastBefore": "Check whether the final number matches",
+    "contrastAfter": "Write the justification a reader would award",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through derivatives, integrals, and written justification yourself."
+        "title": "Work it on paper",
+        "body": "Photograph handwritten work or type it: derivatives, Riemann sums, a separated differential equation, the justification sentence."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "See the missing step",
+        "body": "Feedback points to the step that broke, such as a missing inner derivative or a sign-change argument that never mentions f′."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Two chain-rule problems with different inner functions."
+        "title": "Drill that pattern",
+        "body": "A short follow-up set on the same skill with new graphs and functions, so the fix becomes routine."
       }
     ],
-    "exampleKicker": "AP Calculus AB practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "An AB free-response habit",
+    "exampleHeadline": "Feedback on the reason, not just the result.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The derivative setup is right, but the inner derivative is missing.",
-    "observation": "Check the chain rule in that one step.",
-    "hint": "Which expression is inside the outer function?",
-    "nextPractice": "Two chain-rule problems with different inner functions.",
-    "closingHeadline": "Keep building your AP Calculus AB skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "x = 3 is a relative minimum because f′(3) = 0.",
+    "observation": "The location is right. f′ = 0 alone does not decide between a minimum and a maximum, so the justification is incomplete.",
+    "hint": "What does f′ do just to the left and right of x = 3?",
+    "nextPractice": "Three graph-of-f′ questions asking you to classify and justify each extremum.",
+    "closingHeadline": "Make your next AB free response complete.",
+    "closingBody": "Join the beta and practice calculus the way the exam grades it: worked steps, stated reasons, and focused repetition on what you miss.",
     "clarifier": "Join for early AP Calculus AB practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Calculus AB score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#64a8ff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice derivatives, integrals, and written justification in focused steps."
+        "body": "Three graph-of-f′ questions asking you to classify and justify each extremum."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -665,6 +685,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Calculus AB exam",
+      "headline": "Two calculator modes, one standard of explanation.",
+      "body": "The exam alternates between calculator and no-calculator parts, and the free-response section grades the setup and the justification as well as the value. Practice for both.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "45 questions in 1 hour 45 minutes: 30 without a calculator, then 15 with a graphing calculator. Half the score."
+        },
+        {
+          "label": "Free response",
+          "text": "6 questions in 1 hour 30 minutes: 2 with a graphing calculator, 4 without. Half the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Setting up integrals and derivatives, reading graphs and tables, units, and justifying conclusions with theorems or sign changes."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Chain rule slips, f versus f′ graphs, accumulation with a starting value, and conclusions with no stated reason."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-derivative-graph-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-derivative-graph.webp",
+          "alt": "Lune Synth question showing the graph of f′(x) = x^2 − 4x + 3 and asking where f has a relative minimum, with a justification.",
+          "title": "Reading f from f′",
+          "caption": "The zeros are on the graph; deciding minimum versus maximum and writing the sign-change reason is the point."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -682,62 +735,55 @@
     "featureTopic": "AP Calculus BC",
     "defaultWorld": "math",
     "metaTitle": "AP Calculus BC Prep | Lune Synth",
-    "metaDescription": "Practice series, parametric reasoning, and calculus explanations for AP Calculus BC with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Calculus BC practice for series, Taylor error bounds, Euler's method, and the AB topics BC still tests, with feedback on your own written work.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Calculus BC with Lune Synth",
-    "headline": "Go beyond memorized calculus moves.",
-    "heroBody": "Practice series, parametric reasoning, and calculus explanations with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/1.webp",
-    "phoneAlt": "Lune Synth displaying an advanced calculus derivative problem",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Calculus BC; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Series, error bounds, and every AB skill underneath.",
+    "heroBody": "AP Calculus BC adds series, Taylor polynomials, Euler's method, parametric and polar work, and it still tests all of AB. Practice the multi-step setups and the error-bound reasoning with feedback on your own steps.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-taylor-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-taylor.webp",
+    "phoneAlt": "Lune Synth question graphing y = sin x beside its Taylor polynomial P_3(x) = x − x^3/6 and asking for an alternating series error bound at x = 0.5.",
+    "phoneLabel": "AP Calculus BC · Taylor polynomial error",
+    "problemKicker": "Where BC points go missing",
+    "problemHeadline": "Series questions punish a missing condition more than a slow calculation.",
+    "problemBody": "A convergence test with an unchecked condition, an error bound applied to the wrong term, an Euler step that uses the new point's slope: BC questions are long, and one quiet slip carries through every later part.",
+    "contrastBefore": "Memorize which test to name",
+    "contrastAfter": "Show why the test applies here",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through series, parametric reasoning, and calculus explanations yourself."
+        "title": "Work the full setup",
+        "body": "Write the series, the Taylor terms or the Euler table yourself, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the broken link",
+        "body": "Feedback names the step: a condition not checked, a term off by one, a slope taken at the wrong point."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Two series that need a different convergence test."
+        "title": "Repeat with new series",
+        "body": "A short set on the same idea with different functions, intervals and step sizes."
       }
     ],
-    "exampleKicker": "AP Calculus BC practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A BC error-bound habit",
+    "exampleHeadline": "One condition makes the bound valid.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A ratio-test limit of 1 is treated as proof of convergence.",
-    "observation": "That ratio-test result is inconclusive.",
-    "hint": "Which other convergence test fits this series?",
-    "nextPractice": "Two series that need a different convergence test.",
-    "closingHeadline": "Keep building your AP Calculus BC skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The error is at most 0.5^4/4!, so about 0.0026.",
+    "observation": "For sin x, P_3 = P_4, and the first omitted nonzero term is the x^5 term, so the bound uses (0.5)^5/5!.",
+    "hint": "Which is the first term of the sin x series that P_3 leaves out?",
+    "nextPractice": "Three alternating-series error bounds with different centers and degrees.",
+    "closingHeadline": "Make the long BC questions routine.",
+    "closingBody": "Join the beta for BC practice built around written setups, precise feedback and short follow-up sets on what you miss.",
     "clarifier": "Join for early AP Calculus BC practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Calculus BC score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#64a8ff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice series, parametric reasoning, and calculus explanations in focused steps."
+        "body": "Three alternating-series error bounds with different centers and degrees."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -771,6 +817,46 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Calculus BC exam",
+      "headline": "AB content plus the BC topics, in the same format.",
+      "body": "BC uses the same sections and timing as AB. Students also receive an AB subscore, so the AB skills count twice.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "45 questions in 1 hour 45 minutes: 30 without a calculator, then 15 with a graphing calculator. Half the score."
+        },
+        {
+          "label": "Free response",
+          "text": "6 questions in 1 hour 30 minutes: 2 with a graphing calculator, 4 without. Half the score."
+        },
+        {
+          "label": "BC additions",
+          "text": "Series and convergence, Taylor and Maclaurin polynomials with error bounds, Euler's method, logistic models, parametric, vector and polar functions."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Unchecked test conditions, the wrong term in an error bound, interval endpoints, and polar area limits."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-euler-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-euler.webp",
+          "alt": "Lune Synth AP Calculus BC question with an Euler's method table for approximating f(1).",
+          "title": "Filling in an Euler's-method table",
+          "caption": "The x, y and dy/dx columns are blank and ready; the table is the scratch work, not the answer."
+        },
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation.webp",
+          "alt": "Lune Synth AP Calculus BC question with a piecewise-linear graph of f used to build an accumulation function g.",
+          "title": "Reading signed area off a piecewise graph",
+          "caption": "f is drawn as two line segments with no accumulated values marked; g(4) and the extremum come from reading area and sign changes."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -788,62 +874,55 @@
     "featureTopic": "AP Precalculus",
     "defaultWorld": "math",
     "metaTitle": "AP Precalculus Prep | Lune Synth",
-    "metaDescription": "Practice polynomial, exponential, and trigonometric reasoning for AP Precalculus with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Precalculus practice for function modeling, rates of change in sinusoids and exponentials, and the written reasoning the free-response questions ask for.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Precalculus with Lune Synth",
-    "headline": "Read the function, then choose your move.",
-    "heroBody": "Practice polynomial, exponential, and trigonometric reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/1.webp",
-    "phoneAlt": "Lune Synth displaying an advanced calculus derivative problem",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Precalculus; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Describe how a function changes, not just what it equals.",
+    "heroBody": "AP Precalculus asks you to model with polynomial, rational, exponential, logarithmic and trigonometric functions and to explain how they change. Practice reading graphs and writing the reason, with feedback on your work.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-precalc-sinusoid-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-precalc-sinusoid.webp",
+    "phoneAlt": "Lune Synth question graphing h(t) = 3cos(πt/4) + 5 for 0 ≤ t ≤ 8 and asking where h is both decreasing and concave down.",
+    "phoneLabel": "AP Precalculus · rates of change in a sinusoid",
+    "problemKicker": "Where precalculus points go missing",
+    "problemHeadline": "\"Decreasing\" is not the same as \"decreasing at a decreasing rate\".",
+    "problemBody": "The course leans on rates of change: where a function increases, how its rate changes, what a model predicts and why. Answers that skip the reason, or confuse concavity with direction, lose credit even when the arithmetic is fine.",
+    "contrastBefore": "Read a value off the graph",
+    "contrastAfter": "Explain the change and the reason",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through polynomial, exponential, and trigonometric reasoning yourself."
+        "title": "Model it yourself",
+        "body": "Build the function, rewrite expressions, or reason from a graph, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Name the gap",
+        "body": "Feedback separates a modeling error from an algebra slip or a missing explanation."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare two function transformations."
+        "title": "Practice the pattern",
+        "body": "A short set on the same function type with new parameters and contexts."
       }
     ],
-    "exampleKicker": "AP Precalculus practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A precalculus reasoning habit",
+    "exampleHeadline": "Direction and concavity are separate claims.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A vertical stretch is described as a horizontal shift.",
-    "observation": "Track which part of the function changed.",
-    "hint": "Is the change inside or outside the input?",
-    "nextPractice": "Compare two function transformations.",
-    "closingHeadline": "Keep building your AP Precalculus skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "h is decreasing and concave down on 0 < t < 4.",
+    "observation": "h does decrease on 0 < t < 4, but it changes concavity at the midline crossing t = 2.",
+    "hint": "Where does the graph of h cross its midline?",
+    "nextPractice": "Three sinusoid questions asking for intervals where the rate of change increases or decreases.",
+    "closingHeadline": "Build the function sense calculus will assume.",
+    "closingBody": "Join the beta and practice precalculus with worked attempts, precise feedback and short follow-up sets.",
     "clarifier": "Join for early AP Precalculus practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Precalculus score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#64a8ff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice polynomial, exponential, and trigonometric reasoning in focused steps."
+        "body": "Three sinusoid questions asking for intervals where the rate of change increases or decreases."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -877,6 +956,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Precalculus exam",
+      "headline": "Calculator and no-calculator reasoning about functions.",
+      "body": "The exam assesses Units 1 to 3: polynomial and rational, exponential and logarithmic, and trigonometric and polar functions.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "40 questions in 2 hours: 28 without a calculator, 12 with a graphing calculator."
+        },
+        {
+          "label": "Free response",
+          "text": "4 questions in 1 hour: function concepts, modeling a non-periodic context, modeling a periodic context, and symbolic manipulations."
+        },
+        {
+          "label": "What is scored",
+          "text": "Building and justifying models, rates of change, equivalent forms, and conclusions stated in context."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Concavity versus direction, log and exponent rules, period and phase shift, and unsupported model choices."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -894,62 +998,55 @@
     "featureTopic": "AP Statistics",
     "defaultWorld": "math",
     "metaTitle": "AP Statistics Prep | Lune Synth",
-    "metaDescription": "Practice probability, study design, and inference for AP Statistics with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Statistics practice for normal calculations, significance tests and confidence intervals, with feedback on the conditions and conclusions in context the free-response section scores.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Statistics with Lune Synth",
-    "headline": "Make your conclusion match your data.",
-    "heroBody": "Practice probability, study design, and inference with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/19-stats-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/19-stats.webp",
-    "phoneAlt": "Lune Synth displaying a statistics confidence-interval question",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Statistics; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Conclusions in context, conditions checked, every time.",
+    "heroBody": "AP Statistics free response is graded on communication: the parameter defined, the conditions checked, the conclusion tied to the context. Practice the full write-up with distribution curves in front of you and get feedback on what a reader would mark down.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-stats-normal-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-stats-normal.webp",
+    "phoneAlt": "Lune Synth question with a normal curve of heights, mean 170 cm and standard deviation 8 cm, the tail above 182 cm shaded, asking for the proportion taller than 182 cm.",
+    "phoneLabel": "AP Statistics · normal distribution calculation",
+    "problemKicker": "Where AP Stats points go missing",
+    "problemHeadline": "A correct p-value with a conclusion about \"the data\" is not a full answer.",
+    "problemBody": "Students lose credit for undefined parameters, unchecked conditions, \"accept the null\", and conclusions that never mention the population. The calculator does the arithmetic; the score depends on the language around it.",
+    "contrastBefore": "Get the number from the calculator",
+    "contrastAfter": "Write the conclusion the rubric expects",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through probability, study design, and inference yourself."
+        "title": "Write the whole test",
+        "body": "State hypotheses, check conditions, compute, and conclude, by hand or typed."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "See what's missing",
+        "body": "Feedback flags the missing condition, the parameter never defined, or the conclusion without context."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Write two interval interpretations in context."
+        "title": "Repeat the procedure",
+        "body": "Short sets on the same inference procedure with new contexts and numbers."
       }
     ],
-    "exampleKicker": "AP Statistics practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "An inference write-up habit",
+    "exampleHeadline": "The conclusion has to name the population.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A confidence level is described as the probability of a fixed parameter changing.",
-    "observation": "Connect confidence to the interval-making procedure.",
-    "hint": "What happens when the sampling process is repeated?",
-    "nextPractice": "Write two interval interpretations in context.",
-    "closingHeadline": "Keep building your AP Statistics skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "p = 0.032 < 0.05, so we reject H_0.",
+    "observation": "The decision is right. The conclusion stops before saying what that means for the city's residents.",
+    "hint": "What do you now have evidence for, in terms of the true proportion of residents?",
+    "nextPractice": "Three significance tests where the scored part is the conclusion in context.",
+    "closingHeadline": "Write statistics the way it is graded.",
+    "closingBody": "Join the beta for AP Statistics practice built on complete write-ups, precise feedback and repetition on the procedures you miss.",
     "clarifier": "Join for early AP Statistics practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Statistics score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#64a8ff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice probability, study design, and inference in focused steps."
+        "body": "Three significance tests where the scored part is the conclusion in context."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -983,6 +1080,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Statistics exam",
+      "headline": "Half multiple choice, half written communication.",
+      "body": "A graphing calculator is allowed throughout, with a formula sheet and tables, so the free-response section concentrates on choosing methods and explaining results.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "40 questions in 1 hour 30 minutes. Half the score."
+        },
+        {
+          "label": "Free response",
+          "text": "6 questions in 1 hour 30 minutes: five short questions and an investigative task. Half the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Exploring data, sampling and experimental design, probability, and inference stated in context."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Conditions for inference, interpreting a p-value or interval, experimental design vocabulary, and context-free conclusions."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-stats-pvalue-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-stats-pvalue.webp",
+          "alt": "Lune Synth AP Statistics question with a standard normal curve for a one-sided hypothesis test.",
+          "title": "Shading a p-value on a standard normal curve",
+          "caption": "The curve is drawn with z = 1.85 marked; shading the right tail and comparing it to α = 0.05 is the rest of the question."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1000,62 +1130,55 @@
     "featureTopic": "AP Computer Science A",
     "defaultWorld": "math",
     "metaTitle": "AP Computer Science A Prep | Lune Synth",
-    "metaDescription": "Practice Java tracing, algorithms, and program explanations for AP Computer Science A with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Computer Science A practice for tracing Java and writing methods for the free-response section, with feedback on loops, array bounds and String logic.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Computer Science A with Lune Synth",
-    "headline": "Trace the code before guessing the output.",
-    "heroBody": "Practice Java tracing, algorithms, and program explanations with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/9-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/9.webp",
-    "phoneAlt": "Lune Synth displaying an expert dynamic programming algorithm prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Computer Science A; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Trace the Java. Then write it yourself.",
+    "heroBody": "AP Computer Science A tests whether you can predict what Java code does and write methods that work: loops, arrays, ArrayLists, Strings and classes. Practice both with real code on screen and feedback on your own trace or method.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-csa-trace-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-csa-trace.webp",
+    "phoneAlt": "Lune Synth question showing a Java loop over the array {3, 8, 2, 7, 5} that counts elements larger than the one before, asking what is printed, with four choices.",
+    "phoneLabel": "AP Computer Science A · tracing a Java loop",
+    "problemKicker": "Where CSA points go missing",
+    "problemHeadline": "Off-by-one loops and skipped elements cost more than syntax.",
+    "problemBody": "Most lost points are logic: a loop that starts at the wrong index, removing from an ArrayList while moving forward, comparing Strings with ==, integer division. Reading solutions does not train you to catch them in your own code.",
+    "contrastBefore": "Read a model solution",
+    "contrastAfter": "Trace and write the code yourself",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through Java tracing, algorithms, and program explanations yourself."
+        "title": "Trace by hand",
+        "body": "Follow variables through each loop iteration, the way the multiple-choice section expects."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Write the method",
+        "body": "Answer free-response style questions in Java and get feedback on bounds, conditions and return values."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Trace two loops with boundary cases."
+        "title": "Fix the pattern",
+        "body": "A short follow-up set on the same structure: array traversal, ArrayList removal, 2D arrays, or class design."
       }
     ],
-    "exampleKicker": "AP Computer Science A practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A CSA tracing habit",
+    "exampleHeadline": "Count the iterations before you count the output.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The loop accesses an array at index equal to its length.",
-    "observation": "Check the final valid index.",
-    "hint": "Where should the loop stop?",
-    "nextPractice": "Trace two loops with boundary cases.",
-    "closingHeadline": "Keep building your AP Computer Science A skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The loop checks every element, so count is 3.",
+    "observation": "The loop starts at i = 1 and compares each element with the one before it, so there are only four comparisons.",
+    "hint": "Which pairs of neighbours does the condition actually compare?",
+    "nextPractice": "Three array-traversal traces with loops that start or stop at different indices.",
+    "closingHeadline": "Make your next trace and method correct.",
+    "closingBody": "Join the beta for AP CSA practice built around your own traces and code, precise feedback and focused repetition.",
     "clarifier": "Join for early AP Computer Science A practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Computer Science A score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#64a8ff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice Java tracing, algorithms, and program explanations in focused steps."
+        "body": "Three array-traversal traces with loops that start or stop at different indices."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1089,6 +1212,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Computer Science A exam",
+      "headline": "Read code in one section, write it in the other.",
+      "body": "The multiple-choice section is mostly tracing and evaluating code; the free-response section asks you to write Java methods and classes, with the Java Quick Reference available.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "Questions that ask what code prints, which segment is equivalent, or which change fixes a bug."
+        },
+        {
+          "label": "Free response",
+          "text": "4 questions: methods and control structures, class design, data analysis with an ArrayList, and a 2D array."
+        },
+        {
+          "label": "What is scored",
+          "text": "Correct algorithms, loop bounds, use of the given class and method headers, and return values."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Off-by-one errors, ArrayList removal while iterating, String equality, integer division, and ignoring preconditions."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-csa-frq-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-csa-frq.webp",
+          "alt": "Lune Synth AP Computer Science A free-response question asking for a countStartingWith method.",
+          "title": "Writing a method against a given class",
+          "caption": "The WordList class and its ArrayList<String> field are shown as given code; only the method body is left to write."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1106,62 +1262,55 @@
     "featureTopic": "AP Computer Science Principles",
     "defaultWorld": "math",
     "metaTitle": "AP Computer Science Principles Prep | Lune Synth",
-    "metaDescription": "Practice algorithms, data, and computing explanations for AP Computer Science Principles with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Computer Science Principles practice for exam reference language, data, the internet and computing impacts, with feedback on your reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Computer Science Principles with Lune Synth",
-    "headline": "Explain the algorithm, not just the answer.",
-    "heroBody": "Practice algorithms, data, and computing explanations with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/9-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/9.webp",
-    "phoneAlt": "Lune Synth displaying an expert dynamic programming algorithm prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Computer Science Principles; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Read the reference language like you wrote it.",
+    "heroBody": "AP Computer Science Principles mixes code reading in the exam reference language with questions on data, the internet, cybersecurity and the impact of computing. Practice tracing loops and lists and explaining your choices, with feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-csp-pseudocode-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-csp-pseudocode.webp",
+    "phoneAlt": "Lune Synth question in AP exam reference language: a FOR EACH loop over [4, 7, 10, 3] that adds even values to count, asking what is displayed.",
+    "phoneLabel": "AP Computer Science Principles · exam reference language",
+    "problemKicker": "Where CSP points go missing",
+    "problemHeadline": "Lists that start at index 1 and loops you skim.",
+    "problemBody": "The exam's pseudocode has its own rules: lists are indexed from 1, assignment uses an arrow, and FOR EACH and REPEAT UNTIL behave differently. Skimming a loop instead of tracing it is the most common way to pick the wrong option.",
+    "contrastBefore": "Guess from the shape of the code",
+    "contrastAfter": "Trace it one step at a time",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through algorithms, data, and computing explanations yourself."
+        "title": "Trace the code",
+        "body": "Step through exam-style pseudocode and record each value yourself."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Explain your program",
+        "body": "Practice the written responses about your own program: what a procedure does and how a list manages complexity."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain a short algorithm in your own words."
+        "title": "Close the gap",
+        "body": "Short sets on the idea you missed, from list indexing to binary or internet protocols."
       }
     ],
-    "exampleKicker": "AP Computer Science Principles practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A CSP tracing habit",
+    "exampleHeadline": "Check which values pass the condition.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The response describes the output but never explains the loop.",
-    "observation": "Explain the process that produces the result.",
-    "hint": "What changes during each iteration?",
-    "nextPractice": "Explain a short algorithm in your own words.",
-    "closingHeadline": "Keep building your AP Computer Science Principles skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "count adds every value, so 24 is displayed.",
+    "observation": "The IF only adds n when n MOD 2 = 0, so the odd values are skipped.",
+    "hint": "Which values in the list are even?",
+    "nextPractice": "Three FOR EACH traces with different conditions inside the loop.",
+    "closingHeadline": "Trace confidently. Explain clearly.",
+    "closingBody": "Join the beta for CSP practice built around your own traces and explanations, precise feedback and short follow-up sets.",
     "clarifier": "Join for early AP Computer Science Principles practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Computer Science Principles score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#64a8ff"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice algorithms, data, and computing explanations in focused steps."
+        "body": "Three FOR EACH traces with different conditions inside the loop."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1195,6 +1344,31 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Computer Science Principles exam",
+      "headline": "A multiple-choice exam plus your own program.",
+      "body": "Your score combines the end-of-course exam with the Create performance task, including written responses about the program you built.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "70 questions in 2 hours, using the exam reference language. 70% of the score."
+        },
+        {
+          "label": "Create task",
+          "text": "A program you build in class, with written responses on the exam about it. 30% of the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Creative development, data, algorithms and programming, computer systems and networks, and the impact of computing."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "1-based list indexing, loop tracing, binary and overflow, and explaining how a list manages complexity."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1212,62 +1386,55 @@
     "featureTopic": "AP Biology",
     "defaultWorld": "jupiter",
     "metaTitle": "AP Biology Prep | Lune Synth",
-    "metaDescription": "Practice cell processes, data interpretation, and mechanisms for AP Biology with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Biology practice for pedigrees, gel electrophoresis, experimental design and the claim-evidence-reasoning answers the free-response section scores.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Biology with Lune Synth",
-    "headline": "Make the mechanism part of your answer.",
-    "heroBody": "Practice cell processes, data interpretation, and mechanisms with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/11-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/11.webp",
-    "phoneAlt": "Lune Synth displaying an AP Biology cell transport question",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Biology; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Turn biology knowledge into scored explanations.",
+    "heroBody": "AP Biology free response asks you to read data, design experiments and explain mechanisms in a sentence or two. Practice with pedigrees, gels and data on screen, and get feedback on the claim, the evidence and the reasoning you wrote.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-bio-pedigree-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-bio-pedigree.webp",
+    "phoneAlt": "Lune Synth question with a two-generation pedigree: unaffected parents with an affected daughter and two unaffected children, asking the probability that unaffected son II-2 is a carrier.",
+    "phoneLabel": "AP Biology · pedigree analysis",
+    "problemKicker": "Where AP Bio points go missing",
+    "problemHeadline": "The right answer without the mechanism earns partial credit.",
+    "problemBody": "Students often know the outcome but leave out the causal link: why water moves, why a carrier probability is 2/3, why a shorter fragment travels farther. Free response also asks for controls, variables and data interpretation, which flashcards do not practice.",
+    "contrastBefore": "Recall the term",
+    "contrastAfter": "Explain the mechanism with evidence",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through cell processes, data interpretation, and mechanisms yourself."
+        "title": "Explain it yourself",
+        "body": "Write the prediction, the mechanism and the evidence, typed or by hand."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the missing link",
+        "body": "Feedback names what a reader would want next: the cause, the control, or the data point."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Write two concise mechanism explanations."
+        "title": "Repeat the skill",
+        "body": "Short sets on the same science practice, from pedigree probability to experimental design."
       }
     ],
-    "exampleKicker": "AP Biology practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "An AP Bio genetics habit",
+    "exampleHeadline": "Condition on what you already know.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The response names osmosis but leaves out the water-potential difference.",
-    "observation": "Add the missing causal link.",
-    "hint": "What makes water move across the membrane?",
-    "nextPractice": "Write two concise mechanism explanations.",
-    "closingHeadline": "Keep building your AP Biology skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "II-2 is a carrier with probability 1/2.",
+    "observation": "1/2 is the chance from an Aa × Aa cross before you know the phenotype. II-2 is unaffected, so aa is ruled out.",
+    "hint": "Among the unaffected genotypes, what fraction are heterozygous?",
+    "nextPractice": "Three pedigree probability questions with an unaffected sibling or offspring.",
+    "closingHeadline": "Write biology that earns the point.",
+    "closingBody": "Join the beta for AP Biology practice built around explanations, data and short follow-up sets on what you miss.",
     "clarifier": "Join for early AP Biology practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Biology score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#78dbdf"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice cell processes, data interpretation, and mechanisms in focused steps."
+        "body": "Three pedigree probability questions with an unaffected sibling or offspring."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1301,6 +1468,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Biology exam",
+      "headline": "Data, experiments and written explanations.",
+      "body": "A calculator and the equations and formulas sheet are allowed. Many questions give a graph, table or model and ask what it shows and why.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "60 questions in 1 hour 30 minutes, many built on data or a model. Half the score."
+        },
+        {
+          "label": "Free response",
+          "text": "6 questions in 1 hour 30 minutes: 2 long questions and 4 short ones. Half the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Explaining processes, analyzing models and data, statistical tests, experimental design, and argumentation."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Identifying controls and variables, chi-square, conditional genetics probability, and answers missing the mechanism."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-bio-gel-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-bio-gel.webp",
+          "alt": "Lune Synth AP Biology question with a gel electrophoresis diagram comparing DNA fragment lanes.",
+          "title": "Matching band patterns on a gel",
+          "caption": "The crime-scene and suspect lanes are drawn against the same ladder; lining up band positions is how the match is made."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1318,62 +1518,55 @@
     "featureTopic": "AP Chemistry",
     "defaultWorld": "jupiter",
     "metaTitle": "AP Chemistry Prep | Lune Synth",
-    "metaDescription": "Practice stoichiometry, equilibrium, and chemical reasoning for AP Chemistry with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Chemistry practice for intermolecular forces, phase diagrams, stoichiometry and the claim-plus-justification answers the free-response section scores.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Chemistry with Lune Synth",
-    "headline": "Show the chemistry behind the calculation.",
-    "heroBody": "Practice stoichiometry, equilibrium, and chemical reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/15-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/15.webp",
-    "phoneAlt": "Lune Synth displaying a chemistry stoichiometry question",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Chemistry; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Connect structure, numbers and particle-level reasons.",
+    "heroBody": "AP Chemistry asks you to calculate and to justify at the particle level: why one liquid boils higher, why a phase change happens, what limits a reaction. Practice with molecules and phase diagrams on screen, and get feedback on your setup and explanation.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-chem-imf-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-chem-imf.webp",
+    "phoneAlt": "Lune Synth question showing the structures of ethanol and dimethyl ether, both C2H6O, asking which has the higher boiling point and why, in terms of intermolecular forces.",
+    "phoneLabel": "AP Chemistry · intermolecular forces",
+    "problemKicker": "Where AP Chem points go missing",
+    "problemHeadline": "\"Stronger bonds\" is not an intermolecular explanation.",
+    "problemBody": "Common losses: confusing bonds within a molecule with forces between molecules, dropping units in stoichiometry, misreading a phase diagram's axes, and claims with no particle-level justification.",
+    "contrastBefore": "Memorize trends",
+    "contrastAfter": "Justify the trend from structure",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through stoichiometry, equilibrium, and chemical reasoning yourself."
+        "title": "Set it up yourself",
+        "body": "Write the stoichiometry, the equilibrium expression or the justification, typed or by hand."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "See the slip",
+        "body": "Feedback separates a units or ratio error from a conceptual gap like IMFs versus bonds."
       },
       {
         "number": "03",
         "title": "Practice the fix",
-        "body": "Compare reactant amounts in two reactions."
+        "body": "Short sets on the same unit and skill with new compounds and conditions."
       }
     ],
-    "exampleKicker": "AP Chemistry practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "An AP Chem justification habit",
+    "exampleHeadline": "Name the force between molecules.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The reactant with the smallest mass is called the limiting reactant.",
-    "observation": "Compare stoichiometric amounts, not mass alone.",
-    "hint": "What ratio comes from the balanced equation?",
-    "nextPractice": "Compare reactant amounts in two reactions.",
-    "closingHeadline": "Keep building your AP Chemistry skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Ethanol boils higher because its bonds are stronger.",
+    "observation": "The comparison is about attractions between molecules, not the covalent bonds inside them.",
+    "hint": "Which of the two molecules can hydrogen-bond to another molecule like itself?",
+    "nextPractice": "Three boiling-point comparisons between molecules with the same molar mass.",
+    "closingHeadline": "Make every chemistry claim justified.",
+    "closingBody": "Join the beta for AP Chemistry practice built around setups, particle-level reasoning and focused repetition.",
     "clarifier": "Join for early AP Chemistry practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Chemistry score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#78dbdf"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice stoichiometry, equilibrium, and chemical reasoning in focused steps."
+        "body": "Three boiling-point comparisons between molecules with the same molar mass."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1407,6 +1600,39 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Chemistry exam",
+      "headline": "Calculations and particle-level justifications.",
+      "body": "A periodic table and an equations and constants sheet are provided. Long free-response questions chain several parts, so one early error can follow you through.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "60 questions in 1 hour 30 minutes. Half the score."
+        },
+        {
+          "label": "Free response",
+          "text": "7 questions in 1 hour 45 minutes: 3 long questions and 4 short ones. Half the score."
+        },
+        {
+          "label": "What is scored",
+          "text": "Models and representations, question and method, representing data, model analysis, mathematical routines, and argumentation."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "IMFs versus bonds, limiting reactants, equilibrium and Q versus K, buffer reasoning, and unit errors."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-chem-phase-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-chem-phase.webp",
+          "alt": "Lune Synth AP Chemistry question with a phase diagram of carbon dioxide showing a constant-pressure warming path.",
+          "title": "Tracking a phase change on a phase diagram",
+          "caption": "The triple point and critical point are plotted, with the warming path drawn at constant pressure; where that path crosses a boundary is the phase change."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1424,62 +1650,55 @@
     "featureTopic": "AP Environmental Science",
     "defaultWorld": "jupiter",
     "metaTitle": "AP Environmental Science Prep | Lune Synth",
-    "metaDescription": "Practice ecosystems, resource use, and evidence-based explanations for AP Environmental Science with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Environmental Science practice for feedback loops, data and calculations, and the propose-a-solution answers the free-response section asks for.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Environmental Science with Lune Synth",
-    "headline": "Turn environmental facts into explanations.",
-    "heroBody": "Practice ecosystems, resource use, and evidence-based explanations with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/11-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/11.webp",
-    "phoneAlt": "Lune Synth displaying an AP Biology cell transport question",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Environmental Science; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Explain the system, then propose a fix.",
+    "heroBody": "AP Environmental Science free response asks you to analyze an environmental problem, show calculations and propose a realistic solution. Practice with feedback loops and data on screen and get feedback on your explanation.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-apes-permafrost-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-apes-permafrost.webp",
+    "phoneAlt": "Lune Synth question with a causal loop: global temperature, permafrost thaw and methane release, all positive links, asking whether the loop is reinforcing or balancing and for one way to reduce it.",
+    "phoneLabel": "AP Environmental Science · climate feedback loop",
+    "problemKicker": "Where APES points go missing",
+    "problemHeadline": "A solution with no mechanism, or a calculation with no units.",
+    "problemBody": "Students lose points for vague solutions (\"reduce pollution\"), for missing the direction of a feedback, and for calculations without units or shown work.",
+    "contrastBefore": "List environmental facts",
+    "contrastAfter": "Trace the cause and defend a solution",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through ecosystems, resource use, and evidence-based explanations yourself."
+        "title": "Work the problem",
+        "body": "Trace a feedback loop, do the calculation, or design the investigation yourself."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Sharpen the answer",
+        "body": "Feedback asks for the specific mechanism or the missing unit."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Explain one energy pathway and one matter cycle."
+        "title": "Practice again",
+        "body": "Short sets on the same skill in a new environmental context."
       }
     ],
-    "exampleKicker": "AP Environmental Science practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "An APES systems habit",
+    "exampleHeadline": "Multiply the signs around the loop.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The response says energy is recycled through a food web.",
-    "observation": "Separate energy flow from matter cycling.",
-    "hint": "Where does energy enter and leave the system?",
-    "nextPractice": "Explain one energy pathway and one matter cycle.",
-    "closingHeadline": "Keep building your AP Environmental Science skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "It's a balancing loop because methane is bad for the climate.",
+    "observation": "The loop type comes from the link signs, not from whether the outcome is harmful.",
+    "hint": "When temperature rises, what happens to each variable in turn?",
+    "nextPractice": "Three causal-loop questions asking whether each loop reinforces or balances.",
+    "closingHeadline": "Reason through environmental systems.",
+    "closingBody": "Join the beta for APES practice built around explanations, calculations and short follow-up sets.",
     "clarifier": "Join for early AP Environmental Science practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Environmental Science score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#78dbdf"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice ecosystems, resource use, and evidence-based explanations in focused steps."
+        "body": "Three causal-loop questions asking whether each loop reinforces or balances."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1513,6 +1732,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Environmental Science exam",
+      "headline": "Multiple choice plus three structured free-response questions.",
+      "body": "The free-response questions follow fixed purposes, so practicing each type pays off.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "80 questions in 1 hour 30 minutes. 60% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "3 questions in 1 hour 10 minutes: design an investigation, analyze a problem and propose a solution, and the same with calculations. 40% of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Feedback-loop direction, unit conversions and shown work, and specific, justified solutions."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1530,62 +1770,55 @@
     "featureTopic": "AP Physics 1",
     "defaultWorld": "jupiter",
     "metaTitle": "AP Physics 1: Algebra-Based Prep | Lune Synth",
-    "metaDescription": "Practice forces, motion, energy, and physical models for AP Physics 1: Algebra-Based with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Physics 1 practice for forces, kinematics, energy and momentum, with free-body diagrams and motion maps on screen and feedback on your setup.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Physics 1: Algebra-Based with Lune Synth",
-    "headline": "Make the diagram do real work.",
-    "heroBody": "Practice forces, motion, energy, and physical models with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/14-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/14.webp",
-    "phoneAlt": "Lune Synth displaying a physics question about forces and normal force",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Physics 1; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Draw the forces. Then trust the math.",
+    "heroBody": "AP Physics 1 is algebra-based, and its free-response questions ask you to translate between diagrams, equations, graphs and words. Practice with free-body diagrams and motion maps on screen and get feedback on your setup, not only your number.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-phys1-incline-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-phys1-incline.webp",
+    "phoneAlt": "Lune Synth question with a free-body diagram of a 2.0 kg block on a 30° incline (gravity 19.6 N, normal force, kinetic friction up the slope) asking for its acceleration with μk = 0.20.",
+    "phoneLabel": "AP Physics 1 · free-body diagram on an incline",
+    "problemKicker": "Where Physics 1 points go missing",
+    "problemHeadline": "A wrong force component breaks everything after it.",
+    "problemBody": "Common losses: using mg instead of mg cos θ for the normal force, friction in the wrong direction, mixing horizontal and vertical motion, and explanations that never connect the equation to the physical situation.",
+    "contrastBefore": "Plug numbers into the right formula",
+    "contrastAfter": "Choose the model and justify it",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through forces, motion, energy, and physical models yourself."
+        "title": "Set it up yourself",
+        "body": "Draw or annotate the diagram and write Newton's second law, energy or momentum equations yourself."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the first error",
+        "body": "Feedback points to the first step that went wrong, such as a missing component or a sign."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Draw two free-body diagrams with labeled systems."
+        "title": "Repeat the setup",
+        "body": "Short sets on the same model with new angles, masses and surfaces."
       }
     ],
-    "exampleKicker": "AP Physics 1 practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A Physics 1 setup habit",
+    "exampleHeadline": "The normal force on an incline is not mg.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Action–reaction forces are canceled on one object’s free-body diagram.",
-    "observation": "Those forces act on different objects.",
-    "hint": "Which object experiences each force?",
-    "nextPractice": "Draw two free-body diagrams with labeled systems.",
-    "closingHeadline": "Keep building your AP Physics 1 skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "Friction = 0.20 × 19.6 N = 3.9 N, so a = (9.8 − 3.9/2.0) m/s².",
+    "observation": "Two slips: the normal force on a 30° incline is mg cos 30°, and only mg sin 30° acts down the slope.",
+    "hint": "Which component of gravity is perpendicular to the incline?",
+    "nextPractice": "Three incline problems with different angles and friction coefficients.",
+    "closingHeadline": "Get the setup right, then the answer follows.",
+    "closingBody": "Join the beta for Physics 1 practice built around diagrams, setups and focused repetition.",
     "clarifier": "Join for early AP Physics 1 practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Physics 1 score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#78dbdf"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice forces, motion, energy, and physical models in focused steps."
+        "body": "Three incline problems with different angles and friction coefficients."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1619,6 +1852,35 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Physics 1 exam",
+      "headline": "Representations count as much as answers.",
+      "body": "A calculator and equation sheet are allowed. The free-response section is built around four question types, each testing a different way of reasoning.",
+      "facts": [
+        {
+          "label": "Free-response types",
+          "text": "Mathematical routines, translation between representations, experimental design and analysis, and qualitative/quantitative translation."
+        },
+        {
+          "label": "Content",
+          "text": "Kinematics, forces, circular motion and gravitation, energy, momentum, torque and rotation, oscillations, and fluids."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Force components on inclines, choosing a system, energy bar charts, and explanations that ignore the diagram."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-phys1-projectile-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-phys1-projectile.webp",
+          "alt": "Lune Synth AP Physics 1 question with a strobe diagram of a projectile's path.",
+          "title": "Reading a strobe diagram of projectile motion",
+          "caption": "The ball's path is plotted at equal time intervals; pulling the time of flight and range out of that picture is the point."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1636,62 +1898,55 @@
     "featureTopic": "AP Physics 2",
     "defaultWorld": "jupiter",
     "metaTitle": "AP Physics 2: Algebra-Based Prep | Lune Synth",
-    "metaDescription": "Practice circuits, thermodynamics, and physical explanations for AP Physics 2: Algebra-Based with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Physics 2 practice for thermodynamics, fluids, electricity, optics and modern physics, with diagrams on screen and feedback on your reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Physics 2: Algebra-Based with Lune Synth",
-    "headline": "Connect the circuit to the reasoning.",
-    "heroBody": "Practice circuits, thermodynamics, and physical explanations with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/14-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/14.webp",
-    "phoneAlt": "Lune Synth displaying a physics question about forces and normal force",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Physics 2; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Thermodynamics, circuits and optics, reasoned out.",
+    "heroBody": "AP Physics 2 covers fluids, thermodynamics, electric force and circuits, magnetism, optics and modern physics. Practice with P-V diagrams and circuit sketches on screen and get feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-phys2-pv-cycle-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-phys2-pv-cycle.webp",
+    "phoneAlt": "Lune Synth question with a rectangular P-V cycle through A (400 kPa, 1 L), B (400 kPa, 4 L), C (100 kPa, 4 L) and D (100 kPa, 1 L), asking for the net work and net heat per cycle.",
+    "phoneLabel": "AP Physics 2 · thermodynamic cycle",
+    "problemKicker": "Where Physics 2 points go missing",
+    "problemHeadline": "Signs in the first law and areas on a P-V graph.",
+    "problemBody": "Students mix up work done by and on a gas, forget that internal energy returns to its start after a cycle, and describe ray diagrams or field lines without connecting them to the equation.",
+    "contrastBefore": "Recall the formula",
+    "contrastAfter": "Read the diagram and justify the sign",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through circuits, thermodynamics, and physical explanations yourself."
+        "title": "Work from the diagram",
+        "body": "Read a P-V cycle, a circuit or a ray diagram, then set up the physics yourself."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Catch the sign",
+        "body": "Feedback flags sign conventions and missing steps."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare a series circuit with a parallel circuit."
+        "title": "Practice the model",
+        "body": "Short sets on the same idea with new values."
       }
     ],
-    "exampleKicker": "AP Physics 2 practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A Physics 2 thermodynamics habit",
+    "exampleHeadline": "After a full cycle, ΔU is zero.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Different currents are assigned to resistors in one steady-state series path.",
-    "observation": "Apply charge conservation along the single path.",
-    "hint": "Where could charge accumulate in steady state?",
-    "nextPractice": "Compare a series circuit with a parallel circuit.",
-    "closingHeadline": "Keep building your AP Physics 2 skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The net work is 900 J, so the net heat is 0.",
+    "observation": "The work is right. Over a full cycle ΔU = 0, so Q = W, not zero.",
+    "hint": "What does the first law say when the gas returns to its starting state?",
+    "nextPractice": "Three cyclic processes asking for net work and heat.",
+    "closingHeadline": "Make Physics 2 reasoning routine.",
+    "closingBody": "Join the beta for Physics 2 practice built around diagrams, worked setups and focused repetition.",
     "clarifier": "Join for early AP Physics 2 practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Physics 2 score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#78dbdf"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice circuits, thermodynamics, and physical explanations in focused steps."
+        "body": "Three cyclic processes asking for net work and heat."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1725,6 +1980,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Physics 2 exam",
+      "headline": "The same four free-response skills, new content.",
+      "body": "AP Physics 2 uses the same free-response question types as Physics 1.",
+      "facts": [
+        {
+          "label": "Free-response types",
+          "text": "Mathematical routines, translation between representations, experimental design and analysis, and qualitative/quantitative translation."
+        },
+        {
+          "label": "Content",
+          "text": "Thermodynamics, electric force, field and potential, circuits, magnetism and induction, geometric and wave optics, and modern physics."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "First-law signs, capacitors in circuits, ray-diagram conventions, and photon energy reasoning."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1742,62 +2018,55 @@
     "featureTopic": "AP Physics C: Mechanics",
     "defaultWorld": "jupiter",
     "metaTitle": "AP Physics C: Mechanics Prep | Lune Synth",
-    "metaDescription": "Practice calculus-based motion, forces, and energy for AP Physics C: Mechanics with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Physics C: Mechanics practice for calculus-based work, energy, rotation and differential equations, with feedback on your derivations.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Physics C: Mechanics with Lune Synth",
-    "headline": "Let calculus explain the motion.",
-    "heroBody": "Practice calculus-based motion, forces, and energy with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/14-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/14.webp",
-    "phoneAlt": "Lune Synth displaying a physics question about forces and normal force",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Physics C: Mechanics; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Calculus-based mechanics, derived step by step.",
+    "heroBody": "AP Physics C: Mechanics expects calculus: work as an integral, velocity from a force that varies, rotational inertia, and differential equations for drag and oscillation. Practice the derivations with feedback on each step.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-physc-mech-work-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-physc-mech-work.webp",
+    "phoneAlt": "Lune Synth question graphing the force F(x) = 4x − x^2 newtons on a 2.0 kg object, asking for the work from x = 0 to 3 m and the speed at x = 3 m.",
+    "phoneLabel": "AP Physics C: Mechanics · work from a variable force",
+    "problemKicker": "Where Physics C points go missing",
+    "problemHeadline": "Integrate the force, not the formula you remember.",
+    "problemBody": "Students reach for constant-force equations when the force varies, drop limits of integration, and lose points on derivations that skip the starting principle.",
+    "contrastBefore": "Use the constant-acceleration equation",
+    "contrastAfter": "Start from the principle and integrate",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through calculus-based motion, forces, and energy yourself."
+        "title": "Derive it",
+        "body": "Write the integral or the differential equation from a graph or a free-body diagram."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Check each step",
+        "body": "Feedback points to the limit, sign or principle that went wrong."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Set up two energy balances with friction."
+        "title": "Practice the method",
+        "body": "Short sets with new force functions and initial conditions."
       }
     ],
-    "exampleKicker": "AP Physics C: Mechanics practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A Physics C derivation habit",
+    "exampleHeadline": "A varying force needs an integral.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "The energy setup ignores friction even though the problem includes it.",
-    "observation": "Account for work by nonconservative forces.",
-    "hint": "Which force transfers energy out of mechanical energy?",
-    "nextPractice": "Set up two energy balances with friction.",
-    "closingHeadline": "Keep building your AP Physics C: Mechanics skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "F(3) = 3 N, so W = F × d = 9 J.",
+    "observation": "The number happens to match here, but F × d assumes a constant force. The method has to be the integral.",
+    "hint": "What is the integral of F(x) from 0 to 3 m?",
+    "nextPractice": "Three variable-force problems where F × d gives the wrong answer.",
+    "closingHeadline": "Derive with confidence.",
+    "closingBody": "Join the beta for Physics C practice built around derivations and short follow-up sets.",
     "clarifier": "Join for early AP Physics C: Mechanics practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Physics C: Mechanics score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#78dbdf"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice calculus-based motion, forces, and energy in focused steps."
+        "body": "Three variable-force problems where F × d gives the wrong answer."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1831,6 +2100,35 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Physics C: Mechanics exam",
+      "headline": "Derivations, graphs and experiments, with calculus.",
+      "body": "The free-response question types match the algebra-based physics courses, with calculus expected throughout.",
+      "facts": [
+        {
+          "label": "Free-response types",
+          "text": "Mathematical routines, translation between representations, experimental design and analysis, and qualitative/quantitative translation."
+        },
+        {
+          "label": "Content",
+          "text": "Kinematics, force and translational dynamics, work, energy and power, linear momentum, rotation, and oscillations."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Variable forces, rotational inertia by integration, drag differential equations, and missing starting principles."
+        }
+      ],
+      "shots": [
+        {
+          "src": "/mobile-app-assets/screenshots/applied/ap/ap-phys1-incline-mid.webp",
+          "srcHigh": "/mobile-app-assets/screenshots/applied/ap/ap-phys1-incline.webp",
+          "alt": "Lune Synth AP Physics C: Mechanics question with a free-body diagram of a block on a 30-degree incline.",
+          "title": "A free-body diagram on an incline",
+          "caption": "Gravity, the normal force and friction are all drawn on the block; resolving them along and across the incline is left to the student."
+        }
+      ],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -1848,62 +2146,55 @@
     "featureTopic": "AP Physics C: E&M",
     "defaultWorld": "jupiter",
     "metaTitle": "AP Physics C: Electricity and Magnetism Prep | Lune Synth",
-    "metaDescription": "Practice electric fields, potential, and magnetic reasoning for AP Physics C: Electricity and Magnetism with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Physics C: Electricity and Magnetism practice for Gauss's law, RC circuits and induction, with feedback on your derivations.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Physics C: Electricity and Magnetism with Lune Synth",
-    "headline": "Keep fields and potential straight.",
-    "heroBody": "Practice electric fields, potential, and magnetic reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/14-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/14.webp",
-    "phoneAlt": "Lune Synth displaying a physics question about forces and normal force",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Physics C: E&M; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Fields, circuits and induction, derived.",
+    "heroBody": "AP Physics C: E&M asks for calculus-based derivations: Gauss's law, potential from a field, charging an RC circuit, induced EMF. Practice with circuits on screen and get feedback on each step of the derivation.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-physc-em-rc-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-physc-em-rc.webp",
+    "phoneAlt": "Lune Synth question with a series circuit of a 12 V battery, switch S1, a 500 Ω resistor and a 200 μF capacitor, asking for the current I(t) and the final charge.",
+    "phoneLabel": "AP Physics C: E&M · charging an RC circuit",
+    "problemKicker": "Where E&M points go missing",
+    "problemHeadline": "The exponential is right; the time constant is not.",
+    "problemBody": "Students misplace RC, swap charging and discharging forms, choose a Gaussian surface without symmetry, and lose the sign in Lenz's law.",
+    "contrastBefore": "Recall the final form",
+    "contrastAfter": "Derive it from Kirchhoff or Gauss",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through electric fields, potential, and magnetic reasoning yourself."
+        "title": "Derive it",
+        "body": "Start from the loop rule or Gauss's law and write the steps."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Check the step",
+        "body": "Feedback points to the step where the sign or constant went wrong."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare field and potential for two charge arrangements."
+        "title": "Practice the setup",
+        "body": "Short sets with new circuits and geometries."
       }
     ],
-    "exampleKicker": "AP Physics C: E&M practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "An E&M derivation habit",
+    "exampleHeadline": "Find τ before you write I(t).",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Electric potential is added as though it were a vector.",
-    "observation": "Separate scalar potential from vector field.",
-    "hint": "Which quantity needs directional components?",
-    "nextPractice": "Compare field and potential for two charge arrangements.",
-    "closingHeadline": "Keep building your AP Physics C: E&M skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "I(t) = 0.024e^(−t/500) A.",
+    "observation": "The initial current is right, but the time constant is RC = 0.10 s, not R.",
+    "hint": "What are the units of R times C?",
+    "nextPractice": "Three RC circuits asking for τ, I(t) and the charge on the capacitor.",
+    "closingHeadline": "Make E&M derivations routine.",
+    "closingBody": "Join the beta for E&M practice built around derivations and focused repetition.",
     "clarifier": "Join for early AP Physics C: E&M practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Physics C: E&M score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#78dbdf"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice electric fields, potential, and magnetic reasoning in focused steps."
+        "body": "Three RC circuits asking for τ, I(t) and the charge on the capacitor."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -1937,6 +2228,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Physics C: Electricity and Magnetism exam",
+      "headline": "Calculus-based reasoning about fields and circuits.",
+      "body": "The free-response question types match the other AP physics courses.",
+      "facts": [
+        {
+          "label": "Free-response types",
+          "text": "Mathematical routines, translation between representations, experimental design and analysis, and qualitative/quantitative translation."
+        },
+        {
+          "label": "Content",
+          "text": "Electric charges, fields and potential, conductors and capacitors, circuits, magnetic fields, and electromagnetic induction."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Gaussian surfaces, RC time constants, Lenz's law direction, and potential from a non-uniform field."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -2590,62 +2902,55 @@
     "featureTopic": "AP Macroeconomics",
     "defaultWorld": "earth",
     "metaTitle": "AP Macroeconomics Prep | Lune Synth",
-    "metaDescription": "Practice economic models, inflation, and policy reasoning for AP Macroeconomics with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Macroeconomics practice for AD-AS, money market and loanable funds graphs, with feedback on the cause-and-effect chains the free-response section scores.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Macroeconomics with Lune Synth",
-    "headline": "Make the model explain the economy.",
-    "heroBody": "Practice economic models, inflation, and policy reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/16-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/16.webp",
-    "phoneAlt": "Lune Synth displaying an economics question about demand",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Macroeconomics; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Draw the shift. Explain the chain.",
+    "heroBody": "AP Macroeconomics free response asks you to draw correctly labeled graphs and trace policy through the economy: fiscal policy to AD, the money market to interest rates. Practice with AD-AS and money-market graphs on screen and get feedback on the chain.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-macro-adas-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-macro-adas.webp",
+    "phoneAlt": "Lune Synth question with an AD-AS diagram, short-run aggregate supply and long-run aggregate supply at potential output 1500, asking for the output gap, a fiscal policy and its effects.",
+    "phoneLabel": "AP Macroeconomics · AD-AS and the output gap",
+    "problemKicker": "Where macro points go missing",
+    "problemHeadline": "Unlabeled axes and skipped links cost points.",
+    "problemBody": "Graders look for correctly labeled axes and curves and each step of the cause and effect. Students lose points by shifting the wrong curve, skipping the interest-rate step, or confusing the money market with loanable funds.",
+    "contrastBefore": "Memorize which way curves move",
+    "contrastAfter": "Explain each link in the chain",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through economic models, inflation, and policy reasoning yourself."
+        "title": "Draw and explain",
+        "body": "Sketch the graph on paper and write the policy chain."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Find the broken link",
+        "body": "Feedback names the curve or step that is wrong."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare nominal and real changes in two examples."
+        "title": "Practice the chain",
+        "body": "Short sets on the same model with new shocks and policies."
       }
     ],
-    "exampleKicker": "AP Macroeconomics practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A macro policy habit",
+    "exampleHeadline": "Fiscal policy moves AD, not LRAS.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Nominal GDP rises, so real output is assumed to have risen.",
-    "observation": "Separate price changes from output changes.",
-    "hint": "Which measure adjusts for inflation?",
-    "nextPractice": "Compare nominal and real changes in two examples.",
-    "closingHeadline": "Keep building your AP Macroeconomics skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "The government raises spending, so LRAS shifts right.",
+    "observation": "Government spending is a component of aggregate demand, so AD shifts right in the short run.",
+    "hint": "Which curve includes C, I, G and net exports?",
+    "nextPractice": "Three AD-AS policy questions with recessionary and inflationary gaps.",
+    "closingHeadline": "Make every macro chain complete.",
+    "closingBody": "Join the beta for macro practice built around graphs, cause-and-effect chains and short follow-up sets.",
     "clarifier": "Join for early AP Macroeconomics practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Macroeconomics score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice economic models, inflation, and policy reasoning in focused steps."
+        "body": "Three AD-AS policy questions with recessionary and inflationary gaps."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -2679,6 +2984,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Macroeconomics exam",
+      "headline": "Two-thirds multiple choice, one-third graphing and explaining.",
+      "body": "The free-response section includes a 10-minute reading period and rewards labeled graphs and complete causal chains.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "60 questions in 1 hour 10 minutes. About two-thirds of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "3 questions in 1 hour: one long and two short. About one-third of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Fiscal versus monetary tools, money market versus loanable funds, output gaps, and the Phillips curve."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -2696,62 +3022,55 @@
     "featureTopic": "AP Microeconomics",
     "defaultWorld": "earth",
     "metaTitle": "AP Microeconomics Prep | Lune Synth",
-    "metaDescription": "Practice markets, incentives, and graph-based reasoning for AP Microeconomics with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Microeconomics practice for monopoly, cost curves, market structures and surplus, with feedback on your graphs and reasoning.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Microeconomics with Lune Synth",
-    "headline": "Read the graph before making the claim.",
-    "heroBody": "Practice markets, incentives, and graph-based reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/16-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/16.webp",
-    "phoneAlt": "Lune Synth displaying an economics question about demand",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Microeconomics; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Read the graph like the grader does.",
+    "heroBody": "AP Microeconomics free response asks you to find profit-maximizing output, compare market structures and identify surplus and deadweight loss on correctly labeled graphs. Practice with monopoly and market graphs on screen and get feedback on your reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-micro-monopoly-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-micro-monopoly.webp",
+    "phoneAlt": "Lune Synth question with a monopoly diagram of demand, marginal revenue, marginal cost and average total cost, asking for the profit-maximizing quantity, price and whether the firm earns economic profit.",
+    "phoneLabel": "AP Microeconomics · monopoly graph",
+    "problemKicker": "Where micro points go missing",
+    "problemHeadline": "MR = MC gives the quantity, not the price.",
+    "problemBody": "Students read price off the MC curve, compare price to the wrong cost curve, or shade the wrong area. Each is a single-step slip that costs a point.",
+    "contrastBefore": "Memorize the rule",
+    "contrastAfter": "Apply it on the graph and explain",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through markets, incentives, and graph-based reasoning yourself."
+        "title": "Work the graph",
+        "body": "Find quantities, prices and areas yourself from the curves."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Fix the slip",
+        "body": "Feedback names the curve or area you used by mistake."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare binding and nonbinding price controls."
+        "title": "Practice structures",
+        "body": "Short sets across perfect competition, monopoly and externalities."
       }
     ],
-    "exampleKicker": "AP Microeconomics practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A micro graphing habit",
+    "exampleHeadline": "Price comes from demand.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A price ceiling above equilibrium is used to predict a shortage.",
-    "observation": "Check whether the ceiling restricts the market price.",
-    "hint": "Is that price ceiling actually binding?",
-    "nextPractice": "Compare binding and nonbinding price controls.",
-    "closingHeadline": "Keep building your AP Microeconomics skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "MR = MC at Q = 30, so the price is where MC is at 30, 40.",
+    "observation": "The quantity is right. A monopolist charges what buyers will pay for that quantity, read from the demand curve.",
+    "hint": "Go up from Q = 30 to which curve to find the price?",
+    "nextPractice": "Three monopoly graphs asking for quantity, price and profit or loss.",
+    "closingHeadline": "Make every graph count.",
+    "closingBody": "Join the beta for micro practice built around graphs, reasoning and short follow-up sets.",
     "clarifier": "Join for early AP Microeconomics practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Microeconomics score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#f1ce8e"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice markets, incentives, and graph-based reasoning in focused steps."
+        "body": "Three monopoly graphs asking for quantity, price and profit or loss."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -2785,6 +3104,27 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "The AP Microeconomics exam",
+      "headline": "Graphs, definitions and short explanations.",
+      "body": "The free-response section includes a 10-minute reading period and rewards labeled graphs and correct reasoning.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "60 questions in 1 hour 10 minutes. About two-thirds of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "3 questions in 1 hour: one long and two short. About one-third of the score."
+        },
+        {
+          "label": "Common weak spots",
+          "text": "Monopoly pricing, cost-curve relationships, surplus and deadweight loss areas, and factor markets."
+        }
+      ],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4816,62 +5156,55 @@
     "featureTopic": "AP Business with Personal Finance",
     "defaultWorld": "math",
     "metaTitle": "AP Business with Personal Finance Prep | Lune Synth",
-    "metaDescription": "Practice business decisions, financial models, and case reasoning for AP Business with Personal Finance with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Business with Personal Finance practice for interest, budgets and financial decisions, with feedback on your calculations and explanations.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Business with Personal Finance with Lune Synth",
-    "headline": "Make the numbers explain the decision.",
-    "heroBody": "Practice business decisions, financial models, and case reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/22-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/22.webp",
-    "phoneAlt": "Lune Synth displaying a finance present-value question",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Business with Personal Finance; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Do the money math, then explain the choice.",
+    "heroBody": "AP Business with Personal Finance is a newer AP Career Kickstart course on business and personal money decisions. Practice compound interest, loans and budgets with charts on screen and get feedback on your calculations and reasoning.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-bpf-compound-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-bpf-compound.webp",
+    "phoneAlt": "Lune Synth question with a chart of a $2,000 deposit at 6% compounded monthly over 10 years against simple interest, asking for the balance and why it beats simple interest.",
+    "phoneLabel": "AP Business with Personal Finance · compound interest",
+    "problemKicker": "Know why the number matters",
+    "problemHeadline": "A balance without the reason is half an answer.",
+    "problemBody": "Finance questions reward the setup and the explanation: why compounding beats simple interest, what a loan really costs, which choice fits a goal.",
+    "contrastBefore": "Use an online calculator",
+    "contrastAfter": "Set up the formula and explain it",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through business decisions, financial models, and case reasoning yourself."
+        "title": "Set it up",
+        "body": "Write the formula and the numbers yourself."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Check the reasoning",
+        "body": "Feedback flags rate and period mismatches and missing explanations."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Compare revenue and cost changes in two cases."
+        "title": "Practice decisions",
+        "body": "Short sets with new rates, terms and goals."
       }
     ],
-    "exampleKicker": "AP Business with Personal Finance practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A finance reasoning habit",
+    "exampleHeadline": "Match the rate to the period.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "Revenue grows, so profit is assumed to have grown too.",
-    "observation": "Profit also depends on costs.",
-    "hint": "What happened to costs over the same period?",
-    "nextPractice": "Compare revenue and cost changes in two cases.",
-    "closingHeadline": "Keep building your AP Business with Personal Finance skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "A = 2000(1.06)^120.",
+    "observation": "The exponent counts months, so the rate per period is 0.06/12, not 0.06.",
+    "hint": "How much interest is added each month?",
+    "nextPractice": "Three compound-interest problems with different compounding periods.",
+    "closingHeadline": "Practice money decisions with real math.",
+    "closingBody": "Join the beta and turn finance concepts into calculations and explanations you can defend.",
     "clarifier": "Join for early AP Business with Personal Finance practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Business with Personal Finance score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#efb98c"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice business decisions, financial models, and case reasoning in focused steps."
+        "body": "Three compound-interest problems with different compounding periods."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -4905,6 +5238,14 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "AP Business with Personal Finance",
+      "headline": "A new course: check the exam details as they are published.",
+      "body": "AP Business with Personal Finance is part of the College Board's AP Career Kickstart pilot. Use AP Central for the current exam format; use Lune Synth to practice the calculations and reasoning.",
+      "facts": [],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   },
   {
@@ -4922,62 +5263,55 @@
     "featureTopic": "AP Cybersecurity",
     "defaultWorld": "retro",
     "metaTitle": "AP Cybersecurity Prep | Lune Synth",
-    "metaDescription": "Practice risk, security controls, and scenario reasoning for AP Cybersecurity with your own attempts, focused feedback, and targeted next steps.",
+    "metaDescription": "AP Cybersecurity practice: reason through network attacks, protocols and defenses with diagrams, and get feedback on your explanations.",
     "ogImage": "https://lunesynth.com/lune-synth/og-card.png",
     "ogImageAlt": "Lune Synth: the anti-slop learning app, with Luna the astronaut mascot",
     "eyebrow": "AP Cybersecurity with Lune Synth",
-    "headline": "Explain the defense, not just the tool.",
-    "heroBody": "Practice risk, security controls, and scenario reasoning with feedback on your own work.",
-    "phoneImage": "/mobile-app-assets/screenshots/applied/question-prompts/9-mid.webp",
-    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/question-prompts/9.webp",
-    "phoneAlt": "Lune Synth displaying an expert dynamic programming algorithm prompt",
-    "phoneLabel": "A Lune Synth practice preview",
-    "problemKicker": "Make the reasoning visible",
-    "problemHeadline": "A right answer needs a reason.",
-    "problemBody": "Show your thinking in AP Cybersecurity; find the missing step before your next attempt.",
-    "contrastBefore": "Recognize someone else’s answer",
-    "contrastAfter": "Build and check your own response",
+    "headline": "Explain how the attack works, then how to stop it.",
+    "heroBody": "AP Cybersecurity is a newer AP Career Kickstart course about how systems are attacked and defended. Practice reasoning through protocols and attacks with sequence diagrams on screen, and get feedback on your explanations.",
+    "phoneImage": "/mobile-app-assets/screenshots/applied/ap/ap-cyber-syn-flood-mid.webp",
+    "phoneImageHigh": "/mobile-app-assets/screenshots/applied/ap/ap-cyber-syn-flood.webp",
+    "phoneAlt": "Lune Synth question with a sequence diagram of a TCP handshake (SYN, then SYN-ACK, then an unknown third message), asking which message a SYN flood withholds and why it exhausts the server.",
+    "phoneLabel": "AP Cybersecurity · TCP handshake and SYN flood",
+    "problemKicker": "Know the mechanism",
+    "problemHeadline": "Naming an attack is not the same as explaining it.",
+    "problemBody": "Security questions reward the mechanism: which message an attacker withholds, which resource runs out, which control breaks the chain. Vocabulary lists do not build that reasoning.",
+    "contrastBefore": "Memorize attack names",
+    "contrastAfter": "Explain the mechanism and the defense",
     "processHeadline": "Your reasoning comes first.",
     "benefits": [
       {
         "number": "01",
-        "title": "Make an attempt",
-        "body": "Work through risk, security controls, and scenario reasoning yourself."
+        "title": "Reason through it",
+        "body": "Work from a protocol diagram to what an attacker changes and why it matters."
       },
       {
         "number": "02",
-        "title": "Find one gap",
-        "body": "Get feedback tied to the work you actually produced."
+        "title": "Get precise feedback",
+        "body": "Feedback points to the missing link between the attack and its effect."
       },
       {
         "number": "03",
-        "title": "Practice the fix",
-        "body": "Match two defensive controls to their threat scenarios."
+        "title": "Practice the next one",
+        "body": "Short sets on related attacks and defenses."
       }
     ],
-    "exampleKicker": "AP Cybersecurity practice",
-    "exampleHeadline": "One attempt. One useful correction.",
+    "exampleKicker": "A security reasoning habit",
+    "exampleHeadline": "Connect the missing message to the exhausted resource.",
     "attemptLabel": "Your practice attempt",
-    "attempt": "A security control is named without connecting it to the threat.",
-    "observation": "Explain which risk the control addresses.",
-    "hint": "What does this control prevent or make harder?",
-    "nextPractice": "Match two defensive controls to their threat scenarios.",
-    "closingHeadline": "Keep building your AP Cybersecurity skills.",
-    "closingBody": "Join the beta and turn your next attempt into focused practice.",
+    "attempt": "A SYN flood sends a lot of traffic.",
+    "observation": "Volume is part of it, but the mechanism is half-open connections waiting for a final ACK that never comes.",
+    "hint": "What does the server keep in memory while it waits?",
+    "nextPractice": "Three protocol diagrams asking which step an attack abuses and which defense breaks it.",
+    "closingHeadline": "Practice security reasoning step by step.",
+    "closingBody": "Join the beta and turn security concepts into explanations you can write and defend.",
     "clarifier": "Join for early AP Cybersecurity practice access.",
     "disclaimer": "AP is a registered trademark of the College Board, which is not affiliated with or endorsing Lune Synth.",
-    "scoreExample": {
-      "title": "AP Cybersecurity score improvement",
-      "from": 2,
-      "to": 4,
-      "gain": "+2 score levels",
-      "color": "#efb98c"
-    },
     "featureSections": {
       "quickMissions": {
         "sectionTitle": "Practice One AP Skill",
         "headline": "One weak spot. One mission.",
-        "body": "Practice risk, security controls, and scenario reasoning in focused steps."
+        "body": "Three protocol diagrams asking which step an attack abuses and which defense breaks it."
       },
       "constellations": {
         "sectionTitle": "Build Your AP Roadmap",
@@ -5011,6 +5345,14 @@
           }
         ]
       }
+    },
+    "apExam": {
+      "kicker": "AP Cybersecurity",
+      "headline": "A new course: check the exam details as they are published.",
+      "body": "AP Cybersecurity is part of the College Board's AP Career Kickstart pilot. Use AP Central for the current exam format; use Lune Synth to practice the reasoning behind networks, attacks and defenses.",
+      "facts": [],
+      "shots": [],
+      "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
   }
 ]

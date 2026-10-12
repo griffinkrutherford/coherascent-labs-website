@@ -205,7 +205,7 @@ function apDirectoryMarkup(page) {
         const members = subjects.filter((subject) => subject.apSubject.group === group);
         return `<details class="ap-directory__group">
           <summary>${escapeHtml(group)} <span>${members.length} courses</span></summary>
-          <nav class="ap-directory__links" aria-label="${escapeHtml(group)} AP subjects">${apSubjectLinks(members)}</nav>
+          ${apGroupBlurbMarkup(page, group)}<nav class="ap-directory__links" aria-label="${escapeHtml(group)} AP subjects">${apSubjectLinks(members)}</nav>
         </details>`;
       }).join("\n")}</div>
       <a class="ap-directory__catalog" href="https://apcentral.collegeboard.org/courses" target="_blank" rel="noopener noreferrer">Official AP course catalog ↗</a>
@@ -220,6 +220,45 @@ function apRelatedMarkup(page) {
       <nav class="ap-directory__links" aria-label="Related AP subjects">${apSubjectLinks(related)}</nav>
       <a class="ap-directory__catalog" href="/test-prep/ap-exams/#ap-subjects">All AP subjects →</a>
     </section>`;
+}
+
+// Optional AP exam section (pages.json `apExam`): the exam's real format, the
+// skills it scores, and app captures of questions with the diagrams that fit
+// the subject. Rendered only when present, so other pages are unchanged.
+function apShotMarkup(shot) {
+  const srcset = shot.srcHigh ? ` srcset="${escapeHtml(shot.src)} 480w, ${escapeHtml(shot.srcHigh)} 960w" sizes="(min-width: 900px) 300px, 70vw"` : "";
+  return `<figure class="ap-shot" data-reveal>
+            <img src="${escapeHtml(shot.src)}"${srcset} alt="${escapeHtml(shot.alt)}" width="480" height="1043" loading="lazy" decoding="async" />
+            <figcaption><strong>${escapeHtml(shot.title)}</strong> ${escapeHtml(shot.caption)}</figcaption>
+          </figure>`;
+}
+
+function apExamMarkup(page) {
+  const exam = page.apExam;
+  if (!exam) return "";
+  const facts = (exam.facts || []).map((fact) => `
+          <div class="ap-exam__fact"><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.text)}</dd></div>`).join("");
+  const shots = (exam.shots || []).map(apShotMarkup).join("\n          ");
+  return `<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">${escapeHtml(exam.kicker)}</p>
+        <h2 id="exam-title">${escapeHtml(exam.headline)}</h2>
+        <p class="campaign-section__body">${escapeHtml(exam.body)}</p>
+      </div>
+${facts ? `      <dl class="ap-exam__facts" data-reveal>${facts}
+      </dl>\n` : ""}${shots ? `      <div class="ap-exam__shots">
+          ${shots}
+      </div>\n` : ""}${exam.note ? `      <p class="ap-exam__note">${escapeHtml(exam.note)}</p>\n` : ""}    </section>`;
+}
+
+// Optional per-group blurb on the AP directory (pages.json `apGroupBlurbs`,
+// keyed by group name); groups without one render exactly as before.
+function apGroupBlurbMarkup(page, group) {
+  const blurb = page.apGroupBlurbs && page.apGroupBlurbs[group];
+  if (!blurb) return "";
+  const image = blurb.image ? `<img src="${escapeHtml(blurb.image)}" alt="${escapeHtml(blurb.alt)}" width="480" height="1043" loading="lazy" decoding="async" />` : "";
+  return `<div class="ap-directory__blurb">${image}<p>${escapeHtml(blurb.text)}</p></div>
+          `;
 }
 
 function render(page) {
@@ -281,7 +320,7 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
-</head>
+${page.apExam || page.apGroupBlurbs ? `  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />\n` : ""}</head>
 <body>
   <header class="site-header">
       <a class="brand" href="/" aria-label="Lune Synth home" style="text-decoration: none">
@@ -365,7 +404,7 @@ ${apDirectoryMarkup(page)}
         <div class="contrast__item contrast__item--better">${escapeHtml(page.contrastAfter)}</div>
       </div>
     </section>
-
+${page.apExam ? `\n${apExamMarkup(page)}\n` : ""}
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
       <div class="campaign-section__heading" data-reveal>
         <p class="section-kicker">The Lune Synth loop</p>

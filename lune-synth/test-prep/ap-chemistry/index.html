@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="application/json" data-score-example>{"title":"AP Chemistry score improvement","from":2,"to":4,"gain":"+2 score levels","color":"#78dbdf"}</script>
 
   <title>AP Chemistry Prep | Lune Synth</title>
-  <meta name="description" content="Practice stoichiometry, equilibrium, and chemical reasoning for AP Chemistry with your own attempts, focused feedback, and targeted next steps." />
+  <meta name="description" content="AP Chemistry practice for intermolecular forces, phase diagrams, stoichiometry and the claim-plus-justification answers the free-response section scores." />
   <link rel="canonical" href="https://lunesynth.com/test-prep/ap-chemistry/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AP Chemistry Prep | Lune Synth" />
-  <meta property="og:description" content="Practice stoichiometry, equilibrium, and chemical reasoning for AP Chemistry with your own attempts, focused feedback, and targeted next steps." />
+  <meta property="og:description" content="AP Chemistry practice for intermolecular forces, phase diagrams, stoichiometry and the claim-plus-justification answers the free-response section scores." />
   <meta property="og:url" content="https://lunesynth.com/test-prep/ap-chemistry/" />
   <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/15-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/ap/ap-chem-imf-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=9" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -47,6 +46,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +85,8 @@
         <nav class="ap-breadcrumb" aria-label="AP navigation"><a href="/test-prep/ap-exams/#ap-subjects">← All AP subjects</a></nav>
 
         <p class="campaign-eyebrow">AP Chemistry with Lune Synth</p>
-        <h1 id="campaign-title">Show the chemistry behind the calculation.</h1>
-        <p class="campaign-hero__body">Practice stoichiometry, equilibrium, and chemical reasoning with feedback on your own work.</p>
+        <h1 id="campaign-title">Connect structure, numbers and particle-level reasons.</h1>
+        <p class="campaign-hero__body">AP Chemistry asks you to calculate and to justify at the particle level: why one liquid boils higher, why a phase change happens, what limits a reaction. Practice with molecules and phase diagrams on screen, and get feedback on your setup and explanation.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early AP Chemistry practice access.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +99,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/15.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/15-mid.webp" alt="Lune Synth displaying a chemistry stoichiometry question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/ap/ap-chem-imf.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/ap/ap-chem-imf-mid.webp" alt="Lune Synth question showing the structures of ethanol and dimethyl ether, both C2H6O, asking which has the higher boiling point and why, in terms of intermolecular forces." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +113,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">A Lune Synth practice preview</figcaption>
+          <figcaption class="phone-mock__label">AP Chemistry · intermolecular forces</figcaption>
         </figure>
       </div>
     </section>
@@ -122,15 +122,36 @@
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Make the reasoning visible</p>
-        <h2 id="problem-title">A right answer needs a reason.</h2>
-        <p class="campaign-section__body">Show your thinking in AP Chemistry; find the missing step before your next attempt.</p>
+        <p class="section-kicker">Where AP Chem points go missing</p>
+        <h2 id="problem-title">&quot;Stronger bonds&quot; is not an intermolecular explanation.</h2>
+        <p class="campaign-section__body">Common losses: confusing bonds within a molecule with forces between molecules, dropping units in stoichiometry, misreading a phase diagram&#39;s axes, and claims with no particle-level justification.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Recognize someone else’s answer</div>
+        <div class="contrast__item">Memorize trends</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Build and check your own response</div>
+        <div class="contrast__item contrast__item--better">Justify the trend from structure</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The AP Chemistry exam</p>
+        <h2 id="exam-title">Calculations and particle-level justifications.</h2>
+        <p class="campaign-section__body">A periodic table and an equations and constants sheet are provided. Long free-response questions chain several parts, so one early error can follow you through.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Multiple choice</dt><dd>60 questions in 1 hour 30 minutes. Half the score.</dd></div>
+          <div class="ap-exam__fact"><dt>Free response</dt><dd>7 questions in 1 hour 45 minutes: 3 long questions and 4 short ones. Half the score.</dd></div>
+          <div class="ap-exam__fact"><dt>What is scored</dt><dd>Models and representations, question and method, representing data, model analysis, mathematical routines, and argumentation.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>IMFs versus bonds, limiting reactants, equilibrium and Q versus K, buffer reasoning, and unit errors.</dd></div>
+      </dl>
+      <div class="ap-exam__shots">
+          <figure class="ap-shot" data-reveal>
+            <img src="/mobile-app-assets/screenshots/applied/ap/ap-chem-phase-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-chem-phase-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-chem-phase.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth AP Chemistry question with a phase diagram of carbon dioxide showing a constant-pressure warming path." width="480" height="1043" loading="lazy" decoding="async" />
+            <figcaption><strong>Tracking a phase change on a phase diagram</strong> The triple point and critical point are plotted, with the warming path drawn at constant pressure; where that path crosses a boundary is the phase change.</figcaption>
+          </figure>
+      </div>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board&#39;s course and exam descriptions; check AP Central for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -141,44 +162,44 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Make an attempt</h3>
-            <p>Work through stoichiometry, equilibrium, and chemical reasoning yourself.</p>
+            <h3>Set it up yourself</h3>
+            <p>Write the stoichiometry, the equilibrium expression or the justification, typed or by hand.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Find one gap</h3>
-            <p>Get feedback tied to the work you actually produced.</p>
+            <h3>See the slip</h3>
+            <p>Feedback separates a units or ratio error from a conceptual gap like IMFs versus bonds.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
             <h3>Practice the fix</h3>
-            <p>Compare reactant amounts in two reactions.</p>
+            <p>Short sets on the same unit and skill with new compounds and conditions.</p>
           </article>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="feedback-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">AP Chemistry practice</p>
-        <h2 id="feedback-title">One attempt. One useful correction.</h2>
+        <p class="section-kicker">An AP Chem justification habit</p>
+        <h2 id="feedback-title">Name the force between molecules.</h2>
       </div>
       <div class="feedback-panel">
         <article class="attempt-card" data-reveal>
           <span class="attempt-card__label">Your practice attempt</span>
-          <p>The reactant with the smallest mass is called the limiting reactant.</p>
+          <p>Ethanol boils higher because its bonds are stronger.</p>
         </article>
         <div class="feedback-flow" data-reveal>
           <div class="feedback-step">
             <span>What grading notices</span>
-            <p>Compare stoichiometric amounts, not mass alone.</p>
+            <p>The comparison is about attractions between molecules, not the covalent bonds inside them.</p>
           </div>
           <div class="feedback-step">
             <span>Luna's hint</span>
-            <p>What ratio comes from the balanced equation?</p>
+            <p>Which of the two molecules can hydrogen-bond to another molecule like itself?</p>
           </div>
           <div class="feedback-step">
             <span>Targeted next practice</span>
-            <p>Compare reactant amounts in two reactions.</p>
+            <p>Three boiling-point comparisons between molecules with the same molar mass.</p>
           </div>
         </div>
       </div>
@@ -186,11 +207,11 @@
 
 
     <lune-quick-missions>
-      <script type="application/json">{"featureName":"quick-missions","variant":"ap-chemistry","sectionTitle":"Practice One AP Skill","eyebrow":"AP Chemistry quick practice","headline":"One weak spot. One mission.","body":"Practice stoichiometry, equilibrium, and chemical reasoning in focused steps.","skillChip":"One AP Chemistry skill","mediaAlt":"A focused Quick Mission for AP Chemistry in Lune Synth"}</script>
+      <script type="application/json">{"featureName":"quick-missions","variant":"ap-chemistry","sectionTitle":"Practice One AP Skill","eyebrow":"AP Chemistry quick practice","headline":"One weak spot. One mission.","body":"Three boiling-point comparisons between molecules with the same molar mass.","skillChip":"One AP Chemistry skill","mediaAlt":"A focused Quick Mission for AP Chemistry in Lune Synth"}</script>
     </lune-quick-missions>
 
     <lune-constellations>
-      <script type="application/json">{"featureName":"constellations","variant":"ap-chemistry","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Chemistry roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Chemistry","goal":"Keep building your AP Chemistry skills.","defaultWorld":"jupiter","mediaAlt":"A AP Chemistry learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
+      <script type="application/json">{"featureName":"constellations","variant":"ap-chemistry","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Chemistry roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Chemistry","goal":"Make every chemistry claim justified.","defaultWorld":"jupiter","mediaAlt":"A AP Chemistry learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
     </lune-constellations>
 
 <section class="ap-related campaign-shell" aria-labelledby="ap-related-title">
@@ -204,8 +225,8 @@
 
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
-        <h2 id="final-title">Keep building your AP Chemistry skills.</h2>
-        <p>Join the beta and turn your next attempt into focused practice.</p>
+        <h2 id="final-title">Make every chemistry claim justified.</h2>
+        <p>Join the beta for AP Chemistry practice built around setups, particle-level reasoning and focused repetition.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early AP Chemistry practice access.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>

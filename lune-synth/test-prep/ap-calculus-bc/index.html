@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="application/json" data-score-example>{"title":"AP Calculus BC score improvement","from":2,"to":4,"gain":"+2 score levels","color":"#64a8ff"}</script>
 
   <title>AP Calculus BC Prep | Lune Synth</title>
-  <meta name="description" content="Practice series, parametric reasoning, and calculus explanations for AP Calculus BC with your own attempts, focused feedback, and targeted next steps." />
+  <meta name="description" content="AP Calculus BC practice for series, Taylor error bounds, Euler&#39;s method, and the AB topics BC still tests, with feedback on your own written work." />
   <link rel="canonical" href="https://lunesynth.com/test-prep/ap-calculus-bc/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AP Calculus BC Prep | Lune Synth" />
-  <meta property="og:description" content="Practice series, parametric reasoning, and calculus explanations for AP Calculus BC with your own attempts, focused feedback, and targeted next steps." />
+  <meta property="og:description" content="AP Calculus BC practice for series, Taylor error bounds, Euler&#39;s method, and the AB topics BC still tests, with feedback on your own written work." />
   <meta property="og:url" content="https://lunesynth.com/test-prep/ap-calculus-bc/" />
   <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-taylor-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=9" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -47,6 +46,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +85,8 @@
         <nav class="ap-breadcrumb" aria-label="AP navigation"><a href="/test-prep/ap-exams/#ap-subjects">← All AP subjects</a></nav>
 
         <p class="campaign-eyebrow">AP Calculus BC with Lune Synth</p>
-        <h1 id="campaign-title">Go beyond memorized calculus moves.</h1>
-        <p class="campaign-hero__body">Practice series, parametric reasoning, and calculus explanations with feedback on your own work.</p>
+        <h1 id="campaign-title">Series, error bounds, and every AB skill underneath.</h1>
+        <p class="campaign-hero__body">AP Calculus BC adds series, Taylor polynomials, Euler&#39;s method, parametric and polar work, and it still tests all of AB. Practice the multi-step setups and the error-bound reasoning with feedback on your own steps.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early AP Calculus BC practice access.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +99,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/1.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp" alt="Lune Synth displaying an advanced calculus derivative problem" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-taylor.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-taylor-mid.webp" alt="Lune Synth question graphing y = sin x beside its Taylor polynomial P_3(x) = x − x^3/6 and asking for an alternating series error bound at x = 0.5." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +113,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">A Lune Synth practice preview</figcaption>
+          <figcaption class="phone-mock__label">AP Calculus BC · Taylor polynomial error</figcaption>
         </figure>
       </div>
     </section>
@@ -122,15 +122,40 @@
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Make the reasoning visible</p>
-        <h2 id="problem-title">A right answer needs a reason.</h2>
-        <p class="campaign-section__body">Show your thinking in AP Calculus BC; find the missing step before your next attempt.</p>
+        <p class="section-kicker">Where BC points go missing</p>
+        <h2 id="problem-title">Series questions punish a missing condition more than a slow calculation.</h2>
+        <p class="campaign-section__body">A convergence test with an unchecked condition, an error bound applied to the wrong term, an Euler step that uses the new point&#39;s slope: BC questions are long, and one quiet slip carries through every later part.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Recognize someone else’s answer</div>
+        <div class="contrast__item">Memorize which test to name</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Build and check your own response</div>
+        <div class="contrast__item contrast__item--better">Show why the test applies here</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The AP Calculus BC exam</p>
+        <h2 id="exam-title">AB content plus the BC topics, in the same format.</h2>
+        <p class="campaign-section__body">BC uses the same sections and timing as AB. Students also receive an AB subscore, so the AB skills count twice.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Multiple choice</dt><dd>45 questions in 1 hour 45 minutes: 30 without a calculator, then 15 with a graphing calculator. Half the score.</dd></div>
+          <div class="ap-exam__fact"><dt>Free response</dt><dd>6 questions in 1 hour 30 minutes: 2 with a graphing calculator, 4 without. Half the score.</dd></div>
+          <div class="ap-exam__fact"><dt>BC additions</dt><dd>Series and convergence, Taylor and Maclaurin polynomials with error bounds, Euler&#39;s method, logistic models, parametric, vector and polar functions.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Unchecked test conditions, the wrong term in an error bound, interval endpoints, and polar area limits.</dd></div>
+      </dl>
+      <div class="ap-exam__shots">
+          <figure class="ap-shot" data-reveal>
+            <img src="/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-euler-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-calc-bc-euler-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-calc-bc-euler.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth AP Calculus BC question with an Euler&#39;s method table for approximating f(1)." width="480" height="1043" loading="lazy" decoding="async" />
+            <figcaption><strong>Filling in an Euler&#39;s-method table</strong> The x, y and dy/dx columns are blank and ready; the table is the scratch work, not the answer.</figcaption>
+          </figure>
+          <figure class="ap-shot" data-reveal>
+            <img src="/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth AP Calculus BC question with a piecewise-linear graph of f used to build an accumulation function g." width="480" height="1043" loading="lazy" decoding="async" />
+            <figcaption><strong>Reading signed area off a piecewise graph</strong> f is drawn as two line segments with no accumulated values marked; g(4) and the extremum come from reading area and sign changes.</figcaption>
+          </figure>
+      </div>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board&#39;s course and exam descriptions; check AP Central for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -141,44 +166,44 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Make an attempt</h3>
-            <p>Work through series, parametric reasoning, and calculus explanations yourself.</p>
+            <h3>Work the full setup</h3>
+            <p>Write the series, the Taylor terms or the Euler table yourself, by hand or typed.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Find one gap</h3>
-            <p>Get feedback tied to the work you actually produced.</p>
+            <h3>Find the broken link</h3>
+            <p>Feedback names the step: a condition not checked, a term off by one, a slope taken at the wrong point.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice the fix</h3>
-            <p>Two series that need a different convergence test.</p>
+            <h3>Repeat with new series</h3>
+            <p>A short set on the same idea with different functions, intervals and step sizes.</p>
           </article>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="feedback-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">AP Calculus BC practice</p>
-        <h2 id="feedback-title">One attempt. One useful correction.</h2>
+        <p class="section-kicker">A BC error-bound habit</p>
+        <h2 id="feedback-title">One condition makes the bound valid.</h2>
       </div>
       <div class="feedback-panel">
         <article class="attempt-card" data-reveal>
           <span class="attempt-card__label">Your practice attempt</span>
-          <p>A ratio-test limit of 1 is treated as proof of convergence.</p>
+          <p>The error is at most 0.5^4/4!, so about 0.0026.</p>
         </article>
         <div class="feedback-flow" data-reveal>
           <div class="feedback-step">
             <span>What grading notices</span>
-            <p>That ratio-test result is inconclusive.</p>
+            <p>For sin x, P_3 = P_4, and the first omitted nonzero term is the x^5 term, so the bound uses (0.5)^5/5!.</p>
           </div>
           <div class="feedback-step">
             <span>Luna's hint</span>
-            <p>Which other convergence test fits this series?</p>
+            <p>Which is the first term of the sin x series that P_3 leaves out?</p>
           </div>
           <div class="feedback-step">
             <span>Targeted next practice</span>
-            <p>Two series that need a different convergence test.</p>
+            <p>Three alternating-series error bounds with different centers and degrees.</p>
           </div>
         </div>
       </div>
@@ -186,11 +211,11 @@
 
 
     <lune-quick-missions>
-      <script type="application/json">{"featureName":"quick-missions","variant":"ap-calculus-bc","sectionTitle":"Practice One AP Skill","eyebrow":"AP Calculus BC quick practice","headline":"One weak spot. One mission.","body":"Practice series, parametric reasoning, and calculus explanations in focused steps.","skillChip":"One AP Calculus BC skill","mediaAlt":"A focused Quick Mission for AP Calculus BC in Lune Synth"}</script>
+      <script type="application/json">{"featureName":"quick-missions","variant":"ap-calculus-bc","sectionTitle":"Practice One AP Skill","eyebrow":"AP Calculus BC quick practice","headline":"One weak spot. One mission.","body":"Three alternating-series error bounds with different centers and degrees.","skillChip":"One AP Calculus BC skill","mediaAlt":"A focused Quick Mission for AP Calculus BC in Lune Synth"}</script>
     </lune-quick-missions>
 
     <lune-constellations>
-      <script type="application/json">{"featureName":"constellations","variant":"ap-calculus-bc","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Calculus BC roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Calculus BC","goal":"Keep building your AP Calculus BC skills.","defaultWorld":"math","mediaAlt":"A AP Calculus BC learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
+      <script type="application/json">{"featureName":"constellations","variant":"ap-calculus-bc","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Calculus BC roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Calculus BC","goal":"Make the long BC questions routine.","defaultWorld":"math","mediaAlt":"A AP Calculus BC learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
     </lune-constellations>
 
 <section class="ap-related campaign-shell" aria-labelledby="ap-related-title">
@@ -204,8 +229,8 @@
 
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
-        <h2 id="final-title">Keep building your AP Calculus BC skills.</h2>
-        <p>Join the beta and turn your next attempt into focused practice.</p>
+        <h2 id="final-title">Make the long BC questions routine.</h2>
+        <p>Join the beta for BC practice built around written setups, precise feedback and short follow-up sets on what you miss.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early AP Calculus BC practice access.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>

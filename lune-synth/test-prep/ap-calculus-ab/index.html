@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="application/json" data-score-example>{"title":"AP Calculus AB score improvement","from":2,"to":4,"gain":"+2 score levels","color":"#64a8ff"}</script>
 
   <title>AP Calculus AB Prep | Lune Synth</title>
-  <meta name="description" content="Practice derivatives, integrals, and written justification for AP Calculus AB with your own attempts, focused feedback, and targeted next steps." />
+  <meta name="description" content="AP Calculus AB practice built around the free-response section: justify extrema from graphs of f and f′, accumulate signed area, and get feedback on your written reasoning." />
   <link rel="canonical" href="https://lunesynth.com/test-prep/ap-calculus-ab/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AP Calculus AB Prep | Lune Synth" />
-  <meta property="og:description" content="Practice derivatives, integrals, and written justification for AP Calculus AB with your own attempts, focused feedback, and targeted next steps." />
+  <meta property="og:description" content="AP Calculus AB practice built around the free-response section: justify extrema from graphs of f and f′, accumulate signed area, and get feedback on your written reasoning." />
   <meta property="og:url" content="https://lunesynth.com/test-prep/ap-calculus-ab/" />
   <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=9" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -47,6 +46,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +85,8 @@
         <nav class="ap-breadcrumb" aria-label="AP navigation"><a href="/test-prep/ap-exams/#ap-subjects">← All AP subjects</a></nav>
 
         <p class="campaign-eyebrow">AP Calculus AB with Lune Synth</p>
-        <h1 id="campaign-title">Make every calculus step count.</h1>
-        <p class="campaign-hero__body">Practice derivatives, integrals, and written justification with feedback on your own work.</p>
+        <h1 id="campaign-title">Earn the justification points, not just the answer.</h1>
+        <p class="campaign-hero__body">AP Calculus AB free response rewards the sentence after the number: why f has a minimum, what the integral of a rate means. Practice those steps from real graphs, in your own handwriting, and get feedback on the reasoning.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early AP Calculus AB practice access.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +99,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/1.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/1-mid.webp" alt="Lune Synth displaying an advanced calculus derivative problem" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-accumulation-mid.webp" alt="Lune Synth question: the graph of f on [0, 6] is two line segments through (0, 2), (4, −2) and (6, 0); find g(4) for g(x) = ∫ from 0 to x of f(t) dt and where g has its absolute maximum." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +113,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">A Lune Synth practice preview</figcaption>
+          <figcaption class="phone-mock__label">AP Calculus AB · accumulation from a graph of f</figcaption>
         </figure>
       </div>
     </section>
@@ -122,15 +122,36 @@
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Make the reasoning visible</p>
-        <h2 id="problem-title">A right answer needs a reason.</h2>
-        <p class="campaign-section__body">Show your thinking in AP Calculus AB; find the missing step before your next attempt.</p>
+        <p class="section-kicker">Where AB points go missing</p>
+        <h2 id="problem-title">The right x-value with no sign-change reason scores less than you think.</h2>
+        <p class="campaign-section__body">Most AB free-response questions ask you to justify: f′ changes sign, the Mean Value Theorem applies, the accumulated change is this integral. Students who can compute still drop points on units, on reading f from a graph of f′, and on answers with no reason attached.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Recognize someone else’s answer</div>
+        <div class="contrast__item">Check whether the final number matches</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Build and check your own response</div>
+        <div class="contrast__item contrast__item--better">Write the justification a reader would award</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The AP Calculus AB exam</p>
+        <h2 id="exam-title">Two calculator modes, one standard of explanation.</h2>
+        <p class="campaign-section__body">The exam alternates between calculator and no-calculator parts, and the free-response section grades the setup and the justification as well as the value. Practice for both.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Multiple choice</dt><dd>45 questions in 1 hour 45 minutes: 30 without a calculator, then 15 with a graphing calculator. Half the score.</dd></div>
+          <div class="ap-exam__fact"><dt>Free response</dt><dd>6 questions in 1 hour 30 minutes: 2 with a graphing calculator, 4 without. Half the score.</dd></div>
+          <div class="ap-exam__fact"><dt>What is scored</dt><dd>Setting up integrals and derivatives, reading graphs and tables, units, and justifying conclusions with theorems or sign changes.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Chain rule slips, f versus f′ graphs, accumulation with a starting value, and conclusions with no stated reason.</dd></div>
+      </dl>
+      <div class="ap-exam__shots">
+          <figure class="ap-shot" data-reveal>
+            <img src="/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-derivative-graph-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-calc-ab-derivative-graph-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-calc-ab-derivative-graph.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth question showing the graph of f′(x) = x^2 − 4x + 3 and asking where f has a relative minimum, with a justification." width="480" height="1043" loading="lazy" decoding="async" />
+            <figcaption><strong>Reading f from f′</strong> The zeros are on the graph; deciding minimum versus maximum and writing the sign-change reason is the point.</figcaption>
+          </figure>
+      </div>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board&#39;s course and exam descriptions; check AP Central for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -141,44 +162,44 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Make an attempt</h3>
-            <p>Work through derivatives, integrals, and written justification yourself.</p>
+            <h3>Work it on paper</h3>
+            <p>Photograph handwritten work or type it: derivatives, Riemann sums, a separated differential equation, the justification sentence.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Find one gap</h3>
-            <p>Get feedback tied to the work you actually produced.</p>
+            <h3>See the missing step</h3>
+            <p>Feedback points to the step that broke, such as a missing inner derivative or a sign-change argument that never mentions f′.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice the fix</h3>
-            <p>Two chain-rule problems with different inner functions.</p>
+            <h3>Drill that pattern</h3>
+            <p>A short follow-up set on the same skill with new graphs and functions, so the fix becomes routine.</p>
           </article>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="feedback-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">AP Calculus AB practice</p>
-        <h2 id="feedback-title">One attempt. One useful correction.</h2>
+        <p class="section-kicker">An AB free-response habit</p>
+        <h2 id="feedback-title">Feedback on the reason, not just the result.</h2>
       </div>
       <div class="feedback-panel">
         <article class="attempt-card" data-reveal>
           <span class="attempt-card__label">Your practice attempt</span>
-          <p>The derivative setup is right, but the inner derivative is missing.</p>
+          <p>x = 3 is a relative minimum because f′(3) = 0.</p>
         </article>
         <div class="feedback-flow" data-reveal>
           <div class="feedback-step">
             <span>What grading notices</span>
-            <p>Check the chain rule in that one step.</p>
+            <p>The location is right. f′ = 0 alone does not decide between a minimum and a maximum, so the justification is incomplete.</p>
           </div>
           <div class="feedback-step">
             <span>Luna's hint</span>
-            <p>Which expression is inside the outer function?</p>
+            <p>What does f′ do just to the left and right of x = 3?</p>
           </div>
           <div class="feedback-step">
             <span>Targeted next practice</span>
-            <p>Two chain-rule problems with different inner functions.</p>
+            <p>Three graph-of-f′ questions asking you to classify and justify each extremum.</p>
           </div>
         </div>
       </div>
@@ -186,11 +207,11 @@
 
 
     <lune-quick-missions>
-      <script type="application/json">{"featureName":"quick-missions","variant":"ap-calculus-ab","sectionTitle":"Practice One AP Skill","eyebrow":"AP Calculus AB quick practice","headline":"One weak spot. One mission.","body":"Practice derivatives, integrals, and written justification in focused steps.","skillChip":"One AP Calculus AB skill","mediaAlt":"A focused Quick Mission for AP Calculus AB in Lune Synth"}</script>
+      <script type="application/json">{"featureName":"quick-missions","variant":"ap-calculus-ab","sectionTitle":"Practice One AP Skill","eyebrow":"AP Calculus AB quick practice","headline":"One weak spot. One mission.","body":"Three graph-of-f′ questions asking you to classify and justify each extremum.","skillChip":"One AP Calculus AB skill","mediaAlt":"A focused Quick Mission for AP Calculus AB in Lune Synth"}</script>
     </lune-quick-missions>
 
     <lune-constellations>
-      <script type="application/json">{"featureName":"constellations","variant":"ap-calculus-ab","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Calculus AB roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Calculus AB","goal":"Keep building your AP Calculus AB skills.","defaultWorld":"math","mediaAlt":"A AP Calculus AB learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
+      <script type="application/json">{"featureName":"constellations","variant":"ap-calculus-ab","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Calculus AB roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Calculus AB","goal":"Make your next AB free response complete.","defaultWorld":"math","mediaAlt":"A AP Calculus AB learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
     </lune-constellations>
 
 <section class="ap-related campaign-shell" aria-labelledby="ap-related-title">
@@ -204,8 +225,8 @@
 
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
-        <h2 id="final-title">Keep building your AP Calculus AB skills.</h2>
-        <p>Join the beta and turn your next attempt into focused practice.</p>
+        <h2 id="final-title">Make your next AB free response complete.</h2>
+        <p>Join the beta and practice calculus the way the exam grades it: worked steps, stated reasons, and focused repetition on what you miss.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early AP Calculus AB practice access.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>

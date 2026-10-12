@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="application/json" data-score-example>{"title":"AP Microeconomics score improvement","from":2,"to":4,"gain":"+2 score levels","color":"#f1ce8e"}</script>
 
   <title>AP Microeconomics Prep | Lune Synth</title>
-  <meta name="description" content="Practice markets, incentives, and graph-based reasoning for AP Microeconomics with your own attempts, focused feedback, and targeted next steps." />
+  <meta name="description" content="AP Microeconomics practice for monopoly, cost curves, market structures and surplus, with feedback on your graphs and reasoning." />
   <link rel="canonical" href="https://lunesynth.com/test-prep/ap-microeconomics/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AP Microeconomics Prep | Lune Synth" />
-  <meta property="og:description" content="Practice markets, incentives, and graph-based reasoning for AP Microeconomics with your own attempts, focused feedback, and targeted next steps." />
+  <meta property="og:description" content="AP Microeconomics practice for monopoly, cost curves, market structures and surplus, with feedback on your graphs and reasoning." />
   <meta property="og:url" content="https://lunesynth.com/test-prep/ap-microeconomics/" />
   <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/16-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/ap/ap-micro-monopoly-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=9" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -47,6 +46,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +85,8 @@
         <nav class="ap-breadcrumb" aria-label="AP navigation"><a href="/test-prep/ap-exams/#ap-subjects">← All AP subjects</a></nav>
 
         <p class="campaign-eyebrow">AP Microeconomics with Lune Synth</p>
-        <h1 id="campaign-title">Read the graph before making the claim.</h1>
-        <p class="campaign-hero__body">Practice markets, incentives, and graph-based reasoning with feedback on your own work.</p>
+        <h1 id="campaign-title">Read the graph like the grader does.</h1>
+        <p class="campaign-hero__body">AP Microeconomics free response asks you to find profit-maximizing output, compare market structures and identify surplus and deadweight loss on correctly labeled graphs. Practice with monopoly and market graphs on screen and get feedback on your reasoning.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early AP Microeconomics practice access.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +99,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/16.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/16-mid.webp" alt="Lune Synth displaying an economics question about demand" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/ap/ap-micro-monopoly.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/ap/ap-micro-monopoly-mid.webp" alt="Lune Synth question with a monopoly diagram of demand, marginal revenue, marginal cost and average total cost, asking for the profit-maximizing quantity, price and whether the firm earns economic profit." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +113,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">A Lune Synth practice preview</figcaption>
+          <figcaption class="phone-mock__label">AP Microeconomics · monopoly graph</figcaption>
         </figure>
       </div>
     </section>
@@ -122,15 +122,29 @@
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Make the reasoning visible</p>
-        <h2 id="problem-title">A right answer needs a reason.</h2>
-        <p class="campaign-section__body">Show your thinking in AP Microeconomics; find the missing step before your next attempt.</p>
+        <p class="section-kicker">Where micro points go missing</p>
+        <h2 id="problem-title">MR = MC gives the quantity, not the price.</h2>
+        <p class="campaign-section__body">Students read price off the MC curve, compare price to the wrong cost curve, or shade the wrong area. Each is a single-step slip that costs a point.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Recognize someone else’s answer</div>
+        <div class="contrast__item">Memorize the rule</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Build and check your own response</div>
+        <div class="contrast__item contrast__item--better">Apply it on the graph and explain</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The AP Microeconomics exam</p>
+        <h2 id="exam-title">Graphs, definitions and short explanations.</h2>
+        <p class="campaign-section__body">The free-response section includes a 10-minute reading period and rewards labeled graphs and correct reasoning.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Multiple choice</dt><dd>60 questions in 1 hour 10 minutes. About two-thirds of the score.</dd></div>
+          <div class="ap-exam__fact"><dt>Free response</dt><dd>3 questions in 1 hour: one long and two short. About one-third of the score.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Monopoly pricing, cost-curve relationships, surplus and deadweight loss areas, and factor markets.</dd></div>
+      </dl>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board&#39;s course and exam descriptions; check AP Central for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -141,44 +155,44 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Make an attempt</h3>
-            <p>Work through markets, incentives, and graph-based reasoning yourself.</p>
+            <h3>Work the graph</h3>
+            <p>Find quantities, prices and areas yourself from the curves.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Find one gap</h3>
-            <p>Get feedback tied to the work you actually produced.</p>
+            <h3>Fix the slip</h3>
+            <p>Feedback names the curve or area you used by mistake.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice the fix</h3>
-            <p>Compare binding and nonbinding price controls.</p>
+            <h3>Practice structures</h3>
+            <p>Short sets across perfect competition, monopoly and externalities.</p>
           </article>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="feedback-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">AP Microeconomics practice</p>
-        <h2 id="feedback-title">One attempt. One useful correction.</h2>
+        <p class="section-kicker">A micro graphing habit</p>
+        <h2 id="feedback-title">Price comes from demand.</h2>
       </div>
       <div class="feedback-panel">
         <article class="attempt-card" data-reveal>
           <span class="attempt-card__label">Your practice attempt</span>
-          <p>A price ceiling above equilibrium is used to predict a shortage.</p>
+          <p>MR = MC at Q = 30, so the price is where MC is at 30, 40.</p>
         </article>
         <div class="feedback-flow" data-reveal>
           <div class="feedback-step">
             <span>What grading notices</span>
-            <p>Check whether the ceiling restricts the market price.</p>
+            <p>The quantity is right. A monopolist charges what buyers will pay for that quantity, read from the demand curve.</p>
           </div>
           <div class="feedback-step">
             <span>Luna's hint</span>
-            <p>Is that price ceiling actually binding?</p>
+            <p>Go up from Q = 30 to which curve to find the price?</p>
           </div>
           <div class="feedback-step">
             <span>Targeted next practice</span>
-            <p>Compare binding and nonbinding price controls.</p>
+            <p>Three monopoly graphs asking for quantity, price and profit or loss.</p>
           </div>
         </div>
       </div>
@@ -186,11 +200,11 @@
 
 
     <lune-quick-missions>
-      <script type="application/json">{"featureName":"quick-missions","variant":"ap-microeconomics","sectionTitle":"Practice One AP Skill","eyebrow":"AP Microeconomics quick practice","headline":"One weak spot. One mission.","body":"Practice markets, incentives, and graph-based reasoning in focused steps.","skillChip":"One AP Microeconomics skill","mediaAlt":"A focused Quick Mission for AP Microeconomics in Lune Synth"}</script>
+      <script type="application/json">{"featureName":"quick-missions","variant":"ap-microeconomics","sectionTitle":"Practice One AP Skill","eyebrow":"AP Microeconomics quick practice","headline":"One weak spot. One mission.","body":"Three monopoly graphs asking for quantity, price and profit or loss.","skillChip":"One AP Microeconomics skill","mediaAlt":"A focused Quick Mission for AP Microeconomics in Lune Synth"}</script>
     </lune-quick-missions>
 
     <lune-constellations>
-      <script type="application/json">{"featureName":"constellations","variant":"ap-microeconomics","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Microeconomics roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Microeconomics","goal":"Keep building your AP Microeconomics skills.","defaultWorld":"earth","mediaAlt":"A AP Microeconomics learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
+      <script type="application/json">{"featureName":"constellations","variant":"ap-microeconomics","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Microeconomics roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Microeconomics","goal":"Make every graph count.","defaultWorld":"earth","mediaAlt":"A AP Microeconomics learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
     </lune-constellations>
 
 <section class="ap-related campaign-shell" aria-labelledby="ap-related-title">
@@ -204,8 +218,8 @@
 
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
-        <h2 id="final-title">Keep building your AP Microeconomics skills.</h2>
-        <p>Join the beta and turn your next attempt into focused practice.</p>
+        <h2 id="final-title">Make every graph count.</h2>
+        <p>Join the beta for micro practice built around graphs, reasoning and short follow-up sets.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early AP Microeconomics practice access.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>

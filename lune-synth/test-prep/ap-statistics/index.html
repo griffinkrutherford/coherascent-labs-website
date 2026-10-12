@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script type="application/json" data-score-example>{"title":"AP Statistics score improvement","from":2,"to":4,"gain":"+2 score levels","color":"#64a8ff"}</script>
 
   <title>AP Statistics Prep | Lune Synth</title>
-  <meta name="description" content="Practice probability, study design, and inference for AP Statistics with your own attempts, focused feedback, and targeted next steps." />
+  <meta name="description" content="AP Statistics practice for normal calculations, significance tests and confidence intervals, with feedback on the conditions and conclusions in context the free-response section scores." />
   <link rel="canonical" href="https://lunesynth.com/test-prep/ap-statistics/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AP Statistics Prep | Lune Synth" />
-  <meta property="og:description" content="Practice probability, study design, and inference for AP Statistics with your own attempts, focused feedback, and targeted next steps." />
+  <meta property="og:description" content="AP Statistics practice for normal calculations, significance tests and confidence intervals, with feedback on the conditions and conclusions in context the free-response section scores." />
   <meta property="og:url" content="https://lunesynth.com/test-prep/ap-statistics/" />
   <meta property="og:image" content="https://lunesynth.com/lune-synth/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/19-stats-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/ap/ap-stats-normal-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=9" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -47,6 +46,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +85,8 @@
         <nav class="ap-breadcrumb" aria-label="AP navigation"><a href="/test-prep/ap-exams/#ap-subjects">← All AP subjects</a></nav>
 
         <p class="campaign-eyebrow">AP Statistics with Lune Synth</p>
-        <h1 id="campaign-title">Make your conclusion match your data.</h1>
-        <p class="campaign-hero__body">Practice probability, study design, and inference with feedback on your own work.</p>
+        <h1 id="campaign-title">Conclusions in context, conditions checked, every time.</h1>
+        <p class="campaign-hero__body">AP Statistics free response is graded on communication: the parameter defined, the conditions checked, the conclusion tied to the context. Practice the full write-up with distribution curves in front of you and get feedback on what a reader would mark down.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early AP Statistics practice access.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +99,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/19-stats.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/19-stats-mid.webp" alt="Lune Synth displaying a statistics confidence-interval question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/ap/ap-stats-normal.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/ap/ap-stats-normal-mid.webp" alt="Lune Synth question with a normal curve of heights, mean 170 cm and standard deviation 8 cm, the tail above 182 cm shaded, asking for the proportion taller than 182 cm." width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,7 +113,7 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">A Lune Synth practice preview</figcaption>
+          <figcaption class="phone-mock__label">AP Statistics · normal distribution calculation</figcaption>
         </figure>
       </div>
     </section>
@@ -122,15 +122,36 @@
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Make the reasoning visible</p>
-        <h2 id="problem-title">A right answer needs a reason.</h2>
-        <p class="campaign-section__body">Show your thinking in AP Statistics; find the missing step before your next attempt.</p>
+        <p class="section-kicker">Where AP Stats points go missing</p>
+        <h2 id="problem-title">A correct p-value with a conclusion about &quot;the data&quot; is not a full answer.</h2>
+        <p class="campaign-section__body">Students lose credit for undefined parameters, unchecked conditions, &quot;accept the null&quot;, and conclusions that never mention the population. The calculator does the arithmetic; the score depends on the language around it.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Recognize someone else’s answer</div>
+        <div class="contrast__item">Get the number from the calculator</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Build and check your own response</div>
+        <div class="contrast__item contrast__item--better">Write the conclusion the rubric expects</div>
       </div>
+    </section>
+
+<section class="campaign-section campaign-shell ap-exam" aria-labelledby="exam-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The AP Statistics exam</p>
+        <h2 id="exam-title">Half multiple choice, half written communication.</h2>
+        <p class="campaign-section__body">A graphing calculator is allowed throughout, with a formula sheet and tables, so the free-response section concentrates on choosing methods and explaining results.</p>
+      </div>
+      <dl class="ap-exam__facts" data-reveal>
+          <div class="ap-exam__fact"><dt>Multiple choice</dt><dd>40 questions in 1 hour 30 minutes. Half the score.</dd></div>
+          <div class="ap-exam__fact"><dt>Free response</dt><dd>6 questions in 1 hour 30 minutes: five short questions and an investigative task. Half the score.</dd></div>
+          <div class="ap-exam__fact"><dt>What is scored</dt><dd>Exploring data, sampling and experimental design, probability, and inference stated in context.</dd></div>
+          <div class="ap-exam__fact"><dt>Common weak spots</dt><dd>Conditions for inference, interpreting a p-value or interval, experimental design vocabulary, and context-free conclusions.</dd></div>
+      </dl>
+      <div class="ap-exam__shots">
+          <figure class="ap-shot" data-reveal>
+            <img src="/mobile-app-assets/screenshots/applied/ap/ap-stats-pvalue-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-stats-pvalue-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-stats-pvalue.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth AP Statistics question with a standard normal curve for a one-sided hypothesis test." width="480" height="1043" loading="lazy" decoding="async" />
+            <figcaption><strong>Shading a p-value on a standard normal curve</strong> The curve is drawn with z = 1.85 marked; shading the right tail and comparing it to α = 0.05 is the rest of the question.</figcaption>
+          </figure>
+      </div>
+      <p class="ap-exam__note">Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board&#39;s course and exam descriptions; check AP Central for current details.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -141,44 +162,44 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Make an attempt</h3>
-            <p>Work through probability, study design, and inference yourself.</p>
+            <h3>Write the whole test</h3>
+            <p>State hypotheses, check conditions, compute, and conclude, by hand or typed.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Find one gap</h3>
-            <p>Get feedback tied to the work you actually produced.</p>
+            <h3>See what&#39;s missing</h3>
+            <p>Feedback flags the missing condition, the parameter never defined, or the conclusion without context.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice the fix</h3>
-            <p>Write two interval interpretations in context.</p>
+            <h3>Repeat the procedure</h3>
+            <p>Short sets on the same inference procedure with new contexts and numbers.</p>
           </article>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="feedback-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">AP Statistics practice</p>
-        <h2 id="feedback-title">One attempt. One useful correction.</h2>
+        <p class="section-kicker">An inference write-up habit</p>
+        <h2 id="feedback-title">The conclusion has to name the population.</h2>
       </div>
       <div class="feedback-panel">
         <article class="attempt-card" data-reveal>
           <span class="attempt-card__label">Your practice attempt</span>
-          <p>A confidence level is described as the probability of a fixed parameter changing.</p>
+          <p>p = 0.032 &lt; 0.05, so we reject H_0.</p>
         </article>
         <div class="feedback-flow" data-reveal>
           <div class="feedback-step">
             <span>What grading notices</span>
-            <p>Connect confidence to the interval-making procedure.</p>
+            <p>The decision is right. The conclusion stops before saying what that means for the city&#39;s residents.</p>
           </div>
           <div class="feedback-step">
             <span>Luna's hint</span>
-            <p>What happens when the sampling process is repeated?</p>
+            <p>What do you now have evidence for, in terms of the true proportion of residents?</p>
           </div>
           <div class="feedback-step">
             <span>Targeted next practice</span>
-            <p>Write two interval interpretations in context.</p>
+            <p>Three significance tests where the scored part is the conclusion in context.</p>
           </div>
         </div>
       </div>
@@ -186,11 +207,11 @@
 
 
     <lune-quick-missions>
-      <script type="application/json">{"featureName":"quick-missions","variant":"ap-statistics","sectionTitle":"Practice One AP Skill","eyebrow":"AP Statistics quick practice","headline":"One weak spot. One mission.","body":"Practice probability, study design, and inference in focused steps.","skillChip":"One AP Statistics skill","mediaAlt":"A focused Quick Mission for AP Statistics in Lune Synth"}</script>
+      <script type="application/json">{"featureName":"quick-missions","variant":"ap-statistics","sectionTitle":"Practice One AP Skill","eyebrow":"AP Statistics quick practice","headline":"One weak spot. One mission.","body":"Three significance tests where the scored part is the conclusion in context.","skillChip":"One AP Statistics skill","mediaAlt":"A focused Quick Mission for AP Statistics in Lune Synth"}</script>
     </lune-quick-missions>
 
     <lune-constellations>
-      <script type="application/json">{"featureName":"constellations","variant":"ap-statistics","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Statistics roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Statistics","goal":"Keep building your AP Statistics skills.","defaultWorld":"math","mediaAlt":"A AP Statistics learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
+      <script type="application/json">{"featureName":"constellations","variant":"ap-statistics","sectionTitle":"Build Your AP Roadmap","eyebrow":"AP Statistics roadmap","headline":"Your materials, your study map.","body":"Bring your notes, questions, and course goals.","topic":"AP Statistics","goal":"Write statistics the way it is graded.","defaultWorld":"math","mediaAlt":"A AP Statistics learning Constellation in Lune Synth","steps":[{"label":"Overview","title":"Your materials, your map","body":"Bring your notes. Build a connected skill path."},{"label":"Choose / Create","title":"Choose a path or build your own","body":"Start with your course goals and the skills you want to practice."},{"label":"Skill Missions","title":"Build one skill at a time","body":"Practice the skill, then connect it to the next one."},{"label":"Galaxy Tests","title":"Test the connections","body":"Bring related skills together in a Galaxy mission."},{"label":"Supercluster","title":"Put it all together","body":"Finish your learning path with a cumulative challenge."}]}</script>
     </lune-constellations>
 
 <section class="ap-related campaign-shell" aria-labelledby="ap-related-title">
@@ -204,8 +225,8 @@
 
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
-        <h2 id="final-title">Keep building your AP Statistics skills.</h2>
-        <p>Join the beta and turn your next attempt into focused practice.</p>
+        <h2 id="final-title">Write statistics the way it is graded.</h2>
+        <p>Join the beta for AP Statistics practice built on complete write-ups, precise feedback and repetition on the procedures you miss.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early AP Statistics practice access.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
