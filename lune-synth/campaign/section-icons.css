@@ -29,6 +29,7 @@ main #voice-title { --section-icon: url("/campaign/nav-icons/microphone.webp"); 
 main #luna-title { --section-icon: url("/campaign/nav-icons/pawPrint.webp"); }
 main #processing-title { --section-icon: url("/campaign/nav-icons/checklist.webp"); }
 main #medals-title { --section-icon: url("/campaign/nav-icons/medal.webp"); }
+main #tock-title { --section-icon: url("/campaign/nav-icons/clock.webp"); }
 main #engine-title { --section-icon: url("/campaign/nav-icons/gear.webp"); }
 main #blog-title { --section-icon: url("/campaign/nav-icons/book.webp"); }
 main .section--handwriting > .section-title:not([id]) { --section-icon: url("/campaign/nav-icons/fountainPen.webp"); }

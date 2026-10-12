@@ -187,6 +187,7 @@ html[data-theme="light"] .site-header .nav-links .nav-link--story:focus-visible 
 .site-header .nav-link[href$="#luna-title"] { --nav-icon: url("/campaign/nav-icons/pawPrint.webp"); }
 .site-header .nav-link[href$="#processing-title"] { --nav-icon: url("/campaign/nav-icons/checklist.webp"); }
 .site-header .nav-link[href$="#medals-title"] { --nav-icon: url("/campaign/nav-icons/medal.webp"); }
+.site-header .nav-link[href$="#tock-title"] { --nav-icon: url("/campaign/nav-icons/clock.webp"); }
 .site-header .nav-link[href$="#engine-title"] { --nav-icon: url("/campaign/nav-icons/gear.webp"); }
 .site-header .nav-link[href$="#site-footer"] { --nav-icon: url("/campaign/nav-icons/map.webp"); }
 .site-header .nav-link[href="/blog/"] { --nav-icon: url("/campaign/nav-icons/book.webp"); }
