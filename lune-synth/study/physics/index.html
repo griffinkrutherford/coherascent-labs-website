@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Learn Physics Through Real Problem Solving | Lune Synth</title>
-  <meta name="description" content="Work physics problems by hand and get precise feedback on equations, units, diagrams, and reasoning with Lune Synth." />
+  <meta name="description" content="Physics practice with circuits, ray diagrams and force sketches: choose the model, keep the units, and get feedback on the step where physics and algebra disagree." />
   <link rel="canonical" href="https://lunesynth.com/study/physics/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Learn Physics Through Real Problem Solving | Lune Synth" />
-  <meta property="og:description" content="Work physics problems by hand and get precise feedback on equations, units, diagrams, and reasoning with Lune Synth." />
+  <meta property="og:description" content="Physics practice with circuits, ray diagrams and force sketches: choose the model, keep the units, and get feedback on the step where physics and algebra disagree." />
   <meta property="og:url" content="https://lunesynth.com/study/physics/" />
   <meta property="og:image" content="https://lunesynth.com/study/physics/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/14-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/study-physics-circuit-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/subject-shots.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +86,8 @@
     <section class="campaign-hero campaign-shell" aria-labelledby="campaign-title">
       <div class="campaign-hero__copy" data-reveal>
         <p class="campaign-eyebrow">Lune Synth for Physics</p>
-        <h1 id="campaign-title">Make the equations describe the world, not just the answer box.</h1>
-        <p class="campaign-hero__body">Draw the situation, choose the model, track the units, and solve on paper. Lune Synth helps locate the step where the physics or the algebra stopped agreeing.</p>
+        <h1 id="campaign-title">Read the circuit, the rays or the forces, then write the equation.</h1>
+        <p class="campaign-hero__body">In mechanics, circuits and optics, the equation comes after the picture: which resistors are in parallel, where the focal points sit, which forces have a horizontal component. Lune Synth draws the setup, reads your working and points to the step where the model or the algebra went wrong.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early access to Lune Synth.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +100,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/14.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/14-mid.webp" alt="Lune Synth displaying a physics question about forces and normal force" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-physics-circuit.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-physics-circuit-mid.webp" alt="Lune Synth question showing a circuit with a 12 V battery, R1 = 4 Ω in series with R2 = 6 Ω and R3 = 3 Ω in parallel, an ammeter, and a voltmeter across R1" width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,22 +114,45 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">Forces and friction in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">Circuits in Lune Synth</figcaption>
         </figure>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Equations need meaning</p>
-        <h2 id="problem-title">A correct number can still hide weak physical reasoning.</h2>
-        <p class="campaign-section__body">Physics problems connect a model, assumptions, diagrams, units, and algebra. Checking only the final value misses most of that chain. Lune Synth starts with the work so feedback can distinguish a modeling error from a calculation error.</p>
+        <p class="section-kicker">Where physics students get stuck</p>
+        <h2 id="problem-title">A correct-looking number can hide the wrong model.</h2>
+        <p class="campaign-section__body">Treating parallel resistors as series, using the object distance as the image distance, counting the normal force in the horizontal equation: these are modelling errors, and the final answer alone cannot reveal them. Visible working lets feedback separate the physics from the arithmetic.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Consume another finished answer</div>
+        <div class="contrast__item">Hunt for the formula that fits the numbers</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
+        <div class="contrast__item contrast__item--better">Model the situation, then solve it</div>
       </div>
+    </section>
+
+    <section class="campaign-section campaign-shell subject-shots" aria-labelledby="diagrams-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">The setup, drawn</p>
+        <h2 id="diagrams-title">Circuits, ray diagrams and force situations.</h2>
+        <p class="campaign-section__body">Questions can include circuit schematics with meters, lens and mirror setups with focal points marked, and situation sketches for you to turn into free-body diagrams. What you are asked to find is not drawn.</p>
+      </div>
+      <div class="subject-shots__grid" style="--subject-shots-count: 2">
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-physics-thin-lens-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-physics-thin-lens-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-physics-thin-lens.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a converging lens with F and 2F marked and an object 30 cm away" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Optics</strong>An object 30 cm from a converging lens with f = 10 cm.</figcaption>
+        </figure>
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/14-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/14-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/14.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a box on a rough floor pulled by a 50 N force at 37 degrees" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Forces</strong>A 10 kg box pulled at 37°: draw the free-body diagram.</figcaption>
+        </figure>
+      </div>
+      <p class="subject-shots__note">Captured from the Lune Synth app. Generated question sets can include a diagram when one helps; figures go through automated checks against the question before they are shown.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -139,18 +163,18 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Do the work</h3>
-            <p>Write, draw, calculate, recall, or explain so your reasoning stays visible.</p>
+            <h3>Draw, then solve</h3>
+            <p>Sketch the diagram and write the equations with units, by hand or typed.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Get precise feedback</h3>
-            <p>Find the specific gap without replacing your attempt with a finished answer.</p>
+            <h3>Model or maths?</h3>
+            <p>Feedback says whether the setup or a later algebra step needs fixing.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice what is weak</h3>
-            <p>Turn the mistake into a short mission focused on the skill that needs repetition.</p>
+            <h3>Targeted practice</h3>
+            <p>A quick mission repeats the model you missed, from parallel circuits to force components.</p>
           </article>
       </div>
     </section>
@@ -194,7 +218,7 @@
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
         <h2 id="final-title">Build intuition one worked problem at a time.</h2>
-        <p>Join the beta for physics practice that keeps diagrams, units, equations, and reasoning connected.</p>
+        <p>Join the beta for physics practice with circuits, ray diagrams and force sketches you reason through yourself.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early access to Lune Synth.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
