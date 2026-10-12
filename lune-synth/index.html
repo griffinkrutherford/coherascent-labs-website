@@ -10892,8 +10892,8 @@
   <script src="/campaign/subject-rotation.js?v=3" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
   <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
-  <link rel="stylesheet" href="/campaign/tock-section.css?v=1" />
-  <script src="/campaign/tock-section.js?v=1" defer></script>
+  <link rel="stylesheet" href="/campaign/tock-section.css?v=2" />
+  <script src="/campaign/tock-section.js?v=2" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -10915,6 +10915,7 @@
         <a class="nav-link" href="#luna-title">Luna</a>
         <a class="nav-link" href="#processing-title">Grading</a>
         <a class="nav-link" href="#medals-title">Medals</a>
+        <a class="nav-link" href="#tock-title">Focus Timer</a>
         <a class="nav-link" href="#engine-title">Engine</a>
         <a class="nav-link" href="#site-footer">All Landing Pages</a>
         <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
@@ -14121,9 +14122,9 @@
           </div>
 
           <div class="tock-copy">
-            <p class="tock-eyebrow"><span class="tock-eyebrow__dot" aria-hidden="true"></span>Focus timer &middot; Tock's Wardrobe</p>
+            <p class="tock-eyebrow"><span class="tock-eyebrow__dot" aria-hidden="true"></span>Focus timer</p>
             <h3 class="tock-headline">Put something <span class="engine-gradient-word">on the clock.</span></h3>
-            <p class="tock-lede">Tock is the clock who keeps you company while you study. Pick a session, decide what you're willing to stake, and stay in Lune Synth until the timer runs out.</p>
+            <p class="tock-lede">Stake it. Stay. Get it back.</p>
 
             <div class="tock-dial" data-tock-dial>
               <div class="tock-dial__face" aria-hidden="true">
@@ -14152,14 +14153,14 @@
                   <button type="button" class="tock-tier tock-tier--locked" data-tock-tier="4" aria-pressed="false" style="--tier: #ff5d87">Insane</button>
                 </div>
                 <p class="tock-dial__quote" data-tock-tier-quote aria-live="polite">&ldquo;Tock's just warming up.&rdquo;</p>
-                <p class="tock-dial__detail" data-tock-tier-detail>Free to start, nothing to lose. Answer questions during the session and Tock still pays out a few Moon Rocks.</p>
+                <p class="tock-dial__detail" data-tock-tier-detail>Nothing staked.</p>
               </div>
             </div>
 
             <ul class="tock-facts">
-              <li><strong>Stake it back.</strong> Finish the session and your stake comes back, plus a bonus that grows with the questions you answer.</li>
-              <li><strong>Leave early, lose it.</strong> Switch away from the app for more than a few seconds and the session ends, along with its stake.</li>
-              <li><strong>Tap Tock for 3D.</strong> Open Tock full screen, drag to turn and pinch to zoom.</li>
+              <li><strong>Finish</strong> &rarr; stake back + bonus</li>
+              <li><strong>Leave</strong> &rarr; it&rsquo;s gone</li>
+              <li><strong>Tap Tock</strong> &rarr; 3D</li>
             </ul>
           </div>
 
@@ -14192,7 +14193,7 @@
                     </div>
                   </div>
                 </div>
-                <figcaption class="tock-shot__caption">Set the session, then start focus.</figcaption>
+                <figcaption class="tock-shot__caption">Set a session.</figcaption>
               </figure>
 
               <figure class="tock-shot" id="tockShot-1" data-tock-shot="1" data-pos="right" aria-hidden="true">
@@ -14215,7 +14216,7 @@
                     </div>
                   </div>
                 </div>
-                <figcaption class="tock-shot__caption">Raise the stake and Tock gets serious.</figcaption>
+                <figcaption class="tock-shot__caption">Raise the stake.</figcaption>
               </figure>
 
               <figure class="tock-shot" id="tockShot-2" data-tock-shot="2" data-pos="hidden" aria-hidden="true">
@@ -14238,7 +14239,7 @@
                     </div>
                   </div>
                 </div>
-                <figcaption class="tock-shot__caption">Tap Tock to turn the whole outfit in 3D.</figcaption>
+                <figcaption class="tock-shot__caption">Spin Tock in 3D.</figcaption>
               </figure>
 
               <figure class="tock-shot" id="tockShot-3" data-tock-shot="3" data-pos="left" aria-hidden="true">
@@ -14261,7 +14262,7 @@
                     </div>
                   </div>
                 </div>
-                <figcaption class="tock-shot__caption">Open a catalogue and try pieces on.</figcaption>
+                <figcaption class="tock-shot__caption">Try on outfits.</figcaption>
               </figure>
             </div>
           </div>
@@ -14269,7 +14270,7 @@
           <div class="tock-wardrobe">
             <div class="tock-wardrobe__intro">
               <h4 class="tock-wardrobe__title">Tock's Wardrobe</h4>
-              <p>More than 180 pieces across hats, eyewear, neckwear, faces and colors, bought with the Moon Rocks you earn studying. Twenty sets follow the medal ranks, and pieces above Diamond stay silhouettes until you earn that rank's medal or buy them.</p>
+              <p>180+ pieces. Twenty medal-rank sets.</p>
             </div>
             <ol class="tock-covers" aria-label="Wardrobe catalogue covers">
               <li class="tock-cover" style="--cover: #a47bff">
@@ -14311,7 +14312,7 @@
               <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-diamond-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Diamond</span></li>
               <li class="tock-ranks__mystery"><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/mystery-hat.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>???</span></li>
             </ul>
-            <p class="tock-wardrobe__note">Outfits are cosmetic: they change how Tock looks, never your grades, medals or rewards. Extreme and Insane risk unlock in the Wardrobe for 2,500 and 5,000 Moon Rocks, or by finishing ten focus sessions (Insane needs ten at Extreme).</p>
+            <p class="tock-wardrobe__note">Cosmetic only.</p>
           </div>
         </div>
       </div>

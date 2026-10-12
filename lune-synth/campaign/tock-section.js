@@ -9,15 +9,15 @@
 
   var TIERS = [
     { name: 'No risk', short: 'No risk', color: '#6fe7ff', quote: "Tock's just warming up.", locked: false,
-      detail: 'Free to start, nothing to lose. Answer questions during the session and Tock still pays out a few Moon Rocks.' },
+      detail: 'Nothing staked.' },
     { name: 'Medium risk', short: 'Medium', color: '#74e6a6', quote: "Tock's paying attention.", locked: false,
-      detail: 'Stake a few Moon Rocks. Finish the session and you get them back, plus a bigger bonus for the work you do.' },
+      detail: 'Small stake.' },
     { name: 'High risk', short: 'High', color: '#f4cf6b', quote: "Tock's locked in.", locked: false,
-      detail: "Stake up to half of a session's limit, on sessions up to 2 hours. Leave early and the stake is gone." },
+      detail: 'Bigger stake. Up to 2 h.' },
     { name: 'Extreme risk', short: 'Extreme', color: '#ff9c5e', quote: "Tock's going extreme.", locked: true,
-      detail: "Stake up to three quarters of a session's limit and focus up to 3 hours. Unlock for 2,500 Moon Rocks, or by finishing 10 focus sessions." },
+      detail: 'Unlock: 2,500 Moon Rocks or 10 sessions.' },
     { name: 'Insane risk', short: 'Insane', color: '#ff5d87', quote: "Tock's gone insane.", locked: true,
-      detail: 'Stake everything a session allows and focus up to 4 hours. Unlock for 5,000 Moon Rocks, or with 10 sessions at Extreme.' }
+      detail: 'Everything staked. Up to 4 h.' }
   ];
 
   var tierButtons = Array.prototype.slice.call(root.querySelectorAll('[data-tock-tier]'));
