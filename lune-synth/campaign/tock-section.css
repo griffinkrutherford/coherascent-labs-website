@@ -12,7 +12,6 @@
   --tock-gold: #f4cf6b;
   --tock-orange: #ff9c5e;
   --tock-pink: #ff5d87;
-  --tock-tier-color: var(--tock-cyan);
   position: relative;
 }
 
@@ -142,9 +141,8 @@ main #tock-title::before {
   box-sizing: border-box;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  grid-template-areas:
-    "copy stage"
-    "wardrobe wardrobe";
+  grid-template-areas: "copy stage";
+  align-items: center;
   gap: clamp(24px, 3vw, 40px) clamp(20px, 3.4vw, 48px);
   padding: clamp(18px, 2.6vw, 34px);
   border: 1px solid rgba(111, 231, 255, 0.22);
@@ -157,8 +155,8 @@ main #tock-title::before {
   box-shadow: var(--glow), 0 26px 70px -20px rgba(4, 8, 22, 0.7);
 }
 
-/* Clock-face orbit behind the phones: a dial of 60 ticks and a second hand
-   that steps once a second. */
+/* Clock-face orbit behind the phones: a dial of 60 ticks and a hand that
+   follows the Tock clock's minute hand (--tock-hand, set by tock-section.js). */
 .section--tock .tock-orbit {
   position: absolute;
   z-index: -1;
@@ -197,7 +195,8 @@ main #tock-title::before {
   border-radius: 2px;
   background: linear-gradient(0deg, rgba(255, 93, 135, 0), rgba(255, 93, 135, 0.7));
   transform-origin: 50% 100%;
-  animation: tock-second-hand 60s steps(60) infinite;
+  transform: rotate(var(--tock-hand, 0deg));
+  transition: transform var(--tock-sweep, 900ms) cubic-bezier(0.45, 0, 0.2, 1);
 }
 
 .section--tock .tock-orbit__hand::after {
@@ -211,10 +210,6 @@ main #tock-title::before {
   background: var(--tock-pink);
   box-shadow: 0 0 14px rgba(255, 93, 135, 0.6);
   transform: translateX(-50%);
-}
-
-@keyframes tock-second-hand {
-  to { transform: rotate(360deg); }
 }
 
 /* ---------- Copy ---------- */
@@ -265,219 +260,6 @@ main #tock-title::before {
   color: var(--muted);
   font-size: clamp(1rem, 1.25vw, 1.08rem);
   line-height: 1.6;
-}
-
-/* Risk dial */
-.section--tock .tock-dial {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(14px, 2vw, 22px);
-  padding: clamp(14px, 1.8vw, 18px);
-  border: 1px solid color-mix(in srgb, var(--tock-tier-color) 34%, transparent);
-  border-radius: 18px;
-  background:
-    radial-gradient(220px 140px at 0% 50%, color-mix(in srgb, var(--tock-tier-color) 14%, transparent), transparent 70%),
-    rgba(255, 255, 255, 0.025);
-  transition: border-color 320ms ease, background 320ms ease;
-}
-
-.section--tock .tock-dial__face {
-  position: relative;
-  width: clamp(112px, 11vw, 136px);
-  aspect-ratio: 1;
-}
-
-.section--tock .tock-dial__svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.section--tock .tock-dial__track,
-.section--tock .tock-dial__arc,
-.section--tock .tock-dial__locked {
-  fill: none;
-  stroke-width: 9;
-}
-
-.section--tock .tock-dial__track {
-  stroke: rgba(255, 255, 255, 0.07);
-}
-
-/* Extreme and Insane live on the second half of the dial: dashed = unlockable. */
-.section--tock .tock-dial__locked {
-  stroke: rgba(255, 255, 255, 0.16);
-  stroke-width: 2;
-  stroke-dasharray: 0 50 50 0;
-}
-
-.section--tock .tock-dial__arc {
-  stroke: var(--tock-tier-color);
-  stroke-linecap: round;
-  stroke-dasharray: 0 100;
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tock-tier-color) 60%, transparent));
-  transition: stroke-dasharray 520ms cubic-bezier(0.16, 1, 0.3, 1), stroke 320ms ease;
-}
-
-.section--tock .tock-dial__ticks line {
-  stroke: rgba(237, 245, 255, 0.4);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-}
-
-.section--tock .tock-dial__readout {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 4px;
-  text-align: center;
-}
-
-.section--tock .tock-dial__tier {
-  color: var(--tock-tier-color);
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  transition: color 320ms ease;
-}
-
-.section--tock .tock-dial__lock {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 7px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.section--tock .tock-dial__lock[hidden] {
-  display: none;
-}
-
-.section--tock .tock-dial__body {
-  display: grid;
-  gap: 10px;
-  min-width: 0;
-}
-
-.section--tock .tock-tiers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.section--tock .tock-tier {
-  --tier: var(--tock-cyan);
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 34px;
-  padding: 6px 12px;
-  border: 1px solid color-mix(in srgb, var(--tier) 34%, transparent);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text);
-  font: inherit;
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
-}
-
-.section--tock .tock-tier::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--tier);
-}
-
-.section--tock .tock-tier--locked::after {
-  content: "";
-  width: 9px;
-  height: 10px;
-  background: currentColor;
-  opacity: 0.6;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 10'%3E%3Cpath d='M2 4V3a2.5 2.5 0 0 1 5 0v1h.5A1 1 0 0 1 8.5 5v4a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 0h3V3a1.5 1.5 0 0 0-3 0z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 10'%3E%3Cpath d='M2 4V3a2.5 2.5 0 0 1 5 0v1h.5A1 1 0 0 1 8.5 5v4a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 0h3V3a1.5 1.5 0 0 0-3 0z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-.section--tock .tock-tier:hover {
-  border-color: color-mix(in srgb, var(--tier) 62%, transparent);
-}
-
-.section--tock .tock-tier:focus-visible,
-.section--tock .tock-stage__tab:focus-visible {
-  outline: 2px solid var(--tock-cyan);
-  outline-offset: 2px;
-}
-
-.section--tock .tock-tier.is-active {
-  border-color: var(--tier);
-  background: color-mix(in srgb, var(--tier) 16%, transparent);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--tier) 26%, transparent);
-}
-
-.section--tock .tock-dial__quote {
-  margin: 0;
-  color: var(--tock-tier-color);
-  font-family: var(--font-heading, inherit);
-  font-size: 1.08rem;
-  font-style: italic;
-  transition: color 320ms ease;
-}
-
-.section--tock .tock-dial__detail {
-  margin: 0;
-  min-height: 3.2em;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.section--tock .tock-facts {
-  display: grid;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.section--tock .tock-facts li {
-  position: relative;
-  padding-left: 26px;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.section--tock .tock-facts li::before {
-  content: "";
-  position: absolute;
-  top: 0.3em;
-  left: 0;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 2px solid var(--tock-cyan);
-  background:
-    linear-gradient(var(--tock-cyan), var(--tock-cyan)) 50% 22% / 2px 38% no-repeat,
-    linear-gradient(90deg, var(--tock-cyan), var(--tock-cyan)) 70% 50% / 34% 2px no-repeat;
-  box-sizing: border-box;
-}
-
-.section--tock .tock-facts strong {
-  color: var(--text);
 }
 
 /* ---------- Stage (tabs + phone deck) ---------- */
@@ -577,67 +359,169 @@ main #tock-title::before {
   visibility: hidden;
 }
 
-.section--tock .tock-shot__caption {
-  margin: 14px 0 0;
+/* ---------- Clock control + one panel per carousel screen ---------- */
+
+.section--tock .tock-control {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  justify-self: start;
+}
+
+/* The Tock clock. Its four marks are the four phones (12, 3, 6, 9 o'clock);
+   the minute hand sweeps to each one as the carousel turns, and dragging the
+   hand turns the carousel. */
+.section--tock .tock-clock {
+  --size: clamp(132px, 12vw, 156px);
+  position: relative;
+  width: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(111, 231, 255, 0.45);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(111, 231, 255, 0.1), transparent 62%),
+    rgba(6, 12, 28, 0.9);
+  box-shadow: 0 0 0 6px rgba(111, 231, 255, 0.05), 0 0 34px rgba(111, 231, 255, 0.14), inset 0 0 22px rgba(0, 0, 0, 0.5);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.section--tock .tock-clock.is-dragging { cursor: grabbing; }
+
+.section--tock .tock-clock:focus-visible {
+  outline: 2px solid var(--tock-cyan);
+  outline-offset: 4px;
+}
+
+.section--tock .tock-clock__ticks {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from -1deg, rgba(237, 245, 255, 0.3) 0 2deg, transparent 2deg 30deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 84%, #000 85%);
+  mask: radial-gradient(circle, transparent 0 84%, #000 85%);
+}
+
+.section--tock .tock-clock__mark {
+  --a: 0deg;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: rgba(237, 245, 255, 0.28);
+  transform: rotate(var(--a)) translateY(calc(var(--size) * -0.34)) rotate(calc(var(--a) * -1));
+  transition: background 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+}
+
+.section--tock .tock-clock__mark[data-tock-mark="1"] { --a: 90deg; }
+.section--tock .tock-clock__mark[data-tock-mark="2"] { --a: 180deg; }
+.section--tock .tock-clock__mark[data-tock-mark="3"] { --a: 270deg; }
+
+.section--tock .tock-clock__mark.is-active {
+  background: var(--tock-pink);
+  box-shadow: 0 0 12px rgba(255, 93, 135, 0.7);
+}
+
+.section--tock .tock-clock__hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  border-radius: 999px;
+  transform-origin: 50% 100%;
+  transition: transform var(--tock-sweep, 900ms) cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.section--tock .tock-clock__hand--minute {
+  width: 4px;
+  height: 40%;
+  margin-left: -2px;
+  background: linear-gradient(0deg, var(--tock-cyan), #eaffff);
+  box-shadow: 0 0 10px rgba(111, 231, 255, 0.55);
+  transform: rotate(var(--tock-hand, 0deg));
+}
+
+.section--tock .tock-clock__hand--hour {
+  width: 6px;
+  height: 26%;
+  margin-left: -3px;
+  background: linear-gradient(0deg, #a47bff, #d9c8ff);
+  transform: rotate(calc(var(--tock-hand, 0deg) / 12));
+}
+
+.section--tock .tock-clock.is-dragging .tock-clock__hand,
+.section--tock.is-dragging .tock-orbit__hand {
+  transition: none;
+}
+
+.section--tock .tock-clock__pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: var(--tock-pink);
+  box-shadow: 0 0 10px rgba(255, 93, 135, 0.6);
+}
+
+.section--tock .tock-clock__hint {
+  margin: 0;
   color: var(--muted);
-  font-size: 0.86rem;
-  text-align: center;
-  transition: opacity 300ms ease;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.section--tock .tock-shot:not([data-pos="center"]) .tock-shot__caption {
+/* Every panel shares one grid cell, so the stack (and the card) is always as
+   tall as the tallest panel: the card height never changes between screens. */
+.section--tock .tock-panels {
+  display: grid;
+}
+
+.section--tock .tock-panel,
+.section--tock .tock-panel[hidden] {
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  transition: opacity 360ms ease, transform 360ms ease, visibility 0s linear 0s;
+}
+
+.section--tock .tock-panel[hidden] {
+  visibility: hidden;
   opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 240ms ease, transform 240ms ease, visibility 0s linear 240ms;
 }
 
-/* ---------- Wardrobe ---------- */
-
-.section--tock .tock-wardrobe {
-  grid-area: wardrobe;
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
-  grid-template-areas:
-    "intro covers"
-    "ranks ranks"
-    "note note";
-  gap: 18px clamp(18px, 3vw, 36px);
-  padding-top: clamp(20px, 2.6vw, 30px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.section--tock .tock-wardrobe__intro {
-  grid-area: intro;
-  display: grid;
-  align-content: center;
-  gap: 10px;
-}
-
-.section--tock .tock-wardrobe__title {
+.section--tock .tock-panel__title {
   margin: 0;
   color: var(--text);
-  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
 }
 
-.section--tock .tock-wardrobe__intro p,
-.section--tock .tock-wardrobe__note {
+.section--tock .tock-panel__text {
   margin: 0;
+  max-width: 44ch;
   color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-
-.section--tock .tock-wardrobe__note {
-  grid-area: note;
-  font-size: 0.84rem;
-  opacity: 0.9;
+  font-size: clamp(1rem, 1.25vw, 1.08rem);
+  line-height: 1.6;
 }
 
 /* Catalogue covers, styled after the app's newsstand. */
 .section--tock .tock-covers {
-  grid-area: covers;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
-  margin: 0;
+  gap: 8px;
+  margin: 4px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -646,108 +530,34 @@ main #tock-title::before {
   --cover: var(--tock-cyan);
   position: relative;
   display: grid;
-  justify-items: start;
-  align-content: start;
+  justify-items: center;
   gap: 2px;
   min-width: 0;
-  padding: 10px 10px 12px;
+  padding: 8px 6px 10px;
   border: 1px solid color-mix(in srgb, var(--cover) 30%, rgba(255, 255, 255, 0.08));
-  border-radius: 14px;
+  border-radius: 12px;
   background:
     linear-gradient(160deg, color-mix(in srgb, var(--cover) 18%, transparent), transparent 46%),
     linear-gradient(180deg, rgba(30, 34, 58, 0.9), rgba(14, 16, 30, 0.95));
   box-shadow: 0 12px 26px -14px rgba(0, 0, 0, 0.8);
-  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms ease, box-shadow 360ms ease;
-}
-
-.section--tock .tock-cover::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.08) 45%, transparent 60%);
-  pointer-events: none;
-}
-
-.section--tock .tock-cover:hover {
-  transform: translateY(-4px) rotate(-1deg);
-  border-color: color-mix(in srgb, var(--cover) 60%, transparent);
-  box-shadow: 0 18px 30px -14px color-mix(in srgb, var(--cover) 40%, rgba(0, 0, 0, 0.8));
-}
-
-.section--tock .tock-cover__no {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.08em;
 }
 
 .section--tock .tock-cover__art {
-  justify-self: center;
   width: 100%;
-  max-width: 92px;
+  max-width: 64px;
   height: auto;
   aspect-ratio: 1;
-  margin: 2px 0 4px;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
 }
 
 .section--tock .tock-cover__name {
   color: var(--text);
-  font-size: 0.92rem;
+  font-size: 0.78rem;
   font-weight: 800;
-}
-
-.section--tock .tock-cover__tag {
-  color: var(--muted);
-  font-size: 0.7rem;
-  font-style: italic;
-  line-height: 1.3;
 }
 
 .section--tock .tock-cover--classified {
   border-style: dashed;
-}
-
-.section--tock .tock-cover--classified .tock-cover__art {
-  filter: drop-shadow(0 0 10px rgba(111, 231, 255, 0.25));
-}
-
-/* Medal-rank eyewear strip. */
-.section--tock .tock-ranks {
-  grid-area: ranks;
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin: 0;
-  padding: 10px 14px;
-  list-style: none;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 999px;
-  background:
-    linear-gradient(90deg, rgba(196, 180, 150, 0.08), rgba(205, 127, 50, 0.08) 20%, rgba(244, 207, 107, 0.1) 40%, rgba(100, 168, 255, 0.1) 60%, rgba(185, 242, 255, 0.1) 80%, rgba(164, 123, 255, 0.1)),
-    rgba(255, 255, 255, 0.02);
-}
-
-.section--tock .tock-ranks li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.section--tock .tock-ranks img {
-  width: 44px;
-  height: 44px;
-  flex: none;
-}
-
-.section--tock .tock-ranks__mystery {
-  color: var(--tock-cyan);
 }
 
 /* ---------- Responsive ---------- */
@@ -757,26 +567,30 @@ main #tock-title::before {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       "copy"
-      "stage"
-      "wardrobe";
+      "stage";
   }
 
   .section--tock .tock-orbit {
     top: auto;
-    bottom: 36%;
+    bottom: 22%;
     right: 50%;
     width: min(560px, 120vw);
     transform: translateX(50%);
     opacity: 0.6;
   }
+}
 
-  .section--tock .tock-wardrobe {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "intro"
-      "covers"
-      "ranks"
-      "note";
+@media (min-width: 641px) {
+  /* Clock beside the panel text on wider screens. */
+  .section--tock .tock-copy {
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: clamp(18px, 2.4vw, 30px);
+    align-items: start;
+  }
+
+  .section--tock .tock-eyebrow,
+  .section--tock .tock-headline {
+    grid-column: 1 / -1;
   }
 }
 
@@ -784,6 +598,15 @@ main #tock-title::before {
   .section--tock .tock-card {
     padding: 16px 14px 20px;
     border-radius: 18px;
+  }
+
+  .section--tock .tock-control {
+    justify-self: center;
+  }
+
+  .section--tock .tock-panel {
+    justify-items: center;
+    text-align: center;
   }
 
   .section--tock .tock-stage {
@@ -803,103 +626,34 @@ main #tock-title::before {
     padding: 8px 2px;
   }
 
-  .section--tock .tock-dial {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    text-align: center;
-  }
-
-  .section--tock .tock-tiers {
-    justify-content: center;
-  }
-
   .section--tock .tock-covers {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 5px;
   }
 
   .section--tock .tock-cover {
-    grid-column: span 2;
+    padding: 6px 3px 8px;
   }
 
-  .section--tock .tock-cover:nth-child(4) {
-    grid-column: 2 / span 2;
-  }
-
-  .section--tock .tock-ranks {
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 18px;
-  }
-
-  .section--tock .tock-ranks li {
-    flex-direction: column;
-    gap: 2px;
-    width: calc((100% - 16px) / 3);
-    text-align: center;
+  .section--tock .tock-cover__name {
+    font-size: 0.68rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .section--tock .tock-orbit__hand,
   .section--tock .tock-eyebrow__dot {
     animation: none;
   }
 
   .section--tock .tock-shot,
-  .section--tock .tock-cover,
-  .section--tock .tock-dial,
-  .section--tock .tock-dial__arc {
+  .section--tock .tock-panel,
+  .section--tock .tock-panel[hidden],
+  .section--tock .tock-clock__hand,
+  .section--tock .tock-clock__mark,
+  .section--tock .tock-orbit__hand {
     transition: none;
   }
-
-  .section--tock .tock-cover:hover {
-    transform: none;
-  }
 }
 
-/* Plain-language steps (2026-10-12): replaces the risk-tier picker. */
-.section--tock .tock-steps {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: tock-step;
-  display: grid;
-  gap: 10px;
-}
-.section--tock .tock-steps li {
-  counter-increment: tock-step;
-  position: relative;
-  padding-left: 34px;
-  color: var(--text, #fff);
-  font-size: 15px;
-  line-height: 1.5;
-}
-.section--tock .tock-steps li::before {
-  content: counter(tock-step);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: #05070d;
-  background: var(--tock-tier-color, #6fe7ff);
-}
-.section--tock .tock-soon {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 1px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(111, 231, 255, 0.45);
-  color: #9feeff;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  vertical-align: 2px;
-}
+/* App-blocking footnote. */
 .section--tock .tock-asterisk { color: inherit; text-decoration: none; }
-.section--tock .tock-footnote { margin: 14px 0 0; color: var(--muted, rgba(255,255,255,.62)); font-size: 12.5px; }
+.section--tock .tock-footnote { margin: 0; color: var(--muted, rgba(255,255,255,.62)); font-size: 12.5px; }

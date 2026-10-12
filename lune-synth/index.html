@@ -10892,8 +10892,8 @@
   <script src="/campaign/subject-rotation.js?v=3" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
   <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
-  <link rel="stylesheet" href="/campaign/tock-section.css?v=4" />
-  <script src="/campaign/tock-section.js?v=3" defer></script>
+  <link rel="stylesheet" href="/campaign/tock-section.css?v=5" />
+  <script src="/campaign/tock-section.js?v=4" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -14124,39 +14124,62 @@
           <div class="tock-copy">
             <p class="tock-eyebrow"><span class="tock-eyebrow__dot" aria-hidden="true"></span>Focus timer</p>
             <h3 class="tock-headline">Silence the distractions. <span class="engine-gradient-word">Go deep.</span></h3>
-            <p class="tock-lede">Set a focus timer, block distracting apps<a class="tock-asterisk" href="#tock-footnote" aria-label="App blocking is coming soon">*</a>, and give one subject your full attention. Your study buddy is Tock, a clock you can dress up.</p>
 
-            <div class="tock-dial" data-tock-dial>
-              <div class="tock-dial__face" aria-hidden="true">
-                <svg class="tock-dial__svg" viewBox="0 0 120 120" focusable="false">
-                  <circle class="tock-dial__track" cx="60" cy="60" r="50" />
-                  <circle class="tock-dial__arc" data-tock-arc cx="60" cy="60" r="50" pathLength="100" />
-                  <circle class="tock-dial__locked" cx="60" cy="60" r="50" pathLength="100" />
-                  <g class="tock-dial__ticks">
-                    <line x1="60" y1="1" x2="60" y2="5" />
-                    <line x1="119" y1="60" x2="115" y2="60" />
-                    <line x1="60" y1="119" x2="60" y2="115" />
-                    <line x1="1" y1="60" x2="5" y2="60" />
-                  </g>
-                </svg>
-                <span class="tock-dial__readout">
-                  <span class="tock-dial__tier">25:00</span>
-
-                </span>
+            <div class="tock-control">
+              <div class="tock-clock" data-tock-clock role="slider" tabindex="0" aria-label="Turn the clock hands to change the Tock screen" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="Focus">
+                <span class="tock-clock__ticks" aria-hidden="true"></span>
+                <span class="tock-clock__mark" data-tock-mark="0" aria-hidden="true"></span>
+                <span class="tock-clock__mark" data-tock-mark="1" aria-hidden="true"></span>
+                <span class="tock-clock__mark" data-tock-mark="2" aria-hidden="true"></span>
+                <span class="tock-clock__mark" data-tock-mark="3" aria-hidden="true"></span>
+                <span class="tock-clock__hand tock-clock__hand--hour" aria-hidden="true"></span>
+                <span class="tock-clock__hand tock-clock__hand--minute" aria-hidden="true"></span>
+                <span class="tock-clock__pin" aria-hidden="true"></span>
               </div>
-              <div class="tock-dial__body">
-                <ol class="tock-steps">
-                  <li>Pick how long you want to focus.</li>
-                  <li>Distracting apps stay blocked until time is up.*</li>
-                  <li>Study until the timer ends.</li>
+              <p class="tock-clock__hint">Drag the hands</p>
+            </div>
+
+            <div class="tock-panels">
+              <div class="tock-panel" data-tock-panel="0">
+                <h4 class="tock-panel__title">Set a timer</h4>
+                <p class="tock-panel__text">Pick how long to focus. Distracting apps stay blocked until time is up.<a class="tock-asterisk" href="#tock-footnote" aria-label="App blocking is coming soon">*</a></p>
+                <p class="tock-footnote" id="tock-footnote">*App blocking coming soon.</p>
+              </div>
+              <div class="tock-panel" data-tock-panel="1" hidden>
+                <h4 class="tock-panel__title">Stay with it</h4>
+                <p class="tock-panel__text">One subject, no interruptions. Tock counts down with you.</p>
+              </div>
+              <div class="tock-panel" data-tock-panel="2" hidden>
+                <h4 class="tock-panel__title">Meet Tock</h4>
+                <p class="tock-panel__text">Your study buddy is a clock. Tap Tock to spin it in 3D.</p>
+              </div>
+              <div class="tock-panel" data-tock-panel="3" hidden>
+                <h4 class="tock-panel__title">Tock's Wardrobe</h4>
+                <p class="tock-panel__text">Dress Tock in 180+ hats, glasses, outfits and colors. Unlock more as you study.</p>
+                <ol class="tock-covers" aria-label="Wardrobe catalogue covers">
+                  <li class="tock-cover" style="--cover: #a47bff">
+                    <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/wizard-hat.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                    <span class="tock-cover__name">Hats</span>
+                  </li>
+                  <li class="tock-cover" style="--cover: #f4cf6b">
+                    <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-gold-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                    <span class="tock-cover__name">Eyewear</span>
+                  </li>
+                  <li class="tock-cover" style="--cover: #ff5d87">
+                    <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/bow-tie.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                    <span class="tock-cover__name">Neckwear</span>
+                  </li>
+                  <li class="tock-cover" style="--cover: #64a8ff">
+                    <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-sapphire-dial.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                    <span class="tock-cover__name">Faces</span>
+                  </li>
+                  <li class="tock-cover tock-cover--classified" style="--cover: #6fe7ff">
+                    <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/mystery-eyewear.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                    <span class="tock-cover__name">???</span>
+                  </li>
                 </ol>
               </div>
             </div>
-
-            <ul class="tock-facts">
-              <li><strong>Tap Tock</strong> to spin it in 3D.</li>
-              <li><strong>Dress Tock up</strong> with hats, glasses and outfits.</li>
-            </ul>
           </div>
 
           <div class="tock-stage" data-tock-stage>
@@ -14188,7 +14211,6 @@
                     </div>
                   </div>
                 </div>
-                <figcaption class="tock-shot__caption">Pick a session length.</figcaption>
               </figure>
 
               <figure class="tock-shot" id="tockShot-1" data-tock-shot="1" data-pos="right" aria-hidden="true">
@@ -14211,7 +14233,6 @@
                     </div>
                   </div>
                 </div>
-                <figcaption class="tock-shot__caption">Stay focused until it ends.</figcaption>
               </figure>
 
               <figure class="tock-shot" id="tockShot-2" data-tock-shot="2" data-pos="hidden" aria-hidden="true">
@@ -14234,7 +14255,6 @@
                     </div>
                   </div>
                 </div>
-                <figcaption class="tock-shot__caption">Tap Tock to spin it in 3D.</figcaption>
               </figure>
 
               <figure class="tock-shot" id="tockShot-3" data-tock-shot="3" data-pos="left" aria-hidden="true">
@@ -14257,58 +14277,9 @@
                     </div>
                   </div>
                 </div>
-                <figcaption class="tock-shot__caption">Dress Tock up.</figcaption>
               </figure>
             </div>
           </div>
-
-          <div class="tock-wardrobe">
-            <div class="tock-wardrobe__intro">
-              <h4 class="tock-wardrobe__title">Tock's Wardrobe</h4>
-              <p>Customize Tock with 180+ hats, glasses, outfits and colors.</p>
-            </div>
-            <ol class="tock-covers" aria-label="Wardrobe catalogue covers">
-              <li class="tock-cover" style="--cover: #a47bff">
-                <span class="tock-cover__no">No. 01</span>
-                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/wizard-hat.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
-                <span class="tock-cover__name">Hats</span>
-                <span class="tock-cover__tag">The Headwear Issue</span>
-              </li>
-              <li class="tock-cover" style="--cover: #f4cf6b">
-                <span class="tock-cover__no">No. 02</span>
-                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-gold-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
-                <span class="tock-cover__name">Eyewear</span>
-                <span class="tock-cover__tag">Vision: Spring Collection</span>
-              </li>
-              <li class="tock-cover" style="--cover: #ff5d87">
-                <span class="tock-cover__no">No. 03</span>
-                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/bow-tie.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
-                <span class="tock-cover__name">Neckwear</span>
-                <span class="tock-cover__tag">The Neckwear Annual</span>
-              </li>
-              <li class="tock-cover" style="--cover: #64a8ff">
-                <span class="tock-cover__no">No. 04</span>
-                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-sapphire-dial.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
-                <span class="tock-cover__name">Faces</span>
-                <span class="tock-cover__tag">Faces: New Expressions</span>
-              </li>
-              <li class="tock-cover tock-cover--classified" style="--cover: #6fe7ff">
-                <span class="tock-cover__no">Secret</span>
-                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/mystery-eyewear.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
-                <span class="tock-cover__name">???</span>
-                <span class="tock-cover__tag">Unlock by studying</span>
-              </li>
-            </ol>
-            <ul class="tock-ranks" aria-label="Medal-rank eyewear for Tock">
-              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-paper-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Paper</span></li>
-              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-bronze-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Bronze</span></li>
-              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-gold-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Gold</span></li>
-              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-sapphire-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Sapphire</span></li>
-              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-diamond-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Diamond</span></li>
-              <li class="tock-ranks__mystery"><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/mystery-hat.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>???</span></li>
-            </ul>
-            <p class="tock-wardrobe__note">Unlock more as you study.</p>
-            <p class="tock-footnote" id="tock-footnote">*App blocking coming soon.</p>
           </div>
         </div>
       </div>
