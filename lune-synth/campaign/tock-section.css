@@ -108,7 +108,7 @@
 }
 
 /* Section title icon, matching the other home titles (section-icons.css). */
-main #tock-title { --section-icon: url("/campaign/nav-icons/stopwatch.webp"); }
+main #tock-title { --section-icon: url("/campaign/nav-icons/clock.webp"); }
 
 main #tock-title::before {
   content: "";
