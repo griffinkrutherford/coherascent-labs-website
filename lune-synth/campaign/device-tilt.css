@@ -164,3 +164,22 @@
 .device-key--horizontal > .device-key__face {
   inset: 0 var(--key-radius);
 }
+
+/* Symmetric galleries (2026-10-12): side-by-side phones mirror each other
+   instead of all resting at the same angle. The last phone in a 2- or 3-phone
+   gallery is the mirror image of the first (rotation axis and angle both
+   reflected across the vertical plane), and the middle phone of three sits
+   square-on. Desktop only: phones and reduced-motion stay flat (above). */
+.campaign-main :is(.subject-shots__grid, .ap-exam__shots) > :last-child:not(:first-child) .device-tilt,
+.campaign-main :is(.subject-shots__grid, .ap-exam__shots) > :last-child:not(:first-child) .device-tilt.is-device-revealed {
+  rotate: -1 4 0 calc(var(--device-rest-angle) * -1);
+}
+.campaign-main :is(.subject-shots__grid, .ap-exam__shots) > :nth-child(2):nth-last-child(2) .device-tilt,
+.campaign-main :is(.subject-shots__grid, .ap-exam__shots) > :nth-child(2):nth-last-child(2) .device-tilt.is-device-revealed {
+  rotate: 0deg;
+}
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .campaign-main :is(.subject-shots__grid, .ap-exam__shots) > :last-child:not(:first-child) .device-tilt:not(.is-device-revealed) {
+    rotate: -2 5 0 44deg;
+  }
+}
