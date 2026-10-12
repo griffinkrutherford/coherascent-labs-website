@@ -12,10 +12,19 @@
             <nav aria-label="Math subjects">
               <h3>Mathematics</h3>
               <a href="/study/arithmetic/">Arithmetic</a>
+              <a href="/study/pre-algebra/">Pre-Algebra</a>
               <a href="/study/algebra/">Algebra</a>
+              <a href="/study/algebra-2/">Algebra II</a>
               <a href="/study/geometry/">Geometry</a>
+              <a href="/study/trigonometry/">Trigonometry</a>
+              <a href="/study/precalculus/">Precalculus</a>
               <a href="/study/calculus/">Calculus</a>
+              <a href="/study/multivariable-calculus/">Multivariable Calculus</a>
+              <a href="/study/differential-equations/">Differential Equations</a>
+              <a href="/study/linear-algebra/">Linear Algebra</a>
               <a href="/study/statistics/">Statistics</a>
+              <a href="/study/probability/">Probability</a>
+              <a href="/study/discrete-math/">Discrete Math</a>
               <a href="/study/math/">Mathematics</a>
             </nav>
             <nav aria-label="Science and technology subjects">
