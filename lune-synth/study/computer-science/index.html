@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Learn Computer Science Beyond Generated Code | Lune Synth</title>
-  <meta name="description" content="Plan algorithms, trace logic, and explain code through visible reasoning and targeted practice with Lune Synth." />
+  <meta name="description" content="Computer science practice with code traces, state machines and algorithms: predict what the program does by hand, and get feedback on where your trace went wrong." />
   <link rel="canonical" href="https://lunesynth.com/study/computer-science/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Learn Computer Science Beyond Generated Code | Lune Synth" />
-  <meta property="og:description" content="Plan algorithms, trace logic, and explain code through visible reasoning and targeted practice with Lune Synth." />
+  <meta property="og:description" content="Computer science practice with code traces, state machines and algorithms: predict what the program does by hand, and get feedback on where your trace went wrong." />
   <meta property="og:url" content="https://lunesynth.com/study/computer-science/" />
   <meta property="og:image" content="https://lunesynth.com/study/computer-science/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/9-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/study-cs-code-trace-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/subject-shots.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +86,8 @@
     <section class="campaign-hero campaign-shell" aria-labelledby="campaign-title">
       <div class="campaign-hero__copy" data-reveal>
         <p class="campaign-eyebrow">Lune Synth for Computer Science</p>
-        <h1 id="campaign-title">Strengthen the reasoning that comes before the code.</h1>
-        <p class="campaign-hero__body">Trace the state, sketch the data structure, and design the algorithm before an editor or assistant fills the screen. Lune Synth helps you find the logical break.</p>
+        <h1 id="campaign-title">Trace the code by hand before you trust it.</h1>
+        <p class="campaign-hero__body">Intro programming exams and data-structures courses keep asking the same things: what does this code print, which state does the machine end in, what does the algorithm return? Lune Synth gives you code listings and state diagrams to trace, then checks your trace step by step.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early access to Lune Synth.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +100,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/9.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/9-mid.webp" alt="Lune Synth displaying an expert dynamic programming algorithm prompt" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-cs-code-trace.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-cs-code-trace-mid.webp" alt="Lune Synth question showing a Python loop with a partly filled trace table; the last value of total and the output are unknown" width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,22 +114,45 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">Algorithms in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">Code tracing in Lune Synth</figcaption>
         </figure>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Generated code can outrun understanding</p>
-        <h2 id="problem-title">Code that runs is not proof that you can reason about it.</h2>
-        <p class="campaign-section__body">Computer science requires prediction: what state changes, why an invariant holds, and how complexity grows. Visible planning and traces give feedback something deeper to inspect than syntax.</p>
+        <p class="section-kicker">Where CS students get stuck</p>
+        <h2 id="problem-title">Code that runs is not proof that you can predict it.</h2>
+        <p class="campaign-section__body">With an editor and an assistant one keystroke away, it is easy to never trace a loop by hand. Then an exam asks for a variable's value after the third iteration, or the state a DFA ends in, and there is no interpreter to ask. Tracing on paper is the skill that transfers.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Consume another finished answer</div>
+        <div class="contrast__item">Run it and see what happens</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
+        <div class="contrast__item contrast__item--better">Predict every state, then check the trace</div>
       </div>
+    </section>
+
+    <section class="campaign-section campaign-shell subject-shots" aria-labelledby="diagrams-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">Code and machines on the page</p>
+        <h2 id="diagrams-title">Code listings, trace tables and state diagrams.</h2>
+        <p class="campaign-section__body">Questions can include highlighted code in Python, Java, JavaScript, C or pseudocode with a trace table to complete, a finite automaton with an input tape, or an algorithm laid out on a timeline.</p>
+      </div>
+      <div class="subject-shots__grid" style="--subject-shots-count: 2">
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-cs-dfa-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-cs-dfa-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-cs-dfa.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a two-state DFA with an input tape reading 1010" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>State machines</strong>A two-state DFA and the input 1010: is it accepted?</figcaption>
+        </figure>
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/9-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/9-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/9.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing overlapping weighted jobs on a timeline for a dynamic-programming problem" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Algorithms</strong>Weighted interval scheduling with the jobs drawn on a timeline.</figcaption>
+        </figure>
+      </div>
+      <p class="subject-shots__note">Captured from the Lune Synth app. Generated question sets can include a diagram when one helps; figures go through automated checks against the question before they are shown.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -139,18 +163,18 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Do the work</h3>
-            <p>Write, draw, calculate, recall, or explain so your reasoning stays visible.</p>
+            <h3>Trace it yourself</h3>
+            <p>Write the values line by line, or type them into your answer.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Get precise feedback</h3>
-            <p>Find the specific gap without replacing your attempt with a finished answer.</p>
+            <h3>Find the divergence</h3>
+            <p>Feedback names the iteration, transition or recurrence step where your trace stopped matching the program.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice what is weak</h3>
-            <p>Turn the mistake into a short mission focused on the skill that needs repetition.</p>
+            <h3>Practise that construct</h3>
+            <p>A quick mission drills the construct you mis-traced: loop bounds, integer division, recursion or state transitions.</p>
           </article>
       </div>
     </section>
@@ -194,7 +218,7 @@
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
         <h2 id="final-title">Become the person who can explain what the program does.</h2>
-        <p>Join the beta for computer science practice built around algorithms, traces, and visible reasoning.</p>
+        <p>Join the beta for computer science practice built around code traces, state machines and algorithms you work through by hand.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early access to Lune Synth.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>

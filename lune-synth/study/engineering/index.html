@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Engineering Problem Solving With Feedback | Lune Synth</title>
-  <meta name="description" content="Keep engineering assumptions, sketches, calculations, and design decisions visible with targeted feedback from Lune Synth." />
+  <meta name="description" content="Engineering practice with beams, block diagrams and loaded structures: keep the model, units and calculation visible, and get feedback on the assumption that broke." />
   <link rel="canonical" href="https://lunesynth.com/study/engineering/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Engineering Problem Solving With Feedback | Lune Synth" />
-  <meta property="og:description" content="Keep engineering assumptions, sketches, calculations, and design decisions visible with targeted feedback from Lune Synth." />
+  <meta property="og:description" content="Engineering practice with beams, block diagrams and loaded structures: keep the model, units and calculation visible, and get feedback on the assumption that broke." />
   <meta property="og:url" content="https://lunesynth.com/study/engineering/" />
   <meta property="og:image" content="https://lunesynth.com/study/engineering/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/20-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/study-engineering-beam-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/subject-shots.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +86,8 @@
     <section class="campaign-hero campaign-shell" aria-labelledby="campaign-title">
       <div class="campaign-hero__copy" data-reveal>
         <p class="campaign-eyebrow">Lune Synth for Engineering</p>
-        <h1 id="campaign-title">Keep every assumption, sketch, and calculation in the solution.</h1>
-        <p class="campaign-hero__body">Engineering work is more than a final value. Lune Synth reads the path on the page so feedback can address the model, units, constraints, and tradeoffs together.</p>
+        <h1 id="campaign-title">Get the supports, loads and units right before the numbers.</h1>
+        <p class="campaign-hero__body">In statics, mechanics and controls, a wrong answer usually starts with a wrong model: a pin treated as fixed, a distributed load placed at the wrong point, a feedback sign flipped. Lune Synth shows the beam or block diagram, reads your equations, and points to the assumption or step to revisit.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early access to Lune Synth.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +100,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/20.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/20-mid.webp" alt="Lune Synth displaying an engineering support-reactions question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-engineering-beam.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-engineering-beam-mid.webp" alt="Lune Synth question showing a 6 m beam with a pin at A, a roller at B, a 12 kN point load and a uniform load of 2 kN/m" width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,22 +114,45 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">Support reactions in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">Beam reactions in Lune Synth</figcaption>
         </figure>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Design decisions need a trail</p>
-        <h2 id="problem-title">A final answer cannot show whether the model was defensible.</h2>
-        <p class="campaign-section__body">Engineering problems combine assumptions, constraints, diagrams, approximations, and calculations. When those decisions remain visible, feedback can preserve a valid approach while isolating the point that needs revision.</p>
+        <p class="section-kicker">Where engineering students get stuck</p>
+        <h2 id="problem-title">A final value cannot show whether the model was defensible.</h2>
+        <p class="campaign-section__body">Engineering problems combine idealisations, free-body diagrams, sign conventions and units before any arithmetic happens. When only the final number is checked, a sound method with one slip looks the same as a wrong model. Visible working lets feedback tell them apart.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Consume another finished answer</div>
+        <div class="contrast__item">Compare the final number with the key</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
+        <div class="contrast__item contrast__item--better">Check the model, the equations and the units</div>
       </div>
+    </section>
+
+    <section class="campaign-section campaign-shell subject-shots" aria-labelledby="diagrams-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">Problems drawn the way they are set</p>
+        <h2 id="diagrams-title">Beams, block diagrams and loaded structures.</h2>
+        <p class="campaign-section__body">Questions can include beams with supports and point or distributed loads, control-system block diagrams, and loaded structures to resolve. The reactions and transfer functions you are asked for are not shown.</p>
+      </div>
+      <div class="subject-shots__grid" style="--subject-shots-count: 2">
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-engineering-control-loop-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-engineering-control-loop-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-engineering-control-loop.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a block diagram with a summing junction, G(s) and unity feedback" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Control systems</strong>A unity-feedback loop around G(s) = 10/(s² + 3s): find C(s)/R(s).</figcaption>
+        </figure>
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/20-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/20-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/20.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a beam with a pin, a roller and a 12 kN load, reactions unknown" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Statics</strong>A simply supported beam with a 12 kN load: find the reactions.</figcaption>
+        </figure>
+      </div>
+      <p class="subject-shots__note">Captured from the Lune Synth app. Generated question sets can include a diagram when one helps; figures go through automated checks against the question before they are shown.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -139,18 +163,18 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Do the work</h3>
-            <p>Write, draw, calculate, recall, or explain so your reasoning stays visible.</p>
+            <h3>Keep the model on the page</h3>
+            <p>Sketch the free-body diagram and write the equilibrium equations with units.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Get precise feedback</h3>
-            <p>Find the specific gap without replacing your attempt with a finished answer.</p>
+            <h3>Model or arithmetic?</h3>
+            <p>Feedback separates a wrong support or sign assumption from a calculation slip.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice what is weak</h3>
-            <p>Turn the mistake into a short mission focused on the skill that needs repetition.</p>
+            <h3>Drill the weak setup</h3>
+            <p>A quick mission repeats support conditions, moment arms or loop algebra.</p>
           </article>
       </div>
     </section>
@@ -194,7 +218,7 @@
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
         <h2 id="final-title">Make the reasoning as rigorous as the result.</h2>
-        <p>Join the beta for engineering practice that keeps the whole solution visible and improvable.</p>
+        <p>Join the beta for engineering practice with beams, block diagrams and solutions you keep visible.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early access to Lune Synth.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
