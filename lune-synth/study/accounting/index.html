@@ -49,7 +49,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
-  <link rel="stylesheet" href="/campaign/subject-shots.css?v=1" />
+  <link rel="stylesheet" href="/campaign/subject-shots.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -140,14 +141,40 @@
       </div>
       <div class="subject-shots__grid" style="--subject-shots-count: 2">
         <figure class="subject-shot" data-reveal>
-          <div class="subject-shot__frame">
-            <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-accounting-journal-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-accounting-journal-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-accounting-journal.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a general journal with two entries; the Notes payable credit is left as a question mark" width="480" height="1043" loading="lazy" decoding="async" />
+          <div class="phone-mock-fluid">
+          <div class="phone-mock__frame">
+            <div class="phone-mock__screen">
+              <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-accounting-journal-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-accounting-journal-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-accounting-journal.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a general journal with two entries; the Notes payable credit is left as a question mark" width="480" height="1043" loading="lazy" decoding="async" />
+            </div>
+            <div class="phone-shell-buttons" aria-hidden="true">
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                <span class="phone-shell-button phone-shell-button--volume"></span>
+                <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+              </span>
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                <span class="phone-shell-button phone-shell-button--power"></span>
+              </span>
+            </div>
+          </div>
           </div>
           <figcaption><strong>General journal</strong>An equipment purchase paid partly in cash and partly with a note: complete the credit to Notes payable.</figcaption>
         </figure>
         <figure class="subject-shot" data-reveal>
-          <div class="subject-shot__frame">
-            <img src="/mobile-app-assets/screenshots/applied/question-prompts/21-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/21-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/21.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a blank year-end journal entry for accrued revenue" width="480" height="1043" loading="lazy" decoding="async" />
+          <div class="phone-mock-fluid">
+          <div class="phone-mock__frame">
+            <div class="phone-mock__screen">
+              <img src="/mobile-app-assets/screenshots/applied/question-prompts/21-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/21-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/21.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a blank year-end journal entry for accrued revenue" width="480" height="1043" loading="lazy" decoding="async" />
+            </div>
+            <div class="phone-shell-buttons" aria-hidden="true">
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                <span class="phone-shell-button phone-shell-button--volume"></span>
+                <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+              </span>
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                <span class="phone-shell-button phone-shell-button--power"></span>
+              </span>
+            </div>
+          </div>
           </div>
           <figcaption><strong>Adjusting entries</strong>Accrued revenue at December 31, with the debit and credit to fill in.</figcaption>
         </figure>

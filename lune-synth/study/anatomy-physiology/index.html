@@ -49,7 +49,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
-  <link rel="stylesheet" href="/campaign/subject-shots.css?v=1" />
+  <link rel="stylesheet" href="/campaign/subject-shots.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -140,14 +141,40 @@
       </div>
       <div class="subject-shots__grid" style="--subject-shots-count: 2">
         <figure class="subject-shot" data-reveal>
-          <div class="subject-shot__frame">
-            <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-anatomy-glucose-loop-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-anatomy-glucose-loop-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-anatomy-glucose-loop.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a causal loop of blood glucose, insulin release and glucose uptake with one link marked with a question mark" width="480" height="1043" loading="lazy" decoding="async" />
+          <div class="phone-mock-fluid">
+          <div class="phone-mock__frame">
+            <div class="phone-mock__screen">
+              <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-anatomy-glucose-loop-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-anatomy-glucose-loop-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-anatomy-glucose-loop.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a causal loop of blood glucose, insulin release and glucose uptake with one link marked with a question mark" width="480" height="1043" loading="lazy" decoding="async" />
+            </div>
+            <div class="phone-shell-buttons" aria-hidden="true">
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                <span class="phone-shell-button phone-shell-button--volume"></span>
+                <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+              </span>
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                <span class="phone-shell-button phone-shell-button--power"></span>
+              </span>
+            </div>
+          </div>
           </div>
           <figcaption><strong>Homeostatic loops</strong>The blood-glucose balancing loop with the sign of one link unknown.</figcaption>
         </figure>
         <figure class="subject-shot" data-reveal>
-          <div class="subject-shot__frame">
-            <img src="/mobile-app-assets/screenshots/applied/question-prompts/18-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/18-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/18.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing the baroreceptor reflex loop with the sensed variable marked with a question mark" width="480" height="1043" loading="lazy" decoding="async" />
+          <div class="phone-mock-fluid">
+          <div class="phone-mock__frame">
+            <div class="phone-mock__screen">
+              <img src="/mobile-app-assets/screenshots/applied/question-prompts/18-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/18-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/18.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing the baroreceptor reflex loop with the sensed variable marked with a question mark" width="480" height="1043" loading="lazy" decoding="async" />
+            </div>
+            <div class="phone-shell-buttons" aria-hidden="true">
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                <span class="phone-shell-button phone-shell-button--volume"></span>
+                <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+              </span>
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                <span class="phone-shell-button phone-shell-button--power"></span>
+              </span>
+            </div>
+          </div>
           </div>
           <figcaption><strong>Reflex arcs</strong>The baroreceptor reflex with the sensed variable left blank.</figcaption>
         </figure>

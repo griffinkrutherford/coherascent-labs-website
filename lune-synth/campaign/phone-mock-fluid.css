@@ -1,0 +1,20 @@
+/* Fluid variant of the landing-page phone chassis (.phone-mock__frame in
+   landing.css). The hero phone sizes itself from the viewport; a phone inside a
+   gallery grid has to size itself from its column instead. Every chassis
+   proportion in landing.css is derived from --workflow-phone-height, so
+   re-deriving that one value from the container width keeps the bezel, corner
+   radii, Dynamic Island, inner bezel ring and side buttons identical to the
+   hero phone at any size. The wrapper (.phone-mock-fluid) is the size
+   container; the frame cannot query its own width. */
+
+.phone-mock-fluid {
+  container-type: inline-size;
+  width: 100%;
+}
+
+.phone-mock-fluid .phone-mock__frame {
+  --workflow-phone-width: 100cqw;
+  --workflow-phone-height: calc(100cqw * 19.5 / 9);
+  width: var(--workflow-phone-width);
+  height: var(--workflow-phone-height);
+}
