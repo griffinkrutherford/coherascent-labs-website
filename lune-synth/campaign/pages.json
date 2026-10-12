@@ -693,7 +693,7 @@
       "facts": [
         {
           "label": "Multiple choice",
-          "text": "45 questions in 1 hour 45 minutes: 30 without a calculator, then 15 with a graphing calculator. Half the score."
+          "text": "42 questions in 1 hour 40 minutes: 29 without a calculator, then 13 with a graphing calculator. Half the score."
         },
         {
           "label": "Free response",
@@ -825,7 +825,7 @@
       "facts": [
         {
           "label": "Multiple choice",
-          "text": "45 questions in 1 hour 45 minutes: 30 without a calculator, then 15 with a graphing calculator. Half the score."
+          "text": "42 questions in 1 hour 40 minutes: 29 without a calculator, then 13 with a graphing calculator. Half the score."
         },
         {
           "label": "Free response",
@@ -964,11 +964,11 @@
       "facts": [
         {
           "label": "Multiple choice",
-          "text": "40 questions in 2 hours: 28 without a calculator, 12 with a graphing calculator."
+          "text": "42 questions in 1 hour 45 minutes: 29 without a calculator, 13 with a graphing calculator."
         },
         {
           "label": "Free response",
-          "text": "4 questions in 1 hour: function concepts, modeling a non-periodic context, modeling a periodic context, and symbolic manipulations."
+          "text": "4 questions in 1 hour 10 minutes: function concepts, modeling a non-periodic context, modeling a periodic context, and symbolic manipulations."
         },
         {
           "label": "What is scored",
@@ -1088,11 +1088,11 @@
       "facts": [
         {
           "label": "Multiple choice",
-          "text": "40 questions in 1 hour 30 minutes. Half the score."
+          "text": "42 questions in 1 hour 30 minutes. Half the score."
         },
         {
           "label": "Free response",
-          "text": "6 questions in 1 hour 30 minutes: five short questions and an investigative task. Half the score."
+          "text": "4 multi-part questions in 1 hour 30 minutes, with one question centered on statistical inference. Half the score."
         },
         {
           "label": "What is scored",
