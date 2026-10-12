@@ -1,0 +1,82 @@
+/* Subject diagram gallery for the /study/* landing pages: real app captures of
+   questions that carry the subject's own diagram (T-accounts, code traces,
+   phase diagrams, ...). Self-contained; nothing else on the page depends on it. */
+
+.subject-shots__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--subject-shots-count, 3), minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 34px);
+  margin: 44px auto 0;
+  max-width: calc(var(--subject-shots-count, 3) * 300px + (var(--subject-shots-count, 3) - 1) * 34px);
+}
+
+.subject-shot {
+  min-width: 0;
+  margin: 0;
+}
+
+.subject-shot__frame {
+  overflow: hidden;
+  border: 1px solid rgb(56, 64, 80);
+  border-radius: clamp(26px, 3.4vw, 38px);
+  padding: clamp(5px, 0.7vw, 8px);
+  background: linear-gradient(180deg, #11141b, #05060a 16%, #010102 58%, #07090e);
+  box-shadow:
+    0 0 0 1px rgb(18, 23, 34),
+    0 24px 36px rgba(4, 10, 24, 0.32),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.subject-shot__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 480 / 1043;
+  border-radius: clamp(21px, 2.8vw, 31px);
+  background: #030711;
+}
+
+.subject-shot figcaption {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.subject-shot figcaption strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  font-weight: 700;
+}
+
+.subject-shots__note {
+  max-width: 760px;
+  margin: 30px 0 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+@media (max-width: 820px) {
+  .subject-shots__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 620px;
+  }
+  .subject-shots__grid > .subject-shot:nth-child(3):last-child {
+    grid-column: 1 / -1;
+    width: min(100%, 300px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .subject-shots__grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 290px;
+    margin-top: 32px;
+  }
+  .subject-shots__grid > .subject-shot:nth-child(3):last-child { width: 100%; }
+}
