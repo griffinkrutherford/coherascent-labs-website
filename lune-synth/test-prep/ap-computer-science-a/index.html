@@ -46,7 +46,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
-  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -147,7 +148,22 @@
       </dl>
       <div class="ap-exam__shots">
           <figure class="ap-shot" data-reveal>
-            <img src="/mobile-app-assets/screenshots/applied/ap/ap-csa-frq-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-csa-frq-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-csa-frq.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth AP Computer Science A free-response question asking for a countStartingWith method." width="480" height="1043" loading="lazy" decoding="async" />
+            <div class="phone-mock-fluid">
+              <div class="phone-mock__frame">
+                <div class="phone-mock__screen">
+                  <img src="/mobile-app-assets/screenshots/applied/ap/ap-csa-frq-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-csa-frq-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-csa-frq.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth AP Computer Science A free-response question asking for a countStartingWith method." width="480" height="1043" loading="lazy" decoding="async" />
+                </div>
+                <div class="phone-shell-buttons" aria-hidden="true">
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                    <span class="phone-shell-button phone-shell-button--volume"></span>
+                    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                  </span>
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                    <span class="phone-shell-button phone-shell-button--power"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
             <figcaption><strong>Writing a method against a given class</strong> The WordList class and its ArrayList&lt;String&gt; field are shown as given code; only the method body is left to write.</figcaption>
           </figure>
       </div>

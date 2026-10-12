@@ -46,7 +46,8 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
-  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />
+  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -146,7 +147,22 @@
       </dl>
       <div class="ap-exam__shots">
           <figure class="ap-shot" data-reveal>
-            <img src="/mobile-app-assets/screenshots/applied/ap/ap-phys1-incline-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-phys1-incline-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-phys1-incline.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth AP Physics C: Mechanics question with a free-body diagram of a block on a 30-degree incline." width="480" height="1043" loading="lazy" decoding="async" />
+            <div class="phone-mock-fluid">
+              <div class="phone-mock__frame">
+                <div class="phone-mock__screen">
+                  <img src="/mobile-app-assets/screenshots/applied/ap/ap-phys1-incline-mid.webp" srcset="/mobile-app-assets/screenshots/applied/ap/ap-phys1-incline-mid.webp 480w, /mobile-app-assets/screenshots/applied/ap/ap-phys1-incline.webp 960w" sizes="(min-width: 900px) 300px, 70vw" alt="Lune Synth AP Physics C: Mechanics question with a free-body diagram of a block on a 30-degree incline." width="480" height="1043" loading="lazy" decoding="async" />
+                </div>
+                <div class="phone-shell-buttons" aria-hidden="true">
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                    <span class="phone-shell-button phone-shell-button--volume"></span>
+                    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                  </span>
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                    <span class="phone-shell-button phone-shell-button--power"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
             <figcaption><strong>A free-body diagram on an incline</strong> Gravity, the normal force and friction are all drawn on the block; resolving them along and across the incline is left to the student.</figcaption>
           </figure>
       </div>

@@ -227,8 +227,25 @@ function apRelatedMarkup(page) {
 // the subject. Rendered only when present, so other pages are unchanged.
 function apShotMarkup(shot) {
   const srcset = shot.srcHigh ? ` srcset="${escapeHtml(shot.src)} 480w, ${escapeHtml(shot.srcHigh)} 960w" sizes="(min-width: 900px) 300px, 70vw"` : "";
+  // Same phone chassis as the hero (.phone-mock__frame); phone-mock-fluid.css
+  // sizes it from the grid column so its proportions match at any width.
   return `<figure class="ap-shot" data-reveal>
-            <img src="${escapeHtml(shot.src)}"${srcset} alt="${escapeHtml(shot.alt)}" width="480" height="1043" loading="lazy" decoding="async" />
+            <div class="phone-mock-fluid">
+              <div class="phone-mock__frame">
+                <div class="phone-mock__screen">
+                  <img src="${escapeHtml(shot.src)}"${srcset} alt="${escapeHtml(shot.alt)}" width="480" height="1043" loading="lazy" decoding="async" />
+                </div>
+                <div class="phone-shell-buttons" aria-hidden="true">
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                    <span class="phone-shell-button phone-shell-button--volume"></span>
+                    <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                  </span>
+                  <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                    <span class="phone-shell-button phone-shell-button--power"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
             <figcaption><strong>${escapeHtml(shot.title)}</strong> ${escapeHtml(shot.caption)}</figcaption>
           </figure>`;
 }
@@ -320,7 +337,7 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
-${page.apExam || page.apGroupBlurbs ? `  <link rel="stylesheet" href="/campaign/ap-exam.css?v=1" />\n` : ""}</head>
+${page.apExam || page.apGroupBlurbs ? `  <link rel="stylesheet" href="/campaign/ap-exam.css?v=2" />\n  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />\n` : ""}</head>
 <body>
   <header class="site-header">
       <a class="brand" href="/" aria-label="Lune Synth home" style="text-decoration: none">
