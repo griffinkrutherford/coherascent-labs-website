@@ -112,7 +112,6 @@
 .pro-equality .pro-icon { width: 19px; height: 19px; color: #b2c4a5; }
 .pro-equality span { color: var(--muted); }
 .pro-screenshot { max-width: 300px; margin: 48px auto 0; text-align: center; }
-.pro-screenshot picture, .pro-screenshot img { display: block; width: 100%; height: auto; border-radius: 19px; border: 1px solid #d5caa724; box-shadow: 0 16px 40px #0003; }
 .pro-screenshot figcaption { margin-top: 14px; font-size: 12px; color: var(--muted); }
 .pro-plan { display: flex; flex-direction: column; padding: 32px 27px 25px; gap: 0; }
 .pro-plan--free { --tone: 166, 200, 241; background: #122039; }
