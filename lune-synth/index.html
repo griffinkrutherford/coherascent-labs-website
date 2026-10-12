@@ -10891,6 +10891,9 @@
   <link rel="stylesheet" href="/campaign/subject-rotation.css?v=3" />
   <script src="/campaign/subject-rotation.js?v=3" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
+  <link rel="stylesheet" href="/campaign/tock-section.css?v=1" />
+  <script src="/campaign/tock-section.js?v=1" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -14105,6 +14108,214 @@
     </section>
 
 
+
+    <section class="section section--tock" id="tock" aria-labelledby="tock-title">
+      <h2 class="section-title" id="tock-title">Focus with Tock</h2>
+
+      <div class="tock section-content" data-tock>
+        <div class="tock-card">
+          <div class="tock-orbit" aria-hidden="true">
+            <span class="tock-orbit__ring tock-orbit__ring--outer"></span>
+            <span class="tock-orbit__ring tock-orbit__ring--inner"></span>
+            <span class="tock-orbit__hand"></span>
+          </div>
+
+          <div class="tock-copy">
+            <p class="tock-eyebrow"><span class="tock-eyebrow__dot" aria-hidden="true"></span>Focus timer &middot; Tock's Wardrobe</p>
+            <h3 class="tock-headline">Put something <span class="engine-gradient-word">on the clock.</span></h3>
+            <p class="tock-lede">Tock is the clock who keeps you company while you study. Pick a session, decide what you're willing to stake, and stay in Lune Synth until the timer runs out.</p>
+
+            <div class="tock-dial" data-tock-dial>
+              <div class="tock-dial__face" aria-hidden="true">
+                <svg class="tock-dial__svg" viewBox="0 0 120 120" focusable="false">
+                  <circle class="tock-dial__track" cx="60" cy="60" r="50" />
+                  <circle class="tock-dial__arc" data-tock-arc cx="60" cy="60" r="50" pathLength="100" />
+                  <circle class="tock-dial__locked" cx="60" cy="60" r="50" pathLength="100" />
+                  <g class="tock-dial__ticks">
+                    <line x1="60" y1="1" x2="60" y2="5" />
+                    <line x1="119" y1="60" x2="115" y2="60" />
+                    <line x1="60" y1="119" x2="60" y2="115" />
+                    <line x1="1" y1="60" x2="5" y2="60" />
+                  </g>
+                </svg>
+                <span class="tock-dial__readout">
+                  <span class="tock-dial__tier" data-tock-tier-name>No risk</span>
+                  <span class="tock-dial__lock" data-tock-tier-lock hidden>Unlockable</span>
+                </span>
+              </div>
+              <div class="tock-dial__body">
+                <div class="tock-tiers" role="group" aria-label="Tock's five risk tiers">
+                  <button type="button" class="tock-tier is-active" data-tock-tier="0" aria-pressed="true" style="--tier: #6fe7ff">No risk</button>
+                  <button type="button" class="tock-tier" data-tock-tier="1" aria-pressed="false" style="--tier: #74e6a6">Medium</button>
+                  <button type="button" class="tock-tier" data-tock-tier="2" aria-pressed="false" style="--tier: #f4cf6b">High</button>
+                  <button type="button" class="tock-tier tock-tier--locked" data-tock-tier="3" aria-pressed="false" style="--tier: #ff9c5e">Extreme</button>
+                  <button type="button" class="tock-tier tock-tier--locked" data-tock-tier="4" aria-pressed="false" style="--tier: #ff5d87">Insane</button>
+                </div>
+                <p class="tock-dial__quote" data-tock-tier-quote aria-live="polite">&ldquo;Tock's just warming up.&rdquo;</p>
+                <p class="tock-dial__detail" data-tock-tier-detail>Free to start, nothing to lose. Answer questions during the session and Tock still pays out a few Moon Rocks.</p>
+              </div>
+            </div>
+
+            <ul class="tock-facts">
+              <li><strong>Stake it back.</strong> Finish the session and your stake comes back, plus a bonus that grows with the questions you answer.</li>
+              <li><strong>Leave early, lose it.</strong> Switch away from the app for more than a few seconds and the session ends, along with its stake.</li>
+              <li><strong>Tap Tock for 3D.</strong> Open Tock full screen, drag to turn and pinch to zoom.</li>
+            </ul>
+          </div>
+
+          <div class="tock-stage" data-tock-stage>
+            <div class="tock-stage__tabs" role="group" aria-label="Choose a Tock screen">
+              <button type="button" class="tock-stage__tab is-active" aria-controls="tockShot-0" aria-pressed="true" data-tock-shot-tab="0">Focus</button>
+              <button type="button" class="tock-stage__tab" aria-controls="tockShot-1" aria-pressed="false" data-tock-shot-tab="1">Stakes</button>
+              <button type="button" class="tock-stage__tab" aria-controls="tockShot-2" aria-pressed="false" data-tock-shot-tab="2">3D view</button>
+              <button type="button" class="tock-stage__tab" aria-controls="tockShot-3" aria-pressed="false" data-tock-shot-tab="3">Wardrobe</button>
+            </div>
+
+            <div class="tock-stage__deck">
+              <figure class="tock-shot" id="tockShot-0" data-tock-shot="0" data-pos="center">
+                <div class="phone-mock-fluid">
+                  <div class="phone-mock__frame">
+                    <div class="phone-mock__screen">
+                      <picture>
+                        <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/tock/tock-focus-setup.webp" />
+                        <img src="/mobile-app-assets/screenshots/applied/tock/tock-focus-setup-mid.webp" alt="Focus with Tock: Tock wearing Diamond Gem Shades above a 25-minute session picker, a No risk slider and a Start focus button" width="480" height="1040" loading="lazy" decoding="async" />
+                      </picture>
+                    </div>
+                    <div class="phone-shell-buttons" aria-hidden="true">
+                      <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                        <span class="phone-shell-button phone-shell-button--volume"></span>
+                        <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                      </span>
+                      <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                        <span class="phone-shell-button phone-shell-button--power"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <figcaption class="tock-shot__caption">Set the session, then start focus.</figcaption>
+              </figure>
+
+              <figure class="tock-shot" id="tockShot-1" data-tock-shot="1" data-pos="right" aria-hidden="true">
+                <div class="phone-mock-fluid">
+                  <div class="phone-mock__frame">
+                    <div class="phone-mock__screen">
+                      <picture>
+                        <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/tock/tock-focus-extreme.webp" />
+                        <img src="/mobile-app-assets/screenshots/applied/tock/tock-focus-extreme-mid.webp" alt="The focus timer at Extreme risk: Tock's going extreme, 105 Moon Rocks in, up to 209 out, leave early and lose it" width="480" height="1040" loading="lazy" decoding="async" />
+                      </picture>
+                    </div>
+                    <div class="phone-shell-buttons" aria-hidden="true">
+                      <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                        <span class="phone-shell-button phone-shell-button--volume"></span>
+                        <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                      </span>
+                      <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                        <span class="phone-shell-button phone-shell-button--power"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <figcaption class="tock-shot__caption">Raise the stake and Tock gets serious.</figcaption>
+              </figure>
+
+              <figure class="tock-shot" id="tockShot-2" data-tock-shot="2" data-pos="hidden" aria-hidden="true">
+                <div class="phone-mock-fluid">
+                  <div class="phone-mock__frame">
+                    <div class="phone-mock__screen">
+                      <picture>
+                        <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/tock/tock-fullscreen.webp" />
+                        <img src="/mobile-app-assets/screenshots/applied/tock/tock-fullscreen-mid.webp" alt="Tock full screen in 3D among the stars, wearing a wizard hat, Diamond Gem Shades and a bow tie, with drag to turn and pinch to zoom hints" width="480" height="1040" loading="lazy" decoding="async" />
+                      </picture>
+                    </div>
+                    <div class="phone-shell-buttons" aria-hidden="true">
+                      <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                        <span class="phone-shell-button phone-shell-button--volume"></span>
+                        <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                      </span>
+                      <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                        <span class="phone-shell-button phone-shell-button--power"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <figcaption class="tock-shot__caption">Tap Tock to turn the whole outfit in 3D.</figcaption>
+              </figure>
+
+              <figure class="tock-shot" id="tockShot-3" data-tock-shot="3" data-pos="left" aria-hidden="true">
+                <div class="phone-mock-fluid">
+                  <div class="phone-mock__frame">
+                    <div class="phone-mock__screen">
+                      <picture>
+                        <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/tock/tock-wardrobe-reader.webp" />
+                        <img src="/mobile-app-assets/screenshots/applied/tock/tock-wardrobe-reader-mid.webp" alt="Tock's Wardrobe: Tock in a gold set above catalogue covers for Hats and Eyewear, with the Eyewear reader open on Gold Sunburst Shades" width="480" height="1040" loading="lazy" decoding="async" />
+                      </picture>
+                    </div>
+                    <div class="phone-shell-buttons" aria-hidden="true">
+                      <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                        <span class="phone-shell-button phone-shell-button--volume"></span>
+                        <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+                      </span>
+                      <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                        <span class="phone-shell-button phone-shell-button--power"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <figcaption class="tock-shot__caption">Open a catalogue and try pieces on.</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="tock-wardrobe">
+            <div class="tock-wardrobe__intro">
+              <h4 class="tock-wardrobe__title">Tock's Wardrobe</h4>
+              <p>More than 180 pieces across hats, eyewear, neckwear, faces and colors, bought with the Moon Rocks you earn studying. Twenty sets follow the medal ranks, and pieces above Diamond stay silhouettes until you earn that rank's medal or buy them.</p>
+            </div>
+            <ol class="tock-covers" aria-label="Wardrobe catalogue covers">
+              <li class="tock-cover" style="--cover: #a47bff">
+                <span class="tock-cover__no">No. 01</span>
+                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/wizard-hat.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                <span class="tock-cover__name">Hats</span>
+                <span class="tock-cover__tag">The Headwear Issue</span>
+              </li>
+              <li class="tock-cover" style="--cover: #f4cf6b">
+                <span class="tock-cover__no">No. 02</span>
+                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-gold-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                <span class="tock-cover__name">Eyewear</span>
+                <span class="tock-cover__tag">Vision: Spring Collection</span>
+              </li>
+              <li class="tock-cover" style="--cover: #ff5d87">
+                <span class="tock-cover__no">No. 03</span>
+                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/bow-tie.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                <span class="tock-cover__name">Neckwear</span>
+                <span class="tock-cover__tag">The Neckwear Annual</span>
+              </li>
+              <li class="tock-cover" style="--cover: #64a8ff">
+                <span class="tock-cover__no">No. 04</span>
+                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-sapphire-dial.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                <span class="tock-cover__name">Faces</span>
+                <span class="tock-cover__tag">Faces: New Expressions</span>
+              </li>
+              <li class="tock-cover tock-cover--classified" style="--cover: #6fe7ff">
+                <span class="tock-cover__no">Rank 11+</span>
+                <img class="tock-cover__art" src="/mobile-app-assets/screenshots/applied/tock/wardrobe/mystery-eyewear.webp" alt="" width="192" height="192" loading="lazy" decoding="async" />
+                <span class="tock-cover__name">???</span>
+                <span class="tock-cover__tag">Earn the medal to reveal</span>
+              </li>
+            </ol>
+            <ul class="tock-ranks" aria-label="Medal-rank eyewear for Tock">
+              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-paper-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Paper</span></li>
+              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-bronze-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Bronze</span></li>
+              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-gold-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Gold</span></li>
+              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-sapphire-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Sapphire</span></li>
+              <li><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/medal-diamond-face.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>Diamond</span></li>
+              <li class="tock-ranks__mystery"><img src="/mobile-app-assets/screenshots/applied/tock/wardrobe/mystery-hat.webp" alt="" width="192" height="192" loading="lazy" decoding="async" /><span>???</span></li>
+            </ul>
+            <p class="tock-wardrobe__note">Outfits are cosmetic: they change how Tock looks, never your grades, medals or rewards. Extreme and Insane risk unlock in the Wardrobe for 2,500 and 5,000 Moon Rocks, or by finishing ten focus sessions (Insane needs ten at Extreme).</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section section--engine section--red" aria-labelledby="engine-title">
       <h2 class="section-title" id="engine-title">Engine</h2>

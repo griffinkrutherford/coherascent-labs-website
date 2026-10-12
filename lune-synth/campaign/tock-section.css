@@ -1,0 +1,858 @@
+/* Home page "Focus with Tock" section (focus timer + Tock's Wardrobe).
+   Everything is scoped under .section--tock so nothing here can leak into
+   the other home sections. The phones use the shared landing chassis
+   (.phone-mock-fluid > .phone-mock__frame, sized by phone-mock-fluid.css);
+   the home page does not load landing.css, so the frame's visual rules are
+   mirrored here verbatim, scoped. Width/height come from phone-mock-fluid.css
+   (19.5:9, the hero ratio). */
+
+.section--tock {
+  --tock-cyan: #6fe7ff;
+  --tock-green: #74e6a6;
+  --tock-gold: #f4cf6b;
+  --tock-orange: #ff9c5e;
+  --tock-pink: #ff5d87;
+  --tock-tier-color: var(--tock-cyan);
+  position: relative;
+}
+
+/* ---------- Phone chassis (mirrors campaign/landing.css .phone-mock__frame) ---------- */
+
+.section--tock .phone-mock__frame {
+  --workflow-phone-shell-padding: calc(var(--workflow-phone-height) * 0.013636);
+  --workflow-phone-shell-radius: calc(var(--workflow-phone-height) * 0.122727);
+  --workflow-phone-screen-radius: calc(var(--workflow-phone-height) * 0.104545);
+  --workflow-phone-overlay-inset: calc(var(--workflow-phone-shell-padding) * 0.333333);
+  --workflow-phone-island-top: calc(var(--workflow-phone-height) * 0.0275);
+  --workflow-phone-island-width: calc(var(--workflow-phone-width) * 0.433333);
+  --workflow-phone-island-height: calc(var(--workflow-phone-height) * 0.021875);
+  --workflow-phone-button-width: calc(var(--workflow-phone-height) * 0.0068);
+  --workflow-phone-volume-top: calc(var(--workflow-phone-height) * 0.245455);
+  --workflow-phone-volume-height: calc(var(--workflow-phone-height) * 0.081818);
+  --workflow-phone-volume-gap: calc(var(--workflow-phone-height) * 0.031818);
+  --workflow-phone-power-top: calc(var(--workflow-phone-height) * 0.345455);
+  --workflow-phone-power-height: calc(var(--workflow-phone-height) * 0.136364);
+  --phone-side-offset: calc(var(--workflow-phone-shell-padding) * -1.5);
+  --phone-button-width: var(--workflow-phone-button-width);
+  --phone-volume-top: var(--workflow-phone-volume-top);
+  --phone-volume-height: var(--workflow-phone-volume-height);
+  --phone-volume-gap: var(--workflow-phone-volume-gap);
+  --phone-power-top: var(--workflow-phone-power-top);
+  --phone-power-height: var(--workflow-phone-power-height);
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--workflow-phone-shell-padding);
+  border: 1px solid rgb(56, 64, 80);
+  border-radius: var(--workflow-phone-shell-radius);
+  background: linear-gradient(180deg, #11141b, #05060a 16%, #010102 58%, #07090e);
+  box-shadow:
+    0 0 0 1px rgb(18, 23, 34),
+    0 0 14px color-mix(in srgb, var(--purple) 10%, transparent),
+    0 34px 42px rgba(4, 10, 24, 0.34),
+    0 10px 16px rgba(4, 10, 24, 0.14),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+    inset 0 -12px 20px rgba(0, 0, 0, 0.22);
+}
+
+.section--tock .phone-mock__frame::before {
+  content: "";
+  position: absolute;
+  top: var(--workflow-phone-island-top);
+  left: 50%;
+  z-index: 30;
+  width: var(--workflow-phone-island-width);
+  height: calc(var(--workflow-phone-island-height) * 2);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 72% 50%, rgba(62, 76, 104, 0.92) 0 1.1px, rgba(8, 10, 16, 0.98) 1.2px),
+    linear-gradient(180deg, rgba(20, 23, 31, 0.98), rgba(5, 7, 12, 0.98));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 1px 0 rgba(255, 255, 255, 0.03);
+  transform: translateX(-50%);
+}
+
+.section--tock .phone-mock__frame::after {
+  content: "";
+  position: absolute;
+  inset: var(--workflow-phone-overlay-inset);
+  z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.72);
+  border-radius: calc(var(--workflow-phone-shell-radius) - var(--workflow-phone-overlay-inset));
+  background: transparent;
+  box-shadow: inset 0 0 0 1px #000, inset 0 0 0 2px rgba(0, 0, 0, 0.42);
+  pointer-events: none;
+}
+
+.section--tock .phone-mock__screen {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--workflow-phone-screen-radius);
+  background: #030711;
+  box-shadow:
+    0 0 0 1px rgba(7, 11, 18, 0.88),
+    0 0 0 2px rgba(255, 255, 255, 0.03),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 0 18px rgba(0, 0, 0, 0.24);
+}
+
+.section--tock .phone-mock__screen picture,
+.section--tock .phone-mock__screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Section title icon, matching the other home titles (section-icons.css). */
+main #tock-title { --section-icon: url("/campaign/nav-icons/stopwatch.webp"); }
+
+main #tock-title::before {
+  content: "";
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  background: var(--blue, currentColor);
+  box-shadow: none;
+  -webkit-mask: var(--section-icon) center / contain no-repeat;
+  mask: var(--section-icon) center / contain no-repeat;
+}
+
+@media (max-width: 640px) {
+  main #tock-title { align-items: flex-start; }
+  main #tock-title::before { width: 32px; height: 32px; flex-basis: 32px; }
+}
+
+/* ---------- Card ---------- */
+
+.section--tock .tock {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.section--tock .tock-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-areas:
+    "copy stage"
+    "wardrobe wardrobe";
+  gap: clamp(24px, 3vw, 40px) clamp(20px, 3.4vw, 48px);
+  padding: clamp(18px, 2.6vw, 34px);
+  border: 1px solid rgba(111, 231, 255, 0.22);
+  border-radius: 22px;
+  background:
+    radial-gradient(560px 300px at 82% 18%, rgba(111, 231, 255, 0.12), transparent 64%),
+    radial-gradient(520px 300px at 8% 96%, rgba(255, 93, 135, 0.12), transparent 62%),
+    radial-gradient(420px 240px at 40% 0%, rgba(164, 123, 255, 0.12), transparent 60%),
+    linear-gradient(180deg, rgba(12, 20, 42, 0.92), rgba(7, 13, 28, 0.96));
+  box-shadow: var(--glow), 0 26px 70px -20px rgba(4, 8, 22, 0.7);
+}
+
+/* Clock-face orbit behind the phones: a dial of 60 ticks and a second hand
+   that steps once a second. */
+.section--tock .tock-orbit {
+  position: absolute;
+  z-index: -1;
+  top: clamp(40px, 6vw, 70px);
+  right: clamp(-120px, -6vw, -40px);
+  width: clamp(420px, 46vw, 620px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.section--tock .tock-orbit__ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.section--tock .tock-orbit__ring--outer {
+  inset: 0;
+  background: repeating-conic-gradient(from -0.6deg, rgba(111, 231, 255, 0.34) 0 1.2deg, transparent 1.2deg 6deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 66%, #000 66.4% 70%, transparent 70.4%);
+  mask: radial-gradient(circle, transparent 0 66%, #000 66.4% 70%, transparent 70.4%);
+}
+
+.section--tock .tock-orbit__ring--inner {
+  inset: 22%;
+  border: 1px solid rgba(164, 123, 255, 0.22);
+  box-shadow: 0 0 60px rgba(111, 231, 255, 0.08), inset 0 0 60px rgba(164, 123, 255, 0.08);
+}
+
+.section--tock .tock-orbit__hand {
+  position: absolute;
+  left: calc(50% - 1px);
+  bottom: 50%;
+  width: 2px;
+  height: 34%;
+  border-radius: 2px;
+  background: linear-gradient(0deg, rgba(255, 93, 135, 0), rgba(255, 93, 135, 0.7));
+  transform-origin: 50% 100%;
+  animation: tock-second-hand 60s steps(60) infinite;
+}
+
+.section--tock .tock-orbit__hand::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tock-pink);
+  box-shadow: 0 0 14px rgba(255, 93, 135, 0.6);
+  transform: translateX(-50%);
+}
+
+@keyframes tock-second-hand {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Copy ---------- */
+
+.section--tock .tock-copy {
+  grid-area: copy;
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  min-width: 0;
+}
+
+.section--tock .tock-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: var(--tock-cyan);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section--tock .tock-eyebrow__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tock-cyan);
+  box-shadow: 0 0 0 4px rgba(111, 231, 255, 0.14), 0 0 14px rgba(111, 231, 255, 0.6);
+  animation: tock-pulse 2s ease-in-out infinite;
+}
+
+@keyframes tock-pulse {
+  50% { box-shadow: 0 0 0 7px rgba(111, 231, 255, 0.04), 0 0 18px rgba(111, 231, 255, 0.8); }
+}
+
+.section--tock .tock-headline {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.8rem, 3.3vw, 2.6rem);
+  line-height: 1.1;
+}
+
+.section--tock .tock-lede {
+  margin: 0;
+  max-width: 54ch;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.25vw, 1.08rem);
+  line-height: 1.6;
+}
+
+/* Risk dial */
+.section--tock .tock-dial {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(14px, 2vw, 22px);
+  padding: clamp(14px, 1.8vw, 18px);
+  border: 1px solid color-mix(in srgb, var(--tock-tier-color) 34%, transparent);
+  border-radius: 18px;
+  background:
+    radial-gradient(220px 140px at 0% 50%, color-mix(in srgb, var(--tock-tier-color) 14%, transparent), transparent 70%),
+    rgba(255, 255, 255, 0.025);
+  transition: border-color 320ms ease, background 320ms ease;
+}
+
+.section--tock .tock-dial__face {
+  position: relative;
+  width: clamp(112px, 11vw, 136px);
+  aspect-ratio: 1;
+}
+
+.section--tock .tock-dial__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.section--tock .tock-dial__track,
+.section--tock .tock-dial__arc,
+.section--tock .tock-dial__locked {
+  fill: none;
+  stroke-width: 9;
+}
+
+.section--tock .tock-dial__track {
+  stroke: rgba(255, 255, 255, 0.07);
+}
+
+/* Extreme and Insane live on the second half of the dial: dashed = unlockable. */
+.section--tock .tock-dial__locked {
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 2;
+  stroke-dasharray: 0 50 50 0;
+}
+
+.section--tock .tock-dial__arc {
+  stroke: var(--tock-tier-color);
+  stroke-linecap: round;
+  stroke-dasharray: 0 100;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tock-tier-color) 60%, transparent));
+  transition: stroke-dasharray 520ms cubic-bezier(0.16, 1, 0.3, 1), stroke 320ms ease;
+}
+
+.section--tock .tock-dial__ticks line {
+  stroke: rgba(237, 245, 255, 0.4);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.section--tock .tock-dial__readout {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.section--tock .tock-dial__tier {
+  color: var(--tock-tier-color);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: color 320ms ease;
+}
+
+.section--tock .tock-dial__lock {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section--tock .tock-dial__lock[hidden] {
+  display: none;
+}
+
+.section--tock .tock-dial__body {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.section--tock .tock-tiers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.section--tock .tock-tier {
+  --tier: var(--tock-cyan);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--tier) 34%, transparent);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.section--tock .tock-tier::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--tier);
+}
+
+.section--tock .tock-tier--locked::after {
+  content: "";
+  width: 9px;
+  height: 10px;
+  background: currentColor;
+  opacity: 0.6;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 10'%3E%3Cpath d='M2 4V3a2.5 2.5 0 0 1 5 0v1h.5A1 1 0 0 1 8.5 5v4a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 0h3V3a1.5 1.5 0 0 0-3 0z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 10'%3E%3Cpath d='M2 4V3a2.5 2.5 0 0 1 5 0v1h.5A1 1 0 0 1 8.5 5v4a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 0h3V3a1.5 1.5 0 0 0-3 0z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.section--tock .tock-tier:hover {
+  border-color: color-mix(in srgb, var(--tier) 62%, transparent);
+}
+
+.section--tock .tock-tier:focus-visible,
+.section--tock .tock-stage__tab:focus-visible {
+  outline: 2px solid var(--tock-cyan);
+  outline-offset: 2px;
+}
+
+.section--tock .tock-tier.is-active {
+  border-color: var(--tier);
+  background: color-mix(in srgb, var(--tier) 16%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--tier) 26%, transparent);
+}
+
+.section--tock .tock-dial__quote {
+  margin: 0;
+  color: var(--tock-tier-color);
+  font-family: var(--font-heading, inherit);
+  font-size: 1.08rem;
+  font-style: italic;
+  transition: color 320ms ease;
+}
+
+.section--tock .tock-dial__detail {
+  margin: 0;
+  min-height: 3.2em;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.section--tock .tock-facts {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section--tock .tock-facts li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.section--tock .tock-facts li::before {
+  content: "";
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--tock-cyan);
+  background:
+    linear-gradient(var(--tock-cyan), var(--tock-cyan)) 50% 22% / 2px 38% no-repeat,
+    linear-gradient(90deg, var(--tock-cyan), var(--tock-cyan)) 70% 50% / 34% 2px no-repeat;
+  box-sizing: border-box;
+}
+
+.section--tock .tock-facts strong {
+  color: var(--text);
+}
+
+/* ---------- Stage (tabs + phone deck) ---------- */
+
+.section--tock .tock-stage {
+  --tock-phone-w: clamp(220px, 21vw, 280px);
+  grid-area: stage;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.section--tock .tock-stage__tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  width: min(420px, 100%);
+  padding: 4px;
+  box-sizing: border-box;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.section--tock .tock-stage__tab {
+  min-height: 36px;
+  padding: 8px 6px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+
+.section--tock .tock-stage__tab:hover {
+  color: var(--text);
+}
+
+.section--tock .tock-stage__tab.is-active {
+  border-color: rgba(111, 231, 255, 0.55);
+  background: rgba(14, 40, 58, 0.85);
+  color: var(--text);
+  box-shadow: 0 0 18px rgba(111, 231, 255, 0.18);
+}
+
+.section--tock .tock-stage__deck {
+  position: relative;
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  perspective: 1400px;
+  overflow-x: clip;
+  padding: 8px 0 4px;
+}
+
+.section--tock .tock-shot {
+  grid-area: 1 / 1;
+  width: var(--tock-phone-w);
+  margin: 0;
+  transition: transform 640ms cubic-bezier(0.16, 1, 0.3, 1), opacity 420ms ease, filter 420ms ease;
+  will-change: transform;
+}
+
+.section--tock .tock-shot[data-pos="center"] {
+  z-index: 3;
+  transform: none;
+}
+
+.section--tock .tock-shot[data-pos="left"],
+.section--tock .tock-shot[data-pos="right"] {
+  z-index: 1;
+  opacity: 0.5;
+  filter: saturate(0.7) brightness(0.7);
+  cursor: pointer;
+}
+
+.section--tock .tock-shot[data-pos="left"] {
+  transform: translateX(-56%) scale(0.78) rotateY(18deg);
+}
+
+.section--tock .tock-shot[data-pos="right"] {
+  transform: translateX(56%) scale(0.78) rotateY(-18deg);
+}
+
+.section--tock .tock-shot[data-pos="hidden"] {
+  z-index: 0;
+  opacity: 0;
+  transform: scale(0.6);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.section--tock .tock-shot__caption {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  text-align: center;
+  transition: opacity 300ms ease;
+}
+
+.section--tock .tock-shot:not([data-pos="center"]) .tock-shot__caption {
+  opacity: 0;
+}
+
+/* ---------- Wardrobe ---------- */
+
+.section--tock .tock-wardrobe {
+  grid-area: wardrobe;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+  grid-template-areas:
+    "intro covers"
+    "ranks ranks"
+    "note note";
+  gap: 18px clamp(18px, 3vw, 36px);
+  padding-top: clamp(20px, 2.6vw, 30px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section--tock .tock-wardrobe__intro {
+  grid-area: intro;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.section--tock .tock-wardrobe__title {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+}
+
+.section--tock .tock-wardrobe__intro p,
+.section--tock .tock-wardrobe__note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.section--tock .tock-wardrobe__note {
+  grid-area: note;
+  font-size: 0.84rem;
+  opacity: 0.9;
+}
+
+/* Catalogue covers, styled after the app's newsstand. */
+.section--tock .tock-covers {
+  grid-area: covers;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section--tock .tock-cover {
+  --cover: var(--tock-cyan);
+  position: relative;
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--cover) 30%, rgba(255, 255, 255, 0.08));
+  border-radius: 14px;
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--cover) 18%, transparent), transparent 46%),
+    linear-gradient(180deg, rgba(30, 34, 58, 0.9), rgba(14, 16, 30, 0.95));
+  box-shadow: 0 12px 26px -14px rgba(0, 0, 0, 0.8);
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms ease, box-shadow 360ms ease;
+}
+
+.section--tock .tock-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.08) 45%, transparent 60%);
+  pointer-events: none;
+}
+
+.section--tock .tock-cover:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  border-color: color-mix(in srgb, var(--cover) 60%, transparent);
+  box-shadow: 0 18px 30px -14px color-mix(in srgb, var(--cover) 40%, rgba(0, 0, 0, 0.8));
+}
+
+.section--tock .tock-cover__no {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+}
+
+.section--tock .tock-cover__art {
+  justify-self: center;
+  width: 100%;
+  max-width: 92px;
+  height: auto;
+  aspect-ratio: 1;
+  margin: 2px 0 4px;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
+}
+
+.section--tock .tock-cover__name {
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.section--tock .tock-cover__tag {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.section--tock .tock-cover--classified {
+  border-style: dashed;
+}
+
+.section--tock .tock-cover--classified .tock-cover__art {
+  filter: drop-shadow(0 0 10px rgba(111, 231, 255, 0.25));
+}
+
+/* Medal-rank eyewear strip. */
+.section--tock .tock-ranks {
+  grid-area: ranks;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 14px;
+  list-style: none;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(196, 180, 150, 0.08), rgba(205, 127, 50, 0.08) 20%, rgba(244, 207, 107, 0.1) 40%, rgba(100, 168, 255, 0.1) 60%, rgba(185, 242, 255, 0.1) 80%, rgba(164, 123, 255, 0.1)),
+    rgba(255, 255, 255, 0.02);
+}
+
+.section--tock .tock-ranks li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.section--tock .tock-ranks img {
+  width: 44px;
+  height: 44px;
+  flex: none;
+}
+
+.section--tock .tock-ranks__mystery {
+  color: var(--tock-cyan);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 980px) {
+  .section--tock .tock-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "copy"
+      "stage"
+      "wardrobe";
+  }
+
+  .section--tock .tock-orbit {
+    top: auto;
+    bottom: 36%;
+    right: 50%;
+    width: min(560px, 120vw);
+    transform: translateX(50%);
+    opacity: 0.6;
+  }
+
+  .section--tock .tock-wardrobe {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "intro"
+      "covers"
+      "ranks"
+      "note";
+  }
+}
+
+@media (max-width: 640px) {
+  .section--tock .tock-card {
+    padding: 16px 14px 20px;
+    border-radius: 18px;
+  }
+
+  .section--tock .tock-stage {
+    --tock-phone-w: min(58vw, 232px);
+  }
+
+  .section--tock .tock-shot[data-pos="left"] {
+    transform: translateX(-50%) scale(0.74) rotateY(16deg);
+  }
+
+  .section--tock .tock-shot[data-pos="right"] {
+    transform: translateX(50%) scale(0.74) rotateY(-16deg);
+  }
+
+  .section--tock .tock-stage__tab {
+    font-size: 0.76rem;
+    padding: 8px 2px;
+  }
+
+  .section--tock .tock-dial {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .section--tock .tock-tiers {
+    justify-content: center;
+  }
+
+  .section--tock .tock-covers {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .section--tock .tock-cover {
+    grid-column: span 2;
+  }
+
+  .section--tock .tock-cover:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .section--tock .tock-ranks {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 18px;
+  }
+
+  .section--tock .tock-ranks li {
+    flex-direction: column;
+    gap: 2px;
+    width: calc((100% - 16px) / 3);
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section--tock .tock-orbit__hand,
+  .section--tock .tock-eyebrow__dot {
+    animation: none;
+  }
+
+  .section--tock .tock-shot,
+  .section--tock .tock-cover,
+  .section--tock .tock-dial,
+  .section--tock .tock-dial__arc {
+    transition: none;
+  }
+
+  .section--tock .tock-cover:hover {
+    transform: none;
+  }
+}
