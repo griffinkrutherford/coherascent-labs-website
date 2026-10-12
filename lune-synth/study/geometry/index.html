@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Learn Geometry Through Diagrams and Proof | Lune Synth</title>
-  <meta name="description" content="Practice geometry diagrams, relationships, calculations, and proofs through visible work with Lune Synth." />
+  <meta name="description" content="Geometry practice with labelled figures: mark what is given, name the theorem and solve, with feedback on the missing relationship." />
   <link rel="canonical" href="https://lunesynth.com/study/geometry/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Learn Geometry Through Diagrams and Proof | Lune Synth" />
-  <meta property="og:description" content="Practice geometry diagrams, relationships, calculations, and proofs through visible work with Lune Synth." />
+  <meta property="og:description" content="Geometry practice with labelled figures: mark what is given, name the theorem and solve, with feedback on the missing relationship." />
   <meta property="og:url" content="https://lunesynth.com/study/geometry/" />
   <meta property="og:image" content="https://lunesynth.com/study/geometry/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/10-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/study-geometry-isosceles-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/subject-shots.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +86,8 @@
     <section class="campaign-hero campaign-shell" aria-labelledby="campaign-title">
       <div class="campaign-hero__copy" data-reveal>
         <p class="campaign-eyebrow">Lune Synth for Geometry</p>
-        <h1 id="campaign-title">Draw the relationship before chasing the number.</h1>
-        <p class="campaign-hero__body">Label the diagram, state what is known, and build the argument on paper. Lune Synth helps locate the missing relationship or unjustified step.</p>
+        <h1 id="campaign-title">Mark what you know on the figure, then name the theorem.</h1>
+        <p class="campaign-hero__body">Geometry problems are solved on the figure: equal sides, base angles, right angles, given lengths. Most mistakes come from a relationship that was never written down. Lune Synth gives you the labelled figure, reads your work, and points to the step that needs a reason.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early access to Lune Synth.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +100,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/10.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/10-mid.webp" alt="Lune Synth displaying a rectangle area problem" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-geometry-isosceles.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-geometry-isosceles-mid.webp" alt="Lune Synth question showing isosceles triangle ABC with equal sides marked and base angles of 50° and (3x + 5)°" width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,22 +114,45 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">Geometry and algebra together</figcaption>
+          <figcaption class="phone-mock__label">Triangle relationships in Lune Synth</figcaption>
         </figure>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">The diagram is part of the reasoning</p>
-        <h2 id="problem-title">Geometry becomes guesswork when the relationships stay implicit.</h2>
-        <p class="campaign-section__body">A useful diagram records givens, constraints, and the path to a theorem or equation. Feedback on that visible structure can correct the idea before arithmetic hides it.</p>
+        <p class="section-kicker">Where geometry students get stuck</p>
+        <h2 id="problem-title">Guessing starts when the relationships stay in your head.</h2>
+        <p class="campaign-section__body">Students who can recite the Pythagorean theorem still apply it to the wrong side, or set two angles equal without checking which sides are equal. Writing the relationship next to the figure, and having it checked, turns geometry from pattern-matching into reasoning.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Consume another finished answer</div>
+        <div class="contrast__item">Eyeball the figure and guess</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
+        <div class="contrast__item contrast__item--better">State each relationship and justify it</div>
       </div>
+    </section>
+
+    <section class="campaign-section campaign-shell subject-shots" aria-labelledby="diagrams-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">Figures with the givens marked</p>
+        <h2 id="diagrams-title">Triangles and rectangles drawn from the question.</h2>
+        <p class="campaign-section__body">Questions can include labelled triangles with tick marks and angle arcs, right triangles with given legs, and rectangles from word problems. The length or angle you are asked for is left unlabelled.</p>
+      </div>
+      <div class="subject-shots__grid" style="--subject-shots-count: 2">
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-geometry-pythagoras-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-geometry-pythagoras-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-geometry-pythagoras.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing right triangle ABC with legs 6 cm and 8 cm and the hypotenuse unlabelled" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Right triangles</strong>Legs of 6 cm and 8 cm: find the hypotenuse.</figcaption>
+        </figure>
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/10-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/10-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/10.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a labelled rectangle with width x and length x + 7" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Area from a description</strong>A rectangle of area 144 whose length is 7 more than its width.</figcaption>
+        </figure>
+      </div>
+      <p class="subject-shots__note">Captured from the Lune Synth app. Generated question sets can include a diagram when one helps; figures go through automated checks against the question before they are shown.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -139,18 +163,18 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Do the work</h3>
-            <p>Write, draw, calculate, recall, or explain so your reasoning stays visible.</p>
+            <h3>Mark up the figure</h3>
+            <p>Write the givens and the relationship you are using, by hand or typed.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Get precise feedback</h3>
-            <p>Find the specific gap without replacing your attempt with a finished answer.</p>
+            <h3>Find the unjustified step</h3>
+            <p>Feedback names the relationship that was assumed without a reason, or applied to the wrong part.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice what is weak</h3>
-            <p>Turn the mistake into a short mission focused on the skill that needs repetition.</p>
+            <h3>Practise the relationship</h3>
+            <p>A quick mission repeats that theorem on new figures.</p>
           </article>
       </div>
     </section>
@@ -194,7 +218,7 @@
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
         <h2 id="final-title">Turn every diagram into a defensible solution.</h2>
-        <p>Join the beta for geometry practice that connects sketches, theorems, equations, and proof.</p>
+        <p>Join the beta for geometry practice with labelled figures and reasoning you write yourself.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early access to Lune Synth.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>

@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Learn Finance Through Models and Assumptions | Lune Synth</title>
-  <meta name="description" content="Practice finance calculations, models, and interpretations through written reasoning with Lune Synth." />
+  <meta name="description" content="Finance practice with cash-flow timelines, NPV and balance sheets: set up the model by hand and get feedback on the rate, period or assumption that broke." />
   <link rel="canonical" href="https://lunesynth.com/study/finance/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Learn Finance Through Models and Assumptions | Lune Synth" />
-  <meta property="og:description" content="Practice finance calculations, models, and interpretations through written reasoning with Lune Synth." />
+  <meta property="og:description" content="Finance practice with cash-flow timelines, NPV and balance sheets: set up the model by hand and get feedback on the rate, period or assumption that broke." />
   <meta property="og:url" content="https://lunesynth.com/study/finance/" />
   <meta property="og:image" content="https://lunesynth.com/study/finance/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/22-mid.webp" as="image" />
+  <link rel="preload" href="/mobile-app-assets/screenshots/applied/question-prompts/study-finance-npv-mid.webp" as="image" />
   <link rel="stylesheet" href="/campaign/landing.css?v=8" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
+  <link rel="stylesheet" href="/campaign/subject-shots.css?v=1" />
 </head>
 <body>
   <header class="site-header">
@@ -85,8 +86,8 @@
     <section class="campaign-hero campaign-shell" aria-labelledby="campaign-title">
       <div class="campaign-hero__copy" data-reveal>
         <p class="campaign-eyebrow">Lune Synth for Finance</p>
-        <h1 id="campaign-title">Keep the assumptions attached to the valuation.</h1>
-        <p class="campaign-hero__body">Set up the timeline, state the rate, show the calculation, and interpret the result. Lune Synth helps diagnose the model before the spreadsheet hides it.</p>
+        <h1 id="campaign-title">Lay out the cash flows before you discount them.</h1>
+        <p class="campaign-hero__body">Corporate finance and financial-statement problems usually go wrong in the setup: a rate that does not match the period, a cash flow placed in the wrong year, a ratio built from the wrong line. Lune Synth shows the timeline or statement and checks the model you build on it.</p>
         <div class="campaign-hero__cta" id="join-beta">
           <lune-synth-cta data-placement="hero" data-clarifier="Join for early access to Lune Synth.">
             <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
@@ -99,8 +100,8 @@
           <div class="phone-mock__frame" data-phone-mock>
             <div class="phone-mock__screen">
               <picture>
-                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/22.webp" />
-                <img src="/mobile-app-assets/screenshots/applied/question-prompts/22-mid.webp" alt="Lune Synth displaying a finance present-value question" width="480" height="1043" decoding="async" />
+                <source media="(min-width: 900px)" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-finance-npv.webp" />
+                <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-finance-npv-mid.webp" alt="Lune Synth question showing a cash-flow timeline of $1,000 out now and $400 in at the end of each of three years at 10%" width="480" height="1043" decoding="async" />
               </picture>
             </div>
             <div class="phone-shell-buttons" aria-hidden="true">
@@ -113,22 +114,45 @@
               </span>
             </div>
           </div>
-          <figcaption class="phone-mock__label">Present value in Lune Synth</figcaption>
+          <figcaption class="phone-mock__label">Net present value in Lune Synth</figcaption>
         </figure>
       </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="problem-title">
       <div class="campaign-section__heading" data-reveal>
-        <p class="section-kicker">Models need context</p>
-        <h2 id="problem-title">A precise output is only as sound as the assumptions beneath it.</h2>
-        <p class="campaign-section__body">Finance joins timelines, cash flows, rates, risk, and interpretation. Written setup and explanation expose whether a valuation error comes from arithmetic or the model itself.</p>
+        <p class="section-kicker">Where finance students get stuck</p>
+        <h2 id="problem-title">A precise output is only as sound as the setup beneath it.</h2>
+        <p class="campaign-section__body">A spreadsheet will happily discount monthly cash flows at an annual rate. Adding up undiscounted inflows makes a losing project look good. Writing the timeline and the formula by hand is where those errors become visible, and where feedback can catch them.</p>
       </div>
       <div class="contrast" data-reveal aria-label="Study approach comparison">
-        <div class="contrast__item">Consume another finished answer</div>
+        <div class="contrast__item">Trust the spreadsheet output</div>
         <span class="contrast__arrow" aria-hidden="true">&rarr;</span>
-        <div class="contrast__item contrast__item--better">Produce an attempt and improve it</div>
+        <div class="contrast__item contrast__item--better">Build the timeline and check every assumption</div>
       </div>
+    </section>
+
+    <section class="campaign-section campaign-shell subject-shots" aria-labelledby="diagrams-title">
+      <div class="campaign-section__heading" data-reveal>
+        <p class="section-kicker">Timelines and statements</p>
+        <h2 id="diagrams-title">Cash-flow timelines, balance sheets and ratios.</h2>
+        <p class="campaign-section__body">Questions can include a cash-flow timeline at a stated rate, a balance sheet with one line or ratio to find, or a present-value problem drawn on a timeline.</p>
+      </div>
+      <div class="subject-shots__grid" style="--subject-shots-count: 2">
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/study-finance-balance-sheet-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/study-finance-balance-sheet-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/study-finance-balance-sheet.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a balance sheet with retained earnings and the current ratio unknown" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Statements and ratios</strong>Find retained earnings and the current ratio.</figcaption>
+        </figure>
+        <figure class="subject-shot" data-reveal>
+          <div class="subject-shot__frame">
+            <img src="/mobile-app-assets/screenshots/applied/question-prompts/22-mid.webp" srcset="/mobile-app-assets/screenshots/applied/question-prompts/22-mid.webp 480w, /mobile-app-assets/screenshots/applied/question-prompts/22.webp 1206w" sizes="(min-width: 900px) 300px, (min-width: 521px) 45vw, 290px" alt="Lune Synth question showing a cash-flow timeline with $1,210 at year two and the present value unknown" width="480" height="1043" loading="lazy" decoding="async" />
+          </div>
+          <figcaption><strong>Time value of money</strong>The present value of $1,210 received in two years.</figcaption>
+        </figure>
+      </div>
+      <p class="subject-shots__note">Captured from the Lune Synth app. Generated question sets can include a diagram when one helps; figures go through automated checks against the question before they are shown.</p>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
@@ -139,18 +163,18 @@
       <div class="benefit-grid">
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">01</span>
-            <h3>Do the work</h3>
-            <p>Write, draw, calculate, recall, or explain so your reasoning stays visible.</p>
+            <h3>Set up the model</h3>
+            <p>Write the timeline, the rate and the formula before calculating.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">02</span>
-            <h3>Get precise feedback</h3>
-            <p>Find the specific gap without replacing your attempt with a finished answer.</p>
+            <h3>Find the mismatched assumption</h3>
+            <p>Feedback names the period, rate or line item that does not fit.</p>
           </article>
           <article class="benefit-card" data-reveal>
             <span class="benefit-card__number">03</span>
-            <h3>Practice what is weak</h3>
-            <p>Turn the mistake into a short mission focused on the skill that needs repetition.</p>
+            <h3>Repeat the setup</h3>
+            <p>A quick mission practises the conversion or valuation step you missed.</p>
           </article>
       </div>
     </section>
@@ -194,7 +218,7 @@
     <section class="campaign-final campaign-shell" aria-labelledby="final-title">
       <div class="campaign-final__copy" data-reveal>
         <h2 id="final-title">Practice the judgment behind the model.</h2>
-        <p>Join the beta for finance study that keeps calculations, assumptions, and interpretations connected.</p>
+        <p>Join the beta for finance practice built on timelines, statements and the assumptions behind them.</p>
       </div>
       <lune-synth-cta data-placement="footer" data-clarifier="Join for early access to Lune Synth.">
         <noscript><p><a href="mailto:griffin@lunesynth.com?subject=Lune%20Synth%20beta">Join the Lune Synth beta waitlist</a></p></noscript>
