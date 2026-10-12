@@ -331,8 +331,8 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <script src="/campaign/site-header.js?v=1" defer></script>
   <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/campaign/site-header.css?v=6" />
-  <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
-  <script src="/campaign/site-footer.js?v=${page.apSubject || page.variant === "ap-exams" ? 12 : 9}" data-lune-site-footer defer></script>
+  <link rel="stylesheet" href="/campaign/site-footer.css?v=6" />
+  <script src="/campaign/site-footer.js?v=13" data-lune-site-footer defer></script>
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
@@ -358,6 +358,7 @@ ${page.apExam || page.apGroupBlurbs ? `  <link rel="stylesheet" href="/campaign/
         <a class="nav-link" href="/#luna-title">Luna</a>
         <a class="nav-link" href="/#processing-title">Grading</a>
         <a class="nav-link" href="/#medals-title">Medals</a>
+        <a class="nav-link" href="/#tock-title">Focus Timer</a>
         <a class="nav-link" href="/#engine-title">Engine</a>
         <a class="nav-link" href="/#site-footer">All Landing Pages</a>
         <a class="nav-link nav-link--blog" href="/blog/">Blog</a>
