@@ -2615,9 +2615,22 @@
     },
     "apExam": {
       "kicker": "AP African American Studies",
-      "headline": "A newer course: check the current exam format as it is published.",
-      "body": "AP African American Studies launched broadly in 2024-25 as part of the College Board's rollout. Use AP Central for the current exam structure; use Lune Synth to practice close reading of the course's primary sources.",
-      "facts": [],
+      "headline": "Multiple choice, short answer, a DBQ, and a term-long research project.",
+      "body": "The free-response section pairs short-answer questions with a document-based question, and a separate Individual Student Project (completed over several weeks) contributes its own share of the score.",
+      "facts": [
+        {
+          "label": "Multiple choice",
+          "text": "60 questions in 1 hour 10 minutes. 60% of the score."
+        },
+        {
+          "label": "Free response",
+          "text": "3 short-answer questions (40 minutes) and 1 document-based question (45 minutes). 30% of the score."
+        },
+        {
+          "label": "Individual Student Project",
+          "text": "A multi-week research project plus a short validation question on exam day. About 10% of the score combined."
+        }
+      ],
       "shots": [],
       "note": "Questions shown are practice questions written for Lune Synth and rendered in the app, not official AP items. Exam formats are summarised from the College Board's course and exam descriptions; check AP Central for current details."
     }
@@ -3335,15 +3348,15 @@
     "apExam": {
       "kicker": "The AP Psychology exam",
       "headline": "Mostly multiple choice, with two applied free responses.",
-      "body": "The free-response section always has two questions: applying several concepts to one scenario, and a research-design or research-methods question.",
+      "body": "The free-response section has two questions: an Article Analysis Question and an Evidence-Based Question built from provided data.",
       "facts": [
         {
           "label": "Multiple choice",
-          "text": "100 questions in 1 hour 10 minutes. About two-thirds of the score."
+          "text": "75 questions in 1 hour 30 minutes. About two-thirds of the score."
         },
         {
           "label": "Free response",
-          "text": "2 questions in 50 minutes: concept application, research design. About one-third of the score."
+          "text": "2 questions in 1 hour 10 minutes: an Article Analysis Question and an Evidence-Based Question. About one-third of the score."
         },
         {
           "label": "Common weak spots",
@@ -3459,7 +3472,7 @@
       "facts": [
         {
           "label": "Multiple choice",
-          "text": "55 questions in 1 hour, often with a stimulus (text, data, or cartoon). 50% of the score."
+          "text": "55 questions in 1 hour 20 minutes, often with a stimulus (text, data, or cartoon). 50% of the score."
         },
         {
           "label": "Free response",
@@ -3718,7 +3731,7 @@
     "apExam": {
       "kicker": "The AP World History: Modern exam",
       "headline": "The same four-part format as the other history APs.",
-      "body": "World History's DBQ and LEQ ask for comparison or causation claims that span at least two of the course's six regions.",
+      "body": "World History's DBQ asks for a comparison or causation claim spanning at least two of the course's six regions; the LEQ gives a single required prompt covering about half the course's timeline.",
       "facts": [
         {
           "label": "Multiple choice",
@@ -3734,7 +3747,7 @@
         },
         {
           "label": "LEQ",
-          "text": "1 question in 40 minutes, choosing comparison, causation, or continuity and change. 15% of the score."
+          "text": "1 question in 40 minutes: a single required prompt covering about half the course's timeline, with no documents provided. 15% of the score."
         }
       ],
       "shots": [
@@ -3858,7 +3871,7 @@
         },
         {
           "label": "Free response",
-          "text": "6 essays in 2 hours: one 30-minute comparison and five shorter essays, two using unidentified works. 50% of the score."
+          "text": "6 essays in 2 hours: two long essays (a comparison, and a visual/contextual analysis) and four shorter essays, three using works outside the provided image set. 50% of the score."
         },
         {
           "label": "Common weak spots",
@@ -3978,11 +3991,11 @@
         },
         {
           "label": "Free response",
-          "text": "About 50 minutes: melodic and harmonic dictation, part-writing a bass line or soprano line, and harmonic analysis."
+          "text": "About 1 hour 10 minutes: melodic and harmonic dictation, part-writing from a figured bass or Roman-numeral progression, and melody harmonization."
         },
         {
           "label": "Sight-singing",
-          "text": "A separately timed section where you sing two notated melodies on your own."
+          "text": "A separately timed section, about 10 minutes, where you sing and record two notated melodies on your own."
         },
         {
           "label": "Common weak spots",
@@ -4098,11 +4111,11 @@
       "facts": [
         {
           "label": "Sustained Investigation",
-          "text": "15 images documenting an inquiry-driven process, with written questions about materials and process. About 50% of the score."
+          "text": "15 images documenting an inquiry-driven process, with written questions about materials and process. 60% of the score."
         },
         {
           "label": "Selected Works",
-          "text": "5 of your strongest works, each with a materials and process statement. About 50% of the score."
+          "text": "5 of your strongest works, each with a materials and process statement. 40% of the score."
         },
         {
           "label": "What is scored",
@@ -4218,11 +4231,11 @@
       "facts": [
         {
           "label": "Sustained Investigation",
-          "text": "15 images documenting an inquiry-driven process in three dimensions, with written process statements. About 50% of the score."
+          "text": "15 images documenting an inquiry-driven process in three dimensions, with written process statements. 60% of the score."
         },
         {
           "label": "Selected Works",
-          "text": "5 of your strongest works, each with a materials and process statement. About 50% of the score."
+          "text": "5 of your strongest works, shown from two views each (10 images total), with a materials and process statement. 40% of the score."
         },
         {
           "label": "What is scored",
@@ -4338,11 +4351,11 @@
       "facts": [
         {
           "label": "Sustained Investigation",
-          "text": "15 images documenting an inquiry-driven process, with written process statements. About 50% of the score."
+          "text": "15 images documenting an inquiry-driven process, with written process statements. 60% of the score."
         },
         {
           "label": "Selected Works",
-          "text": "5 of your strongest works, each with a materials and process statement. About 50% of the score."
+          "text": "5 of your strongest works, each with a materials and process statement. 40% of the score."
         },
         {
           "label": "What is scored",
@@ -4465,8 +4478,8 @@
           "text": "A message reply and a story narration based on picture prompts."
         },
         {
-          "label": "Interpersonal and presentational speaking",
-          "text": "A simulated conversation and a cultural presentation."
+          "label": "Presentational speaking",
+          "text": "A Project Presentation on independent research and a Project Q&A answering four pre-recorded questions."
         },
         {
           "label": "Common weak spots",
@@ -4578,7 +4591,7 @@
     "apExam": {
       "kicker": "The AP French Language and Culture exam",
       "headline": "Reading, listening, writing, and speaking, together.",
-      "body": "The exam combines interpretive multiple choice with presentational writing (email reply, persuasive essay) and speaking (a simulated conversation and a cultural comparison), all in French.",
+      "body": "The exam combines interpretive multiple choice with an argumentative essay and two project-based speaking tasks, all in French.",
       "facts": [
         {
           "label": "Interpretive",
@@ -4586,15 +4599,15 @@
         },
         {
           "label": "Presentational writing",
-          "text": "An email reply and a persuasive essay using multiple sources."
+          "text": "An argumentative essay analyzing written and audio sources with different viewpoints."
         },
         {
-          "label": "Interpersonal and presentational speaking",
-          "text": "A simulated conversation and a 2-minute cultural comparison."
+          "label": "Presentational speaking",
+          "text": "A Project Presentation on independent research and a Project Q&A answering four pre-recorded questions."
         },
         {
           "label": "Common weak spots",
-          "text": "Correct conjugations in the wrong mood, and register that doesn't match the conversation's context."
+          "text": "Correct conjugations in the wrong mood, and register that doesn't match the project's context."
         }
       ],
       "shots": [],
@@ -4702,7 +4715,7 @@
     "apExam": {
       "kicker": "The AP German Language and Culture exam",
       "headline": "Reading, listening, writing, and speaking, together.",
-      "body": "The exam combines interpretive multiple choice with presentational writing (email reply, persuasive essay) and speaking (a simulated conversation and a cultural comparison), all in German.",
+      "body": "The exam combines interpretive multiple choice with an argumentative essay and two project-based speaking tasks, all in German.",
       "facts": [
         {
           "label": "Interpretive",
@@ -4710,11 +4723,11 @@
         },
         {
           "label": "Presentational writing",
-          "text": "An email reply and a persuasive essay using multiple sources."
+          "text": "An argumentative essay analyzing written and audio sources with different viewpoints."
         },
         {
-          "label": "Interpersonal and presentational speaking",
-          "text": "A simulated conversation and a 2-minute cultural comparison."
+          "label": "Presentational speaking",
+          "text": "A Project Presentation on independent research and a Project Q&A answering four pre-recorded questions."
         },
         {
           "label": "Common weak spots",
@@ -4826,7 +4839,7 @@
     "apExam": {
       "kicker": "The AP Italian Language and Culture exam",
       "headline": "Reading, listening, writing, and speaking, together.",
-      "body": "The exam combines interpretive multiple choice with presentational writing (email reply, persuasive essay) and speaking (a simulated conversation and a cultural comparison), all in Italian.",
+      "body": "The exam combines interpretive multiple choice with an argumentative essay and two project-based speaking tasks, all in Italian.",
       "facts": [
         {
           "label": "Interpretive",
@@ -4834,11 +4847,11 @@
         },
         {
           "label": "Presentational writing",
-          "text": "An email reply and a persuasive essay using multiple sources."
+          "text": "An argumentative essay analyzing written and audio sources with different viewpoints."
         },
         {
-          "label": "Interpersonal and presentational speaking",
-          "text": "A simulated conversation and a 2-minute cultural comparison."
+          "label": "Presentational speaking",
+          "text": "A Project Presentation on independent research and a Project Q&A answering four pre-recorded questions."
         },
         {
           "label": "Common weak spots",
@@ -4950,7 +4963,7 @@
     "apExam": {
       "kicker": "The AP Japanese Language and Culture exam",
       "headline": "Reading, listening, writing, and speaking, together.",
-      "body": "The exam combines interpretive multiple choice with presentational writing and speaking (a simulated conversation and a cultural comparison), all in Japanese.",
+      "body": "The exam combines interpretive multiple choice with presentational writing and two project-based speaking tasks, all in Japanese.",
       "facts": [
         {
           "label": "Interpretive",
@@ -4958,11 +4971,11 @@
         },
         {
           "label": "Presentational writing",
-          "text": "An email or message reply and a cultural-comparison essay."
+          "text": "A message reply and a story narration based on picture prompts."
         },
         {
-          "label": "Interpersonal and presentational speaking",
-          "text": "A simulated conversation and a 2-minute cultural comparison."
+          "label": "Presentational speaking",
+          "text": "A Project Presentation on independent research and a Project Q&A answering four pre-recorded questions."
         },
         {
           "label": "Common weak spots",
@@ -5074,7 +5087,7 @@
     "apExam": {
       "kicker": "The AP Spanish Language and Culture exam",
       "headline": "Reading, listening, writing, and speaking, together.",
-      "body": "The exam combines interpretive multiple choice with presentational writing (email reply, persuasive essay) and presentational and interpersonal speaking (a simulated conversation and a cultural comparison).",
+      "body": "The exam combines interpretive multiple choice with an argumentative essay and two project-based speaking tasks.",
       "facts": [
         {
           "label": "Interpretive",
@@ -5082,15 +5095,15 @@
         },
         {
           "label": "Presentational writing",
-          "text": "An email reply and a persuasive essay using multiple sources."
+          "text": "An argumentative essay analyzing written and audio sources with different viewpoints."
         },
         {
-          "label": "Interpersonal and presentational speaking",
-          "text": "A simulated conversation (recorded turns) and a 2-minute cultural comparison."
+          "label": "Presentational speaking",
+          "text": "A Project Presentation on independent research and a Project Q&A answering four pre-recorded questions."
         },
         {
           "label": "Common weak spots",
-          "text": "Replies that are grammatically fine but miss the question asked, and register that doesn't match the context."
+          "text": "An essay that summarizes each source instead of synthesizing them, and register that doesn't match the context."
         }
       ],
       "shots": [],
@@ -5202,11 +5215,15 @@
       "facts": [
         {
           "label": "Multiple choice",
-          "text": "Reading comprehension and grammatical analysis of Latin passages, about 50% of the score."
+          "text": "Reading comprehension and grammatical analysis of Latin passages, about 49% of the score."
         },
         {
           "label": "Free response",
-          "text": "A sight translation, a translation of a studied passage, and analytical essays, about 50% of the score."
+          "text": "A sight translation, a translation of a studied passage, and analytical essays, about 49% of the score."
+        },
+        {
+          "label": "Course Project",
+          "text": "Two in-class checkpoint tasks scored by your teacher during the year, about 2% of the score."
         },
         {
           "label": "Common weak spots",
@@ -5322,11 +5339,11 @@
       "facts": [
         {
           "label": "Multiple choice",
-          "text": "Reading comprehension and analysis of the required texts, about 45% of the score."
+          "text": "Reading comprehension and analysis of the required texts, about 50% of the score."
         },
         {
           "label": "Free response",
-          "text": "Essays analyzing a single text and comparing two texts, about 55% of the score."
+          "text": "Short-answer and essay analysis of a single text and a comparison of two texts, about 50% of the score."
         },
         {
           "label": "Common weak spots",
@@ -5446,7 +5463,7 @@
         },
         {
           "label": "Presentation and oral defense",
-          "text": "A presentation of your research followed by questions from your teacher. About 25% of the score."
+          "text": "A presentation of your research followed by questions from a panel of evaluators. About 25% of the score."
         },
         {
           "label": "What is scored",
@@ -5557,24 +5574,20 @@
     },
     "apExam": {
       "kicker": "AP Seminar",
-      "headline": "Three performance tasks, then a written end-of-course exam.",
-      "body": "Most of the AP Seminar score comes from an individual research report, an individual presentation, and a team project, not a single sit-down test.",
+      "headline": "A team project and an individual essay, then a written end-of-course exam.",
+      "body": "AP Seminar combines a team research project, an individual research essay with its own presentation and defense, and a single written end-of-course exam.",
       "facts": [
         {
-          "label": "Individual research report",
-          "text": "A written argument using multiple sources, about 35% of the score."
+          "label": "Team Project and Presentation",
+          "text": "A 1,200-word team research report plus an 8-10 minute team presentation and defense. 20% of the score."
         },
         {
-          "label": "Individual multimedia presentation",
-          "text": "A spoken argument with questioning, about 20% of the score."
-        },
-        {
-          "label": "Team project and presentation",
-          "text": "A collaborative argument and presentation, about 20% of the score."
+          "label": "Individual Research, Presentation, and Defense",
+          "text": "A 2,000-word written argument, a 6-8 minute presentation, and an oral defense answering questions from your teacher. 35% of the score."
         },
         {
           "label": "End-of-course exam",
-          "text": "A 2-hour written exam: short-answer analysis of a source set, then an essay building and supporting an argument. About 25% of the score."
+          "text": "A 2-hour written exam: short-answer analysis of a source set, then an essay building and supporting an argument. 45% of the score."
         }
       ],
       "shots": [],
