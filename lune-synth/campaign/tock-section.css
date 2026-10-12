@@ -856,3 +856,50 @@ main #tock-title::before {
     transform: none;
   }
 }
+
+/* Plain-language steps (2026-10-12): replaces the risk-tier picker. */
+.section--tock .tock-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: tock-step;
+  display: grid;
+  gap: 10px;
+}
+.section--tock .tock-steps li {
+  counter-increment: tock-step;
+  position: relative;
+  padding-left: 34px;
+  color: var(--text, #fff);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.section--tock .tock-steps li::before {
+  content: counter(tock-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #05070d;
+  background: var(--tock-tier-color, #6fe7ff);
+}
+.section--tock .tock-soon {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(111, 231, 255, 0.45);
+  color: #9feeff;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+.section--tock .tock-asterisk { color: inherit; text-decoration: none; }
+.section--tock .tock-footnote { margin: 14px 0 0; color: var(--muted, rgba(255,255,255,.62)); font-size: 12.5px; }
