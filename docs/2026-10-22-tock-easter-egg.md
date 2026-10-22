@@ -2,12 +2,14 @@
 
 ## Update Log
 
+- 2026-10-22: Clarified that an already-selected app combination needs an explicit minute change away and back; discovery never submits automatically on mount.
+
 - 2026-10-22: Expanded the first secret to a complete Easter Egg wardrobe set and added a Golden Egg set after seven days of forward manual clock travel. Both reveals request the server’s current combination, hide it at expiry, and refresh automatically every ten-minute code window.
 - 2026-10-22: Added a hidden wardrobe reward for manually turning the short clock hand through a full revolution. App support requires a new build.
 
 The Focus with Tock carousel keeps its normal behavior. Twelve manual revolutions of the long hand complete one revolution of the short hand and reveal the **Easter Egg set**. Either direction works for this first secret. Advancing the clock seven days, or fourteen clockwise revolutions of the short hand (168 long-hand revolutions), reveals the **Golden Egg set**. The first revolution counts toward the fourteen; unlocking the first reward does not stop tracking. Reversing cancels net travel, so seven days backward do not earn the Golden Egg. Both reveals persist until the page is reloaded.
 
-Each set contains an item for every app wardrobe category. The reveal fetches its current timer combination from `GET /v1/public/tock-wardrobe-code?set=standard|golden` on the production API. Duration is a valid five-minute wheel value; risk is always **No risk**, with the risk slider all the way left. Setting the combination does not start a session or spend Moon Rocks. The app verifies the current code and persists ownership through its authenticated wardrobe redemption endpoint. These are freely shareable cosmetic secrets, not proof of website interaction or eligibility for paid benefits.
+Each set contains an item for every app wardrobe category. The reveal fetches its current timer combination from `GET /v1/public/tock-wardrobe-code?set=standard|golden` on the production API. Duration is a valid five-minute wheel value; risk is always **No risk**, with the risk slider all the way left. Setting the combination does not start a session or spend Moon Rocks. If it is already selected when opening the app, change the minutes away and back to explicitly enter it. The app verifies the current code and persists ownership through its authenticated wardrobe redemption endpoint. These are freely shareable cosmetic secrets, not proof of website interaction or eligibility for paid benefits.
 
 Codes change at ten-minute UTC boundaries. The card shows the server’s remaining lifetime using monotonic elapsed time, conservatively subtracting request latency. It hides the old combination before refreshing, including after connection errors, and offers a retry button. Request and refresh timers stop while the page is hidden; returning to the page fetches fresh codes for any revealed sets. No fixed pair is embedded in the markup as a fallback. API responses must match the requested set, wheel range, free risk, and a positive server lifetime of at most ten minutes. Server enforcement is authoritative, including at expiry.
 
