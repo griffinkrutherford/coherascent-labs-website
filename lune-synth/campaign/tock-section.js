@@ -22,10 +22,91 @@
   var secret = window.TockSecret;
   var rotation = secret ? secret.createRotationTracker() : null;
   var reward = root.querySelector('[data-tock-reward]');
+  var goldenReward = root.querySelector('[data-tock-golden-reward]');
 
-  function recordTurn(delta) {
-    if (rotation && rotation.add(delta) && reward) reward.hidden = false;
+  var codeCards = [];
+  function prepareCodeCard(card, set) {
+    if (!card) return null;
+    var combination = card.querySelector('[data-tock-code]');
+    var duration = card.querySelector('[data-tock-code-duration]');
+    var status = card.querySelector('[data-tock-code-status]');
+    var expiry = card.querySelector('[data-tock-code-expiry]');
+    var retry = card.querySelector('[data-tock-code-retry]');
+    var timer = null, countdown = null, request = null;
+    function stop() {
+      clearTimeout(timer);
+      clearInterval(countdown);
+      if (request) request.abort();
+      request = null;
+      combination.hidden = true;
+      expiry.textContent = '';
+    }
+    function load() {
+      stop();
+      status.textContent = 'Getting your current secret combination…';
+      retry.hidden = true;
+      var controller = new AbortController();
+      request = controller;
+      var startedAt = performance.now();
+      var timeout = setTimeout(function () { controller.abort(); }, 8000);
+      fetch('https://coherascent-labs-app-production.up.railway.app/v1/public/tock-wardrobe-code?set=' + set,
+        { cache: 'no-store', credentials: 'omit', signal: controller.signal })
+        .then(function (response) { if (!response.ok) throw new Error('Unavailable'); return response.json(); })
+        .then(function (value) {
+          if (request !== controller) return;
+          var code = secret.parseWardrobeCode(value, set);
+          var remaining = code ? code.remainingMs - (performance.now() - startedAt) : 0;
+          if (remaining <= 0) throw new Error('Expired');
+          var deadline = performance.now() + remaining;
+          duration.textContent = code.duration;
+          combination.hidden = false;
+          status.textContent = 'Use this combination in the app before it changes.';
+          function updateCountdown() {
+            var seconds = Math.max(0, Math.ceil((deadline - performance.now()) / 1000));
+            if (!seconds) { load(); return; }
+            expiry.textContent = 'Changes in ' + Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+          }
+          countdown = setInterval(updateCountdown, 1000);
+          timer = setTimeout(load, remaining);
+          updateCountdown();
+        })
+        .catch(function () {
+          if (request !== controller) return;
+          combination.hidden = true;
+          expiry.textContent = '';
+          status.textContent = 'The combination is unavailable. Check your connection and try again.';
+          retry.hidden = false;
+          timer = setTimeout(load, 30000);
+        })
+        .finally(function () { clearTimeout(timeout); });
+    }
+    retry.addEventListener('click', load);
+    var entry = { stop: stop, load: load, card: card };
+    codeCards.push(entry);
+    return entry;
   }
+  var standardCode = prepareCodeCard(reward, 'standard');
+  var goldenCode = prepareCodeCard(goldenReward, 'golden');
+  function reveal(entry) {
+    if (!entry || !entry.card.hidden) return;
+    entry.card.hidden = false;
+    entry.load();
+  }
+  function recordTurn(delta) {
+    if (!rotation) return;
+    if (rotation.add(delta)) reveal(standardCode);
+    if (rotation.isGoldenUnlocked()) reveal(goldenCode);
+  }
+  window.addEventListener('pagehide', function () { codeCards.forEach(function (entry) { entry.stop(); }); });
+  document.addEventListener('visibilitychange', function () {
+    codeCards.forEach(function (entry) {
+      if (document.hidden) entry.stop();
+      else if (!entry.card.hidden) entry.load();
+    });
+  });
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) codeCards.forEach(function (entry) { if (!entry.card.hidden) entry.load(); });
+  });
 
   var handDeg = 0; // cumulative, so the hands keep going round instead of rewinding
 

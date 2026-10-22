@@ -10892,9 +10892,9 @@
   <script src="/campaign/subject-rotation.js?v=3" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
   <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
-  <link rel="stylesheet" href="/campaign/tock-section.css?v=6" />
-  <script src="/campaign/tock-secret.core.js?v=1" defer></script>
-  <script src="/campaign/tock-section.js?v=5" defer></script>
+  <link rel="stylesheet" href="/campaign/tock-section.css?v=7" />
+  <script src="/campaign/tock-secret.core.js?v=2" defer></script>
+  <script src="/campaign/tock-section.js?v=6" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -14170,10 +14170,23 @@
 
             <div class="tock-reward" data-tock-reward hidden role="status" aria-live="polite" aria-atomic="true">
               <p class="tock-reward__title">You found Tock’s Easter egg!</p>
-              <p>A whole turn of the short hand. A little secret for your wardrobe.</p>
-              <p class="tock-reward__combination"><strong>1 hr 15 min</strong><span>+</span><strong>No risk</strong></p>
-              <p>Set this combination on the app’s Focus timer, with the risk slider all the way left, to unlock the Easter Egg skin. No need to start a session or spend Moon Rocks.</p>
-              <p class="tock-reward__note">Requires the app update with the Easter Egg skin.</p>
+              <p>A whole turn of the short hand. A complete Easter Egg set for Tock.</p>
+              <p class="tock-reward__combination" data-tock-code hidden><strong data-tock-code-duration></strong><span>+</span><strong>No risk</strong></p>
+              <p data-tock-code-status></p>
+              <p class="tock-reward__note" data-tock-code-expiry aria-live="off"></p>
+              <button class="tock-reward__retry" data-tock-code-retry type="button" hidden>Try again</button>
+              <p>Set this combination on the app’s Focus timer, with the risk slider all the way left, to unlock an Easter Egg item in every wardrobe category. No need to start a session or spend Moon Rocks.</p>
+              <p class="tock-reward__note">The combination changes every 10 minutes. Requires the app update with the Easter Egg wardrobe sets.</p>
+            </div>
+            <div class="tock-reward tock-reward--golden" data-tock-golden-reward hidden role="status" aria-live="polite" aria-atomic="true">
+              <p class="tock-reward__title">You found Tock’s Golden Egg!</p>
+              <p>Seven days ahead: fourteen full clockwise turns of the short hand.</p>
+              <p class="tock-reward__combination" data-tock-code hidden><strong data-tock-code-duration></strong><span>+</span><strong>No risk</strong></p>
+              <p data-tock-code-status></p>
+              <p class="tock-reward__note" data-tock-code-expiry aria-live="off"></p>
+              <button class="tock-reward__retry" data-tock-code-retry type="button" hidden>Try again</button>
+              <p>Set this combination on the app’s Focus timer, with the risk slider all the way left, to unlock a Golden Egg item in every wardrobe category. No need to start a session or spend Moon Rocks.</p>
+              <p class="tock-reward__note">The combination changes every 10 minutes. Requires the app update with the Easter Egg wardrobe sets.</p>
             </div>
           </div>
 

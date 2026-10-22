@@ -678,3 +678,19 @@ main #tock-title::before {
 .section--tock .tock-reward__combination { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .section--tock .tock-reward__combination strong { padding: 6px 10px; border: 1px solid rgba(237,245,255,0.32); border-radius: 9px; }
 .section--tock .tock-reward__note { font-size: 0.78rem; color: #c8c4d7; }
+.section--tock .tock-reward--golden {
+  border-color: rgba(255, 214, 112, 0.7);
+  background: linear-gradient(135deg, rgba(255, 205, 85, 0.18), rgba(255, 155, 75, 0.1)), #111629;
+}
+.section--tock .tock-reward--golden .tock-reward__title { color: #ffe19a; }
+.section--tock .tock-reward [hidden] { display: none; }
+.section--tock .tock-reward__retry {
+  padding: 8px 14px;
+  border: 1px solid rgba(237, 245, 255, 0.45);
+  border-radius: 9px;
+  background: #1c2842;
+  color: #edf5ff;
+  font: inherit;
+  cursor: pointer;
+}
+.section--tock .tock-reward__retry:focus-visible { outline: 2px solid #ffe19a; outline-offset: 3px; }
