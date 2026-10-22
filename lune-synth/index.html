@@ -11245,16 +11245,6 @@
       .neuro-science__body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
       .neuro-science__body a:hover { color: var(--text); }
 
-      .neuro-practice-control {
-        display: grid; gap: 8px; padding: 18px 0 20px;
-        width: min(760px, calc(100% - 40px)); margin: 0 auto;
-        border-top: 1px solid rgba(122, 184, 255, 0.16);
-      }
-      .neuro-practice-control label { color: var(--text); font-weight: 600; }
-      .neuro-practice-control input { width: 100%; height: 32px; margin: 0; accent-color: var(--blue); cursor: pointer; }
-      .neuro-practice-control input:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 6px; }
-      .neuro-practice-control__ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
-
       .neuro-takeaway { max-width: 760px; margin: 0 auto; text-align: center; color: var(--muted); font-size: clamp(1.1rem, 1.55vw, 1.3rem); line-height: 1.6; }
       .neuro-takeaway strong { color: var(--text); }
       .neuro-takeaway a { color: var(--blue); text-underline-offset: 3px; }
@@ -11414,12 +11404,6 @@
               Drag to rotate
             </span>
           </div>
-
-          <div class="neuro-practice-control">
-            <label for="neuro-practice-time">Time doing practice step by step with Lune Synth</label>
-            <input id="neuro-practice-time" data-neuro-practice type="range" min="0" max="100" step="1" value="50" />
-            <div class="neuro-practice-control__ends" aria-hidden="true"><span>Less time</span><span>More time</span></div>
-          </div>
         </div>
 
         <p class="neuro-takeaway"><strong>Every attempt is practice your brain can use.</strong></p>
@@ -11526,7 +11510,7 @@
               if (!entries[i].isIntersecting || started) continue;
               started = true;
               io.disconnect();
-              import("/lune-synth/neuro-viz/neuro-viz.bundle.js?v=f1fd15c91ca415e7")
+              import("/lune-synth/neuro-viz/neuro-viz.bundle.js?v=48e0104196c7b0e8")
                 .then(function (m) {
                   m.mountNeuroViz(stage);
                 })

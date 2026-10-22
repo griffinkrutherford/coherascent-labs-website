@@ -1,5 +1,5 @@
 import { createScene } from "./scene.js";
-import { computePracticeComparison, autoPracticeLevel } from "./timeline.js";
+import { computePracticeComparison } from "./timeline.js";
 import { renderFallback } from "./fallback.js";
 import { prefersReducedMotion, hasWebGL2 } from "../shared-hooks/reduced-motion.js";
 
@@ -31,7 +31,7 @@ export function mountNeuroViz(root) {
   canvas.setAttribute("role", "img");
   canvas.setAttribute(
     "aria-label",
-    "Rotatable 3D comparison of two networks, each with four foreground neurons and eighteen distant background neuron sprites. Above, brain rotted neurons look worn and cobwebbed along a dim, winding route. Above represents using AI to cheat on assignments. Below, vibrant neurons glow in a shifting red-to-blue gradient during step-by-step practice with Lune Synth. The practice-time slider controls the lower myelin thickness and signal speed. Route uncertainty illustrates recall, not literal nerve anatomy. Use arrow keys to rotate.",
+    "Rotatable 3D comparison of two networks, each with four foreground neurons and eighteen distant background neuron sprites. Above, brain rotted neurons look worn and cobwebbed along a dim, winding route. Above represents using AI to cheat on assignments. Below, vibrant neurons glow in a shifting red-to-blue gradient during step-by-step practice with Lune Synth. The lower network shows the highest practice level, with full myelin thickness and signal speed. Route uncertainty illustrates recall, not literal nerve anatomy. Use arrow keys to rotate.",
   );
 
   try {
@@ -43,8 +43,6 @@ export function mountNeuroViz(root) {
     return renderFallback(root);
   }
 
-  const section = root.closest(".section--neuro") || root;
-  const practiceSlider = section.querySelector("[data-neuro-practice]");
   const debug = new URLSearchParams(location.search).has("neuroDebug");
 
   let rafId = 0;
@@ -57,27 +55,13 @@ export function mountNeuroViz(root) {
   const mobileRendering = window.matchMedia('(max-width: 900px)');
   let lastFrame = 0;
   let lastRenderedT = 0;
-  let practiceElapsed = 0;
-  let practiceChanged = false;
-  if (practiceSlider) practiceSlider.value = "0";
 
   function renderAt(t) {
     lastRenderedT = t;
-    const level = Number(practiceSlider?.value ?? 50) / 100;
-    const slices = computePracticeComparison(t, level);
+    const slices = computePracticeComparison(t, 1);
     sceneAPI.update(t, slices);
     sceneAPI.render();
   }
-
-  function onPracticeInput() {
-    practiceChanged = true;
-    // Restart the comparison so both signals launch together at the new level.
-    startedAt = performance.now();
-    pausedAt = 0;
-    if (frozenT !== null) frozenT = 0;
-    renderAt(0);
-  }
-  practiceSlider?.addEventListener("input", onPracticeInput);
 
   function tick(now) {
     if (!running) return;
@@ -98,10 +82,6 @@ export function mountNeuroViz(root) {
       );
     }
 
-    if (!practiceChanged && practiceSlider) {
-      practiceElapsed += dt;
-      practiceSlider.value = String(Math.round(autoPracticeLevel(practiceElapsed) * 100));
-    }
     const elapsed = now - startedAt;
     renderAt((elapsed % DURATION_MS) / DURATION_MS);
     rafId = requestAnimationFrame(tick);
@@ -296,7 +276,6 @@ export function mountNeuroViz(root) {
 
   return {
     destroy() {
-      practiceSlider?.removeEventListener("input", onPracticeInput);
       io.disconnect();
       ro.disconnect();
       themeObserver.disconnect();

@@ -58,18 +58,10 @@ function svgMarkup(level) {
 }
 
 export function renderFallback(root) {
-  const section = root.closest(".section--neuro") || root;
-  const slider = section.querySelector("[data-neuro-practice]");
-  function render() {
-    const level = Number(slider?.value ?? 50) / 100;
-    root.querySelector(".neuro-viz__fallback")?.remove();
-    root.insertAdjacentHTML("afterbegin", svgMarkup(level));
-    const svg = root.firstElementChild;
-    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-    svg.classList.add("neuro-viz__fallback");
-
-  }
-  render();
-  slider?.addEventListener("input", render);
-  return { destroy() { slider?.removeEventListener("input", render); root.innerHTML = ""; } };
+  root.querySelector(".neuro-viz__fallback")?.remove();
+  root.insertAdjacentHTML("afterbegin", svgMarkup(1));
+  const svg = root.firstElementChild;
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  svg.classList.add("neuro-viz__fallback");
+  return { destroy() { root.innerHTML = ""; } };
 }
