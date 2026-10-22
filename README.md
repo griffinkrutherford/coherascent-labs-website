@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-22: Centered the mobile homepage tagline and sized it fluidly with the viewport so it fits one line; desktop typography is unchanged.
+
 - 2026-10-22: Website discoveries now reveal two ordered time/risk settings for the standard Easter Egg and three for Golden Egg, with rotating sequences, slider percentages and matching app-update guidance.
 
 - 2026-10-22: Made Jupiter the homepage Constellations overview’s default world, including its selected option, icon, frame theme, video and poster, for variety after the opening hook video.
