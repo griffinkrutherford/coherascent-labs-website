@@ -2,6 +2,8 @@
 
 ## Update Log
 
+- 2026-10-22: Verified the deployed website at 375 pixels against the real production issuer: both manual keyboard thresholds reveal distinct unexpired combinations, with no horizontal overflow or page errors. Production combinations also changed across a ten-minute boundary.
+
 - 2026-10-22: Clarified that an already-selected app combination needs an explicit minute change away and back; discovery never submits automatically on mount.
 
 - 2026-10-22: Expanded the first secret to a complete Easter Egg wardrobe set and added a Golden Egg set after seven days of forward manual clock travel. Both reveals request the server’s current combination, hide it at expiry, and refresh automatically every ten-minute code window.
@@ -26,3 +28,5 @@ Optional browser regression checks live in `scripts/qa/check-tock-wardrobe-codes
 Observed browser gate: all three widths pass, including the full fourteen short-hand turns by mouse, touch and keyboard, 200% text without horizontal overflow, 200 secondary-pointer and grab attempts, cancellation, backward seven-day travel, eight autoplay days, server/visitor clock skew, expiry, an offline refresh and successful retry. No page errors were recorded. Both reward cards were visually reviewed in all three captures: [375 pixels](visuals/tock-wardrobe-sets-2026-10-22/sets-375.png), [430 pixels with 200% text](visuals/tock-wardrobe-sets-2026-10-22/sets-430-large-text.png), [1280 pixels](visuals/tock-wardrobe-sets-2026-10-22/sets-1280.png). These use mocked public API codes; live endpoint/CORS verification and native app redemption remain integration checks after the API/app changes land.
 
 Original single-skin captures remain available for historical comparison: [mobile](visuals/tock-easter-egg-2026-10-22/reveal-375.png), [desktop](visuals/tock-easter-egg-2026-10-22/reveal-1280.png).
+
+Live integration follow-up at 14:59 MDT: the deployed page passed both real keyboard discovery thresholds at 375 pixels, including fourteen short-hand revolutions. Both issuer requests returned 200 with distinct valid five-minute durations, zero risk and future server expiry. The practice-time slider was absent; neither horizontal overflow nor page errors occurred. The [live capture](visuals/tock-wardrobe-sets-2026-10-22/live-375.png) shows the expiring cards; its combinations are historical, not permanent unlock codes. Separate production samples at 20:37 and 20:40 UTC verified that both codes rotate and exclude both previous-window values. These checks performed no authenticated redemption or wardrobe write. Native app redemption and distributed-build testing remain separate checks.
