@@ -11994,22 +11994,22 @@
               <div class="world-select-dropdown" id="worldSelectDropdown">
                 <button class="world-select-trigger" id="worldSelectTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Learning World">
                   <span class="world-select-trigger__current">
-                    <img class="world-option-icon" id="worldSelectActiveIcon" src="/lune-synth/images/world-previews/earth.svg?v=2" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
-                    <span id="worldSelectActiveLabel">Earth</span>
+                    <img class="world-option-icon" id="worldSelectActiveIcon" src="/lune-synth/images/world-previews/jupiter.svg?v=2" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
+                    <span id="worldSelectActiveLabel">Jupiter</span>
                   </span>
                   <svg class="world-select-chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
                     <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </button>
                 <div class="world-select-popup" id="worldSelectPopup" role="listbox" aria-label="Learning Worlds">
-                  <button class="world-select-item is-active" type="button" role="option" aria-selected="true" data-theme="earth" onclick="selectWorld('earth', this)">
+                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="earth" onclick="selectWorld('earth', this)">
                     <img class="world-option-icon" src="/lune-synth/images/world-previews/earth.svg?v=2" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
                     <span class="world-select-item__label">Earth</span>
                     <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
                       <path d="M3 8.5l3.5 3.5 6.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </button>
-                  <button class="world-select-item" type="button" role="option" aria-selected="false" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
+                  <button class="world-select-item is-active" type="button" role="option" aria-selected="true" data-theme="jupiter" onclick="selectWorld('jupiter', this)">
                     <img class="world-option-icon" src="/lune-synth/images/world-previews/jupiter.svg?v=2" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">
                     <span class="world-select-item__label">Jupiter</span>
                     <svg class="world-select-item__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
@@ -12076,7 +12076,7 @@
                 <div class="ipad-glare"></div>
 
                 <!-- Screen Content Frame -->
-                <div class="ipad-screen-content theme-earth" id="ipadScreenCanvas">
+                <div class="ipad-screen-content theme-jupiter" id="ipadScreenCanvas">
 
                   <!-- Step 2 Preview Screen: choose or create a Constellation -->
                   <div class="ipad-preview-layout" id="previewStep-2">
@@ -12092,12 +12092,12 @@
 
                   <!-- Step 1 Preview Screen: navigate Worlds -->
                   <div class="ipad-preview-layout is-active" id="previewStep-1">
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-earth-world-thumb.jpg" data-video-thumbnail="worldVideo-earth" alt="" aria-hidden="true" loading="lazy" decoding="async">
-                    <video id="worldVideo-earth" class="ipad-gif-target" loop muted playsinline preload="none">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-earth-world-thumb.jpg" data-video-thumbnail="worldVideo-earth" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
+                    <video id="worldVideo-earth" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
                       <source src="screenshots/applied/step-1-earth-world.mp4" type="video/mp4">
                     </video>
-                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-jupiter-world-thumb.jpg" data-video-thumbnail="worldVideo-jupiter" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">
-                    <video id="worldVideo-jupiter" class="ipad-gif-target" loop muted playsinline preload="none" style="display: none;">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-jupiter-world-thumb.jpg" data-video-thumbnail="worldVideo-jupiter" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <video id="worldVideo-jupiter" class="ipad-gif-target" loop muted playsinline preload="none">
                       <source src="screenshots/applied/step-1-jupiter-world.mp4" type="video/mp4">
                     </video>
                     <img class="ipad-video-thumbnail" src="screenshots/applied/step-1-retro-arcade-world-thumb.jpg" data-video-thumbnail="worldVideo-retro" alt="" aria-hidden="true" style="display: none;" loading="lazy" decoding="async">

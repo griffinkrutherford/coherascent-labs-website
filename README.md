@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-22: Made Jupiter the homepage Constellations overview’s default world, including its selected option, icon, frame theme, video and poster, for variety after the opening hook video.
+
 - 2026-10-22: Removed the “Solve it yourself, then get feedback.” paragraph above the Lune Synth homepage brain illustration.
 
 - 2026-10-01: Renamed the annual plan to Lune Synth Pro Special Offer on the homepage and Pro page. Its headline is $4.99/month, billed annually at $59.88/year (exactly twelve monthly equivalents); annual renewal disclosures, metadata, and visible/structured FAQs match. Monthly remains $12.99, the seven-day annual trial remains eligibility-based, and the red annual styling and existing launch offers are preserved. Website only; configure the matching Stripe annual Price before enabling purchases.
