@@ -19,6 +19,14 @@
   var clock = root.querySelector('[data-tock-clock]');
   var count = shots.length;
   var current = 0;
+  var secret = window.TockSecret;
+  var rotation = secret ? secret.createRotationTracker() : null;
+  var reward = root.querySelector('[data-tock-reward]');
+
+  function recordTurn(delta) {
+    if (rotation && rotation.add(delta) && reward) reward.hidden = false;
+  }
+
   var handDeg = 0; // cumulative, so the hands keep going round instead of rewinding
 
   function mod(n, m) { return ((n % m) + m) % m; }
@@ -67,6 +75,7 @@
     var sweep = Math.min(1400, 500 + Math.abs(delta) * 3.2);
     setHand(handDeg + delta, sweep);
     showShot(index);
+    return delta;
   }
 
   /* ---------- Autoplay: the hands go round, one screen per quarter ---------- */
@@ -132,19 +141,23 @@
       var r = clock.getBoundingClientRect();
       var dx = e.clientX - (r.left + r.width / 2);
       var dy = e.clientY - (r.top + r.height / 2);
+      if (Math.hypot(dx, dy) < r.width * 0.16) return null;
       return mod(Math.atan2(dx, -dy) * 180 / Math.PI, 360); // 0 at 12 o'clock, clockwise
     }
 
-    function follow(angle) {
-      var diff = mod(angle - lastAngle + 180, 360) - 180; // unwrap across 12 o'clock
+    function follow(angle, manual) {
+      if (angle === null) { lastAngle = null; return; }
+      if (lastAngle === null) { lastAngle = angle; return; }
+      var diff = secret ? secret.angleDelta(lastAngle, angle) : mod(angle - lastAngle + 180, 360) - 180; // unwrap across 12 o'clock
       lastAngle = angle;
+      if (manual !== false) recordTurn(diff);
       setHand(handDeg + diff, 0);
       var nearest = mod(Math.round(handDeg / (360 / count)), count);
       if (nearest !== current) showShot(nearest);
     }
 
     clock.addEventListener('pointerdown', function (e) {
-      if (e.button != null && e.button !== 0) return;
+      if (pointerId !== null || (e.button != null && e.button !== 0)) return;
       e.preventDefault();
       pointerId = e.pointerId;
       clock.setPointerCapture(pointerId);
@@ -152,7 +165,7 @@
       clock.classList.add('is-dragging');
       section.classList.add('is-dragging');
       lastAngle = mod(handDeg, 360);
-      follow(angleAt(e)); // the hand jumps to where you grabbed
+      follow(angleAt(e), false); // Grabbing/jumping is never counted toward the secret.
       clearTimeout(timer);
     });
 
@@ -173,11 +186,12 @@
     }
     clock.addEventListener('pointerup', release);
     clock.addEventListener('pointercancel', release);
+    clock.addEventListener('lostpointercapture', release);
 
     clock.addEventListener('keydown', function (e) {
       var key = e.key;
-      if (key === 'ArrowRight' || key === 'ArrowUp') goTo(current + 1, 'forward');
-      else if (key === 'ArrowLeft' || key === 'ArrowDown') goTo(current - 1, 'backward');
+      if (key === 'ArrowRight' || key === 'ArrowUp') recordTurn(goTo(current + 1, 'forward'));
+      else if (key === 'ArrowLeft' || key === 'ArrowDown') recordTurn(goTo(current - 1, 'backward'));
       else if (key === 'Home') goTo(0);
       else if (key === 'End') goTo(count - 1);
       else return;

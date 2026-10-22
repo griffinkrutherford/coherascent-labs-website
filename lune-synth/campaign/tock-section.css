@@ -657,3 +657,24 @@ main #tock-title::before {
 /* App-blocking footnote. */
 .section--tock .tock-asterisk { color: inherit; text-decoration: none; }
 .section--tock .tock-footnote { margin: 0; color: var(--muted, rgba(255,255,255,.62)); font-size: 12.5px; }
+
+/* Revealed only by a manual full turn of the short hand. */
+.section--tock .tock-reward[hidden] { display: none; }
+.section--tock .tock-reward {
+  grid-column: 1 / -1;
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid rgba(220, 179, 255, 0.6);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(164, 123, 255, 0.17), rgba(255, 164, 194, 0.12)), #111629;
+  color: #edf5ff;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.section--tock .tock-reward p { margin: 0 0 10px; }
+.section--tock .tock-reward p:last-child { margin-bottom: 0; }
+.section--tock .tock-reward__title { font-size: 1.12rem; font-weight: 800; color: #f3d4ff; }
+.section--tock .tock-reward__combination { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.section--tock .tock-reward__combination strong { padding: 6px 10px; border: 1px solid rgba(237,245,255,0.32); border-radius: 9px; }
+.section--tock .tock-reward__note { font-size: 0.78rem; color: #c8c4d7; }
