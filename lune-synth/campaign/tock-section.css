@@ -675,8 +675,8 @@ main #tock-title::before {
 .section--tock .tock-reward p { margin: 0 0 10px; }
 .section--tock .tock-reward p:last-child { margin-bottom: 0; }
 .section--tock .tock-reward__title { font-size: 1.12rem; font-weight: 800; color: #f3d4ff; }
-.section--tock .tock-reward__combination { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.section--tock .tock-reward__combination strong { padding: 6px 10px; border: 1px solid rgba(237,245,255,0.32); border-radius: 9px; }
+.section--tock .tock-reward__sequence { margin: 0 0 12px; padding-left: 24px; }
+.section--tock .tock-reward__sequence li { padding: 6px 8px; margin-bottom: 6px; border: 1px solid rgba(237,245,255,0.32); border-radius: 9px; font-weight: 700; }
 .section--tock .tock-reward__note { font-size: 0.78rem; color: #c8c4d7; }
 .section--tock .tock-reward--golden {
   border-color: rgba(255, 214, 112, 0.7);

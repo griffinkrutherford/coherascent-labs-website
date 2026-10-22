@@ -109,16 +109,25 @@ test('200 seeded seven-day sweeps preserve wrap, reversed travel and exact thres
 });
 
 
-test('rotating codes validate the set, wheel values, free risk and server expiry', () => {
-  const base = { set: 'standard', durationMinutes: 75, riskLevel: 0,
+test('two/three-step codes validate order, slider positions, wheel values and server expiry', () => {
+  const base = { set: 'standard', durationMinutes: 75, riskLevel: 0, sequenceVersion: 1,
+    sequence: [{control:'time',value:75},{control:'risk',value:5}],
     expiresAt: '2026-10-22T20:10:00.000Z', serverNow: '2026-10-22T20:00:00.000Z' };
-  assert.deepEqual(parseWardrobeCode(base, 'standard'), { duration: '1 hr 15 min', remainingMs: 600000 });
-  assert.deepEqual(parseWardrobeCode({ ...base, set: 'golden', durationMinutes: 120 }, 'golden'), { duration: '2 hr', remainingMs: 600000 });
-  assert.equal(parseWardrobeCode({ ...base, durationMinutes: 5 }, 'standard').duration, '5 min');
+  assert.deepEqual(parseWardrobeCode(base, 'standard'), { steps: ['Set time to 1 hr 15 min','Set risk slider to 50%'], remainingMs: 600000 });
+  const golden = {...base,set:'golden',durationMinutes:120,sequence:[{control:'time',value:120},{control:'risk',value:2},{control:'time',value:30}]};
+  assert.deepEqual(parseWardrobeCode(golden, 'golden'), { steps: ['Set time to 2 hr','Set risk slider to 20%','Set time to 30 min'], remainingMs: 600000 });
   assert.equal(parseWardrobeCode({ ...base, set: 'unknown' }, 'unknown'), null);
   for (const wrong of [null, {}, { ...base, set: 'golden' }, { ...base, durationMinutes: 73 },
     { ...base, durationMinutes: 0 }, { ...base, durationMinutes: 125 }, { ...base, durationMinutes: '75' },
     { ...base, riskLevel: 1 }, { ...base, riskLevel: '0' }, { ...base, expiresAt: 'invalid' },
     { ...base, serverNow: base.expiresAt }, { ...base, expiresAt: '2026-10-22T20:10:01.000Z' },
-    { ...base, serverNow: null }, { ...base, serverNow: '2026-10-22' }]) assert.equal(parseWardrobeCode(wrong, 'standard'), null);
+    { ...base, serverNow: null }, { ...base, serverNow: '2026-10-22' },
+    {...base,sequenceVersion:undefined}, {...base,sequenceVersion:2}, {...base,sequence:[]},
+    {...base,sequence:[base.sequence[0]]}, {...base,sequence:[...base.sequence].reverse()},
+    {...base,sequence:[{control:'time',value:70},base.sequence[1]]},
+    {...base,sequence:[base.sequence[0],{control:'risk',value:6}]},
+    {...base,sequence:[base.sequence[0],{control:'risk',value:2.5}]},
+    {...base,sequence:[base.sequence[0],null]}]) assert.equal(parseWardrobeCode(wrong, 'standard'), null);
+  for(const sequence of [golden.sequence.slice(0,2),[...golden.sequence,{control:'risk',value:0}],
+    [golden.sequence[0],golden.sequence[1],golden.sequence[0]]]) assert.equal(parseWardrobeCode({...golden,sequence},'golden'),null);
 });

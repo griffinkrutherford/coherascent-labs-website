@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-22: Website discoveries now reveal two ordered time/risk settings for the standard Easter Egg and three for Golden Egg, with rotating sequences, slider percentages and matching app-update guidance.
+
 - 2026-10-22: Made Jupiter the homepage Constellations overview’s default world, including its selected option, icon, frame theme, video and poster, for variety after the opening hook video.
 
 - 2026-10-22: Removed the “Solve it yourself, then get feedback.” paragraph above the Lune Synth homepage brain illustration.

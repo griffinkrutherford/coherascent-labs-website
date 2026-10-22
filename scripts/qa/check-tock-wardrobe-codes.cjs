@@ -19,7 +19,8 @@ if (captureDir) fs.mkdirSync(captureDir, { recursive: true });
         const set = new URL(route.request().url()).searchParams.get('set');
         calls[set]++;
         const now = Date.now();
-        await route.fulfill({ json: { set, durationMinutes: set === 'standard' ? 75 : 105, riskLevel: 0,
+        await route.fulfill({ json: { set, durationMinutes: set === 'standard' ? 75 : 105, riskLevel: 0, sequenceVersion: 1,
+          sequence: set === 'standard' ? [{control:'time',value:75},{control:'risk',value:5}] : [{control:'time',value:105},{control:'risk',value:2},{control:'time',value:30}],
           serverNow: new Date(now).toISOString(), expiresAt: new Date(now + 600000).toISOString() } });
       });
       await page.goto(base + '/lune-synth/index.html', { waitUntil: 'domcontentloaded' });
@@ -86,6 +87,8 @@ if (captureDir) fs.mkdirSync(captureDir, { recursive: true });
       await standard.locator('[data-tock-code]').waitFor({ state: 'visible' });
       await golden.locator('[data-tock-code]').waitFor({ state: 'visible' });
       assert.equal(calls.standard, 1); assert.equal(calls.golden, 1);
+      assert.deepEqual(await standard.locator('[data-tock-code] li').allTextContents(), ['Set time to 1 hr 15 min','Set risk slider to 50%']);
+      assert.deepEqual(await golden.locator('[data-tock-code] li').allTextContents(), ['Set time to 1 hr 45 min','Set risk slider to 20%','Set time to 30 min']);
       assert.match(await standard.innerText(), /every wardrobe category/);
       assert.match(await golden.innerText(), /1 hr 45 min/);
       assert.match(await golden.innerText(), /every wardrobe category/);
@@ -128,7 +131,8 @@ if (captureDir) fs.mkdirSync(captureDir, { recursive: true });
       await page.route('**/v1/public/tock-wardrobe-code?set=*', async route => {
         count++;
         if (count === 2) return route.abort('failed');
-        await route.fulfill({ json: { set: 'standard', durationMinutes: count === 1 ? 75 : 95, riskLevel: 0,
+        await route.fulfill({ json: { set: 'standard', durationMinutes: count === 1 ? 75 : 95, riskLevel: 0, sequenceVersion: 1,
+          sequence: [{control:'time',value:count === 1 ? 75 : 95},{control:'risk',value:5}],
           serverNow: '2026-10-22T20:00:00Z', expiresAt: count === 1 ? '2026-10-22T20:00:05Z' : '2026-10-22T20:10:00Z' } });
       });
       await keys(page, 48);

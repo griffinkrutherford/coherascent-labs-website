@@ -24,20 +24,37 @@
       isGoldenUnlocked: function () { return goldenUnlocked; }
     };
   }
+  function formatDuration(value) {
+    var hours = Math.floor(value / 60);
+    var minutes = value % 60;
+    return hours ? hours + ' hr' + (minutes ? ' ' + minutes + ' min' : '') : minutes + ' min';
+  }
   function parseWardrobeCode(value, set) {
     if ((set !== 'standard' && set !== 'golden') || !value || value.set !== set || !Number.isInteger(value.durationMinutes) ||
         value.durationMinutes < 5 || value.durationMinutes > 120 || value.durationMinutes % 5 !== 0 ||
-        value.riskLevel !== 0 || typeof value.expiresAt !== 'string' || typeof value.serverNow !== 'string') return null;
+        value.riskLevel !== 0 || typeof value.expiresAt !== 'string' || typeof value.serverNow !== 'string' ||
+        value.sequenceVersion !== 1 || !Array.isArray(value.sequence) || value.sequence.length !== (set === 'standard' ? 2 : 3)) return null;
+    var steps = [];
+    for (var i = 0; i < value.sequence.length; i++) {
+      var step = value.sequence[i];
+      var control = i % 2 === 0 ? 'time' : 'risk';
+      if (!step || step.control !== control || !Number.isInteger(step.value)) return null;
+      if (control === 'time') {
+        if (step.value < 5 || step.value > 120 || step.value % 5 !== 0) return null;
+        steps.push('Set time to ' + formatDuration(step.value));
+      } else {
+        if (step.value < 0 || step.value > 5) return null;
+        steps.push('Set risk slider to ' + (step.value * 10) + '%');
+      }
+    }
+    if (value.sequence[0].value !== value.durationMinutes || (set === 'golden' && value.sequence[0].value === value.sequence[2].value)) return null;
     var utcIso = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/;
     if (!utcIso.test(value.expiresAt) || !utcIso.test(value.serverNow)) return null;
     var expiresAt = Date.parse(value.expiresAt);
     var serverNow = Date.parse(value.serverNow);
     var remaining = expiresAt - serverNow;
     if (!Number.isFinite(remaining) || remaining <= 0 || remaining > 600000) return null;
-    var hours = Math.floor(value.durationMinutes / 60);
-    var minutes = value.durationMinutes % 60;
-    var duration = hours ? hours + ' hr' + (minutes ? ' ' + minutes + ' min' : '') : minutes + ' min';
-    return { duration: duration, remainingMs: remaining };
+    return { steps: steps, remainingMs: remaining };
   }
   var api = { angleDelta: angleDelta, createRotationTracker: createRotationTracker, parseWardrobeCode: parseWardrobeCode };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;

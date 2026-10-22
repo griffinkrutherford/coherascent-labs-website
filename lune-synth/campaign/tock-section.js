@@ -28,7 +28,6 @@
   function prepareCodeCard(card, set) {
     if (!card) return null;
     var combination = card.querySelector('[data-tock-code]');
-    var duration = card.querySelector('[data-tock-code-duration]');
     var status = card.querySelector('[data-tock-code-status]');
     var expiry = card.querySelector('[data-tock-code-expiry]');
     var retry = card.querySelector('[data-tock-code-retry]');
@@ -58,7 +57,12 @@
           var remaining = code ? code.remainingMs - (performance.now() - startedAt) : 0;
           if (remaining <= 0) throw new Error('Expired');
           var deadline = performance.now() + remaining;
-          duration.textContent = code.duration;
+          combination.replaceChildren();
+          code.steps.forEach(function (text) {
+            var item = document.createElement('li');
+            item.textContent = text;
+            combination.appendChild(item);
+          });
           combination.hidden = false;
           status.textContent = 'Use this combination in the app before it changes.';
           function updateCountdown() {
