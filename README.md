@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-23: Replaced the Voice and Text phone screenshots in the "Don't want to handwrite?" section with current-UI captures (the previous shots predated recent QuestionScreen UI changes), and added a new 11-inch iPad Pro screenshot of a multiple-choice question with a diagram to the Choice tab, which previously only showed a phone. Captures came from the mobile app's dev website-showcase harness (sample content, no personal data); existing Voice/Text iPad shots are unchanged.
+
 - 2026-10-22: Centered the mobile homepage tagline and sized it fluidly with the viewport so it fits one line; desktop typography is unchanged.
 
 - 2026-10-22: Website discoveries now reveal two ordered time/risk settings for the standard Easter Egg and three for Golden Egg, with rotating sequences, slider percentages and matching app-update guidance.
