@@ -85,7 +85,29 @@
         .finally(function () { clearTimeout(timeout); });
     }
     retry.addEventListener('click', load);
-    var entry = { stop: stop, load: load, card: card };
+
+    // The reveal is easy to miss sitting inline in the Wardrobe panel, so it
+    // pops to the front first. LuneModal moves this very card node (not a
+    // copy) into the dialog, so the live countdown/retry above keep working;
+    // closing it settles the card back where it already lives in the page,
+    // which is the pre-existing inline presentation.
+    var modal = null;
+    function popUp() {
+      if (!window.LuneModal) return;
+      if (!modal) {
+        var titleEl = card.querySelector('.tock-reward__title');
+        if (titleEl && !titleEl.id) titleEl.id = 'tock-reward-title-' + set;
+        modal = window.LuneModal.create({
+          className: 'lune-modal--tock-reward',
+          closeLabel: 'Close',
+          labelledBy: titleEl ? titleEl.id : undefined,
+          contentNode: card
+        });
+      }
+      modal.open();
+    }
+
+    var entry = { stop: stop, load: load, card: card, popUp: popUp };
     codeCards.push(entry);
     return entry;
   }
@@ -95,6 +117,7 @@
     if (!entry || !entry.card.hidden) return;
     entry.card.hidden = false;
     entry.load();
+    entry.popUp();
   }
   function recordTurn(delta) {
     if (!rotation) return;

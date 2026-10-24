@@ -658,9 +658,12 @@ main #tock-title::before {
 .section--tock .tock-asterisk { color: inherit; text-decoration: none; }
 .section--tock .tock-footnote { margin: 0; color: var(--muted, rgba(255,255,255,.62)); font-size: 12.5px; }
 
-/* Revealed only by a manual full turn of the short hand. */
-.section--tock .tock-reward[hidden] { display: none; }
-.section--tock .tock-reward {
+/* Revealed only by a manual full turn of the short hand. Each reward card
+   pops into a LuneModal on first reveal (tock-section.js moves the live
+   node, not a copy), then settles back into the section inline -- so these
+   rules have to match in both places. */
+.section--tock .tock-reward[hidden], .lune-modal .tock-reward[hidden] { display: none; }
+.section--tock .tock-reward, .lune-modal .tock-reward {
   grid-column: 1 / -1;
   margin: 20px 0;
   padding: 18px;
@@ -671,20 +674,21 @@ main #tock-title::before {
   font-size: 0.9rem;
   line-height: 1.6;
   overflow-wrap: anywhere;
+  text-align: left;
 }
-.section--tock .tock-reward p { margin: 0 0 10px; }
-.section--tock .tock-reward p:last-child { margin-bottom: 0; }
-.section--tock .tock-reward__title { font-size: 1.12rem; font-weight: 800; color: #f3d4ff; }
-.section--tock .tock-reward__sequence { margin: 0 0 12px; padding-left: 24px; }
-.section--tock .tock-reward__sequence li { padding: 6px 8px; margin-bottom: 6px; border: 1px solid rgba(237,245,255,0.32); border-radius: 9px; font-weight: 700; }
-.section--tock .tock-reward__note { font-size: 0.78rem; color: #c8c4d7; }
-.section--tock .tock-reward--golden {
+.section--tock .tock-reward p, .lune-modal .tock-reward p { margin: 0 0 10px; }
+.section--tock .tock-reward p:last-child, .lune-modal .tock-reward p:last-child { margin-bottom: 0; }
+.section--tock .tock-reward__title, .lune-modal .tock-reward__title { font-size: 1.12rem; font-weight: 800; color: #f3d4ff; }
+.section--tock .tock-reward__sequence, .lune-modal .tock-reward__sequence { margin: 0 0 12px; padding-left: 24px; }
+.section--tock .tock-reward__sequence li, .lune-modal .tock-reward__sequence li { padding: 6px 8px; margin-bottom: 6px; border: 1px solid rgba(237,245,255,0.32); border-radius: 9px; font-weight: 700; }
+.section--tock .tock-reward__note, .lune-modal .tock-reward__note { font-size: 0.78rem; color: #c8c4d7; }
+.section--tock .tock-reward--golden, .lune-modal .tock-reward--golden {
   border-color: rgba(255, 214, 112, 0.7);
   background: linear-gradient(135deg, rgba(255, 205, 85, 0.18), rgba(255, 155, 75, 0.1)), #111629;
 }
-.section--tock .tock-reward--golden .tock-reward__title { color: #ffe19a; }
-.section--tock .tock-reward [hidden] { display: none; }
-.section--tock .tock-reward__retry {
+.section--tock .tock-reward--golden .tock-reward__title, .lune-modal .tock-reward--golden .tock-reward__title { color: #ffe19a; }
+.section--tock .tock-reward [hidden], .lune-modal .tock-reward [hidden] { display: none; }
+.section--tock .tock-reward__retry, .lune-modal .tock-reward__retry {
   padding: 8px 14px;
   border: 1px solid rgba(237, 245, 255, 0.45);
   border-radius: 9px;
@@ -693,4 +697,9 @@ main #tock-title::before {
   font: inherit;
   cursor: pointer;
 }
-.section--tock .tock-reward__retry:focus-visible { outline: 2px solid #ffe19a; outline-offset: 3px; }
+.section--tock .tock-reward__retry:focus-visible, .lune-modal .tock-reward__retry:focus-visible { outline: 2px solid #ffe19a; outline-offset: 3px; }
+
+/* The reward card's own padding/border is enough inside the modal; drop
+   the generic LuneModal panel chrome so it doesn't double up. */
+.lune-modal--tock-reward .lune-modal__panel { padding: 30px 14px 14px; width: min(100%, 480px); }
+.lune-modal--tock-reward .lune-modal__body { text-align: left; }
