@@ -405,8 +405,11 @@ function serveLuneHost(req, res, pathname) {
     return;
   }
 
-  if (pathname === '/pro' || pathname === '/pro/') {
-    serveStatic(req, res, '/lune-synth/pro/index.html');
+  // The separate Pro page is retired (owner, 2026-10-24): Pro info lives
+  // only in the home page's pricing section. Old links land there.
+  if (pathname === '/pro' || pathname === '/pro/' || pathname.startsWith('/lune-synth/pro')) {
+    res.writeHead(302, { Location: '/#pricing', 'Cache-Control': 'no-cache' });
+    res.end();
     return;
   }
 

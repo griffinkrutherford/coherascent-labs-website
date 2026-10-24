@@ -21,7 +21,7 @@ function get(pathname, host) {
     const req = http.request({ host: 'localhost', port: PORT, path: pathname, headers: { Host: host } }, (res) => {
       let body = '';
       res.on('data', (chunk) => { body += chunk; });
-      res.on('end', () => resolve({ status: res.statusCode, body }));
+      res.on('end', () => resolve({ status: res.statusCode, body, headers: res.headers }));
     });
     req.on('error', reject);
     req.end();
@@ -52,26 +52,26 @@ test.after(() => {
   if (server) server.kill();
 });
 
-test('GET /pro/ on the lunesynth.com host serves the Pro page', async () => {
-  const { status, body } = await get('/pro/', 'lunesynth.com');
-  assert.equal(status, 200);
-  assert.match(body, /<title>Lune Synth Pro/);
+test('GET /pro/ redirects to the home page pricing section (Pro page retired)', async () => {
+  const { status, headers } = await get('/pro/', 'lunesynth.com');
+  assert.equal(status, 302);
+  assert.equal(headers.location, '/#pricing');
 });
 
-test('GET /pro (no trailing slash) also serves the Pro page', async () => {
+test('GET /pro (no trailing slash) also redirects to pricing', async () => {
   const { status } = await get('/pro', 'lunesynth.com');
-  assert.equal(status, 200);
+  assert.equal(status, 302);
 });
 
-test('/pro/ is not served on a host other than lunesynth.com (matches /about, /support)', async () => {
-  const { status } = await get('/pro/', 'coherascentlabs.com');
-  assert.equal(status, 404);
+test('the retired Pro page file is not reachable directly either', async () => {
+  const { status } = await get('/lune-synth/pro/', 'lunesynth.com');
+  assert.equal(status, 302);
 });
 
-test('the shared footer script links to /pro/', async () => {
+test('the shared footer no longer links to a separate Pro page', async () => {
   const { status, body } = await get('/campaign/site-footer.js', 'lunesynth.com');
   assert.equal(status, 200);
-  assert.match(body, /href="\/pro\/">Pro<\/a>/);
+  assert.doesNotMatch(body, /href="\/pro\//);
 });
 
 test('the homepage hero links to the pricing section next to the store badges', async () => {
