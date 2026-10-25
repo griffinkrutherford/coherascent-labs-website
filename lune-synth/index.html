@@ -12917,6 +12917,91 @@
         .problem-solver__device { transition: none; }
       }
     </style>
+    <!-- ================= LANGUAGE & ACCESSIBILITY SECTION ================= -->
+    <style>
+      .lang-a11y {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 1.75rem;
+        max-width: 1020px;
+        margin: 0 auto;
+      }
+      .lang-a11y__card {
+        padding: clamp(24px, 3vw, 32px);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--card);
+        box-shadow: var(--glow);
+      }
+      .lang-a11y__card h3 {
+        margin: 0 0 0.6rem;
+        color: var(--text);
+        font-size: 1.15rem;
+      }
+      .lang-a11y__card p {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 0.95rem;
+      }
+      .lang-a11y__list {
+        margin: 0 0 1.1rem;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.55rem;
+      }
+      .lang-a11y__list li {
+        position: relative;
+        padding-left: 1.3rem;
+        color: var(--text);
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+      .lang-a11y__list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.5em;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--blue);
+      }
+      .lang-a11y__cta {
+        display: inline-flex;
+      }
+      @media (max-width: 720px) {
+        .lang-a11y {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <section class="section section--lang-a11y" id="language-accessibility" aria-labelledby="lang-a11y-title">
+      <h2 class="section-title" id="lang-a11y-title">Learn your way</h2>
+      <div class="lang-a11y section-content">
+        <div class="lang-a11y__card">
+          <h3>Learn in your language</h3>
+          <p>Lune Synth's interface is available in nine languages &mdash; English, Spanish, French, German, Brazilian Portuguese, Simplified Chinese, Japanese, Korean, and Hindi &mdash; with coverage growing every release.</p>
+          <p>Studying a language instead of using the app in one? Our <a href="/study/languages/">language study pages</a> cover 14+ languages to practice.</p>
+          <a class="pricing-card__cta lang-a11y__cta" href="/study/languages/">Explore language study pages</a>
+        </div>
+        <div class="lang-a11y__card">
+          <h3>Built to be accessible</h3>
+          <p>Real accommodations, not an afterthought:</p>
+          <ul class="lang-a11y__list">
+            <li>Answer by voice, typing, or handwriting</li>
+            <li>Read-aloud question audio</li>
+            <li>Screen reader support (VoiceOver &amp; TalkBack labels throughout)</li>
+            <li>Larger text and dyslexia-friendly spacing</li>
+            <li>Reduce Motion override</li>
+            <li>High contrast mode</li>
+            <li>Separate haptics and sound-effect toggles</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= LUNA SECTION ================= -->
     <section class="section section--luna" id="luna" aria-labelledby="luna-title">
       <h2 class="section-title" id="luna-title">Luna</h2>
