@@ -46,6 +46,15 @@
               <a href="/study/history/">History</a>
               <a href="/study/psychology/">Psychology</a>
               <a href="/study/writing/">Writing</a>
+              <a href="/study/marketing/">Marketing</a>
+              <a href="/study/management/">Management</a>
+              <a href="/study/business-statistics/">Business Statistics</a>
+              <a href="/study/business-law/">Business Law</a>
+              <a href="/study/sociology/">Sociology</a>
+              <a href="/study/political-science/">Political Science</a>
+              <a href="/study/literature/">Literature</a>
+              <a href="/study/geography/">Geography</a>
+              <a href="/study/art-history/">Art History</a>
             </nav>
             <nav aria-label="Language subjects">
               <h3>Languages</h3>
@@ -105,6 +114,15 @@
               <a href="/for-parents/middle-school-math/">Middle School Math</a>
               <a href="/for-parents/high-school-math/">High School Math</a>
               <a href="/for-families/homeschool/">Homeschool</a>
+              <a href="/for-parents/reading-and-writing/">Reading &amp; Writing</a>
+              <a href="/for-parents/science-homework/">Science Homework</a>
+              <a href="/for-parents/test-prep/">Test Prep for Teens</a>
+              <a href="/for-families/summer-learning/">Summer Learning</a>
+              <a href="/for-parents/study-habits/">Study Habits &amp; Screen Time</a>
+              <a href="/for-parents/catching-up/">Catching Up</a>
+              <a href="/for-parents/tutoring-alternatives/">Tutoring Alternatives</a>
+              <a href="/for-parents/advanced-learners/">Advanced Learners</a>
+              <a href="/for-parents/learning-differences/">Learning Differences</a>
             </nav>
           </div>
         </section>
