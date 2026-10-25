@@ -110,6 +110,17 @@
               <a href="/for-students/study-consistency/">Study Consistency</a>
               <a href="/for-students/college-study/">College Study</a>
               <a href="/for-students/adult-learners/">Adult Learners</a>
+              <a href="/for-students/test-anxiety/">Test Anxiety</a>
+              <a href="/for-students/adhd-friendly-studying/">ADHD-Friendly Studying</a>
+              <a href="/for-students/first-generation-college/">First-Generation College</a>
+              <a href="/for-students/community-college/">Community College</a>
+              <a href="/for-students/career-changers/">Career Changers</a>
+              <a href="/for-students/international-students/">International Students</a>
+              <a href="/for-students/stem-majors/">STEM Majors</a>
+              <a href="/for-students/pre-med/">Pre-Med</a>
+              <a href="/for-students/homeschooled-teens/">Homeschooled Teens</a>
+              <a href="/for-students/self-taught-learners/">Self-Taught Learners</a>
+              <a href="/for-students/note-taking/">Note-Taking</a>
             </nav>
             <nav aria-label="Resources for parents and families">
               <h3>For parents &amp; families</h3>
