@@ -1,0 +1,53 @@
+/* Questions parents ask, plus the related-pages strip, for the
+   /for-parents/* and /for-families/* landing pages. Built on the landing.css
+   tokens and the .ap-directory link styles; nothing else depends on it. */
+
+.parent-faq { margin-top: clamp(38px, 6vw, 76px); }
+
+.parent-faq__list {
+  display: grid;
+  gap: 12px;
+  max-width: 860px;
+  margin: 32px 0 0;
+}
+
+.parent-faq__item {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+}
+
+.parent-faq__item > summary {
+  padding: 20px 22px;
+  cursor: pointer;
+  color: var(--text);
+  font: 750 16.5px/1.5 var(--font-sans);
+}
+
+.parent-faq__item > summary::marker { color: var(--blue); }
+.parent-faq__item > summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 18px; }
+
+.parent-faq__item > p {
+  margin: 0;
+  padding: 0 22px 20px;
+  color: var(--muted);
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.parent-faq__item > p a { color: var(--blue); }
+
+.parent-related { margin-top: clamp(38px, 6vw, 76px); }
+.parent-related > h2 {
+  margin: 0 0 24px;
+  font: 800 clamp(26px, 3.5vw, 42px)/1.15 var(--font-sans);
+  letter-spacing: -.035em;
+}
+.parent-related > .ap-directory__links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+@media (max-width: 700px) {
+  .parent-faq__item > summary { padding: 16px 18px; font-size: 15.5px; }
+  .parent-faq__item > p { padding: 0 18px 18px; font-size: 15px; }
+  .parent-related > .ap-directory__links { grid-template-columns: 1fr; }
+}
