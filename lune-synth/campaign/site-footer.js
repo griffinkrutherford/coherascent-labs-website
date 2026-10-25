@@ -67,6 +67,11 @@
               <a href="/study/chinese/">Chinese (Mandarin)</a>
               <a href="/study/korean/">Korean</a>
               <a href="/study/latin/">Latin</a>
+              <a href="/study/arabic/">Arabic</a>
+              <a href="/study/russian/">Russian</a>
+              <a href="/study/hindi/">Hindi</a>
+              <a href="/study/dutch/">Dutch</a>
+              <a href="/study/greek/">Greek</a>
               <a href="/study/esl/">English (ESL)</a>
               <a href="/study/languages/">All languages</a>
             </nav>
