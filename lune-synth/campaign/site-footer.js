@@ -37,6 +37,13 @@
               <a href="/study/nursing/">Nursing</a>
               <a href="/study/computer-science/">Computer Science</a>
               <a href="/study/engineering/">Engineering</a>
+              <a href="/study/biochemistry/">Biochemistry</a>
+              <a href="/study/microbiology/">Microbiology</a>
+              <a href="/study/environmental-science/">Environmental Science</a>
+              <a href="/study/astronomy/">Astronomy</a>
+              <a href="/study/pharmacology/">Pharmacology</a>
+              <a href="/study/data-science/">Data Science</a>
+              <a href="/study/electrical-engineering/">Electrical Engineering</a>
             </nav>
             <nav aria-label="Business and humanities subjects">
               <h3>Business &amp; humanities</h3>
