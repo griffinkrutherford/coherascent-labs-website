@@ -96,6 +96,14 @@
               <a href="/test-prep/ib-exams/">IB Exams</a>
               <a href="/test-prep/ged/">GED</a>
               <a href="/test-prep/state-assessments/">State Assessments</a>
+              <a href="/test-prep/clep/">CLEP</a>
+              <a href="/test-prep/accuplacer/">ACCUPLACER</a>
+              <a href="/test-prep/toefl/">TOEFL</a>
+              <a href="/test-prep/ielts/">IELTS</a>
+              <a href="/test-prep/duolingo-english-test/">Duolingo English Test</a>
+              <a href="/test-prep/ssat/">SSAT</a>
+              <a href="/test-prep/isee/">ISEE</a>
+              <a href="/test-prep/ny-regents/">NY Regents</a>
             </nav>
             <nav aria-label="Graduate and professional tests">
               <h3>Graduate &amp; professional</h3>
