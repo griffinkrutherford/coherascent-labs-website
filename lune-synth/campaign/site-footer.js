@@ -105,6 +105,15 @@
               <a href="/test-prep/mcat/">MCAT</a>
               <a href="/test-prep/usmle/">USMLE</a>
               <a href="/test-prep/phd-qualifying-exams/">PhD Qualifying Exams</a>
+              <a href="/test-prep/nclex/">NCLEX</a>
+              <a href="/test-prep/bar-exam/">Bar Exam</a>
+              <a href="/test-prep/cpa/">CPA</a>
+              <a href="/test-prep/cfa/">CFA</a>
+              <a href="/test-prep/dat/">DAT</a>
+              <a href="/test-prep/oat/">OAT</a>
+              <a href="/test-prep/comlex/">COMLEX</a>
+              <a href="/test-prep/fe-exam/">FE Exam</a>
+              <a href="/test-prep/praxis/">Praxis</a>
             </nav>
           </div>
         </section>
