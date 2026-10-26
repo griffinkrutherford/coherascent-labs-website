@@ -148,7 +148,15 @@ def resolve_src(src: str, html_path: str) -> str:
     # Strip a cache-busting query string / fragment, e.g. "earth.svg?v=2".
     src = src.split("#", 1)[0].split("?", 1)[0]
     if src.startswith("/"):
-        return os.path.normpath(os.path.join(REPO_ROOT, src.lstrip("/")))
+        # The deployed site serves absolute paths from both the repo root
+        # (e.g. /mobile-app-assets/...) and lune-synth/ (e.g. /blog/...,
+        # /campaign/...), so accept whichever one actually has the file.
+        rel = src.lstrip("/")
+        for root in (REPO_ROOT, LUNE_ROOT):
+            candidate = os.path.normpath(os.path.join(root, rel))
+            if os.path.exists(candidate):
+                return candidate
+        return os.path.normpath(os.path.join(REPO_ROOT, rel))
     return os.path.normpath(os.path.join(os.path.dirname(html_path), src))
 
 
