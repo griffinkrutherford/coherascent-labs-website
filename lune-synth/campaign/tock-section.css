@@ -374,18 +374,59 @@ main #tock-title::before {
 .section--tock .tock-clock {
   --size: clamp(132px, 12vw, 156px);
   position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
   width: var(--size);
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 2px solid rgba(111, 231, 255, 0.45);
+  border: 1px solid #a0b0bc;
   background:
-    radial-gradient(circle at 50% 40%, rgba(111, 231, 255, 0.1), transparent 62%),
-    rgba(6, 12, 28, 0.9);
-  box-shadow: 0 0 0 6px rgba(111, 231, 255, 0.05), 0 0 34px rgba(111, 231, 255, 0.14), inset 0 0 22px rgba(0, 0, 0, 0.5);
+    repeating-conic-gradient(from -1deg, rgba(230, 246, 255, 0.38) 0deg 1deg, rgba(4, 12, 18, 0.7) 2deg 3deg, transparent 4deg 6deg),
+    conic-gradient(from 25deg, #121e27, #c0d1d9 14%, #344651 26%, #0b161f 40%, #9babba 57%, #22333e 72%, #d0dde2 86%, #121e27);
+  box-shadow:
+    0 0 0 2px #15232c,
+    0 0 0 3px rgba(174, 206, 218, 0.24),
+    0 12px 22px -10px rgba(0, 0, 0, 0.85),
+    0 0 22px rgba(111, 231, 255, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 3px #071018;
   cursor: grab;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+}
+
+/* Applied dial and a ribbed crown; neither intercepts the existing slider. */
+.section--tock .tock-clock::before {
+  content: "";
+  position: absolute;
+  inset: 7%;
+  border: 1px solid #718995;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 23%, rgba(87, 151, 163, 0.2), transparent 58%),
+    repeating-conic-gradient(from 10deg, rgba(128, 175, 185, 0.025) 0deg 0.8deg, transparent 0.8deg 2deg),
+    linear-gradient(145deg, #0e2029, #040c12 67%, #0a1820);
+  box-shadow:
+    0 0 0 2px #08141c,
+    inset 0 0 0 1px rgba(196, 222, 230, 0.16),
+    inset 0 3px 9px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+}
+
+.section--tock .tock-clock::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 43%;
+  right: -5%;
+  width: 6%;
+  height: 14%;
+  border: 1px solid #8094a1;
+  border-radius: 2px;
+  background: repeating-linear-gradient(0deg, #172730 0 1px, #9baeb9 1px 2px, #344854 2px 3px);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
 }
 
 .section--tock .tock-clock.is-dragging { cursor: grabbing; }
@@ -397,11 +438,21 @@ main #tock-title::before {
 
 .section--tock .tock-clock__ticks {
   position: absolute;
-  inset: 6px;
+  inset: 11%;
   border-radius: 50%;
-  background: repeating-conic-gradient(from -1deg, rgba(237, 245, 255, 0.3) 0 2deg, transparent 2deg 30deg);
-  -webkit-mask: radial-gradient(circle, transparent 0 84%, #000 85%);
-  mask: radial-gradient(circle, transparent 0 84%, #000 85%);
+  background:
+    repeating-conic-gradient(from -0.4deg, rgba(212, 231, 237, 0.7) 0deg 0.8deg, transparent 0.8deg 6deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 0 91%, #000 92% 98%, transparent 99%);
+  mask: radial-gradient(closest-side, transparent 0 91%, #000 92% 98%, transparent 99%);
+  pointer-events: none;
+}
+
+.section--tock .tock-clock__ticks::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-conic-gradient(from -1.2deg, #c9f6e5 0deg 2.4deg, transparent 2.4deg 30deg);
 }
 
 .section--tock .tock-clock__mark {
@@ -409,13 +460,17 @@ main #tock-title::before {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 10px;
-  height: 10px;
-  margin: -5px 0 0 -5px;
-  border-radius: 50%;
-  background: rgba(237, 245, 255, 0.28);
-  transform: rotate(var(--a)) translateY(calc(var(--size) * -0.34)) rotate(calc(var(--a) * -1));
-  transition: background 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+  box-sizing: border-box;
+  width: 5px;
+  height: 12px;
+  margin: -6px 0 0 -2.5px;
+  border: 1px solid #b1c8ce;
+  border-radius: 1px;
+  background: #a8d1c6;
+  box-shadow: 0 0 3px rgba(116, 230, 166, 0.14), inset 0 0 0 1px rgba(9, 27, 30, 0.3);
+  transform: rotate(var(--a)) translateY(calc(var(--size) * -0.29));
+  transition: background 300ms ease, box-shadow 300ms ease;
+  pointer-events: none;
 }
 
 .section--tock .tock-clock__mark[data-tock-mark="1"] { --a: 90deg; }
@@ -423,33 +478,35 @@ main #tock-title::before {
 .section--tock .tock-clock__mark[data-tock-mark="3"] { --a: 270deg; }
 
 .section--tock .tock-clock__mark.is-active {
-  background: var(--tock-pink);
-  box-shadow: 0 0 12px rgba(255, 93, 135, 0.7);
+  background: #d2fff2;
+  box-shadow: 0 0 5px rgba(116, 230, 166, 0.65), 0 0 11px rgba(111, 231, 255, 0.28);
 }
 
 .section--tock .tock-clock__hand {
   position: absolute;
   left: 50%;
   bottom: 50%;
-  border-radius: 999px;
+  clip-path: polygon(50% 0, 100% 22%, 78% 84%, 66% 100%, 34% 100%, 22% 84%, 0 22%);
   transform-origin: 50% 100%;
   transition: transform var(--tock-sweep, 900ms) cubic-bezier(0.45, 0, 0.2, 1);
+  pointer-events: none;
 }
 
 .section--tock .tock-clock__hand--minute {
-  width: 4px;
-  height: 40%;
-  margin-left: -2px;
-  background: linear-gradient(0deg, var(--tock-cyan), #eaffff);
-  box-shadow: 0 0 10px rgba(111, 231, 255, 0.55);
+  width: 6px;
+  height: 31%;
+  margin-left: -3px;
+  background: linear-gradient(90deg, #829da7 0 20%, #d5fff3 25% 60%, #9bd7ca 66% 78%, #e9f5f8 82%);
+  filter: drop-shadow(0 0 3px rgba(111, 231, 255, 0.5));
   transform: rotate(var(--tock-hand, 0deg));
 }
 
 .section--tock .tock-clock__hand--hour {
-  width: 6px;
-  height: 26%;
-  margin-left: -3px;
-  background: linear-gradient(0deg, #a47bff, #d9c8ff);
+  width: 9px;
+  height: 23%;
+  margin-left: -4.5px;
+  background: linear-gradient(90deg, #708c99 0 18%, #c5f1dd 24% 62%, #7eb9a9 68% 78%, #e9f5f8 84%);
+  filter: drop-shadow(0 0 2px rgba(116, 230, 166, 0.35));
   transform: rotate(calc(var(--tock-hand, 0deg) / 12));
 }
 
@@ -462,12 +519,15 @@ main #tock-title::before {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 12px;
-  height: 12px;
-  margin: -6px 0 0 -6px;
+  box-sizing: border-box;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border: 1px solid #d5e6eb;
   border-radius: 50%;
-  background: var(--tock-pink);
-  box-shadow: 0 0 10px rgba(255, 93, 135, 0.6);
+  background: radial-gradient(circle at 35% 30%, #d6fff0, #5b968b 40%, #152d35 65%);
+  box-shadow: 0 0 0 1px #10212b, 0 0 5px rgba(111, 231, 255, 0.25);
+  pointer-events: none;
 }
 
 .section--tock .tock-clock__hint {
