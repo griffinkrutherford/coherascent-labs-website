@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-26: Replaced duplicated second-slot screenshots on nine study pages with distinct native app questions for each subject, each with its own color theme, full subject badge and 9:41 status bar. Updated captions and alternative text to match; exported full and 480px WebP assets. All eighteen exports were individually inspected; the screenshot guard passes across 165 landing pages.
+
 - 2026-10-23: Replaced the Voice and Text phone screenshots in the "Don't want to handwrite?" section with current-UI captures (the previous shots predated recent QuestionScreen UI changes), and added a new 11-inch iPad Pro screenshot of a multiple-choice question with a diagram to the Choice tab, which previously only showed a phone. Captures came from the mobile app's dev website-showcase harness (sample content, no personal data); existing Voice/Text iPad shots are unchanged.
 
 - 2026-10-22: Centered the mobile homepage tagline and sized it fluidly with the viewport so it fits one line; desktop typography is unchanged.
