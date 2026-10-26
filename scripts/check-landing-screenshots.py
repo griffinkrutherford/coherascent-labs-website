@@ -18,6 +18,17 @@ so it cannot silently reappear:
      reuses study/algebra/'s screenshot; a German page and a Dutch page do
      not legitimately share anything). New shared images must be added to
      the allowlist deliberately, with a reason, or the guard fails.
+  4. Same-page duplication (2026-10-26 owner report: a study page's hero shot
+     and its in-body figure showed the same screenshot). Every <picture> block
+     and every <video> block on a page counts as ONE image, and every
+     standalone <img> (not inside a <picture>) counts as its own image too;
+     <link rel=preload> and <meta> tags are not image tags and are never
+     scanned. Within one page, no two of those image units may point at the
+     same underlying screenshot once -mid/-low/width-in-pixels suffixes are
+     normalised away (e.g. "foo-mid.webp" and "foo.webp" are the same shot).
+     A page is free to show the same screenshot's two *different* figures
+     (e.g. an org chart and a separate Gantt chart); it may never show the
+     exact same shot twice.
 
 Stdlib only. Run from anywhere:
     python3 scripts/check-landing-screenshots.py
@@ -47,6 +58,97 @@ NON_LANDING_DIRS = {
 }
 
 IMG_SRC_RE = re.compile(r'<(?:img|source)\b[^>]*\bsrc="([^"]+)"', re.IGNORECASE)
+
+# --- Rule 4: same-page duplication ------------------------------------------
+PICTURE_BLOCK_RE = re.compile(r"<picture\b[^>]*>.*?</picture\s*>", re.IGNORECASE | re.DOTALL)
+VIDEO_BLOCK_RE = re.compile(r"<video\b[^>]*>.*?</video\s*>", re.IGNORECASE | re.DOTALL)
+IMG_TAG_RE = re.compile(r"<img\b[^>]*>", re.IGNORECASE)
+ATTR_SRC_RE = re.compile(r'\bsrc="([^"]+)"', re.IGNORECASE)
+ATTR_SRCSET_RE = re.compile(r'\bsrcset="([^"]+)"', re.IGNORECASE)
+ATTR_POSTER_RE = re.compile(r'\bposter="([^"]+)"', re.IGNORECASE)
+# .webp/.png/etc at the end of a filename, so it can be stripped before the
+# -mid/-low/width suffix underneath it is stripped too.
+MEDIA_EXT_RE = re.compile(r"\.(?:webp|png|jpe?g|gif|svg|mp4|webm|avif)$", re.IGNORECASE)
+# "-mid"/"-low", or a pixel width (>= 3 digits, optionally followed by the
+# srcset "w" unit, e.g. "-384", "-1206w"). Kept at 3+ digits on purpose: a
+# sequence number like "step-1"/"step-3" (five distinct walkthrough clips)
+# must NOT collapse onto the same id.
+SIZE_SUFFIX_RE = re.compile(r"-(?:mid|low|\d{3,}w?)$", re.IGNORECASE)
+
+
+def normalize_screenshot_id(url: str) -> str | None:
+    """A screenshot URL's filename with its directory, query/fragment, file
+    extension and any -mid/-low/width suffix stripped, so every size/format
+    variant of the same shot normalises to one id."""
+    url = url.split("#", 1)[0].split("?", 1)[0].strip()
+    if not url:
+        return None
+    base = url.rsplit("/", 1)[-1]
+    base = MEDIA_EXT_RE.sub("", base)
+    while True:
+        stripped = SIZE_SUFFIX_RE.sub("", base)
+        if stripped == base:
+            break
+        base = stripped
+    return base or None
+
+
+def is_screenshot_url(url: str) -> bool:
+    # Broader than SCREENSHOT_PATH_MARKER on purpose: video src/poster paths
+    # on this site are often relative ("screenshots/applied/...") rather than
+    # the absolute "/mobile-app-assets/screenshots/..." used by <img>/<source>.
+    return "screenshot" in url.lower()
+
+
+def extract_unit_screenshot_ids(block_html: str) -> set[str]:
+    """Every screenshot id a <picture>/<video>/standalone-<img> block
+    references (its src, every srcset candidate, and a <video>'s poster)."""
+    ids: set[str] = set()
+    for pattern in (ATTR_SRC_RE, ATTR_POSTER_RE):
+        for match in pattern.finditer(block_html):
+            url = match.group(1)
+            if is_screenshot_url(url):
+                normalized = normalize_screenshot_id(url)
+                if normalized:
+                    ids.add(normalized)
+    for match in ATTR_SRCSET_RE.finditer(block_html):
+        for candidate in match.group(1).split(","):
+            url = candidate.strip().split(" ", 1)[0]
+            if url and is_screenshot_url(url):
+                normalized = normalize_screenshot_id(url)
+                if normalized:
+                    ids.add(normalized)
+    return ids
+
+
+def find_same_page_duplicate_screenshots(html: str) -> dict[str, int]:
+    """{screenshot_id: unit_count} for every screenshot id referenced by 2+
+    distinct image units (a <picture> block, a <video> block, or a
+    standalone <img>) on one page."""
+    remaining = html
+    units: list[set[str]] = []
+
+    def consume(pattern: re.Pattern[str], text: str) -> str:
+        def replace(match: re.Match[str]) -> str:
+            ids = extract_unit_screenshot_ids(match.group(0))
+            if ids:
+                units.append(ids)
+            return ""  # drop the block so its inner tags are not rescanned
+
+        return pattern.sub(replace, text)
+
+    remaining = consume(PICTURE_BLOCK_RE, remaining)
+    remaining = consume(VIDEO_BLOCK_RE, remaining)
+    for match in IMG_TAG_RE.finditer(remaining):
+        ids = extract_unit_screenshot_ids(match.group(0))
+        if ids:
+            units.append(ids)
+
+    counts: dict[str, int] = defaultdict(int)
+    for unit_ids in units:
+        for screenshot_id in unit_ids:
+            counts[screenshot_id] += 1
+    return {sid: count for sid, count in counts.items() if count >= 2}
 
 # Rule 3 (cross-topic sharing) only applies to actual in-app screenshots.
 # Brand marks (the app icon, Luna emote stickers, etc.) legitimately repeat
@@ -211,6 +313,14 @@ def main() -> int:
                         f"is {actual_code!r}"
                     )
 
+        # Rule 4: the same screenshot used more than once on this one page.
+        for screenshot_id, unit_count in find_same_page_duplicate_screenshots(html).items():
+            problems.append(
+                f"SAME-PAGE DUPLICATE  {rel_page}: screenshot {screenshot_id!r} "
+                f"appears in {unit_count} places on this page; every screenshot "
+                f"on a page must be distinct"
+            )
+
     # Rule 3: cross-topic sharing not covered by the allowlist.
     for src, using_pages in src_to_pages.items():
         if len(using_pages) < 2:
@@ -230,7 +340,10 @@ def main() -> int:
             print(f"  - {p}")
         return 1
 
-    print("No missing files, language mismatches, or undocumented shared screenshots.")
+    print(
+        "No missing files, language mismatches, undocumented shared "
+        "screenshots, or same-page duplicates."
+    )
     return 0
 
 
