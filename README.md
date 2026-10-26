@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-26: Made social-media app blocking explicit in the homepage’s Tock focus-timer copy, retaining the existing coming-soon availability note.
+
 - 2026-10-26: Re-captured the homepage’s four Tock screenshots from the current simplified native timer, fullscreen viewer and Wardrobe. Easter Egg, Golden Egg, Gold medal and wizard/Gem Shades outfits each use a distinct app theme, with matching updated alternative text and cache versions. All eight full/480px exports were individually inspected; the screenshot guard passes across 165 landing pages.
 
 - 2026-10-26: Replaced duplicated second-slot screenshots on nine study pages with distinct native app questions for each subject, each with its own color theme, full subject badge and 9:41 status bar. Updated captions and alternative text to match; exported full and 480px WebP assets. All eighteen exports were individually inspected; the screenshot guard passes across 165 landing pages.
