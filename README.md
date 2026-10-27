@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-27: Fixed the shared modal's unwired X button and versioned its script URL. Added actual-browser close/reopen, mouse/touch/keyboard, Escape and focus-restoration coverage for the Tock reward and public store dialogs; retained the failing pre-fix reproduction.
+
 - 2026-10-27: Expanded the Engine card to the same full container width as Medals and made the homepage story link a clearly filled button, with a 48px target, hover feedback, visible keyboard focus and reduced-motion support. Preserved its existing text and About-page destination.
 
 - 2026-10-27: Corrected the Earth background video and poster URLs to the existing `/lune-synth/videos/` production routes. The initial local preview accepted `/videos/` paths that the production host does not map; live route checks caught the mismatch after publishing.

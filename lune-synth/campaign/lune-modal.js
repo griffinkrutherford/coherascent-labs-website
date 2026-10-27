@@ -109,6 +109,8 @@
       (autofocusTarget || closeButton).focus();
     }
 
+    closeButton.addEventListener("click", close);
+
     panel.addEventListener("click", function (event) {
       if (event.target.closest("[data-modal-close]")) close();
     });
