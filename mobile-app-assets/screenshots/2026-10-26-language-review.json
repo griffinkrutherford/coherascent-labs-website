@@ -1,0 +1,785 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-26",
+  "status": "PASS: all27 current actual exports independently opened and semantically accepted; nativeDEV capture scope only",
+  "scope": "Actual native DEV screenshot exports only; not signed-build, live-model or whole-app feature acceptance",
+  "sourcePolicy": "Exact candidate commit and offline bundle hash per capture; Home/lesson and Shop candidates are separate",
+  "candidates": {
+    "homeAndLessons": {
+      "commit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptures": 13,
+      "exports": 18,
+      "semanticReview": "PASS",
+      "sourceTreeSHA": "cc87ec0233c071a0183a816bc2651009d7b7ebb2"
+    },
+    "shop": {
+      "commit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCapturesRequired": 9,
+      "exportsRequired": 9,
+      "sourceChecks": "PASS:7core/manifest tests;29Jest tests across3suites;mobile TypeScript exit0;diff check clean",
+      "nativeCaptureAndExportReview": "PASS:9 current nativeShop captures and9 exact WebP exports;superseded3cbShop approvals excluded",
+      "nativeCaptures": 9,
+      "exports": 9,
+      "sourceTreeSHA": "84abc017b9aef3c43a7b5f184bb74d8ea052e603"
+    }
+  },
+  "captureConfiguration": {
+    "api": "isolated localhost",
+    "auth": "isolated localhost",
+    "EXPO_PUBLIC_FLOW_TIMER": "true",
+    "productionDefaultsChanged": false,
+    "imageTextEditsOrCrops": "none",
+    "fullNativeDimensions": [
+      1290,
+      2796
+    ],
+    "midExportDimensions": [
+      480,
+      1040
+    ]
+  },
+  "reviewer": "website_visual",
+  "requiredFinalExports": 27,
+  "supersededEvidence": "Earlier3cbShop exports and approvals are excluded after the owner requested three actual overlapping previews per hub card. Raw/history proofs retained by capture/review owners.",
+  "items": [
+    {
+      "asset": "lune-synth/screenshots/applied/lang/home-de.webp",
+      "sha256": "b2950ad1bf0cadf6f0677deba1b9fc38bf38343161d84c80a26efe3b5e8f3f8c",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "de",
+      "fixture": "website-locale-gallery-home-de",
+      "variant": "website-home-de",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "5fc3908a375a3eedd867b2216dfbed9e966b9baa80d2426f93930d5b3ff4f59a",
+      "capturedAt": "2026-10-26T17:51:13.933906-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual WebP export.",
+        "German main title Algebra-Grundlagen, notebook Algebra and all primary controls match selected UI; real Timer clock/Solver bulb visible;9:41/full frame.",
+        "Intentional Schnellmissio… header ellipsis is inside bounds and explicitly parent-accepted; do not claim full heading readability. ON avatar initials are not a translated control.",
+        "No displayed lesson question in Home; saved English lesson unopened, no foreign contentLocale assertion."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/home-es.webp",
+      "sha256": "46e399d93bf85b8d06a2aeaa3d39fe1a27fb5ffe3e0d803bb757717c190f603e",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "es",
+      "fixture": "website-locale-gallery-home-es",
+      "variant": "website-home-es",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "1ee5c9cb711f956209830517e4c4c96fd879f433d472c9f7e4abc498a060bdb2",
+      "capturedAt": "2026-10-26T17:43:04.112110-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual WebP export. Spanish main title Álgebra básica, notebook Álgebra and all primary labels/buttons match pictured UI. Real timer clock and solver bulb visible;9:41/full native frame;no crop or English Basics.",
+        "Tiny decorative notebook label repeats main subject and is accepted with small-label limitation. Inert ON avatar initials are user initials, not untranslated control.",
+        "No displayed lesson question content in this Home capture; saved English content is unopened and not relabelled contentLocale."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/home-fr.webp",
+      "sha256": "a8365ada842cdee0ebf8c55d088371724c000d83d5fee9aa33029f1c9d8182e0",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "fr",
+      "fixture": "website-locale-gallery-home-fr",
+      "variant": "website-home-fr",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "20c5d81e5b480cb30da961a414823bdc7686254b3cf5a77cf2f0a0d2f9e56efd",
+      "capturedAt": "2026-10-26T17:48:48.647287-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual WebP. Bases d’algèbre main title and Algèbre notebook localized; French main controls; real Timer clock and Solver bulb visible;9:41/full frame.",
+        "Tiny decorative notebook label accepted limitation; ON is inert avatar initials. No displayed lesson question; saved English lesson is unopened and not relabelled contentLocale."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/home-hi.webp",
+      "sha256": "e511c29520342a1a2fb44a4c2aad83eca76558a53d44a1a94c61e61450b3104a",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "hi",
+      "fixture": "website-locale-gallery-home-hi",
+      "variant": "website-home-hi",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "ee246b8fa5dde994c9149519abfa57130c4b2c744b16b9ff0bd93886ea60d10b",
+      "capturedAt": "2026-10-26T17:55:11.250887-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual WebP export.",
+        "Hindi बीजगणित की बुनियाद title and बीजगणित notebook match algebra meaning; Hindi primary mission/timer/solver controls fit with readable Devanagari and no tofu. Both real clock and bulb visible;9:41/full frame.",
+        "Small decorative notebook label accepted limitation; ON initials are inert avatar initials, not untranslated control. Saved English lesson is unopened, no foreign contentLocale assertion."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/home-ja.webp",
+      "sha256": "2964587951e9c0021c30b289ac62b72c506e60f65f5948c402aaf14b1598f55e",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "ja",
+      "fixture": "website-locale-gallery-home-ja",
+      "variant": "website-home-ja",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "a7847fd48d391d500f8fb5b72859beb7f008d0087c314b6d48bb44617e1c76ba",
+      "capturedAt": "2026-10-26T17:54:08.740902-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual WebP export.",
+        "Japanese 代数の基礎 title, 代数 notebook and primary mission/timer/solver controls match selected UI; both real clock and bulb visible;9:41/full frame;no tofu or bounds crop.",
+        "Intentional クイックミッシ… heading ellipsis is parent-accepted inside bounds; do not claim full heading readability.",
+        "Small decorative notebook label accepted limitation; ON initials are inert avatar initials, not untranslated control. Saved English lesson is unopened, no foreign contentLocale assertion."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/home-ko.webp",
+      "sha256": "4cf9a75cd93d956a568f0f87007404546054c858e3fedf6596a5aa28fcef61b1",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "ko",
+      "fixture": "website-locale-gallery-home-ko",
+      "variant": "website-home-ko",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "8f56fb1ac8922f675c19de4be90e5dd17429e14aa50e1b33392bba2e730883bc",
+      "capturedAt": "2026-10-26T17:54:40.017228-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual WebP export.",
+        "Korean 기초 대수 title, 대수 notebook and primary mission/timer/solver controls match selected UI; both real clock and bulb visible;9:41/full frame;no tofu or bounds crop.",
+        "Small decorative notebook label accepted limitation; ON initials are inert avatar initials, not untranslated control. Saved English lesson is unopened, no foreign contentLocale assertion."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/home-pt-BR.webp",
+      "sha256": "bca4d41fce3a4986c15fa757a778c070b4d412e505e049134f68cda69ff2abfb",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "pt-BR",
+      "fixture": "website-locale-gallery-home-pt-BR",
+      "variant": "website-home-pt-BR",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "0ba6558cec6df44aeabf488a867d5fbaffa3ad61c4147cc308001add4d340f42",
+      "capturedAt": "2026-10-26T17:51:45.196947-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual WebP export.",
+        "Portuguese Álgebra básica title, Álgebra notebook, Cronômetro de foco/mission/solver controls match selected UI. Both real clock and bulb visible;9:41/full frame.",
+        "Tiny decorative notebook label accepted limitation; ON avatar initials are not translated control.",
+        "No displayed lesson question in Home; saved English lesson unopened, no foreign contentLocale assertion."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/home-zh-Hans.webp",
+      "sha256": "9b33b1348cd36714d9676db89ca8868e350b04f81b90360d75f82959822cb550",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "zh-Hans",
+      "fixture": "website-locale-gallery-home-zh-Hans",
+      "variant": "website-home-zh-Hans",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "11c648cec0380e9d1fb269991a556cc0556026c97322e70309b7b5278ebe4f65",
+      "capturedAt": "2026-10-26T17:52:16.443069-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual WebP export.",
+        "Simplified Chinese 代数基础 title, 代数 notebook, 快速任务/专注计时器/打开题集/更换任务/问题解答 match selected UI and meaning. Both real clock and bulb visible;9:41/full frame;no tofu or visible bounds crop.",
+        "Tiny decorative notebook label accepted limitation; ON avatar initials are not translated control.",
+        "No displayed lesson question in Home; saved English lesson unopened, no foreign contentLocale assertion."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-de.webp",
+      "sha256": "9bbe63b689718935c639324eb52abe28b4f2fb5b0f776425b396ad0708ebd01b",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "de",
+      "fixture": "website-locale-gallery-shop-de",
+      "variant": "website-shop-de",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "95f5812ed9af677f6c5921b5d2bce208efa23ed3753c0b6f34c576fb68123e5c",
+      "capturedAt": "2026-10-26T18:56:58.985630-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Nine-Shop family contact then this final actual WebP individually opened;source8a new preview design,not superseded3cb image.9:41/full native frame.",
+        "German Profilrahmen-Shop/Schiffsladen and3D/two-color description readable;long compound labels wrap inside cards.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ships visibly painted with intentional overlap;identity clear,previews within card,copy/info buttons unobscured.",
+        "Visible chrome/copy matches selected locale;old English Ship Shop/description removed except intended Moon Rock brand/3D/XP notation. No displayed lesson question in this Shop image.",
+        "Wardrobe below marketing viewport;its distinct wizard-hat/star-glasses/bow-tie overlap accepted separately from QA-only native scroll evidence. Bottom cards are native scroll continuation,not an edited crop."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-en.webp",
+      "sha256": "88f988ff83f4e38caa4f63fe9d651e98c2a7eb740bf30c39f774cd1b662c7eaa",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "en",
+      "fixture": "website-locale-gallery-shop-en",
+      "variant": "website-shop-en",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "ddfaa892f70b3031b1865b30b894a5377836ec4cb1f8a6232e78c90ec19966b9",
+      "capturedAt": "2026-10-26T18:50:31.219039-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Individually opened final actual new8a English Shop WebP;9:41/full native frame;English visible chrome/copy consistent.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ship silhouettes painted with intentional overlap;clear subject identity,scale within card,copy/info buttons unobscured.",
+        "Wardrobe lies below this marketing viewport;its three-item strip independently accepted only from separate QA-only native scroll proof. Do not imply wardrobe visible in this export.",
+        "No claim Ship Hangar destination preview painted from separate immediate navigation screenshot;that QA PNG shows blank preview rectangle."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-es.webp",
+      "sha256": "be4a1caaa3311b69c2809dbd06f2068ae441671006d6eea62376d2987140d9f4",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "es",
+      "fixture": "website-locale-gallery-shop-es",
+      "variant": "website-shop-es",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "43f0d67490c653264d5322fcfb67d781f14f4306aa60761fdae5e4e14c1ea516",
+      "capturedAt": "2026-10-26T18:56:27.734066-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Nine-Shop family contact then this final actual WebP individually opened;source8a new preview design,not superseded3cb image.9:41/full native frame.",
+        "Spanish profile/ship/shop labels and3D/two-color/personalization description fit/readable.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ships visibly painted with intentional overlap;identity clear,previews within card,copy/info buttons unobscured.",
+        "Visible chrome/copy matches selected locale;old English Ship Shop/description removed except intended Moon Rock brand/3D/XP notation. No displayed lesson question in this Shop image.",
+        "Wardrobe below marketing viewport;its distinct wizard-hat/star-glasses/bow-tie overlap accepted separately from QA-only native scroll evidence. Bottom cards are native scroll continuation,not an edited crop."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-fr.webp",
+      "sha256": "a85bfb50087c76c2a971da86ed283fd374a1c7d4cc711bb44c9995f3f07d1420",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "fr",
+      "fixture": "website-locale-gallery-shop-fr",
+      "variant": "website-shop-fr",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "2cde8e83b3167817953057b0f1bd4b573789bdec343fc346d8ac514e33a79f62",
+      "capturedAt": "2026-10-26T18:56:43.351502-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Nine-Shop family contact then this final actual WebP individually opened;source8a new preview design,not superseded3cb image.9:41/full native frame.",
+        "French profile/ship/shop labels and3D/two-color/personalization description fit/readable. Existing tu/vous register mix is non-blocking and not introduced by screenshot conversion.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ships visibly painted with intentional overlap;identity clear,previews within card,copy/info buttons unobscured.",
+        "Visible chrome/copy matches selected locale;old English Ship Shop/description removed except intended Moon Rock brand/3D/XP notation. No displayed lesson question in this Shop image.",
+        "Wardrobe below marketing viewport;its distinct wizard-hat/star-glasses/bow-tie overlap accepted separately from QA-only native scroll evidence. Bottom cards are native scroll continuation,not an edited crop."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-hi.webp",
+      "sha256": "4afa1fc21a779c5019bfdc62295aca471fe3d0b999370308e4916fc461379eb3",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "hi",
+      "fixture": "website-locale-gallery-shop-hi",
+      "variant": "website-shop-hi",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "bfaeb8d282c722ea87cc3eadad4ee997d96f04f777bf6c7e028ca76ed6d0d419",
+      "capturedAt": "2026-10-26T18:58:17.127389-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Nine-Shop family contact then this final actual WebP individually opened;source8a new preview design,not superseded3cb image.9:41/full native frame.",
+        "Hindi प्रोफ़ाइल फ़्रेम की दुकान/शिप शॉप and3Dअंतरिक्षयान/two-color description readable;no tofu.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ships visibly painted with intentional overlap;identity clear,previews within card,copy/info buttons unobscured.",
+        "Visible chrome/copy matches selected locale;old English Ship Shop/description removed except intended Moon Rock brand/3D/XP notation. No displayed lesson question in this Shop image.",
+        "Wardrobe below marketing viewport;its distinct wizard-hat/star-glasses/bow-tie overlap accepted separately from QA-only native scroll evidence. Bottom cards are native scroll continuation,not an edited crop."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-ja.webp",
+      "sha256": "8e60e5c059fd6c7295b92e1cda0ff99e1496c8dcf29e3f58594ed964580806fb",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "ja",
+      "fixture": "website-locale-gallery-shop-ja",
+      "variant": "website-shop-ja",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "8823c723a748cdbe89c1787b020aec1655a817c0f5c82cccda61a63a7af789cf",
+      "capturedAt": "2026-10-26T18:57:45.858559-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Nine-Shop family contact then this final actual WebP individually opened;source8a new preview design,not superseded3cb image.9:41/full native frame.",
+        "Japanese profile-frame/ship shop labels and3D/two-color description readable;long frame title wraps inside card;no tofu.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ships visibly painted with intentional overlap;identity clear,previews within card,copy/info buttons unobscured.",
+        "Visible chrome/copy matches selected locale;old English Ship Shop/description removed except intended Moon Rock brand/3D/XP notation. No displayed lesson question in this Shop image.",
+        "Wardrobe below marketing viewport;its distinct wizard-hat/star-glasses/bow-tie overlap accepted separately from QA-only native scroll evidence. Bottom cards are native scroll continuation,not an edited crop."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-ko.webp",
+      "sha256": "6e117a3630fa0d4a4057476a35f1e195f6aa1b96eb34239ed0872187c19cf1bd",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "ko",
+      "fixture": "website-locale-gallery-shop-ko",
+      "variant": "website-shop-ko",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "20e741466dad6fd475d4bdf8fcb55e967f22cbcacda919c24a0dbeb79e9e5724",
+      "capturedAt": "2026-10-26T18:58:01.493632-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Nine-Shop family contact then this final actual WebP individually opened;source8a new preview design,not superseded3cb image.9:41/full native frame.",
+        "Korean 프로필 프레임 상점/우주선 상점 and3D/two-color description readable;no tofu.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ships visibly painted with intentional overlap;identity clear,previews within card,copy/info buttons unobscured.",
+        "Visible chrome/copy matches selected locale;old English Ship Shop/description removed except intended Moon Rock brand/3D/XP notation. No displayed lesson question in this Shop image.",
+        "Wardrobe below marketing viewport;its distinct wizard-hat/star-glasses/bow-tie overlap accepted separately from QA-only native scroll evidence. Bottom cards are native scroll continuation,not an edited crop."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-pt-BR.webp",
+      "sha256": "c5d60a3c78dfdc1a524b989eda76c5c166fc8e32aa2434c27a1a34c872ac84f9",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "pt-BR",
+      "fixture": "website-locale-gallery-shop-pt-BR",
+      "variant": "website-shop-pt-BR",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "47ba98d66cb638d05b67650bd08b95b6ce20cd65779bc74254191eb46bae29d6",
+      "capturedAt": "2026-10-26T18:57:14.602151-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Nine-Shop family contact then this final actual WebP individually opened;source8a new preview design,not superseded3cb image.9:41/full native frame.",
+        "Brazilian Portuguese Loja de molduras de perfil/Loja de naves and3D/two-color description readable.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ships visibly painted with intentional overlap;identity clear,previews within card,copy/info buttons unobscured.",
+        "Visible chrome/copy matches selected locale;old English Ship Shop/description removed except intended Moon Rock brand/3D/XP notation. No displayed lesson question in this Shop image.",
+        "Wardrobe below marketing viewport;its distinct wizard-hat/star-glasses/bow-tie overlap accepted separately from QA-only native scroll evidence. Bottom cards are native scroll continuation,not an edited crop."
+      ]
+    },
+    {
+      "asset": "lune-synth/screenshots/applied/lang/shop-zh-Hans.webp",
+      "sha256": "6a50078099e8d8b004f0e4ea96b5eb898852ef9ed8b222c00699abe90e65b262",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "zh-Hans",
+      "fixture": "website-locale-gallery-shop-zh-Hans",
+      "variant": "website-shop-zh-Hans",
+      "fixtureCommit": "8a2959ea1fd57fb986f04c11012cf124069106fa",
+      "nativeCaptureSHA256": "90a1109cb5d13a2b76786f002eadd806d06840cfad2315697268fc74c283fa3a",
+      "capturedAt": "2026-10-26T18:57:30.230547-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "c91c4d8eac2dfd40b8d3fd2df5c3e975b80f87278385f6d9eaad05ffa66370f9",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Nine-Shop family contact then this final actual WebP individually opened;source8a new preview design,not superseded3cb image.9:41/full native frame.",
+        "Simplified Chinese 头像框商店/飞船商店 and3D/two-color description readable;no tofu.",
+        "Three actual framed Ship/Luna/Tock portraits and three distinct ships visibly painted with intentional overlap;identity clear,previews within card,copy/info buttons unobscured.",
+        "Visible chrome/copy matches selected locale;old English Ship Shop/description removed except intended Moon Rock brand/3D/XP notation. No displayed lesson question in this Shop image.",
+        "Wardrobe below marketing viewport;its distinct wizard-hat/star-glasses/bow-tie overlap accepted separately from QA-only native scroll evidence. Bottom cards are native scroll continuation,not an edited crop."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/hum/apfrench-subjonctif-mid.webp",
+      "sha256": "c12d7f295ab7b62ddf0ee4a36e20fcec286938bd6ae0ef1d0d5b55f306b193c2",
+      "dimensions": [
+        480,
+        1041
+      ],
+      "uiLocale": "en",
+      "fixture": "hum-apfrench-subjonctif",
+      "variant": "website-set-hum-apfrench-subjonctif",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "6a523a713c248e64bbfc437ea69fc5c48900270910e8366a0fcb2e1f5f7e902d",
+      "capturedAt": "2026-10-26T18:00:12.782302-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "Complete English question with quoted intended French stimulus;full conjugation table;no literal trailing star. Correct nous present subjunctive parlions. Compact white AP French Language badge fully visible;purple topic partly clips;some options below fold.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/hum/apfrench-subjonctif.webp",
+      "sha256": "c07d29192d2abc0a941172081ad7c6d3578f43e17826eada98d9927d1f4be216",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "en",
+      "fixture": "hum-apfrench-subjonctif",
+      "variant": "website-set-hum-apfrench-subjonctif",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "6a523a713c248e64bbfc437ea69fc5c48900270910e8366a0fcb2e1f5f7e902d",
+      "capturedAt": "2026-10-26T18:00:12.782302-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "Complete English question with quoted intended French stimulus;full conjugation table;no literal trailing star. Correct nous present subjunctive parlions. Compact white AP French Language badge fully visible;purple topic partly clips;some options below fold.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/hum/apspanishlit-becquer-mid.webp",
+      "sha256": "bf70ea324479ca286438a46a167372ec401366fbf47ba0d061e7177afbb99b50",
+      "dimensions": [
+        480,
+        1041
+      ],
+      "uiLocale": "en",
+      "fixture": "hum-apspanishlit-becquer",
+      "variant": "website-set-hum-apspanishlit-becquer",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "579b64e5af4a2b63dde53a04734c76feb67d146da2eb3b56b2f773af741d15ec",
+      "capturedAt": "2026-10-26T17:59:52.178985-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "English complete literary-device question and all4 explanation options visible;exact intended Spanish poem/title preserved;hyperbaton correct. Compact white AP Spanish badge is fully visible;purple Literary devices topic clips under audio.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/hum/apspanishlit-becquer.webp",
+      "sha256": "705bd3a2144d00ccad0f369b8a5dcf3ebc541a73c49247d358304b4964233c17",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "en",
+      "fixture": "hum-apspanishlit-becquer",
+      "variant": "website-set-hum-apspanishlit-becquer",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "579b64e5af4a2b63dde53a04734c76feb67d146da2eb3b56b2f773af741d15ec",
+      "capturedAt": "2026-10-26T17:59:52.178985-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "English complete literary-device question and all4 explanation options visible;exact intended Spanish poem/title preserved;hyperbaton correct. Compact white AP Spanish badge is fully visible;purple Literary devices topic clips under audio.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/languages/hi-postposition-mid.webp",
+      "sha256": "2f29feea7e0461e08d22406cbecd6ab0801c0bc3e329fbbbe2eee2dbf908b66a",
+      "dimensions": [
+        480,
+        1041
+      ],
+      "uiLocale": "en",
+      "fixture": "lang-hi-postposition",
+      "variant": "website-set-lang-hi-postposition",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "be0298784d98f9c3d866faafda81e54db4a72b82dc6d41b20ccc7cfb646ff2af",
+      "capturedAt": "2026-10-26T17:59:31.523290-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "English full instruction;mother consistently माँ;Hindi target dialogue and recipient को preserved, readable Devanagari/no tofu. Some options below fold with down-arrow.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/languages/hi-postposition.webp",
+      "sha256": "d6ee1651e4089bb8fecf93ae6241ccf9cea4586fe263696a0fad94e8345c54c2",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "en",
+      "fixture": "lang-hi-postposition",
+      "variant": "website-set-lang-hi-postposition",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "be0298784d98f9c3d866faafda81e54db4a72b82dc6d41b20ccc7cfb646ff2af",
+      "capturedAt": "2026-10-26T17:59:31.523290-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "English full instruction;mother consistently माँ;Hindi target dialogue and recipient को preserved, readable Devanagari/no tofu. Some options below fold with down-arrow.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/languages/ru-kniga-mid.webp",
+      "sha256": "8ec1edd3954e104b80c393ad245cbb0a9ba39224d359deb275137dbc2ce80f38",
+      "dimensions": [
+        480,
+        1041
+      ],
+      "uiLocale": "en",
+      "fixture": "lang-ru-kniga",
+      "variant": "website-set-lang-ru-kniga",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "cd89601c6d319effb78cf7cf3b5ed0c7eb4b3aa76842b6b7148c56dda8e85f6c",
+      "capturedAt": "2026-10-26T17:59:10.931222-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "Complete short English dative-plural question, English table/case labels; Russian forms preserved. Correct книгам is source optionD;some options below fold with down-arrow, do not claim all options visible.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/languages/ru-kniga.webp",
+      "sha256": "d1a1ab69f54e818234c5962f8d9fab5ea6d908fad4343e30fa0720b071d301d7",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "en",
+      "fixture": "lang-ru-kniga",
+      "variant": "website-set-lang-ru-kniga",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "cd89601c6d319effb78cf7cf3b5ed0c7eb4b3aa76842b6b7148c56dda8e85f6c",
+      "capturedAt": "2026-10-26T17:59:10.931222-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "Complete short English dative-plural question, English table/case labels; Russian forms preserved. Correct книгам is source optionD;some options below fold with down-arrow, do not claim all options visible.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/languages/ru-muzei-mid.webp",
+      "sha256": "fec7bdac401401f22e8ac17db6f2f931267ccf3fa9e8ae239714df6f35dfdde1",
+      "dimensions": [
+        480,
+        1041
+      ],
+      "uiLocale": "en",
+      "fixture": "lang-ru-muzei",
+      "variant": "website-set-lang-ru-muzei",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "6072c33016393b378131b89a4d209deef90659b90ae99991420b4376179bf88b",
+      "capturedAt": "2026-10-26T17:58:50.315241-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "Complete English singular-prepositional directive and English case/table labels; intended Russian noun/forms preserved. Correct answer from source музее;stem музе- plus-е.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    },
+    {
+      "asset": "mobile-app-assets/screenshots/applied/languages/ru-muzei.webp",
+      "sha256": "410d0d16ab4e0625496056e9708d4b986bc05695922694408b1c6d9b5c4849ea",
+      "dimensions": [
+        1290,
+        2796
+      ],
+      "uiLocale": "en",
+      "fixture": "lang-ru-muzei",
+      "variant": "website-set-lang-ru-muzei",
+      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
+      "nativeCaptureSHA256": "6072c33016393b378131b89a4d209deef90659b90ae99991420b4376179bf88b",
+      "capturedAt": "2026-10-26T17:58:50.315241-06:00",
+      "statusBarTime": "9:41",
+      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
+      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
+      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "semanticReview": "PASS",
+      "reviewer": "website_visual",
+      "reviewDate": "2026-10-26",
+      "reviewNotes": [
+        "Actual full and mid WebP exports each individually opened after10-export contact;9:41/full proportional frame;no image text edits or crop;white compact subject labels and complete question prompts readable.",
+        "Complete English singular-prepositional directive and English case/table labels; intended Russian noun/forms preserved. Correct answer from source музее;stem музе- plus-е.",
+        "Target-language words/forms/quoted literary or dialogue content intentionally preserved as educational stimuli; English instructions/explanation prose follow actual English chrome.",
+        "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
+      ]
+    }
+  ],
+  "counts": {
+    "nativeCaptures": 22,
+    "exports": 27,
+    "homeExports": 8,
+    "shopExports": 9,
+    "lessonFullMidExports": 10
+  }
+}

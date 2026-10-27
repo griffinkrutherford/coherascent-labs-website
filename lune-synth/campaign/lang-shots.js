@@ -35,16 +35,12 @@
   });
 
   function imageSrc(screen, locale) {
-    return "screenshots/applied/lang/" + screen + "-" + locale + ".webp?v=1";
+    return "screenshots/applied/lang/" + screen + "-" + locale + ".webp?v=2";
   }
 
   function altFor(screen, locale) {
     var template = (SCREENS[screen] || SCREENS.home).alt;
     return template.replace("{lang}", localeNames[locale] || locale);
-  }
-
-  function prefersReducedMotion() {
-    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }
 
   function initHost(host) {
@@ -57,8 +53,12 @@
     var activeLayer = layerA; // matches the is-active layer already in the markup
     var idleLayer = layerB;
     var currentScreen = "home";
+    var selectionVersion = 0;
     var preloaded = {};
     var preloadStarted = false;
+    activeLayer.setAttribute("aria-hidden", "false");
+    idleLayer.setAttribute("aria-hidden", "true");
+    host.setAttribute("aria-busy", "false");
 
     function markLoaded(screen, locale) {
       preloaded[screen + ":" + locale] = true;
@@ -110,30 +110,48 @@
     function showImage(screen, locale) {
       var nextSrc = imageSrc(screen, locale);
       var alt = altFor(screen, locale);
-      var reduceMotion = prefersReducedMotion();
+      var requestVersion = ++selectionVersion;
+      var targetLayer = idleLayer;
+      var expectedHref = new URL(nextSrc, document.baseURI).href;
+      var committed = false;
+      host.setAttribute("aria-busy", "true");
+      // English Home retains its existing device capture; every other image
+      // uses the new native 16 Plus capture without stretching its aspect.
+      var originalEnglishHome = screen === "home" && locale === "en";
+      targetLayer.width = originalEnglishHome ? 1206 : 1290;
+      targetLayer.height = originalEnglishHome ? 2622 : 2796;
 
-      idleLayer.onload = function () {
+      function activateCurrentImage() {
+        // Bind completion to both the initiating selection and its exact
+        // layer. An old load (including locale/tab A→B→A) cannot swap the
+        // current layers or publish a previous language a second time.
+        if (committed || requestVersion !== selectionVersion) return;
+        if (!targetLayer.complete || !targetLayer.naturalWidth || targetLayer.currentSrc !== expectedHref) return;
+        committed = true;
+        targetLayer.onload = null;
+        targetLayer.onerror = null;
         activeLayer.classList.remove("is-active");
-        idleLayer.classList.add("is-active");
+        activeLayer.setAttribute("aria-hidden", "true");
+        targetLayer.classList.add("is-active");
+        targetLayer.setAttribute("aria-hidden", "false");
         var swapLayer = activeLayer;
-        activeLayer = idleLayer;
+        activeLayer = targetLayer;
         idleLayer = swapLayer;
-      };
-      if (reduceMotion) {
-        // Swap immediately -- no crossfade overlap.
-        idleLayer.onload = null;
-        activeLayer.classList.remove("is-active");
-        idleLayer.src = nextSrc;
-        idleLayer.alt = alt;
-        idleLayer.classList.add("is-active");
-        var swapped = activeLayer;
-        activeLayer = idleLayer;
-        idleLayer = swapped;
-        return;
+        host.setAttribute("aria-busy", "false");
+        markLoaded(screen, locale);
       }
-      idleLayer.alt = alt;
-      idleLayer.src = nextSrc;
-      markLoaded(screen, locale);
+
+      // CSS removes the opacity transition for reduced motion. Both paths
+      // wait for real loaded pixels rather than exposing an empty layer.
+      targetLayer.onload = activateCurrentImage;
+      targetLayer.onerror = function () {
+        if (requestVersion === selectionVersion && targetLayer.complete && !targetLayer.naturalWidth) {
+          host.setAttribute("aria-busy", "false");
+        }
+      };
+      targetLayer.alt = alt;
+      targetLayer.src = nextSrc;
+      activateCurrentImage(); // Cached images may already be complete.
     }
 
     function currentLocale() {

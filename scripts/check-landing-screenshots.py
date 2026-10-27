@@ -6,13 +6,16 @@ the Greek page was showing Latin, and the Hindi page was showing Japanese and
 Korean. This script encodes the mechanical checks that catch that class of bug
 so it cannot silently reappear:
 
-  1. Missing file. Every <img>/<source> src referenced from a landing page
-     under lune-synth/ must resolve to a real file on disk.
+  1. Missing file. Every image/source/video src, srcset candidate, video
+     poster and CSS/data screenshot background must resolve to a real file. The dynamic
+     Home/Shop gallery is checked for every locale declared in its script,
+     along with literal media paths in the shared feature-panel module.
   2. Wrong language. A study/<language>/ page may only use screenshots from
      mobile-app-assets/screenshots/applied/languages/<code>-* for ITS OWN ISO
      639-1 code (LANGUAGE_ISO below). The study/languages/ overview page is a
      multi-language sampler and is exempt.
-  3. Cross-topic sharing. Any screenshot embedded by two or more landing pages
+  3. Cross-topic sharing. A content screenshot under mobile-app-assets/screenshots
+     embedded by two or more landing pages
      is only allowed when every page that uses it appears together in one
      entry of TOPIC_SHARE_ALLOWLIST below (e.g. study/math/ legitimately
      reuses study/algebra/'s screenshot; a German page and a Dutch page do
@@ -29,6 +32,9 @@ so it cannot silently reappear:
      A page is free to show the same screenshot's two *different* figures
      (e.g. an org chart and a separate Gantt chart); it may never show the
      exact same shot twice.
+  5. The 2026-10-26 language recaptures must have independent semantic PASS
+     records bound to their exact exported SHA-256, UI locale and fixture.
+     This is a provenance check; the script cannot judge translation quality.
 
 Stdlib only. Run from anywhere:
     python3 scripts/check-landing-screenshots.py
@@ -38,9 +44,12 @@ when not.
 from __future__ import annotations
 
 import os
+import hashlib
+import json
 import re
 import sys
 from collections import defaultdict
+from html.parser import HTMLParser
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
@@ -57,7 +66,62 @@ NON_LANDING_DIRS = {
     "shared-hooks", "vendor", "lune-synth-landing-medals",
 }
 
-IMG_SRC_RE = re.compile(r'<(?:img|source)\b[^>]*\bsrc="([^"]+)"', re.IGNORECASE)
+class MediaReferenceParser(HTMLParser):
+    """Read browser media attributes, including lazy responsive candidates."""
+
+    def __init__(self):
+        super().__init__()
+        self.urls: set[str] = set()
+
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        background = attributes.get("data-screenshot-src")
+        if background and is_screenshot_url(background):
+            self.urls.add(background)
+        if tag not in {"img", "source", "video"}:
+            return
+        for name in ("src", "poster"):
+            value = attributes.get(name)
+            if value:
+                self.urls.add(value)
+        for candidate in (attributes.get("srcset") or "").split(","):
+            fields = candidate.strip().split()
+            if fields:
+                self.urls.add(fields[0])
+
+
+def extract_media_urls(html: str) -> set[str]:
+    parser = MediaReferenceParser()
+    parser.feed(html)
+    for match in re.finditer(r"url\(\s*(['\"]?)([^'\"\s)]+)\1\s*\)", html, re.IGNORECASE):
+        if is_screenshot_url(match.group(2)):
+            parser.urls.add(match.group(2))
+    return parser.urls
+
+
+def dynamic_gallery_urls(script: str) -> set[str]:
+    """The gallery filename contract is explicit in campaign/lang-shots.js."""
+    locale_block = re.search(r"var LOCALES = \[(.*?)\];", script, re.DOTALL)
+    if not locale_block:
+        raise ValueError("Cannot find dynamic language gallery locale registry")
+    locales = re.findall(r'code:\s*"([^"/]+)"', locale_block.group(1))
+    if not locales or len(locales) != len(set(locales)):
+        raise ValueError("Language gallery locales must be nonempty and unique")
+    return {
+        f"screenshots/applied/lang/{screen}-{locale}.webp"
+        for locale in locales for screen in ("home", "shop")
+    }
+
+
+def dynamic_feature_urls(script: str) -> set[str]:
+    """Potential shared feature-panel media, including alternate world/steps."""
+    urls = set(re.findall(
+        r"/screenshots/[^\s\"'`<>]+?\.(?:webp|png|jpe?g|mp4|webm)(?:\?[^\s\"'`<>]+)?",
+        script, re.IGNORECASE,
+    ))
+    if not urls:
+        raise ValueError("Cannot find shared feature-panel screenshot/media registry")
+    return urls
 
 # --- Rule 4: same-page duplication ------------------------------------------
 PICTURE_BLOCK_RE = re.compile(r"<picture\b[^>]*>.*?</picture\s*>", re.IGNORECASE | re.DOTALL)
@@ -153,7 +217,9 @@ def find_same_page_duplicate_screenshots(html: str) -> dict[str, int]:
 # Rule 3 (cross-topic sharing) only applies to actual in-app screenshots.
 # Brand marks (the app icon, Luna emote stickers, etc.) legitimately repeat
 # on every page and are not "screenshots" in the sense this guard cares
-# about.
+# about. The shared feature module's /screenshots/ videos/posters are generic
+# product demonstrations intentionally reused across topics; their file
+# presence is checked, not treated as subject-specific question sharing.
 SCREENSHOT_PATH_MARKER = "/mobile-app-assets/screenshots/"
 
 # --- Rule 2: study/<language>/ -> required ISO 639-1 code -----------------
@@ -180,6 +246,80 @@ LANGUAGE_SCREENSHOT_PREFIX = "/mobile-app-assets/screenshots/applied/languages/"
 # study/languages/ is the multi-language overview/sampler page, not a
 # single-language page, so it is exempt from the per-code restriction.
 LANGUAGE_HUB_PAGE = "study/languages/index.html"
+
+# These are actual owner-requested recaptures, not a claim that every site
+# screenshot has received a new semantic review. Learning-language stimulus
+# text (Russian nouns, Hindi dialogue, Spanish poetry) remains intentional;
+# its instruction/chrome locale is English. Gallery content follows the
+# selected UI locale, including sample mission and notebook names.
+REVIEW_MANIFEST = "mobile-app-assets/screenshots/2026-10-26-language-review.json"
+
+
+def required_language_reviews() -> dict[str, str]:
+    required = {
+        f"lune-synth/screenshots/applied/lang/{screen}-{locale}.webp": locale
+        for screen in ("home", "shop")
+        for locale in ("es", "fr", "de", "pt-BR", "zh-Hans", "ja", "ko", "hi")
+    }
+    required["lune-synth/screenshots/applied/lang/shop-en.webp"] = "en"
+    for folder, stem in (("languages", "ru-muzei"), ("languages", "ru-kniga"),
+                         ("languages", "hi-postposition"), ("hum", "apspanishlit-becquer"),
+                         ("hum", "apfrench-subjonctif")):
+        for suffix in ("", "-mid"):
+            required[f"mobile-app-assets/screenshots/applied/{folder}/{stem}{suffix}.webp"] = "en"
+    return required
+
+
+def check_language_review_manifest(root: str, manifest: dict) -> list[str]:
+    """Bind independent semantic acceptance to the exact exported bytes.
+
+    Hash/locale checks cannot assess translation quality. A reviewer must open
+    each actual full/mid export before recording PASS in the manifest.
+    """
+    if not isinstance(manifest, dict):
+        return ["LANGUAGE REVIEW  manifest must be an object"]
+    problems = []
+    if manifest.get("schemaVersion") != 1:
+        problems.append("LANGUAGE REVIEW  expected manifest schemaVersion 1")
+    items = manifest.get("items", [])
+    if not isinstance(items, list):
+        return problems + ["LANGUAGE REVIEW  items must be an array"]
+    indexed = {}
+    for item in items:
+        if not isinstance(item, dict) or not isinstance(item.get("asset"), str):
+            problems.append("LANGUAGE REVIEW  every item needs an asset path")
+            continue
+        asset = item["asset"]
+        if asset in indexed:
+            problems.append(f"LANGUAGE REVIEW  duplicate record for {asset}")
+        indexed[asset] = item
+    for asset, locale in required_language_reviews().items():
+        item = indexed.get(asset)
+        if not item:
+            problems.append(f"LANGUAGE REVIEW  missing reviewed recapture: {asset}")
+            continue
+        if item.get("uiLocale") != locale or item.get("semanticReview") != "PASS":
+            problems.append(f"LANGUAGE REVIEW  {asset}: expected {locale} UI and semantic PASS")
+        for key in ("fixture", "variant"):
+            if not isinstance(item.get(key), str) or not item[key].strip():
+                problems.append(f"LANGUAGE REVIEW  {asset}: missing {key}")
+        notes = item.get("reviewNotes")
+        if not ((isinstance(notes, str) and notes.strip()) or
+                (isinstance(notes, list) and notes and
+                 all(isinstance(note, str) and note.strip() for note in notes))):
+            problems.append(f"LANGUAGE REVIEW  {asset}: missing reviewNotes")
+        for key, length in (("fixtureCommit", 40), ("nativeCaptureSHA256", 64)):
+            if not re.fullmatch(rf"[0-9a-f]{{{length}}}", str(item.get(key, ""))):
+                problems.append(f"LANGUAGE REVIEW  {asset}: invalid {key}")
+        full_path = os.path.join(root, asset)
+        if not os.path.isfile(full_path):
+            problems.append(f"LANGUAGE REVIEW  reviewed asset missing: {asset}")
+        else:
+            with open(full_path, "rb") as captured:
+                digest = hashlib.sha256(captured.read()).hexdigest()
+            if digest != item.get("sha256"):
+                problems.append(f"LANGUAGE REVIEW  {asset}: exported bytes changed; review again")
+    return problems
 
 # --- Rule 3: deliberate cross-page screenshot sharing ----------------------
 # Each entry is the maximal set of pages allowed to share a screenshot, with
@@ -266,13 +406,31 @@ def main() -> int:
     pages = find_landing_pages()
     problems = []  # list of str
     src_to_pages = defaultdict(set)  # src -> set of relpath pages that use it
+    try:
+        with open(os.path.join(REPO_ROOT, REVIEW_MANIFEST), encoding="utf-8") as reviewed:
+            problems.extend(check_language_review_manifest(REPO_ROOT, json.load(reviewed)))
+    except (OSError, ValueError, TypeError) as error:
+        problems.append(f"LANGUAGE REVIEW  cannot read {REVIEW_MANIFEST}: {error}")
 
     for page_path in pages:
         rel_page = os.path.relpath(page_path, LUNE_ROOT)
         with open(page_path, encoding="utf-8", errors="replace") as f:
             html = f.read()
 
-        srcs = set(IMG_SRC_RE.findall(html))
+        srcs = extract_media_urls(html)
+        if rel_page == "index.html" and "data-lang-shot" in html:
+            gallery_script = os.path.join(LUNE_ROOT, "campaign", "lang-shots.js")
+            try:
+                with open(gallery_script, encoding="utf-8") as gallery:
+                    srcs.update(dynamic_gallery_urls(gallery.read()))
+            except (OSError, ValueError) as error:
+                problems.append(f"DYNAMIC GALLERY  {error}")
+        if "<lune-quick-missions" in html or "<lune-constellations" in html:
+            try:
+                with open(os.path.join(LUNE_ROOT, "campaign", "features.js"), encoding="utf-8") as features:
+                    srcs.update(dynamic_feature_urls(features.read()))
+            except (OSError, ValueError) as error:
+                problems.append(f"DYNAMIC FEATURES  {error}")
         for src in srcs:
             # Rule 1: missing file.
             full_path = resolve_src(src, page_path)
@@ -344,6 +502,7 @@ def main() -> int:
         "No missing files, language mismatches, undocumented shared "
         "screenshots, or same-page duplicates."
     )
+    print(f"All {len(required_language_reviews())} reviewed language exports match their accepted hashes and UI locales.")
     return 0
 
 

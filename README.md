@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-26: Re-captured eight translated Home previews, nine Shop previews and five language-study questions (22 native frames, 27 WebPs). Corrected visible language mismatches while preserving target-language exercises, and updated Shop artwork to three overlapping examples. Added an exact-hash/locale capture-review manifest and broader screenshot checks; fixed stale gallery loads and selected-image accessibility.
+
 - 2026-10-26: Versioned the published Tock clock stylesheet URL so returning visitors fetch the refined design instead of retaining the prior immutable cached CSS.
 
 - 2026-10-26: Added the 3D Luna video campaign plan with all 120 requested learner/audience destinations, five navigation hubs, reusable owned-model rendering, free waitlist terms, platform-specific publishing constraints and proposed measurement/spending gates. This publishes a plan; it does not launch ads, upload videos or authorize spending.
@@ -138,6 +140,12 @@ Then test the host-specific routes with `curl`:
 - workflow phones use shared sizing variables
 - phone proportions are normalized across breakpoints
 - the Lune Synth page includes consistent shell geometry, camera island treatment, and side hardware buttons
+
+### Screenshot verification
+
+Run `scripts/check-landing-screenshots.test.py` and `scripts/check-landing-screenshots.py` with Python 3, using the shared Mac's current resource governor. The guard checks responsive image candidates, CSS/data screenshot backgrounds, video posters, shared feature-panel media and all nine locales in the dynamic Home/Shop gallery, as well as language-page placement, missing files, sharing and duplicate shots.
+
+The [language and Shop capture manifest](mobile-app-assets/screenshots/2026-10-26-language-review.json) binds each changed export to its independently reviewed bytes, UI locale, exact app fixture commit and native PNG hash. Replacing a reviewed image requires opening the actual full/mid export again and recording fresh acceptance. Hash checks establish provenance; they cannot judge translation quality. Keep intentional language-learning stimuli in their target language while matching instructional UI text to the pictured interface. Native DEV captures demonstrate the pictured UI, not signed-build or live-model acceptance.
 
 ## Notes
 
