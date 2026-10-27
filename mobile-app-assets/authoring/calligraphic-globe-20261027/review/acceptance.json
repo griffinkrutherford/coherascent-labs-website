@@ -1,0 +1,16 @@
+{
+  "systemImageIoEqualsPillowFullRgba": true,
+  "runtimeSha256": "92a51638725f1a4a8491f5ea291e82d01b8e947b5ed46343b0571423eeaf89bd",
+  "runtimeBytes": 19292,
+  "runtimeSize": [
+    192,
+    192
+  ],
+  "checks": {
+    "exactWebpRgba": true,
+    "transparentCorners": true,
+    "same162pxSignificantSpanAsReferenceFamily": true,
+    "systemDecode": true,
+    "visuallyInspected28And36PxMasks": true
+  }
+}

@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-27: Added a calligraphic globe to the Learn Your Way heading and all landing-page menu entries, using the same family-matched bitmap as a color-following mask. Versioned shared styles for returning visitors and preserved the original artwork, prompt, references, master and alpha-review evidence in project-owned authoring assets.
+
 - 2026-10-27: Constrained the expanded Engine audit to its card width on small screens. Kept historical prose and figures unchanged, wrapped long audit headings and retained horizontal scrolling inside the comparison table's existing wrapper.
 
 - 2026-10-27: Clarified the Engine's four supported follow-up choices as similar, easier, harder and custom practice; avoided presenting a new practice set as an additional follow-up mode.

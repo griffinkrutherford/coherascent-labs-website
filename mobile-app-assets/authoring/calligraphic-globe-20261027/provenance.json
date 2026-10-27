@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-27",
+  "tool": "built-in ImageGen",
+  "modelVersion": "tool-managed; not exposed",
+  "originalGeneratedPath": "/Users/griffinrutherford/.codex/generated_images/01a179c5-76c7-70e2-ab7c-0fdfe71c73a7/exec-f9785746-ce5c-4e70-aacb-11e43a599fe6.png",
+  "promptPath": "prompts/globe.txt",
+  "rawSize": [
+    1254,
+    1254
+  ],
+  "masterSize": [
+    1254,
+    1254
+  ],
+  "runtimeSize": [
+    192,
+    192
+  ],
+  "uniformScale": 0.9514950539568345,
+  "alphaNoiseFloor": 2,
+  "noisePixelsRemoved": 54083,
+  "runtimeCoverageAlphaAbove32": 0.2216525607638889,
+  "runtimeAlphaBoundsAbove32": [
+    15,
+    16,
+    177,
+    178
+  ],
+  "transparentCorners": true,
+  "fullRgbaExactAfterWebp": true,
+  "preparation": "Generated alpha retained except <=2 noise floor; centered uniform padding; premultiplied resampling; exact lossless WebP. No redrawn or added strokes.",
+  "reviewScope": "offline actual CSS-alpha-mask simulations at 28/36/64/128px; not browser/native screenshot",
+  "files": [
+    {
+      "path": "raw/globe-original.png",
+      "sha256": "fcdb71ca6cfcac906a61c676bbd954fd1fa94a2dd0e2163d1340591eea2f41ae",
+      "bytes": 867523
+    },
+    {
+      "path": "final/globe-master.png",
+      "sha256": "dcee861160a825a090d8d8da9cca1efb034e1c36664013df9b8c93b61ee650dc",
+      "bytes": 753068
+    },
+    {
+      "path": "final/globe.webp",
+      "sha256": "92a51638725f1a4a8491f5ea291e82d01b8e947b5ed46343b0571423eeaf89bd",
+      "bytes": 19292
+    },
+    {
+      "path": "prompts/globe.txt",
+      "sha256": "2c84f7e95a9353f311233c5866f7956b61c8dc43cbab9bd6b64173ac579fa3fd",
+      "bytes": 1381
+    },
+    {
+      "path": "references/book.webp",
+      "sha256": "209ca14620de9b7f27d79d88095a05bbed6d4fec5d1bea74204feae0e5aef7d1",
+      "bytes": 8522
+    },
+    {
+      "path": "references/fountainPen.webp",
+      "sha256": "7a5b76ecafaf3a6baf633969f3e66f93a101e40d861b34bbf6e98ec4376b7a6b",
+      "bytes": 5668
+    },
+    {
+      "path": "references/map.webp",
+      "sha256": "5d26d8d21eb8fe1a13c597dbaccac6cc802f2643bb89079e35362106cbe48d0d",
+      "bytes": 7368
+    }
+  ]
+}
