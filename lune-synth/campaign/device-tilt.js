@@ -3,7 +3,7 @@
   var motion = window.matchMedia("(min-width: 901px) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
   if (!("IntersectionObserver" in window) || !CSS.supports("rotate", "0 1 0 34deg")) return;
   var buttonSelector = ".phone-shell-button, .feature-phone__button, .ipad-button, .voice-scene__ipad-button, .feature-ipad__button";
-  var selector = ".phone-mock__frame, .feature-phone, .feature-ipad, .response-carousel__question-phone";
+  var selector = ".phone-mock__frame, .feature-phone, .feature-ipad, .response-carousel__question-phone, .about-luna-phone";
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;

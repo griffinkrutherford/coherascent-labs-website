@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-27: Restored entrance rotation for About's two phone previews and six square-on center phones in three-device galleries, retaining their final poses. Centralized deferred device wiring in an idempotent updater and the campaign generator, refreshed tilt assets across every discovered active phone page, and added an all-route motion/keyboard/fallback browser matrix. Automatic entrance remains desktop/fine-pointer only with reduced motion respected; existing user-initiated rotation and mobile fallback are unchanged. The real-server browser matrix passed all 165 active phone routes (710 runtime devices, including inserted devices); the screenshot guard retained all 27 accepted exports.
+
 - 2026-10-27: Updated both Tock wardrobe secrets to three ordered steps: first time, any genuine risk-slider adjustment, then a distinct final time. The website explicitly requests the additive v2 contract and fails closed on legacy or malformed responses. Production v2 support was verified before publishing; older compatible app versions retain their limited whole-step risk range, while unrestricted slider movement requires the app update.
 
 - 2026-10-27: Added a calligraphic globe to the Learn Your Way heading and all landing-page menu entries, using the same family-matched bitmap as a color-following mask. Versioned shared styles for returning visitors and preserved the original artwork, prompt, references, master and alpha-review evidence in project-owned authoring assets.

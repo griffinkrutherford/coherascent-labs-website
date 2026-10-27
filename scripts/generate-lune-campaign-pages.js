@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { withLearnYourWayNavigation } = require("./lib/lune-navigation");
+const { withLandingDeviceWiring } = require("./lib/landing-device-wiring");
 
 const root = path.resolve(__dirname, "..");
 const contentPath = path.join(root, "lune-synth", "campaign", "pages.json");
@@ -327,8 +328,8 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <script src="/campaign/cta.js?v=2" defer></script>
   <script src="/campaign/features.js?v=9" defer></script>
   <script src="/campaign/landing.js?v=8" defer></script>
-  <link rel="stylesheet" href="/campaign/device-tilt.css?v=8" />
-  <script src="/campaign/device-tilt.js?v=8" defer></script>
+  <link rel="stylesheet" href="/campaign/device-tilt.css?v=9" />
+  <script src="/campaign/device-tilt.js?v=9" defer></script>
   <script src="/campaign/offer-popup.js?v=2" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
   <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
@@ -495,6 +496,6 @@ for (const sourcePage of selectedPages) {
   const page = normalizePage(sourcePage);
   const outputPath = path.join(root, page.output);
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, withLearnYourWayNavigation(render(page)));
+  fs.writeFileSync(outputPath, withLandingDeviceWiring(withLearnYourWayNavigation(render(page))));
   console.log(`Generated ${path.relative(root, outputPath)}`);
 }

@@ -179,6 +179,10 @@
   rotate: 0deg;
 }
 @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .campaign-main :is(.subject-shots__grid, .ap-exam__shots) > :nth-child(2):nth-last-child(2) .device-tilt:not(.is-device-revealed) {
+    /* Center phones enter too, then retain their square-on resting pose. */
+    rotate: 2 5 0 -44deg;
+  }
   .campaign-main :is(.subject-shots__grid, .ap-exam__shots) > :last-child:not(:first-child) .device-tilt:not(.is-device-revealed) {
     rotate: -2 5 0 44deg;
   }
