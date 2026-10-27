@@ -359,6 +359,22 @@ main #tock-title::before {
   visibility: hidden;
 }
 
+/* Each screen enters from its own angle the first time it becomes visible.
+   The existing shared chassis transition handles motion; carousel positioning
+   stays on the outer figure and manual rotation stays on transform. */
+@media (min-width: 901px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .section--tock [data-tock-shot="0"] { --tock-entry-rotation: 2 5 -1 -48deg; }
+  .section--tock [data-tock-shot="1"] { --tock-entry-rotation: 1 5 1 44deg; }
+  .section--tock [data-tock-shot="2"] { --tock-entry-rotation: 5 1 -1 38deg; }
+  .section--tock [data-tock-shot="3"] { --tock-entry-rotation: 3 -4 1 -42deg; }
+  .section--tock .tock-shot .phone-mock__frame.device-tilt {
+    rotate: var(--tock-entry-rotation);
+  }
+  .section--tock .tock-shot[data-tock-entered] .phone-mock__frame.device-tilt {
+    rotate: 0deg;
+  }
+}
+
 /* ---------- Clock control + one panel per carousel screen ---------- */
 
 .section--tock .tock-control {

@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-10-27T16:04:49.847054-06:00",
+  "baseline": "f4c782aa3b61efdc3e660db604e7e87ecc197283",
+  "browser": "PASS: four distinct angles, four natural transition starts, first hidden-screen reveal, one-shot, preserved final transforms/manual keyboard, reduced/mobile tabs",
+  "focusedNode": {
+    "passed": 28,
+    "failed": 0
+  },
+  "screenshotGuard": {
+    "passed": true,
+    "pages": 165,
+    "reviewedLanguageExports": 27
+  },
+  "fullNode": {
+    "passed": 81,
+    "failed": 5,
+    "sameFailuresOnCleanBaseline": true
+  },
+  "initialRunnerFailure": "Node22 rejects directory argument test/; actual explicit test-file run and clean baseline comparison retained locally. No assertions changed.",
+  "noEasBuildCreated": true,
+  "runtimeFileSha256": {
+    "lune-synth/index.html": "0ea172a4c473b4137d345c18eb9290bd9fae968e3015dcdf633f46f880931323",
+    "lune-synth/campaign/tock-section.css": "ad1611859ecd9afb4787c6e641c4a7cefaf789fcd015544073b4da4a35df460a",
+    "lune-synth/campaign/tock-section.js": "140152b368a66b10b1e3e535dd55f174423cf2859768adbdb059998a3b39acca",
+    "scripts/qa/check-tock-phone-entrances.cjs": "f97516ecbf68330ffc9ea54889770a80827af7f3d3e07fa1b808a02fb9fb4a94"
+  }
+}

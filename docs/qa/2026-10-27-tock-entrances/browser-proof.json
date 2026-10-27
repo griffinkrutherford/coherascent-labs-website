@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "normal": {
+    "before": [
+      {
+        "index": "0",
+        "rotate": "2 5 -1 -48deg",
+        "entered": false,
+        "transform": "none"
+      },
+      {
+        "index": "1",
+        "rotate": "1 5 1 44deg",
+        "entered": false,
+        "transform": "none"
+      },
+      {
+        "index": "2",
+        "rotate": "5 1 -1 38deg",
+        "entered": false,
+        "transform": "none"
+      },
+      {
+        "index": "3",
+        "rotate": "3 -4 1 -42deg",
+        "entered": false,
+        "transform": "none"
+      }
+    ],
+    "during": [
+      {
+        "index": "0",
+        "rotate": "0.365148 0.912871 -0.182574 -39.8295deg",
+        "entered": true,
+        "transform": "none"
+      },
+      {
+        "index": "1",
+        "rotate": "0.19245 0.96225 0.19245 36.5104deg",
+        "entered": true,
+        "transform": "none"
+      },
+      {
+        "index": "2",
+        "rotate": "0.96225 0.19245 -0.19245 36.8914deg",
+        "entered": true,
+        "transform": "none"
+      },
+      {
+        "index": "3",
+        "rotate": "0.588348 -0.784465 0.196116 -34.8508deg",
+        "entered": true,
+        "transform": "none"
+      }
+    ],
+    "rest": [
+      {
+        "index": "0",
+        "rotate": "0deg",
+        "entered": true,
+        "transform": "none"
+      },
+      {
+        "index": "1",
+        "rotate": "0deg",
+        "entered": true,
+        "transform": "none"
+      },
+      {
+        "index": "2",
+        "rotate": "0deg",
+        "entered": true,
+        "transform": "none"
+      },
+      {
+        "index": "3",
+        "rotate": "0deg",
+        "entered": true,
+        "transform": "none"
+      }
+    ],
+    "starts": [
+      {
+        "index": "0",
+        "at": 2239.1000003814697
+      },
+      {
+        "index": "1",
+        "at": 2239.1000003814697
+      },
+      {
+        "index": "2",
+        "at": 2239.1000003814697
+      },
+      {
+        "index": "3",
+        "at": 2239.1000003814697
+      }
+    ],
+    "oneShot": true,
+    "manualRotation": true,
+    "errors": []
+  },
+  "fallbacks": [
+    {
+      "mode": "reduced",
+      "staticChassis": true,
+      "tabsWork": true
+    },
+    {
+      "mode": "mobile",
+      "staticChassis": true,
+      "tabsWork": true
+    }
+  ]
+}

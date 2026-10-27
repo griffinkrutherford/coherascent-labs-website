@@ -145,6 +145,16 @@
     section.style.setProperty('--tock-hand', deg + 'deg');
   }
 
+  function revealVisibleShots() {
+    if (!inView) return;
+    shots.forEach(function (shot) {
+      // Hidden carousel screens must keep their starting pose until seen.
+      if (shot.getAttribute('data-pos') !== 'hidden' && !shot.hasAttribute('data-tock-entered')) {
+        shot.setAttribute('data-tock-entered', '');
+      }
+    });
+  }
+
   function showShot(index) {
     current = index;
     shots.forEach(function (shot) {
@@ -155,6 +165,7 @@
       if (pos === 'center') shot.removeAttribute('aria-hidden');
       else shot.setAttribute('aria-hidden', 'true');
     });
+    revealVisibleShots();
     tabs.forEach(function (tab) {
       var active = Number(tab.getAttribute('data-tock-shot-tab')) === index;
       tab.classList.toggle('is-active', active);
@@ -213,10 +224,12 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
       inView = entries[0].isIntersecting;
+      revealVisibleShots();
       schedule();
     }, { threshold: 0.35 }).observe(root);
   } else {
     inView = true;
+    revealVisibleShots();
   }
   document.addEventListener('visibilitychange', schedule);
 
