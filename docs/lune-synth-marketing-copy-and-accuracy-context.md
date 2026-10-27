@@ -2,6 +2,8 @@
 
 ## Update Log
 
+- 2026-10-27: Aligned the Engine's current workflow explanation with the source audit at app commit `437d557a4411d7bafd49a0a2b4e85be01225e465` (API tree `16ee7748f6105d5bc3192e7c73826201d3f51d78`). Distinguished answer-key matching from rubric feedback and bounded automated review, score and answer checks; removed universal correctness and runtime confidence-threshold claims. Kept the historical benchmark data, intervals, adjudication caveats and OCR-fixture method unchanged.
+
 - 2026-08-17: Added competitive copy guidance for multimodal grading and question-set generation, with evidence boundaries and recommended website language.
 - 2026-08-19: Broadened the grading benchmark from graduate-only (125 responses) to Pre-K–through-graduate (242 responses across 74 prompts); overall soundness 95.2% → **96.3%**. Corrected the accuracy section's §06 failure taxonomy (the astrophysics Coulomb-barrier misconception recurring across input modes; the French imperfective *retrouvais* case; removed the fabricated "Slavic verbal prefixes" and "3 handwritten OCR misalignment" items). Scoped the 12 graduate disciplines to question generation only. Added a single-reviewer, non-blind adjudication caveat. Score-calibration figures are kept off the public accuracy section by design.
 

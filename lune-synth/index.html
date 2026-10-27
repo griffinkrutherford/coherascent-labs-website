@@ -14630,7 +14630,7 @@
           <div class="engine-header-row">
             <div class="engine-header-copy">
               <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
-              <p class="engine-lead">Grounded in rubrics. Checked for consistency.</p>
+              <p class="engine-lead">From your goal to your next practice.</p>
             </div>
 
             <div class="engine-gauges-row">
@@ -14666,48 +14666,53 @@
 
           <div class="engine-benchmark-note">Historical feedback and question-quality benchmarks, not current-model or score-accuracy claims</div>
 
-          <div class="engine-infographic" aria-label="Grading pipeline flow" aria-hidden="true">
+          <div class="engine-infographic" role="group" aria-label="Practice and feedback flow">
             <article class="engine-stage">
-              <span class="engine-stage__label">01 Read</span>
-              <div class="engine-work-preview">
+              <span class="engine-stage__label">01 Prepare</span>
+              <div class="engine-work-preview" aria-hidden="true">
                 <span class="engine-work-line"></span>
                 <span class="engine-work-line"></span>
                 <span class="engine-work-line"></span>
                 <span class="engine-work-line"></span>
               </div>
-              <span class="engine-stage__title">Messy Work In</span>
+              <span class="engine-stage__title">Choose your goal</span>
+              <span class="engine-stage__detail">Choose a topic or add readable study material, then use the available format and difficulty options.</span>
             </article>
             <article class="engine-stage">
-              <span class="engine-stage__label">02 Match</span>
-              <div class="engine-rubric-preview">
+              <span class="engine-stage__label">02 Build</span>
+              <div class="engine-rubric-preview" aria-hidden="true">
                 <span class="engine-rubric-row"><span></span><span></span></span>
                 <span class="engine-rubric-row"><span></span><span></span></span>
                 <span class="engine-rubric-row"><span></span><span></span></span>
               </div>
-              <span class="engine-stage__title">Rubric Evidence</span>
+              <span class="engine-stage__title">Build the question set</span>
+              <span class="engine-stage__detail">Automated checks look for detectable structure and answer-key problems. A review can prompt another attempt.</span>
             </article>
             <article class="engine-stage">
               <span class="engine-stage__label">03 Check</span>
               <div class="engine-check-preview">
                 <span class="engine-meter"><span class="engine-meter__fill"></span></span>
-                <span class="engine-check-pill">Confidence Gate</span>
-                <span class="engine-check-pill">Conflict Check</span>
+                <span class="engine-check-pill">Score Checks</span>
+                <span class="engine-check-pill">Answer Checks</span>
               </div>
-              <span class="engine-stage__title">Score Has to Line Up</span>
+              <span class="engine-stage__title">Check your work</span>
+              <span class="engine-stage__detail">Choice-only text answers can use answer-key matching. Written and mixed work uses question-specific rubric feedback and supported score or answer checks.</span>
             </article>
             <article class="engine-stage engine-stage--route">
-              <span class="engine-stage__label">04 Route</span>
+              <span class="engine-stage__label">04 Choose</span>
               <div class="engine-practice-preview">
-                <span class="engine-practice-pill">Correction</span>
-                <span class="engine-practice-pill">Quick Mission</span>
-                <span class="engine-practice-pill">Constellation Step</span>
+                <span class="engine-practice-pill">Fresh or Similar</span>
+                <span class="engine-practice-pill">Easier or Harder</span>
+                <span class="engine-practice-pill">Custom Practice</span>
               </div>
-              <span class="engine-stage__title">Next Move Out</span>
+              <span class="engine-stage__title">Choose what comes next</span>
+              <span class="engine-stage__detail">Review feedback, then choose fresh, similar, easier, harder or custom practice. You decide when to continue.</span>
             </article>
-            <span class="engine-token"></span>
-            <span class="engine-token engine-token--two"></span>
-            <span class="engine-token engine-token--three"></span>
+            <span class="engine-token" aria-hidden="true"></span>
+            <span class="engine-token engine-token--two" aria-hidden="true"></span>
+            <span class="engine-token engine-token--three" aria-hidden="true"></span>
           </div>
+          <p class="engine-lead">Automated feedback can be wrong. Check important answers against your course materials.</p>
 
           <details class="engine-diligence-drawer">
             <summary class="engine-diligence-trigger">
@@ -14736,7 +14741,7 @@
                   <br>
                   <strong>Adjudication Caveat:</strong> Every soundness figure reflects single-reviewer, non-blind adjudication (the two evaluation halves judged by different reviewers), not double-scored consensus. These measure the soundness of the guidance, not the displayed numeric score.
                   <br>
-                  <strong>Anti-Slop Mechanism:</strong> Lune Synth eliminates unanchored scores via explicit confidence gates (<code>τ = 0.85</code>), deterministic rubric penalty catalogs, step deduction conflict checks, and 1-tap student verification to inspect and challenge every step.
+                  <strong>Automated Checks:</strong> Lune Synth uses question-specific rubrics, recorded-deduction reconciliation and supported answer checks. Coverage is limited; neither a passed check nor a confidence label guarantees correctness.
                   <br>
                   <strong>Pipeline Execution:</strong> <strong>100%</strong> transport and execution success across all 266 evaluated API and grading calls.
                 </p>
@@ -14863,26 +14868,26 @@
                 <span style="display:block; margin-top:12px;"><strong>Grading Coverage (Pre-K through graduate):</strong> The 74 graded prompts spanned a broader set, mathematics, natural science, social science, language arts, foreign language, computer science, philosophy, law, literary analysis, translation studies, and qualitative methods, not limited to the 12 generation disciplines above.</span>
               </div>
 
-              <!-- Section 5: Anti-Slop Architecture & Confidence Calibration Mechanics -->
+              <!-- Section 5: Automated feedback and supported checks -->
               <div class="engine-diligence-section-heading">
-                <h4>05 · Anti-Slop Architecture &amp; Deterministic Thresholds</h4>
+                <h4>05 · Automated Feedback &amp; Supported Checks</h4>
               </div>
               <div class="engine-diligence-grid">
                 <div class="engine-diligence-item">
-                  <strong>Explicit Confidence Gates (τ = 0.85 Cutoff):</strong>
-                  <span>When optical character recognition or symbolic semantic parsing falls below strict certainty thresholds (τ &lt; 0.85), confidence is immediately lowered and provisional review flags are surfaced.</span>
+                  <strong>Uncertainty and Score Checks:</strong>
+                  <span>Automated checks can flag some low-confidence or inconsistent results. Coverage varies by input and subject; these signals are not calibrated proof of correctness.</span>
                 </div>
                 <div class="engine-diligence-item">
-                  <strong>Rubric Evidence Grounding:</strong>
-                  <span>Evaluations match against deterministic rubric criteria and explicit penalty catalogs rather than unconstrained holistic text generation, eliminating score drift.</span>
+                  <strong>Question-Specific Rubric Feedback:</strong>
+                  <span>Written and mixed work uses question-specific rubrics and penalty guidance. Score reconciliation checks recorded deductions; this does not guarantee the rubric, answer key or feedback is correct.</span>
                 </div>
                 <div class="engine-diligence-item">
-                  <strong>Step-Level Conflict Checking:</strong>
-                  <span>Deduction arithmetic is programmatically reconciled against rubric point weights prior to finalizing step guidance, ensuring feedback and scores remain mathematically consistent.</span>
+                  <strong>Recorded-Deduction and Answer Checks:</strong>
+                  <span>Recorded deductions are reconciled with rubric point weights, with additional supported answer and math-equivalence checks. These checks cover specific cases and can miss errors.</span>
                 </div>
                 <div class="engine-diligence-item">
-                  <strong>1-Tap Student Agency &amp; Verification Chain:</strong>
-                  <span>Students can inspect the full chain of evidence, contest ambiguous step deductions, challenge false negative classifications, and focus on the immediate corrective step.</span>
+                  <strong>Feedback and Learner Choice:</strong>
+                  <span>Review the available feedback and answer comparisons, then choose what to practice next. Feedback is not a guarantee of correctness or mastery.</span>
                 </div>
               </div>
 

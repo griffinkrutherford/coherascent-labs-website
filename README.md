@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-27: Aligned the Engine explanation with the current practice-preparation, answer-key and rubric-feedback paths. Bounded automated-review and score-check claims, removed unsupported universal confidence guarantees and made the four-step explanation accessible. Preserved the design, historical benchmark values, confidence intervals, adjudication limits and dated OCR-fixture caveat.
+
 - 2026-10-27: Reused one canonical phone chassis for landing heroes and the Learn Your Way preview, including existing physical side keys and shared desktop/mobile tilt behavior. Added Learn Your Way to all 165 landing-page menus through an idempotent shared navigation helper used by the campaign generator; retained existing items and page content.
 
 - 2026-10-27: Kept the Earth backdrop on a static poster when visibility observation is unavailable, with zero attached video sources. Deferred each outgoing layer's rewind until its next hidden reuse so a late opacity transition keeps its decoded frame. Preserved the failed fallback and intermittent readiness assertions; final controller checks retain the same opacity/readiness thresholds.
