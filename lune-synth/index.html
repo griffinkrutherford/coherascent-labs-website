@@ -10902,7 +10902,8 @@
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
   <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
   <script src="/campaign/lang-shots.js?v=2" defer></script>
-  <link rel="stylesheet" href="/campaign/tock-section.css?v=10" />
+  <script src="/campaign/lang-background.js?v=1" defer></script>
+  <link rel="stylesheet" href="/campaign/tock-section.css?v=11" />
   <script src="/campaign/tock-secret.core.js?v=3" defer></script>
   <script src="/campaign/tock-section.js?v=8" defer></script>
 </head>
@@ -12921,17 +12922,46 @@
     <!-- ================= LANGUAGE & ACCESSIBILITY SECTION ================= -->
     <style>
       .lang-a11y {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 1.75rem;
         max-width: 1020px;
+        width: 100%;
+        box-sizing: border-box;
         margin: 0 auto;
+        padding: clamp(16px, 2.4vw, 28px);
+        border-radius: 30px;
+        background: #080b18;
+      }
+      .lang-a11y__video,
+      .lang-a11y__veil {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .lang-a11y__video {
+        z-index: -3;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.8;
+      }
+      .lang-a11y__veil {
+        z-index: -2;
+        background: linear-gradient(180deg, rgba(3, 7, 20, 0.32), rgba(3, 7, 20, 0.62));
       }
       .lang-a11y__card {
+        position: relative;
         padding: clamp(24px, 3vw, 32px);
         border: 1px solid var(--line);
         border-radius: 24px;
-        background: var(--card);
+        background: color-mix(in srgb, var(--card) 78%, transparent);
+        backdrop-filter: blur(8px);
         box-shadow: var(--glow);
       }
       .lang-a11y__card h3 {
@@ -12976,6 +13006,7 @@
         .lang-a11y {
           grid-template-columns: 1fr;
         }
+        .lang-a11y__video { object-position: 70% center; }
       }
 
       /* ---- Language preview (phone + dropdown), "Learn in your language" ---- */
@@ -13131,7 +13162,9 @@
     </style>
     <section class="section section--lang-a11y" id="language-accessibility" aria-labelledby="lang-a11y-title">
       <h2 class="section-title" id="lang-a11y-title">Learn your way</h2>
-      <div class="lang-a11y section-content">
+      <div class="lang-a11y section-content" data-lang-background>
+        <video class="lang-a11y__video" data-lang-background-video data-src="videos/learn-your-way-earth.mp4?v=1" poster="videos/learn-your-way-earth-poster.webp?v=1" autoplay loop muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <div class="lang-a11y__veil" aria-hidden="true"></div>
         <div class="lang-a11y__card lang-a11y__card--languages">
           <h3>Learn in your language</h3>
           <p>Lune Synth's interface is available in nine languages, with coverage growing every release.</p>

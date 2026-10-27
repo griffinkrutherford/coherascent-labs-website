@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-27",
+  "source": {
+    "file": "Planet_Earth_spinning_in_space_20261027104109.mp4",
+    "sha256": "8997c28502aa7d2cd968d43552bafd849fc3cd76aebe71637632e995efbcd605",
+    "bytes": 2952055,
+    "originalUnmodified": true
+  },
+  "delivery": {
+    "file": "learn-your-way-earth.mp4",
+    "sha256": "e79e27c76ff5bbbd9014914375ebfff312e4c52be87bff2ff1798fa54b43a87b",
+    "bytes": 2801549,
+    "codec": "H.264 High3.1",
+    "pixelFormat": "yuv420p",
+    "width": 1280,
+    "height": 720,
+    "fps": "24/1",
+    "frames": 192,
+    "durationSeconds": 8,
+    "audioStreams": 0,
+    "fastStart": true,
+    "atoms": [
+      "ftyp",
+      "moov",
+      "free",
+      "mdat"
+    ],
+    "conversion": "Video stream copied without re-encoding; audio/metadata omitted; MP4 faststart"
+  },
+  "poster": {
+    "file": "learn-your-way-earth-poster.webp",
+    "sha256": "83b3a20b3954ea721fa48137a366cb7f158fe544ad14e2d1b3b1e0e899253941",
+    "bytes": 114036,
+    "frameTimeSeconds": 0,
+    "encoding": "cwebp quality85 from decoded source frame"
+  },
+  "playback": "Muted inline looping decoration; source deferred until near viewport; paused offscreen/hidden; reduced motion unloads video and retains poster"
+}

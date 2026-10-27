@@ -129,7 +129,7 @@ main #tock-title::before {
 
 .section--tock .tock {
   width: 100%;
-  max-width: 1180px;
+  max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
