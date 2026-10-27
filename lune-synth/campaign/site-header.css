@@ -184,6 +184,7 @@ html[data-theme="light"] .site-header .nav-links .nav-link--story:focus-visible 
 .site-header .nav-link[href$="#problem-solver-title"] { --nav-icon: url("/campaign/nav-icons/puzzle.webp"); }
 .site-header .nav-link[href$="#platform-title"] { --nav-icon: url("/campaign/nav-icons/fountainPen.webp"); }
 .site-header .nav-link[href$="#voice-title"] { --nav-icon: url("/campaign/nav-icons/microphone.webp"); }
+.site-header .nav-link[href$="#language-accessibility"] { --nav-icon: url("/campaign/nav-icons/book.webp"); }
 .site-header .nav-link[href$="#luna-title"] { --nav-icon: url("/campaign/nav-icons/pawPrint.webp"); }
 .site-header .nav-link[href$="#processing-title"] { --nav-icon: url("/campaign/nav-icons/checklist.webp"); }
 .site-header .nav-link[href$="#medals-title"] { --nav-icon: url("/campaign/nav-icons/medal.webp"); }

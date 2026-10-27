@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { withLearnYourWayNavigation } = require("./lib/lune-navigation");
 
 const root = path.resolve(__dirname, "..");
 const contentPath = path.join(root, "lune-synth", "campaign", "pages.json");
@@ -314,7 +315,8 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="preload" href="${escapeHtml(page.phoneImage)}" as="image" />
-  <link rel="stylesheet" href="/campaign/landing.css?v=10" />
+  <link rel="stylesheet" href="/campaign/landing.css?v=11" />
+  <link rel="stylesheet" href="/campaign/phone-chassis.css?v=1" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
@@ -330,7 +332,7 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <script src="/campaign/offer-popup.js?v=2" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
   <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/campaign/site-header.css?v=7" />
+  <link rel="stylesheet" href="/campaign/site-header.css?v=8" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=6" />
   <script src="/campaign/site-footer.js?v=14" data-lune-site-footer defer></script>
   <script src="/campaign/nav-scroll.js?v=1" defer></script>
@@ -493,6 +495,6 @@ for (const sourcePage of selectedPages) {
   const page = normalizePage(sourcePage);
   const outputPath = path.join(root, page.output);
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, render(page));
+  fs.writeFileSync(outputPath, withLearnYourWayNavigation(render(page)));
   console.log(`Generated ${path.relative(root, outputPath)}`);
 }

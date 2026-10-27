@@ -55,7 +55,8 @@ main .hero-highlight-reel__phone {
   --home-mobile-angle: 1.8 3.5 0.15 -12deg;
 }
 
-main .quick-missions__phone:not(.problem-solver__phone) {
+main .quick-missions__phone:not(.problem-solver__phone),
+main .lang-shot__phone {
   --home-desktop-angle: -2 3.5 -0.2 27deg;
   --home-mobile-angle: -1.8 3.5 -0.15 18deg;
 }
@@ -78,7 +79,8 @@ main .voice-scene__ipad {
 /* Existing layout transforms add a separate five-degree lean on desktop. */
 main .voice-scene__phone,
 main .quick-missions__phone:not(.problem-solver__phone),
-main .luna-phone--tab {
+main .luna-phone--tab,
+main .lang-shot__phone {
   transform: rotate(-1deg);
 }
 
@@ -95,20 +97,22 @@ main .voice-scene__ipad {
   main :is(.hero-highlight-reel__phone, .capture-scene__phone,
            .processing-scene__phone, .feedback-scene__phone,
            .voice-scene__phone, .voice-scene__ipad, .luna-phone--tab,
-           .quick-missions__phone, .ipad-mockup) {
+           .quick-missions__phone, .ipad-mockup, .lang-shot__phone) {
     rotate: var(--home-desktop-angle);
   }
 
   html[data-tilt-ready] main .is-tilt-revealed:is(
     .capture-scene__phone, .processing-scene__phone,
     .feedback-scene__phone, .voice-scene__phone, .voice-scene__ipad,
-    .luna-phone--tab, .quick-missions__phone, .ipad-mockup
+    .luna-phone--tab, .quick-missions__phone, .ipad-mockup, .lang-shot__phone
   ) {
     rotate: var(--home-desktop-angle) !important;
   }
 
   main .response-carousel__question-phone:not(.device-tilt),
-  main .response-carousel__question-phone.device-tilt.is-device-revealed {
+  main .response-carousel__question-phone.device-tilt.is-device-revealed,
+  main .lang-shot__phone:not(.device-tilt),
+  main .lang-shot__phone.device-tilt.is-device-revealed {
     rotate: var(--home-desktop-angle);
   }
 }
@@ -120,7 +124,8 @@ main .voice-scene__ipad {
                      .quick-missions__device-column, .problem-solver__device,
                      .response-carousel__paper, .capture-scene,
                      .processing-scene__stage, .feedback-scene__deck,
-                     .voice-scene__devices, .luna-tab-visual) {
+                     .voice-scene__devices, .luna-tab-visual,
+                     .lang-shot__device .phone-mock-fluid) {
     perspective: 1400px;
   }
 
@@ -128,7 +133,7 @@ main .voice-scene__ipad {
                      .processing-scene__phone, .feedback-scene__phone,
                      .voice-scene__phone, .voice-scene__ipad, .luna-phone--tab,
                      .quick-missions__phone, .ipad-mockup,
-                     .response-carousel__question-phone) {
+                     .response-carousel__question-phone, .lang-shot__phone) {
     rotate: var(--home-mobile-angle) !important;
   }
 
