@@ -58,7 +58,7 @@
       fadeTimer = setTimeout(function () {
         if (!isCurrent(ticket)) return;
         outgoing.pause();
-        outgoing.currentTime = 0;
+        // Keep the last decoded frame until fully hidden; rewind only on its next reuse.
         active = next;
         transitioning = false;
         cycles += 1;
@@ -99,8 +99,7 @@
     }, { threshold: 0.08 });
     observer.observe(root);
   } else {
-    isVisible = true;
-    syncPlayback();
+    reset(); // Without a visibility signal, keep the readable poster and no decoders.
   }
   document.addEventListener("visibilitychange", syncPlayback);
   window.addEventListener("pagehide", reset);

@@ -9,7 +9,22 @@ const locales=['en','es','fr','de','pt-BR','zh-Hans','ja','ko','hi'];
 (async()=>{
  const browser=await chromium.launch({headless:true});const proof={viewports:[],galleryStates:0};
  try {
-  for(const width of[320,390,768,1440]){
+  if(process.env.LANG_QA_NO_OBSERVER==='1'){
+   const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'no-preference'});
+   await page.addInitScript(()=>{delete window.IntersectionObserver;});
+   await page.route(/^https?:/,route=>route.request().url().startsWith(base+'/')?route.continue():route.abort());
+   await page.goto(base+'/',{waitUntil:'domcontentloaded'});
+   const card=page.locator('[data-lang-background]');await card.waitFor({state:'attached'});await page.waitForTimeout(300);
+   assert.equal(await card.locator('video[src]').count(),0,'no visibility signal must not load either decoder offscreen');
+   await card.scrollIntoViewIfNeeded();await page.waitForTimeout(300);
+   assert.equal(await card.locator('video[src]').count(),0,'missing visibility observer retains static poster');
+   assert.equal(await card.evaluate(el=>el.dataset.langVideoState),'poster');
+   assert.equal(await card.locator('video').evaluateAll(videos=>videos.every(v=>v.paused)),true);
+   if(out){fs.mkdirSync(out,{recursive:true});await card.screenshot({path:path.join(out,'no-observer-poster.png')});}
+   console.log('no IntersectionObserver: readable static poster; zero attached sources/playing decoders before and after scrolling PASS');
+   await page.close();return;
+  }
+  for(const width of(process.env.LANG_QA_PLAYBACK_ONLY==='1'?[]:[320,390,768,1440])){
    const page=await browser.newPage({viewport:{width,height:2000},reducedMotion:'reduce'}),errors=[];
    page.on('pageerror',error=>errors.push(error.message));
    await page.route(/^https?:/,route=>route.request().url().startsWith(base+'/')?route.continue():route.abort());

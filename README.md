@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-27: Kept the Earth backdrop on a static poster when visibility observation is unavailable, with zero attached video sources. Deferred each outgoing layer's rewind until its next hidden reuse so a late opacity transition keeps its decoded frame. Preserved the failed fallback and intermittent readiness assertions; final controller checks retain the same opacity/readiness thresholds.
+
 - 2026-10-27: Unified Learn Your Way into one Medals-width feature card with a larger phone preview beside its language and accessibility copy. Added a tinted Earth backdrop with one-second two-layer crossfades; both muted video sources unload offscreen, in the background and for reduced motion. Preserved all nine-language Home/Shop previews and selected-image accessibility; actual-host browser checks cover 72 gallery states and two real video loops.
 
 - 2026-10-27: Fixed the shared modal's unwired X button and versioned its script URL. Added actual-browser close/reopen, mouse/touch/keyboard, Escape and focus-restoration coverage for the Tock reward and public store dialogs; retained the failing pre-fix reproduction.
