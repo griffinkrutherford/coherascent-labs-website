@@ -10758,6 +10758,7 @@
       html[data-tilt-ready] .feedback-scene__deck,
       html[data-tilt-ready] .voice-scene__devices,
       html[data-tilt-ready] .luna-tab-visual,
+      html[data-tilt-ready] .lang-shot__device,
       html[data-tilt-ready] .quick-missions__device-column {
         perspective: 1600px;
       }
@@ -10769,6 +10770,7 @@
       html[data-tilt-ready] .voice-scene__ipad,
       html[data-tilt-ready] .luna-phone--tab,
       html[data-tilt-ready] .quick-missions__phone,
+      html[data-tilt-ready] .lang-shot__phone,
       html[data-tilt-ready] .ipad-mockup {
         transition: rotate 5.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
         backface-visibility: hidden;
@@ -10791,6 +10793,7 @@
       html[data-tilt-ready] .voice-scene__ipad { rotate: 1 3 0 42deg; }
       html[data-tilt-ready] .luna-phone--tab { rotate: 0 1 0 -36deg; }
       html[data-tilt-ready] .quick-missions__phone { rotate: 0 1 0 34deg; }
+      html[data-tilt-ready] .lang-shot__phone { rotate: 0 1 0 -32deg; }
       html[data-tilt-ready] .ipad-mockup { rotate: 2 5 0 -40deg; }
 
       /* Base revealed pose. The homepage angle stylesheet gives the device
@@ -10902,9 +10905,9 @@
 }
   </script>
   <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/campaign/site-header.css?v=9" />
+  <link rel="stylesheet" href="/campaign/site-header.css?v=10" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=6" />
-  <link rel="stylesheet" href="/campaign/section-icons.css?v=7" />
+  <link rel="stylesheet" href="/campaign/section-icons.css?v=8" />
   <link rel="stylesheet" href="/campaign/pricing.css?v=3" />
   <link rel="stylesheet" href="/campaign/sky-motion.css?v=1" />
   <script src="/campaign/sky-motion.js?v=1" defer></script>
@@ -14963,6 +14966,31 @@
           outline-offset: 4px;
           background: linear-gradient(135deg, #cbdfff, #acf1f6);
         }
+        /* Red theme, matching the About page (about/about.css: #ff727c / #e85b72). */
+        .section--story-preview {
+          --story-red: #ff727c;
+          --story-red-deep: #e85b72;
+          background:
+            radial-gradient(900px 520px at 18% 10%, rgba(255, 90, 110, 0.14), transparent 60%),
+            radial-gradient(760px 480px at 85% 80%, rgba(192, 58, 79, 0.12), transparent 62%);
+        }
+        .section--story-preview .section-title { color: var(--story-red); }
+        .section--story-preview .story-preview__eyebrow { color: var(--story-red); opacity: 0.92; }
+        .section--story-preview .story-preview__photo {
+          box-shadow: 0 24px 60px rgba(20, 4, 10, 0.5), 0 0 34px rgba(255, 90, 110, 0.16);
+          border: 1px solid rgba(255, 114, 124, 0.22);
+        }
+        .section--story-preview .story-preview__cta {
+          border-color: rgba(255, 114, 124, 0.7);
+          background: linear-gradient(115deg, var(--story-red), var(--story-red-deep));
+          color: #1a0509;
+          box-shadow: 0 8px 24px rgba(232, 91, 114, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+        }
+        .section--story-preview .story-preview__cta:hover,
+        .section--story-preview .story-preview__cta:focus-visible {
+          background: linear-gradient(115deg, #ff8d95, #f0708a);
+          box-shadow: 0 12px 28px rgba(232, 91, 114, 0.36);
+        }
         @media (prefers-reduced-motion: reduce) {
           .story-preview__cta { transition: none; }
           .story-preview__cta:hover { transform: none; }
@@ -17090,7 +17118,7 @@
     if (!('IntersectionObserver' in window)) return;
     var sel = '.capture-scene__phone, .processing-scene__phone, .feedback-scene__phone,'
             + '.voice-scene__phone, .voice-scene__ipad, .luna-phone--tab,'
-            + '.quick-missions__phone, .ipad-mockup';
+            + '.quick-missions__phone, .lang-shot__phone, .ipad-mockup';
     var devices = Array.prototype.slice.call(document.querySelectorAll(sel));
     if (!devices.length) return;
     /* Give each device real thickness: back panel + four side walls.
