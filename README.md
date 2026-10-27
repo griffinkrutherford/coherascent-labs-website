@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-27: Constrained the expanded Engine audit to its card width on small screens. Kept historical prose and figures unchanged, wrapped long audit headings and retained horizontal scrolling inside the comparison table's existing wrapper.
+
 - 2026-10-27: Clarified the Engine's four supported follow-up choices as similar, easier, harder and custom practice; avoided presenting a new practice set as an additional follow-up mode.
 
 - 2026-10-27: Aligned the Engine explanation with the current practice-preparation, answer-key and rubric-feedback paths. Bounded automated-review and score-check claims, removed unsupported universal confidence guarantees and made the four-step explanation accessible. Preserved the design, historical benchmark values, confidence intervals, adjudication limits and dated OCR-fixture caveat.

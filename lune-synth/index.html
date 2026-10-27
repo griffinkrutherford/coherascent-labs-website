@@ -6588,12 +6588,16 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      min-width: 0;
       width: 100%;
       max-width: none;
       margin: 0 auto;
     }
 
     .engine-panel--unified {
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
       gap: 26px;
@@ -6850,6 +6854,9 @@
     }
 
     .engine-diligence-drawer {
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
       border: 1px solid rgba(166, 186, 215, 0.14);
       border-radius: 18px;
       background: rgba(8, 16, 36, 0.45);
@@ -6902,6 +6909,7 @@
     }
 
     .engine-diligence-trigger__left {
+      min-width: 0;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -6943,12 +6951,17 @@
     }
 
     .engine-diligence-body {
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
       padding: 0 22px 22px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
+
+    .engine-diligence-body > * { min-width: 0; }
 
     html[data-theme="light"] .engine-diligence-body {
       border-top-color: rgba(79, 132, 214, 0.12);
@@ -7040,13 +7053,19 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
+    @media (max-width: 640px) {
+      .engine-diligence-section-heading h4 { white-space: normal; }
+    }
+
     html[data-theme="light"] .engine-diligence-section-heading::after {
       background: rgba(79, 132, 214, 0.12);
     }
 
     /* Benchmark Table */
     .engine-diligence-table-wrap {
+      min-width: 0;
       width: 100%;
+      max-width: 100%;
       overflow-x: auto;
       border-radius: 12px;
       border: 1px solid rgba(166, 186, 215, 0.12);
