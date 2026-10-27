@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-27: Corrected the Earth background video and poster URLs to the existing `/lune-synth/videos/` production routes. The initial local preview accepted `/videos/` paths that the production host does not map; live route checks caught the mismatch after publishing.
+
 - 2026-10-27: Matched the Focus with Tock card to the Medals card's full container width. Added the supplied eight-second Earth video behind Learn your way, with a static poster, muted inline playback, viewport/visibility pauses and reduced-motion fallback. Preserved the original 720p video stream without re-encoding, removed background audio and recorded source/delivery hashes in the video provenance file.
 
 - 2026-10-26: Re-captured eight translated Home previews, nine Shop previews and five language-study questions (22 native frames, 27 WebPs). Corrected visible language mismatches while preserving target-language exercises, and updated Shop artwork to three overlapping examples. Added an exact-hash/locale capture-review manifest and broader screenshot checks; fixed stale gallery loads and selected-image accessibility.
