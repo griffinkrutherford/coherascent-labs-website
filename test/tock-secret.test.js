@@ -10,6 +10,30 @@ test('one full short-hand rotation requires twelve manual minute-hand rotations'
   assert.equal(t.isUnlocked(), true);
   assert.equal(t.add(90), false); // reveal once
 });
+
+test('v2 requires three steps for both sets and describes genuine movement without a percentage', () => {
+  for (const set of ['standard', 'golden']) {
+    const value = { set, durationMinutes: 75, riskLevel: 0, sequenceVersion: 2, riskRule: 'any-adjustment',
+      sequence: [{control:'time',value:75},{control:'risk',value:0},{control:'time',value:30}],
+      expiresAt: '2026-10-27T20:10:00.000Z', serverNow: '2026-10-27T20:00:00.000Z' };
+    assert.deepEqual(parseWardrobeCode(value, set, 2), { steps: ['Set time to 1 hr 15 min',
+      'Move the risk slider to any different position','Set time to 30 min'], remainingMs: 600000 });
+    assert.equal(parseWardrobeCode(value, set), null, 'legacy parser does not silently accept v2');
+    for (const wrong of [
+      {...value,sequenceVersion:1}, {...value,riskRule:undefined}, {...value,riskRule:'exact'},
+      {...value,riskLevel:1}, {...value,durationMinutes:70}, {...value,set:'unknown'},
+      {...value,sequence:value.sequence.slice(0,2)}, {...value,sequence:[...value.sequence,value.sequence[1]]},
+      {...value,sequence:[...value.sequence].reverse()},
+      {...value,sequence:[value.sequence[0],{control:'risk',value:1},value.sequence[2]]},
+      {...value,sequence:[value.sequence[0],{control:'risk',value:0.5},value.sequence[2]]},
+      {...value,sequence:[value.sequence[0],{control:'risk',value:'0'},value.sequence[2]]},
+      {...value,sequence:[value.sequence[0],value.sequence[1],value.sequence[0]]},
+      {...value,sequence:[value.sequence[0],value.sequence[1],{control:'time',value:31}]},
+      {...value,serverNow:value.expiresAt}, {...value,expiresAt:'2026-10-27T20:10:01.000Z'}
+    ]) assert.equal(parseWardrobeCode(wrong, set, 2), null);
+    assert.equal(parseWardrobeCode(value, set, 3), null);
+  }
+});
 test('counterclockwise works and reversing/wiggling cancels travel', () => {
   const t = createRotationTracker();
   for (let i = 0; i < 500; i++) { t.add(45); t.add(-45); }

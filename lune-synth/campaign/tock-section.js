@@ -48,12 +48,12 @@
       request = controller;
       var startedAt = performance.now();
       var timeout = setTimeout(function () { controller.abort(); }, 8000);
-      fetch('https://coherascent-labs-app-production.up.railway.app/v1/public/tock-wardrobe-code?set=' + set,
+      fetch('https://coherascent-labs-app-production.up.railway.app/v1/public/tock-wardrobe-code?set=' + set + '&sequenceVersion=2',
         { cache: 'no-store', credentials: 'omit', signal: controller.signal })
         .then(function (response) { if (!response.ok) throw new Error('Unavailable'); return response.json(); })
         .then(function (value) {
           if (request !== controller) return;
-          var code = secret.parseWardrobeCode(value, set);
+          var code = secret.parseWardrobeCode(value, set, 2);
           var remaining = code ? code.remainingMs - (performance.now() - startedAt) : 0;
           if (remaining <= 0) throw new Error('Expired');
           var deadline = performance.now() + remaining;

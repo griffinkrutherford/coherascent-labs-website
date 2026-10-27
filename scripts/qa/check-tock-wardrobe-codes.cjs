@@ -16,11 +16,13 @@ if (captureDir) fs.mkdirSync(captureDir, { recursive: true });
       page.on('pageerror', error => errors.push(error.message));
       const calls = { standard: 0, golden: 0 };
       await page.route('**/v1/public/tock-wardrobe-code?set=*', async route => {
-        const set = new URL(route.request().url()).searchParams.get('set');
+        const params = new URL(route.request().url()).searchParams;
+        assert.equal(params.get('sequenceVersion'), '2');
+        const set = params.get('set');
         calls[set]++;
         const now = Date.now();
-        await route.fulfill({ json: { set, durationMinutes: set === 'standard' ? 75 : 105, riskLevel: 0, sequenceVersion: 1,
-          sequence: set === 'standard' ? [{control:'time',value:75},{control:'risk',value:5}] : [{control:'time',value:105},{control:'risk',value:2},{control:'time',value:30}],
+        await route.fulfill({ json: { set, durationMinutes: set === 'standard' ? 75 : 105, riskLevel: 0, sequenceVersion: 2, riskRule: 'any-adjustment',
+          sequence: [{control:'time',value:set === 'standard' ? 75 : 105},{control:'risk',value:0},{control:'time',value:30}],
           serverNow: new Date(now).toISOString(), expiresAt: new Date(now + 600000).toISOString() } });
       });
       await page.goto(base + '/lune-synth/index.html', { waitUntil: 'domcontentloaded' });
@@ -53,6 +55,9 @@ if (captureDir) fs.mkdirSync(captureDir, { recursive: true });
         assert.equal(await standard.isVisible(), false);
         await page.keyboard.press('ArrowRight');
         await standard.locator('[data-tock-code]').waitFor({ state: 'visible' });
+        // The reveal dialog takes focus; dismiss it before continuing real keyboard turns.
+        await page.keyboard.press('Escape');
+        assert.equal(await clock.evaluate(el => el === document.activeElement), true);
         await keys(page, 623);
         assert.equal(await golden.isVisible(), false);
         await page.keyboard.press('ArrowRight');
@@ -87,8 +92,12 @@ if (captureDir) fs.mkdirSync(captureDir, { recursive: true });
       await standard.locator('[data-tock-code]').waitFor({ state: 'visible' });
       await golden.locator('[data-tock-code]').waitFor({ state: 'visible' });
       assert.equal(calls.standard, 1); assert.equal(calls.golden, 1);
-      assert.deepEqual(await standard.locator('[data-tock-code] li').allTextContents(), ['Set time to 1 hr 15 min','Set risk slider to 50%']);
-      assert.deepEqual(await golden.locator('[data-tock-code] li').allTextContents(), ['Set time to 1 hr 45 min','Set risk slider to 20%','Set time to 30 min']);
+      assert.deepEqual(await standard.locator('[data-tock-code] li').allTextContents(), ['Set time to 1 hr 15 min','Move the risk slider to any different position','Set time to 30 min']);
+      assert.deepEqual(await golden.locator('[data-tock-code] li').allTextContents(), ['Set time to 1 hr 45 min','Move the risk slider to any different position','Set time to 30 min']);
+      for (const card of [standard, golden]) {
+        assert.match(await card.innerText(), /no exact percentage is required/);
+        assert.doesNotMatch(await card.locator('[data-tock-code]').innerText(), /%/);
+      }
       assert.match(await standard.innerText(), /every wardrobe category/);
       assert.match(await golden.innerText(), /1 hr 45 min/);
       assert.match(await golden.innerText(), /every wardrobe category/);
@@ -131,8 +140,8 @@ if (captureDir) fs.mkdirSync(captureDir, { recursive: true });
       await page.route('**/v1/public/tock-wardrobe-code?set=*', async route => {
         count++;
         if (count === 2) return route.abort('failed');
-        await route.fulfill({ json: { set: 'standard', durationMinutes: count === 1 ? 75 : 95, riskLevel: 0, sequenceVersion: 1,
-          sequence: [{control:'time',value:count === 1 ? 75 : 95},{control:'risk',value:5}],
+        await route.fulfill({ json: { set: 'standard', durationMinutes: count === 1 ? 75 : 95, riskLevel: 0, sequenceVersion: 2, riskRule: 'any-adjustment',
+          sequence: [{control:'time',value:count === 1 ? 75 : 95},{control:'risk',value:0},{control:'time',value:30}],
           serverNow: '2026-10-22T20:00:00Z', expiresAt: count === 1 ? '2026-10-22T20:00:05Z' : '2026-10-22T20:10:00Z' } });
       });
       await keys(page, 48);
@@ -147,6 +156,28 @@ if (captureDir) fs.mkdirSync(captureDir, { recursive: true });
       assert.match(await code.innerText(), /1 hr 35 min/);
       assert.equal(count, 3);
       console.log('server clock offset, exact expiry, offline retry and replacement combination: pass');
+      await page.close();
+    }
+    // A legacy or malformed issuer response cannot become a misleading v2 combination.
+    for (const mode of ['legacy-v1', 'missing-rule', 'numeric-target']) {
+      const { page } = await open(375);
+      await page.unroute('**/v1/public/tock-wardrobe-code?set=*');
+      await page.route('**/v1/public/tock-wardrobe-code?set=*', async route => {
+        const now = Date.now();
+        const value = { set:'standard', durationMinutes:75, riskLevel:0, sequenceVersion:2,
+          riskRule:'any-adjustment', sequence:[{control:'time',value:75},{control:'risk',value:0},{control:'time',value:30}],
+          serverNow:new Date(now).toISOString(), expiresAt:new Date(now+600000).toISOString() };
+        if (mode === 'legacy-v1') { value.sequenceVersion = 1; value.sequence = value.sequence.slice(0,2); value.sequence[1].value = 5; }
+        if (mode === 'missing-rule') delete value.riskRule;
+        if (mode === 'numeric-target') value.sequence[1].value = 2;
+        await route.fulfill({ json:value });
+      });
+      await keys(page,48);
+      const card = page.locator('[data-tock-reward]');
+      await card.locator('[data-tock-code-retry]').waitFor({state:'visible'});
+      assert.equal(await card.locator('[data-tock-code]').isVisible(),false);
+      assert.match(await card.locator('[data-tock-code-status]').innerText(),/unavailable/);
+      console.log(mode + ': fails closed without displaying a stale or percentage-target code');
       await page.close();
     }
     // Autoplay may move the hands for days but does not count toward either reward.

@@ -29,11 +29,15 @@
     var minutes = value % 60;
     return hours ? hours + ' hr' + (minutes ? ' ' + minutes + ' min' : '') : minutes + ' min';
   }
-  function parseWardrobeCode(value, set) {
+  function parseWardrobeCode(value, set, expectedVersion) {
+    var version = expectedVersion === undefined ? 1 : expectedVersion;
+    if (version !== 1 && version !== 2) return null;
     if ((set !== 'standard' && set !== 'golden') || !value || value.set !== set || !Number.isInteger(value.durationMinutes) ||
         value.durationMinutes < 5 || value.durationMinutes > 120 || value.durationMinutes % 5 !== 0 ||
         value.riskLevel !== 0 || typeof value.expiresAt !== 'string' || typeof value.serverNow !== 'string' ||
-        value.sequenceVersion !== 1 || !Array.isArray(value.sequence) || value.sequence.length !== (set === 'standard' ? 2 : 3)) return null;
+        value.sequenceVersion !== version || !Array.isArray(value.sequence) ||
+        value.sequence.length !== (version === 2 || set === 'golden' ? 3 : 2) ||
+        (version === 2 && value.riskRule !== 'any-adjustment')) return null;
     var steps = [];
     for (var i = 0; i < value.sequence.length; i++) {
       var step = value.sequence[i];
@@ -43,11 +47,17 @@
         if (step.value < 5 || step.value > 120 || step.value % 5 !== 0) return null;
         steps.push('Set time to ' + formatDuration(step.value));
       } else {
-        if (step.value < 0 || step.value > 5) return null;
-        steps.push('Set risk slider to ' + (step.value * 10) + '%');
+        if (version === 2) {
+          if (step.value !== 0) return null;
+          steps.push('Move the risk slider to any different position');
+        } else {
+          if (step.value < 0 || step.value > 5) return null;
+          steps.push('Set risk slider to ' + (step.value * 10) + '%');
+        }
       }
     }
-    if (value.sequence[0].value !== value.durationMinutes || (set === 'golden' && value.sequence[0].value === value.sequence[2].value)) return null;
+    if (value.sequence[0].value !== value.durationMinutes ||
+        ((version === 2 || set === 'golden') && value.sequence[0].value === value.sequence[2].value)) return null;
     var utcIso = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/;
     if (!utcIso.test(value.expiresAt) || !utcIso.test(value.serverNow)) return null;
     var expiresAt = Date.parse(value.expiresAt);
