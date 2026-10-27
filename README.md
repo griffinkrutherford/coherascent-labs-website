@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-26: Versioned the published Tock clock stylesheet URL so returning visitors fetch the refined design instead of retaining the prior immutable cached CSS.
+
 - 2026-10-26: Added the 3D Luna video campaign plan with all 120 requested learner/audience destinations, five navigation hubs, reusable owned-model rendering, free waitlist terms, platform-specific publishing constraints and proposed measurement/spending gates. This publishes a plan; it does not launch ads, upload videos or authorize spending.
 
 - 2026-10-26: Refined the interactive Tock clock with a fluted metal bezel, dark sunburst dial, luminous indices and sword hands. Preserved keyboard/pointer controls and reduced-motion behavior; desktop/mobile visual and interaction checks passed.
