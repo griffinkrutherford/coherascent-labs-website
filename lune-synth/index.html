@@ -10903,7 +10903,7 @@
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
   <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
   <script src="/campaign/lang-shots.js?v=2" defer></script>
-  <script src="/campaign/lang-background.js?v=1" defer></script>
+  <script src="/campaign/lang-background.js?v=2" defer></script>
   <link rel="stylesheet" href="/campaign/tock-section.css?v=11" />
   <script src="/campaign/tock-secret.core.js?v=3" defer></script>
   <script src="/campaign/tock-section.js?v=8" defer></script>
@@ -12927,15 +12927,18 @@
         isolation: isolate;
         overflow: hidden;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: 1.75rem;
-        max-width: 1020px;
+        grid-template-columns: minmax(230px, 0.7fr) minmax(0, 1.15fr);
+        align-items: center;
+        gap: clamp(28px, 5vw, 72px);
+        max-width: none;
         width: 100%;
         box-sizing: border-box;
         margin: 0 auto;
-        padding: clamp(16px, 2.4vw, 28px);
+        padding: clamp(24px, 4vw, 56px);
+        border: 1px solid rgba(164, 190, 255, 0.26);
         border-radius: 30px;
         background: #080b18;
+        box-shadow: 0 34px 90px rgba(3, 7, 20, 0.5), 0 0 70px rgba(100, 168, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
       }
       .lang-a11y__video,
       .lang-a11y__veil {
@@ -12950,31 +12953,43 @@
         display: block;
         object-fit: cover;
         object-position: center;
-        opacity: 0.8;
+        filter: saturate(0.85) contrast(1.05) hue-rotate(-8deg);
+        opacity: 0;
+        transition: opacity 1s linear;
       }
+      .lang-a11y__video.is-active { opacity: 0.72; }
+      .lang-a11y[data-lang-video-state="poster"] .lang-a11y__video { transition: none; }
       .lang-a11y__veil {
         z-index: -2;
-        background: linear-gradient(180deg, rgba(3, 7, 20, 0.32), rgba(3, 7, 20, 0.62));
+        background:
+          radial-gradient(circle at 16% 18%, rgba(100, 168, 255, 0.18), transparent 40%),
+          linear-gradient(90deg, rgba(4, 7, 17, 0.18), rgba(5, 9, 22, 0.72) 52%, rgba(3, 7, 18, 0.9)),
+          linear-gradient(180deg, rgba(4, 7, 18, 0.2), rgba(3, 6, 16, 0.72));
       }
-      .lang-a11y__card {
+      .lang-a11y__preview,
+      .lang-a11y__copy {
         position: relative;
-        padding: clamp(24px, 3vw, 32px);
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        background: color-mix(in srgb, var(--card) 78%, transparent);
-        backdrop-filter: blur(8px);
-        box-shadow: var(--glow);
+        min-width: 0;
       }
-      .lang-a11y__card h3 {
-        margin: 0 0 0.6rem;
+      .lang-a11y__copy { display: grid; gap: 28px; }
+      .lang-a11y__copy h3 {
+        margin: 0 0 0.75rem;
         color: var(--text);
-        font-size: 1.15rem;
+        font-size: clamp(23px, 2.4vw, 34px);
+        line-height: 1.2;
       }
-      .lang-a11y__card p {
+      .lang-a11y__copy p {
         margin: 0 0 1rem;
         color: var(--muted);
         line-height: 1.55;
-        font-size: 0.95rem;
+        font-size: 1rem;
+      }
+      html[data-theme="light"] .lang-a11y { background: #edf2fb; border-color: rgba(79, 132, 214, 0.25); box-shadow: 0 24px 70px rgba(138, 151, 181, 0.22); }
+      html[data-theme="light"] .lang-a11y__veil {
+        background:
+          radial-gradient(circle at 18% 18%, rgba(100, 168, 255, 0.12), transparent 40%),
+          linear-gradient(90deg, rgba(245, 248, 255, 0.36), rgba(245, 248, 255, 0.84) 52%, rgba(245, 248, 255, 0.94)),
+          linear-gradient(180deg, rgba(245, 248, 255, 0.14), rgba(245, 248, 255, 0.72));
       }
       .lang-a11y__list {
         margin: 0 0 1.1rem;
@@ -13016,10 +13031,11 @@
         flex-direction: column;
         align-items: center;
         gap: 0.85rem;
-        margin: 0.35rem 0 1.15rem;
+        margin: 0;
       }
       .lang-shot__device {
-        width: 148px;
+        width: clamp(190px, 22vw, 264px);
+        max-width: 100%;
         flex: 0 0 auto;
       }
       .lang-shot__controls {
@@ -13151,25 +13167,24 @@
         opacity: 1;
       }
       @media (prefers-reduced-motion: reduce) {
+        .lang-a11y__video,
         .lang-shot__image {
           transition: none;
         }
       }
       @media (max-width: 400px) {
         .lang-shot__device {
-          width: 128px;
+          width: min(220px, 100%);
         }
       }
     </style>
     <section class="section section--lang-a11y" id="language-accessibility" aria-labelledby="lang-a11y-title">
       <h2 class="section-title" id="lang-a11y-title">Learn your way</h2>
-      <div class="lang-a11y section-content" data-lang-background>
-        <video class="lang-a11y__video" data-lang-background-video data-src="/lune-synth/videos/learn-your-way-earth.mp4?v=1" poster="/lune-synth/videos/learn-your-way-earth-poster.webp?v=1" autoplay loop muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+      <div class="lang-a11y section-content" data-lang-background data-lang-video-state="poster">
+        <video class="lang-a11y__video is-active" data-lang-background-video data-src="/lune-synth/videos/learn-your-way-earth.mp4?v=1" poster="/lune-synth/videos/learn-your-way-earth-poster.webp?v=1" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <video class="lang-a11y__video" data-lang-background-video data-src="/lune-synth/videos/learn-your-way-earth.mp4?v=1" poster="/lune-synth/videos/learn-your-way-earth-poster.webp?v=1" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
         <div class="lang-a11y__veil" aria-hidden="true"></div>
-        <div class="lang-a11y__card lang-a11y__card--languages">
-          <h3>Learn in your language</h3>
-          <p>Lune Synth's interface is available in nine languages, with coverage growing every release.</p>
-
+        <div class="lang-a11y__preview">
           <div class="lang-shot" data-lang-shot>
             <div class="lang-shot__device">
               <div class="phone-mock-fluid">
@@ -13220,10 +13235,15 @@
             </div>
           </div>
 
+        </div>
+        <div class="lang-a11y__copy">
+        <div class="lang-a11y__languages">
+          <h3>Learn in your language</h3>
+          <p>Lune Synth's interface is available in nine languages, with coverage growing every release.</p>
           <p>Studying a language instead of using the app in one? Our <a href="/study/languages/">language study pages</a> cover 14+ languages to practice.</p>
           <a class="pricing-card__cta lang-a11y__cta" href="/study/languages/">Explore language study pages</a>
         </div>
-        <div class="lang-a11y__card">
+        <div class="lang-a11y__accessibility">
           <h3>Built to be accessible</h3>
           <p>Real accommodations, not an afterthought:</p>
           <ul class="lang-a11y__list">
@@ -13235,6 +13255,7 @@
             <li>High contrast mode</li>
             <li>Separate haptics and sound-effect toggles</li>
           </ul>
+        </div>
         </div>
       </div>
     </section>
