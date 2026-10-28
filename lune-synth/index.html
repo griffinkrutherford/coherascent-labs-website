@@ -5970,9 +5970,9 @@
       grid-column: 1 / -1;
       justify-self: end;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 6px;
-      width: min(560px, 100%);
+      width: min(640px, 100%);
       padding: 4px;
       background: rgba(255, 255, 255, 0.02);
       border-radius: 999px;
@@ -6139,7 +6139,7 @@
         padding: 26px 18px;
       }
       .luna-menu {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 5px;
         padding: 3px;
       }
@@ -6155,7 +6155,8 @@
 
     @media (max-width: 480px) {
       .luna-menu {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-radius: 20px;
       }
       .luna-tab-btn {
         padding: 7px 4px;
@@ -13263,14 +13264,35 @@
             <!-- Top: Interactive Pill Tabs Menu (pattern from Constellations) -->
             <div class="luna-menu" role="tablist" aria-label="Ways Luna helps you think" data-moving-selection>
               <span class="moving-selection-pill luna-menu__selection" aria-hidden="true"></span>
-              <button class="luna-tab-btn is-active" id="lunaTab-hints" role="tab" aria-controls="lunaPanel-hints" aria-selected="true" onclick="switchLunaTab('hints')">Hints</button>
+              <button class="luna-tab-btn is-active" id="lunaTab-voice" role="tab" aria-controls="lunaPanel-voice" aria-selected="true" onclick="switchLunaTab('voice')">Voice Call</button>
+              <button class="luna-tab-btn" id="lunaTab-hints" role="tab" aria-controls="lunaPanel-hints" aria-selected="false" onclick="switchLunaTab('hints')">Hints</button>
               <button class="luna-tab-btn" id="lunaTab-infographics" role="tab" aria-controls="lunaPanel-infographics" aria-selected="false" onclick="switchLunaTab('infographics')">Infographics</button>
               <button class="luna-tab-btn" id="lunaTab-keyterms" role="tab" aria-controls="lunaPanel-keyterms" aria-selected="false" onclick="switchLunaTab('keyterms')">Key Terms</button>
               <button class="luna-tab-btn" id="lunaTab-chat" role="tab" aria-controls="lunaPanel-chat" aria-selected="false" onclick="switchLunaTab('chat')">Chat</button>
             </div>
 
             <!-- Tab panels: copy left, phone mockup right (pattern from Constellations) -->
-            <div class="luna-tab-panel is-active" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
+            <div class="luna-tab-panel is-active" id="lunaPanel-voice" role="tabpanel" aria-labelledby="lunaTab-voice">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Talk through your next step with Luna.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Voice Call preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" poster="screenshots/applied/luna-voice-call-poster.webp" aria-label="Sample voice call showing 3D Luna listening and replying with a hint">
+                      <source src="screenshots/applied/luna-voice-call.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Think out loud</span>
+                <span>One step at a time</span>
+                <span>Sample conversation</span>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="lunaPanel-hints" role="tabpanel" aria-labelledby="lunaTab-hints">
               <div class="luna-tab-copy">
                 <p class="luna-tab-copy__lede">Get one hint, then finish the step.</p>
               </div>
@@ -15653,7 +15675,7 @@
   }
 
   let currentLunaTabIndex = 0;
-  const lunaTabOrder = ['hints', 'infographics', 'keyterms', 'chat'];
+  const lunaTabOrder = ['voice', 'hints', 'infographics', 'keyterms', 'chat'];
   let lunaDemoIsNear = true;
 
   function syncLunaDemoVideos() {
@@ -15702,9 +15724,9 @@
   document.addEventListener('DOMContentLoaded', function () {
     const hasActive = document.querySelector('.luna-tab-panel.is-active');
     if (!hasActive) {
-      const firstPanel = document.getElementById('lunaPanel-hints');
+      const firstPanel = document.getElementById('lunaPanel-voice');
       if (firstPanel) firstPanel.classList.add('is-active');
-      const firstBtn = document.getElementById('lunaTab-hints');
+      const firstBtn = document.getElementById('lunaTab-voice');
       if (firstBtn) firstBtn.classList.add('is-active');
     }
 

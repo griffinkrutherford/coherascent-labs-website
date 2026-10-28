@@ -1,0 +1,14 @@
+{
+  "durationSeconds": 21.966667,
+  "width": 720,
+  "height": 1566,
+  "codec": "h264",
+  "pixelFormat": "yuv420p",
+  "fps": "30/1",
+  "audio": false,
+  "bytes": 346154,
+  "sha256": "03770fe01a80ee56af33e3b8f73a4a1135603b1959b33f24200b28815bb129f2",
+  "fastStart": true,
+  "localVideoHttp": 200,
+  "localRangeHttp": 206
+}

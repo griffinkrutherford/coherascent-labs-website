@@ -1,0 +1,120 @@
+diff --git a/apps/mobile/index.ts b/apps/mobile/index.ts
+index 3c9362cc8..cae28a076 100644
+--- a/apps/mobile/index.ts
++++ b/apps/mobile/index.ts
+@@ -1,71 +1,3 @@
+ import { registerRootComponent } from "expo";
+-import { createElement } from "react";
+-import { Platform, Settings } from "react-native";
+-import App from "./App";
+-// Side-effect only: registers whichever native widget store module (iOS/
+-// Android) has landed on this branch with src/widget/widgetStoreRegistry.ts.
+-import "./src/widget";
+-import { registerLuneSynthWidgetTaskHandler } from "./src/widget/android/androidWidgetTaskHandler";
+-import { DevShowcaseRoot } from "./src/screens/dev/notesShowcase/DevShowcaseRoot";
+-import { resolveDevShowcaseVariant, resolveAndroidDevShowcaseVariant } from "./src/screens/dev/notesShowcase/devShowcaseVariant.core";
+-import { readLaunchArgument } from "./src/performance/deviceSignals";
+-
+-// three's log filter is no longer installed here: importing it forced all of
+-// three.js into the startup graph. src/config/threeRuntime.ts installs it the
+-// first time three loads, which is still before any <Canvas> can mount.
+-
+-// Home-screen widget (Android): registers the headless task that redraws
+-// LuneSynthWidget on WIDGET_ADDED/UPDATE/RESIZED/CLICK. No-ops on iOS and on
+-// any binary built before `react-native-android-widget` was linked.
+-registerLuneSynthWidgetTaskHandler();
+-
+-// DEV-ONLY screenshot harness (docs/2026-10-02-notability-grade-notes-plan.md,
+-// src/screens/dev/notesShowcase/DevShowcaseRoot.tsx). `xcrun simctl launch
+-// <udid> com.coherascentlabs.lunesynth -lunaDevScreen <variant>` lands
+-// `<variant>` in iOS's launch-argument NSUserDefaults domain, which
+-// `Settings.get` (react-native, iOS-only) reads back. `__DEV__` is first in
+-// this `&&` chain -- it is a compile-time constant Metro replaces with
+-// `false` in a release bundle, so in a release build this whole expression
+-// short-circuits to `null` without ever evaluating `Platform.OS` or calling
+-// `Settings.get`: dead code, not just a false branch.
+-//
+-// Android QA can use the existing native intent helper; older binaries fall back to Metro.
+-// Android has no equivalent of NSUserDefaults launch arguments, so the
+-// Android branch instead reads `EXPO_PUBLIC_LUNA_DEV_SCREEN`, an
+-// EXPO_PUBLIC_-prefixed env var Metro inlines into the bundle at transform
+-// time (the same mechanism this app already uses for
+-// `EXPO_PUBLIC_API_BASE_URL`/`EXPO_PUBLIC_FLOW_TIMER`), set when starting
+-// Metro: `EXPO_PUBLIC_LUNA_DEV_SCREEN=<variant> npx expo start --dev-client -c`.
+-// `__DEV__` gates this branch too, so it is equally dead code in a release
+-// bundle; changing the variant requires a Metro restart with `-c` to clear
+-// the inline-env cache, which is already this harness's normal workflow.
+-const devShowcaseVariant =
+-  __DEV__ && Platform.OS === "ios"
+-    ? resolveDevShowcaseVariant(Settings.get("lunaDevScreen"), __DEV__)
+-    : __DEV__ && Platform.OS === "android"
+-      ? resolveAndroidDevShowcaseVariant(readLaunchArgument("lunaDevScreen"), process.env.EXPO_PUBLIC_LUNA_DEV_SCREEN, __DEV__)
+-      : null;
+-
+-// Frame-measurement builds only (docs/2026-10-10-low-end-device-performance.md).
+-// A release-mode bundle built with EXPO_PUBLIC_LUNA_PERF_HARNESS=1 opens a
+-// showcase named by a launch argument (`am start --es lunaDevScreen <variant>`),
+-// so low-end frame stats come from production JS instead of dev JS. Store
+-// builds never set the flag: Metro inlines the missing variable as undefined
+-// and this is null without reading anything.
+-const perfHarnessVariant =
+-  !devShowcaseVariant && process.env.EXPO_PUBLIC_LUNA_PERF_HARNESS === "1"
+-    ? resolveAndroidDevShowcaseVariant(readLaunchArgument("lunaDevScreen"), process.env.EXPO_PUBLIC_LUNA_DEV_SCREEN, true)
+-    : null;
+-
+-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
+-// It also ensures that whether you load the app in Expo Go or in a native build,
+-// the environment is set up appropriately.
+-// index.ts is a plain .ts file (JSX syntax is only valid in .tsx), so this
+-// uses createElement directly instead of <DevShowcaseRoot ... />.
+-registerRootComponent(
+-  devShowcaseVariant
+-    ? () => createElement(DevShowcaseRoot, { variant: devShowcaseVariant })
+-    : perfHarnessVariant
+-      ? () => createElement(DevShowcaseRoot, { variant: perfHarnessVariant })
+-      : App
+-);
++import VoiceCallRecording from "./VoiceCallRecording";
++registerRootComponent(VoiceCallRecording);
+diff --git a/apps/mobile/src/components/TutorVoiceControls.tsx b/apps/mobile/src/components/TutorVoiceControls.tsx
+index f583a2f38..7d21a2521 100644
+--- a/apps/mobile/src/components/TutorVoiceControls.tsx
++++ b/apps/mobile/src/components/TutorVoiceControls.tsx
+@@ -47,9 +47,9 @@ type Capture = {
+ 
+ export function TutorVoiceControls(props: TutorVoiceControlsProps) {
+   const fonts = useAppFontStyles(); const { t, locale } = useT();
+-  const [mode, setMode] = useState<Mode>("closed");
++  const [mode, setMode] = useState<Mode>("live");
+   const [error, setError] = useState<string | null>(null);
+-  const [status, setStatus] = useState("connecting");
++  const [status, setStatus] = useState("listening");
+   const [farewell, setFarewell] = useState(false);
+   const farewellTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+   const [emotionContext, setEmotionContext] = useState<VoiceEmotionContext>(() => ({ locale, turnIndex: 0, turnId: "", learner: "", assistant: "" }));
+@@ -59,6 +59,25 @@ export function TutorVoiceControls(props: TutorVoiceControlsProps) {
+   const [muted, setMuted] = useState(false); const mutedRef = useRef(false);
+   const [transcript, setTranscript] = useState<VoiceTranscript[]>([]);
+   const transcriptRef = useRef<VoiceTranscript[]>([]);
++  // Local recording fixture only: the real call UI and avatar, scripted turns,
++  // no microphone, provider session, credentials or analytics.
++  useEffect(() => {
++    const user = { id: "sample-user", role: "user" as const, content: "I’m stuck on 3x + 5 = 20. Where do I start?", final: true };
++    const assistant = { id: "sample-luna", role: "assistant" as const, content: "Let’s take it one step at a time. What could you do to both sides to leave 3x on its own?", final: true };
++    const schedule = () => [
++      setTimeout(() => { setStatus("listening"); setTranscript([user]); }, 1200),
++      setTimeout(() => setStatus("thinking"), 3200),
++      setTimeout(() => {
++        setStatus("speaking"); setTranscript([user, assistant]);
++        setEmotionContext({ locale: "en", turnIndex: 1, turnId: "sample-luna", learner: user.content, assistant: assistant.content });
++      }, 5600),
++      setTimeout(() => setStatus("listening"), 13300),
++      setTimeout(() => { setTranscript([]); setEmotionContext({ locale: "en", turnIndex: 0, turnId: "", learner: "", assistant: "" }); }, 19800),
++    ];
++    let timers = schedule();
++    const repeat = setInterval(() => { timers.forEach(clearTimeout); timers = schedule(); }, 22000);
++    return () => { timers.forEach(clearTimeout); clearInterval(repeat); };
++  }, []);
+   const controller = useRef<ReturnType<typeof createTutorVoiceController> | null>(null);
+   const activationRef = useRef(0);
+   const [, setActivation] = useState(0);
