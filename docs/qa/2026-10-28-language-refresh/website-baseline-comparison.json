@@ -1,0 +1,30 @@
+{
+  "baseline": {
+    "counts": [
+      "\u2139 tests 86",
+      "\u2139 pass 81",
+      "\u2139 fail 5"
+    ],
+    "failures": [
+      "index.html's static waitlist-offer markup matches offer-state.js's DEFAULT_OFFER text",
+      "names a planned price with an explicit \"not final\" caveat",
+      "states plainly that Pro has not launched and is not purchasable",
+      "the Pro page makes no launch-date promise",
+      "the Pro page's offer summary uses the same figures as the Terms and the access email"
+    ]
+  },
+  "final": {
+    "counts": [
+      "\u2139 tests 86",
+      "\u2139 pass 81",
+      "\u2139 fail 5"
+    ],
+    "failures": [
+      "index.html's static waitlist-offer markup matches offer-state.js's DEFAULT_OFFER text",
+      "names a planned price with an explicit \"not final\" caveat",
+      "states plainly that Pro has not launched and is not purchasable",
+      "the Pro page makes no launch-date promise",
+      "the Pro page's offer summary uses the same figures as the Terms and the access email"
+    ]
+  }
+}

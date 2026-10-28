@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-28: Completed the language-gallery refresh with German, Brazilian Portuguese, Simplified Chinese, Japanese and Korean Home retakes. All 18 Home/Shop screenshots now use current native screens, readable notebook labels, loaded artwork and matched 1290×2796 frames. Preserved exact-byte review records and both final contact sheets; versioned the final batch for returning visitors.
+
 - 2026-10-28: Re-captured all nine translated Shop previews from the current native layout, with Moon Rock Shop first and overlapping examples for frames, ships, XP boosts and Cryonics. Individually reviewed all nine full-frame WebPs, refreshed their exact-byte provenance and rotated the gallery cache version.
 
 - 2026-10-28: Re-captured English, Spanish, French and Hindi Home language previews with readable native notebook labels and loaded clock, bulb and ship artwork. Versioned the gallery and initial image for returning visitors, standardized frame dimensions, and extended exact-byte review coverage to English Home. Remaining Home locales and the Shop refresh follow as reviewed batches.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reviewDate": "2026-10-28",
-  "status": "Incremental recapture: four Home and all nine Shop exports accepted;five Home records retained from 2026-10-26 until retakes pass.",
+  "status": "PASS:all18 Home/Shop gallery exports recaptured and individually reviewed;10 existing subject-page exports retained with their original evidence.",
   "scope": "Native DEV website screenshot acceptance; not a signed-build, production-model or whole-app certification.",
   "sourcePolicy": "Native captures use base commit plus the exact label patch below. Published label fix is recorded separately. Retained items keep their original evidence.",
   "captureSource": {
@@ -13,29 +13,33 @@
   "items": [
     {
       "asset": "lune-synth/screenshots/applied/lang/home-de.webp",
-      "sha256": "b2950ad1bf0cadf6f0677deba1b9fc38bf38343161d84c80a26efe3b5e8f3f8c",
+      "sha256": "b7a0661fce547f11544f925862bc3f84388281f7fc486147f1fe80a817600c9b",
       "dimensions": [
         1290,
         2796
       ],
       "uiLocale": "de",
-      "fixture": "website-locale-gallery-home-de",
+      "fixture": "website-home-de",
       "variant": "website-home-de",
-      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
-      "nativeCaptureSHA256": "5fc3908a375a3eedd867b2216dfbed9e966b9baa80d2426f93930d5b3ff4f59a",
-      "capturedAt": "2026-10-26T17:51:13.933906-06:00",
+      "fixtureCommit": "02ba1d7fbb183073be7576538818aaa63095ac03",
+      "labelFixCommit": "6fd0747bd59e731c55566247243b3f59d7415b3f",
+      "nativeCaptureSHA256": "bb0100a303a15ea8a45266ec4caad15c9bc1e57a17a178dc2a378db93a35b811",
+      "capturedAt": "2026-10-28T14:03:19.492142-06:00",
+      "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
-      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
-      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
-      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
-      "reviewer": "website_visual",
-      "reviewDate": "2026-10-26",
+      "reviewer": "Codex visual review",
+      "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Individually opened final actual WebP export.",
-        "German main title Algebra-Grundlagen, notebook Algebra and all primary controls match selected UI; real Timer clock/Solver bulb visible;9:41/full frame.",
-        "Intentional Schnellmissio… header ellipsis is inside bounds and explicitly parent-accepted; do not claim full heading readability. ON avatar initials are not a translated control.",
-        "No displayed lesson question in Home; saved English lesson unopened, no foreign contentLocale assertion."
+        "Opened this final WebP: readable Algebra notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
@@ -55,12 +59,18 @@
       "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
       "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
       "reviewer": "Codex visual review",
       "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Opened the actual final WebP: readable Calculus notebook label, translated title and controls, visible clock/bulb/ship, complete frame and no loading placeholders.",
-        "Home fixture is inert; no account or real lesson content was opened."
+        "Opened this final WebP: readable Calculus notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
@@ -80,12 +90,18 @@
       "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
       "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
       "reviewer": "Codex visual review",
       "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Opened the actual final WebP: readable Álgebra notebook label, translated title and controls, visible clock/bulb/ship, complete frame and no loading placeholders.",
-        "Home fixture is inert; no account or real lesson content was opened."
+        "Opened this final WebP: readable Álgebra notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
@@ -105,12 +121,18 @@
       "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
       "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
       "reviewer": "Codex visual review",
       "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Opened the actual final WebP: readable Algèbre notebook label, translated title and controls, visible clock/bulb/ship, complete frame and no loading placeholders.",
-        "Home fixture is inert; no account or real lesson content was opened."
+        "Opened this final WebP: readable Algèbre notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
@@ -130,119 +152,142 @@
       "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
       "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
       "reviewer": "Codex visual review",
       "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Opened the actual final WebP: readable बीजगणित notebook label, translated title and controls, visible clock/bulb/ship, complete frame and no loading placeholders.",
-        "Home fixture is inert; no account or real lesson content was opened."
+        "Opened this final WebP: readable बीजगणित notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
       "asset": "lune-synth/screenshots/applied/lang/home-ja.webp",
-      "sha256": "2964587951e9c0021c30b289ac62b72c506e60f65f5948c402aaf14b1598f55e",
+      "sha256": "d631c72a2982e07b54f87d5fe8a6fbd73cafc091508325918eea8a1dcff9efed",
       "dimensions": [
         1290,
         2796
       ],
       "uiLocale": "ja",
-      "fixture": "website-locale-gallery-home-ja",
+      "fixture": "website-home-ja",
       "variant": "website-home-ja",
-      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
-      "nativeCaptureSHA256": "a7847fd48d391d500f8fb5b72859beb7f008d0087c314b6d48bb44617e1c76ba",
-      "capturedAt": "2026-10-26T17:54:08.740902-06:00",
+      "fixtureCommit": "02ba1d7fbb183073be7576538818aaa63095ac03",
+      "labelFixCommit": "6fd0747bd59e731c55566247243b3f59d7415b3f",
+      "nativeCaptureSHA256": "c18360697179aa1fee652b07e549beb89d4694b4426c95722370af7a5ee3eaa6",
+      "capturedAt": "2026-10-28T14:04:53.943478-06:00",
+      "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
-      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
-      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
-      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
-      "reviewer": "website_visual",
-      "reviewDate": "2026-10-26",
+      "reviewer": "Codex visual review",
+      "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Individually opened final actual WebP export.",
-        "Japanese 代数の基礎 title, 代数 notebook and primary mission/timer/solver controls match selected UI; both real clock and bulb visible;9:41/full frame;no tofu or bounds crop.",
-        "Intentional クイックミッシ… heading ellipsis is parent-accepted inside bounds; do not claim full heading readability.",
-        "Small decorative notebook label accepted limitation; ON initials are inert avatar initials, not untranslated control. Saved English lesson is unopened, no foreign contentLocale assertion."
+        "Opened this final WebP: readable 代数 notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
       "asset": "lune-synth/screenshots/applied/lang/home-ko.webp",
-      "sha256": "4cf9a75cd93d956a568f0f87007404546054c858e3fedf6596a5aa28fcef61b1",
+      "sha256": "ae68e31e6df9595d74e94b7326c7faf77558768b93ff6fb25b37a7d0775aa12e",
       "dimensions": [
         1290,
         2796
       ],
       "uiLocale": "ko",
-      "fixture": "website-locale-gallery-home-ko",
+      "fixture": "website-home-ko",
       "variant": "website-home-ko",
-      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
-      "nativeCaptureSHA256": "8f56fb1ac8922f675c19de4be90e5dd17429e14aa50e1b33392bba2e730883bc",
-      "capturedAt": "2026-10-26T17:54:40.017228-06:00",
+      "fixtureCommit": "02ba1d7fbb183073be7576538818aaa63095ac03",
+      "labelFixCommit": "6fd0747bd59e731c55566247243b3f59d7415b3f",
+      "nativeCaptureSHA256": "a482b16dd869c714fcd472b08361a2dd22556e5a436a948fafb1381b4954d99f",
+      "capturedAt": "2026-10-28T14:05:34.047286-06:00",
+      "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
-      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
-      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
-      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
-      "reviewer": "website_visual",
-      "reviewDate": "2026-10-26",
+      "reviewer": "Codex visual review",
+      "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Individually opened final actual WebP export.",
-        "Korean 기초 대수 title, 대수 notebook and primary mission/timer/solver controls match selected UI; both real clock and bulb visible;9:41/full frame;no tofu or bounds crop.",
-        "Small decorative notebook label accepted limitation; ON initials are inert avatar initials, not untranslated control. Saved English lesson is unopened, no foreign contentLocale assertion."
+        "Opened this final WebP: readable 대수 notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
       "asset": "lune-synth/screenshots/applied/lang/home-pt-BR.webp",
-      "sha256": "bca4d41fce3a4986c15fa757a778c070b4d412e505e049134f68cda69ff2abfb",
+      "sha256": "59bfc50b9f3da3b6b7bdcfdb929202a6744adbe4f1e1a81449cbc913d45506e4",
       "dimensions": [
         1290,
         2796
       ],
       "uiLocale": "pt-BR",
-      "fixture": "website-locale-gallery-home-pt-BR",
+      "fixture": "website-home-pt-BR",
       "variant": "website-home-pt-BR",
-      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
-      "nativeCaptureSHA256": "0ba6558cec6df44aeabf488a867d5fbaffa3ad61c4147cc308001add4d340f42",
-      "capturedAt": "2026-10-26T17:51:45.196947-06:00",
+      "fixtureCommit": "02ba1d7fbb183073be7576538818aaa63095ac03",
+      "labelFixCommit": "6fd0747bd59e731c55566247243b3f59d7415b3f",
+      "nativeCaptureSHA256": "2eeea4b6c1a13250e21a4cf7b4b00c3c1dd53dfdc4b750d16132956d74457635",
+      "capturedAt": "2026-10-28T14:03:55.519564-06:00",
+      "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
-      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
-      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
-      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
-      "reviewer": "website_visual",
-      "reviewDate": "2026-10-26",
+      "reviewer": "Codex visual review",
+      "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Individually opened final actual WebP export.",
-        "Portuguese Álgebra básica title, Álgebra notebook, Cronômetro de foco/mission/solver controls match selected UI. Both real clock and bulb visible;9:41/full frame.",
-        "Tiny decorative notebook label accepted limitation; ON avatar initials are not translated control.",
-        "No displayed lesson question in Home; saved English lesson unopened, no foreign contentLocale assertion."
+        "Opened this final WebP: readable Álgebra notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
       "asset": "lune-synth/screenshots/applied/lang/home-zh-Hans.webp",
-      "sha256": "9b33b1348cd36714d9676db89ca8868e350b04f81b90360d75f82959822cb550",
+      "sha256": "d624fc8b901934b2ad56173288c483ca0133f14f6f52f49a4303f552d790f958",
       "dimensions": [
         1290,
         2796
       ],
       "uiLocale": "zh-Hans",
-      "fixture": "website-locale-gallery-home-zh-Hans",
+      "fixture": "website-home-zh-Hans",
       "variant": "website-home-zh-Hans",
-      "fixtureCommit": "3cb8820f8c76d7db4c7194c2d12b1c4fc4808d65",
-      "nativeCaptureSHA256": "11c648cec0380e9d1fb269991a556cc0556026c97322e70309b7b5278ebe4f65",
-      "capturedAt": "2026-10-26T17:52:16.443069-06:00",
+      "fixtureCommit": "02ba1d7fbb183073be7576538818aaa63095ac03",
+      "labelFixCommit": "6fd0747bd59e731c55566247243b3f59d7415b3f",
+      "nativeCaptureSHA256": "19bd557c5ada6fdfc6b209bd91467d63fda168686e997123d5fb2c601b47000c",
+      "capturedAt": "2026-10-28T14:04:21.532964-06:00",
+      "nativeDevice": "7CBB0C09-CEDB-49B0-8D0A-352C3BD24739",
       "statusBarTime": "9:41",
-      "nativeDevice": "9D55AE48-506D-4132-893F-439AFA4ADE52",
-      "offlineBundleSHA256": "fe24e97bc6846a97b6bd2bf69a99cef228299534e5546d046f42ca2d1d2b9439",
-      "conversion": "cwebp q90 m5; full native dimensions; mid480 proportional; no crop/text edits",
+      "conversion": "cwebp q92 m6;1290x2796;full frame;no crops or text edits",
+      "loadedArtworkPixelCounts": {
+        "clock": 5128,
+        "bulb": 2456,
+        "ship": 5367
+      },
       "semanticReview": "PASS",
-      "reviewer": "website_visual",
-      "reviewDate": "2026-10-26",
+      "reviewer": "Codex visual review",
+      "reviewDate": "2026-10-28",
       "reviewNotes": [
-        "Individually opened final actual WebP export.",
-        "Simplified Chinese 代数基础 title, 代数 notebook, 快速任务/专注计时器/打开题集/更换任务/问题解答 match selected UI and meaning. Both real clock and bulb visible;9:41/full frame;no tofu or visible bounds crop.",
-        "Tiny decorative notebook label accepted limitation; ON avatar initials are not translated control.",
-        "No displayed lesson question in Home; saved English lesson unopened, no foreign contentLocale assertion."
+        "Opened this final WebP: readable 代数 notebook label, translated heading/title/controls, fully loaded clock/bulb/ship and complete native frame.",
+        "No loading placeholders. Retakes wait for painted artwork before export;all nine Home exports also reviewed together in the contact sheet.",
+        "Home fixture is inert;no real lesson or account was opened."
       ]
     },
     {
@@ -740,5 +785,7 @@
         "Existing answer-list scroll continuation and partially hidden secondary topic chips are limitations, not false claims that all choices/topics are fully visible."
       ]
     }
-  ]
+  ],
+  "freshGalleryExports": 18,
+  "retainedSubjectPageExports": 10
 }

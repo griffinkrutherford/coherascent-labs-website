@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-28",
+  "scope": "All18 native gallery exports;not signed-app or whole-app certification",
+  "galleryExports": 18,
+  "nativeDimensions": [
+    1290,
+    2796
+  ],
+  "individuallyOpenedExports": 18,
+  "contactSheets": [
+    "home-contact.jpg",
+    "shop-contact.jpg"
+  ],
+  "browser": {
+    "galleryStates": 72,
+    "viewportWidths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "pageErrors": 0,
+    "realVideoLoops": 2,
+    "lifecycle": {
+      "offscreenUnload": true,
+      "reducedMotionUnload": true,
+      "rapidMotionChange": true,
+      "maxLayers": 2
+    },
+    "noJavaScriptFallback": {
+      "pass": true,
+      "width": 1290,
+      "height": 2796,
+      "src": "screenshots/applied/lang/home-en.webp?v=5",
+      "alt": "Lune Synth home screen with Quick Missions, shown in English"
+    }
+  },
+  "screenshotGuard": {
+    "testsPassed": 7,
+    "pagesChecked": 165,
+    "reviewedHashes": 28
+  },
+  "mobile": {
+    "typeScriptExit": 0,
+    "focusedCoreTestsPassed": 8,
+    "focusedComponentTestsPassed": 11,
+    "fullCoreSuite": "in progress"
+  },
+  "apiFullSuite": "queued after mobile core suite",
+  "websiteFullSuite": {
+    "passed": 81,
+    "failed": 5,
+    "newFailures": 0,
+    "evidence": "website-baseline-comparison.json"
+  },
+  "runtimeChanges": "Native label fitting fixed in app main6fd0747bd;installed clients require a new binary. No API/default/config changes."
+}
