@@ -44,9 +44,27 @@
     "typeScriptExit": 0,
     "focusedCoreTestsPassed": 8,
     "focusedComponentTestsPassed": 11,
-    "fullCoreSuite": "in progress"
+    "fullCoreSuite": {
+      "exitCode": 0,
+      "tests": 11646,
+      "suites": 256,
+      "pass": 11646,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
   },
-  "apiFullSuite": "queued after mobile core suite",
+  "apiFullSuite": {
+    "exitCode": 0,
+    "tests": 9920,
+    "suites": 99,
+    "pass": 9917,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 3,
+    "todo": 0
+  },
   "websiteFullSuite": {
     "passed": 81,
     "failed": 5,
@@ -59,5 +77,6 @@
     "matchingGalleryExports": 18,
     "cacheVersion": 5,
     "evidence": "live-deployment-verification.json"
-  }
+  },
+  "fullCoreEvidence": "full-core-verification.json"
 }

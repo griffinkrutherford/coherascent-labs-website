@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-28",
+  "scope": "Capture-candidate regression checks;release coordinator separately owns final integrated-main/build gates.",
+  "sourceBaseCommit": "02ba1d7fbb183073be7576538818aaa63095ac03",
+  "publishedLabelFixCommit": "6fd0747bd59e731c55566247243b3f59d7415b3f",
+  "testedLabelFilesSHA256": {
+    "apps/mobile/src/components/SubjectSymbol.tsx": "59fc251575a4314bfccffd5022de70b0c4e54a430056399a79f4d329e8cc2da9",
+    "apps/mobile/src/components/SubjectSymbol.test.tsx": "705795488f0151b9fdffed691e8dbe2e675149d0bf08d1fc377e1c2661bdfc86"
+  },
+  "node": "v22.23.3",
+  "testEnvironment": {
+    "TSX_DISABLE_CACHE": "1",
+    "testConcurrency": 6
+  },
+  "mobileCore": {
+    "exitCode": 0,
+    "tests": 11646,
+    "suites": 256,
+    "pass": 11646,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "apiCore": {
+    "exitCode": 0,
+    "tests": 9920,
+    "suites": 99,
+    "pass": 9917,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 3,
+    "todo": 0
+  },
+  "mobileTypeScriptExitCode": 0,
+  "focusedComponentTestsPassed": 11,
+  "focusedCoreTestsPassed": 8,
+  "supersededRuns": "Partial Node26 and cached Node22 runs were stopped and are not certified as passes. Only completed cache-disabled runs count here.",
+  "installedClients": "Label fix requires a new mobile binary;no EAS/Android build was started by this task."
+}

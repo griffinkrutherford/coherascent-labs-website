@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-28: Completed the language capture candidate’s regression gates: all 11,646 mobile core tests passed; API core finished with 9,917 passed, three skipped and zero failures; final mobile TypeScript and all 11 focused label component tests passed. Recorded exact source/file hashes and Node 22 cache-disabled commands. The release coordinator owns fresh integrated-main gates and the next Android build; this task started no build.
+
 - 2026-10-28: Verified the published language gallery: the live homepage and controller use cache version 5, and all 18 served WebPs match their reviewed SHA-256 hashes. Final local browser coverage passed all 72 viewport/locale/screen combinations plus the no-JavaScript English fallback. The full website suite retains the same five pre-existing offer/retired-Pro assertions as its clean baseline.
 
 - 2026-10-28: Completed the language-gallery refresh with German, Brazilian Portuguese, Simplified Chinese, Japanese and Korean Home retakes. All 18 Home/Shop screenshots now use current native screens, readable notebook labels, loaded artwork and matched 1290×2796 frames. Preserved exact-byte review records and both final contact sheets; versioned the final batch for returning visitors.
