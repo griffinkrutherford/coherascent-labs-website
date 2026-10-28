@@ -32,7 +32,7 @@ so it cannot silently reappear:
      A page is free to show the same screenshot's two *different* figures
      (e.g. an org chart and a separate Gantt chart); it may never show the
      exact same shot twice.
-  5. The 2026-10-26 language recaptures must have independent semantic PASS
+  5. The accepted language captures must have independent semantic PASS
      records bound to their exact exported SHA-256, UI locale and fixture.
      This is a provenance check; the script cannot judge translation quality.
 
@@ -252,16 +252,15 @@ LANGUAGE_HUB_PAGE = "study/languages/index.html"
 # text (Russian nouns, Hindi dialogue, Spanish poetry) remains intentional;
 # its instruction/chrome locale is English. Gallery content follows the
 # selected UI locale, including sample mission and notebook names.
-REVIEW_MANIFEST = "mobile-app-assets/screenshots/2026-10-26-language-review.json"
+REVIEW_MANIFEST = "mobile-app-assets/screenshots/2026-10-28-language-review.json"
 
 
 def required_language_reviews() -> dict[str, str]:
     required = {
         f"lune-synth/screenshots/applied/lang/{screen}-{locale}.webp": locale
         for screen in ("home", "shop")
-        for locale in ("es", "fr", "de", "pt-BR", "zh-Hans", "ja", "ko", "hi")
+        for locale in ("en", "es", "fr", "de", "pt-BR", "zh-Hans", "ja", "ko", "hi")
     }
-    required["lune-synth/screenshots/applied/lang/shop-en.webp"] = "en"
     for folder, stem in (("languages", "ru-muzei"), ("languages", "ru-kniga"),
                          ("languages", "hi-postposition"), ("hum", "apspanishlit-becquer"),
                          ("hum", "apfrench-subjonctif")):

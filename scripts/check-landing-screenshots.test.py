@@ -88,7 +88,7 @@ class ScreenshotReferencesTest(unittest.TestCase):
             ]
         })
         self.assertTrue(any("duplicate" in p for p in problems))
-        self.assertEqual(sum("missing reviewed recapture" in p for p in problems), 27)
+        self.assertEqual(sum("missing reviewed recapture" in p for p in problems), 28)
 
 
 if __name__ == "__main__":

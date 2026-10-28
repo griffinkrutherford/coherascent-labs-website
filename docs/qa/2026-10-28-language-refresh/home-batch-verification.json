@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-28",
+  "batch": "Home: en,es,fr,hi",
+  "visualReview": "Opened each actual exported WebP; readable notebook labels;complete loaded artwork;no crop/text edits.",
+  "browser": {
+    "galleryStates": 72,
+    "viewportWidths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "pageErrors": 0,
+    "realVideoLoops": 2,
+    "lifecycle": {
+      "offscreenUnload": true,
+      "reducedMotionUnload": true,
+      "rapidMotionChange": true,
+      "maxLayers": 2
+    }
+  },
+  "screenshotGuard": {
+    "testsPassed": 7,
+    "landingPages": 165,
+    "acceptedExportHashes": 28
+  },
+  "mobileFocused": {
+    "componentTestsPassed": 11,
+    "coreTestsPassed": 8
+  },
+  "websiteBaseline": {
+    "passed": 81,
+    "failed": 5,
+    "failures": [
+      "Pro offer summary figures",
+      "Static waitlist offer fallback",
+      "Retired Pro launch-date assertion",
+      "Retired Pro availability assertion",
+      "Retired Pro pricing caveat"
+    ],
+    "scope": "Observed on clean website main before edits;unrelated baseline assertions unchanged."
+  },
+  "fullMobileAndApiGates": "In progress;not certified by this incremental report."
+}

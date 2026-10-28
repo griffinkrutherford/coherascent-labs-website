@@ -35,7 +35,7 @@
   });
 
   function imageSrc(screen, locale) {
-    return "screenshots/applied/lang/" + screen + "-" + locale + ".webp?v=2";
+    return "screenshots/applied/lang/" + screen + "-" + locale + ".webp?v=3";
   }
 
   function altFor(screen, locale) {
@@ -115,11 +115,9 @@
       var expectedHref = new URL(nextSrc, document.baseURI).href;
       var committed = false;
       host.setAttribute("aria-busy", "true");
-      // English Home retains its existing device capture; every other image
-      // uses the new native 16 Plus capture without stretching its aspect.
-      var originalEnglishHome = screen === "home" && locale === "en";
-      targetLayer.width = originalEnglishHome ? 1206 : 1290;
-      targetLayer.height = originalEnglishHome ? 2622 : 2796;
+      // Every locale uses the same full-frame native iPhone 16 Plus capture.
+      targetLayer.width = 1290;
+      targetLayer.height = 2796;
 
       function activateCurrentImage() {
         // Bind completion to both the initiating selection and its exact
