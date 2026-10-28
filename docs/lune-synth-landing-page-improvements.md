@@ -10,6 +10,8 @@ not the numbers._
 
 ## Update Log
 
+- 2026-10-28: Moved the homepage Luna Tutor section and its menu entry between Constellations and Quick Missions, preserving the Voice Call tab and its playback controls.
+
 - 2026-10-28: Added Voice Call as the first and initially selected Luna tutor tab, before Hints. Its silent native recording previews the app’s animated 3D Luna with a clearly labeled sample conversation. Added a poster for loading/reduced motion and adjusted the five-tab menu for narrow screens; existing playback visibility gates remain shared.
 
 - 2026-10-01: Renamed the annual plan to Lune Synth Pro Special Offer on the homepage and Pro page. Its headline is $4.99/month, billed annually at $59.88/year (exactly twelve monthly equivalents); annual renewal disclosures, metadata, and visible/structured FAQs match. Monthly remains $12.99, the seven-day annual trial remains eligibility-based, and the red annual styling and existing launch offers are preserved. Website only; configure the matching Stripe annual Price before enabling purchases.
