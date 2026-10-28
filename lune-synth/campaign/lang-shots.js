@@ -35,7 +35,7 @@
   });
 
   function imageSrc(screen, locale) {
-    return "screenshots/applied/lang/" + screen + "-" + locale + ".webp?v=3";
+    return "screenshots/applied/lang/" + screen + "-" + locale + ".webp?v=4";
   }
 
   function altFor(screen, locale) {

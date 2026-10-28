@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-28: Re-captured all nine translated Shop previews from the current native layout, with Moon Rock Shop first and overlapping examples for frames, ships, XP boosts and Cryonics. Individually reviewed all nine full-frame WebPs, refreshed their exact-byte provenance and rotated the gallery cache version.
+
 - 2026-10-28: Re-captured English, Spanish, French and Hindi Home language previews with readable native notebook labels and loaded clock, bulb and ship artwork. Versioned the gallery and initial image for returning visitors, standardized frame dimensions, and extended exact-byte review coverage to English Home. Remaining Home locales and the Shop refresh follow as reviewed batches.
 
 - 2026-10-27: Gave all four Tock carousel phones distinct 3D entrance angles and delayed each hidden phone’s one-shot entrance until it becomes visible. Reused the existing chassis transition and Tock visibility observer; resting layout, manual rotation, screenshots and mobile/reduced-motion fallbacks are preserved. Browser QA confirmed four actual entrance transitions and both fallbacks; 28 focused tests and the 165-page screenshot guard passed. Full website tests remain 81/86, reproducing the same five offer/retired-Pro failures on clean baseline `f4c782aa`; no assertions were changed. Exact results are in `docs/qa/2026-10-27-tock-entrances/`.

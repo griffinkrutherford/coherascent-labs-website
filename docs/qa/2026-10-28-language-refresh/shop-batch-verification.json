@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-28",
+  "batch": "Shop:all nine locales",
+  "nativeAndExportDimensions": [
+    1290,
+    2796
+  ],
+  "individuallyOpenedExports": 9,
+  "review": "PASS:current card order;translated UI;loaded overlapping native artwork;no crops/text edits",
+  "screenshotGuard": {
+    "testsPassed": 7,
+    "landingPages": 165,
+    "acceptedExportHashes": 28
+  },
+  "galleryController": "Same selected-only/crossfade wiring as the preceding 72-state browser pass;cache version incremented."
+}
