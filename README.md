@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-28: Verified the published language gallery: the live homepage and controller use cache version 5, and all 18 served WebPs match their reviewed SHA-256 hashes. Final local browser coverage passed all 72 viewport/locale/screen combinations plus the no-JavaScript English fallback. The full website suite retains the same five pre-existing offer/retired-Pro assertions as its clean baseline.
+
 - 2026-10-28: Completed the language-gallery refresh with German, Brazilian Portuguese, Simplified Chinese, Japanese and Korean Home retakes. All 18 Home/Shop screenshots now use current native screens, readable notebook labels, loaded artwork and matched 1290×2796 frames. Preserved exact-byte review records and both final contact sheets; versioned the final batch for returning visitors.
 
 - 2026-10-28: Re-captured all nine translated Shop previews from the current native layout, with Moon Rock Shop first and overlapping examples for frames, ships, XP boosts and Cryonics. Individually reviewed all nine full-frame WebPs, refreshed their exact-byte provenance and rotated the gallery cache version.

@@ -1,0 +1,117 @@
+{
+  "checkedAt": "2026-10-28T20:13:02.776116+00:00",
+  "host": "https://lunesynth.com",
+  "homepageCacheVersion": 5,
+  "galleryScriptMatches": true,
+  "matchingGalleryExports": 18,
+  "items": [
+    {
+      "path": "/screenshots/applied/lang/home-de.webp?v=5",
+      "sha256": "b7a0661fce547f11544f925862bc3f84388281f7fc486147f1fe80a817600c9b",
+      "bytes": 120476,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/home-en.webp?v=5",
+      "sha256": "3f29887eec80bdea16213c3b350b21fb01840cdffac9be30d1583663bb2e10fe",
+      "bytes": 118536,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/home-es.webp?v=5",
+      "sha256": "1e2e07804f1605ee3fc0c6fba3a16dbdc3674c0c36e9bb5d3c516b99e070e931",
+      "bytes": 127838,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/home-fr.webp?v=5",
+      "sha256": "8437a3900d19c97bd3f39f1d0aad67bccb8f51f3b19b073a031d972d03a98889",
+      "bytes": 128928,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/home-hi.webp?v=5",
+      "sha256": "fa06570f6e7dc0f24ce810a6461f728ddf9f90b5dcd6ec79f52185de559aa0e5",
+      "bytes": 111346,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/home-ja.webp?v=5",
+      "sha256": "d631c72a2982e07b54f87d5fe8a6fbd73cafc091508325918eea8a1dcff9efed",
+      "bytes": 115800,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/home-ko.webp?v=5",
+      "sha256": "ae68e31e6df9595d74e94b7326c7faf77558768b93ff6fb25b37a7d0775aa12e",
+      "bytes": 99512,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/home-pt-BR.webp?v=5",
+      "sha256": "59bfc50b9f3da3b6b7bdcfdb929202a6744adbe4f1e1a81449cbc913d45506e4",
+      "bytes": 125290,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/home-zh-Hans.webp?v=5",
+      "sha256": "d624fc8b901934b2ad56173288c483ca0133f14f6f52f49a4303f552d790f958",
+      "bytes": 109292,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-de.webp?v=5",
+      "sha256": "e47ad3a26a8a8b8c2175e59a1ea546d9460ee3792e036187e4a4cd2535044915",
+      "bytes": 205590,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-en.webp?v=5",
+      "sha256": "d6c8b0b083e5d1488137e5795a817f477f8a66bcd3664d4b755e8ef6e5725528",
+      "bytes": 197346,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-es.webp?v=5",
+      "sha256": "4cb9f56120e63b86285f98874a92cb0c7a8f41ce73a0877e40e341dbab340220",
+      "bytes": 209420,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-fr.webp?v=5",
+      "sha256": "d5cd480b6b705319f8dfe6ed35ab06b2aea1c052d90d85ca598ddae06201b492",
+      "bytes": 222308,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-hi.webp?v=5",
+      "sha256": "9cf3a428553308771176a092b8e17b1e51d50a074956cb808247cc8838849b27",
+      "bytes": 198248,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-ja.webp?v=5",
+      "sha256": "1545736373c3c515d675db72f82d3336fe11f44c13c13250c78cc0c8fc486bec",
+      "bytes": 203514,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-ko.webp?v=5",
+      "sha256": "5f7e0158fd0242064e27669717156064b5fd47b52ec2829015e5d1f7dad36990",
+      "bytes": 194530,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-pt-BR.webp?v=5",
+      "sha256": "07b59078886e9ef3770811157f5effe713e119f29dbf830d17210b964a56a7e8",
+      "bytes": 200926,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "/screenshots/applied/lang/shop-zh-Hans.webp?v=5",
+      "sha256": "dad14e792d5ea8504bb6ce88343e927ff4a9e9233b94776dc421aebd3ca2f333",
+      "bytes": 201432,
+      "contentType": "image/webp"
+    }
+  ]
+}

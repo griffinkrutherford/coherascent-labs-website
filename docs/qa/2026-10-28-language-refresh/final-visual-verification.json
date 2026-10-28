@@ -53,5 +53,11 @@
     "newFailures": 0,
     "evidence": "website-baseline-comparison.json"
   },
-  "runtimeChanges": "Native label fitting fixed in app main6fd0747bd;installed clients require a new binary. No API/default/config changes."
+  "runtimeChanges": "Native label fitting fixed in app main6fd0747bd;installed clients require a new binary. No API/default/config changes.",
+  "deployment": {
+    "verifiedLive": true,
+    "matchingGalleryExports": 18,
+    "cacheVersion": 5,
+    "evidence": "live-deployment-verification.json"
+  }
 }
