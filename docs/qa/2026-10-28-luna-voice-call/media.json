@@ -1,14 +1,28 @@
 {
-  "durationSeconds": 21.966667,
+  "durationSeconds": 46.5,
   "width": 720,
   "height": 1566,
   "codec": "h264",
   "pixelFormat": "yuv420p",
   "fps": "30/1",
   "audio": false,
-  "bytes": 346154,
-  "sha256": "03770fe01a80ee56af33e3b8f73a4a1135603b1959b33f24200b28815bb129f2",
+  "bytes": 611083,
+  "sha256": "eb457c6e587c4f43bd7ec271a98d004f3cfe59bf4bdc81b76a7511037fe1d246",
+  "posterSha256": "dd9daae7bb27e8ac9f85939513bb5f5f8ac0f24977708697fff918c6fe0c57a0",
   "fastStart": true,
   "localVideoHttp": 200,
-  "localRangeHttp": 206
+  "localRangeHttp": 206,
+  "sourceAppCommit": "2afde0070",
+  "nativeCaptureTrimStartSeconds": 3,
+  "clips": [
+    "voice_greet",
+    "voice_think",
+    "voice_explain",
+    "voice_curious",
+    "voice_empathy_b",
+    "voice_aha",
+    "voice_laugh",
+    "voice_didnt_catch",
+    "voice_goodbye"
+  ]
 }

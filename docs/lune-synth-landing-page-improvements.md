@@ -10,6 +10,8 @@ not the numbers._
 
 ## Update Log
 
+- 2026-10-28: Expanded the native Voice Call sample with greeting, explanation, curiosity, empathy, insight, laughter, unclear-speech and goodbye reactions. Versioned video/poster filenames preserve cached-page playback; retained the existing tab, visibility and reduced-motion gates.
+
 - 2026-10-28: Moved the homepage Luna Tutor section and its menu entry between Constellations and Quick Missions, preserving the Voice Call tab and its playback controls.
 
 - 2026-10-28: Added Voice Call as the first and initially selected Luna tutor tab, before Hints. Its silent native recording previews the app’s animated 3D Luna with a clearly labeled sample conversation. Added a poster for loading/reduced motion and adjusted the five-tab menu for narrow screens; existing playback visibility gates remain shared.

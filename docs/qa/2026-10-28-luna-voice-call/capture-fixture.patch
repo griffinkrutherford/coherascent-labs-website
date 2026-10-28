@@ -77,43 +77,46 @@ index 3c9362cc8..cae28a076 100644
 +import VoiceCallRecording from "./VoiceCallRecording";
 +registerRootComponent(VoiceCallRecording);
 diff --git a/apps/mobile/src/components/TutorVoiceControls.tsx b/apps/mobile/src/components/TutorVoiceControls.tsx
-index f583a2f38..7d21a2521 100644
+index f583a2f38..c4f4e5374 100644
 --- a/apps/mobile/src/components/TutorVoiceControls.tsx
 +++ b/apps/mobile/src/components/TutorVoiceControls.tsx
-@@ -47,9 +47,9 @@ type Capture = {
+@@ -47,7 +47,7 @@ type Capture = {
  
  export function TutorVoiceControls(props: TutorVoiceControlsProps) {
    const fonts = useAppFontStyles(); const { t, locale } = useT();
 -  const [mode, setMode] = useState<Mode>("closed");
 +  const [mode, setMode] = useState<Mode>("live");
    const [error, setError] = useState<string | null>(null);
--  const [status, setStatus] = useState("connecting");
-+  const [status, setStatus] = useState("listening");
+   const [status, setStatus] = useState("connecting");
    const [farewell, setFarewell] = useState(false);
-   const farewellTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-   const [emotionContext, setEmotionContext] = useState<VoiceEmotionContext>(() => ({ locale, turnIndex: 0, turnId: "", learner: "", assistant: "" }));
-@@ -59,6 +59,25 @@ export function TutorVoiceControls(props: TutorVoiceControlsProps) {
+@@ -59,6 +59,31 @@ export function TutorVoiceControls(props: TutorVoiceControlsProps) {
    const [muted, setMuted] = useState(false); const mutedRef = useRef(false);
    const [transcript, setTranscript] = useState<VoiceTranscript[]>([]);
    const transcriptRef = useRef<VoiceTranscript[]>([]);
-+  // Local recording fixture only: the real call UI and avatar, scripted turns,
-+  // no microphone, provider session, credentials or analytics.
++  // Local capture only: scripted sample turns, with no microphone or provider.
 +  useEffect(() => {
-+    const user = { id: "sample-user", role: "user" as const, content: "I’m stuck on 3x + 5 = 20. Where do I start?", final: true };
-+    const assistant = { id: "sample-luna", role: "assistant" as const, content: "Let’s take it one step at a time. What could you do to both sides to leave 3x on its own?", final: true };
-+    const schedule = () => [
-+      setTimeout(() => { setStatus("listening"); setTranscript([user]); }, 1200),
-+      setTimeout(() => setStatus("thinking"), 3200),
-+      setTimeout(() => {
-+        setStatus("speaking"); setTranscript([user, assistant]);
-+        setEmotionContext({ locale: "en", turnIndex: 1, turnId: "sample-luna", learner: user.content, assistant: assistant.content });
-+      }, 5600),
-+      setTimeout(() => setStatus("listening"), 13300),
-+      setTimeout(() => { setTranscript([]); setEmotionContext({ locale: "en", turnIndex: 0, turnId: "", learner: "", assistant: "" }); }, 19800),
++    const phase = (turnIndex: number, nextStatus: string, learner: string, assistant: string, unclearAudio = false) => {
++      const turnId = `sample-${turnIndex}`;
++      setStatus(nextStatus);
++      setTranscript([
++        ...(learner ? [{ id: `${turnId}-user`, role: "user" as const, content: learner, final: true }] : []),
++        ...(assistant ? [{ id: `${turnId}-luna`, role: "assistant" as const, content: assistant, final: true }] : []),
++      ]);
++      setEmotionContext({ locale: "en", turnIndex, turnId, learner, assistant, facts: { unclearAudio } });
++    };
++    const timers = [
++      setTimeout(() => phase(0, "listening", "", "Hi! Let's work through this together."), 1200),
++      setTimeout(() => phase(1, "thinking", "How do I start?", ""), 4200),
++      setTimeout(() => phase(2, "speaking", "How do I start?", "First, undo the + 5 on both sides. That keeps the equation balanced."), 7500),
++      setTimeout(() => phase(2, "listening", "How do I start?", "Which operation would you undo first?"), 13500),
++      setTimeout(() => phase(3, "speaking", "I don't understand.", "That's okay. Take your time. What is the opposite of adding five?"), 18500),
++      setTimeout(() => phase(4, "listening", "Now I understand! Subtract five from both sides.", "You've spotted the next step."), 23500),
++      setTimeout(() => phase(5, "speaking", "Haha, the five was hiding the easy part!", "A little algebra detective work. Now we have 3x = 15."), 28500),
++      setTimeout(() => phase(6, "listening", "[unclear audio]", "Could you say that last part again?", true), 33500),
++      setTimeout(() => phase(8, "speaking", "Divide both sides by three?", "Next, divide both sides by three to find x. Then check it in the original equation."), 38500),
++      setTimeout(() => { setTranscript([{ id: "sample-goodbye", role: "assistant", content: "See you next time!", final: true }]); setFarewell(true); }, 44500),
 +    ];
-+    let timers = schedule();
-+    const repeat = setInterval(() => { timers.forEach(clearTimeout); timers = schedule(); }, 22000);
-+    return () => { timers.forEach(clearTimeout); clearInterval(repeat); };
++    return () => timers.forEach(clearTimeout);
 +  }, []);
    const controller = useRef<ReturnType<typeof createTutorVoiceController> | null>(null);
    const activationRef = useRef(0);
