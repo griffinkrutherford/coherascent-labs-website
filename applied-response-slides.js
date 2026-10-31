@@ -93,7 +93,7 @@
   // Slides are named by their screenshot id, so no image file is renumbered
   // (the study / test-prep pages reference those files by name).
   var ORDER = [
-    "1-sin", "2", "4", "es-preterite", "5", "5b-toc", "23", "6", "lit-frost", "3",
+    "1-sin", "2", "4", "es-preterite", "5", "code-trace", "5b-toc", "23", "6", "lit-frost", "3",
     "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19-stats",
     "20", "21", "22", "24", "25", "26"
   ];
@@ -148,6 +148,9 @@
   var dotList = Array.prototype.slice.call(dots.querySelectorAll(".response-carousel__dot"));
   if (papers.length !== dotList.length) return;
   function imageOf(paper) {
+    // A slide without a screenshot (e.g. the HTML code-diagram question)
+    // names its place in ORDER with data-response-key.
+    if (paper.dataset.responseKey) return paper.dataset.responseKey;
     var host = paper.querySelector("[data-screenshot-src]");
     var match = host && /question-prompts\/(.+?)-mid\.webp/.exec(host.getAttribute("data-screenshot-src") || "");
     return match ? match[1] : "";
