@@ -8,6 +8,8 @@ renderable frame.
 
 ## Update Log
 
+- 2026-10-31: Added stable-20261031 voice movie/poster URLs from the corrected native helmet/head recording. Earlier preview files remain available; see `../../../docs/qa/2026-10-31-luna-helmet-stability/` for provenance and checks.
+
 - 2026-10-31: Added the cache-versioned smooth-v2 voice-call movie and same-take poster, correcting the visible alpha-compositing flicker. Original previews remain available; see `../../../docs/qa/2026-10-31-luna-voice-flicker/` for comparison and media receipts.
 
 - 2026-10-31: Added the cache-versioned smooth Luna voice-call sample and its same-take poster; older media remains available. Capture provenance and byte receipts live in `../../../docs/qa/2026-10-31-luna-smooth-voice/`.

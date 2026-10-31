@@ -1,0 +1,19 @@
+✖ the Pro page's offer summary uses the same figures as the Terms and the access email (2.184166ms)
+✖ index.html's static waitlist-offer markup matches offer-state.js's DEFAULT_OFFER text (2.590875ms)
+✖ the Pro page makes no launch-date promise (2.613917ms)
+✖ states plainly that Pro has not launched and is not purchasable (1.655125ms)
+✖ names a planned price with an explicit "not final" caveat (0.463583ms)
+ℹ tests 86
+ℹ suites 0
+ℹ pass 81
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1341.28475
+✖ failing tests:
+✖ the Pro page's offer summary uses the same figures as the Terms and the access email (2.184166ms)
+✖ index.html's static waitlist-offer markup matches offer-state.js's DEFAULT_OFFER text (2.590875ms)
+✖ the Pro page makes no launch-date promise (2.613917ms)
+✖ states plainly that Pro has not launched and is not purchasable (1.655125ms)
+✖ names a planned price with an explicit "not final" caveat (0.463583ms)

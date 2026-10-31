@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-31T21:28:36.688675+00:00",
+  "origin": "http://127.0.0.1:8132",
+  "assets": [
+    {
+      "file": "luna-voice-call-stable-20261031.mp4",
+      "bytes": 644387,
+      "sha256": "1ee0be26c4eaff150ef85eae26add44b6292e82c69513d8edbfe73ae59172ec3",
+      "contentType": "video/mp4",
+      "exactBytes": true,
+      "range206": true
+    },
+    {
+      "file": "luna-voice-call-stable-20261031-poster.webp",
+      "bytes": 36256,
+      "sha256": "420cec3260981f83d11d888e0e5a74f20c0c007146e491014fd0d4bfd9032b40",
+      "contentType": "image/webp",
+      "exactBytes": true
+    }
+  ],
+  "olderFootageAvailable": true
+}

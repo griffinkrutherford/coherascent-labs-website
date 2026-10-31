@@ -1,0 +1,25 @@
+✔ missing assets get canonical ordered, deferred wiring and unrelated content stays intact (2.424167ms)
+✔ About gains tilt before existing manual rotation without duplicating it (0.804083ms)
+✔ old cache versions and early async execution normalize idempotently (1.008041ms)
+✔ invalid head and duplicate controller scripts fail before an updater writes pages (1.805625ms)
+✔ all discovered active device pages are wired; the retired Pro source is explicitly excluded (937.042584ms)
+✔ the real campaign generator produces guarded wiring without writing a checkout (7.793459ms)
+✔ shared navigation inserts the home-target link before Luna without changing existing items (1.9905ms)
+✔ homepage relative anchors retain their existing destinations (0.330958ms)
+✔ short menus receive the item and repeat application is idempotent (0.216833ms)
+✔ missing primary navigation fails instead of silently changing another menu (0.632625ms)
+✔ every canonical landing route has exactly one shared target and canonical chassis stylesheet (276.978333ms)
+✔ GET /pro/ redirects to the home page pricing section (Pro page retired) (249.121166ms)
+✔ GET /pro (no trailing slash) also redirects to pricing (15.468458ms)
+✔ the retired Pro page file is not reachable directly either (2.666125ms)
+✔ the shared footer no longer links to a separate Pro page (23.544042ms)
+✔ the homepage hero links to the pricing section next to the store badges (8.450375ms)
+✔ the Pro page's legal.css contains the new benefit/price/badge styling (4.425875ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1089.106333

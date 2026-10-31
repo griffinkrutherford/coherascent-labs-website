@@ -1,0 +1,29 @@
+{
+  "scope": "Native iPhone ScrollView measures during synthetic streaming, no microphone or provider",
+  "samples": [
+    {
+      "role": "before-stream",
+      "viewportY": 477,
+      "viewportHeight": 170,
+      "contentHeight": 24,
+      "offsetY": 0,
+      "bottomError": -146
+    },
+    {
+      "role": "user",
+      "viewportY": 477,
+      "viewportHeight": 170,
+      "contentHeight": 1124,
+      "offsetY": 954,
+      "bottomError": 0
+    },
+    {
+      "role": "assistant",
+      "viewportY": 477,
+      "viewportHeight": 170,
+      "contentHeight": 2256,
+      "offsetY": 2086,
+      "bottomError": 0
+    }
+  ]
+}

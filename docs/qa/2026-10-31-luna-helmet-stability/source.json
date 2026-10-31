@@ -1,0 +1,13 @@
+{
+  "captureDate": "2026-10-31",
+  "appBase": "a2af374e8997bda082aa9c4a7db604421cb76160",
+  "appFixStatus": "native-verified working tree; app final gate/commit pending",
+  "sourceSha256": {
+    "apps/mobile/src/components/TutorVoiceControls.tsx": "f13ddd06bb466ff345b8d7ed2c3f3de3823ed4c6875e107c9312693aa41575cd",
+    "apps/mobile/src/components/lunaVoice/LunaVoiceCallAvatar.tsx": "5ec70de246b6f1364c742125f147dab6d8b0af9ae09a328a20cc114d9e147b8d",
+    "apps/mobile/src/components/lunaVoice/VoiceAvatarImage.tsx": "52c257fb2f2c9cb582ae7613d3bd9610ea89e2291abc8b9ab7977f1cfb46bf41",
+    "apps/mobile/src/components/lunaVoice/lunaVoiceCallAvatar.core.ts": "d3d8b27c881aaa49b328a8f9905535a9885d723ab0beea8bc29234239978fce1"
+  },
+  "fixture": "capture-fixture.patch plus VoiceCallRecording.tsx, applied after the matching app source fix",
+  "noNativeOrEasBuild": true
+}

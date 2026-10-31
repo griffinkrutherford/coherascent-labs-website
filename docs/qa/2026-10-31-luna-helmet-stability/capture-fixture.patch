@@ -1,0 +1,159 @@
+--- a/apps/mobile/index.ts
++++ b/apps/mobile/index.ts
+@@ -1,77 +1,3 @@
+ import { registerRootComponent } from "expo";
+-import { createElement } from "react";
+-import { Platform, Settings } from "react-native";
+-import App from "./App";
+-// Side-effect only: registers whichever native widget store module (iOS/
+-// Android) has landed on this branch with src/widget/widgetStoreRegistry.ts.
+-import "./src/widget";
+-import { registerLuneSynthWidgetTaskHandler } from "./src/widget/android/androidWidgetTaskHandler";
+-import { DevShowcaseRoot } from "./src/screens/dev/notesShowcase/DevShowcaseRoot";
+-import { resolveDevShowcaseVariant, resolveAndroidDevShowcaseVariant } from "./src/screens/dev/notesShowcase/devShowcaseVariant.core";
+-import { readLaunchArgument } from "./src/performance/deviceSignals";
+-import { startPortraitOrientationLock } from "./src/services/screenOrientation/screenOrientationLock";
+-
+-// three's log filter is no longer installed here: importing it forced all of
+-// three.js into the startup graph. src/config/threeRuntime.ts installs it the
+-// first time three loads, which is still before any <Canvas> can mount.
+-
+-// Home-screen widget (Android): registers the headless task that redraws
+-// LuneSynthWidget on WIDGET_ADDED/UPDATE/RESIZED/CLICK. No-ops on iOS and on
+-// any binary built before `react-native-android-widget` was linked.
+-registerLuneSynthWidgetTaskHandler();
+-
+-// Portrait everywhere except the Notes editor, which unlocks rotation while it
+-// is open (src/services/screenOrientation/screenOrientationLock.ts). Native
+-// config already launches portrait, so there is no rotated first frame.
+-startPortraitOrientationLock();
+-
+-// DEV-ONLY screenshot harness (docs/2026-10-02-notability-grade-notes-plan.md,
+-// src/screens/dev/notesShowcase/DevShowcaseRoot.tsx). `xcrun simctl launch
+-// <udid> com.coherascentlabs.lunesynth -lunaDevScreen <variant>` lands
+-// `<variant>` in iOS's launch-argument NSUserDefaults domain, which
+-// `Settings.get` (react-native, iOS-only) reads back. `__DEV__` is first in
+-// this `&&` chain -- it is a compile-time constant Metro replaces with
+-// `false` in a release bundle, so in a release build this whole expression
+-// short-circuits to `null` without ever evaluating `Platform.OS` or calling
+-// `Settings.get`: dead code, not just a false branch.
+-//
+-// Android QA can use the existing native intent helper; older binaries fall back to Metro.
+-// Android has no equivalent of NSUserDefaults launch arguments, so the
+-// Android branch instead reads `EXPO_PUBLIC_LUNA_DEV_SCREEN`, an
+-// EXPO_PUBLIC_-prefixed env var Metro inlines into the bundle at transform
+-// time (the same mechanism this app already uses for
+-// `EXPO_PUBLIC_API_BASE_URL`/`EXPO_PUBLIC_FLOW_TIMER`), set when starting
+-// Metro: `EXPO_PUBLIC_LUNA_DEV_SCREEN=<variant> npx expo start --dev-client -c`.
+-// `__DEV__` gates this branch too, so it is equally dead code in a release
+-// bundle; changing the variant requires a Metro restart with `-c` to clear
+-// the inline-env cache, which is already this harness's normal workflow.
+-const devShowcaseVariant =
+-  __DEV__ && Platform.OS === "ios"
+-    ? resolveDevShowcaseVariant(Settings.get("lunaDevScreen"), __DEV__)
+-    : __DEV__ && Platform.OS === "android"
+-      ? resolveAndroidDevShowcaseVariant(readLaunchArgument("lunaDevScreen"), process.env.EXPO_PUBLIC_LUNA_DEV_SCREEN, __DEV__)
+-      : null;
+-
+-// Frame-measurement builds only (docs/2026-10-10-low-end-device-performance.md).
+-// A release-mode bundle built with EXPO_PUBLIC_LUNA_PERF_HARNESS=1 opens a
+-// showcase named by a launch argument (`am start --es lunaDevScreen <variant>`),
+-// so low-end frame stats come from production JS instead of dev JS. Store
+-// builds never set the flag: Metro inlines the missing variable as undefined
+-// and this is null without reading anything.
+-const perfHarnessVariant =
+-  !devShowcaseVariant && process.env.EXPO_PUBLIC_LUNA_PERF_HARNESS === "1"
+-    ? resolveAndroidDevShowcaseVariant(readLaunchArgument("lunaDevScreen"), process.env.EXPO_PUBLIC_LUNA_DEV_SCREEN, true)
+-    : null;
+-
+-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
+-// It also ensures that whether you load the app in Expo Go or in a native build,
+-// the environment is set up appropriately.
+-// index.ts is a plain .ts file (JSX syntax is only valid in .tsx), so this
+-// uses createElement directly instead of <DevShowcaseRoot ... />.
+-registerRootComponent(
+-  devShowcaseVariant
+-    ? () => createElement(DevShowcaseRoot, { variant: devShowcaseVariant })
+-    : perfHarnessVariant
+-      ? () => createElement(DevShowcaseRoot, { variant: perfHarnessVariant })
+-      : App
+-);
++import VoiceCallRecording from "./VoiceCallRecording";
++registerRootComponent(VoiceCallRecording);
+--- a/apps/mobile/metro.config.js
++++ b/apps/mobile/metro.config.js
+@@ -126,3 +126,10 @@
+ }
+ 
+ module.exports = config;
++
++// LOCAL CAPTURE ONLY: the retained Expo client requests an extensionful entry URL.
++const captureRewrite = config.server.rewriteRequestUrl;
++config.server.rewriteRequestUrl = url => {
++  const normalized = url.replace(/\/index\.ts\.(bundle|map)(?=\?|$)/, '/index.$1');
++  return captureRewrite ? captureRewrite(normalized) : normalized;
++};
+--- a/apps/mobile/src/components/TutorVoiceControls.tsx
++++ b/apps/mobile/src/components/TutorVoiceControls.tsx
+@@ -8,9 +8,9 @@
+ import { LunaVoiceRecorderSheet } from "./LunaVoiceRecorderSheet";
+ import { advanceVoiceEmotionContext, type VoiceEmotionContext, type VoiceEmotionFacts } from "./lunaVoice/voiceEmotion.core";
+ import { voiceFarewellDurationMs } from "./lunaVoice/voiceAvatarPlayback.core";
+-import { LunaVoiceCallAvatar } from "./lunaVoice/LunaVoiceCallAvatar";
+ import { LUNA_VOICE_CALL_SURFACE } from "./lunaVoice/lunaVoiceCallAvatar.core";
+ import { useVoiceTranscriptFollow } from "./lunaVoice/useVoiceTranscriptFollow";
++import { LunaVoiceCallAvatar } from "./lunaVoice/LunaVoiceCallAvatar";
+ import { useLunaVoiceRecorder } from "./useLunaVoiceRecorder";
+ import { colors } from "../theme/colors";
+ import { control, scale, useResponsive } from "../theme/responsive";
+@@ -56,7 +56,7 @@
+   const [permissionGate] = useState(createVoicePermissionGate);
+   const { isTablet } = useResponsive();
+   const fonts = useAppFontStyles(); const { t, locale } = useT();
+-  const [mode, setMode] = useState<Mode>("closed");
++  const [mode, setMode] = useState<Mode>("live");
+   const [error, setError] = useState<string | null>(null);
+   const [status, setStatus] = useState("connecting");
+   const [farewell, setFarewell] = useState(false);
+@@ -75,6 +75,31 @@
+   const deliveryStarted = useRef(false);
+   const [transcript, setTranscript] = useState<VoiceTranscript[]>([]);
+   const transcriptRef = useRef<VoiceTranscript[]>([]);
++  // Local capture only: scripted sample turns, with no microphone or provider.
++  useEffect(() => {
++    const phase = (turnIndex: number, nextStatus: string, learner: string, assistant: string, unclearAudio = false) => {
++      const turnId = `sample-${turnIndex}`;
++      setStatus(nextStatus);
++      setTranscript([
++        ...(learner ? [{ id: `${turnId}-user`, role: "user" as const, content: learner, final: true }] : []),
++        ...(assistant ? [{ id: `${turnId}-luna`, role: "assistant" as const, content: assistant, final: true }] : []),
++      ]);
++      setEmotionContext({ locale: "en", turnIndex, turnId, learner, assistant, facts: { unclearAudio } });
++    };
++    const timers = [
++      setTimeout(() => phase(0, "listening", "", "Hi! Let's work through this together."), 6200),
++      setTimeout(() => phase(1, "thinking", "How do I start?", ""), 9200),
++      setTimeout(() => phase(2, "speaking", "How do I start?", "First, undo the + 5 on both sides. That keeps the equation balanced."), 12500),
++      setTimeout(() => phase(2, "listening", "How do I start?", "Which operation would you undo first?"), 18500),
++      setTimeout(() => phase(3, "speaking", "I don't understand.", "That's okay. Take your time. What is the opposite of adding five?"), 23500),
++      setTimeout(() => phase(4, "listening", "Now I understand! Subtract five from both sides.", "You've spotted the next step."), 28500),
++      setTimeout(() => phase(5, "speaking", "Haha, the five was hiding the easy part!", "A little algebra detective work. Now we have 3x = 15."), 33500),
++      setTimeout(() => phase(6, "listening", "[unclear audio]", "Could you say that last part again?", true), 38500),
++      setTimeout(() => phase(8, "speaking", "Divide both sides by three?", "Next, divide both sides by three to find x. Then check it in the original equation."), 43500),
++      setTimeout(() => { setTranscript([{ id: "sample-goodbye", role: "assistant", content: "See you next time!", final: true }]); setFarewell(true); }, 49500),
++    ];
++    return () => timers.forEach(clearTimeout);
++  }, []);
+   const controller = useRef<ReturnType<typeof createTutorVoiceController> | null>(null);
+   const activationRef = useRef(0);
+   const [, setActivation] = useState(0);
+@@ -296,8 +321,7 @@
+         {mode === "live" || farewell ? <LunaVoiceCallAvatar size={scale(150)} status={farewell ? "ended" : status} emotionContext={avatarContext} userColor={props.accentColor} /> : null}
+         <Text accessibilityLiveRegion="polite" style={[styles.title, fonts.semibold]}>{label}</Text>
+         <Text style={[styles.caption, fonts.regular]}>{t("pass5d.tutorVoiceControls.liveCaption")}</Text>
+-        <ScrollView ref={liveTranscript.scrollRef} testID="luna-voice-live-transcript" onContentSizeChange={liveTranscript.follow} onLayout={liveTranscript.follow}
+-          style={styles.transcript} contentContainerStyle={{ gap: spacing.sm }}>{transcript.filter(item => item.content).map(item => <Text key={item.id} style={[styles.copy, fonts.regular]}>{item.role === "user" ? t("pass5d.tutorVoiceControls.youLabel") : props.tutorName}: {item.content}</Text>)}</ScrollView>
++        <ScrollView ref={liveTranscript.scrollRef} onContentSizeChange={liveTranscript.follow} onLayout={liveTranscript.follow} style={styles.transcript} contentContainerStyle={{ gap: spacing.sm }}>{transcript.filter(item => item.content).map(item => <Text key={item.id} style={[styles.copy, fonts.regular]}>{item.role === "user" ? t("pass5d.tutorVoiceControls.youLabel") : props.tutorName}: {item.content}</Text>)}</ScrollView>
+         <View style={styles.actions}>
+           <Pressable accessibilityRole="button" accessibilityLabel={t(`pass5d.tutorVoiceControls.${speakerphone ? "switchToPhoneA11y" : "switchToSpeakerA11y"}`)} accessibilityState={{ selected: speakerphone, disabled: audioRouteBusy || farewell }} disabled={audioRouteBusy || farewell} onPress={() => { if (renderedCallCurrent()) void audioRoute.current?.toggle(); }} style={[styles.action, styles.callAction, (audioRouteBusy || farewell) && styles.disabled]}>
+             {speakerphone ? <Volume2 color={props.accentColor} size={24} /> : <Phone color={colors.text} size={24} />}<Text style={styles.copy}>{t(`pass5d.tutorVoiceControls.${speakerphone ? "speakerLabel" : "phoneLabel"}`)}</Text></Pressable>
