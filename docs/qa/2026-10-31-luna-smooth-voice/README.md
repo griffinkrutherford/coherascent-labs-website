@@ -2,6 +2,8 @@
 
 ## Update Log
 
+- 2026-10-31: Published tested media source `96c34459`; the first Railway release failed at BUILD_IMAGE with no available build logs, leaving the previous healthy site serving. Retained the failure receipt and normalized patch context whitespace; `git apply --check` passes. A source release retry follows without changing runtime configuration.
+
 - 2026-10-31: Captured the native pre-rendered emote bridges, retained reproducible fixture and playback observations, and versioned the homepage movie and poster. Desktop/phone actual-server playback checks and all 17 focused tests passed; the full suite retains exactly the same five clean-baseline failures.
 
 The homepage's labeled **Sample conversation** now shows the app's smooth pose transitions. This is a silent, scripted demonstration using the real `TutorVoiceControls`, `LunaVoiceCallAvatar`, image player and delivered WebPs. It does not open a microphone or provider connection, measure live latency, or certify physical audio hardware.

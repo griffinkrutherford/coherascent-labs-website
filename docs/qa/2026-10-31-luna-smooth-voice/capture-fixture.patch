@@ -121,7 +121,7 @@
 +++ b/apps/mobile/metro.config.js
 @@ -126,3 +126,10 @@
  }
- 
+
  module.exports = config;
 +
 +// LOCAL CAPTURE ONLY: the retained Expo client requests an extensionful entry URL.

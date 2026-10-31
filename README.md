@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-31: Recorded the initial smooth-voice website deployment failure and retained the healthy prior release; verified the capture patch still applies after whitespace cleanup. The website release is being retried through the existing main deployment pipeline.
+
 - 2026-10-31: Replaced Luna’s sample voice-call movie and poster with a native recording of smooth pre-rendered emote transitions, using distinct filenames for cached visitors. Retained the silent sample label, older assets and reproducible capture evidence; playback now also responds immediately when the OS motion preference changes.
 
 - 2026-10-28: Completed the language capture candidate’s regression gates: all 11,646 mobile core tests passed; API core finished with 9,917 passed, three skipped and zero failures; final mobile TypeScript and all 11 focused label component tests passed. Recorded exact source/file hashes and Node 22 cache-disabled commands. The release coordinator owns fresh integrated-main gates and the next Android build; this task started no build.

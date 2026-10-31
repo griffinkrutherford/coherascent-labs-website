@@ -1,0 +1,36 @@
+{
+  "data": {
+    "deploymentEvents": {
+      "edges": [
+        {
+          "node": {
+            "completedAt": "2026-10-31T19:59:56.062Z",
+            "createdAt": "2026-10-31T19:59:10.298Z",
+            "payload": {
+              "attempt": null,
+              "detail": null,
+              "error": null,
+              "maxAttempts": null,
+              "reason": null
+            },
+            "step": "SNAPSHOT_CODE"
+          }
+        },
+        {
+          "node": {
+            "completedAt": "2026-10-31T19:59:56.272Z",
+            "createdAt": "2026-10-31T19:59:11.625Z",
+            "payload": {
+              "attempt": null,
+              "detail": null,
+              "error": "Failed to build an image. Please check the build logs for more details.",
+              "maxAttempts": null,
+              "reason": null
+            },
+            "step": "BUILD_IMAGE"
+          }
+        }
+      ]
+    }
+  }
+}
