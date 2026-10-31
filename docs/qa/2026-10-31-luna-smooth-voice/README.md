@@ -2,6 +2,8 @@
 
 ## Update Log
 
+- 2026-10-31: Retry release `ebe19e7a` succeeded. Verified public homepage references, exact served movie/poster hashes and MIME, 206 Range and older footage availability; public desktop/phone playback and reduced-motion/tab/viewport checks pass. No runtime configuration changed.
+
 - 2026-10-31: Published tested media source `96c34459`; the first Railway release failed at BUILD_IMAGE with no available build logs, leaving the previous healthy site serving. Retained the failure receipt and normalized patch context whitespace; `git apply --check` passes. A source release retry follows without changing runtime configuration.
 
 - 2026-10-31: Captured the native pre-rendered emote bridges, retained reproducible fixture and playback observations, and versioned the homepage movie and poster. Desktop/phone actual-server playback checks and all 17 focused tests passed; the full suite retains exactly the same five clean-baseline failures.
@@ -33,3 +35,7 @@ The clean website baseline had 81 passing and five failing tests out of 86, all 
 Reproduce by running the actual server with `LUNE_SYNTH_DOMAIN=127.0.0.1 PORT=8132 node server.js`, then `VOICE_QA_BASE_URL=http://127.0.0.1:8132/ VOICE_QA_OUTPUT=<directory> node scripts/qa/check-luna-voice-preview.cjs`. Set `PLAYWRIGHT_MODULE` and optionally `VOICE_QA_BROWSER` for externally installed Playwright/Chrome. The script asserts it remains on the requested origin: the default `/lune-synth/` localhost route redirects to the public site and must not be mistaken for a local preview.
 
 All 17 navigation/device/route tests passed. The final full suite is 81 passed/5 failed of 86, matching the clean baseline exactly (`test-results.txt`). All 12 inline JavaScript blocks parse; full movie decoding, host-routed MIME/full-byte/Range checks and `git diff --check` pass.
+
+## Live deployment acceptance
+
+The normal source retry succeeded as Railway deployment `60f9ff68-178f-4d32-a40d-af141b1cda6e`, serving runtime source `ebe19e7a`. `live-deployment.json` confirms exact reviewed bytes, media types, range support, new homepage paths and retained older footage. `live-browser-proof.json` and both `live-voice-*.png` screenshots repeat the desktop/phone playback matrix against `https://lunesynth.com/` after activation. The first attempt failed before usable build logs; its preserved event receipt does not imply a code defect or a runtime configuration change.

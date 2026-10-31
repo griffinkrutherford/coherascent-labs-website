@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-31T20:08:22.209Z",
+  "routes": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "media": {
+        "source": "https://lunesynth.com/screenshots/applied/luna-voice-call-smooth-20261031.mp4",
+        "poster": "https://lunesynth.com/screenshots/applied/luna-voice-call-smooth-20261031-poster.webp",
+        "muted": true,
+        "width": 720,
+        "height": 1566,
+        "duration": 46.466667
+      },
+      "playsWhenVisible": true,
+      "inactiveTabPauses": true,
+      "reducedMotionPauses": true,
+      "motionRestoreResumes": true,
+      "offscreenPauses": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "media": {
+        "source": "https://lunesynth.com/screenshots/applied/luna-voice-call-smooth-20261031.mp4",
+        "poster": "https://lunesynth.com/screenshots/applied/luna-voice-call-smooth-20261031-poster.webp",
+        "muted": true,
+        "width": 720,
+        "height": 1566,
+        "duration": 46.466667
+      },
+      "playsWhenVisible": true,
+      "inactiveTabPauses": true,
+      "reducedMotionPauses": true,
+      "motionRestoreResumes": true,
+      "offscreenPauses": true
+    }
+  ],
+  "status": "PASS"
+}
