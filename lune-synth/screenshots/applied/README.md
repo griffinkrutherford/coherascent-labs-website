@@ -1,11 +1,14 @@
-# Constellations Slideshow - iPad Screen Assets
+# Native app preview media
 
-The videos in this directory render inside the iPad Pro mockup of the
-"Explore a Vast Study Universe" slideshow in `../../index.html`.
+This directory includes iPad recordings for the "Explore a Vast Study Universe" slideshow and Luna voice-call phone previews in `../../index.html`.
 
 Each recording has a matching `*-thumb.jpg` loading image. The page displays
 that thumbnail with a CSS blur until the corresponding video has decoded a
 renderable frame.
+
+## Update Log
+
+- 2026-10-31: Added the cache-versioned smooth Luna voice-call sample and its same-take poster; older media remains available. Capture provenance and byte receipts live in `../../../docs/qa/2026-10-31-luna-smooth-voice/`.
 
 ## Notes
 

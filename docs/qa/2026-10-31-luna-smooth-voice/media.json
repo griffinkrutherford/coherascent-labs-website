@@ -1,0 +1,26 @@
+{
+  "luna-voice-call-smooth-20261031.mp4": {
+    "bytes": 694750,
+    "sha256": "52825849555fb09e9ee1ca60021b176ec1380ad04ab8eb79396c50be16473da2"
+  },
+  "luna-voice-call-smooth-20261031-poster.webp": {
+    "bytes": 46160,
+    "sha256": "30f90767caa0291892f0c29ab6c08fbb6ac827f9fa88248bd5c24edfa4f8f166"
+  },
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 720,
+        "height": 1566,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "46.466667"
+    }
+  }
+}
