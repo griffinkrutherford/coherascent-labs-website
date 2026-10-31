@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-31: Verified the corrected v2 Luna movie live: public media bytes match the no-dimming native export, Range works, and desktop/phone playback, tab/offscreen pausing and reduced-motion changes pass.
+
 - 2026-10-31: Removed the brightness pulse from Luna’s voice preview with a newly recorded v2 movie and poster. The native image handoff now keeps its outgoing layer fully opaque beneath the incoming reveal; sampled handoff brightness dip fell from 18.9% to 0.45%. Browser playback and reduced-motion checks pass.
 
 - 2026-10-31: Verified the smooth Luna voice-call preview live on `lunesynth.com` after the source release retry. Public movie/poster bytes match the reviewed files, video ranges work, and desktop/phone playback, tab/offscreen pausing and reduced-motion changes pass.

@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-31T20:26:44.442413+00:00",
+  "host": "https://lunesynth.com",
+  "runtimeSource": "6a6734618d9528fc9ddc3c6550390a8fba00673e",
+  "deploymentId": "e888d38a-a327-4e35-9c07-2ad558421ecc",
+  "assets": [
+    {
+      "path": "/screenshots/applied/luna-voice-call-smooth-v2-20261031.mp4",
+      "status": 200,
+      "contentType": "video/mp4",
+      "bytes": 680428,
+      "sha256": "93829e0650ec20cb9d39e77e5e55e879720cc5bb7418b551da43cadb2c238784",
+      "range206": true
+    },
+    {
+      "path": "/screenshots/applied/luna-voice-call-smooth-v2-20261031-poster.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 46398,
+      "sha256": "f0e463f8cd10af0582ea8fca10c7f5eea260c1242c6b00d2d624b68ed58e7285"
+    }
+  ],
+  "homepageReferencesNewMedia": true,
+  "previousMovieRemainsAvailable": true,
+  "status": "PASS"
+}
