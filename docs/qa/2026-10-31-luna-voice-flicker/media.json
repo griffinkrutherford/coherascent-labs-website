@@ -1,0 +1,52 @@
+{
+  "sourceCommit": "2d25c7dfc",
+  "checkedAt": "2026-10-31T20:24:36.762463+00:00",
+  "nativeFinalState": [
+    {
+      "visual": {
+        "kind": "clip",
+        "clip": "voice_listen"
+      },
+      "goal": "voice_listen",
+      "idle": "voice_listen",
+      "revision": 31,
+      "requestedAt": 8556162931.356458,
+      "displayedAt": 8556162943.0215,
+      "still": false,
+      "failed": false
+    }
+  ],
+  "assets": [
+    {
+      "file": "luna-voice-call-smooth-v2-20261031.mp4",
+      "bytes": 680428,
+      "sha256": "93829e0650ec20cb9d39e77e5e55e879720cc5bb7418b551da43cadb2c238784",
+      "contentType": "video/mp4",
+      "localExactBytes": true,
+      "range206": true
+    },
+    {
+      "file": "luna-voice-call-smooth-v2-20261031-poster.webp",
+      "bytes": 46398,
+      "sha256": "f0e463f8cd10af0582ea8fca10c7f5eea260c1242c6b00d2d624b68ed58e7285",
+      "contentType": "image/webp",
+      "localExactBytes": true
+    }
+  ],
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 720,
+        "height": 1566,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "46.466667"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "before": {
+    "frames": 180,
+    "minimum": 180.0,
+    "median": 222.0,
+    "framesBelow210": 18,
+    "relativeDip": 0.18918918918918914,
+    "sha256": "52825849555fb09e9ee1ca60021b176ec1380ad04ab8eb79396c50be16473da2"
+  },
+  "after": {
+    "frames": 180,
+    "minimum": 221.0,
+    "median": 222.0,
+    "framesBelow210": 0,
+    "relativeDip": 0.0045045045045044585,
+    "sha256": "93829e0650ec20cb9d39e77e5e55e879720cc5bb7418b551da43cadb2c238784"
+  },
+  "method": "First six seconds at 30fps; fixed 200x300 model region at (260,470), 96th percentile of the maximum RGB channel. Diagnostic for the observed opacity dip, not a universal motion-quality measure."
+}
