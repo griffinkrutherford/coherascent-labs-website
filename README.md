@@ -10,6 +10,8 @@ The site presents Coherascent as a dual-pillar organization:
 
 ## Update Log
 
+- 2026-10-31: Verified the stable helmet/head recording live after successful release `eedb9eb9`: exact public movie/poster hashes and MIME, 206 Range, desktop/phone playback, tab/offscreen pausing and reduced-motion changes pass.
+
 - 2026-10-31: Re-recorded the Luna call preview with opaque helmet compositing, stable native decoder props and reserved transcript space, addressing the white helmet flash, head restart and speech-driven panel movement. The replacement uses separate stable media URLs; native and browser evidence is recorded in the helmet-stability QA record.
 
 - 2026-10-31: Verified the corrected v2 Luna movie live: public media bytes match the no-dimming native export, Range works, and desktop/phone playback, tab/offscreen pausing and reduced-motion changes pass.

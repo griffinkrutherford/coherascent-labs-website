@@ -1,13 +1,23 @@
 {
   "captureDate": "2026-10-31",
   "appBase": "a2af374e8997bda082aa9c4a7db604421cb76160",
-  "appFixStatus": "native-verified working tree; app final gate/commit pending",
-  "sourceSha256": {
+  "appFixStatus": "Published to origin/main in 954f807cc after integrated-main acceptance",
+  "fixture": "capture-fixture.patch plus VoiceCallRecording.tsx, applied after the matching app source fix",
+  "noNativeOrEasBuild": true,
+  "appFixCommit": "8f3fb3c77",
+  "finalSourceNote": "The committed avatar JSX has formatting changes, and its image helper spells out the same memoized layout fields for exhaustive-deps lint. Native playback props and behavior match the recorded capture. The fixture patch applies to app commit 8f3fb3c77.",
+  "sourceSnapshotAfterCapture": {
     "apps/mobile/src/components/TutorVoiceControls.tsx": "f13ddd06bb466ff345b8d7ed2c3f3de3823ed4c6875e107c9312693aa41575cd",
     "apps/mobile/src/components/lunaVoice/LunaVoiceCallAvatar.tsx": "5ec70de246b6f1364c742125f147dab6d8b0af9ae09a328a20cc114d9e147b8d",
     "apps/mobile/src/components/lunaVoice/VoiceAvatarImage.tsx": "52c257fb2f2c9cb582ae7613d3bd9610ea89e2291abc8b9ab7977f1cfb46bf41",
     "apps/mobile/src/components/lunaVoice/lunaVoiceCallAvatar.core.ts": "d3d8b27c881aaa49b328a8f9905535a9885d723ab0beea8bc29234239978fce1"
   },
-  "fixture": "capture-fixture.patch plus VoiceCallRecording.tsx, applied after the matching app source fix",
-  "noNativeOrEasBuild": true
+  "committedAppSourceSha256": {
+    "apps/mobile/src/components/TutorVoiceControls.tsx": "f13ddd06bb466ff345b8d7ed2c3f3de3823ed4c6875e107c9312693aa41575cd",
+    "apps/mobile/src/components/lunaVoice/LunaVoiceCallAvatar.tsx": "5ec70de246b6f1364c742125f147dab6d8b0af9ae09a328a20cc114d9e147b8d",
+    "apps/mobile/src/components/lunaVoice/VoiceAvatarImage.tsx": "daf5ef138f905f8f8489cecd2aa95a7c4e8c7544687b1e7736551d19d53dbf49",
+    "apps/mobile/src/components/lunaVoice/lunaVoiceCallAvatar.core.ts": "d3d8b27c881aaa49b328a8f9905535a9885d723ab0beea8bc29234239978fce1"
+  },
+  "appPublishedMain": "954f807cc",
+  "appHulaCommit": "337a29b7c"
 }
