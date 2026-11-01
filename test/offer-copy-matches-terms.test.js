@@ -34,7 +34,9 @@ test('Terms §6.2 still promises "50% off the first three months" for First Ligh
 test('the Pro page\'s offer summary uses the same figures as the Terms and the access email', () => {
   assert.match(proPage, /two months free/i);
   assert.match(proPage, /50% off.*for as long as/i);
-  assert.match(proPage, /50% off.*first three months/i);
+  // Terms §6.2: "50% off the first three months of a paid Pro subscription";
+  // the Pro page says "first three paid months" / "first 3 paid months".
+  assert.match(proPage, /50% off[\s\S]{0,80}first (three|3) (paid )?months/i);
 });
 
 test('the Terms document itself still distinguishes 6.1 (Founding 40) from 6.2 (First Light)', () => {

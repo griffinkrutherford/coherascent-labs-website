@@ -4,7 +4,7 @@
   window.LUNE_CTA_CONFIG = Object.freeze({
     mode: "waitlist",
     headline: "Join the beta waitlist",
-    offerHtml: "<strong>Get in early:</strong> join free for priority beta invites, and hear about Lune Synth&trade; Pro launch offers before anyone else.",
+    offerHtml: "<strong>Free to join.</strong> First in line for beta invites and Pro launch offers.",
     emailPlaceholder: "Email address",
     submitLabel: "Join Waitlist",
     loadingLabel: "Joining…",

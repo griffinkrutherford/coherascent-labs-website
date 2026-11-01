@@ -17,19 +17,26 @@ const html = fs.readFileSync(HTML_PATH, 'utf8');
 const DATE_LIKE = /\b(20\d{2}-\d{2}-\d{2}|(january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2}(st|nd|rd|th)?,?\s*(20\d{2})?|\d{1,2}(st|nd|rd|th)?\s+(january|february|march|april|may|june|july|august|september|october|november|december)(,?\s*20\d{2})?)\b/gi;
 
 test('the Pro page makes no launch-date promise', () => {
-  const withoutKnownHistoricalDate = html.replace(/2026-09-21/g, '');
+  // The same closed-offer cutoff also appears spelled out in the Founding 40
+  // card ("as of September 21, 2026") -- history, not a launch date.
+  const withoutKnownHistoricalDate = html.replace(/2026-09-21/g, '').replace(/September 21, 2026/g, '');
   const matches = withoutKnownHistoricalDate.match(DATE_LIKE) || [];
   assert.deepEqual(matches, [], `found date-like text that could read as a launch date: ${JSON.stringify(matches)}`);
 });
 
 test('states plainly that Pro has not launched and is not purchasable', () => {
   assert.match(html, /Coming soon/i);
-  assert.match(html, /not yet available to purchase/i);
+  assert.match(html, /(isn['’]t|not yet) available to purchase|not on sale yet/i);
 });
 
-test('names a planned price with an explicit "not final" caveat', () => {
+// Launch pricing was approved on 2026-10-11 (IAP launch decisions), so the
+// page now says "Approved launch pricing" and that Pro is not on sale yet,
+// instead of the earlier "not final" caveat.
+test('names the approved launch price and says Pro is not on sale yet', () => {
   assert.match(html, /\$12\.99/);
-  assert.match(html, /not final/i);
+  assert.match(html, /\$59\.88/);
+  assert.match(html, /Approved launch pricing/i);
+  assert.match(html, /not on sale yet/i);
 });
 
 test('ties the beta offers back to Terms §6 rather than restating scarcity itself', () => {

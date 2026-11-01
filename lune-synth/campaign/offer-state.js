@@ -63,7 +63,7 @@
     return localZone === CLOSE_ZONE ? mountain : mountain + " (" + local + " your time)";
   }
 
-  var DEFAULT_OFFER = "<strong>Get in early:</strong> join free for priority beta invites, and hear about Lune Synth&trade; Pro launch offers before anyone else.";
+  var DEFAULT_OFFER = "<strong>Free to join.</strong> First in line for beta invites and Pro launch offers.";
 
   function offerHtml(now) {
     var current = phase(now);
