@@ -4874,42 +4874,6 @@
     html[data-theme="light"] .response-carousel__question-text {
       color: rgba(42, 58, 88, 0.94);
     }
-    /* Code-diagram question (2026-10-31): a small syntax-tinted listing with
-       line numbers, sized to the phone mock's 7px question text. */
-    .response-carousel__question-code {
-      position: relative;
-      z-index: 1;
-      margin: 0;
-      padding: 4px 5px;
-      border-radius: 5px;
-      border: 1px solid rgba(164, 123, 255, 0.22);
-      background: rgba(6, 10, 22, 0.72);
-      color: rgba(226, 238, 255, 0.92);
-      font: 500 5.4px/1.55 "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
-      white-space: pre;
-      overflow: hidden;
-    }
-    .response-carousel__question-code .code-ln {
-      display: inline-block;
-      width: 8px;
-      margin-right: 3px;
-      color: rgba(201, 221, 250, 0.38);
-      text-align: right;
-      user-select: none;
-    }
-    .response-carousel__question-code .code-kw { color: #c792ff; }
-    .response-carousel__question-code .code-fn { color: #7cc4ff; }
-    .response-carousel__question-code .code-num { color: #ffb86b; }
-    html[data-theme="light"] .response-carousel__question-code {
-      border-color: rgba(127, 99, 214, 0.18);
-      background: rgba(244, 246, 252, 0.92);
-      color: rgba(42, 58, 88, 0.94);
-    }
-    html[data-theme="light"] .response-carousel__question-code .code-ln { color: rgba(104, 118, 146, 0.5); }
-    html[data-theme="light"] .response-carousel__question-code .code-kw { color: #7a3fd1; }
-    html[data-theme="light"] .response-carousel__question-code .code-fn { color: #1f6fbf; }
-    html[data-theme="light"] .response-carousel__question-code .code-num { color: #b25d00; }
-
     .response-carousel__question-type {
       display: inline-flex;
       align-items: center;
@@ -11924,20 +11888,19 @@
                 </div>
               </div>
             </section>
-            <section class="response-carousel__paper" data-response-slide="13" data-response-key="code-trace" aria-label="Computer science code tracing response" hidden>
+            <section class="response-carousel__paper" data-response-slide="13" aria-label="Computer science code tracing response" hidden>
               <div class="response-carousel__meta">
                 <span class="response-carousel__status">Intro CS · Code tracing</span>
               </div>
               <div class="response-carousel__body">
-                <p class="response-carousel__line">i = 1 → odd → total = 1</p>
-                <p class="response-carousel__line">i = 2 → even, skip</p>
-                <p class="response-carousel__line">i = 3 → odd → total = 4</p>
-                <p class="response-carousel__line">i = 4 → even, skip</p>
-                <p class="response-carousel__line">i = 5 → odd → total = 9</p>
-                <p class="response-carousel__line">mystery(5) returns 9</p>
+                <p class="response-carousel__line response-carousel__line--small">i = 1 is odd, so total = 0 − 1 = −1</p>
+                <p class="response-carousel__line response-carousel__line--small">i = 2 is even, so total = −1 + 2 = 1</p>
+                <p class="response-carousel__line response-carousel__line--small">i = 3 is odd, so total = 1 − 1 = 0</p>
+                <p class="response-carousel__line response-carousel__line--small">i = 4 is even, so total = 0 + 4 = 4</p>
+                <p class="response-carousel__line response-carousel__line--small">range(1, 5) stops at 4, so it prints 4.</p>
               </div>
               <div class="response-carousel__question-phone" data-phone-mock="question">
-                <div class="response-carousel__question-screen">
+                <div class="response-carousel__question-screen phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/applied/question-prompts/study-cs-code-trace-mid.webp?v=6" data-screenshot-high="../mobile-app-assets/screenshots/applied/question-prompts/study-cs-code-trace.webp?v=6" data-screenshot-low="../mobile-app-assets/screenshots/applied/question-prompts/study-cs-code-trace-low.webp?v=6">
                   <span class="response-carousel__question-label">Question</span>
                   <span class="response-carousel__question-type">
                     <span class="response-carousel__question-icon" aria-hidden="true">
@@ -11945,13 +11908,7 @@
                     </span>
                     Computer Science
                   </span>
-                  <span class="response-carousel__question-text">Trace the loop. What does mystery(5) return?</span>
-                  <pre class="response-carousel__question-code" aria-label="Python code: def mystery(n): total = 0; for i in range(1, n + 1): if i % 2 == 1: total += i; return total"><code><span class="code-ln">1</span><span class="code-kw">def</span> <span class="code-fn">mystery</span>(n):
-<span class="code-ln">2</span>    total = <span class="code-num">0</span>
-<span class="code-ln">3</span>    <span class="code-kw">for</span> i <span class="code-kw">in</span> range(<span class="code-num">1</span>, n + <span class="code-num">1</span>):
-<span class="code-ln">4</span>        <span class="code-kw">if</span> i % <span class="code-num">2</span> == <span class="code-num">1</span>:
-<span class="code-ln">5</span>            total += i
-<span class="code-ln">6</span>    <span class="code-kw">return</span> total</code></pre>
+                  <span class="response-carousel__question-text">Complete the trace. What is total after i = 4, and what is printed?</span>
                   <span class="response-carousel__question-action">Upload Answer</span>
                 </div>
               </div>
@@ -16453,7 +16410,7 @@
     updateCarousel(currentRotation);
   });
   </script>
-  <script src="../applied-response-slides.js?v=5"></script>
+  <script src="../applied-response-slides.js?v=6"></script>
   <script src="/campaign/handwriting-accent.js?v=3"></script>
   <script>
   (function loadLuneEnhancements() {

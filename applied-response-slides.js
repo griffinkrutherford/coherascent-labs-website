@@ -93,7 +93,7 @@
   // Slides are named by their screenshot id, so no image file is renumbered
   // (the study / test-prep pages reference those files by name).
   var ORDER = [
-    "1-sin", "2", "4", "es-preterite", "5", "code-trace", "5b-toc", "23", "6", "lit-frost", "3",
+    "1-sin", "2", "4", "es-preterite", "5", "study-cs-code-trace", "5b-toc", "23", "6", "lit-frost", "3",
     "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19-stats",
     "20", "21", "22", "24", "25", "26"
   ];
