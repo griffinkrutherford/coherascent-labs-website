@@ -64,17 +64,22 @@ test('never claims a specific numeric allowance for a Pro benefit that has not s
   assert.doesNotMatch(benefitsSection, /\d+\s*(generations|pages|messages|constellations)/i);
 });
 
-// 2026-10-31 owner decision: Free is 60 AI actions and 3 Luna messages a day
-// and 3 handwritten pages per set; Pro is 10,000, unlimited Luna and up to 50
-// pages. Pins the page (plan cards, FAQ and its JSON-LD) to those numbers.
+// 2026-10-31 owner decision: Free is 3 practice sets and 3 Luna messages a
+// day, 3 handwritten pages per set, with ads (13+); Pro is unlimited practice
+// sets (fair use), unlimited Luna, up to 50 pages, 2x rewards and no ads. AI
+// actions are an internal unit and are never quoted. Pins the plan cards, FAQ
+// and its JSON-LD.
 test('states the current Free and Pro allowances, not the old ones', () => {
-  assert.doesNotMatch(html, /5,000 AI actions/);
+  assert.doesNotMatch(html, /AI actions/);
   assert.doesNotMatch(html, /\b10 handwritten pages/);
-  assert.match(html, /<li>60 AI actions a day<\/li>/);
+  assert.match(html, /<li>3 practice sets a day<\/li>/);
   assert.match(html, /<li>3 Luna tutor messages a day<\/li>/);
   assert.match(html, /<li>Up to 3 handwritten pages per set<\/li>/);
+  assert.match(html, /<li>Ads \(13\+\)<\/li>/);
+  assert.match(html, /<li>Unlimited practice sets \(fair use\)<\/li>/);
   assert.match(html, /<li>Unlimited Luna tutor messages<\/li>/);
   assert.match(html, /<li>Up to 50 handwritten pages per set<\/li>/);
-  const faq = 'The current Free plan includes 60 AI actions and 3 Luna tutor messages a day, and up to 3 handwritten pages per set.';
+  assert.match(html, /<li>No ads<\/li>/);
+  const faq = 'The current Free plan includes 3 practice sets and 3 Luna tutor messages a day, up to 3 handwritten pages per set, and ads for learners 13 and up. Grading is the same on every plan.';
   assert.equal(html.split(faq).length - 1, 2, 'visible FAQ and JSON-LD FAQ both state the Free allowances');
 });
