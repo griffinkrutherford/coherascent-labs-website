@@ -5994,6 +5994,13 @@
     .luna-tab-btn {
       position: relative;
       z-index: 1;
+      /* iOS Safari left these labels unpainted (blank) next to the 3D-translated
+         selection pill until a tab change forced a repaint; their own layer
+         keeps them painted (2026-11-02). */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       padding: 11px 12px;
       min-height: 42px;
       border-radius: 999px;
@@ -12251,8 +12258,8 @@
               <div class="luna-tab-visual">
                 <div class="luna-phone luna-phone--tab" data-phone-mock="luna" aria-label="Luna Voice Call preview (phone mockup)">
                   <div class="luna-phone__screen phone-screenshot-host">
-                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" poster="screenshots/applied/luna-voice-call-20261101-poster.webp" aria-label="Sample voice call: Luna stays on screen while she shows typeset math, a step diagram and code, checks answers, and asks to see your work">
-                      <source src="screenshots/applied/luna-voice-call-20261101.mp4" type="video/mp4">
+                    <video class="luna-phone__demo" data-luna-demo loop muted playsinline preload="metadata" poster="screenshots/applied/luna-voice-call-20261102-poster.webp" aria-label="Sample voice call: Luna stays on screen while she shows typeset math, a step diagram and code, checks answers, and asks to see your work">
+                      <source src="screenshots/applied/luna-voice-call-20261102.mp4" type="video/mp4">
                     </video>
                   </div>
                 </div>
@@ -15776,6 +15783,21 @@
       lunaMotionPreference.addListener(syncLunaDemoVideos);
     }
     syncLunaDemoVideos();
+
+    // WebKit can skip repainting composited text after the web font swaps in,
+    // leaving the Luna tab labels blank until a tab change (2026-11-02). Nudge
+    // one repaint of the tab bar once fonts are ready.
+    const lunaMenu = document.querySelector('.luna-menu');
+    if (lunaMenu && document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        lunaMenu.style.webkitTransform = 'translateZ(0)';
+        requestAnimationFrame(function () {
+          lunaMenu.style.webkitTransform = '';
+          const active = lunaMenu.querySelector('.luna-tab-btn.is-active');
+          if (active && typeof positionMovingSelection === 'function') positionMovingSelection(active);
+        });
+      });
+    }
   });
 
   const worldConfigMap = {
