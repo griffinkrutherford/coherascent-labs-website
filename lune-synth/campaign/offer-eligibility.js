@@ -14,16 +14,16 @@
  * the start of the next UTC day so the entire calendar day of 2026-09-21
  * counts, in every timezone, as eligible.
  *
- * First Light: a 48-hour window that opens when
- * lune-synth/campaign/offer-state.js's FIRST_LIGHT_ENDS_AT is set (it is
- * "" -- dormant -- until then). That file is the single source of truth for
- * the end time; this module derives the window's start from it rather than
- * declaring a second constant, so the two can never disagree.
+ * First Light: a window that opens when lune-synth/campaign/offer-state.js's
+ * FIRST_LIGHT_ENDS_AT is set (it is "" -- dormant -- until then). That file is
+ * the single source of truth for both ends of the window: it also declares
+ * FIRST_LIGHT_STARTS_AT. When the start is "", the window falls back to the
+ * original 48 hours before the end.
  */
 
 'use strict';
 
-const { FIRST_LIGHT_ENDS_AT } = require('./offer-state.js');
+const { FIRST_LIGHT_ENDS_AT, FIRST_LIGHT_STARTS_AT } = require('./offer-state.js');
 
 const FOUNDING_40_CUTOFF_AT = '2026-09-22T00:00:00Z';
 const FIRST_LIGHT_WINDOW_HOURS = 48;
@@ -38,7 +38,11 @@ const FIRST_LIGHT_WINDOW_HOURS = 48;
  * @param {string} [window.foundingCutoffAt] - defaults to FOUNDING_40_CUTOFF_AT.
  * @param {string} [window.firstLightEndsAt] - defaults to the real, possibly
  *   dormant, FIRST_LIGHT_ENDS_AT.
- * @param {number} [window.windowHours] - defaults to FIRST_LIGHT_WINDOW_HOURS.
+ * @param {string} [window.firstLightStartsAt] - defaults to the real
+ *   FIRST_LIGHT_STARTS_AT only when firstLightEndsAt is also defaulted, so a
+ *   caller-supplied end time is never paired with the real start.
+ * @param {number} [window.windowHours] - defaults to FIRST_LIGHT_WINDOW_HOURS;
+ *   used only when no start time is given.
  * @returns {'founding-40'|'first-light'|'none'}
  */
 function classifyOfferTier(createdAt, window) {
@@ -46,6 +50,9 @@ function classifyOfferTier(createdAt, window) {
   const foundingCutoffAt = opts.foundingCutoffAt !== undefined ? opts.foundingCutoffAt : FOUNDING_40_CUTOFF_AT;
   const firstLightEndsAt = opts.firstLightEndsAt !== undefined ? opts.firstLightEndsAt : FIRST_LIGHT_ENDS_AT;
   const windowHours = opts.windowHours !== undefined ? opts.windowHours : FIRST_LIGHT_WINDOW_HOURS;
+  const firstLightStartsAt = opts.firstLightStartsAt !== undefined
+    ? opts.firstLightStartsAt
+    : (opts.firstLightEndsAt === undefined ? FIRST_LIGHT_STARTS_AT : '');
 
   const createdMs = createdAt instanceof Date ? createdAt.getTime() : Date.parse(createdAt);
   if (!Number.isFinite(createdMs)) return 'none';
@@ -56,7 +63,8 @@ function classifyOfferTier(createdAt, window) {
   const endMs = firstLightEndsAt ? Date.parse(firstLightEndsAt) : NaN;
   if (!Number.isFinite(endMs)) return 'none'; // First Light is dormant.
 
-  const startMs = endMs - windowHours * 3600 * 1000;
+  const explicitStartMs = firstLightStartsAt ? Date.parse(firstLightStartsAt) : NaN;
+  const startMs = Number.isFinite(explicitStartMs) ? explicitStartMs : endMs - windowHours * 3600 * 1000;
   if (createdMs >= startMs && createdMs <= endMs) return 'first-light';
 
   return 'none';

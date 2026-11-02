@@ -18,11 +18,11 @@
 
 'use strict';
 
-const { FIRST_LIGHT_ENDS_AT } = require('../lune-synth/campaign/offer-state.js');
+const { FIRST_LIGHT_ENDS_AT, FIRST_LIGHT_STARTS_AT } = require('../lune-synth/campaign/offer-state.js');
 const { FIRST_LIGHT_WINDOW_HOURS, FOUNDING_40_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
 
 /** Pure report builder, exported so tests can check its text without stdout capture. */
-function buildReport(firstLightEndsAt, now) {
+function buildReport(firstLightEndsAt, now, firstLightStartsAt) {
   const nowMs = now == null ? Date.now() : now;
   const lines = [];
 
@@ -44,13 +44,15 @@ function buildReport(firstLightEndsAt, now) {
     return { ok: false, lines };
   }
 
-  const startMs = endMs - FIRST_LIGHT_WINDOW_HOURS * 3600 * 1000;
+  const explicitStartMs = firstLightStartsAt ? Date.parse(firstLightStartsAt) : NaN;
+  const startMs = Number.isFinite(explicitStartMs) ? explicitStartMs : endMs - FIRST_LIGHT_WINDOW_HOURS * 3600 * 1000;
+  const windowHours = Math.round((endMs - startMs) / 360000) / 10;
   const fmt = (ms, timeZone) => new Intl.DateTimeFormat('en-US', {
     weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
     hour: 'numeric', minute: '2-digit', timeZoneName: 'short', timeZone,
   }).format(new Date(ms));
 
-  lines.push(`First Light window: ${FIRST_LIGHT_WINDOW_HOURS} hours`);
+  lines.push(`First Light window: ${windowHours} hours`);
   lines.push(`  Opens:  ${fmt(startMs, 'UTC')}  /  ${fmt(startMs, 'America/Denver')}`);
   lines.push(`  Closes: ${fmt(endMs, 'UTC')}  /  ${fmt(endMs, 'America/Denver')}`);
   lines.push('');
@@ -70,12 +72,12 @@ function buildReport(firstLightEndsAt, now) {
   const untilOpenH = ((startMs - nowMs) / 3600000).toFixed(1);
   lines.push(`OK: the window has not started yet. It opens in ~${untilOpenH}h from now.`);
   lines.push('If you are deploying to open it immediately, the start time should be now or');
-  lines.push('in the past -- double check FIRST_LIGHT_ENDS_AT is exactly 48h from deploy time.');
+  lines.push('in the past -- double check FIRST_LIGHT_STARTS_AT (or the 48h fallback) is at or before deploy time.');
   return { ok: true, lines };
 }
 
 if (require.main === module) {
-  const { ok, lines } = buildReport(FIRST_LIGHT_ENDS_AT);
+  const { ok, lines } = buildReport(FIRST_LIGHT_ENDS_AT, undefined, FIRST_LIGHT_STARTS_AT);
   console.log(lines.join('\n'));
   process.exit(ok ? 0 : 1);
 }

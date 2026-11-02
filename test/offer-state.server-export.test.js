@@ -19,10 +19,12 @@ test('offer-state.js is require()-able from Node without touching the DOM', () =
   assert.ok(exported !== null);
 });
 
-test('exports exactly the constant server code needs, nothing else', () => {
+test('exports exactly the window constants and the pure clock, nothing else', () => {
   const exported = require('../lune-synth/campaign/offer-state.js');
-  assert.deepEqual(Object.keys(exported), ['FIRST_LIGHT_ENDS_AT']);
+  assert.deepEqual(Object.keys(exported), ['FIRST_LIGHT_ENDS_AT', 'FIRST_LIGHT_STARTS_AT', 'DEFAULT_OFFER', 'createOfferClock']);
   assert.equal(typeof exported.FIRST_LIGHT_ENDS_AT, 'string');
+  assert.equal(typeof exported.FIRST_LIGHT_STARTS_AT, 'string');
+  assert.equal(typeof exported.createOfferClock, 'function');
 });
 
 test('dormant window (default state) exports an empty string, not a fabricated date', () => {

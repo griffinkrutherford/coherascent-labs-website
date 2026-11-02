@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../liquid-glass-cards.css?v=1.0.6" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
   <link rel="stylesheet" href="/campaign/lune-modal.css?v=1" />
-  <script src="/campaign/offer-state.js?v=2" defer></script>
-  <script src="/campaign/offer-popup.js?v=3" defer></script>
+  <script src="/campaign/offer-state.js?v=3" defer></script>
+  <script src="/campaign/offer-popup.js?v=4" defer></script>
   <script src="/campaign/lune-modal.js?v=2" defer></script>
   <script src="/campaign/store-badges.js?v=1" defer></script>
   <!-- The hero app icon is the LCP element, so it gets the only high-priority
@@ -10915,7 +10915,7 @@
   <link rel="stylesheet" href="/campaign/site-header.css?v=10" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=6" />
   <link rel="stylesheet" href="/campaign/section-icons.css?v=9" />
-  <link rel="stylesheet" href="/campaign/pricing.css?v=3" />
+  <link rel="stylesheet" href="/campaign/pricing.css?v=4" />
   <link rel="stylesheet" href="/campaign/sky-motion.css?v=1" />
   <script src="/campaign/sky-motion.js?v=1" defer></script>
   <script src="/campaign/site-footer.js?v=20" data-lune-site-footer defer></script>
@@ -11031,7 +11031,7 @@
       <img class="waitlist-luna-emote" src="/lune-synth/images/luna-emotes/celebrate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <div class="hero-waitlist-copy">
         <h3 id="lune-beta-title">Join the beta waitlist</h3>
-        <p class="waitlist-offer"><a href="#waitlist-offer-note" aria-describedby="waitlist-offer-note"><strong>Free to join.</strong> First in line for beta invites and Pro launch offers.<sup>*</sup></a></p>
+        <p class="waitlist-offer"><a href="#waitlist-offer-note" aria-describedby="waitlist-offer-note"><strong class="blue-glow">First Light founding offer.</strong> Priority beta access &amp; <strong class="red-glow">50% off your first 3 months</strong> of Lune Synth&trade; Pro. Ends Friday, Nov 6, 11:59 PM MT.<sup>*</sup></a></p>
       </div>
       <form class="hero-waitlist" data-waitlist-form novalidate>
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
@@ -15071,6 +15071,15 @@
 
       <div class="pricing section-content" data-pricing>
         <p class="pricing__intro"><strong>Start free.</strong> Pro doubles your daily AI capacity with the same grader.</p>
+
+        <aside class="pricing-offer" data-first-light-banner aria-labelledby="pricing-offer-title">
+          <p class="pricing-offer__eyebrow">Founding offer &middot; open now</p>
+          <h3 class="pricing-offer__title" id="pricing-offer-title">First Light: 50% off your first 3 months of Pro</h3>
+          <p class="pricing-offer__copy">Join the free waitlist before the deadline for priority beta access and 50% off your first three paid months of Lune Synth&trade; Pro once it launches. Joining charges nothing.</p>
+          <p class="pricing-offer__deadline" data-offer-deadline>Ends Friday, Nov 6, 11:59 PM MT</p>
+          <div data-offer-countdown-slot></div>
+          <p class="pricing-offer__actions"><a class="pricing-offer__cta" href="#waitlist">Join the waitlist</a> <a class="pricing-offer__terms" href="/terms/">Terms &sect;6.2</a></p>
+        </aside>
 
         <div class="pricing__grid">
           <article class="pricing-card" aria-labelledby="pricing-free-name">

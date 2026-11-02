@@ -19,6 +19,7 @@
  */
 
 const { sendAccessEmail, buildAccessLetter } = require('../api/access-email.js');
+const { FOUNDING_40_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
 
 const API = 'https://api.resend.com';
 const argv = process.argv.slice(2);
@@ -97,10 +98,10 @@ async function getProperties(email, apiKey) {
   }
 
   if (argv.includes('--help-preview')) {
-    // Shown for a Founding 40 recipient and a post-cutoff recipient (which
-    // reads identically whether First Light is open or still dormant, since
-    // that offer is named only when the window is actually open) -- these
-    // are the two letters that currently go out.
+    // Shown for a Founding 40 recipient and a post-cutoff recipient who
+    // signed up outside any First Light window. The no-offer example is
+    // pinned to the Founding 40 cutoff instant (not "now"), so it stays a
+    // no-offer letter even while a First Light window is open.
     console.log('=== ANDROID, Founding 40 ===\n');
     console.log(buildAccessLetter({
       platform: 'android',
@@ -124,7 +125,7 @@ async function getProperties(email, apiKey) {
       testflightUrl: TESTFLIGHT_URL || 'https://testflight.apple.com/join/…',
       postalAddress: POSTAL_ADDRESS || '[[MAILING ADDRESS]]',
       unsubscribeUrl: 'https://lunesynth.com/unsubscribe?e=…&t=…',
-      createdAt: new Date().toISOString(),
+      createdAt: FOUNDING_40_CUTOFF_AT,
     }));
     return;
   }

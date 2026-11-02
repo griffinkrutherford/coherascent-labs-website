@@ -3,86 +3,146 @@
  *
  * Founding 40: the original beta offer (2 months free, then 50% off Pro for
  * life) went to the first 40 waitlist signups and is fully claimed. It is
- * never advertised as available again. Terms §6 governs it.
+ * never advertised as available again. Terms §6.1 governs it.
  *
- * First Light: a 48-hour window for the next cohort -- priority beta access
- * and 50% off the first 3 months of Pro once Pro launches. It is dormant until
- * FIRST_LIGHT_ENDS_AT is set.
+ * First Light: the founding-cohort offer for the next signups -- priority
+ * beta access and 50% off the first 3 months of Pro once Pro launches. Terms
+ * §6.2 governs it; the window is whatever this file states. It is dormant
+ * while FIRST_LIGHT_ENDS_AT is "".
  *
- * TO OPEN FIRST LIGHT: when the first post goes live, set FIRST_LIGHT_ENDS_AT
- * to the UTC end time (first post + 48h), e.g. "2026-10-01T05:59:00Z" for
- * Wed Sep 30 11:59 pm MT, and deploy. Nothing else needs to change.
+ * OPEN (2026-11-02, owner request): the window runs from FIRST_LIGHT_STARTS_AT
+ * to Friday 2026-11-06 11:59 PM Mountain Standard Time (UTC-7), stored as the
+ * absolute UTC instant below so no viewer's timezone can move it. At that
+ * instant every page switches itself to the closed copy -- no redeploy.
  *
  * This clock is display only. Eligibility is decided on the server: every
  * Resend contact carries its server-side creation time, so the First Light
- * cohort is the contacts created before this end time and after the window
- * opened. A visitor's device clock never decides who qualifies.
+ * cohort is the contacts created inside [FIRST_LIGHT_STARTS_AT,
+ * FIRST_LIGHT_ENDS_AT] (see offer-eligibility.js). A visitor's device clock
+ * never decides who qualifies.
  */
 (function () {
   "use strict";
 
-  var FIRST_LIGHT_ENDS_AT = "";
+  var FIRST_LIGHT_ENDS_AT = "2026-11-07T06:59:00Z"; // Fri Nov 6, 11:59 PM MST
+  // Start of Mon Nov 2 in Mountain time; signups recorded from here count.
+  // "" falls back to the original 48-hour window before FIRST_LIGHT_ENDS_AT.
+  var FIRST_LIGHT_STARTS_AT = "2026-11-02T07:00:00Z";
   var CLOSE_ZONE = "America/Denver";
   var CLOSE_ZONE_LABEL = "MT";
 
-  // Server-side code (api/access-email.js, scripts/*) needs this same value to
-  // decide who gets First Light wording -- it must never be redeclared
-  // elsewhere, or the two copies will drift. When this file is require()'d
-  // from Node (module exists there, never in a browser <script> tag) we hand
-  // back the constant and stop before anything below, which all assumes a
-  // DOM that Node does not have.
+  var DEFAULT_OFFER = "<strong>Free to join.</strong> First in line for beta invites and Pro launch offers.";
+  var UNITS = [["days", 86400], ["hours", 3600], ["minutes", 60], ["seconds", 1]];
+
+  // Pure, DOM-free clock. Every function takes `now` (ms) so tests can inject
+  // time; the browser code below only ever passes Date.now().
+  function createOfferClock(endsAt, options) {
+    var opts = options || {};
+    var endMs = Date.parse(endsAt);
+    var hasWindow = endsAt !== "" && endsAt != null && Number.isFinite(endMs);
+    var closeZone = opts.closeZone || CLOSE_ZONE;
+
+    function phase(now) {
+      if (!hasWindow) return "founding-claimed";
+      return (now == null ? Date.now() : now) < endMs ? "first-light-open" : "first-light-closed";
+    }
+
+    function remainingParts(now) {
+      var total = hasWindow ? Math.max(0, Math.floor((endMs - now) / 1000)) : 0;
+      return UNITS.map(function (unit, index) {
+        var value = index === 0 ? Math.floor(total / unit[1]) : Math.floor((total % UNITS[index - 1][1]) / unit[1]);
+        return { key: unit[0], value: value };
+      });
+    }
+
+    function displayValue(part) {
+      var text = String(part.value);
+      return part.key === "days" || text.length > 1 ? text : "0" + text;
+    }
+
+    // Changes once a minute, so the polite live region speaks at most once a
+    // minute even though the visible digits tick every second.
+    function announcement(now) {
+      if (phase(now) !== "first-light-open") return "The First Light offer has closed.";
+      var p = remainingParts(now);
+      function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
+      return plural(p[0].value, "day") + ", " + plural(p[1].value, "hour") + ", " +
+        plural(p[2].value, "minute") + " left in the First Light offer";
+    }
+
+    function formatEnd(zone) {
+      try {
+        return new Intl.DateTimeFormat("en-US", {
+          weekday: "short", month: "short", day: "numeric",
+          hour: "numeric", minute: "2-digit", timeZone: zone
+        }).format(new Date(endMs));
+      } catch (error) {
+        return new Date(endMs).toUTCString();
+      }
+    }
+
+    function endLabel(viewerZone) {
+      if (!hasWindow) return "";
+      var mountain = formatEnd(closeZone) + " " + CLOSE_ZONE_LABEL;
+      if (!viewerZone || viewerZone === closeZone) return mountain;
+      return mountain + " (" + formatEnd(viewerZone) + " your time)";
+    }
+
+    function offerHtml(now, viewerZone) {
+      if (phase(now) === "first-light-open") {
+        return "<strong class=\"cta-accent cta-accent--blue blue-glow\">First Light founding offer.</strong> " +
+          "Join by " + endLabel(viewerZone) + " for priority beta access &amp; " +
+          "<strong class=\"cta-accent cta-accent--red red-glow\">50% off your first 3 months</strong> of Lune Synth&trade; Pro.";
+      }
+      // Before First Light opens and after it closes: the standing waitlist
+      // offer. The Founding 40 are mentioned only in the footnote.
+      return DEFAULT_OFFER;
+    }
+
+    function footnoteText(now) {
+      if (phase(now) === "first-light-open") {
+        return "*First Light discount applies once you are invited to the beta, activate the app, and Lune Synth Pro launches. Signing up is free and charges nothing. Founding 40 members keep their original offer. See Terms §6.";
+      }
+      return "*Joining the waitlist is free and charges nothing. Founding 40 members keep their original offer under Terms §6.";
+    }
+
+    return {
+      hasWindow: hasWindow,
+      endMs: endMs,
+      phase: phase,
+      remainingParts: remainingParts,
+      displayValue: displayValue,
+      announcement: announcement,
+      endLabel: endLabel,
+      offerHtml: offerHtml,
+      footnoteText: footnoteText
+    };
+  }
+
+  // Server-side code (api/access-email.js, scripts/*) needs these same values
+  // to decide who gets First Light wording -- they must never be redeclared
+  // elsewhere, or the copies will drift. When this file is require()'d from
+  // Node (module exists there, never in a browser <script> tag) we hand back
+  // the constants and the pure clock and stop before anything below, which
+  // all assumes a DOM that Node does not have.
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { FIRST_LIGHT_ENDS_AT: FIRST_LIGHT_ENDS_AT };
+    module.exports = {
+      FIRST_LIGHT_ENDS_AT: FIRST_LIGHT_ENDS_AT,
+      FIRST_LIGHT_STARTS_AT: FIRST_LIGHT_STARTS_AT,
+      DEFAULT_OFFER: DEFAULT_OFFER,
+      createOfferClock: createOfferClock
+    };
     return;
   }
 
-  var endMs = Date.parse(FIRST_LIGHT_ENDS_AT);
-  var hasWindow = FIRST_LIGHT_ENDS_AT !== "" && Number.isFinite(endMs);
+  var clock = createOfferClock(FIRST_LIGHT_ENDS_AT);
+  var viewerZone;
+  try { viewerZone = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (error) { viewerZone = ""; }
 
-  function phase(now) {
-    if (!hasWindow) return "founding-claimed";
-    return (now == null ? Date.now() : now) < endMs ? "first-light-open" : "first-light-closed";
-  }
-
-  function formatEnd(zone) {
-    try {
-      return new Intl.DateTimeFormat("en-US", {
-        weekday: "short", month: "short", day: "numeric",
-        hour: "numeric", minute: "2-digit", timeZone: zone
-      }).format(new Date(endMs));
-    } catch (error) {
-      return new Date(endMs).toUTCString();
-    }
-  }
-
-  function endLabel() {
-    var local = formatEnd(undefined);
-    var mountain = formatEnd(CLOSE_ZONE) + " " + CLOSE_ZONE_LABEL;
-    var localZone;
-    try { localZone = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (error) { localZone = ""; }
-    return localZone === CLOSE_ZONE ? mountain : mountain + " (" + local + " your time)";
-  }
-
-  var DEFAULT_OFFER = "<strong>Free to join.</strong> First in line for beta invites and Pro launch offers.";
-
-  function offerHtml(now) {
-    var current = phase(now);
-    if (current === "first-light-open") {
-      return "<strong class=\"cta-accent cta-accent--blue\">First Light: 48 hours only.</strong> " +
-        "Join by " + endLabel() + " for priority beta access &amp; " +
-        "<strong class=\"cta-accent cta-accent--red\">50% off your first 3 months</strong> of Lune Synth&trade; Pro.";
-    }
-    // Before First Light opens and after it closes: the standing waitlist
-    // offer. The Founding 40 are mentioned only in the footnote.
-    return DEFAULT_OFFER;
-  }
-
-  function footnoteText(now) {
-    if (phase(now) === "first-light-open") {
-      return "*First Light discount applies once you are invited to the beta, activate the app, and Lune Synth Pro launches. Signing up is free and charges nothing. Founding 40 members keep their original offer. See Terms §6.";
-    }
-    return "*Joining the waitlist is free and charges nothing. Founding 40 members keep their original offer under Terms §6.";
-  }
+  function phase(now) { return clock.phase(now); }
+  function endLabel() { return clock.endLabel(viewerZone); }
+  function offerHtml(now) { return clock.offerHtml(now, viewerZone); }
+  function footnoteText(now) { return clock.footnoteText(now); }
 
   // Countdown ------------------------------------------------------------
 
@@ -93,29 +153,21 @@
     style.id = STYLE_ID;
     style.textContent = [
       ".lune-offer-countdown{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin:.75rem auto 0;font-variant-numeric:tabular-nums}",
-      ".lune-offer-countdown__unit{display:flex;flex-direction:column;align-items:center;min-width:3.4rem;padding:.45rem .5rem;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}",
-      ".lune-offer-countdown__value{display:block;font-size:1.35rem;font-weight:700;line-height:1.1}",
-      ".lune-offer-countdown__label{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;opacity:.72}",
+      ".lune-offer-countdown__unit{display:flex;flex-direction:column;align-items:center;min-width:3.6rem;padding:.5rem .55rem;border-radius:14px;background:rgba(100,168,255,.08);border:1px solid rgba(164,123,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}",
+      ".lune-offer-countdown__value{display:block;font-size:1.4rem;font-weight:800;line-height:1.1;color:var(--text,#edf5ff)}",
+      ".lune-offer-countdown__label{margin-top:.15rem;font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#a6bad7)}",
+      "html[data-theme=\"light\"] .lune-offer-countdown__unit{background:rgba(255,255,255,.72);border-color:rgba(127,99,214,.22);box-shadow:0 6px 16px rgba(151,164,192,.14)}",
       ".lune-offer-countdown__value.is-ticking{animation:luneOfferTick .45s ease-out}",
       "@keyframes luneOfferTick{0%{opacity:.35;transform:translateY(-4px)}100%{opacity:1;transform:none}}",
       "@media (prefers-reduced-motion: reduce){.lune-offer-countdown__value.is-ticking{animation:none}}",
+      "@media (max-width:420px){.lune-offer-countdown{gap:.4rem}.lune-offer-countdown__unit{min-width:3.1rem;padding:.42rem .4rem}.lune-offer-countdown__value{font-size:1.2rem}}",
       ".lune-offer-countdown__sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}"
     ].join("");
     document.head.appendChild(style);
   }
 
-  var UNITS = [["days", 86400], ["hours", 3600], ["minutes", 60], ["seconds", 1]];
   var countdowns = [];
   var timer = null;
-  var lastAnnouncedMinute = null;
-
-  function remainingParts(now) {
-    var total = Math.max(0, Math.floor((endMs - now) / 1000));
-    return UNITS.map(function (unit, index) {
-      var value = index === 0 ? Math.floor(total / unit[1]) : Math.floor((total % UNITS[index - 1][1]) / unit[1]);
-      return { key: unit[0], value: value };
-    });
-  }
 
   function buildCountdown() {
     var root = document.createElement("div");
@@ -130,9 +182,12 @@
         '<span class="lune-offer-countdown__label">' + unit[0] + "</span>";
       root.appendChild(cell);
     });
+    // role=timer is not live by default; only this minute-granular text is
+    // announced, so screen readers hear at most one update a minute.
     var live = document.createElement("span");
     live.className = "lune-offer-countdown__sr";
     live.setAttribute("aria-live", "polite");
+    live.setAttribute("aria-atomic", "true");
     root.appendChild(live);
     return root;
   }
@@ -145,12 +200,12 @@
       applyEverywhere();
       return;
     }
-    var parts = remainingParts(now);
-    var minuteKey = parts[0].value + ":" + parts[1].value + ":" + parts[2].value;
+    var parts = clock.remainingParts(now);
+    var spoken = clock.announcement(now);
     countdowns.forEach(function (root) {
       parts.forEach(function (part) {
         var node = root.querySelector('[data-unit="' + part.key + '"]');
-        var text = part.key === "days" ? String(part.value) : String(part.value).padStart(2, "0");
+        var text = clock.displayValue(part);
         if (node && node.textContent !== text) {
           node.textContent = text;
           node.classList.remove("is-ticking");
@@ -158,12 +213,9 @@
           node.classList.add("is-ticking");
         }
       });
-      if (minuteKey !== lastAnnouncedMinute) {
-        var live = root.querySelector(".lune-offer-countdown__sr");
-        if (live) live.textContent = parts[0].value + " days, " + parts[1].value + " hours, " + parts[2].value + " minutes left";
-      }
+      var live = root.querySelector(".lune-offer-countdown__sr");
+      if (live && live.textContent !== spoken) live.textContent = spoken;
     });
-    lastAnnouncedMinute = minuteKey;
   }
 
   function stopTimer() {
@@ -183,7 +235,8 @@
     if (phase() !== "first-light-open" || !container || container.querySelector(".lune-offer-countdown")) return;
     injectStyle();
     var root = buildCountdown();
-    container.appendChild(root);
+    var slot = container.querySelector("[data-offer-countdown-slot]");
+    (slot || container).appendChild(root);
     countdowns.push(root);
     renderAll();
     schedule();
@@ -196,18 +249,24 @@
     var target = link || line;
     var sup = target.querySelector("sup");
     target.innerHTML = offerHtml() + (sup ? "<sup>*</sup>" : "");
-    var old = line.parentNode && line.parentNode.querySelector(".lune-offer-countdown");
-    if (old && phase() !== "first-light-open") {
-      old.remove();
-      countdowns = countdowns.filter(function (root) { return root !== old; });
-    }
     if (phase() === "first-light-open") attachCountdown(line.parentNode || line);
+  }
+
+  // Pricing-area banner: visible in the static HTML (with its no-JS deadline
+  // line) and kept only while the window is open.
+  function applyBanner(banner) {
+    var open = phase() === "first-light-open";
+    banner.hidden = !open;
+    var deadline = banner.querySelector("[data-offer-deadline]");
+    if (deadline && open) deadline.textContent = "Ends " + endLabel();
+    if (open) attachCountdown(banner);
   }
 
   function applyEverywhere() {
     if (phase() !== "first-light-open") {
       // Outside the window nothing may keep advertising First Light: drop every
       // countdown (including the popup's) and the First Light popup itself.
+      stopTimer();
       document.querySelectorAll(".lune-offer-countdown").forEach(function (node) { node.remove(); });
       countdowns = [];
       var popup = document.querySelector("div[data-beta-offer-popup]");
@@ -217,6 +276,7 @@
       }
     }
     document.querySelectorAll(".waitlist-offer, .lune-cta__offer").forEach(applyOfferLine);
+    document.querySelectorAll("[data-first-light-banner]").forEach(applyBanner);
     document.querySelectorAll("#waitlist-offer-note, .waitlist-offer-note small").forEach(function (note) {
       note.textContent = footnoteText();
     });
@@ -226,7 +286,7 @@
     phase: phase,
     offerHtml: offerHtml,
     footnoteText: footnoteText,
-    endLabel: function () { return hasWindow ? endLabel() : ""; },
+    endLabel: function () { return clock.hasWindow ? endLabel() : ""; },
     attachCountdown: attachCountdown,
     apply: applyEverywhere
   });

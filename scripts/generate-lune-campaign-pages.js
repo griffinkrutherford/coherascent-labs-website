@@ -330,7 +330,7 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <script src="/campaign/landing.js?v=8" defer></script>
   <link rel="stylesheet" href="/campaign/device-tilt.css?v=9" />
   <script src="/campaign/device-tilt.js?v=9" defer></script>
-  <script src="/campaign/offer-popup.js?v=2" defer></script>
+  <script src="/campaign/offer-popup.js?v=4" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
   <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/campaign/site-header.css?v=10" />
