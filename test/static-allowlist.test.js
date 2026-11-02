@@ -33,10 +33,17 @@ const SERVER = path.join(ROOT, 'server.js');
 const PORT = 39183; // fixed, unlikely-to-collide port for this test file only
 const EXCLUDE_DIRS = new Set(['.git', 'node_modules']);
 
-function get(pathname, host = 'lunesynth.com') {
+function get(pathname, host = 'lunesynth.com', { method = 'GET', headers = {} } = {}) {
   return new Promise((resolve, reject) => {
     const req = http.request(
-      { host: 'localhost', port: PORT, path: pathname, headers: { Host: host } },
+      {
+        host: 'localhost',
+        port: PORT,
+        path: pathname,
+        method,
+        headers: { Host: host, ...headers },
+        agent: false,
+      },
       (res) => {
         let body = '';
         res.on('data', (chunk) => { body += chunk; });
@@ -273,24 +280,81 @@ test('sensitive repo files are not publicly reachable', async () => {
   assert.deepEqual(unexpected, [], `these sensitive paths were reachable:\n${unexpected.join('\n')}`);
 });
 
-test('path traversal through an allowed directory cannot reach a denied file', async () => {
+test('path traversal through an allowed directory cannot reach a denied file, on either host', async () => {
   const attempts = [
     '/lune-synth/../server.js',
     '/lune-synth/..%2fserver.js',
     '/lune-synth/%2e%2e/server.js',
+    '/lune-synth/%2E%2E/server.js',       // uppercase-encoded ".."
+    '/lune-synth/%2e%2e%2fserver.js',     // fully-encoded "../"
+    '/lune-synth%2f..%2fserver.js',       // encoded path separator too
     '/images/../server.js',
     '/images/../api/waitlist.js',
+    '/images/..%2f..%2fapi%2fwaitlist.js',
   ];
-  for (const attempt of attempts) {
-    const { status } = await get(attempt, 'lunesynth.com');
-    assert.notEqual(status, 200, `${attempt} must not reach a denied file`);
+  for (const host of ['lunesynth.com', 'coherascentlabs.com']) {
+    for (const attempt of attempts) {
+      const { status } = await get(attempt, host);
+      assert.notEqual(status, 200, `${attempt} on ${host} must not reach a denied file`);
+    }
+  }
+});
+
+test('HEAD and GET are denied identically for a disallowed path, on either host', async () => {
+  for (const host of ['lunesynth.com', 'coherascentlabs.com']) {
+    const get404 = await get('/server.js', host);
+    const head404 = await get('/server.js', host, { method: 'HEAD' });
+    assert.equal(get404.status, 404, `GET /server.js on ${host}`);
+    assert.equal(head404.status, 404, `HEAD /server.js on ${host}`);
+  }
+});
+
+test('a Range header cannot be used to pull a denied file through as a partial response', async () => {
+  for (const host of ['lunesynth.com', 'coherascentlabs.com']) {
+    const { status } = await get('/server.js', host, { headers: { Range: 'bytes=0-10' } });
+    assert.equal(status, 404, `Range request for /server.js on ${host}`);
+  }
+});
+
+test('dotfiles and dot-directories are denied on either host', async () => {
+  const dotPaths = ['/.env', '/.gitignore', '/.git/config', '/.vscode/settings.json', '/vendor/.gitignore'];
+  for (const host of ['lunesynth.com', 'coherascentlabs.com']) {
+    for (const p of dotPaths) {
+      const { status } = await get(p, host);
+      assert.equal(status, 404, `${p} on ${host}`);
+    }
+  }
+});
+
+test('directory paths for non-public folders are denied, not just their files, on either host', async () => {
+  const dirPaths = ['/api/', '/api', '/docs/', '/docs', '/scripts/', '/scripts', '/tmp/', '/tmp', '/.vscode/', '/vendor/'];
+  for (const host of ['lunesynth.com', 'coherascentlabs.com']) {
+    for (const p of dirPaths) {
+      const { status } = await get(p, host);
+      assert.equal(status, 404, `${p} on ${host}`);
+    }
+  }
+});
+
+test('a denied path gets a real 404, never a 200 app-shell fallback', async () => {
+  for (const host of ['lunesynth.com', 'coherascentlabs.com']) {
+    const denied = await get('/server.js', host);
+    const home = await get('/', host);
+    assert.equal(denied.status, 404, `/server.js on ${host} must be a real 404`);
+    assert.notEqual(denied.status, 200);
+    // Not just the status: the body itself must not be the homepage (there
+    // is no SPA/app-shell fallback in this codebase, and this pins that).
+    assert.notEqual(denied.body, home.body);
+    assert.match(denied.body, /404/);
+    assert.doesNotMatch(denied.body, /<html/i, 'the 404 body should be the plain error page, not a full app page');
   }
 });
 
 test('security headers are present on every response, including 404s', async () => {
   const { headers, status } = await get('/', 'lunesynth.com');
   assert.equal(status, 200);
-  assert.equal(headers['strict-transport-security'], 'max-age=31536000; includeSubDomains');
+  // No includeSubDomains -- not every subdomain is confirmed HTTPS-ready.
+  assert.equal(headers['strict-transport-security'], 'max-age=31536000');
   assert.equal(headers['x-content-type-options'], 'nosniff');
   assert.equal(headers['referrer-policy'], 'strict-origin-when-cross-origin');
   assert.equal(headers['x-frame-options'], 'DENY');

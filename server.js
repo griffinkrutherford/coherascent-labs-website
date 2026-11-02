@@ -431,30 +431,70 @@ function serveStatic(req, res, publicPath) {
 // Nothing legitimate posted to /api/waitlist (an email plus a couple of short
 // fields) approaches this. Without a cap, `body += chunk` buffers an
 // unbounded request body in memory -- a trivial DoS against a single-process
-// Node server with no reverse-proxy body limit in front of it.
+// Node server with no reverse-proxy body limit in front of it. The cap is
+// enforced against bytes actually received on `data`, never against a
+// declared Content-Length -- a request is free to lie about that header, so
+// trusting it would let an attacker's real body sail through uncounted.
 const MAX_API_BODY_BYTES = 16 * 1024;
+
+// A body sent a few bytes at a time, just under the size cap, can hold a
+// connection (and the memory backing it) open indefinitely without ever
+// tripping MAX_API_BODY_BYTES. This bounds how long server.js will wait for
+// the body to finish arriving at all. Overridable so a test can exercise it
+// in milliseconds instead of actually waiting 10 real seconds; production
+// has no reason to ever set this env var, so the default is what ships.
+const API_BODY_READ_TIMEOUT_MS = Number(process.env.API_BODY_READ_TIMEOUT_MS) > 0
+  ? Number(process.env.API_BODY_READ_TIMEOUT_MS)
+  : 10 * 1000;
 
 function handleWaitlist(req, res) {
     let body = '';
     let bytes = 0;
-    let tooLarge = false;
+    // Guards every terminal path (oversized, timed out, completed, errored)
+    // so the response is sent at most once and the timer is always cleared,
+    // regardless of which path gets there first.
+    let settled = false;
+
+    function respondOnce(statusCode, payload) {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeoutTimer);
+      res.statusCode = statusCode;
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.end(JSON.stringify(payload));
+      // Stop reading and release the socket rather than let a slow or
+      // oversized client keep draining into a request nothing will use.
+      req.destroy();
+    }
+
+    const timeoutTimer = setTimeout(() => {
+      respondOnce(408, { error: 'Request body took too long to arrive.' });
+    }, API_BODY_READ_TIMEOUT_MS);
+
+    // A client that disconnects mid-body (or a socket error) emits 'error'
+    // on the request stream; with no listener, Node treats that as an
+    // uncaught exception and crashes the process. There is nothing useful to
+    // respond with (the connection is already gone), so this only needs to
+    // stop the timer and mark the request settled.
+    req.on('error', () => {
+      settled = true;
+      clearTimeout(timeoutTimer);
+    });
 
     req.on('data', chunk => {
-      if (tooLarge) return;
+      if (settled) return;
       bytes += chunk.length;
       if (bytes > MAX_API_BODY_BYTES) {
-        tooLarge = true;
-        res.statusCode = 413;
-        res.setHeader('Content-Type', 'application/json; charset=utf-8');
-        res.end(JSON.stringify({ error: 'Payload too large.' }));
-        req.destroy();
+        respondOnce(413, { error: 'Payload too large.' });
         return;
       }
       body += chunk.toString();
     });
 
     req.on('end', () => {
-      if (tooLarge) return;
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeoutTimer);
 
       try {
         req.body = body ? JSON.parse(body) : {};
@@ -590,7 +630,11 @@ const CSP_REPORT_ONLY = [
 ].join('; ');
 
 function applySecurityHeaders(res) {
-  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  // No includeSubDomains: that would also apply HSTS to every subdomain of
+  // lunesynth.com/coherascentlabs.com, and not all of them are confirmed to
+  // be HTTPS-ready. Scope it to the domains this header is actually served
+  // from until the rest are checked.
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('X-Frame-Options', 'DENY');
