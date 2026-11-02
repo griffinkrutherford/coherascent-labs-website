@@ -124,6 +124,10 @@
 .pro-plan .pro-eyebrow { color: rgb(var(--tone)); font-size: 10px; margin-bottom: 10px; }
 .pro-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; color: var(--text); font-size: clamp(35px, 4vw, 51px); line-height: 1.15; font-weight: 800; letter-spacing: -.055em; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
 .pro-price span { color: var(--muted); font-size: 12px; letter-spacing: 0; font-weight: 500; }
+/* First Light's struck-through normal price (toggled by offer-state.js; the
+   static default is `hidden`, so a no-JS visitor only sees the plain price). */
+.pro-price__was { color: var(--muted); font-size: 16px; font-weight: 600; letter-spacing: 0; text-decoration: line-through; }
+.pro-price__was[hidden] { display: none; }
 .pro-plan__description { color: var(--muted); font-size: 12px; min-height: 40px; margin: 0 0 14px; }
 .pro-plan__description strong { color: rgb(var(--tone)); }
 .pro-plan ul { padding: 0; margin: 16px 0 30px; list-style: none; display: grid; gap: 14px; }

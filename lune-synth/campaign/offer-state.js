@@ -34,6 +34,14 @@
   var DEFAULT_OFFER = "<strong>Free to join.</strong> First in line for beta invites and Pro launch offers.";
   var UNITS = [["days", 86400], ["hours", 3600], ["minutes", 60], ["seconds", 1]];
 
+  // Pro Monthly's approved launch price and its First Light discount (Terms
+  // §6.2: 50% off the first 3 paid months). Rounded down to the cent so the
+  // displayed price never implies a fraction of a cent. The annual plan has
+  // no First Light treatment yet -- Terms §6.2 does not set one, so no sale
+  // price is invented for it here; the pricing markup leaves it untouched.
+  var PRO_MONTHLY_PRICE = 12.99;
+  var FIRST_LIGHT_MONTHLY_PRICE = Math.floor(PRO_MONTHLY_PRICE * 100 * 0.5) / 100;
+
   // Pure, DOM-free clock. Every function takes `now` (ms) so tests can inject
   // time; the browser code below only ever passes Date.now().
   function createOfferClock(endsAt, options) {
@@ -106,6 +114,26 @@
       return "*Joining the waitlist is free and charges nothing. Founding 40 members keep their original offer under Terms §6.";
     }
 
+    // Pricing-display state for the Pro Monthly card/plan. Pure and
+    // time-injectable like the rest of this clock -- the DOM code below (and
+    // any page's pricing markup) decides what to render, this just says
+    // whether the First Light price should show and what it is. Annual is
+    // intentionally absent: Terms §6.2 sets no annual discount, so nothing
+    // here invents one.
+    function proMonthlyPricing(now) {
+      var open = phase(now) === "first-light-open";
+      return {
+        open: open,
+        normalPrice: PRO_MONTHLY_PRICE,
+        offerPrice: FIRST_LIGHT_MONTHLY_PRICE,
+        normalText: PRO_MONTHLY_PRICE.toFixed(2),
+        offerText: FIRST_LIGHT_MONTHLY_PRICE.toFixed(2),
+        displayText: (open ? FIRST_LIGHT_MONTHLY_PRICE : PRO_MONTHLY_PRICE).toFixed(2),
+        wasLabel: "was $" + PRO_MONTHLY_PRICE.toFixed(2),
+        badgeLabel: "First Light"
+      };
+    }
+
     return {
       hasWindow: hasWindow,
       endMs: endMs,
@@ -115,7 +143,8 @@
       announcement: announcement,
       endLabel: endLabel,
       offerHtml: offerHtml,
-      footnoteText: footnoteText
+      footnoteText: footnoteText,
+      proMonthlyPricing: proMonthlyPricing
     };
   }
 
@@ -130,6 +159,8 @@
       FIRST_LIGHT_ENDS_AT: FIRST_LIGHT_ENDS_AT,
       FIRST_LIGHT_STARTS_AT: FIRST_LIGHT_STARTS_AT,
       DEFAULT_OFFER: DEFAULT_OFFER,
+      PRO_MONTHLY_PRICE: PRO_MONTHLY_PRICE,
+      FIRST_LIGHT_MONTHLY_PRICE: FIRST_LIGHT_MONTHLY_PRICE,
       createOfferClock: createOfferClock
     };
     return;
@@ -143,6 +174,7 @@
   function endLabel() { return clock.endLabel(viewerZone); }
   function offerHtml(now) { return clock.offerHtml(now, viewerZone); }
   function footnoteText(now) { return clock.footnoteText(now); }
+  function proMonthlyPricing(now) { return clock.proMonthlyPricing(now); }
 
   // Countdown ------------------------------------------------------------
 
@@ -262,6 +294,36 @@
     if (open) attachCountdown(banner);
   }
 
+  // Pro Monthly price card/plan: static markup is always the normal price
+  // (the no-JS fallback), so there is never a struck price left on screen
+  // without JS. While First Light is open this crosses out the normal price
+  // and shows the discounted one, with a "First Light" badge; outside the
+  // window (including the instant it closes on an open tab) it reverts --
+  // no made-up state survives past `pricing.open`. Annual is never touched
+  // here; Terms §6.2 sets no annual discount.
+  function applyProPrice(card) {
+    var pricing = proMonthlyPricing();
+    var was = card.querySelector("[data-first-light-was]");
+    var amount = card.querySelector("[data-pricing-amount]");
+    var badge = card.querySelector("[data-first-light-badge]");
+    var note = card.querySelector("[data-first-light-note]");
+    if (was) was.hidden = !pricing.open;
+    if (amount) {
+      amount.textContent = "$" + pricing.displayText;
+      amount.setAttribute("data-pricing-amount", pricing.displayText);
+    }
+    if (badge) badge.hidden = !pricing.open;
+    if (note) {
+      var normalNote = note.getAttribute("data-note-normal");
+      var offerNote = note.getAttribute("data-note-offer");
+      if (normalNote && offerNote) note.textContent = pricing.open ? offerNote : normalNote;
+    }
+  }
+
+  function applyAnnualNote(note) {
+    note.hidden = phase() !== "first-light-open";
+  }
+
   function applyEverywhere() {
     if (phase() !== "first-light-open") {
       // Outside the window nothing may keep advertising First Light: drop every
@@ -280,12 +342,15 @@
     document.querySelectorAll("#waitlist-offer-note, .waitlist-offer-note small").forEach(function (note) {
       note.textContent = footnoteText();
     });
+    document.querySelectorAll("[data-first-light-pro-price]").forEach(applyProPrice);
+    document.querySelectorAll("[data-first-light-annual-note]").forEach(applyAnnualNote);
   }
 
   window.LuneOffer = Object.freeze({
     phase: phase,
     offerHtml: offerHtml,
     footnoteText: footnoteText,
+    proMonthlyPricing: proMonthlyPricing,
     endLabel: function () { return clock.hasWindow ? endLabel() : ""; },
     attachCountdown: attachCountdown,
     apply: applyEverywhere

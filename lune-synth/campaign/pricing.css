@@ -339,6 +339,18 @@ html[data-theme="light"] .pricing-offer__cta { color: #fff; background: #a8483f;
   font-weight: 600;
 }
 
+/* First Light's struck-through normal price (toggled by offer-state.js;
+   the static default is `hidden`, so a no-JS visitor only ever sees the
+   plain, unstruck price). */
+.pricing-card__was {
+  color: var(--muted);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-decoration: line-through;
+}
+
+.pricing-card__was[hidden] { display: none; }
+
 .pricing-card__note {
   margin: -8px 0 0;
   min-height: 1.4em;
@@ -367,6 +379,11 @@ html[data-theme="light"] .pricing-offer__cta { color: #fff; background: #a8483f;
   background: var(--accent);
   box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.12);
 }
+
+/* The First Light badge is toggled with the `hidden` attribute; without this,
+   `.pricing-badge`'s own `display` declaration ties the UA [hidden] rule's
+   specificity and wins by cascade order, leaving the badge visible. */
+.pricing-badge[hidden] { display: none; }
 
 /* A slow sheen across the savings badge. */
 .pricing-badge::after {

@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../liquid-glass-cards.css?v=1.0.6" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
   <link rel="stylesheet" href="/campaign/lune-modal.css?v=1" />
-  <script src="/campaign/offer-state.js?v=3" defer></script>
+  <script src="/campaign/offer-state.js?v=4" defer></script>
   <script src="/campaign/offer-popup.js?v=4" defer></script>
   <script src="/campaign/lune-modal.js?v=2" defer></script>
   <script src="/campaign/store-badges.js?v=1" defer></script>
@@ -10915,7 +10915,7 @@
   <link rel="stylesheet" href="/campaign/site-header.css?v=10" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=6" />
   <link rel="stylesheet" href="/campaign/section-icons.css?v=9" />
-  <link rel="stylesheet" href="/campaign/pricing.css?v=4" />
+  <link rel="stylesheet" href="/campaign/pricing.css?v=6" />
   <link rel="stylesheet" href="/campaign/sky-motion.css?v=1" />
   <script src="/campaign/sky-motion.js?v=1" defer></script>
   <script src="/campaign/site-footer.js?v=20" data-lune-site-footer defer></script>
@@ -15102,15 +15102,16 @@
             <a class="pricing-card__cta" href="#waitlist">Join the beta</a>
           </article>
 
-          <article class="pricing-card pricing-card--pro" aria-labelledby="pricing-monthly-name">
+          <article class="pricing-card pricing-card--pro" data-first-light-pro-price aria-labelledby="pricing-monthly-name">
             <p class="pricing-card__eyebrow">Pro &middot; Monthly</p>
             <h3 class="pricing-card__name" id="pricing-monthly-name">Lune Synth Pro</h3>
             <p class="pricing-card__price">
+              <s class="pricing-card__was" data-first-light-was aria-label="was $12.99" hidden>$12.99</s>
               <span class="pricing-card__amount" data-pricing-amount="12.99">$12.99</span>
               <span class="pricing-card__period">/ month</span>
             </p>
-            <p class="pricing-card__note">Billed monthly. Cancel anytime.</p>
-            <div class="pricing-card__badges"></div>
+            <p class="pricing-card__note" data-first-light-note data-note-normal="Billed monthly. Cancel anytime." data-note-offer="First 3 months at $6.49/mo, then $12.99/mo.">Billed monthly. Cancel anytime.</p>
+            <div class="pricing-card__badges"><span class="pricing-badge pricing-badge--soft" data-first-light-badge hidden>First Light</span></div>
             <ul class="pricing-card__features">
               <li>Everything in Free</li>
               <li><strong>Unlimited practice sets</strong> (fair use)</li>
@@ -15130,6 +15131,7 @@
               <span class="pricing-card__period">/ month</span>
             </p>
             <p class="pricing-card__note">Billed annually &middot; $59.88 per year.</p>
+            <p class="pricing-card__note" data-first-light-annual-note hidden>First Light applies to your first 3 monthly payments, not Annual.</p>
             <div class="pricing-card__badges">
               <span class="pricing-badge">Save 62%</span>
               <span class="pricing-badge pricing-badge--soft">7-day free trial</span>
