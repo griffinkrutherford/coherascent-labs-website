@@ -37,7 +37,7 @@
       '  <div class="beta-offer-popup__panel">',
       '    <button class="beta-offer-popup__close" type="button" data-beta-offer-dismiss aria-label="Dismiss First Light offer">&times;</button>',
       '    <div data-beta-offer-content>',
-      '      <p class="beta-offer-popup__eyebrow">First Light founding offer &middot; ends Friday</p>',
+      '      <p class="beta-offer-popup__eyebrow">Limited-time First Light offer &middot; ends Friday</p>',
       '      <h2 id="beta-offer-title">Get in early. Save on Pro.</h2>',
       '      <p class="beta-offer-popup__lede">Join by <strong>' + (window.LuneOffer ? window.LuneOffer.endLabel() : "") + '</strong> for priority beta access and <strong>50% off your first 3 months</strong> of Lune Synth&trade; Pro.</p>',
       '      <div data-beta-offer-countdown></div>',

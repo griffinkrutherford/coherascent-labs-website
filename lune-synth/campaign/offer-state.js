@@ -5,10 +5,11 @@
  * life) went to the first 40 waitlist signups and is fully claimed. It is
  * never advertised as available again. Terms §6.1 governs it.
  *
- * First Light: the founding-cohort offer for the next signups -- priority
- * beta access and 50% off the first 3 months of Pro once Pro launches. Terms
- * §6.2 governs it; the window is whatever this file states. It is dormant
- * while FIRST_LIGHT_ENDS_AT is "".
+ * First Light: a separate, limited-time offer for the next signups --
+ * priority beta access and 50% off the first 3 months of Pro once Pro
+ * launches. It is not the Founding 40 offer and must never be described as
+ * one. Terms §6.2 governs it; the window is whatever this file states. It is
+ * dormant while FIRST_LIGHT_ENDS_AT is "".
  *
  * OPEN (2026-11-02, owner request): the window runs from FIRST_LIGHT_STARTS_AT
  * to Friday 2026-11-06 11:59 PM Mountain Standard Time (UTC-7), stored as the
@@ -107,7 +108,7 @@
 
     function offerHtml(now, viewerZone) {
       if (phase(now) === "first-light-open") {
-        return "<strong class=\"cta-accent cta-accent--blue blue-glow\">First Light founding offer.</strong> " +
+        return "<strong class=\"cta-accent cta-accent--blue blue-glow\">Limited-time First Light offer.</strong> " +
           "Join by " + endLabel(viewerZone) + " for priority beta access &amp; " +
           "<strong class=\"cta-accent cta-accent--red red-glow\">50% off your first 3 months</strong> of Lune Synth&trade; Pro.";
       }

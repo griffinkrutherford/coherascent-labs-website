@@ -44,7 +44,7 @@ main #pricing-title::before {
   align-items: stretch;
 }
 
-/* ---------- First Light founding-offer banner ----------
+/* ---------- First Light limited-time-offer banner ----------
    Shown by the static HTML (with a no-JS deadline line) and kept by
    offer-state.js only while the window is open; it adds the live countdown
    into [data-offer-countdown-slot]. No capacity or spots claim, by design. */

@@ -44,7 +44,8 @@ test('before the deadline: open, with days/hours/minutes/seconds remaining', () 
   assert.deepEqual(values(clock.remainingParts(now)), { days: 1, hours: 2, minutes: 3, seconds: 4 });
   assert.deepEqual(clock.remainingParts(now).map(clock.displayValue), ['1', '02', '03', '04']);
   const html = clock.offerHtml(now, 'America/Denver');
-  assert.match(html, /First Light founding offer/);
+  assert.match(html, /Limited-time First Light offer/);
+  assert.doesNotMatch(html, /founding offer/i, 'First Light must never be called a founding offer');
   assert.match(html, /Join by Fri, Nov 6, 11:59 PM MT/);
   assert.match(html, /50% off your first 3 months/);
   assert.doesNotMatch(html, /spots?|limited to|only \d+|48 hours/i, 'no capacity claim or stale 48h copy');
