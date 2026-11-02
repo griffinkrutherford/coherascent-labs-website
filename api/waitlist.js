@@ -13,7 +13,6 @@ const { sendWaitlistConfirmation } = require('./waitlist-confirmation.js');
 const COPY = {
   new: { title: 'You’re on the list!', message: 'A confirmation email is on its way.' },
   existing: { title: 'Already on the list', message: 'We haven’t sent a second confirmation.' },
-  answered: { title: 'Saved', message: 'Thanks, that’s everything we need.' },
 };
 
 /**
@@ -46,41 +45,6 @@ function scheduleConfirmation(email, apiKey, options) {
   // Never hold the process open for a courtesy email.
   if (typeof timer.unref === 'function') timer.unref();
   pendingConfirmations.set(email, timer);
-}
-
-/**
- * Sends the confirmation now with the answers included. Returns false when the
- * email already went out, so a late answer does not trigger a second one.
- */
-function flushConfirmation(email, apiKey, options) {
-  const timer = pendingConfirmations.get(email);
-  if (!timer) return false;
-  clearTimeout(timer);
-  pendingConfirmations.delete(email);
-  deliverConfirmation(email, apiKey, options);
-  return true;
-}
-
-async function updateContactProperties(email, properties, apiKey) {
-  try {
-    const response = await fetch(`https://api.resend.com/contacts/${encodeURIComponent(email)}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ properties }),
-      signal: AbortSignal.timeout(3000),
-    });
-    if (!response.ok) {
-      const text = await response.text().catch(() => '');
-      console.error(`[waitlist] property update failed for ${email} (${response.status}): ${text.slice(0, 300)}`);
-    }
-    return response.ok;
-  } catch (error) {
-    console.error(`[waitlist] property update errored for ${email}: ${error.message}`);
-    return false;
-  }
 }
 
 /**
@@ -141,19 +105,13 @@ async function lookupContact(email, apiKey) {
     if (response.ok) {
       const body = await response.json().catch(() => ({}));
       const contact = body && body.data ? body.data : body;
-      return {
-        status: 'exists',
-        unsubscribed: contact ? contact.unsubscribed === true : false,
-        // Carried so a later property update can merge into it rather than
-        // replace it outright -- see updateContactProperties below.
-        properties: (contact && typeof contact.properties === 'object' && contact.properties) || {},
-      };
+      return { status: 'exists', unsubscribed: contact ? contact.unsubscribed === true : false };
     }
-    if (response.status === 404) return { status: 'missing', unsubscribed: false, properties: {} };
-    return { status: 'unknown', unsubscribed: false, properties: {} };
+    if (response.status === 404) return { status: 'missing', unsubscribed: false };
+    return { status: 'unknown', unsubscribed: false };
   } catch (error) {
     console.warn(`[waitlist] contact lookup failed (${error.name}); falling back to local guard`);
-    return { status: 'unknown', unsubscribed: false, properties: {} };
+    return { status: 'unknown', unsubscribed: false };
   }
 }
 
@@ -378,39 +336,24 @@ module.exports = async (req, res) => {
     const existing = await lookupContact(trimmedEmail, RESEND_API_KEY);
 
     // An unauthenticated POST is not proof the requester owns this address.
-    // Auto-resubscribing here (the previous behaviour) let anyone force a
-    // stranger back onto the list -- and trigger a fresh email to them --
-    // just by submitting their address once they'd opted out. Treat it
-    // exactly like any other already-registered address: no resubscribe, no
-    // property write, no email, generic 200. A genuine resubscribe happens
-    // some other way the requester cannot forge on someone else's behalf
-    // (replying to Griffin, who resubscribes them by hand).
-    if (existing.status === 'exists' && existing.unsubscribed) {
-      console.log(`[waitlist] signup for unsubscribed ${trimmedEmail} ignored`);
-      return res.status(200).json({ success: true, ...COPY.existing });
-    }
-
+    // The previous behaviour let a second POST -- the popup's platform
+    // answer, or just anyone resubmitting the address -- update stored
+    // properties (including google_account, which controls where a Play
+    // Store invite is sent) or clear an opt-out. Either one lets a stranger
+    // redirect or resubscribe someone else's contact just by POSTing their
+    // address. An existing contact, subscribed or not, now always gets the
+    // generic response and nothing is written: no property update, no
+    // resubscribe, no email.
+    //
+    // TODO(product): if real users need to correct their platform or Google
+    // account after the initial signup, build that as its own endpoint
+    // gated by an expiring, purpose-bound confirmation token (e.g. a mailed
+    // link), not a bare POST to this one. Do not wire anything up here
+    // without that token -- that is exactly the authentication this
+    // endpoint lacks today.
     if (existing.status === 'exists') {
-      // The popup's platform answer arrives as a second request for an address
-      // we already stored. That is an update, not a duplicate signup.
-      if (platform) {
-        // Merge into whatever Resend already has rather than sending only
-        // {platform, google_account} -- if a PATCH ever replaces the whole
-        // properties object instead of merging it key-by-key, sending just
-        // these two would silently erase the attribution properties written
-        // at signup (signup_page, utm_source, etc). Merging client-side
-        // costs nothing and is correct either way.
-        const mergedProperties = { ...existing.properties, ...properties };
-        await updateContactProperties(trimmedEmail, mergedProperties, RESEND_API_KEY);
-        console.log(`[waitlist] updated ${trimmedEmail} platform=${platform} google=${googleEmail || 'none'}`);
-        flushConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail });
-        return res.status(200).json({ success: true, ...COPY.answered });
-      }
-
-      return res.status(200).json({
-        success: true,
-        ...COPY.existing
-      });
+      console.log(`[waitlist] signup for existing contact ${trimmedEmail} ignored (unsubscribed=${existing.unsubscribed})`);
+      return res.status(200).json({ success: true, ...COPY.existing });
     }
 
     const response = await createContact(

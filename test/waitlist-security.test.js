@@ -3,9 +3,10 @@
 /**
  * Unit-level coverage for the 2026-11-02 waitlist hardening in
  * api/waitlist.js: strict email validation, the honeypot field, the
- * per-IP rate limit, origin-restricted CORS, and dropping the
- * auto-resubscribe-on-POST behaviour (an unauthenticated POST is not proof
- * of ownership of the address it names).
+ * per-IP rate limit, origin-restricted CORS, and refusing to write
+ * anything -- resubscribe, property update, or email -- for a contact
+ * that already exists (an unauthenticated POST is not proof of ownership
+ * of the address it names).
  *
  * This calls the handler directly rather than going over HTTP (that's
  * test/server-routes.test.js and test/static-allowlist.test.js's job) so
@@ -208,22 +209,27 @@ test('a brand-new signup creates the contact with attribution and properties', a
   }
 });
 
-test('an existing contact answering the platform question merges into its existing properties, never replaces them', async () => {
+// An unauthenticated POST is not proof of ownership of the address it
+// names. The platform/google_email answer used to be written to an
+// existing contact's properties on a second request -- which let anyone
+// redirect a stranger's Play Store invite to their own Google account just
+// by POSTing that stranger's address with platform=android and their own
+// google_email. It now never writes anything for an existing contact,
+// subscribed or not: generic 200, no PATCH, no email. (A real fix for
+// "I answered wrong" needs its own endpoint behind an expiring,
+// purpose-bound confirmation token -- see the TODO in api/waitlist.js.)
+test('an existing, subscribed contact answering the platform question writes nothing and sends nothing', async () => {
   const waitlist = freshWaitlistHandler();
   const stub = installFetchStub({
     lookup: { status: 200, unsubscribed: false, properties: { utm_source: 'newsletter', signup_page: '/study/calculus/' } },
   });
   try {
     const res = fakeRes();
-    await waitlist(fakeReq({ body: { email: 'returning@example.com', platform: 'ios' } }), res);
+    await waitlist(fakeReq({ body: { email: 'returning@example.com', platform: 'ios', google_email: 'attacker@gmail.com' } }), res);
     assert.equal(res.statusCode, 200);
-    const patchCall = stub.calls.find((c) => c.method === 'PATCH' && c.url.includes('/contacts/'));
-    assert.ok(patchCall, 'expected a property-update PATCH');
-    assert.deepEqual(patchCall.body.properties, {
-      utm_source: 'newsletter',
-      signup_page: '/study/calculus/',
-      platform: 'ios',
-    });
+    assert.equal(res.body.success, true);
+    const mutatingCalls = stub.calls.filter((c) => c.method === 'PATCH' || c.method === 'POST');
+    assert.deepEqual(mutatingCalls, [], 'no PATCH (property update) or POST should happen for an existing contact');
   } finally {
     stub.restore();
   }

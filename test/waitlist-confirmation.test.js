@@ -29,3 +29,24 @@ test('the confirmation still reads as a complete, warm letter without the discou
   assert.match(letter, /spot is\nreserved/);
   assert.match(letter, /Griffin/);
 });
+
+// api/waitlist.js's sanitizeEmail already rejects control characters and
+// angle brackets before a google_email ever reaches this file, so this is a
+// defense-in-depth pin, not the primary guard: even if something HTML-shaped
+// did arrive here, the HTML template must never render it unescaped, and the
+// plain-text template -- which cannot execute markup -- is the only place a
+// free-text echo of the address is expected at all.
+test('buildHtml escapes an HTML-bearing googleEmail instead of rendering it', () => {
+  const malicious = '<img src=x onerror=alert(1)>@evil.example';
+  const html = buildHtml({ platform: 'android', googleEmail: malicious, email: 'victim@example.com' });
+  assert.doesNotMatch(html, /<img src=x onerror=alert\(1\)>/, 'raw markup must not appear');
+  assert.match(html, /&lt;img src=x onerror=alert\(1\)&gt;/, 'the address should appear HTML-escaped');
+});
+
+test('buildHtml never echoes anything about the recipient beyond the (escaped) email itself', () => {
+  const html = buildHtml({ platform: 'android', googleEmail: 'person@gmail.com', email: 'person@gmail.com' });
+  // The android_known block names the invite address and nothing else
+  // free-text about the recipient.
+  assert.match(html, /person@gmail\.com/);
+  assert.doesNotMatch(html, /platform=android/);
+});
