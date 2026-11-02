@@ -552,4 +552,6 @@ module.exports = {
   buildHtml,
   buildText,
   SUBJECT,
+  // Shared with api/unsubscribe.js, which renders the address into HTML too.
+  escapeHtml,
 };

@@ -242,6 +242,7 @@
     event.preventDefault();
 
     var emailInput = form.querySelector('input[type="email"]');
+    var honeypotInput = form.querySelector('input[name="hp_token"]');
     var submitButton = form.querySelector('button[type="submit"]');
     if (!emailInput || !submitButton) return;
 
@@ -263,7 +264,7 @@
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ email: email })
+      body: JSON.stringify({ email: email, hp_token: honeypotInput ? honeypotInput.value : "" })
     })
     .then(function (response) {
       return response.json().then(function (data) {

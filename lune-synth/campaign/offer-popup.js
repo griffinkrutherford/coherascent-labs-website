@@ -44,6 +44,9 @@
       '      <form class="beta-offer-popup__form" data-beta-offer-form novalidate>',
       '        <label class="sr-only" for="beta-offer-email">Email address</label>',
       '        <input id="beta-offer-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Email address" aria-label="Email address" required>',
+      // Honeypot, see cta.js's formMarkup for why: off-screen, unreachable by
+      // tab order, and named off any autocomplete token.
+      '        <input type="text" name="hp_token" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" />',
       '        <button type="submit">Join Waitlist</button>',
       '      </form>',
       '      <p class="beta-offer-popup__status" data-beta-offer-status aria-live="polite"></p>',
@@ -137,6 +140,7 @@
   function bindForm() {
     var form = popup.querySelector("[data-beta-offer-form]");
     var input = form.querySelector('input[type="email"]');
+    var honeypot = form.querySelector('input[name="hp_token"]');
     var button = form.querySelector('button[type="submit"]');
     var status = popup.querySelector("[data-beta-offer-status]");
 
@@ -160,6 +164,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email,
+          hp_token: honeypot ? honeypot.value : "",
           cta_placement: "first_light_popup",
           landing_path: window.location.pathname
         })

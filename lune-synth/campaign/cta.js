@@ -62,6 +62,12 @@
       '<form class="lune-cta__form" data-cta-form novalidate>',
       '<label class="sr-only" for="' + id + '-email">Email address</label>',
       '<input id="' + id + '-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="' + settings.emailPlaceholder + '" required />',
+      // Honeypot: off-screen and tabindex="-1", so no sighted or keyboard
+      // user ever reaches it, and named off any autocomplete token so
+      // browser autofill has nothing to match. A simple bot that fills
+      // every input still fills it; a non-empty value makes api/waitlist.js
+      // accept the request (so the bot sees no error) but store nothing.
+      '<input type="text" name="hp_token" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" />',
       '<button type="submit">' + settings.submitLabel + "</button>",
       '<p class="lune-cta__status" data-cta-status aria-live="polite"></p>',
       "</form>"
@@ -114,6 +120,7 @@
     bindForm(form, settings) {
       var details = attribution(this);
       var input = form.querySelector('input[type="email"]');
+      var honeypot = form.querySelector('input[name="hp_token"]');
       var button = form.querySelector('button[type="submit"]');
       var status = form.querySelector("[data-cta-status]");
       var started = false;
@@ -145,7 +152,7 @@
           var response = await fetch("/api/waitlist", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(Object.assign({ email: email }, details))
+            body: JSON.stringify(Object.assign({ email: email, hp_token: honeypot ? honeypot.value : "" }, details))
           });
           var data = await response.json();
           if (!response.ok) throw new Error(data.error || "Unable to join the waitlist.");

@@ -13,7 +13,6 @@ const { sendWaitlistConfirmation } = require('./waitlist-confirmation.js');
 const COPY = {
   new: { title: 'You’re on the list!', message: 'A confirmation email is on its way.' },
   existing: { title: 'Already on the list', message: 'We haven’t sent a second confirmation.' },
-  resubscribed: { title: 'Welcome back!', message: 'Your spot is restored.' },
   answered: { title: 'Saved', message: 'Thanks, that’s everything we need.' },
 };
 
@@ -142,36 +141,19 @@ async function lookupContact(email, apiKey) {
     if (response.ok) {
       const body = await response.json().catch(() => ({}));
       const contact = body && body.data ? body.data : body;
-      return { status: 'exists', unsubscribed: contact ? contact.unsubscribed === true : false };
+      return {
+        status: 'exists',
+        unsubscribed: contact ? contact.unsubscribed === true : false,
+        // Carried so a later property update can merge into it rather than
+        // replace it outright -- see updateContactProperties below.
+        properties: (contact && typeof contact.properties === 'object' && contact.properties) || {},
+      };
     }
-    if (response.status === 404) return { status: 'missing', unsubscribed: false };
-    return { status: 'unknown', unsubscribed: false };
+    if (response.status === 404) return { status: 'missing', unsubscribed: false, properties: {} };
+    return { status: 'unknown', unsubscribed: false, properties: {} };
   } catch (error) {
     console.warn(`[waitlist] contact lookup failed (${error.name}); falling back to local guard`);
-    return { status: 'unknown', unsubscribed: false };
-  }
-}
-
-/** Clears the opt-out so a rejoining contact actually receives mail again. */
-async function resubscribeContact(email, apiKey) {
-  try {
-    const response = await fetch(`https://api.resend.com/contacts/${encodeURIComponent(email)}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ unsubscribed: false }),
-      signal: AbortSignal.timeout(3000),
-    });
-    if (!response.ok) {
-      const text = await response.text().catch(() => '');
-      console.error(`[waitlist] resubscribe failed for ${email} (${response.status}): ${text.slice(0, 300)}`);
-    }
-    return response.ok;
-  } catch (error) {
-    console.error(`[waitlist] resubscribe errored for ${email}: ${error.message}`);
-    return false;
+    return { status: 'unknown', unsubscribed: false, properties: {} };
   }
 }
 
@@ -251,15 +233,89 @@ function parseAttribution(req) {
   return attribution;
 }
 
+// Only these origins can read the response to a cross-origin request. Every
+// legitimate caller (blog.js, cta.js, offer-popup.js, waitlist-fields.js)
+// posts from the same origin, where the browser never even consults these
+// headers -- this exists to stop a third-party page from using a visitor's
+// browser to drive this endpoint and read what comes back.
+const ALLOWED_ORIGINS = new Set([
+  'https://lunesynth.com',
+  'https://www.lunesynth.com',
+  'https://coherascentlabs.com',
+  'https://www.coherascentlabs.com',
+]);
+
+// A field left empty by every real form (it is off-screen and unreachable by
+// tab order) but routinely filled in by a simple bot that fills every input
+// it finds. See cta.js/offer-popup.js/blog.js's formMarkup for the field
+// itself.
+const HONEYPOT_FIELD = 'hp_token';
+
+// Strict enough to reject control characters, newlines, and the characters
+// that matter for HTML injection, while still accepting ordinary addresses.
+const MAX_EMAIL_LENGTH = 254; // RFC 5321 §4.5.3.1.3
+const CONTROL_OR_HTML_CHARS_RE = /[\x00-\x1f\x7f<>]/;
+const EMAIL_FORMAT_RE = /^[^\s<>"'`,;]+@[^\s<>"'`,;]+\.[^\s<>"'`,;]+$/;
+
+function sanitizeEmail(value) {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.length > MAX_EMAIL_LENGTH) return null;
+  if (CONTROL_OR_HTML_CHARS_RE.test(trimmed)) return null;
+  if (!EMAIL_FORMAT_RE.test(trimmed)) return null;
+  return trimmed.toLowerCase();
+}
+
+// In-memory per-IP limit: 5 submissions per 10 minutes, 20 per day. Resets
+// on deploy, which is acceptable for an abuse brake rather than a billing
+// control, and matches the process-local dedup this file already does
+// elsewhere (recentlySent).
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_PER_WINDOW = 5;
+const RATE_LIMIT_DAY_MS = 24 * 60 * 60 * 1000;
+const RATE_LIMIT_MAX_PER_DAY = 20;
+const RATE_LIMIT_MAX_TRACKED_IPS = 5000;
+const requestTimestampsByIp = new Map();
+
+function getClientIp(req) {
+  const forwarded = req.headers && req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.trim()) {
+    return forwarded.split(',')[0].trim();
+  }
+  return (req.socket && req.socket.remoteAddress) || 'unknown';
+}
+
+/** Returns true if this request should proceed, false if it is rate-limited. */
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const previous = requestTimestampsByIp.get(ip) || [];
+  const timestamps = previous.filter((t) => now - t < RATE_LIMIT_DAY_MS);
+
+  const recentCount = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS).length;
+  if (recentCount >= RATE_LIMIT_MAX_PER_WINDOW || timestamps.length >= RATE_LIMIT_MAX_PER_DAY) {
+    requestTimestampsByIp.set(ip, timestamps);
+    return false;
+  }
+
+  timestamps.push(now);
+  if (requestTimestampsByIp.size >= RATE_LIMIT_MAX_TRACKED_IPS && !requestTimestampsByIp.has(ip)) {
+    requestTimestampsByIp.delete(requestTimestampsByIp.keys().next().value);
+  }
+  requestTimestampsByIp.set(ip, timestamps);
+  return true;
+}
+
 module.exports = async (req, res) => {
-  // Add CORS headers
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+  // CORS: reflect only an allowed origin, never '*'. Same-origin calls (every
+  // real caller) never send Origin to begin with, so this changes nothing for
+  // them.
+  const origin = req.headers && req.headers.origin;
+  if (origin && ALLOWED_ORIGINS.has(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   // Handle preflight OPTIONS request
   if (req.method === 'OPTIONS') {
@@ -272,23 +328,33 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  try {
-    const { email } = req.body;
+  if (!checkRateLimit(getClientIp(req))) {
+    return res.status(429).json({ error: 'Too many requests. Please try again later.' });
+  }
 
-    // Validate email presence and simple format
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
-      return res.status(400).json({ error: 'A valid email address is required.' });
+  try {
+    // A field no human reaches was filled in. Accept it exactly like a real
+    // signup -- so a bot sees a normal success response and learns nothing
+    // -- but do no work: no contact write, no email, no log beyond this one.
+    const honeypotValue = req.body && typeof req.body[HONEYPOT_FIELD] === 'string' ? req.body[HONEYPOT_FIELD].trim() : '';
+    if (honeypotValue) {
+      console.warn('[waitlist] honeypot triggered, discarding submission');
+      return res.status(200).json({ success: true, ...COPY.new });
     }
 
-    const trimmedEmail = email.trim().toLowerCase();
+    const trimmedEmail = sanitizeEmail(req.body.email);
+
+    if (!trimmedEmail) {
+      return res.status(400).json({ error: 'A valid email address is required.' });
+    }
 
     // Platform answers from the signup form. Client-side validation already
     // enforces these, but a direct POST can omit them, so treat both as
     // optional here and let the confirmation email ask for whatever is missing.
     const rawPlatform = typeof req.body.platform === 'string' ? req.body.platform.trim().toLowerCase() : '';
     const platform = rawPlatform === 'android' || rawPlatform === 'ios' ? rawPlatform : '';
-    const rawGoogle = typeof req.body.google_email === 'string' ? req.body.google_email.trim().toLowerCase() : '';
-    const googleEmail = platform === 'android' && rawGoogle.includes('@') ? rawGoogle : '';
+    const sanitizedGoogleEmail = sanitizeEmail(req.body.google_email);
+    const googleEmail = platform === 'android' && sanitizedGoogleEmail ? sanitizedGoogleEmail : '';
 
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
@@ -311,28 +377,31 @@ module.exports = async (req, res) => {
     // so only an explicit lookup can tell a new signup from a repeat.
     const existing = await lookupContact(trimmedEmail, RESEND_API_KEY);
 
-    // Rejoining after unsubscribing is a real signup, not a duplicate. Clear
-    // the opt-out and fall through so they get a confirmation like anyone else.
+    // An unauthenticated POST is not proof the requester owns this address.
+    // Auto-resubscribing here (the previous behaviour) let anyone force a
+    // stranger back onto the list -- and trigger a fresh email to them --
+    // just by submitting their address once they'd opted out. Treat it
+    // exactly like any other already-registered address: no resubscribe, no
+    // property write, no email, generic 200. A genuine resubscribe happens
+    // some other way the requester cannot forge on someone else's behalf
+    // (replying to Griffin, who resubscribes them by hand).
     if (existing.status === 'exists' && existing.unsubscribed) {
-      await resubscribeContact(trimmedEmail, RESEND_API_KEY);
-      if (Object.keys(properties).length) {
-        await updateContactProperties(trimmedEmail, properties, RESEND_API_KEY);
-      }
-      console.log(`[waitlist] resubscribed ${trimmedEmail} platform=${platform || 'unknown'}`);
-
-      if (platform) {
-        deliverConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail });
-      } else {
-        scheduleConfirmation(trimmedEmail, RESEND_API_KEY, {});
-      }
-      return res.status(200).json({ success: true, ...COPY.resubscribed });
+      console.log(`[waitlist] signup for unsubscribed ${trimmedEmail} ignored`);
+      return res.status(200).json({ success: true, ...COPY.existing });
     }
 
     if (existing.status === 'exists') {
       // The popup's platform answer arrives as a second request for an address
       // we already stored. That is an update, not a duplicate signup.
       if (platform) {
-        await updateContactProperties(trimmedEmail, properties, RESEND_API_KEY);
+        // Merge into whatever Resend already has rather than sending only
+        // {platform, google_account} -- if a PATCH ever replaces the whole
+        // properties object instead of merging it key-by-key, sending just
+        // these two would silently erase the attribution properties written
+        // at signup (signup_page, utm_source, etc). Merging client-side
+        // costs nothing and is correct either way.
+        const mergedProperties = { ...existing.properties, ...properties };
+        await updateContactProperties(trimmedEmail, mergedProperties, RESEND_API_KEY);
         console.log(`[waitlist] updated ${trimmedEmail} platform=${platform} google=${googleEmail || 'none'}`);
         flushConfirmation(trimmedEmail, RESEND_API_KEY, { platform, googleEmail });
         return res.status(200).json({ success: true, ...COPY.answered });

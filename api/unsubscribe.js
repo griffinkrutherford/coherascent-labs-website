@@ -12,6 +12,7 @@
  */
 
 const { verify } = require('./unsubscribe-token.js');
+const { escapeHtml } = require('./waitlist-confirmation.js');
 
 function page(title, body, status) {
   return `<!doctype html>
@@ -81,8 +82,13 @@ module.exports = async (req, res, query) => {
 
     console.log(`[unsubscribe] ${email}`);
     return respond(200, 'You’re unsubscribed',
-      `We won’t email <strong style="color:#edf5ff;">${email}</strong> about the Lune Synth beta again. `
-      + 'If this was a mistake, just join the waitlist again at lunesynth.com.');
+      `We won’t email <strong style="color:#edf5ff;">${escapeHtml(email)}</strong> about the Lune Synth beta again. `
+      // Rejoining through the public waitlist form no longer resubscribes an
+      // opted-out address (see api/waitlist.js) -- anyone could otherwise
+      // force someone else back onto the list by resubmitting their
+      // address, so this now has to be a reply instead.
+      + 'If this was a mistake, just reply to any of our emails or email '
+      + '<a href="mailto:griffin@lunesynth.com" style="color:#64a8ff;">griffin@lunesynth.com</a> and we’ll put you back on.');
   } catch (error) {
     console.error(`[unsubscribe] errored for ${email}: ${error.message}`);
     return respond(500, 'Something went wrong',

@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
   <link rel="stylesheet" href="/campaign/lune-modal.css?v=1" />
   <script src="/campaign/offer-state.js?v=4" defer></script>
-  <script src="/campaign/offer-popup.js?v=4" defer></script>
+  <script src="/campaign/offer-popup.js?v=5" defer></script>
   <script src="/campaign/lune-modal.js?v=2" defer></script>
   <script src="/campaign/store-badges.js?v=1" defer></script>
   <!-- The hero app icon is the LCP element, so it gets the only high-priority
@@ -11035,6 +11035,7 @@
       </div>
       <form class="hero-waitlist" data-waitlist-form novalidate>
         <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
+          <input type="text" name="hp_token" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" />
         <button type="submit">Join Waitlist</button>
       </form>
     </div>

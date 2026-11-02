@@ -281,7 +281,7 @@ ${content}
     <lune-site-footer id="site-footer"></lune-site-footer>
     </article>
   </main>
-  <script src="/blog/blog.js?v=5"></script>
+  <script src="/blog/blog.js?v=7"></script>
 </body>
 </html>
 `;
