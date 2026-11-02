@@ -19,7 +19,7 @@ test('offer-state.js is require()-able from Node without touching the DOM', () =
   assert.ok(exported !== null);
 });
 
-test('exports exactly the window constants, the Pro Monthly price pair, and the pure clock, nothing else', () => {
+test('exports exactly the window constants, the Pro Monthly/Annual price pairs, and the pure clock, nothing else', () => {
   const exported = require('../lune-synth/campaign/offer-state.js');
   assert.deepEqual(Object.keys(exported), [
     'FIRST_LIGHT_ENDS_AT',
@@ -27,12 +27,16 @@ test('exports exactly the window constants, the Pro Monthly price pair, and the 
     'DEFAULT_OFFER',
     'PRO_MONTHLY_PRICE',
     'FIRST_LIGHT_MONTHLY_PRICE',
+    'PRO_ANNUAL_PRICE',
+    'FIRST_LIGHT_ANNUAL_PRICE',
     'createOfferClock',
   ]);
   assert.equal(typeof exported.FIRST_LIGHT_ENDS_AT, 'string');
   assert.equal(typeof exported.FIRST_LIGHT_STARTS_AT, 'string');
   assert.equal(typeof exported.PRO_MONTHLY_PRICE, 'number');
   assert.equal(typeof exported.FIRST_LIGHT_MONTHLY_PRICE, 'number');
+  assert.equal(typeof exported.PRO_ANNUAL_PRICE, 'number');
+  assert.equal(typeof exported.FIRST_LIGHT_ANNUAL_PRICE, 'number');
   assert.equal(typeof exported.createOfferClock, 'function');
 });
 

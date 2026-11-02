@@ -36,11 +36,20 @@
 
   // Pro Monthly's approved launch price and its First Light discount (Terms
   // §6.2: 50% off the first 3 paid months). Rounded down to the cent so the
-  // displayed price never implies a fraction of a cent. The annual plan has
-  // no First Light treatment yet -- Terms §6.2 does not set one, so no sale
-  // price is invented for it here; the pricing markup leaves it untouched.
+  // displayed price never implies a fraction of a cent.
   var PRO_MONTHLY_PRICE = 12.99;
   var FIRST_LIGHT_MONTHLY_PRICE = Math.floor(PRO_MONTHLY_PRICE * 100 * 0.5) / 100;
+
+  // Pro Annual's approved launch price and its First Light discount (Terms
+  // §6.2, added 2026-11-02 per owner request): the first year is $39.99
+  // instead of the normal $59.88, then renews at $59.88/year. The card shows
+  // a monthly-equivalent price (as it already did for the normal $59.88/year
+  // -> $4.99/mo), so both the normal and offer equivalents are derived here,
+  // floored to the cent like the monthly discount above.
+  var PRO_ANNUAL_PRICE = 59.88;
+  var FIRST_LIGHT_ANNUAL_PRICE = 39.99;
+  var PRO_ANNUAL_MONTHLY_EQUIVALENT = Math.floor((PRO_ANNUAL_PRICE / 12) * 100) / 100;
+  var FIRST_LIGHT_ANNUAL_MONTHLY_EQUIVALENT = Math.floor((FIRST_LIGHT_ANNUAL_PRICE / 12) * 100) / 100;
 
   // Pure, DOM-free clock. Every function takes `now` (ms) so tests can inject
   // time; the browser code below only ever passes Date.now().
@@ -117,9 +126,7 @@
     // Pricing-display state for the Pro Monthly card/plan. Pure and
     // time-injectable like the rest of this clock -- the DOM code below (and
     // any page's pricing markup) decides what to render, this just says
-    // whether the First Light price should show and what it is. Annual is
-    // intentionally absent: Terms §6.2 sets no annual discount, so nothing
-    // here invents one.
+    // whether the First Light price should show and what it is.
     function proMonthlyPricing(now) {
       var open = phase(now) === "first-light-open";
       return {
@@ -134,6 +141,28 @@
       };
     }
 
+    // Pricing-display state for the Pro Annual card/plan (Terms §6.2, added
+    // 2026-11-02): while First Light is open the card shows the first-year
+    // monthly-equivalent price struck against the normal monthly-equivalent,
+    // same shape as proMonthlyPricing above. The card's billing note needs
+    // the real yearly totals too (the first year is $39.99, not a monthly
+    // charge), so those are exposed as normalYearPrice/offerYearPrice.
+    function proAnnualPricing(now) {
+      var open = phase(now) === "first-light-open";
+      return {
+        open: open,
+        normalPrice: PRO_ANNUAL_MONTHLY_EQUIVALENT,
+        offerPrice: FIRST_LIGHT_ANNUAL_MONTHLY_EQUIVALENT,
+        normalYearPrice: PRO_ANNUAL_PRICE,
+        offerYearPrice: FIRST_LIGHT_ANNUAL_PRICE,
+        normalText: PRO_ANNUAL_MONTHLY_EQUIVALENT.toFixed(2),
+        offerText: FIRST_LIGHT_ANNUAL_MONTHLY_EQUIVALENT.toFixed(2),
+        displayText: (open ? FIRST_LIGHT_ANNUAL_MONTHLY_EQUIVALENT : PRO_ANNUAL_MONTHLY_EQUIVALENT).toFixed(2),
+        wasLabel: "was $" + PRO_ANNUAL_MONTHLY_EQUIVALENT.toFixed(2),
+        badgeLabel: "First Light · limited time"
+      };
+    }
+
     return {
       hasWindow: hasWindow,
       endMs: endMs,
@@ -144,7 +173,8 @@
       endLabel: endLabel,
       offerHtml: offerHtml,
       footnoteText: footnoteText,
-      proMonthlyPricing: proMonthlyPricing
+      proMonthlyPricing: proMonthlyPricing,
+      proAnnualPricing: proAnnualPricing
     };
   }
 
@@ -161,6 +191,8 @@
       DEFAULT_OFFER: DEFAULT_OFFER,
       PRO_MONTHLY_PRICE: PRO_MONTHLY_PRICE,
       FIRST_LIGHT_MONTHLY_PRICE: FIRST_LIGHT_MONTHLY_PRICE,
+      PRO_ANNUAL_PRICE: PRO_ANNUAL_PRICE,
+      FIRST_LIGHT_ANNUAL_PRICE: FIRST_LIGHT_ANNUAL_PRICE,
       createOfferClock: createOfferClock
     };
     return;
@@ -175,6 +207,7 @@
   function offerHtml(now) { return clock.offerHtml(now, viewerZone); }
   function footnoteText(now) { return clock.footnoteText(now); }
   function proMonthlyPricing(now) { return clock.proMonthlyPricing(now); }
+  function proAnnualPricing(now) { return clock.proAnnualPricing(now); }
 
   // Countdown ------------------------------------------------------------
 
@@ -294,15 +327,13 @@
     if (open) attachCountdown(banner);
   }
 
-  // Pro Monthly price card/plan: static markup is always the normal price
-  // (the no-JS fallback), so there is never a struck price left on screen
-  // without JS. While First Light is open this crosses out the normal price
-  // and shows the discounted one, with a "First Light" badge; outside the
-  // window (including the instant it closes on an open tab) it reverts --
-  // no made-up state survives past `pricing.open`. Annual is never touched
-  // here; Terms §6.2 sets no annual discount.
-  function applyProPrice(card) {
-    var pricing = proMonthlyPricing();
+  // Price card/plan (Monthly or Annual): static markup is always the normal
+  // price (the no-JS fallback), so there is never a struck price left on
+  // screen without JS. While First Light is open this crosses out the normal
+  // price and shows the discounted one, with a "First Light" badge; outside
+  // the window (including the instant it closes on an open tab) it reverts
+  // -- no made-up state survives past `pricing.open`.
+  function applyPriceCard(card, pricing) {
     var was = card.querySelector("[data-first-light-was]");
     var amount = card.querySelector("[data-pricing-amount]");
     var badge = card.querySelector("[data-first-light-badge]");
@@ -320,9 +351,8 @@
     }
   }
 
-  function applyAnnualNote(note) {
-    note.hidden = phase() !== "first-light-open";
-  }
+  function applyProPrice(card) { applyPriceCard(card, proMonthlyPricing()); }
+  function applyAnnualPrice(card) { applyPriceCard(card, proAnnualPricing()); }
 
   function applyEverywhere() {
     if (phase() !== "first-light-open") {
@@ -343,7 +373,7 @@
       note.textContent = footnoteText();
     });
     document.querySelectorAll("[data-first-light-pro-price]").forEach(applyProPrice);
-    document.querySelectorAll("[data-first-light-annual-note]").forEach(applyAnnualNote);
+    document.querySelectorAll("[data-first-light-annual-price]").forEach(applyAnnualPrice);
   }
 
   window.LuneOffer = Object.freeze({
@@ -351,6 +381,7 @@
     offerHtml: offerHtml,
     footnoteText: footnoteText,
     proMonthlyPricing: proMonthlyPricing,
+    proAnnualPricing: proAnnualPricing,
     endLabel: function () { return clock.hasWindow ? endLabel() : ""; },
     attachCountdown: attachCountdown,
     apply: applyEverywhere

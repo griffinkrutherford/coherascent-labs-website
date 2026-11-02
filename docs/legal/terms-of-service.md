@@ -1,6 +1,6 @@
 # Lune Synth Terms of Service
 
-**Effective date:** October 11, 2026
+**Effective date:** November 2, 2026
 
 ## 1. Agreement To These Terms
 
@@ -143,17 +143,23 @@ stated otherwise:
 ### 6.2 First Light
 
 "First Light" is a limited-time offer for people who join the waitlist during
-the window stated on the offer page. It gives priority access to the beta and
-50% off the first three months of a Lune Synth Pro subscription. Eligibility is
-determined by the time our servers record the waitlist signup, not by any
-clock shown on a device. Unless the offer page states otherwise:
+the window stated on the offer page. It gives priority access to the beta,
+50% off the first three months of a Lune Synth Pro Monthly subscription, and,
+for the Annual plan, a first year priced at $39.99 instead of the normal
+$59.88. Eligibility is determined by the time our servers record the waitlist
+signup, not by any clock shown on a device. Unless the offer page states
+otherwise:
 
 - joining the waitlist is free and does not charge you or create a
   subscription;
 - the discount applies only after you are invited to the beta, activate the
   app, and Lune Synth Pro becomes available, and only to your first three
-  months of a paid Pro subscription; afterwards Pro renews at the price shown
-  to you before you subscribe;
+  months of a paid Pro Monthly subscription; afterwards Pro Monthly renews at
+  the price shown to you before you subscribe;
+- for the Pro Annual plan, the discount applies only to your first year as a
+  paid subscriber, reducing that year's payment to $39.99; afterwards Annual
+  renews at $59.88 per year, or the price shown to you before you subscribe,
+  unless you cancel;
 - priority access means earlier invitation than the general waitlist, not a
   guaranteed invitation date or launch date;
 - it is limited to one person and one account, is nontransferable, has no cash
