@@ -119,13 +119,15 @@ risk. Report suspected vulnerabilities privately to
 
 ## 6. Beta Promotional Offers
 
-### 6.1 Founding 40
+### 6.1 Founding 50
 
 The landing page advertised two months free and a lifetime 50% discount on
-Lune Synth Pro as a limited-time offer for the first 40 eligible beta users
-(the "Founding 40"). All 40 places have been claimed, and the Founding 40 offer
-is not available to anyone else. For those 40 users, unless the offer page
-stated otherwise:
+Lune Synth Pro as a limited-time offer for the first 50 eligible beta users
+(the "Founding 50"): everyone who joined the waitlist before the stated
+cutoff, plus a small number of people invited individually by Coherascent
+Labs, for 50 total. All 50 places have been claimed, and the Founding 50
+offer is not available to anyone else. For those 50 users, unless the offer
+page stated otherwise:
 
 - waitlist signup alone does not earn the offer;
 - the offer is limited to invited beta users who activate by any disclosed
@@ -142,13 +144,13 @@ stated otherwise:
 
 ### 6.2 First Light
 
-"First Light" is a limited-time offer for people who join the waitlist during
-the window stated on the offer page. It gives priority access to the beta,
-50% off the first three months of a Lune Synth Pro Monthly subscription, and,
-for the Annual plan, a first year priced at $39.99 instead of the normal
-$59.88. Eligibility is determined by the time our servers record the waitlist
-signup, not by any clock shown on a device. Unless the offer page states
-otherwise:
+"First Light" is a limited-time offer for people who join the waitlist after
+the Founding 50 cutoff, through the deadline stated on the offer page. It
+gives priority access to the beta, 50% off the first three months of a Lune
+Synth Pro Monthly subscription, and, for the Annual plan, a first year
+priced at $39.99 instead of the normal $59.88. Eligibility is determined by
+the time our servers record the waitlist signup, not by any clock shown on a
+device. Unless the offer page states otherwise:
 
 - joining the waitlist is free and does not charge you or create a
   subscription;
@@ -163,7 +165,7 @@ otherwise:
 - priority access means earlier invitation than the general waitlist, not a
   guaranteed invitation date or launch date;
 - it is limited to one person and one account, is nontransferable, has no cash
-  value, and cannot be combined with the Founding 40 offer or another discount
+  value, and cannot be combined with the Founding 50 offer or another discount
   unless we say otherwise;
 - the discount may exclude taxes, app-store charges, add-ons, usage overages,
   institutional plans, or materially different future products; and

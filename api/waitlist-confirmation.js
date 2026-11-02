@@ -387,10 +387,10 @@ function buildPlainLetter(options = {}) {
   // Deliberately references their position in the cohort, not any specific
   // discount. Naming a discount here would make this commercial mail under
   // CAN-SPAM, which requires a physical postal address we do not yet have --
-  // and, since the Founding 40 offer sold out 2026-09-21 (Terms §6.1), it
-  // would also be false for most people reading this. Only the access email
-  // (sent later, once we know exactly when this contact signed up) names a
-  // specific offer -- see api/access-email.js.
+  // and, since the Founding 50 offer sold out (Terms §6.1), it would also be
+  // false for most people reading this. Only the access email (sent later,
+  // once we know exactly when this contact signed up) names a specific
+  // offer -- see api/access-email.js.
   const opening = options.reminder
     ? `Hi, thank you for joining the Lune Synth beta waitlist. Your spot is
 still reserved. We're assembling the first cohort now, and I'll spell out

@@ -22,10 +22,10 @@ function collapseWhitespace(text) {
   return text.replace(/\s+/g, ' ');
 }
 
-test('offerParagraphForTier: founding-40 names the Founding 40 offer', () => {
+test('offerParagraphForTier: founding-40 (the tier id) names the Founding 50 offer', () => {
   const paragraph = collapseWhitespace(offerParagraphForTier('founding-40'));
-  assert.match(paragraph, /Founding 40 member/);
-  assert.ok(paragraph.includes(OFFER_FOUNDING_40), 'should include the exact Founding 40 offer text');
+  assert.match(paragraph, /Founding 50 member/);
+  assert.ok(paragraph.includes(OFFER_FOUNDING_40), 'should include the exact Founding offer text');
 });
 
 test('offerParagraphForTier: first-light names the First Light offer', () => {
@@ -38,14 +38,14 @@ test('offerParagraphForTier: none makes no discount claim at all', () => {
   assert.equal(offerParagraphForTier('none'), '');
 });
 
-test('a Founding 40 signup (created before the cutoff) gets the Founding 40 paragraph', () => {
+test('a Founding 50 signup (created before the cutoff) gets the Founding paragraph', () => {
   const letter = buildAccessLetter({
     platform: 'ios',
     testflightUrl: 'https://testflight.apple.com/join/xyz',
     postalAddress: '123 Example St',
     createdAt: '2026-09-01T00:00:00Z',
   });
-  assert.match(letter, /Founding 40 member/);
+  assert.match(letter, /Founding 50 member/);
 });
 
 test('a signup with no createdAt gets no offer paragraph, never the best one by default', () => {
@@ -54,23 +54,56 @@ test('a signup with no createdAt gets no offer paragraph, never the best one by 
     testflightUrl: 'https://testflight.apple.com/join/xyz',
     postalAddress: '123 Example St',
   });
-  assert.doesNotMatch(letter, /Founding 40 member/);
+  assert.doesNotMatch(letter, /Founding 50 member/);
   assert.doesNotMatch(letter, /First Light signup/);
 });
 
-test('a signup after the Founding 40 cutoff, with First Light dormant, gets no discount claim', () => {
+test('a signup after both the Founding cutoff and the First Light deadline gets no discount claim', () => {
   const letter = buildAccessLetter({
     platform: 'android',
     playUrl: 'https://play.google.com/apps/testing/x',
     googleAccount: 'tester@example.com',
     postalAddress: '123 Example St',
-    createdAt: '2026-09-25T00:00:00Z',
+    createdAt: '2026-12-01T00:00:00Z',
   });
-  assert.doesNotMatch(letter, /Founding 40 member/);
+  assert.doesNotMatch(letter, /Founding 50 member/);
   assert.doesNotMatch(letter, /First Light signup/);
   // Still a complete, sendable letter -- withholding the offer must not
   // withhold the actual access instructions.
   assert.match(letter, /play\.google\.com/);
+});
+
+test('an individually-invited Founding 50 email overrides a late (or missing) createdAt', () => {
+  const previousEnv = process.env.FOUNDING_EXTRA_EMAILS;
+  process.env.FOUNDING_EXTRA_EMAILS = 'vip@example.com';
+  try {
+    const letter = buildAccessLetter({
+      platform: 'ios',
+      testflightUrl: 'https://testflight.apple.com/join/xyz',
+      postalAddress: '123 Example St',
+      createdAt: '2026-12-01T00:00:00Z',
+      email: 'VIP@Example.com ',
+    });
+    assert.match(letter, /Founding 50 member/);
+  } finally {
+    if (previousEnv === undefined) delete process.env.FOUNDING_EXTRA_EMAILS;
+    else process.env.FOUNDING_EXTRA_EMAILS = previousEnv;
+  }
+});
+
+test('FOUNDING_EXTRA_EMAILS comparison is case- and whitespace-insensitive, and empty entries are ignored', () => {
+  const { foundingExtraEmails } = require('../api/access-email.js');
+  const previousEnv = process.env.FOUNDING_EXTRA_EMAILS;
+  process.env.FOUNDING_EXTRA_EMAILS = ' Vip@Example.com ,, second@example.com ,';
+  try {
+    const emails = foundingExtraEmails();
+    assert.ok(emails.has('vip@example.com'));
+    assert.ok(emails.has('second@example.com'));
+    assert.equal(emails.size, 2);
+  } finally {
+    if (previousEnv === undefined) delete process.env.FOUNDING_EXTRA_EMAILS;
+    else process.env.FOUNDING_EXTRA_EMAILS = previousEnv;
+  }
 });
 
 test('still refuses to send without a postal address, regardless of tier', async () => {

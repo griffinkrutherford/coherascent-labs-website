@@ -12,14 +12,18 @@ const html = fs.readFileSync(HTML_PATH, 'utf8');
 // day number, which is how a launch date would leak in ("launches October
 // 2026", "coming 10/1/2026"). A bare month name isn't checked -- "may" is
 // also a common verb, and false-positiving on it teaches nothing. Terms §6
-// dates (2026-09-21) are legitimate history about the *closed* Founding 40
-// offer, not a Pro launch date, so those are allowed explicitly.
+// dates (2026-09-21, 2026-11-02) are legitimate history about the *closed*
+// Founding offer, not a Pro launch date, so those are allowed explicitly.
 const DATE_LIKE = /\b(20\d{2}-\d{2}-\d{2}|(january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2}(st|nd|rd|th)?,?\s*(20\d{2})?|\d{1,2}(st|nd|rd|th)?\s+(january|february|march|april|may|june|july|august|september|october|november|december)(,?\s*20\d{2})?)\b/gi;
 
 test('the Pro page makes no launch-date promise', () => {
-  // The same closed-offer cutoff also appears spelled out in the Founding 40
-  // card ("as of September 21, 2026") -- history, not a launch date.
-  const withoutKnownHistoricalDate = html.replace(/2026-09-21/g, '').replace(/September 21, 2026/g, '');
+  // The same closed-offer cutoffs also appear spelled out in the Founding
+  // card ("as of September 21, 2026", the original 40-member cutoff; "as of
+  // November 2, 2026", the raised-to-50 cutoff) -- history, not a launch date.
+  const withoutKnownHistoricalDate = html
+    .replace(/2026-09-21/g, '')
+    .replace(/September 21, 2026/g, '')
+    .replace(/November 2, 2026/g, '');
   const matches = withoutKnownHistoricalDate.match(DATE_LIKE) || [];
   assert.deepEqual(matches, [], `found date-like text that could read as a launch date: ${JSON.stringify(matches)}`);
 });

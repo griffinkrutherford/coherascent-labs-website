@@ -19,7 +19,7 @@ const { OFFER_FOUNDING_40, OFFER_FIRST_LIGHT } = require('../api/access-email.js
 const terms = fs.readFileSync(path.join(__dirname, '..', 'lune-synth', 'terms', 'index.html'), 'utf8');
 const proPage = fs.readFileSync(path.join(__dirname, '..', 'lune-synth', 'pro', 'index.html'), 'utf8');
 
-test('Terms §6.1 still promises "two months free" and "50% discount" for Founding 40', () => {
+test('Terms §6.1 still promises "two months free" and "50% discount" for Founding 50', () => {
   assert.match(terms, /two months free/i);
   assert.match(terms, /50% discount/i);
   assert.match(OFFER_FOUNDING_40, /two months free/i);
@@ -39,7 +39,7 @@ test('the Pro page\'s offer summary uses the same figures as the Terms and the a
   assert.match(proPage, /50% off[\s\S]{0,80}first (three|3) (paid )?months/i);
 });
 
-test('the Terms document itself still distinguishes 6.1 (Founding 40) from 6.2 (First Light)', () => {
-  assert.match(terms, /6\.1 Founding 40/);
+test('the Terms document itself still distinguishes 6.1 (Founding 50) from 6.2 (First Light)', () => {
+  assert.match(terms, /6\.1 Founding 50/);
   assert.match(terms, /6\.2 First Light/);
 });

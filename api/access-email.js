@@ -17,6 +17,31 @@
 const { buildUrl } = require('./unsubscribe-token.js');
 const { classifyOfferTier } = require('../lune-synth/campaign/offer-eligibility.js');
 
+/**
+ * The Founding 50 cohort is the waitlist signups before the cutoff (see
+ * offer-eligibility.js) PLUS a small number of people the owner invited
+ * individually and who may have joined the waitlist after that cutoff, or
+ * not through the waitlist at all. There is no signup timestamp that could
+ * classify them correctly, so they are named here instead, server-side only
+ * -- read fresh on every call (never cached at require-time) so a deploy's
+ * env change takes effect without a restart. Comma-separated; each address
+ * is trimmed and lowercased before comparison. Never commit real addresses
+ * here -- this reads an environment variable, not a file.
+ */
+function foundingExtraEmails() {
+  const raw = process.env.FOUNDING_EXTRA_EMAILS || '';
+  return new Set(raw.split(',').map((entry) => entry.trim().toLowerCase()).filter(Boolean));
+}
+
+/**
+ * Same three-way result as classifyOfferTier, but an individually-invited
+ * Founding 50 email overrides whatever the signup timestamp alone would say.
+ */
+function resolveOfferTier(createdAt, email) {
+  if (email && foundingExtraEmails().has(String(email).trim().toLowerCase())) return 'founding-40';
+  return classifyOfferTier(createdAt);
+}
+
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const FROM = 'Griffin at Lune Synth <griffin@mail.lunesynth.com>';
 const REPLY_TO = 'griffin@lunesynth.com';
@@ -32,7 +57,7 @@ const MAX_ATTEMPTS = 2;
  * decided by classifyOfferTier(), never assumed -- see buildAccessLetter.
  */
 const OFFER_FOUNDING_40 = 'two months free, then 50% off Lune Synth Pro for as long as you keep the account';
-const OFFER_FIRST_LIGHT = '50% off your first three months of Lune Synth Pro once it launches';
+const OFFER_FIRST_LIGHT = '50% off your first three months of Lune Synth Pro Monthly, or $39.99 for your first year of Lune Synth Pro Annual (normally $59.88), once it launches';
 // Kept for any external caller still importing the old name.
 const OFFER = OFFER_FOUNDING_40;
 
@@ -61,7 +86,7 @@ function wrap(text, width = 76) {
  */
 function offerParagraphForTier(tier) {
   if (tier === 'founding-40') {
-    return wrap(`As a Founding 40 member, you get ${OFFER_FOUNDING_40}. Nothing is charged during the beta, and I'll tell you plainly before that ever changes.`);
+    return wrap(`As a Founding 50 member, you get ${OFFER_FOUNDING_40}. Nothing is charged during the beta, and I'll tell you plainly before that ever changes.`);
   }
   if (tier === 'first-light') {
     return wrap(`As a First Light signup, you get ${OFFER_FIRST_LIGHT}. Nothing is charged during the beta, and I'll tell you plainly before that ever changes.`);
@@ -78,12 +103,16 @@ function buildAccessLetter(options = {}) {
     postalAddress = '',
     unsubscribeUrl = '',
     createdAt,
+    email = '',
   } = options;
 
   // Decided by the signup's actual recorded time, never by guessing at the
-  // audience -- see offer-eligibility.js. A caller that omits createdAt gets
-  // 'none': the safe default is to promise nothing rather than over-promise.
-  const tier = classifyOfferTier(createdAt);
+  // audience -- see offer-eligibility.js -- except for the handful of
+  // individually-invited Founding 50 names in FOUNDING_EXTRA_EMAILS, which
+  // override the timestamp. A caller that omits both createdAt and a listed
+  // email gets 'none': the safe default is to promise nothing rather than
+  // over-promise.
+  const tier = resolveOfferTier(createdAt, email);
   const offerParagraph = offerParagraphForTier(tier);
 
   const access = platform === 'android'
@@ -158,7 +187,7 @@ async function sendAccessEmail(email, apiKey, options = {}) {
       'List-Unsubscribe': `<${unsubscribeUrl}>`,
       'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
     },
-    text: buildAccessLetter({ ...options, unsubscribeUrl }),
+    text: buildAccessLetter({ ...options, email, unsubscribeUrl }),
   });
 
   let lastReason = 'unknown';
@@ -204,6 +233,8 @@ module.exports = {
   buildAccessLetter,
   sendAccessEmail,
   offerParagraphForTier,
+  resolveOfferTier,
+  foundingExtraEmails,
   OFFER,
   OFFER_FOUNDING_40,
   OFFER_FIRST_LIGHT,

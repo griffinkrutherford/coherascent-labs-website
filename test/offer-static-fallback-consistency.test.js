@@ -51,7 +51,7 @@ test('index.html\'s static waitlist-offer markup matches offer-state.js\'s curre
   assert.match(heroOffer, /First Light/);
   assert.match(heroOffer, /50% off your first 3 months/);
   assert.doesNotMatch(heroOffer, /spots?|limited to|only \d+/i, 'no capacity claim');
-  assert.doesNotMatch(heroOffer, /founding offer/i, 'First Light must never be called a founding offer; Founding 40 is a separate, closed offer');
+  assert.doesNotMatch(heroOffer, /founding offer/i, 'First Light must never be called a founding offer; Founding 50 is a separate, closed offer');
   const mountain = clock.endLabel('America/Denver'); // e.g. "Fri, Nov 6, 11:59 PM MT"
   const [, month, day, time] = mountain.match(/^\w+, (\w+) (\d+), (.+) MT$/);
   assert.ok(heroOffer.includes(`${month} ${day}, ${time} MT`), `static deadline must match ${mountain}`);

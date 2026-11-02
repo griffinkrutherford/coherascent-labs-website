@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Read-only roster export: every waitlist contact, tagged with the beta
- * offer (if any) their signup earned -- Founding 40 (Terms §6.1), First
+ * offer (if any) their signup earned -- Founding 50 (Terms §6.1), First
  * Light (Terms §6.2), or none. Griffin's reference for support replies and
  * for double-checking who a promotional send should and should not reach.
  *
@@ -14,13 +14,17 @@
  *
  * Never writes to Resend. Contact properties (platform) are fetched only to
  * enrich the roster; nothing here can grant or revoke an offer -- that is
- * decided solely by classifyOfferTier() against the recorded signup time.
+ * decided solely by resolveOfferTier() against the recorded signup time (or
+ * the FOUNDING_EXTRA_EMAILS override).
  */
 
 'use strict';
 
 const fs = require('fs');
-const { classifyOfferTier } = require('../lune-synth/campaign/offer-eligibility.js');
+// resolveOfferTier wraps classifyOfferTier with the FOUNDING_EXTRA_EMAILS
+// override (see api/access-email.js) -- the handful of Founding 50 members
+// invited individually, who may have no eligible signup timestamp at all.
+const { resolveOfferTier } = require('../api/access-email.js');
 
 const API = 'https://api.resend.com';
 const PACE_MS = 700;
@@ -59,7 +63,7 @@ function buildRosterRow(contact, properties) {
   return {
     email: contact.email,
     createdAt: contact.created_at || '',
-    tier: classifyOfferTier(contact.created_at),
+    tier: resolveOfferTier(contact.created_at, contact.email),
     platform: props.platform || '',
     unsubscribed: contact.unsubscribed === true,
   };

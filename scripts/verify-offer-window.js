@@ -19,14 +19,14 @@
 'use strict';
 
 const { FIRST_LIGHT_ENDS_AT, FIRST_LIGHT_STARTS_AT } = require('../lune-synth/campaign/offer-state.js');
-const { FIRST_LIGHT_WINDOW_HOURS, FOUNDING_40_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
+const { FIRST_LIGHT_WINDOW_HOURS, FOUNDING_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
 
 /** Pure report builder, exported so tests can check its text without stdout capture. */
 function buildReport(firstLightEndsAt, now, firstLightStartsAt) {
   const nowMs = now == null ? Date.now() : now;
   const lines = [];
 
-  lines.push(`Founding 40 cutoff: ${FOUNDING_40_CUTOFF_AT} (fixed; closed 2026-09-21)`);
+  lines.push(`Founding 50 cutoff: ${FOUNDING_CUTOFF_AT} (fixed; closed)`);
   lines.push('');
 
   if (!firstLightEndsAt) {
@@ -59,7 +59,7 @@ function buildReport(firstLightEndsAt, now, firstLightStartsAt) {
 
   if (endMs <= nowMs) {
     lines.push('WARNING: this end time is already in the past. Deploying now would show');
-    lines.push('"Founding 40 and First Light are closed" immediately, with no live window.');
+    lines.push('"Founding 50 and First Light are closed" immediately, with no live window.');
     return { ok: false, lines };
   }
   if (startMs <= nowMs) {

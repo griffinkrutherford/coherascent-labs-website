@@ -16,7 +16,7 @@ const {
   DEFAULT_OFFER,
   createOfferClock,
 } = require('../lune-synth/campaign/offer-state.js');
-const { classifyOfferTier } = require('../lune-synth/campaign/offer-eligibility.js');
+const { classifyOfferTier, FOUNDING_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
 
 const DEADLINE = '2026-11-07T06:59:00Z';
 const DEADLINE_MS = Date.parse(DEADLINE);
@@ -101,12 +101,19 @@ test('a dormant or malformed end time never opens the offer', () => {
   }
 });
 
-test('server eligibility uses the same window: Nov 2 MT start through the deadline', () => {
+test('server eligibility: Founding 50 takes precedence through its own cutoff, then First Light opens', () => {
   assert.equal(FIRST_LIGHT_STARTS_AT, '2026-11-02T07:00:00Z');
-  assert.equal(classifyOfferTier('2026-11-02T06:59:59Z'), 'none');
-  assert.equal(classifyOfferTier(FIRST_LIGHT_STARTS_AT), 'first-light');
+  assert.equal(FOUNDING_CUTOFF_AT, '2026-11-02T22:16:00Z');
+  // Founding's cutoff (2026-11-02T22:16:00Z) is later than First Light's
+  // start (2026-11-02T07:00:00Z), so signups in between are Founding, not
+  // First Light -- the owner's "today's 07:00Z-22:16Z signups are Founding"
+  // decision.
+  assert.equal(classifyOfferTier('2026-11-02T06:59:59Z'), 'founding-40');
+  assert.equal(classifyOfferTier(FIRST_LIGHT_STARTS_AT), 'founding-40');
+  assert.equal(classifyOfferTier('2026-11-02T22:15:59Z'), 'founding-40');
+  assert.equal(classifyOfferTier(FOUNDING_CUTOFF_AT), 'first-light', 'the Founding cutoff instant itself is First Light, not Founding');
   assert.equal(classifyOfferTier('2026-11-04T18:00:00Z'), 'first-light');
   assert.equal(classifyOfferTier(DEADLINE), 'first-light');
   assert.equal(classifyOfferTier(DEADLINE_MS + 1), 'none');
-  assert.equal(classifyOfferTier('2026-09-01T00:00:00Z'), 'founding-40', 'Founding 40 is unaffected');
+  assert.equal(classifyOfferTier('2026-09-01T00:00:00Z'), 'founding-40', 'early signups are Founding too');
 });

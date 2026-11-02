@@ -1,13 +1,16 @@
 /*
  * Single source of truth for the waitlist offer shown across lunesynth.com.
  *
- * Founding 40: the original beta offer (2 months free, then 50% off Pro for
- * life) went to the first 40 waitlist signups and is fully claimed. It is
- * never advertised as available again. Terms §6.1 governs it.
+ * Founding 50: the original beta offer (2 months free, then 50% off Pro for
+ * life), raised from 40 to 50 members on 2026-11-02 (owner decision --
+ * everyone on the waitlist before the cutoff plus a few people invited
+ * individually; see offer-eligibility.js and api/access-email.js's
+ * FOUNDING_EXTRA_EMAILS). Fully claimed; never advertised as available
+ * again. Terms §6.1 governs it.
  *
  * First Light: a separate, limited-time offer for the next signups --
  * priority beta access and 50% off the first 3 months of Pro once Pro
- * launches. It is not the Founding 40 offer and must never be described as
+ * launches. It is not the Founding 50 offer and must never be described as
  * one. Terms §6.2 governs it; the window is whatever this file states. It is
  * dormant while FIRST_LIGHT_ENDS_AT is "".
  *
@@ -113,15 +116,15 @@
           "<strong class=\"cta-accent cta-accent--red red-glow\">50% off your first 3 months</strong> of Lune Synth&trade; Pro.";
       }
       // Before First Light opens and after it closes: the standing waitlist
-      // offer. The Founding 40 are mentioned only in the footnote.
+      // offer. The Founding 50 are mentioned only in the footnote.
       return DEFAULT_OFFER;
     }
 
     function footnoteText(now) {
       if (phase(now) === "first-light-open") {
-        return "*First Light discount applies once you are invited to the beta, activate the app, and Lune Synth Pro launches. Signing up is free and charges nothing. Founding 40 members keep their original offer. See Terms §6.";
+        return "*First Light discount applies once you are invited to the beta, activate the app, and Lune Synth Pro launches. Signing up is free and charges nothing. Founding 50 members keep their original offer. See Terms §6.";
       }
-      return "*Joining the waitlist is free and charges nothing. Founding 40 members keep their original offer under Terms §6.";
+      return "*Joining the waitlist is free and charges nothing. Founding 50 members keep their original offer under Terms §6.";
     }
 
     // Pricing-display state for the Pro Monthly card/plan. Pure and

@@ -24,12 +24,27 @@ test('buildRosterRow tags a Founding 40 contact correctly', () => {
   });
 });
 
-test('buildRosterRow tags a post-cutoff contact as "none" while First Light is dormant', () => {
+test('buildRosterRow tags a contact after both the Founding cutoff and the First Light deadline as "none"', () => {
   const row = buildRosterRow(
-    { email: 'late@example.com', created_at: '2026-09-25T00:00:00Z', unsubscribed: false },
+    { email: 'late@example.com', created_at: '2026-12-01T00:00:00Z', unsubscribed: false },
     { platform: 'android' }
   );
   assert.equal(row.tier, 'none');
+});
+
+test('buildRosterRow tags an individually-invited Founding 50 email as founding-40 (the tier id), regardless of signup time', () => {
+  const previousEnv = process.env.FOUNDING_EXTRA_EMAILS;
+  process.env.FOUNDING_EXTRA_EMAILS = 'invited@example.com, OTHER@Example.com ';
+  try {
+    const row = buildRosterRow(
+      { email: 'invited@example.com', created_at: '2026-12-01T00:00:00Z', unsubscribed: false },
+      { platform: 'ios' }
+    );
+    assert.equal(row.tier, 'founding-40');
+  } finally {
+    if (previousEnv === undefined) delete process.env.FOUNDING_EXTRA_EMAILS;
+    else process.env.FOUNDING_EXTRA_EMAILS = previousEnv;
+  }
 });
 
 test('buildRosterRow handles missing properties without throwing', () => {

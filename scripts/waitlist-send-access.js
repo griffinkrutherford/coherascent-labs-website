@@ -19,7 +19,16 @@
  */
 
 const { sendAccessEmail, buildAccessLetter } = require('../api/access-email.js');
-const { FOUNDING_40_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
+const { FOUNDING_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
+const { FIRST_LIGHT_ENDS_AT } = require('../lune-synth/campaign/offer-state.js');
+
+// One millisecond after whichever closes later -- the Founding cutoff, or a
+// currently-open First Light window's own deadline -- so the "no active
+// offer" preview below stays accurate no matter which offer is live right
+// now (Founding alone, First Light alone, or both in sequence).
+const NO_OFFER_PREVIEW_CREATED_AT = new Date(
+  Math.max(Date.parse(FOUNDING_CUTOFF_AT), Date.parse(FIRST_LIGHT_ENDS_AT) || 0) + 1
+).toISOString();
 
 const API = 'https://api.resend.com';
 const argv = process.argv.slice(2);
@@ -98,11 +107,12 @@ async function getProperties(email, apiKey) {
   }
 
   if (argv.includes('--help-preview')) {
-    // Shown for a Founding 40 recipient and a post-cutoff recipient who
-    // signed up outside any First Light window. The no-offer example is
-    // pinned to the Founding 40 cutoff instant (not "now"), so it stays a
-    // no-offer letter even while a First Light window is open.
-    console.log('=== ANDROID, Founding 40 ===\n');
+    // Shown for a Founding 50 recipient and a recipient who signed up
+    // outside any live offer. The no-offer example uses
+    // NO_OFFER_PREVIEW_CREATED_AT (one millisecond after whichever closes
+    // later: the Founding cutoff or a currently-open First Light window),
+    // so it stays a no-offer letter no matter which offer is live "now".
+    console.log('=== ANDROID, Founding 50 ===\n');
     console.log(buildAccessLetter({
       platform: 'android',
       googleAccount: 'tester@gmail.com',
@@ -111,7 +121,7 @@ async function getProperties(email, apiKey) {
       unsubscribeUrl: 'https://lunesynth.com/unsubscribe?e=…&t=…',
       createdAt: '2026-09-01T00:00:00Z',
     }));
-    console.log('\n\n=== iOS, Founding 40 ===\n');
+    console.log('\n\n=== iOS, Founding 50 ===\n');
     console.log(buildAccessLetter({
       platform: 'ios',
       testflightUrl: TESTFLIGHT_URL || 'https://testflight.apple.com/join/…',
@@ -119,13 +129,13 @@ async function getProperties(email, apiKey) {
       unsubscribeUrl: 'https://lunesynth.com/unsubscribe?e=…&t=…',
       createdAt: '2026-09-01T00:00:00Z',
     }));
-    console.log('\n\n=== iOS, no active offer (after the Founding 40 cutoff) ===\n');
+    console.log('\n\n=== iOS, no active offer ===\n');
     console.log(buildAccessLetter({
       platform: 'ios',
       testflightUrl: TESTFLIGHT_URL || 'https://testflight.apple.com/join/…',
       postalAddress: POSTAL_ADDRESS || '[[MAILING ADDRESS]]',
       unsubscribeUrl: 'https://lunesynth.com/unsubscribe?e=…&t=…',
-      createdAt: FOUNDING_40_CUTOFF_AT,
+      createdAt: NO_OFFER_PREVIEW_CREATED_AT,
     }));
     return;
   }
@@ -156,7 +166,7 @@ async function getProperties(email, apiKey) {
       email: contact.email,
       platform: properties.platform,
       googleAccount: properties.google_account || contact.email,
-      // Offer eligibility (Founding 40 vs First Light vs neither) is decided
+      // Offer eligibility (Founding 50 vs First Light vs neither) is decided
       // by this, never by send order -- see offer-eligibility.js.
       createdAt: contact.created_at,
     });

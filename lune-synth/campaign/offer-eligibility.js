@@ -3,29 +3,35 @@
  * contact earned. Node-only (require()'d by api/access-email.js and
  * scripts/export-offer-roster.js); never loaded as a browser <script>.
  *
- * The two offers are Terms §6.1 (Founding 40) and §6.2 (First Light). Both
+ * The two offers are Terms §6.1 (Founding 50) and §6.2 (First Light). Both
  * are decided by *when our server recorded the signup*, never by a client
  * clock or by trusting a caller's claim -- see Terms §6.2 ("Eligibility is
  * determined by the time our servers record the waitlist signup").
  *
- * Founding 40: sold out at exactly 40 signups on 2026-09-21 (Terms §6.1 says
- * "All 40 places have been claimed"). FOUNDING_40_CUTOFF_AT is the instant
- * after which no further signup can be a Founding 40 member, expressed as
- * the start of the next UTC day so the entire calendar day of 2026-09-21
- * counts, in every timezone, as eligible.
+ * Founding 50: raised from 40 to 50 members on 2026-11-02 (owner decision,
+ * 47 waitlist signups plus 3 added individually -- see
+ * api/access-email.js's FOUNDING_EXTRA_EMAILS). FOUNDING_CUTOFF_AT is the
+ * instant after which no further signup can be a Founding member; everyone
+ * recorded before it, plus the individually-invited names, make up the 50.
+ * The internal tier id stays 'founding-40' (the wire format and several
+ * tests pin it) even though the member count and display name are now 50 --
+ * only the display copy says "Founding 50".
  *
  * First Light: a window that opens when lune-synth/campaign/offer-state.js's
  * FIRST_LIGHT_ENDS_AT is set (it is "" -- dormant -- until then). That file is
  * the single source of truth for both ends of the window: it also declares
  * FIRST_LIGHT_STARTS_AT. When the start is "", the window falls back to the
- * original 48 hours before the end.
+ * original 48 hours before the end. Founding always takes precedence over
+ * First Light (Terms §6.3: the two offers do not combine).
  */
 
 'use strict';
 
 const { FIRST_LIGHT_ENDS_AT, FIRST_LIGHT_STARTS_AT } = require('./offer-state.js');
 
-const FOUNDING_40_CUTOFF_AT = '2026-09-22T00:00:00Z';
+const FOUNDING_CUTOFF_AT = '2026-11-02T22:16:00Z';
+// Kept for any external caller still importing the old name (same value).
+const FOUNDING_40_CUTOFF_AT = FOUNDING_CUTOFF_AT;
 const FIRST_LIGHT_WINDOW_HOURS = 48;
 
 /**
@@ -35,7 +41,7 @@ const FIRST_LIGHT_WINDOW_HOURS = 48;
  *
  * @param {string|number|Date} createdAt - when the signup was recorded.
  * @param {object} [window]
- * @param {string} [window.foundingCutoffAt] - defaults to FOUNDING_40_CUTOFF_AT.
+ * @param {string} [window.foundingCutoffAt] - defaults to FOUNDING_CUTOFF_AT.
  * @param {string} [window.firstLightEndsAt] - defaults to the real, possibly
  *   dormant, FIRST_LIGHT_ENDS_AT.
  * @param {string} [window.firstLightStartsAt] - defaults to the real
@@ -47,7 +53,7 @@ const FIRST_LIGHT_WINDOW_HOURS = 48;
  */
 function classifyOfferTier(createdAt, window) {
   const opts = window || {};
-  const foundingCutoffAt = opts.foundingCutoffAt !== undefined ? opts.foundingCutoffAt : FOUNDING_40_CUTOFF_AT;
+  const foundingCutoffAt = opts.foundingCutoffAt !== undefined ? opts.foundingCutoffAt : FOUNDING_CUTOFF_AT;
   const firstLightEndsAt = opts.firstLightEndsAt !== undefined ? opts.firstLightEndsAt : FIRST_LIGHT_ENDS_AT;
   const windowHours = opts.windowHours !== undefined ? opts.windowHours : FIRST_LIGHT_WINDOW_HOURS;
   const firstLightStartsAt = opts.firstLightStartsAt !== undefined
@@ -71,6 +77,7 @@ function classifyOfferTier(createdAt, window) {
 }
 
 module.exports = {
+  FOUNDING_CUTOFF_AT,
   FOUNDING_40_CUTOFF_AT,
   FIRST_LIGHT_WINDOW_HOURS,
   classifyOfferTier,

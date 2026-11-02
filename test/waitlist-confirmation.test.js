@@ -6,9 +6,9 @@ const { buildPlainLetter, buildLetterHtml, buildText, buildHtml } = require('../
 
 // Regression pin: this letter used to tell every waitlist signup that
 // "founding-member perks apply" regardless of when they joined, which
-// became false the moment the Founding 40 sold out (Terms §6.1,
-// 2026-09-21). The waitlist confirmation is sent before we know for
-// certain which offer (if any) a signup earns, so it must not name one.
+// became false the moment the Founding 50 sold out (Terms §6.1). The
+// waitlist confirmation is sent before we know for certain which offer (if
+// any) a signup earns, so it must not name one.
 test('buildPlainLetter never claims founding-member perks apply', () => {
   assert.doesNotMatch(buildPlainLetter({}), /founding-member perks/i);
   assert.doesNotMatch(buildPlainLetter({ reminder: true }), /founding-member perks/i);
