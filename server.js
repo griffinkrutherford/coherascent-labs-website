@@ -60,6 +60,94 @@ function getRequestSuffix(req) {
   return queryStart === -1 ? '' : req.url.slice(queryStart);
 }
 
+/**
+ * Public static surface, allowlist-by-default.
+ *
+ * server.js used to serve everything under the repo root except /docs and
+ * /scripts, which meant server.js, api/*.js, every *.md, package.json, the
+ * LaTeX build artifacts, .vscode/, tmp/ and the rest of the repo's working
+ * files were all reachable at their literal path (confirmed live: GET
+ * /server.js, /AGENTS.md, /api/waitlist.js all returned 200). This replaces
+ * that denylist with an allowlist built by grepping every page's src/href
+ * for the paths it actually loads (see the 2026-11-02 security-hardening
+ * work): anything not named here 404s, including new files added later.
+ *
+ * The check runs against the already-normalized, already-collapsed path (no
+ * "..", no leading slash), so an allowed prefix cannot be walked out of it
+ * with a traversal sequence -- path.normalize resolves those before this
+ * ever sees the string.
+ */
+const ALLOWED_EXTENSIONS = new Set([
+  'html', 'css', 'js', 'png', 'jpg', 'jpeg', 'gif', 'svg', 'ico', 'webp', 'avif', 'woff2', 'mp4', 'webm',
+]);
+
+// Root-level files pages reference directly (grepped from every *.html's
+// src/href). Everything else at the repo root -- server.js, package.json,
+// the LaTeX build artifacts, the unused logo/favicon drafts -- is denied by
+// omission.
+const ALLOWED_ROOT_FILES = new Set([
+  'index.html',
+  'applied.html',
+  'research.html',
+  'circle_favicon.png',
+  'coherascent-labs-logo-march-16-2026.webp',
+  'coherascent-labs-streamlined-light-2.webp',
+  'liquid-glass-cards.js',
+  'liquid-glass-cards.css',
+  'applied-response-slides.js',
+  'applied-response-slideshow.js',
+  'applied-handwriting-demo.js',
+  'applied-phone-screenshots.js',
+]);
+
+// Conventional fixed paths a browser, crawler, or store reviewer may request.
+// None of these exist in the repo today; allowing the name costs nothing and
+// means adding the file later needs no server.js change. Until then they 404
+// exactly like any other unmatched path.
+const ALLOWED_FIXED_PATHS = new Set([
+  'favicon.ico',
+  'robots.txt',
+  'sitemap.xml',
+  'app-ads.txt',
+  '.well-known/apple-app-site-association',
+  '.well-known/assetlinks.json',
+]);
+
+// Directory subtrees that may serve their own files, gated by extension.
+const ALLOWED_DIR_PREFIXES = ['images/', 'lune-synth/', 'applied/', 'research/'];
+
+// Narrower than the prefixes above: only the screenshots themselves, never
+// the README/tokens/authoring source material that lives beside them in
+// mobile-app-assets/.
+const ALLOWED_IMAGE_SUBTREES = ['mobile-app-assets/screenshots/'];
+const IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'avif']);
+
+function isAllowedPublicPath(normalizedPath) {
+  const rel = normalizedPath.split(path.sep).join('/');
+
+  if (rel === '') return true; // repo root -> index.html
+  if (ALLOWED_ROOT_FILES.has(rel)) return true;
+  if (ALLOWED_FIXED_PATHS.has(rel)) return true;
+
+  const ext = path.extname(rel).slice(1).toLowerCase();
+
+  for (const subtree of ALLOWED_IMAGE_SUBTREES) {
+    const dirName = subtree.slice(0, -1);
+    if (rel === dirName) return true; // directory listing request; 404s on fs.stat
+    if (rel.startsWith(subtree)) return IMAGE_EXTENSIONS.has(ext);
+  }
+
+  for (const prefix of ALLOWED_DIR_PREFIXES) {
+    const dirName = prefix.slice(0, -1);
+    if (rel === dirName || rel.startsWith(prefix)) {
+      if (!ext) return true; // directory-style path; resolved by fs.stat below
+      return ALLOWED_EXTENSIONS.has(ext);
+    }
+  }
+
+  return false;
+}
+
 function getSafeFilePath(publicPath) {
   let decodedPath;
 
@@ -73,6 +161,10 @@ function getSafeFilePath(publicPath) {
   const filePath = path.join(__dirname, normalizedPath);
 
   if (!filePath.startsWith(__dirname + path.sep) && filePath !== __dirname) {
+    return null;
+  }
+
+  if (!isAllowedPublicPath(normalizedPath)) {
     return null;
   }
 
@@ -336,14 +428,34 @@ function serveStatic(req, res, publicPath) {
   });
 }
 
+// Nothing legitimate posted to /api/waitlist (an email plus a couple of short
+// fields) approaches this. Without a cap, `body += chunk` buffers an
+// unbounded request body in memory -- a trivial DoS against a single-process
+// Node server with no reverse-proxy body limit in front of it.
+const MAX_API_BODY_BYTES = 16 * 1024;
+
 function handleWaitlist(req, res) {
     let body = '';
+    let bytes = 0;
+    let tooLarge = false;
 
     req.on('data', chunk => {
+      if (tooLarge) return;
+      bytes += chunk.length;
+      if (bytes > MAX_API_BODY_BYTES) {
+        tooLarge = true;
+        res.statusCode = 413;
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.end(JSON.stringify({ error: 'Payload too large.' }));
+        req.destroy();
+        return;
+      }
       body += chunk.toString();
     });
 
     req.on('end', () => {
+      if (tooLarge) return;
+
       try {
         req.body = body ? JSON.parse(body) : {};
       } catch (e) {
@@ -455,15 +567,42 @@ function servePrimaryHost(req, res, pathname) {
   serveStatic(req, res, pathname === '/' ? '/index.html' : pathname);
 }
 
+/**
+ * CSP is Report-Only, not enforced. The site is 198 HTML pages built over
+ * many months, several with inline <script>/<style> (JSON-LD blocks, inline
+ * handlers) that a `script-src`/`style-src` without 'unsafe-inline' would
+ * break outright, and getting that accurate for every page was out of scope
+ * for this pass. This still gets violation reports (where supported) without
+ * risking breaking a page that "nothing the site uses breaks" requires.
+ * Domains below come from grepping every page for cross-origin src/href.
+ */
+const CSP_REPORT_ONLY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: https://images.unsplash.com",
+  "media-src 'self'",
+  "connect-src 'self' https://api.resend.com https://coherascent-labs-app-production.up.railway.app",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join('; ');
+
+function applySecurityHeaders(res) {
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=()');
+  res.setHeader('Content-Security-Policy-Report-Only', CSP_REPORT_ONLY);
+}
+
 const server = http.createServer((req, res) => {
+  applySecurityHeaders(res);
+
   const host = getHost(req);
   const pathname = getPathname(req);
-
-  if (pathname === '/docs' || pathname.startsWith('/docs/') || pathname === '/scripts' || pathname.startsWith('/scripts/')) {
-    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end('<h1>404 Not Found</h1><p>The requested file does not exist.</p>');
-    return;
-  }
 
   if (isGetLike(req) && host === `www.${PRIMARY_HOST}`) {
     redirect(res, `https://${PRIMARY_HOST}${pathname}${getRequestSuffix(req)}`);
