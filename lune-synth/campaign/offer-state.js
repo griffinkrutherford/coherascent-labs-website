@@ -15,7 +15,7 @@
  * dormant while FIRST_LIGHT_ENDS_AT is "".
  *
  * OPEN (2026-11-02, owner request): the window runs from FIRST_LIGHT_STARTS_AT
- * to Friday 2026-11-06 11:59 PM Mountain Standard Time (UTC-7), stored as the
+ * to Monday 2026-11-09 11:59 PM Mountain Standard Time (UTC-7), stored as the
  * absolute UTC instant below so no viewer's timezone can move it. At that
  * instant every page switches itself to the closed copy -- no redeploy.
  *
@@ -28,7 +28,7 @@
 (function () {
   "use strict";
 
-  var FIRST_LIGHT_ENDS_AT = "2026-11-07T06:59:00Z"; // Fri Nov 6, 11:59 PM MST
+  var FIRST_LIGHT_ENDS_AT = "2026-11-10T06:59:00Z"; // Mon Nov 9, 11:59 PM MST (extended from Fri Nov 6 on 2026-11-02)
   // Start of Mon Nov 2 in Mountain time; signups recorded from here count.
   // "" falls back to the original 48-hour window before FIRST_LIGHT_ENDS_AT.
   var FIRST_LIGHT_STARTS_AT = "2026-11-02T07:00:00Z";

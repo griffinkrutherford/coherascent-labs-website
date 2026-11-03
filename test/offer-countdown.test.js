@@ -3,7 +3,7 @@
 /**
  * The First Light countdown with injected time: before the deadline it is
  * open and counts down, at the exact deadline instant and after it the offer
- * reads closed. The deadline is Friday 2026-11-06 11:59 PM Mountain Standard
+ * reads closed. The deadline is Monday 2026-11-09 11:59 PM Mountain Standard
  * Time (UTC-7), stored as an absolute UTC instant so a viewer's timezone can
  * never move it.
  */
@@ -18,7 +18,7 @@ const {
 } = require('../lune-synth/campaign/offer-state.js');
 const { classifyOfferTier, FOUNDING_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
 
-const DEADLINE = '2026-11-07T06:59:00Z';
+const DEADLINE = '2026-11-10T06:59:00Z';
 const DEADLINE_MS = Date.parse(DEADLINE);
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -29,12 +29,12 @@ function values(parts) {
   return Object.fromEntries(parts.map((part) => [part.key, part.value]));
 }
 
-test('the live window ends Friday Nov 6, 11:59 PM MST, as an absolute UTC instant', () => {
+test('the live window ends Monday Nov 9, 11:59 PM MST, as an absolute UTC instant', () => {
   assert.equal(FIRST_LIGHT_ENDS_AT, DEADLINE);
   const clock = createOfferClock(FIRST_LIGHT_ENDS_AT);
-  assert.equal(clock.endLabel('America/Denver'), 'Fri, Nov 6, 11:59 PM MT');
+  assert.equal(clock.endLabel('America/Denver'), 'Mon, Nov 9, 11:59 PM MT');
   // Same instant shown in another zone, never re-anchored to local midnight.
-  assert.equal(clock.endLabel('America/New_York'), 'Fri, Nov 6, 11:59 PM MT (Sat, Nov 7, 1:59 AM your time)');
+  assert.equal(clock.endLabel('America/New_York'), 'Mon, Nov 9, 11:59 PM MT (Tue, Nov 10, 1:59 AM your time)');
 });
 
 test('before the deadline: open, with days/hours/minutes/seconds remaining', () => {
@@ -46,7 +46,7 @@ test('before the deadline: open, with days/hours/minutes/seconds remaining', () 
   const html = clock.offerHtml(now, 'America/Denver');
   assert.match(html, /Limited-time First Light offer/);
   assert.doesNotMatch(html, /founding offer/i, 'First Light must never be called a founding offer');
-  assert.match(html, /Join by Fri, Nov 6, 11:59 PM MT/);
+  assert.match(html, /Join by Mon, Nov 9, 11:59 PM MT/);
   assert.match(html, /50% off your first 3 months/);
   assert.doesNotMatch(html, /spots?|limited to|only \d+|48 hours/i, 'no capacity claim or stale 48h copy');
   assert.match(clock.footnoteText(now), /First Light discount applies once you are invited/);
