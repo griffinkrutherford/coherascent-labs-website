@@ -32,6 +32,8 @@ main #processing-title { --section-icon: url("/campaign/nav-icons/checklist.webp
 main #medals-title { --section-icon: url("/campaign/nav-icons/medal.webp"); }
 main #tock-title { --section-icon: url("/campaign/nav-icons/clock.webp"); }
 main #engine-title { --section-icon: url("/campaign/nav-icons/gear.webp"); }
+main #notes-title { --section-icon: url("/campaign/nav-icons/notebook.svg"); }
+main #lune-graph-title { --section-icon: url("/campaign/nav-icons/graph.svg"); }
 main #blog-title { --section-icon: url("/campaign/nav-icons/book.webp"); }
 main #why-title { --section-icon: url("/campaign/nav-icons/empathy.webp"); }
 main .section--handwriting > .section-title:not([id]) { --section-icon: url("/campaign/nav-icons/fountainPen.webp"); }
@@ -39,7 +41,7 @@ main .section--handwriting > .section-title:not([id]) { --section-icon: url("/ca
 main :is(#lost-cosmos-title, #neuro-title, #constellations-title,
          #quick-missions-title, #problem-solver-title, #platform-title,
          #voice-title, #lang-a11y-title, #luna-title, #processing-title, #medals-title,
-         #engine-title, #blog-title, #why-title, .section--handwriting > .section-title:not([id]))::before {
+         #engine-title, #blog-title, #why-title, #notes-title, #lune-graph-title, .section--handwriting > .section-title:not([id]))::before {
   content: "";
   width: 36px;
   height: 36px;
@@ -162,11 +164,11 @@ main .hero-waitlist button[type="submit"]::after,
   main :is(#lost-cosmos-title, #neuro-title, #constellations-title,
            #quick-missions-title, #problem-solver-title, #platform-title,
            #voice-title, #lang-a11y-title, #luna-title, #processing-title, #medals-title,
-           #engine-title, #blog-title, #why-title, .section--handwriting > .section-title:not([id])) { align-items: flex-start; }
+           #engine-title, #blog-title, #why-title, #notes-title, #lune-graph-title, .section--handwriting > .section-title:not([id])) { align-items: flex-start; }
   main :is(#lost-cosmos-title, #neuro-title, #constellations-title,
            #quick-missions-title, #problem-solver-title, #platform-title,
            #voice-title, #lang-a11y-title, #luna-title, #processing-title, #medals-title,
-           #engine-title, #blog-title, #why-title, .section--handwriting > .section-title:not([id]))::before {
+           #engine-title, #blog-title, #why-title, #notes-title, #lune-graph-title, .section--handwriting > .section-title:not([id]))::before {
     width: 32px;
     height: 32px;
     flex-basis: 32px;

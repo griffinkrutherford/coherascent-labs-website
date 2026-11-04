@@ -6107,6 +6107,53 @@
       transform: rotate(-5deg);
     }
 
+    /* Notes + Lune Graph (2026-11-04): same chassis, card and pill menu as
+       Luna, without the background video or mascot. */
+    #notes-title,
+    #lune-graph-title {
+      scroll-margin-top: var(--sticky-header-height, 106px);
+    }
+
+    .luna--plain {
+      background:
+        radial-gradient(900px 520px at 12% 0%, rgba(100, 168, 255, 0.12), transparent 60%),
+        radial-gradient(800px 520px at 92% 100%, rgba(164, 123, 255, 0.14), transparent 60%),
+        #080b18;
+    }
+
+    .section--lune-graph .luna--plain {
+      background:
+        radial-gradient(900px 520px at 88% 0%, rgba(100, 168, 255, 0.14), transparent 60%),
+        radial-gradient(800px 520px at 8% 100%, rgba(255, 93, 135, 0.1), transparent 60%),
+        #080b18;
+    }
+
+    .luna--plain .luna__veil {
+      background: none;
+    }
+
+    .luna-menu.luna-menu--3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: min(420px, 100%);
+    }
+
+    @media (max-width: 720px) {
+      .luna-menu.luna-menu--3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .luna-menu.luna-menu--3 {
+        border-radius: 999px;
+      }
+    }
+
+    .luna-tab-btn:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+    }
+
     @media (max-width: 860px) {
       .luna-card {
         grid-template-columns: 1fr;
@@ -10912,9 +10959,9 @@
 }
   </script>
   <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/campaign/site-header.css?v=10" />
+  <link rel="stylesheet" href="/campaign/site-header.css?v=11" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=6" />
-  <link rel="stylesheet" href="/campaign/section-icons.css?v=9" />
+  <link rel="stylesheet" href="/campaign/section-icons.css?v=10" />
   <link rel="stylesheet" href="/campaign/pricing.css?v=6" />
   <link rel="stylesheet" href="/campaign/sky-motion.css?v=1" />
   <script src="/campaign/sky-motion.js?v=1" defer></script>
@@ -10954,6 +11001,8 @@
         <a class="nav-link" href="#luna-title">Luna</a>
         <a class="nav-link" href="#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="#problem-solver-title">Problem Solver</a>
+        <a class="nav-link" href="#notes-title">Notes</a>
+        <a class="nav-link" href="#lune-graph-title">Lune Graph</a>
         <a class="nav-link" href="#platform-title">Handwriting</a>
         <a class="nav-link" href="#voice-title">Input Methods</a>
         <a class="nav-link" href="/#language-accessibility">Learn Your Way</a>
@@ -12568,6 +12617,218 @@
       showSlide(0);
     })();
     </script>
+
+    <!-- ================= NOTES SECTION ================= -->
+    <section class="section section--luna section--phone-tabs section--notes" id="notes" aria-labelledby="notes-title">
+      <h2 class="section-title" id="notes-title">Notes</h2>
+
+      <div class="luna luna--plain section-content" data-phone-tabs>
+        <div class="luna__veil" aria-hidden="true"></div>
+
+        <div class="luna__content">
+          <div class="luna-lead">
+            <h3>A notebook that <span class="engine-gradient-word">keeps up</span>.</h3>
+            <p>Ink, type, photos and voice on one page.</p>
+          </div>
+
+          <div class="luna-card">
+            <div class="luna-menu luna-menu--5" role="tablist" aria-label="Notes tools" data-moving-selection>
+              <span class="moving-selection-pill luna-menu__selection" aria-hidden="true"></span>
+              <button class="luna-tab-btn is-active" id="notesTab-brushes" type="button" role="tab" aria-controls="notesPanel-brushes" aria-selected="true" tabindex="0">Brushes</button>
+              <button class="luna-tab-btn" id="notesTab-type" type="button" role="tab" aria-controls="notesPanel-type" aria-selected="false" tabindex="-1">Type</button>
+              <button class="luna-tab-btn" id="notesTab-photos" type="button" role="tab" aria-controls="notesPanel-photos" aria-selected="false" tabindex="-1">Photos</button>
+              <button class="luna-tab-btn" id="notesTab-voice" type="button" role="tab" aria-controls="notesPanel-voice" aria-selected="false" tabindex="-1">Voice</button>
+              <button class="luna-tab-btn" id="notesTab-paper" type="button" role="tab" aria-controls="notesPanel-paper" aria-selected="false" tabindex="-1">Paper</button>
+            </div>
+
+            <div class="luna-tab-panel is-active" id="notesPanel-brushes" role="tabpanel" aria-labelledby="notesTab-brushes">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Pick a pen and write like it's paper.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="notes" aria-label="Notes Brushes preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-tab-demo loop muted playsinline preload="metadata" poster="screenshots/applied/notes-brushes-20261104-poster.webp" aria-label="Notes pen tray sliding through fountain pen, fineliner, pencil, brush, highlighter and eraser, then handwritten annotations in several colours">
+                      <source src="screenshots/applied/notes-brushes-20261104.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>4 pen styles</span>
+                <span>Highlighter &amp; eraser</span>
+                <span>Pressure-smooth ink</span>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="notesPanel-type" role="tabpanel" aria-labelledby="notesTab-type">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Drop a text box anywhere on the page.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="notes" aria-label="Notes Type preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-tab-demo loop muted playsinline preload="none" poster="screenshots/applied/notes-type-20261104-poster.webp" aria-label="Adding a blue text box under handwritten lab notes">
+                      <source src="screenshots/applied/notes-type-20261104.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Text boxes</span>
+                <span>Type on page</span>
+                <span>Size &amp; colour</span>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="notesPanel-photos" role="tabpanel" aria-labelledby="notesTab-photos">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Snap a page or pull in a photo.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="notes" aria-label="Notes Photos preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-tab-demo loop muted playsinline preload="none" poster="screenshots/applied/notes-photos-20261104-poster.webp" aria-label="Choosing a photo from the library and placing it on a dark note page">
+                      <source src="screenshots/applied/notes-photos-20261104.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Camera or library</span>
+                <span>Move &amp; resize</span>
+                <span>Image files too</span>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="notesPanel-voice" role="tabpanel" aria-labelledby="notesTab-voice">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Record the lecture right into your note.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="notes" aria-label="Notes Voice preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-tab-demo loop muted playsinline preload="none" poster="screenshots/applied/notes-voice-20261104-poster.webp" aria-label="Recording audio into a history note, then the saved recording with a Transcribe button">
+                      <source src="screenshots/applied/notes-voice-20261104.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Record &amp; replay</span>
+                <span>Tap to transcribe</span>
+                <span>Saved with the note</span>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="notesPanel-paper" role="tabpanel" aria-labelledby="notesTab-paper">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Lined, grid, dotted or blank.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="notes" aria-label="Notes Paper preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-tab-demo loop muted playsinline preload="none" poster="screenshots/applied/notes-paper-20261104-poster.webp" aria-label="Switching a note's paper between lined, grid and dotted, and between white, cream and dark">
+                      <source src="screenshots/applied/notes-paper-20261104.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>White, cream or dark</span>
+                <span>Multi-page notes</span>
+                <span>Change it any time</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LUNE GRAPH SECTION ================= -->
+    <section class="section section--luna section--phone-tabs section--lune-graph" id="lune-graph" aria-labelledby="lune-graph-title">
+      <h2 class="section-title" id="lune-graph-title">Lune Graph</h2>
+
+      <div class="luna luna--plain section-content" data-phone-tabs>
+        <div class="luna__veil" aria-hidden="true"></div>
+
+        <div class="luna__content">
+          <div class="luna-lead">
+            <h3>Graph in <span class="engine-gradient-word">four</span> dimensions.</h3>
+            <p>A graphing calculator, built right in.</p>
+          </div>
+
+          <div class="luna-card">
+            <div class="luna-menu luna-menu--3" role="tablist" aria-label="Lune Graph modes" data-moving-selection>
+              <span class="moving-selection-pill luna-menu__selection" aria-hidden="true"></span>
+              <button class="luna-tab-btn is-active" id="graphTab-2d" type="button" role="tab" aria-controls="graphPanel-2d" aria-selected="true" tabindex="0">2D</button>
+              <button class="luna-tab-btn" id="graphTab-3d" type="button" role="tab" aria-controls="graphPanel-3d" aria-selected="false" tabindex="-1">3D</button>
+              <button class="luna-tab-btn" id="graphTab-4d" type="button" role="tab" aria-controls="graphPanel-4d" aria-selected="false" tabindex="-1">4D</button>
+            </div>
+
+            <div class="luna-tab-panel is-active" id="graphPanel-2d" role="tabpanel" aria-labelledby="graphTab-2d">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Type an equation. Drag a slider. Watch it move.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="lune-graph" aria-label="Lune Graph 2D preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-tab-demo loop muted playsinline preload="metadata" poster="screenshots/applied/lune-graph-2d-20261104-poster.webp" aria-label="Dragging a slider reshapes y = a sin(bx), then a value table opens under the equation">
+                      <source src="screenshots/applied/lune-graph-2d-20261104.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Sliders</span>
+                <span>Value tables</span>
+                <span>Polar &amp; parametric</span>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="graphPanel-3d" role="tabpanel" aria-labelledby="graphTab-3d">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Plot a surface and spin it around.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="lune-graph" aria-label="Lune Graph 3D preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-tab-demo loop muted playsinline preload="none" poster="screenshots/applied/lune-graph-3d-20261104-poster.webp" aria-label="A 3D surface z = sin(x) cos(y) tilted, given a checkerboard texture and rotated">
+                      <source src="screenshots/applied/lune-graph-3d-20261104.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Rotate &amp; zoom</span>
+                <span>Surface textures</span>
+                <span>xy, xz, yz views</span>
+              </div>
+            </div>
+
+            <div class="luna-tab-panel" id="graphPanel-4d" role="tabpanel" aria-labelledby="graphTab-4d">
+              <div class="luna-tab-copy">
+                <p class="luna-tab-copy__lede">Slide through a fourth dimension, w.</p>
+              </div>
+              <div class="luna-tab-visual">
+                <div class="luna-phone luna-phone--tab" data-phone-mock="lune-graph" aria-label="Lune Graph 4D preview (phone mockup)">
+                  <div class="luna-phone__screen phone-screenshot-host">
+                    <video class="luna-phone__demo" data-tab-demo loop muted playsinline preload="none" poster="screenshots/applied/lune-graph-4d-20261104-poster.webp" aria-label="Dragging the w slider reshapes the 3D slice of z = sin(x + w) cos(y)">
+                      <source src="screenshots/applied/lune-graph-4d-20261104.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <div class="luna-tab-copy__traits">
+                <span>Live w slider</span>
+                <span>3D slices</span>
+                <span>Complex plane</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section section--voice" aria-labelledby="voice-title">
       <div class="voice-flow" data-liquid-glass data-liquid-glass-variant="frosted">
@@ -15746,7 +16007,7 @@
     currentLunaTabIndex = nextIndex;
 
     // Deactivate all tab buttons
-    const buttons = document.querySelectorAll('.luna-tab-btn');
+    const buttons = document.querySelectorAll('#luna .luna-tab-btn');
     buttons.forEach(btn => {
       btn.classList.remove('is-active');
       btn.setAttribute('aria-selected', 'false');
@@ -15761,7 +16022,7 @@
     }
 
     // Swap panels immediately; the selector pill provides the motion cue.
-    const panels = document.querySelectorAll('.luna-tab-panel');
+    const panels = document.querySelectorAll('#luna .luna-tab-panel');
     panels.forEach(p => {
       p.classList.toggle('is-active', p.id === 'lunaPanel-' + tab);
     });
@@ -15771,7 +16032,7 @@
 
   // Ensure first tab is ready (static HTML marks it active; this is a safety net)
   document.addEventListener('DOMContentLoaded', function () {
-    const hasActive = document.querySelector('.luna-tab-panel.is-active');
+    const hasActive = document.querySelector('#luna .luna-tab-panel.is-active');
     if (!hasActive) {
       const firstPanel = document.getElementById('lunaPanel-voice');
       if (firstPanel) firstPanel.classList.add('is-active');
@@ -15800,7 +16061,7 @@
     // WebKit can skip repainting composited text after the web font swaps in,
     // leaving the Luna tab labels blank until a tab change (2026-11-02). Nudge
     // one repaint of the tab bar once fonts are ready.
-    const lunaMenu = document.querySelector('.luna-menu');
+    const lunaMenu = document.querySelector('#luna .luna-menu');
     if (lunaMenu && document.fonts && document.fonts.ready) {
       document.fonts.ready.then(function () {
         lunaMenu.style.webkitTransform = 'translateZ(0)';
@@ -15812,6 +16073,77 @@
       });
     }
   });
+
+  // Notes + Lune Graph tab sections (2026-11-04): the Luna tab pattern,
+  // generalized per [data-phone-tabs] root, with arrow-key/Home/End tab
+  // navigation. Only the active panel's clip plays, and only near the viewport.
+  (function initPhoneTabSections() {
+    const roots = Array.prototype.slice.call(document.querySelectorAll('[data-phone-tabs]'));
+    if (!roots.length) return;
+    const motion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    roots.forEach(function (root) {
+      const tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+      let isNear = false;
+
+      function syncVideos() {
+        const reduced = Boolean(motion && motion.matches);
+        root.querySelectorAll('[data-tab-demo]').forEach(function (video) {
+          const panel = video.closest('[role="tabpanel"]');
+          const active = Boolean(panel && panel.classList.contains('is-active'));
+          if (active && video.preload === 'none') video.preload = 'metadata';
+          video.muted = true;
+          video.defaultMuted = true;
+          playPreviewVideo(video, active && isNear && !document.hidden && !reduced);
+        });
+      }
+
+      function select(tab, focus) {
+        if (!tab || tab.classList.contains('is-active')) {
+          if (focus && tab) tab.focus();
+          return;
+        }
+        tabs.forEach(function (btn) {
+          const on = btn === tab;
+          btn.classList.toggle('is-active', on);
+          btn.setAttribute('aria-selected', on ? 'true' : 'false');
+          btn.tabIndex = on ? 0 : -1;
+          const panel = document.getElementById(btn.getAttribute('aria-controls'));
+          if (panel) panel.classList.toggle('is-active', on);
+        });
+        positionMovingSelection(tab);
+        if (focus) tab.focus();
+        syncVideos();
+      }
+
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener('click', function () { select(tab, false); });
+        tab.addEventListener('keydown', function (event) {
+          let next = null;
+          if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = tabs[(index + 1) % tabs.length];
+          else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = tabs[(index - 1 + tabs.length) % tabs.length];
+          else if (event.key === 'Home') next = tabs[0];
+          else if (event.key === 'End') next = tabs[tabs.length - 1];
+          if (!next) return;
+          event.preventDefault();
+          select(next, true);
+        });
+      });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          isNear = entries.some(function (entry) { return entry.isIntersecting; });
+          syncVideos();
+        }, { rootMargin: '180px 0px', threshold: 0.01 }).observe(root);
+      } else {
+        isNear = true;
+      }
+      document.addEventListener('visibilitychange', syncVideos);
+      if (motion && motion.addEventListener) motion.addEventListener('change', syncVideos);
+      else if (motion && motion.addListener) motion.addListener(syncVideos);
+      syncVideos();
+    });
+  })();
 
   const worldConfigMap = {
     earth: { label: 'Earth', icon: '/lune-synth/images/world-previews/earth.svg?v=2' },
