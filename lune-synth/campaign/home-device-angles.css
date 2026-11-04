@@ -141,3 +141,15 @@ main .voice-scene__ipad {
     rotate: var(--home-mobile-angle) !important;
   }
 }
+
+/* Notes sits on the right (copy left, phone right, above 860px), so its phone
+   mirrors the Lune Graph phone and turns in toward the copy (owner
+   2026-11-04): the yaw and roll flip sign, the pitch stays, and the layout
+   lean mirrors. The stacked mobile layout keeps the shared angle. */
+@media (min-width: 861px) {
+  main .section--notes .luna-phone--tab {
+    --home-desktop-angle: 1.8 3.5 -0.2 -25deg;
+    --home-mobile-angle: 1.6 3.5 -0.15 -16deg;
+    transform: rotate(1deg);
+  }
+}

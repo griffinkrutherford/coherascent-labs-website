@@ -10867,6 +10867,10 @@
       html[data-tilt-ready] .voice-scene__phone { rotate: 0 1 0 -40deg; }
       html[data-tilt-ready] .voice-scene__ipad { rotate: 1 3 0 42deg; }
       html[data-tilt-ready] .luna-phone--tab { rotate: 0 1 0 -36deg; }
+      /* Notes' phone sits on the right side by side, so it swings in mirrored. */
+      @media (min-width: 861px) {
+        html[data-tilt-ready] .section--notes .luna-phone--tab { rotate: 0 1 0 36deg; }
+      }
       html[data-tilt-ready] .quick-missions__phone { rotate: 0 1 0 34deg; }
       html[data-tilt-ready] .lang-shot__phone { rotate: 0 1 0 -32deg; }
       html[data-tilt-ready] .ipad-mockup { rotate: 2 5 0 -40deg; }
@@ -10992,7 +10996,7 @@
   <script src="/campaign/nav-scroll.js?v=2" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
-  <link rel="stylesheet" href="/campaign/home-device-angles.css?v=6" />
+  <link rel="stylesheet" href="/campaign/home-device-angles.css?v=7" />
   <link rel="stylesheet" href="/campaign/constellation-upload.css?v=6" />
   <script src="/campaign/constellation-upload.js?v=3" defer></script>
   <link rel="stylesheet" href="/campaign/subject-rotation.css?v=3" />
