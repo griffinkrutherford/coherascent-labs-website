@@ -60,10 +60,28 @@
   border-radius: 50%;
   background: rgba(6, 13, 28, 0.72);
   color: var(--muted, #a6bad7);
-  font: inherit;
-  font-size: 24px;
-  line-height: 1;
+  /* The × is drawn with two bars, not the font glyph, so it sits dead
+     centre in the circle in every font (owner 2026-11-04). */
+  font-size: 0;
+  padding: 0;
   cursor: pointer;
+}
+
+.beta-offer-popup__close::before,
+.beta-offer-popup__close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.beta-offer-popup__close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .beta-offer-popup__eyebrow {

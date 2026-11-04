@@ -104,6 +104,32 @@
     }
   }
 
+  // Centre the dismiss button on the visible eyebrow pill, which wraps to
+  // two lines on narrow screens (owner 2026-11-04).
+  var closeObserver = null;
+  function alignClose() {
+    if (!popup || popup.hidden) return;
+    var close = popup.querySelector(".beta-offer-popup__close");
+    var panel = popup.querySelector(".beta-offer-popup__panel");
+    var eyebrows = popup.querySelectorAll(".beta-offer-popup__eyebrow");
+    var eyebrow = null;
+    for (var i = 0; i < eyebrows.length; i++) {
+      if (eyebrows[i].offsetParent !== null) { eyebrow = eyebrows[i]; break; }
+    }
+    if (!close || !panel || !eyebrow) return;
+    var panelBox = panel.getBoundingClientRect();
+    var pillBox = eyebrow.getBoundingClientRect();
+    var top = pillBox.top - panelBox.top + panel.scrollTop + (pillBox.height - close.offsetHeight) / 2;
+    close.style.top = Math.max(8, Math.round(top)) + "px";
+  }
+  function watchClose() {
+    alignClose();
+    if (closeObserver || typeof window.ResizeObserver !== "function") return;
+    closeObserver = new window.ResizeObserver(alignClose);
+    var eyebrows = popup.querySelectorAll(".beta-offer-popup__eyebrow");
+    for (var i = 0; i < eyebrows.length; i++) closeObserver.observe(eyebrows[i]);
+  }
+
   function closePopup() {
     if (!popup || popup.hidden) return;
     store(DISMISSED_KEY);
@@ -126,6 +152,7 @@
     document.body.classList.add("has-beta-offer-popup");
     trackViewport(true);
     updateViewport();
+    watchClose();
     var input = popup.querySelector('input[type="email"]');
     if (input) input.focus({ preventScroll: true });
   }
@@ -176,6 +203,7 @@
           store(DISMISSED_KEY);
           popup.querySelector("[data-beta-offer-content]").hidden = true;
           popup.querySelector("[data-beta-offer-success]").hidden = false;
+          alignClose();
           var successHeading = popup.querySelector("[data-beta-offer-success] h2");
           if (successHeading && data.title) successHeading.textContent = data.title;
           var successMessage = popup.querySelector("[data-beta-offer-message]");

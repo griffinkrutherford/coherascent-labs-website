@@ -320,7 +320,7 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <link rel="stylesheet" href="/campaign/phone-chassis.css?v=1" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
   <link rel="stylesheet" href="/campaign/features.css?v=4" />
-  <link rel="stylesheet" href="/campaign/offer-popup.css?v=2" />
+  <link rel="stylesheet" href="/campaign/offer-popup.css?v=3" />
   <script src="/campaign/cta-config.js?v=2" defer></script>
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
   <link rel="stylesheet" href="/campaign/waitlist-prompt.css?v=1" />
@@ -330,7 +330,7 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <script src="/campaign/landing.js?v=8" defer></script>
   <link rel="stylesheet" href="/campaign/device-tilt.css?v=9" />
   <script src="/campaign/device-tilt.js?v=9" defer></script>
-  <script src="/campaign/offer-popup.js?v=6" defer></script>
+  <script src="/campaign/offer-popup.js?v=7" defer></script>
   <script src="/campaign/site-header.js?v=1" defer></script>
   <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/campaign/site-header.css?v=11" />

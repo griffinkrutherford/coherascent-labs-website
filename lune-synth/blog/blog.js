@@ -197,13 +197,13 @@
   if (!document.querySelector('link[data-beta-offer-popup]')) {
     var stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
-    stylesheet.href = "/campaign/offer-popup.css?v=2";
+    stylesheet.href = "/campaign/offer-popup.css?v=3";
     stylesheet.dataset.betaOfferPopup = "";
     document.head.appendChild(stylesheet);
   }
   if (!document.querySelector('script[data-beta-offer-popup]')) {
     var script = document.createElement("script");
-    script.src = "/campaign/offer-popup.js?v=6";
+    script.src = "/campaign/offer-popup.js?v=7";
     script.dataset.betaOfferPopup = "";
     document.head.appendChild(script);
   }
