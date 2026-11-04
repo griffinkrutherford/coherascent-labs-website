@@ -6149,6 +6149,26 @@
       }
     }
 
+    /* Notes mirrors Luna: copy left, phone right (owner 2026-11-04), so the
+       Notes and Lune Graph sections alternate. Stacked layout is unchanged. */
+    @media (min-width: 861px) {
+      .section--notes .luna-card,
+      .section--notes .luna-tab-panel {
+        grid-template-columns: 1fr 1.5fr;
+      }
+      .section--notes .luna-menu {
+        justify-self: start;
+      }
+      .section--notes .luna-tab-copy {
+        grid-column: 1;
+        align-items: flex-end;
+        text-align: right;
+      }
+      .section--notes .luna-tab-visual {
+        grid-column: 2;
+      }
+    }
+
     .luna-tab-btn:focus-visible {
       outline: 2px solid var(--blue);
       outline-offset: 2px;
