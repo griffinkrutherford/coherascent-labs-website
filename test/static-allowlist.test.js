@@ -209,7 +209,9 @@ test('the handful of page-relative references still resolve', async () => {
 
   // lune-synth/index.html's "../x" references (its "./lune-engine/index.js"
   // script tag is HTML-commented out -- DISABLED -- so it is not live).
-  for (const ref of ['/applied-handwriting-demo.js', '/applied-response-slideshow.js']) {
+  for (const ref of ['/applied-handwriting-demo.js', '/applied-response-slideshow.js', '/applied-phone-intro.js',
+    '/mobile-app-assets/screenshots/applied/question-prompts/carousel-v7/2-intro.mp4',
+    '/mobile-app-assets/screenshots/applied/question-prompts/carousel-v7/2-mid.webp']) {
     const { status } = await get(ref, 'lunesynth.com');
     assert.equal(status, 200, `${ref} on lunesynth.com`);
   }

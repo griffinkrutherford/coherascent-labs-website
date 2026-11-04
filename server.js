@@ -98,6 +98,7 @@ const ALLOWED_ROOT_FILES = new Set([
   'applied-response-slideshow.js',
   'applied-handwriting-demo.js',
   'applied-phone-screenshots.js',
+  'applied-phone-intro.js',
 ]);
 
 // Conventional fixed paths a browser, crawler, or store reviewer may request.
@@ -122,6 +123,11 @@ const ALLOWED_DIR_PREFIXES = ['images/', 'lune-synth/', 'applied/', 'research/']
 const ALLOWED_IMAGE_SUBTREES = ['mobile-app-assets/screenshots/'];
 const IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'avif']);
 
+// The handwriting carousel's phone intro clips (applied-phone-intro.js) sit
+// beside the stills they end on; only MP4 is added, and only there.
+const ALLOWED_VIDEO_SUBTREES = ['mobile-app-assets/screenshots/applied/question-prompts/carousel-v7/'];
+const VIDEO_EXTENSIONS = new Set(['mp4']);
+
 function isAllowedPublicPath(normalizedPath) {
   const rel = normalizedPath.split(path.sep).join('/');
 
@@ -130,6 +136,10 @@ function isAllowedPublicPath(normalizedPath) {
   if (ALLOWED_FIXED_PATHS.has(rel)) return true;
 
   const ext = path.extname(rel).slice(1).toLowerCase();
+
+  for (const subtree of ALLOWED_VIDEO_SUBTREES) {
+    if (rel.startsWith(subtree) && VIDEO_EXTENSIONS.has(ext)) return true;
+  }
 
   for (const subtree of ALLOWED_IMAGE_SUBTREES) {
     const dirName = subtree.slice(0, -1);
