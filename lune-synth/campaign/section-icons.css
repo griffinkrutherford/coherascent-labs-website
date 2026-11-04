@@ -32,8 +32,8 @@ main #processing-title { --section-icon: url("/campaign/nav-icons/checklist.webp
 main #medals-title { --section-icon: url("/campaign/nav-icons/medal.webp"); }
 main #tock-title { --section-icon: url("/campaign/nav-icons/clock.webp"); }
 main #engine-title { --section-icon: url("/campaign/nav-icons/gear.webp"); }
-main #notes-title { --section-icon: url("/campaign/nav-icons/notebook.svg"); }
-main #lune-graph-title { --section-icon: url("/campaign/nav-icons/graph.svg"); }
+main #notes-title { --section-icon: url("/campaign/nav-icons/notebook.webp"); }
+main #lune-graph-title { --section-icon: url("/campaign/nav-icons/graph.webp"); }
 main #blog-title { --section-icon: url("/campaign/nav-icons/book.webp"); }
 main #why-title { --section-icon: url("/campaign/nav-icons/empathy.webp"); }
 main .section--handwriting > .section-title:not([id]) { --section-icon: url("/campaign/nav-icons/fountainPen.webp"); }
