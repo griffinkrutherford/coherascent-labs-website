@@ -42,7 +42,7 @@
     header.classList.toggle("nav-open", open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.style.overflow = open ? "hidden" : "";
   }
 
   toggle.addEventListener("click", function () {
@@ -50,7 +50,7 @@
       header.classList.remove("brand-open");
       var brandEl = document.querySelector(".brand");
       if (brandEl) brandEl.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open menu");
       return;
@@ -79,7 +79,7 @@
   function setBrandOpen(open) {
     header.classList.toggle("brand-open", open);
     brand.setAttribute("aria-expanded", open ? "true" : "false");
-    document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.style.overflow = open ? "hidden" : "";
     if (navToggle) {
       navToggle.setAttribute("aria-expanded", open ? "true" : "false");
       navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
@@ -222,7 +222,7 @@
   function openPopup() {
     lastFocusedElement = document.activeElement;
     popup.hidden = false;
-    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
 
     if (closeButton) {
       closeButton.focus();
@@ -231,7 +231,7 @@
 
   function closePopup() {
     popup.hidden = true;
-    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
 
     if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
       lastFocusedElement.focus();

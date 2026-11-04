@@ -238,7 +238,7 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
   <link rel="stylesheet" href="/campaign/site-header.css?v=11" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=5" />
   <script src="/campaign/site-footer.js?v=9" data-lune-site-footer defer></script>
-  <script src="/campaign/nav-scroll.js?v=1" defer></script>
+  <script src="/campaign/nav-scroll.js?v=2" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
@@ -283,7 +283,7 @@ ${content}
     <lune-site-footer id="site-footer"></lune-site-footer>
     </article>
   </main>
-  <script src="/blog/blog.js?v=8"></script>
+  <script src="/blog/blog.js?v=9"></script>
 </body>
 </html>
 `;

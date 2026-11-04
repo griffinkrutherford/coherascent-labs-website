@@ -29,7 +29,7 @@
     activeSubmitter = null;
     dialog.hidden = true;
     trackViewport(false);
-    document.body.style.overflow = previousOverflow;
+    document.documentElement.style.overflow = previousOverflow;
     if (launcher && launcher.isConnected) launcher.focus({ preventScroll: true });
   }
 
@@ -120,14 +120,14 @@
     if (dialog.open) return;
     activeForm = form;
     activeSubmitter = event.submitter;
-    previousOverflow = document.body.style.overflow;
+    previousOverflow = document.documentElement.style.overflow;
     dialog.querySelector("form").reset();
     dialog.querySelector("input").removeAttribute("aria-invalid");
     dialog.querySelector(".lune-waitlist-prompt__status").textContent = "";
     dialog.hidden = false;
     trackViewport(true);
     updateViewport();
-    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     dialog.showModal();
   }, true);
 })();

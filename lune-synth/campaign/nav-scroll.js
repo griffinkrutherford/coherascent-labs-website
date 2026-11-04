@@ -80,7 +80,7 @@
     event.preventDefault();
     event.stopImmediatePropagation();
     header.classList.remove('nav-open');
-    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
     var toggle = header.querySelector('[data-nav-toggle]');
     if (toggle) {
       toggle.setAttribute('aria-expanded', 'false');

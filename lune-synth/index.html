@@ -10946,7 +10946,7 @@
   <script src="/campaign/device-tilt.js?v=9" defer></script>
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
   <link rel="stylesheet" href="/campaign/waitlist-prompt.css?v=1" />
-  <script src="/campaign/waitlist-prompt.js?v=1" defer></script>
+  <script src="/campaign/waitlist-prompt.js?v=2" defer></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -10969,7 +10969,7 @@
   <script src="/campaign/site-footer.js?v=20" data-lune-site-footer defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=9" />
   <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=4" />
-  <script src="/campaign/nav-scroll.js?v=1" defer></script>
+  <script src="/campaign/nav-scroll.js?v=2" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/home-device-angles.css?v=6" />
@@ -15514,7 +15514,7 @@
       header.classList.toggle("nav-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      document.body.style.overflow = open ? "hidden" : "";
+      document.documentElement.style.overflow = open ? "hidden" : "";
     }
 
     toggle.addEventListener("click", function () {
@@ -15523,7 +15523,7 @@
         header.classList.remove("brand-open");
         var brandEl = document.querySelector(".brand");
         if (brandEl) brandEl.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
         // Reset toggle aria (will be "Open menu" for nav)
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "Open menu");
@@ -15553,7 +15553,7 @@
     function setBrandOpen(open) {
       header.classList.toggle("brand-open", open);
       brand.setAttribute("aria-expanded", open ? "true" : "false");
-      document.body.style.overflow = open ? "hidden" : "";
+      document.documentElement.style.overflow = open ? "hidden" : "";
       // Update the shared nav-toggle to act as the X/close for this popup (same as hamburger)
       if (navToggle) {
         navToggle.setAttribute("aria-expanded", open ? "true" : "false");
@@ -15676,7 +15676,7 @@
     function openPopup() {
       lastFocusedElement = document.activeElement;
       popup.hidden = false;
-      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
 
       if (closeButton) {
         closeButton.focus();
@@ -15685,7 +15685,7 @@
 
     function closePopup() {
       popup.hidden = true;
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
 
       if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
         lastFocusedElement.focus();

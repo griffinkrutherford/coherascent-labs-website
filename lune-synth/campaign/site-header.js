@@ -41,7 +41,7 @@
     header.classList.toggle("nav-open", open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.style.overflow = open ? "hidden" : "";
   }
 
   toggle.addEventListener("click", function () {
@@ -49,7 +49,7 @@
       header.classList.remove("brand-open");
       var brandEl = document.querySelector(".brand");
       if (brandEl) brandEl.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open menu");
       return;
