@@ -237,6 +237,12 @@
   }
 
   function prepareFullscreenClone(clone) {
+    // A carousel intro clip mid-play is never enlarged: the clone shows the
+    // still it ends on (applied-phone-intro.js).
+    Array.prototype.forEach.call(clone.querySelectorAll(".phone-intro-video"), function (node) {
+      node.remove();
+    });
+
     if (clone.getAttribute("data-fullscreen-render") !== "mock") return;
 
     Array.prototype.forEach.call(clone.querySelectorAll(".phone-screenshot"), function (node) {

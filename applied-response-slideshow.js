@@ -20,6 +20,15 @@
   var postWritePause = 1800;
   var calculusFinished = false;
 
+  // Phone intro clips (applied-phone-intro.js): the handwriting starts once
+  // the slide's question has opened on the phone, i.e. after the clip.
+  function introDelay(slide) {
+    if (reducedMotion || !slide) return 0;
+    var host = slide.querySelector(".phone-screenshot-host[data-intro-video]");
+    var ms = host ? parseInt(host.getAttribute("data-intro-ms") || "0", 10) : 0;
+    return ms > 0 ? ms : 0;
+  }
+
   function clearLineTimers() {
     while (lineTimers.length) {
       window.clearTimeout(lineTimers.pop());
@@ -242,11 +251,12 @@
       lineTimers.push(window.setTimeout(tick, 120));
     }
 
+    var delay = introDelay(slide);
     lineTimers.push(window.setTimeout(function () {
       typeLine(0);
-    }, 80));
+    }, 80 + delay));
 
-    return estimateWriteDuration(slide);
+    return delay + estimateWriteDuration(slide);
   }
 
   function showSlide(nextIndex) {

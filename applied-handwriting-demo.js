@@ -95,7 +95,16 @@
     resetBoard();
   }
 
-  function startAnimation() {
+  // Phone intro clip (applied-phone-intro.js): on a slide change the
+  // handwriting waits for the question to open on the phone first.
+  function introDelay() {
+    if (reducedMotion) return 0;
+    var host = slide.querySelector(".phone-screenshot-host[data-intro-video]");
+    var ms = host ? parseInt(host.getAttribute("data-intro-ms") || "0", 10) : 0;
+    return ms > 0 ? ms : 0;
+  }
+
+  function startAnimation(withIntro) {
     clearMotion();
 
     if (reducedMotion) {
@@ -115,7 +124,7 @@
     resetBoard();
     startTimer = window.setTimeout(function () {
       animateGlyph(0);
-    }, 200);
+    }, 200 + (withIntro ? introDelay() : 0));
   }
 
   function animateGlyph(index) {
@@ -158,11 +167,11 @@
 
   buildGlyphs();
 
-  startAnimation();
+  startAnimation(true);
 
   document.addEventListener("coherascent:response-slide-change", function (event) {
     if (event && event.detail && event.detail.index === 0) {
-      startAnimation();
+      startAnimation(true);
       return;
     }
     stopAnimation();
