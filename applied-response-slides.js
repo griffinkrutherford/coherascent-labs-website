@@ -142,6 +142,16 @@
     dots.appendChild(dot);
   });
 
+  // Every slide whose screenshot has a recorded intro clip (static and
+  // injected alike) points at its v7 still and clip (applied-carousel-intros.js),
+  // before applied-phone-screenshots.js reads the hosts.
+  var intros = window.LuneCarouselIntros;
+  if (intros) {
+    Array.prototype.forEach.call(deck.querySelectorAll(".phone-screenshot-host[data-screenshot-src]"), function (host) {
+      intros.applyToHost(host);
+    });
+  }
+
   // Reorder slides and their dots by ORDER, then renumber both so the
   // slideshow (which walks slides and dots in DOM order) follows it.
   var papers = Array.prototype.slice.call(deck.querySelectorAll(".response-carousel__paper"));
@@ -152,7 +162,8 @@
     // names its place in ORDER with data-response-key.
     if (paper.dataset.responseKey) return paper.dataset.responseKey;
     var host = paper.querySelector("[data-screenshot-src]");
-    var match = host && /question-prompts\/(.+?)-mid\.webp/.exec(host.getAttribute("data-screenshot-src") || "");
+    // Accepts both the v6 path and the carousel-v7/ path (the intro stills).
+    var match = host && /question-prompts\/(?:carousel-v7\/)?([^/?]+?)-mid\.webp/.exec(host.getAttribute("data-screenshot-src") || "");
     return match ? match[1] : "";
   }
   var pairs = papers.map(function (paper, i) { return { paper: paper, dot: dotList[i], image: imageOf(paper) }; });

@@ -1,11 +1,12 @@
 /*
  * Handwriting carousel phone intros (2026-11-04).
  *
- * Each carousel question phone whose screenshot host carries
- * `data-intro-video` plays a short recording of that question screen
+ * Each carousel question phone with a recorded intro (by screenshot name,
+ * applied-carousel-intros.js; hosts carry `data-intro-video`) plays a short recording of that question screen
  * opening (its diagram drawing in) once, when its slide becomes active.
  * The clip's last frame is the host's screenshot, so when the clip ends the
- * video is removed and the still underneath takes over with no jump.
+ * video is removed (once the still is loaded and fully faded in) and the
+ * still underneath takes over with no jump. Every visit replays from 0.
  *
  * - Only the active slide's clip and the next slide's are loaded.
  * - prefers-reduced-motion: no video at all, the still only.
@@ -35,7 +36,25 @@
   }
 
   function introHost(paper) {
-    return paper ? paper.querySelector(".phone-screenshot-host[data-intro-video]") : null;
+    if (!paper) return null;
+    var host = paper.querySelector(".phone-screenshot-host[data-intro-video]");
+    if (host) return host;
+    // A slide added after applied-response-slides.js ran: derive its clip
+    // from the screenshot name (applied-carousel-intros.js).
+    var intros = window.LuneCarouselIntros;
+    var candidate = paper.querySelector(".phone-screenshot-host[data-screenshot-src]");
+    return intros && candidate && intros.applyToHost(candidate) ? candidate : null;
+  }
+
+  // Warm the cache for a slide's still so the hand-off never waits on it.
+  function warmStill(host) {
+    if (!host || host._introStillWarm) return;
+    var src = host.getAttribute("data-screenshot-src");
+    if (!src) return;
+    var img = new Image();
+    img.decoding = "async";
+    img.src = src;
+    host._introStillWarm = img;
   }
 
   function isPaused() {
@@ -44,12 +63,21 @@
 
   function stillReady(host) {
     var img = host.querySelector("img.phone-screenshot--loaded");
-    return !!(img && img.complete && img.naturalWidth);
+    if (!img || !img.complete || !img.naturalWidth) return false;
+    return parseFloat(window.getComputedStyle(img).opacity || "1") >= 0.999;
+  }
+
+  function cancelHandoff(host) {
+    if (host && host._introHandoff) {
+      host._introHandoff();
+      host._introHandoff = null;
+    }
   }
 
   // One element per host, created on demand and kept until its clip ends,
   // so preloading the next slide reuses the same request.
   function videoFor(host) {
+    cancelHandoff(host);
     if (host._introVideo) return host._introVideo;
     var video = document.createElement("video");
     video.className = "phone-screenshot phone-intro-video";
@@ -68,9 +96,13 @@
     return video;
   }
 
-  function release(host) {
+  function release(host, onlyVideo) {
     var video = host && host._introVideo;
     if (!video) return;
+    // A stale hand-off from an earlier visit must never remove the clip a
+    // newer visit is playing.
+    if (onlyVideo && video !== onlyVideo) return;
+    cancelHandoff(host);
     video.pause();
     video.removeAttribute("src");
     video.load();
@@ -81,19 +113,32 @@
   function finish(entry) {
     if (!entry || playing !== entry) return;
     playing = null;
+    var host = entry.host;
+    var video = entry.video;
     // The clip ends on the still's frame: hand off only once the still is
-    // painted, holding the video's last frame until then.
-    if (stillReady(entry.host)) {
-      release(entry.host);
+    // loaded and fully faded in, holding the clip's last frame until then.
+    if (stillReady(host)) {
+      release(host, video);
       return;
     }
-    var img = entry.host.querySelector("img.phone-screenshot");
-    var done = function () { release(entry.host); };
-    if (img) {
-      img.addEventListener("load", done, { once: true });
-      img.addEventListener("error", done, { once: true });
-    }
-    window.setTimeout(done, 4000);
+    var frame = 0;
+    var deadline = Date.now() + 6000;
+    var cancelled = false;
+    var poll = function () {
+      if (cancelled) return;
+      if (host._introVideo !== video) return;
+      if (stillReady(host) || Date.now() > deadline) {
+        host._introHandoff = null;
+        release(host, video);
+        return;
+      }
+      frame = window.requestAnimationFrame(poll);
+    };
+    host._introHandoff = function () {
+      cancelled = true;
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+    frame = window.requestAnimationFrame(poll);
   }
 
   function stopPlaying() {
@@ -107,7 +152,10 @@
     var list = papers();
     var next = list[(list.indexOf(paper) + 1) % list.length];
     var host = introHost(next);
-    if (host && host !== (playing && playing.host)) videoFor(host);
+    if (host && host !== (playing && playing.host)) {
+      warmStill(host);
+      videoFor(host);
+    }
   }
 
   function playFor(paper) {
@@ -125,20 +173,21 @@
       preloadNext(paper);
       return;
     }
+    warmStill(host);
     var video = videoFor(host);
     var entry = { host: host, video: video };
     playing = entry;
     video.hidden = false;
     try { video.currentTime = 0; } catch (error) { /* not loaded yet */ }
     video.onended = function () { finish(entry); };
-    video.onerror = function () { if (playing === entry) { playing = null; release(host); } };
+    video.onerror = function () { if (playing === entry) { playing = null; release(host, video); } };
     var attempt = video.play();
     if (attempt && attempt.catch) {
       attempt.catch(function () {
         // Autoplay refused: show the still.
         if (playing === entry) {
           playing = null;
-          release(host);
+          release(host, video);
         }
       });
     }
