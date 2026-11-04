@@ -5174,10 +5174,14 @@
       transform: none;
     }
 
+    /* 30 slides no longer fit one row beside the phone: stack the dots in
+       rows of 15, right-aligned above the buttons, like the mobile grid
+       (owner 2026-11-04). */
     .response-carousel__dots {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+      display: grid;
+      grid-template-columns: repeat(15, 8px);
+      grid-auto-rows: 8px;
+      justify-content: end;
       gap: 6px;
     }
 
