@@ -522,6 +522,27 @@
       font-size: 15px;
     }
 
+    /* Social links (2026-11-04): company LinkedIn, product Instagram. */
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .footer-social a {
+      color: inherit;
+      opacity: 0.8;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-social a:hover,
+    .footer-social a:focus-visible {
+      opacity: 1;
+    }
+
     .footer {
       margin-top: 80px;
       padding: 24px;
@@ -711,6 +732,11 @@
 
     <footer class="footer" aria-label="Research call to action">
       <a class="cta" href="/">Return to Coherascent Labs</a>
+      <nav class="footer-social" aria-label="Social">
+        <a href="https://www.linkedin.com/company/coherascent-labs/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="https://www.instagram.com/lunesynth" target="_blank" rel="noopener noreferrer">Lune Synth on Instagram</a>
+      </nav>
     </footer>
   </main>
   <script src="../liquid-glass-cards.js"></script>
