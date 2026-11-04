@@ -99,6 +99,7 @@ const ALLOWED_ROOT_FILES = new Set([
   'applied-handwriting-demo.js',
   'applied-phone-screenshots.js',
   'applied-phone-intro.js',
+  'applied-carousel-intros.js',
 ]);
 
 // Conventional fixed paths a browser, crawler, or store reviewer may request.

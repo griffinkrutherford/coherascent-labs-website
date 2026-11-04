@@ -172,6 +172,7 @@ Then test the host-specific routes with `curl`:
 ├── applied-response-slideshow.js # response carousel logic
 ├── applied-handwriting-demo.js   # animated handwriting SVG logic
 ├── applied-phone-intro.js        # carousel phone intro clips (diagram draw-in), then the still
+├── applied-carousel-intros.js    # which carousel screenshots have intro clips (manifest)
 ├── images/                       # research visuals
 ├── mobile-app-plan.md           # app implementation plan
 └── mobile-app-assets/           # tokens, icons, UML diagrams
