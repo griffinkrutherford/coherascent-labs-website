@@ -19,7 +19,10 @@ const path = require('node:path');
 const http = require('node:http');
 
 const SERVER = path.join(__dirname, '..', 'server.js');
-const PORT = 39183; // distinct from server-routes.test.js's fixed port
+// 39190+: distinct from every other test file's fixed port (server-routes
+// uses 39182, static-allowlist 39183, api-body-cap 39184); this file spins
+// up three server processes on consecutive ports.
+const PORT = 39190;
 
 function get(pathname, host, extraEnvServer) {
   return new Promise((resolve, reject) => {

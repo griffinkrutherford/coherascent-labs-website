@@ -4,6 +4,7 @@
  */
 
 const { sendWaitlistConfirmation } = require('./waitlist-confirmation.js');
+const { sendCapiLeadEvent } = require('./meta-capi.js');
 
 // Copy shown in the site's success popup. Returned as `message` so the clients
 // (blog.js, cta.js) pick it up centrally rather than each hardcoding it.
@@ -187,6 +188,21 @@ function parseAttribution(req) {
     const value = clean(url.searchParams.get(key), 60).toLowerCase();
     if (value) attribution[key] = value;
   }
+
+  // Additive (2026-11-05 ad-tracking infra): capture a paid click the same
+  // way utm_* is captured above, from the landing URL alone, no SDK involved.
+  //
+  // fbc mirrors Meta's own `_fbc` cookie format (fb.1.<click_time_ms>.<fbclid>)
+  // so this property lines up with what Meta CAPI expects, but it is built
+  // from the request time, not the real click time, since there is no
+  // client-side timestamp here -- it is a first-party Resend property, a
+  // fallback for analysis, never what sendCapiLeadEvent() sends (that call
+  // prefers the visitor's real _fbc cookie, read from the Cookie header).
+  const fbclid = clean(url.searchParams.get('fbclid'), 100);
+  if (fbclid) attribution.fbc = `fb.1.${Date.now()}.${fbclid}`;
+
+  const ref = clean(url.searchParams.get('ref'), 60);
+  if (ref) attribution.ref = ref;
 
   return attribution;
 }
@@ -390,6 +406,25 @@ module.exports = async (req, res) => {
       + ` page=${attribution.signup_page || 'unknown'}`
       + ` campaign=${attribution.utm_campaign || attribution.utm_source || 'none'}`
     );
+
+    // Server-side Meta Conversions API confirmation of the same Lead the
+    // browser Pixel (lune-synth/campaign/ad-tracking.js) fires on success,
+    // deduplicated by tracking_event_id. Not awaited -- sendCapiLeadEvent()
+    // never throws and never rejects (see api/meta-capi.js), and this must
+    // never delay or affect the signup response either way. It is also a
+    // strict no-op unless META_PIXEL_ID/META_CAPI_ACCESS_TOKEN are set and
+    // the client reported consent === 'granted', so this line does nothing
+    // at all today.
+    sendCapiLeadEvent({
+      email: trimmedEmail,
+      eventId: typeof req.body.tracking_event_id === 'string' ? req.body.tracking_event_id : '',
+      consent: typeof req.body.tracking_consent === 'string' ? req.body.tracking_consent : '',
+      ip: getClientIp(req),
+      userAgent: (req.headers && req.headers['user-agent']) || '',
+      cookieHeader: (req.headers && req.headers.cookie) || '',
+      eventSourceUrl: (req.headers && req.headers.referer) || '',
+      attribution,
+    }).catch(() => {});
 
     if (platform) {
       // Signup already carried the answer, so nothing to wait for.
