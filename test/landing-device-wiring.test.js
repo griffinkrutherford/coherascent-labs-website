@@ -13,8 +13,8 @@ test('About gains tilt before existing manual rotation without duplicating it',(
  const html=withLandingDeviceWiring(original);assertWired(html);assert.ok(html.indexOf('device-tilt.js')<html.indexOf('device-rotation.css'));
 });
 test('old cache versions and early async execution normalize idempotently',()=>{
- const original='<head><script src="/campaign/device-tilt.js?v=1" async></script><link href="/campaign/site-header.css?v=12" rel="stylesheet" /></head>';
- const html=withLandingDeviceWiring(original);assertWired(html);assert.ok(!html.includes(' async'));assert.ok(html.includes('site-header.css?v=12'));assert.equal(withLandingDeviceWiring(html),html);
+ const original='<head><script src="/campaign/device-tilt.js?v=1" async></script><link href="/campaign/site-header.css?v=13" rel="stylesheet" /></head>';
+ const html=withLandingDeviceWiring(original);assertWired(html);assert.ok(!html.includes(' async'));assert.ok(html.includes('site-header.css?v=13'));assert.equal(withLandingDeviceWiring(html),html);
 });
 test('invalid head and duplicate controller scripts fail before an updater writes pages',()=>{
  assert.throws(()=>withLandingDeviceWiring('<body>Keep me</body>'),/Missing closing head/);

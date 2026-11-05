@@ -235,10 +235,10 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/lune-synth/legal.css?v=7" />
   <link rel="preload" href="/lune-synth/fonts/lune-wordmark-fraunces.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/campaign/site-header.css?v=12" />
+  <link rel="stylesheet" href="/campaign/site-header.css?v=13" />
   <link rel="stylesheet" href="/campaign/site-footer.css?v=7" />
   <script src="/campaign/site-footer.js?v=21" data-lune-site-footer defer></script>
-  <script src="/campaign/nav-scroll.js?v=2" defer></script>
+  <script src="/campaign/nav-scroll.js?v=3" defer></script>
   <link rel="stylesheet" href="/campaign/device-rotation.css?v=3" />
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
