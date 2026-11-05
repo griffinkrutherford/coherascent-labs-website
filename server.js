@@ -100,6 +100,7 @@ const ALLOWED_ROOT_FILES = new Set([
   'applied-phone-screenshots.js',
   'applied-phone-intro.js',
   'applied-carousel-intros.js',
+  'applied-phone-video.js',
 ]);
 
 // Conventional fixed paths a browser, crawler, or store reviewer may request.
@@ -126,7 +127,11 @@ const IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'a
 
 // The handwriting carousel's phone intro clips (applied-phone-intro.js) sit
 // beside the stills they end on; only MP4 is added, and only there.
-const ALLOWED_VIDEO_SUBTREES = ['mobile-app-assets/screenshots/applied/question-prompts/carousel-v7/'];
+const ALLOWED_VIDEO_SUBTREES = [
+  'mobile-app-assets/screenshots/applied/question-prompts/carousel-v7/',
+  // "How grading works" phone videos (applied-phone-video.js).
+  'mobile-app-assets/screenshots/grading-v2/',
+];
 const VIDEO_EXTENSIONS = new Set(['mp4']);
 
 function isAllowedPublicPath(normalizedPath) {
