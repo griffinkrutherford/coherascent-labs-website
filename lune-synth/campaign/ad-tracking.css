@@ -1,0 +1,125 @@
+/* Consent banner for the dormant ad-tracking infrastructure (2026-11-05).
+   Only ever mounted when ad-tracking.js is loaded, which only happens when
+   /campaign/tracking-config.json reports at least one configured tracker.
+   Reuses the site-wide tokens defined in site-footer.css's :root block
+   (--panel-strong, --text, --muted, --blue, --purple, --line), with
+   fallbacks so this still renders sensibly if that stylesheet is ever
+   missing. */
+
+.lune-consent-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 80;
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid var(--line, rgba(164, 123, 255, 0.22));
+  background: var(--panel-strong, rgba(8, 16, 34, 0.94));
+  color: var(--text, #edf5ff);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  padding: 16px 18px;
+  font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.lune-consent-banner.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lune-consent-banner[hidden] {
+  display: none;
+}
+
+.lune-consent-banner__panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.lune-consent-banner__text {
+  margin: 0;
+  flex: 1 1 260px;
+  color: var(--muted, #a6bad7);
+}
+
+.lune-consent-banner__text a {
+  color: var(--blue, #64a8ff);
+}
+
+.lune-consent-banner__actions {
+  display: flex;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.lune-consent-banner__actions button {
+  font: inherit;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid var(--line, rgba(164, 123, 255, 0.22));
+  background: transparent;
+  color: var(--text, #edf5ff);
+}
+
+/* Accept and Decline are the same size and weight -- the gradient fill is
+   the only visual difference, so neither reads as the "real" button. */
+.lune-consent-banner__accept {
+  background: linear-gradient(120deg, var(--blue, #64a8ff), var(--purple, #a47bff));
+  border-color: transparent;
+  color: #06111f;
+}
+
+.lune-consent-banner__decline:hover,
+.lune-consent-banner__decline:focus-visible,
+.lune-consent-banner__accept:hover,
+.lune-consent-banner__accept:focus-visible {
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.lune-consent-banner__decline:focus-visible,
+.lune-consent-banner__accept:focus-visible {
+  box-shadow: 0 0 0 2px var(--blue, #64a8ff);
+}
+
+html[data-theme="light"] .lune-consent-banner {
+  background: rgba(255, 253, 250, 0.98);
+  border-color: rgba(127, 99, 214, 0.22);
+  color: #1c2333;
+  box-shadow: 0 18px 40px rgba(60, 70, 110, 0.18);
+}
+
+html[data-theme="light"] .lune-consent-banner__text {
+  color: #475270;
+}
+
+html[data-theme="light"] .lune-consent-banner__actions button {
+  color: #1c2333;
+  border-color: rgba(127, 99, 214, 0.3);
+}
+
+@media (max-width: 520px) {
+  .lune-consent-banner__panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lune-consent-banner__actions {
+    justify-content: stretch;
+  }
+
+  .lune-consent-banner__actions button {
+    flex: 1;
+  }
+}
