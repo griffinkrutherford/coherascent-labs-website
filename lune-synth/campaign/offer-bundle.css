@@ -1,0 +1,128 @@
+/* First Light / Founding 50 in-app bonus grid (2026-11-04). Mirrors the
+   server-side member benefit bundles (app repo
+   apps/api/src/services/memberBenefitBundles.core.ts, v1). Used inside the
+   homepage .pricing-offer and the Pro page offers section. */
+
+.offer-bundle {
+  --ob-tile: rgba(255, 255, 255, 0.05);
+  --ob-line: rgba(236, 162, 154, 0.26);
+  --ob-glow: rgba(236, 162, 154, 0.18);
+  width: 100%;
+  margin: 10px 0 2px;
+  text-align: center;
+}
+
+html[data-theme="light"] .offer-bundle {
+  --ob-tile: rgba(255, 255, 255, 0.62);
+  --ob-line: rgba(181, 82, 74, 0.22);
+  --ob-glow: rgba(229, 155, 146, 0.18);
+}
+
+.offer-bundle__title {
+  margin: 0 0 10px;
+  color: var(--accent, #eca29a);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.offer-bundle__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.offer-bundle__item {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 6px;
+  padding: 10px 6px 11px;
+  border: 1px solid var(--ob-line);
+  border-radius: 16px;
+  background: var(--ob-tile);
+  box-shadow: 0 0 22px -10px var(--ob-glow);
+}
+
+.offer-bundle__art {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+}
+
+.offer-bundle__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.offer-bundle__art--world img {
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.offer-bundle__art--set {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.offer-bundle__art--set img { width: 31px; height: 31px; }
+
+.offer-bundle__label {
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.3;
+}
+
+.offer-bundle__label strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.86rem;
+}
+
+.offer-bundle__founding {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 12px;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border: 1px dashed var(--ob-line);
+  border-radius: 16px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.offer-bundle__founding p { margin: 0; max-width: 520px; text-wrap: balance; }
+.offer-bundle__founding strong { color: var(--text); }
+
+.offer-bundle__strip {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.offer-bundle__strip img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.offer-bundle__strip img.is-world { border-radius: 8px; object-fit: cover; }
+
+@media (max-width: 560px) {
+  .offer-bundle__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .offer-bundle__art { width: 56px; height: 56px; }
+  .offer-bundle__art--set img { width: 27px; height: 27px; }
+}
