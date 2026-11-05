@@ -18,7 +18,7 @@ const {
 } = require('../lune-synth/campaign/offer-state.js');
 const { classifyOfferTier, FOUNDING_CUTOFF_AT } = require('../lune-synth/campaign/offer-eligibility.js');
 
-const DEADLINE = '2026-11-10T06:59:00Z';
+const DEADLINE = '2026-11-13T06:59:00Z';
 const DEADLINE_MS = Date.parse(DEADLINE);
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -29,12 +29,12 @@ function values(parts) {
   return Object.fromEntries(parts.map((part) => [part.key, part.value]));
 }
 
-test('the live window ends Monday Nov 9, 11:59 PM MST, as an absolute UTC instant', () => {
+test('the live window ends Thursday Nov 12, 11:59 PM MST, as an absolute UTC instant', () => {
   assert.equal(FIRST_LIGHT_ENDS_AT, DEADLINE);
   const clock = createOfferClock(FIRST_LIGHT_ENDS_AT);
-  assert.equal(clock.endLabel('America/Denver'), 'Mon, Nov 9, 11:59 PM MT');
+  assert.equal(clock.endLabel('America/Denver'), 'Thu, Nov 12, 11:59 PM MT');
   // Same instant shown in another zone, never re-anchored to local midnight.
-  assert.equal(clock.endLabel('America/New_York'), 'Mon, Nov 9, 11:59 PM MT (Tue, Nov 10, 1:59 AM your time)');
+  assert.equal(clock.endLabel('America/New_York'), 'Thu, Nov 12, 11:59 PM MT (Fri, Nov 13, 1:59 AM your time)');
 });
 
 test('before the deadline: open, with days/hours/minutes/seconds remaining', () => {
@@ -46,7 +46,7 @@ test('before the deadline: open, with days/hours/minutes/seconds remaining', () 
   const html = clock.offerHtml(now, 'America/Denver');
   assert.match(html, /Limited-time First Light offer/);
   assert.doesNotMatch(html, /founding offer/i, 'First Light must never be called a founding offer');
-  assert.match(html, /Join by Mon, Nov 9, 11:59 PM MT/);
+  assert.match(html, /Join by Thu, Nov 12, 11:59 PM MT/);
   assert.match(html, /50% off your first 3 months/);
   assert.doesNotMatch(html, /spots?|limited to|only \d+|48 hours/i, 'no capacity claim or stale 48h copy');
   assert.match(clock.footnoteText(now), /First Light discount applies once you are invited/);

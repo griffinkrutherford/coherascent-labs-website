@@ -28,7 +28,7 @@
 (function () {
   "use strict";
 
-  var FIRST_LIGHT_ENDS_AT = "2026-11-10T06:59:00Z"; // Mon Nov 9, 11:59 PM MST (extended from Fri Nov 6 on 2026-11-02)
+  var FIRST_LIGHT_ENDS_AT = "2026-11-13T06:59:00Z"; // Thu Nov 12, 11:59 PM MST (extended from Mon Nov 9 on 2026-11-04; from Fri Nov 6 on 2026-11-02)
   // Start of Mon Nov 2 in Mountain time; signups recorded from here count.
   // "" falls back to the original 48-hour window before FIRST_LIGHT_ENDS_AT.
   var FIRST_LIGHT_STARTS_AT = "2026-11-02T07:00:00Z";
