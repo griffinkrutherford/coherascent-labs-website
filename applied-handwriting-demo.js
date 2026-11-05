@@ -95,13 +95,10 @@
     resetBoard();
   }
 
-  // Phone intro clip (applied-phone-intro.js): on a slide change the
-  // handwriting waits for the question to open on the phone first.
+  // Phone intro clip (applied-phone-intro.js): the handwriting starts as soon
+  // as the slide changes, alongside the clip (owner 2026-11-04).
   function introDelay() {
-    if (reducedMotion) return 0;
-    var host = slide.querySelector(".phone-screenshot-host[data-intro-video]");
-    var ms = host ? parseInt(host.getAttribute("data-intro-ms") || "0", 10) : 0;
-    return ms > 0 ? ms : 0;
+    return 0;
   }
 
   function startAnimation(withIntro) {
