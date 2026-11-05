@@ -127,10 +127,14 @@ const IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'a
 
 // The handwriting carousel's phone intro clips (applied-phone-intro.js) sit
 // beside the stills they end on; only MP4 is added, and only there.
+// "How grading works" phone videos (applied-phone-video.js) and the
+// /study/<language>/ pages' "Practice speaking with Luna" clips (2026-11-04),
+// which sit beside each language's screenshots so the per-language
+// screenshot guard (scripts/check-landing-screenshots.py) covers them too.
 const ALLOWED_VIDEO_SUBTREES = [
   'mobile-app-assets/screenshots/applied/question-prompts/carousel-v7/',
-  // "How grading works" phone videos (applied-phone-video.js).
   'mobile-app-assets/screenshots/grading-v2/',
+  'mobile-app-assets/screenshots/applied/languages/',
 ];
 const VIDEO_EXTENSIONS = new Set(['mp4']);
 

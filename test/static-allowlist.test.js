@@ -221,6 +221,19 @@ test('the handful of page-relative references still resolve', async () => {
   }
 });
 
+test('the language pages\' Luna voice-practice clips and posters resolve', async () => {
+  for (const code of ['es', 'ar', 'ja']) {
+    for (const ref of [`/mobile-app-assets/screenshots/applied/languages/${code}-luna-voice-practice.mp4`,
+      `/mobile-app-assets/screenshots/applied/languages/${code}-luna-voice-practice-poster.webp`]) {
+      const { status } = await get(ref, 'lunesynth.com');
+      assert.equal(status, 200, `${ref} on lunesynth.com`);
+    }
+  }
+  // Only MP4 is opened up beside the language screenshots.
+  const { status } = await get('/mobile-app-assets/screenshots/applied/languages/README.md', 'lunesynth.com');
+  assert.equal(status, 404);
+});
+
 test('the homepage and key top-level routes still resolve 200', async () => {
   for (const ref of ['/', '/about/', '/blog/', '/privacy/', '/terms/', '/support/', '/delete-account/']) {
     const { status } = await get(ref, 'lunesynth.com');

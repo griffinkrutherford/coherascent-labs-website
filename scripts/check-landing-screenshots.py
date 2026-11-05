@@ -364,6 +364,14 @@ TOPIC_SHARE_ALLOWLIST = [
      "study/languages is the multi-language sampler hub"),
     (frozenset({"study/korean/index.html", "study/languages/index.html"}),
      "study/languages is the multi-language sampler hub"),
+    # 2026-11-04: the hub's "Practice speaking with Luna" row reuses three
+    # language pages' voice-call clips.
+    (frozenset({"study/spanish/index.html", "study/languages/index.html"}),
+     "study/languages is the multi-language sampler hub"),
+    (frozenset({"study/japanese/index.html", "study/languages/index.html"}),
+     "study/languages is the multi-language sampler hub"),
+    (frozenset({"study/arabic/index.html", "study/languages/index.html"}),
+     "study/languages is the multi-language sampler hub"),
 ]
 
 
