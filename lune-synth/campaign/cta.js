@@ -148,11 +148,28 @@
         button.textContent = settings.loadingLabel;
         track("waitlist_submit", details);
 
+        // Shared dedup key between the browser Pixel's Lead event (fired
+        // below, only if window.LuneAdTracking says consent is granted) and
+        // the server-side CAPI Lead (api/waitlist.js, same id). Generated
+        // unconditionally -- it is cheap, and harmless to send even when no
+        // tracker is configured at all (api/waitlist.js just ignores it).
+        var trackingEventId = (window.LuneAdTracking && typeof window.LuneAdTracking.generateEventId === "function")
+          ? window.LuneAdTracking.generateEventId()
+          : "evt-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+        var trackingConsent = (window.LuneAdTracking && typeof window.LuneAdTracking.getConsentStatus === "function")
+          ? window.LuneAdTracking.getConsentStatus() || ""
+          : "";
+
         try {
           var response = await fetch("/api/waitlist", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(Object.assign({ email: email, hp_token: honeypot ? honeypot.value : "" }, details))
+            body: JSON.stringify(Object.assign({
+              email: email,
+              hp_token: honeypot ? honeypot.value : "",
+              tracking_event_id: trackingEventId,
+              tracking_consent: trackingConsent
+            }, details))
           });
           var data = await response.json();
           if (!response.ok) throw new Error(data.error || "Unable to join the waitlist.");
@@ -160,6 +177,9 @@
           form.reset();
           this.openPopup(data.message || settings.successMessage, email, data.title);
           track("waitlist_success", details);
+          if (window.LuneAdTracking && typeof window.LuneAdTracking.trackLead === "function") {
+            window.LuneAdTracking.trackLead(trackingEventId);
+          }
         } catch (error) {
           status.textContent = error.message || "Something went wrong. Please try again.";
           track("waitlist_error", Object.assign({ error_message: status.textContent }, details));
