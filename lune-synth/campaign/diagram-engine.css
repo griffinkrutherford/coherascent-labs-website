@@ -1,8 +1,11 @@
 /* Homepage "Every Subject, Drawn" section (2026-11-04): the diagram engine
    highlight reel as a cinematic card. The reel already contains the phone
    chassis, so the video IS the card background; copy sits over the starfield
-   on either side of the phone. Light and dark themes share the dark card
-   (the reel is a night sky); only the frame and glow change. */
+   beside the phone. Light and dark themes share the dark card (the reel is a
+   night sky); only the frame and glow change.
+   Desktop/tablet (owner, 2026-11-04): the phone sits on the left (the
+   landscape reel is rendered with the phone centred at 30% of the frame)
+   and the copy is right-aligned on the right. */
 
 .diagram-engine {
   --de-ink: #f4f7ff;
@@ -63,17 +66,18 @@ html[data-theme="light"] .diagram-engine {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(4, 8, 22, 0.86) 0%, rgba(4, 8, 22, 0.5) 26%, transparent 40%, transparent 60%, rgba(4, 8, 22, 0.5) 74%, rgba(4, 8, 22, 0.86) 100%),
-    radial-gradient(circle at 12% 22%, rgba(100, 168, 255, 0.16), transparent 34%),
-    radial-gradient(circle at 88% 78%, rgba(255, 93, 135, 0.1), transparent 34%);
+    linear-gradient(270deg, rgba(4, 8, 22, 0.86) 0%, rgba(4, 8, 22, 0.5) 30%, transparent 46%, transparent 86%, rgba(4, 8, 22, 0.32) 100%),
+    radial-gradient(circle at 88% 22%, rgba(100, 168, 255, 0.16), transparent 34%),
+    radial-gradient(circle at 12% 78%, rgba(255, 93, 135, 0.1), transparent 34%);
 }
 
 .diagram-engine__copy {
   position: absolute;
   top: 50%;
-  left: clamp(26px, 4vw, 60px);
+  right: clamp(26px, 4vw, 60px);
   width: min(31%, 380px);
   transform: translateY(-50%);
+  text-align: right;
   text-shadow: 0 2px 24px rgba(1, 4, 12, 0.7);
 }
 
@@ -194,7 +198,7 @@ html[data-theme="light"] .diagram-engine .engine-gradient-word {
     transform: none;
   }
 
-  .diagram-engine__copy { padding: 28px 22px 0; }
+  .diagram-engine__copy { padding: 28px 22px 0; text-align: left; }
 
   .diagram-engine__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
