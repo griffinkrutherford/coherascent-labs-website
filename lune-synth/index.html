@@ -8409,7 +8409,7 @@
       position: relative;
       isolation: isolate;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 8px;
       width: 100%;
       max-width: 100%;
@@ -8435,7 +8435,7 @@
 
     @media (max-width: 968px) {
       .slideshow-menu {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 6px;
         padding: 4px;
         border-radius: 999px;
@@ -8446,7 +8446,22 @@
       }
     }
 
-    @media (max-width: 680px) {
+    /* Six tabs (Superconstellation added 2026-11-04) no longer fit with their
+       step badges below ~1180px: drop the badges there, and switch to the
+       number-only pills from 900px down instead of 680px. */
+    @media (min-width: 901px) and (max-width: 1180px) {
+      .slideshow-menu {
+        gap: 4px;
+      }
+      .slideshow-step-btn {
+        padding: 8px 8px;
+      }
+      .slideshow-step-btn .step-number {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
       .slideshow-menu {
         padding: 3px;
         gap: 4px;
@@ -12180,6 +12195,14 @@
               </div>
             </button>
 
+            <!-- Step 6 Button -->
+            <button class="slideshow-step-btn" id="stepBtn-6" aria-label="Superconstellation" onclick="switchSlideshowStep(6)">
+              <span class="step-number">05</span>
+              <div class="step-details">
+                <h4 class="step-title">Superconstellation</h4>
+              </div>
+            </button>
+
           </div>
 
           <div class="active-step-text">
@@ -12334,6 +12357,15 @@
                     <video id="step5Video" loop muted playsinline preload="none" class="ipad-gif-target">
                       <source src="screenshots/applied/step-5.webm" type="video/webm">
                       <source src="screenshots/applied/step-5.mp4" type="video/mp4">
+                    </video>
+                  </div>
+
+                  <!-- Step 6 Preview Screen: a superconstellation's chapter rail (iPad Air 11-inch, 2026-11-04) -->
+                  <div class="ipad-preview-layout" id="previewStep-6">
+                    <img class="ipad-video-thumbnail" src="screenshots/applied/step-6-superconstellation-thumb.jpg" data-video-thumbnail="step6Video" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <video id="step6Video" loop muted playsinline preload="none" class="ipad-gif-target">
+                      <source src="screenshots/applied/step-6-superconstellation.webm" type="video/webm">
+                      <source src="screenshots/applied/step-6-superconstellation.mp4" type="video/mp4">
                     </video>
                   </div>
 
@@ -15990,6 +16022,11 @@
       badge: "Step 04",
       title: "Beat the Final",
       desc: "Score <strong>above 80%</strong> on your <strong>Supercluster final</strong> to complete the Constellation."
+    },
+    6: {
+      badge: "Step 05",
+      title: "Chart a Whole Course",
+      desc: "Turn a whole course into a <strong>Superconstellation</strong>: a guided path of <strong>chapters</strong>."
     }
   };
 
@@ -16091,7 +16128,7 @@
     }
 
     // Swap the iPad preview immediately; the selector pill provides the motion cue.
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 6; i++) {
       const screen = document.getElementById('previewStep-' + i);
       if (screen) {
         screen.style.display = '';
