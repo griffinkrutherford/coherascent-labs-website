@@ -191,6 +191,13 @@ html[data-theme="light"] #constellations :is(.world-count, .world-select-chevron
   --purple: var(--phone-tab-accent);
   --red: color-mix(in srgb, var(--ambi-accent) 85%, #ff5d87);
 }
+/* The section-title icon (calligraphic notebook / graph) follows the glow too. */
+main .section--phone-tabs > :is(#notes-title, #lune-graph-title)::before {
+  background: color-mix(in srgb, var(--phone-tab-accent) 70%, white);
+}
+html[data-theme="light"] main .section--phone-tabs > :is(#notes-title, #lune-graph-title)::before {
+  background: color-mix(in srgb, var(--phone-tab-accent) 75%, #151526);
+}
 .section--phone-tabs .luna-menu__selection {
   border-color: color-mix(in srgb, var(--phone-tab-accent) 60%, transparent);
   background: color-mix(in srgb, var(--phone-tab-accent) 22%, #10101b);
