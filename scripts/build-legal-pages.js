@@ -252,10 +252,10 @@ ${DRAFT ? '' : `  <link rel="canonical" href="https://lunesynth.com/${page.slug}
       <nav class="nav-links" id="primary-nav" aria-label="Primary">
         <a class="nav-link" href="/#applied-page-title">Overview</a>
         <a class="nav-link" href="/#waitlist">Beta Waitlist</a>
-        <a class="nav-link" href="/#diagrams-title">Diagrams</a>
         <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
         <a class="nav-link" href="/#neuro-title">Circuit</a>
         <a class="nav-link" href="/#constellations-title">Constellations</a>
+        <a class="nav-link" href="/#diagrams-title">Diagrams</a>
         <a class="nav-link" href="/#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="/#problem-solver-title">Problem Solver</a>
         <a class="nav-link" href="/#notes-title">Notes</a>

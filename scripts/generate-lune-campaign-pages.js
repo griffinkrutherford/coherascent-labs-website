@@ -351,10 +351,10 @@ ${page.apExam || page.apGroupBlurbs ? `  <link rel="stylesheet" href="/campaign/
         <a class="nav-link" href="/#applied-page-title">Overview</a>
         <a class="nav-link" href="/#waitlist">Beta Waitlist</a>
         <a class="nav-link" href="/#pricing">Pricing</a>
-        <a class="nav-link" href="/#diagrams-title">Diagrams</a>
         <a class="nav-link" href="/#lost-cosmos-title">The Crisis</a>
         <a class="nav-link" href="/#neuro-title">Circuit</a>
         <a class="nav-link" href="/#constellations-title">Constellations</a>
+        <a class="nav-link" href="/#diagrams-title">Diagrams</a>
         <a class="nav-link" href="/#quick-missions-title">Quick Missions</a>
         <a class="nav-link" href="/#problem-solver-title">Problem Solver</a>
         <a class="nav-link" href="/#notes-title">Notes</a>
