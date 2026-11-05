@@ -32,6 +32,7 @@ main #processing-title { --section-icon: url("/campaign/nav-icons/checklist.webp
 main #medals-title { --section-icon: url("/campaign/nav-icons/medal.webp"); }
 main #tock-title { --section-icon: url("/campaign/nav-icons/clock.webp"); }
 main #engine-title { --section-icon: url("/campaign/nav-icons/gear.webp"); }
+main #diagrams-title { --section-icon: url("/campaign/nav-icons/compass.webp"); }
 main #notes-title { --section-icon: url("/campaign/nav-icons/notebook.webp"); }
 main #lune-graph-title { --section-icon: url("/campaign/nav-icons/graph.webp"); }
 main #blog-title { --section-icon: url("/campaign/nav-icons/book.webp"); }

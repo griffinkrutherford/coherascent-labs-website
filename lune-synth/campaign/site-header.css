@@ -177,6 +177,7 @@ html[data-theme="light"] .site-header .nav-links .nav-link--story:focus-visible 
 }
 .site-header .nav-link[href$="#applied-page-title"] { --nav-icon: url("/campaign/nav-icons/eye.webp"); }
 .site-header .nav-link[href$="#waitlist"] { --nav-icon: url("/campaign/nav-icons/envelope.webp"); }
+.site-header .nav-link[href$="#diagrams-title"] { --nav-icon: url("/campaign/nav-icons/compass.webp"); }
 .site-header .nav-link[href$="#lost-cosmos-title"] { --nav-icon: url("/campaign/nav-icons/lightningCloud.webp"); }
 .site-header .nav-link[href$="#neuro-title"] { --nav-icon: url("/campaign/nav-icons/circuit.webp"); }
 .site-header .nav-link[href$="#constellations-title"] { --nav-icon: url("/campaign/nav-icons/stars.webp"); }

@@ -13,8 +13,8 @@ let changed = 0;
 for (const file of pages) {
   const before = fs.readFileSync(file, 'utf8');
   let after = withLearnYourWayNavigation(before);
-  after = after.replace(/\/campaign\/site-header.css\?v=\d+/g, '/campaign/site-header.css?v=13');
-  after = after.replace(/\/campaign\/section-icons.css\?v=\d+/g, '/campaign/section-icons.css?v=11');
+  after = after.replace(/\/campaign\/site-header.css\?v=\d+/g, '/campaign/site-header.css?v=14');
+  after = after.replace(/\/campaign\/section-icons.css\?v=\d+/g, '/campaign/section-icons.css?v=12');
   if (/href="\/campaign\/landing.css\?v=\d+"/.test(after)) {
     after = after.replace(/(<link rel="stylesheet" href=")\/campaign\/landing.css\?v=\d+("\s*\/>)/,
       '$1/campaign/landing.css?v=11$2');
