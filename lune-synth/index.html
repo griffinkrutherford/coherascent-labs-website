@@ -8474,6 +8474,23 @@
       .slideshow-step-btn .step-details {
         display: none;
       }
+      /* Six tabs on a small phone: tighter pills so the last (railroad) tab
+         isn't clipped inside the menu (2026-11-04). */
+      @media (max-width: 440px) {
+        .slideshow-menu {
+          gap: 2px;
+          padding: 3px;
+        }
+        .slideshow-step-btn {
+          min-width: 0;
+          padding: 6px 4px;
+          flex: 1 1 0;
+        }
+      }
+      .slideshow-step-btn .step-number--icon svg {
+        width: 13px;
+        height: 13px;
+      }
       .slideshow-step-btn .step-number {
         font-size: 11.5px;
         font-weight: 700;
@@ -8659,7 +8676,9 @@
         height: auto;
       }
       .active-step-info {
-        grid-template-columns: 1fr;
+        /* minmax(0, 1fr): a plain 1fr column grew to the tab row's natural
+           width and pushed the tabs and iPad ~17px off-centre (2026-11-04). */
+        grid-template-columns: minmax(0, 1fr);
         grid-template-rows: auto auto auto;
         gap: 20px;
         padding: 20px;
@@ -12197,7 +12216,7 @@
 
             <!-- Step 6 Button -->
             <button class="slideshow-step-btn" id="stepBtn-6" aria-label="Superconstellation" onclick="switchSlideshowStep(6)">
-              <span class="step-number">05</span>
+              <span class="step-number step-number--icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 6 21M16 3l2 18"/><path d="M6.6 7.5h10.8M6.1 12h11.8M5.6 16.5h12.8"/></svg></span>
               <div class="step-details">
                 <h4 class="step-title">Superconstellation</h4>
               </div>
@@ -12402,12 +12421,6 @@
           <p class="diagram-engine__caption">20 subjects, recorded in the app.</p>
         </div>
 
-        <ul class="diagram-engine__stats" aria-label="Diagram engine at a glance">
-          <li class="diagram-engine__stat"><strong>100+</strong><span>diagram types</span></li>
-          <li class="diagram-engine__stat"><strong>120+</strong><span>subjects &amp; exams</span></li>
-          <li class="diagram-engine__stat"><strong>Live</strong><span>each one draws itself in</span></li>
-          <li class="diagram-engine__stat"><strong>Yours</strong><span>constellations from your syllabus</span></li>
-        </ul>
       </div>
     </section>
 
