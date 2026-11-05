@@ -539,6 +539,35 @@ function handleWaitlist(req, res) {
     });
 }
 
+/**
+ * Ad-tracking config, read by the client (site-footer.js, every page) to
+ * decide whether to show the consent banner at all and, if accepted, which
+ * trackers to load. Dormant by default: with no tracker env vars set this
+ * returns `{ meta: null, google: null, tiktok: null }` and nothing on the
+ * client ever shows a banner or loads a third-party script.
+ *
+ * Only the Pixel ID is exposed here -- never META_CAPI_ACCESS_TOKEN, which
+ * stays server-side for api/meta-capi.js. google/tiktok are explicit `null`
+ * placeholders so the client's single `hasAnyTracker()` check and the shape
+ * of this response do not need to change when either is wired up later.
+ */
+function buildTrackingConfig() {
+  const metaPixelId = typeof process.env.META_PIXEL_ID === 'string' ? process.env.META_PIXEL_ID.trim() : '';
+  return {
+    meta: metaPixelId ? { pixelId: metaPixelId } : null,
+    google: null,
+    tiktok: null,
+  };
+}
+
+function handleTrackingConfig(req, res) {
+  res.writeHead(200, {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store',
+  });
+  res.end(JSON.stringify(buildTrackingConfig()));
+}
+
 function serveLuneHost(req, res, pathname) {
   if (pathname === '/favicon.ico') {
     serveStatic(req, res, '/lune-synth/favicon-luna.ico');
@@ -636,14 +665,20 @@ function servePrimaryHost(req, res, pathname) {
  * risking breaking a page that "nothing the site uses breaks" requires.
  * Domains below come from grepping every page for cross-origin src/href.
  */
+// Meta Pixel/CAPI domains (2026-11-05 ad-tracking infrastructure, dormant
+// until META_PIXEL_ID is set): connect.facebook.net serves the Pixel's own
+// script, www.facebook.com is where the Pixel's beacon and any XHR/fetch
+// calls land. Added unconditionally here -- CSP is report-only, and these
+// domains are otherwise never contacted while META_PIXEL_ID is unset, so
+// this line alone does not start loading anything.
 const CSP_REPORT_ONLY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://connect.facebook.net",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data: https://images.unsplash.com",
+  "img-src 'self' data: https://images.unsplash.com https://www.facebook.com",
   "media-src 'self'",
-  "connect-src 'self' https://api.resend.com https://coherascent-labs-app-production.up.railway.app",
+  "connect-src 'self' https://api.resend.com https://coherascent-labs-app-production.up.railway.app https://www.facebook.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -681,6 +716,12 @@ const server = http.createServer((req, res) => {
   // 1. Intercept the waitlist API route
   if (pathname === '/api/waitlist') {
     handleWaitlist(req, res);
+    return;
+  }
+
+  // 1a. Ad-tracking config (dormant by default; see buildTrackingConfig).
+  if (pathname === '/campaign/tracking-config.json' && isGetLike(req)) {
+    handleTrackingConfig(req, res);
     return;
   }
 
