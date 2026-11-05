@@ -2038,12 +2038,85 @@
         linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 44%);
     }
 
-    /* 2026-11-05: the phone plays the app's capture flow on its own, so it
-       sits centered in the card (the static paper and arrow were dropped). */
+    .capture-scene__page {
+      position: absolute;
+      left: 24px;
+      top: 34px;
+      width: 136px;
+      height: auto;
+      aspect-ratio: 1216 / 1294;
+      padding: 0;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(250, 252, 255, 0.98), rgba(235, 240, 248, 0.94));
+      overflow: hidden;
+      transform: rotate(-7deg);
+      z-index: 1;
+      box-shadow:
+        inset 0 0 0 1px rgba(100, 168, 255, 0.06),
+        0 16px 24px rgba(4, 10, 24, 0.22);
+    }
+
+    .capture-scene__page::before {
+      content: none;
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, rgba(217, 106, 140, 0.28), transparent);
+    }
+
+    .capture-scene__page-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .capture-scene__scribble {
+      display: block;
+      height: 9px;
+      margin-top: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(36, 67, 106, 0.26), rgba(36, 67, 106, 0.08));
+    }
+
+    .capture-scene__scribble--short { width: 62%; }
+    .capture-scene__scribble--mid { width: 82%; }
+    .capture-scene__scribble--tiny { width: 48%; }
+
+    .capture-scene__arrow {
+      position: absolute;
+      left: 140px;
+      top: 76px;
+      width: 88px;
+      height: 58px;
+      overflow: visible;
+      transform: rotate(-7deg);
+      transform-origin: center;
+      z-index: 2;
+      pointer-events: none;
+      filter:
+        drop-shadow(0 0 10px rgba(100, 168, 255, 0.28))
+        drop-shadow(0 0 16px rgba(164, 123, 255, 0.18));
+    }
+
+    .capture-scene__arrow-line,
+    .capture-scene__arrow-head {
+      fill: none;
+      stroke: url(#capture-arrow-gradient);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .capture-scene__arrow-line {
+      stroke-dasharray: 8 9;
+    }
+
     .capture-scene__phone {
       position: absolute;
-      left: 50%;
-      margin-left: calc(var(--workflow-phone-width) / -2);
+      right: 26px;
       top: 10px;
       width: var(--workflow-phone-width);
       height: var(--workflow-phone-height);
@@ -2053,7 +2126,7 @@
       border: 1px solid rgb(56, 64, 80);
       background:
         linear-gradient(145deg, rgb(32, 43, 62), rgb(11, 17, 29));
-      transform: rotate(3deg);
+      transform: rotate(11deg);
       z-index: 3;
       box-shadow:
         0 28px 42px rgba(4, 10, 24, 0.42),
@@ -2270,6 +2343,15 @@
       inset: 6px;
       border-radius: inherit;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(223, 230, 240, 0.92));
+    }
+
+    .capture-scene__flash {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 58% 42%, rgba(255, 255, 255, 0.22), transparent 24%);
+      opacity: 0;
+      animation: capture-flash 4.8s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .processing-scene {
@@ -4127,14 +4209,20 @@
     }
 
     @keyframes capture-float {
-      0%, 100% { transform: rotate(3deg) translateY(0); }
-      50% { transform: rotate(3deg) translateY(-8px); }
+      0%, 100% { transform: rotate(11deg) translateY(0); }
+      50% { transform: rotate(11deg) translateY(-8px); }
     }
 
     @keyframes capture-scan {
       0% { transform: translateX(-140%); }
       50% { transform: translateX(180%); }
       100% { transform: translateX(180%); }
+    }
+
+    @keyframes capture-flash {
+      0%, 70%, 100% { opacity: 0; }
+      76% { opacity: 0.9; }
+      82% { opacity: 0.15; }
     }
 
     @keyframes orbit-spin {
@@ -8120,11 +8208,25 @@
         transform: translateY(10px) scale(0.64);
       }
 
+      .capture-scene__page {
+        left: 18px;
+        top: 34px;
+        width: 112px;
+        height: auto;
+      }
+
+      .capture-scene__arrow {
+        left: 116px;
+        top: 78px;
+        width: 72px;
+        height: 48px;
+      }
+
       .capture-scene__phone {
         top: 12px;
         width: var(--workflow-phone-width-mobile);
         height: var(--workflow-phone-height-mobile);
-        margin-left: calc(var(--workflow-phone-width-mobile) / -2);
+        right: 14px;
       }
 
       .capture-scene__preview {
@@ -8187,6 +8289,7 @@
       .capture-scene__phone,
       .capture-scene__frame::before,
       .capture-scene__frame::after,
+      .capture-scene__flash,
       .processing-scene__ring,
       .processing-scene__planet,
       .processing-scene__nebula,
@@ -10610,7 +10713,7 @@
         overflow: visible !important;
       }
 
-      /* Scan the work: the phone with its capture clip, centered. */
+      /* Scan the work: show only the phone (drop the paper/arrow/flash). */
       .capture-scene {
         display: flex !important;
         align-items: center !important;
@@ -10618,6 +10721,12 @@
         min-height: 0 !important;
         padding: 8px 0 !important;
         overflow: visible !important;
+      }
+
+      .capture-scene__page,
+      .capture-scene__arrow,
+      .capture-scene__flash {
+        display: none !important;
       }
 
       /* Turn work into steps: phone only, straight (drop floating step cards). */
@@ -13767,6 +13876,20 @@
             <div class="processing-card__step">01 Capture</div>
             <h3 class="processing-card__title">Scan the work</h3>
             <div class="processing-card__visual capture-scene">
+              <div class="capture-scene__page">
+                <img class="capture-scene__page-image" src="../mobile-app-assets/screenshots/screenshot-workflow/1/handwritten-page.webp" alt="" loading="lazy" decoding="async">
+              </div>
+              <svg class="capture-scene__arrow" viewBox="0 0 96 64" role="presentation" aria-hidden="true">
+                <defs>
+                  <linearGradient id="capture-arrow-gradient" x1="10" y1="34" x2="84" y2="26" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#64a8ff" />
+                    <stop offset="0.55" stop-color="#a47bff" />
+                    <stop offset="1" stop-color="#ff5d87" />
+                  </linearGradient>
+                </defs>
+                <path class="capture-scene__arrow-line" d="M10 39C28 23 50 20 75 28" />
+                <path class="capture-scene__arrow-head" d="M65 16L80 30L61 38" />
+              </svg>
               <div class="capture-scene__phone" data-phone-mock="camera">
                 <div class="capture-scene__camera phone-screenshot-host" data-screenshot-src="../mobile-app-assets/screenshots/grading-v2/capture-20261105-mid.webp" data-screenshot-high="../mobile-app-assets/screenshots/grading-v2/capture-20261105.webp" data-screenshot-low="../mobile-app-assets/screenshots/grading-v2/capture-20261105-low.webp" data-phone-video="../mobile-app-assets/screenshots/grading-v2/capture-loop-20261105.mp4" data-phone-video-poster="../mobile-app-assets/screenshots/grading-v2/capture-loop-20261105-poster.webp" data-phone-video-mode="loop">
                   <span class="capture-scene__upload">Scan Work</span>
@@ -13782,6 +13905,7 @@
                   </div>
                 </div>
               </div>
+              <div class="capture-scene__flash"></div>
             </div>
             <p>
               One photo, every step.
