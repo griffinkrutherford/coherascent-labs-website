@@ -176,3 +176,38 @@ html[data-theme="light"] #constellations :is(.world-count, .world-select-chevron
   font-weight: 900;
   font-size: 1.1em;
 }
+
+/* Notes and Lune Graph: the tab pill, active tab and headline gradient word
+   take the phone's live glow colour, like the Constellations card above
+   (campaign/phone-tab-ambilight.js writes --ambi-* on the section;
+   owner 2026-11-05). Seeded with brand blue before the first frame. */
+.section--phone-tabs {
+  --ambi-base: rgb(22, 34, 64);
+  --ambi-accent: rgb(100, 168, 255);
+  --phone-tab-accent: color-mix(in srgb, var(--ambi-accent) 75%, var(--ambi-base));
+}
+.section--phone-tabs .engine-gradient-word {
+  --blue: color-mix(in srgb, var(--phone-tab-accent) 70%, white);
+  --purple: var(--phone-tab-accent);
+  --red: color-mix(in srgb, var(--ambi-accent) 85%, #ff5d87);
+}
+.section--phone-tabs .luna-menu__selection {
+  border-color: color-mix(in srgb, var(--phone-tab-accent) 60%, transparent);
+  background: color-mix(in srgb, var(--phone-tab-accent) 22%, #10101b);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--phone-tab-accent) 30%, transparent),
+    0 0 22px color-mix(in srgb, var(--phone-tab-accent) 28%, transparent);
+}
+.section--phone-tabs .luna-tab-btn.is-active {
+  color: color-mix(in srgb, var(--phone-tab-accent) 45%, white);
+}
+.section--phone-tabs .luna-tab-btn:hover {
+  background: color-mix(in srgb, var(--phone-tab-accent) 8%, transparent);
+  border-color: color-mix(in srgb, var(--phone-tab-accent) 22%, transparent);
+}
+html[data-theme="light"] .section--phone-tabs .luna-menu__selection {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: color-mix(in srgb, var(--phone-tab-accent) 45%, transparent);
+}
+html[data-theme="light"] .section--phone-tabs .luna-tab-btn.is-active {
+  color: color-mix(in srgb, var(--phone-tab-accent) 60%, #151526);
+}

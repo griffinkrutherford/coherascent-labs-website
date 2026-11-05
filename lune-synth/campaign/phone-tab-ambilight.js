@@ -46,6 +46,7 @@
     var accent = FALLBACK_ACCENT.slice();
     var sampledOnce = false;
     var last = 0, rafId = 0, running = false;
+    var section = card.closest("section");
 
     function activePanel() {
       return card.querySelector(".luna-tab-panel.is-active");
@@ -110,8 +111,16 @@
       var t = mobile.matches ? 0.12 : 0.07;
       ease(base, tBase, t);
       ease(accent, tAccent, t);
-      writeStyle(card, "--ambi-base", "rgb(" + (base[0] | 0) + ", " + (base[1] | 0) + ", " + (base[2] | 0) + ")");
-      writeStyle(card, "--ambi-accent", "rgb(" + (accent[0] | 0) + ", " + (accent[1] | 0) + ", " + (accent[2] | 0) + ")");
+      var baseRgb = "rgb(" + (base[0] | 0) + ", " + (base[1] | 0) + ", " + (base[2] | 0) + ")";
+      var accentRgb = "rgb(" + (accent[0] | 0) + ", " + (accent[1] | 0) + ", " + (accent[2] | 0) + ")";
+      writeStyle(card, "--ambi-base", baseRgb);
+      writeStyle(card, "--ambi-accent", accentRgb);
+      // The section's tabs and headline gradient word follow the same live
+      // colour (campaign/section-accents.css, owner 2026-11-05).
+      if (section) {
+        writeStyle(section, "--ambi-base", baseRgb);
+        writeStyle(section, "--ambi-accent", accentRgb);
+      }
       rafId = requestAnimationFrame(tick);
     }
 
