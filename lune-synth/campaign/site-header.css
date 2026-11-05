@@ -240,3 +240,126 @@ body > .site-header + main { padding-top: 0; }
     white-space: nowrap;
   }
 }
+
+/* Menu overlay layout (2026-11-04). Desktop fits every link on one screen
+   in three compact columns; narrower screens scroll, with a scroll cue
+   (.menu-scroll-cue, injected by nav-scroll.js) while more links sit below.
+   The .site-header prefix outranks the inline and blog.css copies. */
+.site-header .nav-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 252px));
+  justify-content: center;
+  align-content: safe center;
+  align-items: stretch;
+  gap: 8px 10px;
+  padding: max(92px, env(safe-area-inset-top)) 32px max(32px, env(safe-area-inset-bottom));
+  overscroll-behavior: contain;
+  scroll-padding-bottom: 104px;
+}
+.site-header .nav-links .nav-link {
+  justify-content: flex-start;
+  min-height: 42px;
+  padding: 9px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  text-decoration: none;
+  gap: 10px;
+}
+.site-header .nav-links .nav-link::before {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+}
+/* blog.css colors light-mode links with its dark-only --text; pin a dark ink. */
+html[data-theme="light"] .site-header .nav-links .nav-link:not(.nav-link--blog):not(.nav-link--story),
+html[data-theme="light"] .site-header .nav-toggle {
+  color: rgb(6, 17, 31);
+}
+@media (max-width: 860px) {
+  .site-header .nav-links {
+    grid-template-columns: repeat(2, minmax(0px, 280px));
+    padding-inline: 24px;
+  }
+}
+@media (max-width: 640px) {
+  .site-header .nav-links {
+    grid-template-columns: minmax(0px, 1fr);
+    justify-content: stretch;
+    align-content: start;
+    gap: 6px;
+    padding: max(108px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
+  }
+  .site-header .nav-links .nav-link {
+    justify-content: center;
+    min-height: 42px;
+    padding: 8px 14px;
+    font-size: 12.5px;
+  }
+}
+
+/* Scroll cue: a fade over the bottom edge while more links sit below, plus
+   a "Scroll for more" chip until the reader scrolls. Pure decoration
+   (aria-hidden, no pointer events); the list stays a normal scroll area. */
+.menu-scroll-cue {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 91;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 104px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(5, 8, 17, 0), rgba(5, 8, 17, 0.82) 55%, rgba(5, 8, 17, 0.97));
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+.menu-scroll-cue[data-menu="brand-open"] { z-index: 96; }
+html[data-theme="light"] .menu-scroll-cue {
+  background: linear-gradient(to bottom, rgba(246, 249, 255, 0), rgba(246, 249, 255, 0.85) 55%, rgba(246, 249, 255, 0.98));
+}
+.menu-scroll-cue.has-more { opacity: 1; visibility: visible; }
+.menu-scroll-cue__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(102, 179, 255, 0.3);
+  background: rgba(11, 20, 40, 0.78);
+  color: rgb(222, 234, 255);
+  font: 600 11px/1.2 "Plus Jakarta Sans", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+html[data-theme="light"] .menu-scroll-cue__label {
+  border-color: rgba(46, 106, 168, 0.24);
+  background: rgba(255, 255, 255, 0.9);
+  color: rgb(18, 42, 78);
+}
+.menu-scroll-cue.is-hinting .menu-scroll-cue__label { opacity: 1; transform: translateY(0); }
+.menu-scroll-cue__chevron {
+  width: 7px;
+  height: 7px;
+  margin-top: -4px;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg);
+  animation: menu-scroll-cue-bob 1.6s ease-in-out infinite;
+}
+@keyframes menu-scroll-cue-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-scroll-cue, .menu-scroll-cue__label { transition: none; }
+  .menu-scroll-cue__label { transform: none; }
+  .menu-scroll-cue__chevron { animation: none; }
+}

@@ -100,3 +100,49 @@
   initialAnchor();
   if (document.readyState !== 'complete') window.addEventListener('load', initialAnchor, { once: true });
 })();
+
+// Scroll cue for the full-screen menus. When a menu overflows the viewport,
+// show a bottom fade while more links sit below and a "Scroll for more" chip
+// until the reader scrolls. Decoration only: aria-hidden, no pointer events.
+(function () {
+  'use strict';
+  var header = document.querySelector('.site-header');
+  if (!header) return;
+
+  function attach(list, openClass) {
+    if (!list || !list.parentNode) return;
+    var cue = document.createElement('div');
+    cue.className = 'menu-scroll-cue';
+    cue.setAttribute('aria-hidden', 'true');
+    cue.setAttribute('data-menu', openClass);
+    cue.innerHTML = '<span class="menu-scroll-cue__label">Scroll for more<span class="menu-scroll-cue__chevron"></span></span>';
+    list.parentNode.insertBefore(cue, list.nextSibling);
+
+    var wasOpen = false;
+    var hinting = false;
+    var frame = 0;
+    function update() {
+      frame = 0;
+      var open = header.classList.contains(openClass);
+      if (open && !wasOpen) {
+        list.scrollTop = 0;
+        hinting = true;
+      }
+      wasOpen = open;
+      var more = open && list.scrollHeight - list.clientHeight - list.scrollTop > 4;
+      if (!more || list.scrollTop > 8) hinting = false;
+      cue.classList.toggle('has-more', more);
+      cue.classList.toggle('is-hinting', more && hinting);
+    }
+    function schedule() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
+    list.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    new MutationObserver(schedule).observe(header, { attributes: true, attributeFilter: ['class'] });
+    update();
+  }
+
+  attach(document.getElementById('primary-nav'), 'nav-open');
+  attach(header.querySelector('.brand-dropdown-content'), 'brand-open');
+})();
