@@ -178,6 +178,14 @@ We may deny or revoke an offer obtained through fraud, duplicate accounts, or
 abuse. We will not retroactively remove an earned discount merely because the
 beta ends, except as allowed by the disclosed offer terms or required by law.
 
+Each First Light member's account also receives, once, an in-app bonus of
+100,000 Moon Rocks, the Cosmic Inflation ship and constellation world, 22 XP
+boosts (3 Hypernova, 4 Singularity and 15 Solar), 3 Batch Cryonics and four
+Tock wardrobe items, and each Founding 50 member's account instead receives,
+once, 300,000 Moon Rocks, three ships, three constellation worlds, 44 XP
+boosts, 9 Cryonics and ten Tock wardrobe items; these in-app items have no cash
+value.
+
 ## 7. Educational And AI Limitations
 
 Lune Synth provides formative study support. It is not a school, accredited
