@@ -222,6 +222,7 @@
     style.id = STYLE_ID;
     style.textContent = [
       ".lune-offer-countdown{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin:.75rem auto 0;font-variant-numeric:tabular-nums}",
+      ".lune-offer-countdown__grid{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}",
       ".lune-offer-countdown__unit{display:flex;flex-direction:column;align-items:center;min-width:3.6rem;padding:.5rem .55rem;border-radius:14px;background:rgba(100,168,255,.08);border:1px solid rgba(164,123,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}",
       ".lune-offer-countdown__value{display:block;font-size:1.4rem;font-weight:800;line-height:1.1;color:var(--text,#edf5ff)}",
       ".lune-offer-countdown__label{margin-top:.15rem;font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#a6bad7)}",
@@ -229,7 +230,15 @@
       ".lune-offer-countdown__value.is-ticking{animation:luneOfferTick .45s ease-out}",
       "@keyframes luneOfferTick{0%{opacity:.35;transform:translateY(-4px)}100%{opacity:1;transform:none}}",
       "@media (prefers-reduced-motion: reduce){.lune-offer-countdown__value.is-ticking{animation:none}}",
-      "@media (max-width:420px){.lune-offer-countdown{gap:.4rem}.lune-offer-countdown__unit{min-width:3.1rem;padding:.42rem .4rem}.lune-offer-countdown__value{font-size:1.2rem}}",
+      "@media (max-width:420px){.lune-offer-countdown__grid{gap:.4rem}.lune-offer-countdown__unit{min-width:3.1rem;padding:.42rem .4rem}.lune-offer-countdown__value{font-size:1.2rem}}",
+      // Compact single-line format: the 4-box grid is the biggest unnecessary
+      // consumer of the mobile first viewport (P0 fix, 2026-11-05 landing-page
+      // audit), so on narrow screens we swap it for one line of the same
+      // live numbers. The underlying clock, tick cadence and expiry behavior
+      // are unchanged -- only which of these two already-rendered nodes is
+      // visible differs by viewport width.
+      ".lune-offer-countdown__compact{display:none;font-size:.86rem;font-weight:700;letter-spacing:.01em;color:var(--text,#edf5ff);text-align:center}",
+      "@media (max-width:480px){.lune-offer-countdown{margin:.5rem auto 0}.lune-offer-countdown__grid{display:none}.lune-offer-countdown__compact{display:block}}",
       ".lune-offer-countdown__sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}"
     ].join("");
     document.head.appendChild(style);
@@ -238,19 +247,46 @@
   var countdowns = [];
   var timer = null;
 
+  // Same live numbers as the 4-box grid, formatted as one short line for the
+  // narrow-screen compact view (see injectStyle's max-width:480px rule).
+  // Drops a leading unit once it hits zero so the line stays short near
+  // expiry instead of padding with "0d".
+  function compactLabel(parts) {
+    var d = parts[0].value, h = parts[1].value, m = parts[2].value, s = parts[3].value;
+    var remaining;
+    if (d > 0) remaining = d + "d " + h + "h " + m + "m";
+    else if (h > 0) remaining = h + "h " + m + "m";
+    else if (m > 0) remaining = m + "m " + s + "s";
+    else remaining = s + "s";
+    return "First Light · 50% off Pro · ends in " + remaining;
+  }
+
   function buildCountdown() {
     var root = document.createElement("div");
     root.className = "lune-offer-countdown";
     root.setAttribute("role", "timer");
     root.setAttribute("aria-label", "First Light closes " + endLabel());
+
+    var grid = document.createElement("div");
+    grid.className = "lune-offer-countdown__grid";
     UNITS.forEach(function (unit) {
       var cell = document.createElement("span");
       cell.className = "lune-offer-countdown__unit";
       cell.setAttribute("aria-hidden", "true");
       cell.innerHTML = '<span class="lune-offer-countdown__value" data-unit="' + unit[0] + '">--</span>' +
         '<span class="lune-offer-countdown__label">' + unit[0] + "</span>";
-      root.appendChild(cell);
+      grid.appendChild(cell);
     });
+    root.appendChild(grid);
+
+    // Narrow-screen compact line (CSS swaps which of these two is visible;
+    // both are kept live so there is no flash of "--" on first paint at
+    // whichever width the viewport is).
+    var compact = document.createElement("span");
+    compact.className = "lune-offer-countdown__compact";
+    compact.setAttribute("aria-hidden", "true");
+    root.appendChild(compact);
+
     // role=timer is not live by default; only this minute-granular text is
     // announced, so screen readers hear at most one update a minute.
     var live = document.createElement("span");
@@ -271,6 +307,7 @@
     }
     var parts = clock.remainingParts(now);
     var spoken = clock.announcement(now);
+    var compactText = compactLabel(parts);
     countdowns.forEach(function (root) {
       parts.forEach(function (part) {
         var node = root.querySelector('[data-unit="' + part.key + '"]');
@@ -282,6 +319,8 @@
           node.classList.add("is-ticking");
         }
       });
+      var compact = root.querySelector(".lune-offer-countdown__compact");
+      if (compact && compact.textContent !== compactText) compact.textContent = compactText;
       var live = root.querySelector(".lune-offer-countdown__sr");
       if (live && live.textContent !== spoken) live.textContent = spoken;
     });

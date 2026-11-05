@@ -205,6 +205,20 @@ body.has-modal { overflow: hidden; }
   .lune-cta__status { position: static; min-height: 18px; }
 }
 
+/* Mobile fold (P0, 2026-11-05 landing-page audit): paired with the hero
+   tightening in landing.css and the countdown's compact format in
+   offer-state.js, this keeps the CTA card from pushing the email field
+   below a 390x844 viewport. Desktop and the 600px rules above are
+   untouched. */
+@media (max-width: 480px) {
+  lune-synth-cta { min-height: 0; }
+  .lune-cta { padding: 16px 14px; border-radius: 18px; }
+  .lune-cta__copy { gap: 5px; }
+  .lune-cta__headline { font-size: 18px; line-height: 1.2; }
+  .lune-cta__offer, .lune-cta__clarifier { font-size: 12.5px; line-height: 1.4; }
+  .lune-cta__form { margin-top: 12px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lune-cta *, .lune-cta *::before, .lune-cta *::after {
     scroll-behavior: auto !important;

@@ -637,6 +637,21 @@ img { max-width: 100%; }
   .campaign-footer__subject-groups { grid-template-columns: 1fr; text-align: left; }
 }
 
+/* Mobile fold (P0, 2026-11-05 landing-page audit): on a 390x844 viewport the
+   hero (eyebrow + h1 + body + CTA card) pushed the email field below the
+   fold on most campaign landers. Tightened spacing/type-scale here, plus the
+   countdown's compact format in offer-state.js and the CTA card's own
+   ≤480px rule in cta.css, reclaims enough height that the email input is
+   visible without scrolling. Desktop and the 600-820px tablet rules above
+   are untouched. */
+@media (max-width: 480px) {
+  .campaign-hero { padding: 20px 0 30px; }
+  .campaign-eyebrow { margin-bottom: 8px; }
+  .campaign-hero h1 { font-size: clamp(28px, 9vw, 36px); line-height: 1.08; }
+  .campaign-hero__body { margin-top: 10px; font-size: 13px; line-height: 1.45; }
+  .campaign-hero__cta { margin-top: 14px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
