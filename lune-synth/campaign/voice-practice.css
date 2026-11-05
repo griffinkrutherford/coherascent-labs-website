@@ -3,6 +3,12 @@
    call on the app's real voice-call screen. Self-contained; the phone chassis
    and its desktop tilt come from phone-mock-fluid.css and device-tilt.js. */
 
+/* Breathing room (owner 2026-11-04): this section's copy and tall phone sat
+   tight against the page gutter, so it gets its own inner padding. */
+.voice-practice {
+  padding-inline: clamp(10px, 3.2vw, 48px);
+}
+
 .voice-practice__layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
