@@ -1,6 +1,61 @@
 (function () {
   "use strict";
 
+  // Ad-tracking bootstrap (2026-11-05). This file is the one component every
+  // page on the site already loads, so it is the single place that decides
+  // whether the consent banner / Meta Pixel loader is ever requested at
+  // all. Dormant by default: with no tracker env vars set,
+  // /campaign/tracking-config.json returns every tracker as null,
+  // hasAnyTracker() is false, and nothing below this point ever runs --
+  // ad-tracking.js/css are never even fetched.
+  var TRACKING_CONFIG_URL = "/campaign/tracking-config.json";
+  var AD_TRACKING_ASSET_VERSION = 1;
+
+  function hasAnyTrackerConfigured(config) {
+    return !!(config && (config.meta || config.google || config.tiktok));
+  }
+
+  function wirePrivacyChoicesButtons() {
+    document.querySelectorAll("[data-privacy-choices]").forEach(function (button) {
+      button.hidden = false;
+      button.addEventListener("click", function () {
+        if (window.LuneAdTracking && typeof window.LuneAdTracking.reopenBanner === "function") {
+          window.LuneAdTracking.reopenBanner();
+        }
+      });
+    });
+  }
+
+  function ensureAdTracking(config) {
+    if (!hasAnyTrackerConfigured(config)) return;
+    wirePrivacyChoicesButtons();
+
+    if (window.__luneAdTrackingRequested) return;
+    window.__luneAdTrackingRequested = true;
+    window.LUNE_TRACKING_CONFIG = config;
+
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/campaign/ad-tracking.css?v=" + AD_TRACKING_ASSET_VERSION;
+    document.head.appendChild(link);
+
+    var script = document.createElement("script");
+    script.src = "/campaign/ad-tracking.js?v=" + AD_TRACKING_ASSET_VERSION;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  if (typeof window !== "undefined" && typeof fetch === "function") {
+    fetch(TRACKING_CONFIG_URL, { credentials: "same-origin" })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (config) { if (config) ensureAdTracking(config); })
+      .catch(function () {
+        // No tracking config, no banner, nothing loaded -- exactly the
+        // dormant state, just reached by a failed fetch instead of an
+        // all-null response.
+      });
+  }
+
   function footerMarkup(notes, compactCopy) {
     return `
       <footer class="site-footer" aria-label="Lune Synth footer">
@@ -182,6 +237,7 @@
           <a href="/support/">Support</a>
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
+          <button type="button" class="site-footer__privacy-choices" data-privacy-choices hidden>Privacy choices</button>
           <a href="mailto:griffin@lunesynth.com">Contact</a>
         </nav>
         <nav class="site-footer__social" aria-label="Social">

@@ -93,6 +93,33 @@ html[data-theme="light"] .site-footer {
   background: rgba(164, 123, 255, 0.08);
 }
 
+/* Reopens the ad-tracking consent banner (lune-synth/campaign/ad-tracking.js).
+   Styled identically to the surrounding footer links so it reads as one of
+   them; site-footer.js only un-hides it once a tracker is actually
+   configured, so most pages never show it at all. */
+.site-footer nav button.site-footer__privacy-choices {
+  font: inherit;
+  font-family: inherit;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--muted);
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.site-footer nav button.site-footer__privacy-choices:hover,
+.site-footer nav button.site-footer__privacy-choices:focus-visible {
+  color: var(--text);
+  border-color: rgba(164, 123, 255, 0.24);
+  background: rgba(164, 123, 255, 0.08);
+}
+
+.site-footer nav button.site-footer__privacy-choices[hidden] {
+  display: none;
+}
+
 .site-footer__directory {
   flex: 1 0 100%;
   display: grid;
