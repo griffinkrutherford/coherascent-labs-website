@@ -319,14 +319,14 @@ ${page.scoreExample ? `  <script type="application/json" data-score-example>${js
   <link rel="stylesheet" href="/campaign/landing.css?v=11" />
   <link rel="stylesheet" href="/campaign/phone-chassis.css?v=1" />
   <link rel="stylesheet" href="/campaign/cta.css?v=1" />
-  <link rel="stylesheet" href="/campaign/features.css?v=4" />
+  <link rel="stylesheet" href="/campaign/features.css?v=5" />
   <link rel="stylesheet" href="/campaign/offer-popup.css?v=3" />
   <script src="/campaign/cta-config.js?v=2" defer></script>
   <script src="/campaign/waitlist-fields.js?v=6" defer></script>
   <link rel="stylesheet" href="/campaign/waitlist-prompt.css?v=1" />
   <script src="/campaign/waitlist-prompt.js?v=2" defer></script>
   <script src="/campaign/cta.js?v=5" defer></script>
-  <script src="/campaign/features.js?v=9" defer></script>
+  <script src="/campaign/features.js?v=10" defer></script>
   <script src="/campaign/landing.js?v=8" defer></script>
   <link rel="stylesheet" href="/campaign/device-tilt.css?v=10" />
   <script src="/campaign/device-tilt.js?v=9" defer></script>
