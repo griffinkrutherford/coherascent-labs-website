@@ -123,6 +123,9 @@ async function lookupContact(email, apiKey) {
  * scripts/resend-setup-properties.js has not been run against this key -- the
  * create is retried bare. Storing the metadata must never cost us the signup.
  */
+// Keys scripts/resend-setup-properties.js defines on every Resend account.
+const CORE_CONTACT_PROPERTIES = ['platform', 'google_account', 'access_sent', 'platform_asked'];
+
 async function createContact(email, properties, apiKey) {
   const send = (body) => fetch('https://api.resend.com/contacts', {
     method: 'POST',
@@ -146,6 +149,18 @@ async function createContact(email, properties, apiKey) {
       + 'Run scripts/resend-setup-properties.js to define them. Response: '
       + text.slice(0, 300)
     );
+    // 2026-11-05: retry with only the properties the setup script defines
+    // before going bare, so an undefined attribution key (utm_*, fbc, ref)
+    // never costs a signup its platform answer or Play account.
+    const core = {};
+    for (const key of CORE_CONTACT_PROPERTIES) {
+      if (properties[key] !== undefined) core[key] = properties[key];
+    }
+    const coreKeys = Object.keys(core).length;
+    if (coreKeys > 0 && coreKeys < Object.keys(properties).length) {
+      response = await send({ ...base, properties: core });
+      if (response.ok) return response;
+    }
     response = await send(base);
   }
 

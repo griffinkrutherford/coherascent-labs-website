@@ -272,3 +272,44 @@ test('no fbclid/ref on the referer means no fbc/ref property at all (byte-for-by
     }
   });
 });
+
+test('undefined attribution properties fall back to the core properties, keeping platform and google_account', async () => {
+  await withEnv({ RESEND_API_KEY: 'test-key', META_PIXEL_ID: undefined, META_CAPI_ACCESS_TOKEN: undefined }, async () => {
+    const waitlist = freshWaitlistHandler();
+    const posts = [];
+    const original = global.fetch;
+    global.fetch = async (url, options = {}) => {
+      const method = options.method || 'GET';
+      if (String(url).includes('api.resend.com/contacts/') && method === 'GET') {
+        return { ok: false, status: 404, json: async () => ({}), text: async () => '' };
+      }
+      if (String(url).endsWith('api.resend.com/contacts') && method === 'POST') {
+        const body = JSON.parse(options.body);
+        posts.push(body);
+        const keys = Object.keys(body.properties || {});
+        const undefinedKey = keys.find((k) => !['platform', 'google_account', 'access_sent', 'platform_asked'].includes(k));
+        if (undefinedKey) {
+          const text = `contact property "${undefinedKey}" does not exist`;
+          return { ok: false, status: 422, json: async () => ({}), text: async () => text, clone() { return { text: async () => text }; } };
+        }
+        return { ok: true, status: 200, json: async () => ({ id: 'contact_fake' }) };
+      }
+      return { ok: true, status: 200, json: async () => ({ id: 'email_fake' }) };
+    };
+    try {
+      const res = fakeRes();
+      await waitlist(fakeReq({
+        referer: 'https://lunesynth.com/test-prep/sat/?utm_source=facebook&ref=ig-sat-1&fbclid=abc',
+        body: { email: 'core.retry@example.com', platform: 'android', google_email: 'core.retry@gmail.com' },
+      }), res);
+      assert.equal(res.statusCode, 200);
+      assert.equal(posts.length, 2, 'one rejected create, one core-only retry, no bare create');
+      assert.equal(posts[1].properties.platform, 'android');
+      assert.equal(posts[1].properties.google_account, 'core.retry@gmail.com');
+      assert.equal(posts[1].properties.utm_source, undefined);
+      assert.equal(posts[1].properties.ref, undefined);
+    } finally {
+      global.fetch = original;
+    }
+  });
+});

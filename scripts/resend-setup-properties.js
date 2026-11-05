@@ -35,6 +35,53 @@ const PROPERTIES = [
     type: 'string',
     fallbackValue: '',
     note: 'Date the backfill broadcast asked this contact; keeps re-runs idempotent',
+  },  {
+    key: 'signup_page',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Path of the page the signup came from (attribution, 2026-11-05)',
+  },
+  {
+    key: 'utm_source',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Campaign source (attribution, 2026-11-05)',
+  },
+  {
+    key: 'utm_medium',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Campaign medium (attribution, 2026-11-05)',
+  },
+  {
+    key: 'utm_campaign',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Campaign name (attribution, 2026-11-05)',
+  },
+  {
+    key: 'utm_content',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Creative id (attribution, 2026-11-05)',
+  },
+  {
+    key: 'utm_term',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Campaign term (attribution, 2026-11-05)',
+  },
+  {
+    key: 'fbc',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Meta click id (fb.1.<ms>.<fbclid>), first-party (attribution, 2026-11-05)',
+  },
+  {
+    key: 'ref',
+    type: 'string',
+    fallbackValue: '',
+    note: 'Bare ?ref= link code (attribution, 2026-11-05)',
   },
 ];
 
