@@ -51,6 +51,8 @@
   <script src="/campaign/device-rotation.js?v=4" defer></script>
   <link rel="stylesheet" href="/campaign/typography.css?v=1" />
   <link rel="stylesheet" href="/campaign/subject-shots.css?v=2" />
+  <link rel="stylesheet" href="/campaign/voice-practice.css?v=1" />
+  <script src="/campaign/voice-practice.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/phone-mock-fluid.css?v=1" />
 </head>
 <body>
@@ -166,6 +168,37 @@
         </figure>
       </div>
       <p class="subject-shots__note">Captured from the Lune Synth app. Generated question sets can include a diagram when one helps; figures go through automated checks against the question before they are shown. Lune Synth does not grade pronunciation or stroke order.</p>
+    </section>
+
+    <section class="campaign-section campaign-shell voice-practice" aria-labelledby="voice-practice-title">
+      <div class="voice-practice__layout">
+        <div class="campaign-section__heading" data-reveal>
+          <p class="section-kicker">Luna voice call</p>
+          <h2 id="voice-practice-title">Practice speaking Hindi with Luna.</h2>
+          <p class="voice-practice__lede">Speak it out loud. Luna answers in Hindi, asks a follow-up and corrects the one slip worth fixing.</p>
+        </div>
+        <figure class="voice-practice__phone" data-reveal>
+          <div class="phone-mock-fluid">
+          <div class="phone-mock__frame">
+            <div class="phone-mock__screen">
+              <video data-voice-practice muted loop playsinline preload="none" poster="/mobile-app-assets/screenshots/applied/languages/hi-luna-voice-practice-poster.webp" width="720" height="1566" aria-label="Sample Luna voice call in Hindi: breakfast and cooking, with one gentle correction (transitive verbs in the past take ने)">
+                <source src="/mobile-app-assets/screenshots/applied/languages/hi-luna-voice-practice.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="phone-shell-buttons" aria-hidden="true">
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--left">
+                <span class="phone-shell-button phone-shell-button--volume"></span>
+                <span class="phone-shell-button phone-shell-button--volume phone-shell-button--volume-secondary"></span>
+              </span>
+              <span class="phone-shell-buttons__rail phone-shell-buttons__rail--right">
+                <span class="phone-shell-button phone-shell-button--power"></span>
+              </span>
+            </div>
+          </div>
+          </div>
+          <figcaption>A scripted sample call on the app's voice-call screen.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="campaign-section campaign-shell" aria-labelledby="process-title">
