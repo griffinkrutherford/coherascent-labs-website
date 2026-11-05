@@ -1,7 +1,7 @@
 'use strict';
 
 const DEVICE_ASSETS = [
-  { path: '/campaign/device-tilt.css', version: 9, kind: 'style' },
+  { path: '/campaign/device-tilt.css', version: 10, kind: 'style' },
   { path: '/campaign/device-tilt.js', version: 9, kind: 'script' },
   { path: '/campaign/device-rotation.css', version: 3, kind: 'style' },
   { path: '/campaign/device-rotation.js', version: 4, kind: 'script' },
