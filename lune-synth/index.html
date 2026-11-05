@@ -5967,6 +5967,53 @@
         inset 0 0 0 1px rgba(255, 255, 255, 0.4);
     }
 
+    /* Notes and Lune Graph cards glow with their phone's live colours, like the
+       constellation iPad (campaign/phone-tab-ambilight.js writes --ambi-*;
+       owner 2026-11-04). Seeded with brand blue so the first paint looks right. */
+    .section--phone-tabs .luna-card {
+      --ambi-base: rgb(22, 34, 64);
+      --ambi-accent: rgb(100, 168, 255);
+      --ambi-x: 30%;
+      --ambi-y: 55%;
+      border-color: color-mix(in srgb, var(--ambi-accent) 32%, rgba(164, 123, 255, 0.3));
+      background:
+        radial-gradient(70% 90% at var(--ambi-x) var(--ambi-y), color-mix(in srgb, var(--ambi-accent) 22%, transparent) 0%, transparent 60%),
+        radial-gradient(130% 150% at var(--ambi-x) var(--ambi-y), color-mix(in srgb, var(--ambi-base) 28%, transparent) 0%, transparent 78%),
+        linear-gradient(180deg, rgba(12, 20, 42, 0.92), rgba(7, 13, 28, 0.96));
+      box-shadow:
+        var(--glow),
+        0 0 100px -10px color-mix(in srgb, var(--ambi-accent) 55%, transparent),
+        0 22px 100px -20px color-mix(in srgb, var(--ambi-base) 80%, transparent);
+    }
+
+    .section--phone-tabs .luna-card::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      z-index: -1;
+      border-radius: inherit;
+      background:
+        radial-gradient(50% 60% at var(--ambi-x) var(--ambi-y), color-mix(in srgb, var(--ambi-accent) 55%, transparent) 0%, transparent 70%),
+        radial-gradient(85% 95% at var(--ambi-x) var(--ambi-y), color-mix(in srgb, var(--ambi-base) 50%, transparent) 0%, transparent 80%);
+      filter: blur(48px);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    html[data-theme="light"] .section--phone-tabs .luna-card {
+      background:
+        radial-gradient(70% 90% at var(--ambi-x) var(--ambi-y), color-mix(in srgb, var(--ambi-accent) 14%, transparent) 0%, transparent 60%),
+        rgba(255, 253, 250, 0.96);
+      box-shadow:
+        0 18px 40px rgba(84, 98, 130, 0.14),
+        0 0 80px -16px color-mix(in srgb, var(--ambi-accent) 45%, transparent),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    html[data-theme="light"] .section--phone-tabs .luna-card::before {
+      opacity: 0.45;
+    }
+
     .luna-menu {
       position: relative;
       isolation: isolate;
@@ -10995,6 +11042,7 @@
   <link rel="stylesheet" href="/campaign/sky-motion.css?v=1" />
   <script src="/campaign/sky-motion.js?v=1" defer></script>
   <script src="/campaign/site-footer.js?v=21" data-lune-site-footer defer></script>
+  <script src="/campaign/phone-tab-ambilight.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=9" />
   <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=4" />
   <script src="/campaign/nav-scroll.js?v=2" defer></script>
