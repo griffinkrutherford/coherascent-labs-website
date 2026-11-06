@@ -44,7 +44,7 @@
   // .engine-panel--unified::before) are kept comfortably larger than this
   // so no edge is ever exposed.
   function amplitude() {
-    return narrowQuery && narrowQuery.matches ? 50 : 110;
+    return narrowQuery && narrowQuery.matches ? 200 : 520;
   }
 
   var items = roots.map(function (el) {
@@ -68,7 +68,11 @@
       var item = items[i];
       if (!item.active) continue;
 
-      var rect = item.el.getBoundingClientRect();
+      // Measure the untransformed host (the section), never the shifted
+      // layer itself: its rect includes our own translate, which fed back
+      // into the next frame's progress and made the layer jump.
+      var host = item.el.closest("section") || item.el.parentElement || item.el;
+      var rect = host.getBoundingClientRect();
       var total = rect.height + vh;
       if (total <= 0) continue;
 
