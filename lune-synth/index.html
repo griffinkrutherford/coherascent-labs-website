@@ -5802,13 +5802,40 @@
       isolation: isolate;
       min-height: clamp(700px, 82svh, 860px);
       overflow: hidden;
-      border: 1px solid rgba(164, 123, 255, 0.26);
-      border-radius: 30px;
+      /* Full-bleed band, same technique as .section--neuro's .neuro-card and
+         .section--voice: break out of `main`'s 1400px/24px gutter to the
+         viewport edges. The rounded "card" becomes a full-width band; inner
+         content re-applies the gutter via .luna__content (below) so reading
+         width is unchanged. */
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      border-top: 1px solid rgba(164, 123, 255, 0.26);
+      border-bottom: 1px solid rgba(164, 123, 255, 0.26);
+      border-radius: 0;
       background: #080b18;
       box-shadow:
         0 34px 90px rgba(3, 7, 20, 0.58),
         0 0 70px rgba(164, 123, 255, 0.12),
         inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    /* Background parallax layer: oversized vertically so the translate3d
+       shift set by campaign/parallax-bands.js never exposes an edge. Clipped
+       by .luna's own overflow:hidden. Falls back to translate3d(0,0,0) --
+       visually identical to today -- when --parallax-shift is unset (JS
+       disabled/failed or prefers-reduced-motion). */
+    .luna__bg {
+      position: absolute;
+      inset: -48px 0;
+      z-index: -3;
+      pointer-events: none;
+      transform: translate3d(0, var(--parallax-shift, 0px), 0);
+    }
+
+    @media (max-width: 720px) {
+      .luna__bg {
+        inset: -22px 0;
+      }
     }
 
     .luna__video,
@@ -5852,7 +5879,13 @@
       justify-items: center;
       align-content: center;
       gap: clamp(20px, 2.8vh, 30px);
-      padding: clamp(30px, 4.5vw, 56px);
+      /* .luna is now a full-bleed band (see above); re-apply `main`'s
+         1400px/24px content gutter here so the reading width is unchanged. */
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding: clamp(30px, 4.5vw, 56px) max(24px, calc((100vw - 1400px) / 2 + 24px));
     }
 
     .luna-lead {
@@ -6166,13 +6199,20 @@
     }
 
     .luna--plain {
+      background: #080b18;
+    }
+
+    /* Moved onto the oversized, transformable .luna__bg layer (see .luna__bg
+       above) so the parallax script can shift the gradient independently of
+       .luna's border/content. */
+    .luna--plain .luna__bg {
       background:
         radial-gradient(900px 520px at 12% 0%, rgba(100, 168, 255, 0.12), transparent 60%),
         radial-gradient(800px 520px at 92% 100%, rgba(164, 123, 255, 0.14), transparent 60%),
         #080b18;
     }
 
-    .section--lune-graph .luna--plain {
+    .section--lune-graph .luna--plain .luna__bg {
       background:
         radial-gradient(900px 520px at 88% 0%, rgba(100, 168, 255, 0.14), transparent 60%),
         radial-gradient(800px 520px at 8% 100%, rgba(255, 93, 135, 0.1), transparent 60%),
@@ -6719,14 +6759,56 @@
       margin: 0 auto;
     }
 
+    /* Full-bleed band, same technique as .section--neuro / .section--voice /
+       .luna: break out to the viewport edges. All the layout/padding that
+       used to live here moves to .engine-panel__inner so the reading width
+       is unchanged; this outer element now only carries the border,
+       background and the oversized parallax accent (::before, below). */
     .engine-panel--unified {
       min-width: 0;
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(50% - 50vw);
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+      padding: 0;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .engine-panel__inner {
       width: 100%;
-      max-width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       gap: 26px;
-      padding: clamp(24px, 3.5vw, 36px);
+      padding: clamp(24px, 3.5vw, 36px) max(24px, calc((100vw - 1400px) / 2 + 24px));
+    }
+
+    /* Background parallax accent: the panel's own themed gradient (set by
+       .engine-panel/.section--red above) stays put; this adds a second,
+       oversized gradient layer that campaign/parallax-bands.js shifts at a
+       slower rate than the page scroll. Falls back to translate3d(0,0,0) --
+       visually identical to today -- when --parallax-shift is unset. */
+    .engine-panel--unified::before {
+      content: "";
+      position: absolute;
+      inset: -48px 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(640px 320px at 14% 8%, color-mix(in srgb, var(--blue) 16%, transparent), transparent 62%),
+        radial-gradient(560px 320px at 88% 92%, color-mix(in srgb, var(--purple) 14%, transparent), transparent 62%);
+      transform: translate3d(0, var(--parallax-shift, 0px), 0);
+    }
+
+    @media (max-width: 720px) {
+      .engine-panel--unified::before {
+        inset: -22px 0;
+      }
     }
 
     .engine-header-row {
@@ -7691,6 +7773,19 @@
       }
 
       .engine-panel {
+        padding: 22px;
+      }
+
+      /* .engine-panel--unified stays full-bleed (border-radius:0, padding:0)
+         at this breakpoint too -- re-asserted here because it shares equal
+         specificity with the two rules just above and this comes later in
+         the cascade. */
+      .engine-panel--unified {
+        border-radius: 0;
+        padding: 0;
+      }
+
+      .engine-panel__inner {
         padding: 22px;
       }
 
@@ -11116,6 +11211,7 @@
   <script src="/campaign/sky-motion.js?v=1" defer></script>
   <script src="/campaign/site-footer.js?v=22" data-lune-site-footer defer></script>
   <script src="/campaign/phone-tab-ambilight.js?v=2" defer></script>
+  <script src="/campaign/parallax-bands.js?v=1" defer></script>
   <link rel="stylesheet" href="/campaign/section-accents.css?v=11" />
   <link rel="stylesheet" href="/campaign/mobile-rendering.css?v=4" />
   <script src="/campaign/nav-scroll.js?v=3" defer></script>
@@ -12467,10 +12563,12 @@
       <h2 class="section-title" id="luna-title">Luna</h2>
 
       <div class="luna section-content" data-luna>
-        <video class="luna__video" data-luna-video loop muted playsinline preload="metadata" aria-hidden="true">
-          <source src="screenshots/applied/math-animation-luna-tutor-section.mp4" type="video/mp4">
-        </video>
-        <div class="luna__veil" aria-hidden="true"></div>
+        <div class="luna__bg" data-parallax-root aria-hidden="true">
+          <video class="luna__video" data-luna-video loop muted playsinline preload="metadata" aria-hidden="true">
+            <source src="screenshots/applied/math-animation-luna-tutor-section.mp4" type="video/mp4">
+          </video>
+          <div class="luna__veil" aria-hidden="true"></div>
+        </div>
 
         <div class="luna__content">
           <div class="luna-lead">
@@ -12820,7 +12918,9 @@
       <h2 class="section-title" id="notes-title">Notes</h2>
 
       <div class="luna luna--plain section-content" data-phone-tabs>
-        <div class="luna__veil" aria-hidden="true"></div>
+        <div class="luna__bg" data-parallax-root aria-hidden="true">
+          <div class="luna__veil" aria-hidden="true"></div>
+        </div>
 
         <div class="luna__content">
           <div class="luna-lead">
@@ -12947,7 +13047,9 @@
       <h2 class="section-title" id="lune-graph-title">Lune Graph</h2>
 
       <div class="luna luna--plain section-content" data-phone-tabs>
-        <div class="luna__veil" aria-hidden="true"></div>
+        <div class="luna__bg" data-parallax-root aria-hidden="true">
+          <div class="luna__veil" aria-hidden="true"></div>
+        </div>
 
         <div class="luna__content">
           <div class="luna-lead">
@@ -15159,7 +15261,8 @@
           </defs>
         </svg>
 
-        <div class="engine-panel engine-panel--unified">
+        <div class="engine-panel engine-panel--unified" data-parallax-root>
+          <div class="engine-panel__inner">
           <div class="engine-header-row">
             <div class="engine-header-copy">
               <h3>Built to <span class="engine-gradient-word">fight</span> slop.</h3>
@@ -15440,6 +15543,7 @@
 
             </div>
           </details>
+          </div>
         </div>
       </div>
     </section>
